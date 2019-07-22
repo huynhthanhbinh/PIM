@@ -1,4 +1,4 @@
 # PIM
-PIM - Project Information Management
-JavaFX Project - ELCA VN Internship
-@author : BHT - huynhthanhbinh1998
+PIM - Project Information Management<br>
+JavaFX Project - ELCA VN Internship<br>
+@author : BHT - huynhthanhbinh1998<br>
