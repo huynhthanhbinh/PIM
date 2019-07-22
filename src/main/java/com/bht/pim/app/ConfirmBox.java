@@ -28,7 +28,7 @@ public class ConfirmBox extends Application {
         launch(args);
     }
 
-    private static boolean display(String title, String msg) {
+    public static boolean display(String title, String msg) {
 
         Stage window = new Stage();
 

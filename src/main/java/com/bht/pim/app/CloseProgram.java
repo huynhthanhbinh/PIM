@@ -21,7 +21,7 @@ public class CloseProgram extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         ClassLoader classLoader = getClass().getClassLoader();
 
@@ -32,6 +32,14 @@ public class CloseProgram extends Application {
                 new Image(Objects.requireNonNull(
                         classLoader.getResourceAsStream("pictures/icon.png"))));
 
+        window.setOnCloseRequest(event -> {
+            // waiting for the response ! vital !
+            // stop this event from this event handler definition !
+            // As usual, close handler will close the application
+            // on close request, although any function call after
+            event.consume();
+            closeProgram();
+        });
 
         Button button = new Button("Close Program");
         button.setOnAction(event -> closeProgram());
@@ -47,8 +55,13 @@ public class CloseProgram extends Application {
     }
 
     private void closeProgram() {
-        logger.info("File has been saved !");
-        logger.warn("Closing the program !");
-        window.close();
+
+        if (ConfirmBox.display(
+                "Exit warning", "Are you sure ?")) {
+
+            logger.info("File has been saved !");
+            logger.warn("Closing the program !");
+            window.close();
+        }
     }
 }
