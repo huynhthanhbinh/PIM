@@ -22,9 +22,9 @@ import java.util.Objects;
  * is to extends Application class
  * get functionality from the class Application of package javafx
  */
-public class Main extends Application {
+public class HelloWorld extends Application {
 
-    private Logger logger = Logger.getLogger(Main.class);
+    private Logger logger = Logger.getLogger(HelloWorld.class);
 
     /*
      * launch method setting everything up, and then

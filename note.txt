@@ -29,3 +29,31 @@ public void handle(ActionEvent event) {
         logger.info("Button say Hello World is clicked !");
     }
 }
+
+USING BUILT-IN LAYOUT PANE OF JAVA FX
+
+    + BorderPane    : nodes are arranged in 5 regions: top, left, center, right, bottom
+
+    + HBox          : nodes are arranged in a single row    --> Horizontal
+    + VBox          : nodes are arranged in a single column --> Vertical
+
+    + StackPane     : nodes overlapped the others as which comes finally will appear on top
+    + GridPane      : nodes are arranged in a flexible grid of rows and columns
+
+    + AnchorPane    : enable to anchor nodes to the top, bottom, left, right, or center of the pane
+                      As the window is resized,
+                      the nodes maintain their position relative to their anchor point
+
+    + TilePane      : as the same as FlowPane,
+                      but places all of the nodes in a grid in which each cell, or tile, is the same size
+
+    + FlowPane      : nodes can flow (1)-vertically (in columns) or (2)-horizontally (in rows)
+                      for eg. we have 8 nodes and arrange in 2 columns with 4 rows
+                         (1-vertical)                    (2-horizontal)
+                          1 5                             1 2
+                          2 6                             3 4
+                          3 7                             5 6
+                          4 8                             7 8
+
+
+Scene (n) --> Scenario (n)
