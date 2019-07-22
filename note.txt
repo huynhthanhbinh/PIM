@@ -10,3 +10,10 @@ Sample package when create a FX project contains
     + sample.fxml. This is the FXML file for defining the user interface.
     + Controller.java. controller class intended to handle user interactions with the UI.
 
+Create JavaFX - Maven Project
+    + Create JavaFX Project
+    + Choose Project then Add Framework Support
+    + Choose Maven then Finish
+    + Configure pom.xml as usual
+    + Remind: resources files put under src/main/resources
+
