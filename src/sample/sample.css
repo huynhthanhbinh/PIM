@@ -1,0 +1,11 @@
+.root {
+    -fx-background-color: gold;
+}
+.label {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-font-family: "Times New Roman";
+    -fx-background-color: lime;
+    -fx-text-fill: blue;
+}
