@@ -1,0 +1,12 @@
+@author BHT
+
+3 files always go together in JavaFX
+    + Java Class
+    + FXML
+    + CSS
+
+Sample package when create a FX project contains
+    + Main.java. This is the main class for starting the sample application.
+    + sample.fxml. This is the FXML file for defining the user interface.
+    + Controller.java. controller class intended to handle user interactions with the UI.
+
