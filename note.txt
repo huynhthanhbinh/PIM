@@ -57,3 +57,11 @@ USING BUILT-IN LAYOUT PANE OF JAVA FX
 
 
 Scene (n) --> Scenario (n)
+
+* Params hints for calling each function is enabled by default
+
+Common Shortcut Key when coding:
+
+    Ctrl + Q            : quick view documentation
+    Ctrl + P            : parameters information
+    Ctrl + Shift + I    : quick definition

@@ -6,6 +6,7 @@
 package com.bht.pim.app;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -46,8 +47,11 @@ public class SwitchScenes extends Application {
         VBox layout1 = new VBox(20);
         HBox layout2 = new HBox(20);
 
-        layout1.getChildren().addAll(button1, label1);
-        layout2.getChildren().addAll(button2, label2);
+        layout1.getChildren().addAll(label1, button1);
+        layout2.getChildren().addAll(label2, button2);
+
+        layout1.setAlignment(Pos.CENTER);
+        layout2.setAlignment(Pos.CENTER);
 
         scene1 = new Scene(layout1, 200, 400);
         scene2 = new Scene(layout2, 400, 200);
