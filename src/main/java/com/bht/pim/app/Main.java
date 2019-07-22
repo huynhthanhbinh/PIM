@@ -1,11 +1,14 @@
 package com.bht.pim.app;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 import java.util.Objects;
 
@@ -14,7 +17,10 @@ import java.util.Objects;
 * is to extends Application class
 * get functionality from the class Application of package javafx
 */
-public class Main extends Application {
+public class Main extends Application implements EventHandler<ActionEvent> {
+
+    private Logger logger = Logger.getLogger(Main.class);
+    private Button myButton;
 
     /*
     * launch method setting everything up, and then
@@ -37,11 +43,20 @@ public class Main extends Application {
 
         ClassLoader classLoader = getClass().getClassLoader();
 
-        Parent root = FXMLLoader
+        /*Parent root = FXMLLoader
                 .load(Objects.requireNonNull(
-                        classLoader.getResource("sample.fxml")));
+                        classLoader.getResource("sample.fxml")));*/
 
-        Scene scene = new Scene(root, 400, 200);
+        myButton = new Button();
+        myButton.setText("Say 'Hello World'");
+        myButton.setOnAction(this);
+
+        StackPane layout = new StackPane();
+        layout.getChildren().add(myButton);
+
+        Scene scene = new Scene(layout, 400, 200);
+        scene.getStylesheets().add(Objects.requireNonNull(
+                classLoader.getResource("sample.css")).toExternalForm());
 
         /*
         * A layout means how we arrange all the things in the window
@@ -61,5 +76,19 @@ public class Main extends Application {
         primaryStage.setMinHeight(150);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+
+    /*
+    It will be called whenever user interact with the UI
+        + click a myButton --> onClick
+        + ...
+    */
+    @Override
+    public void handle(ActionEvent event) {
+
+        if (event.getSource().equals(myButton)) {
+            logger.info("Button say Hello World is clicked !");
+        }
     }
 }

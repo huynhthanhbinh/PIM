@@ -92,3 +92,5 @@ log.out
 .idea/codeStyles/
 .idea/compiler.xml
 .idea/encodings.xml
+
+*.log
