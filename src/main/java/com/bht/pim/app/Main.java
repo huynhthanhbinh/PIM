@@ -6,10 +6,12 @@
 package com.bht.pim.app;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
@@ -49,12 +51,19 @@ public class Main extends Application {
                 .load(Objects.requireNonNull(
                         classLoader.getResource("sample.fxml")));*/
 
+        Label label = new Label();
         Button myButton = new Button();
         myButton.setText("Say 'Hello World'");
-        myButton.setOnAction(event -> logger.info("Button say Hello World is clicked !"));
+        myButton.setOnAction(event -> {
+            logger.info("Button say Hello World is clicked !");
+            label.setText(" Hello World ! ");
+        });
 
-        StackPane layout = new StackPane();
+
+        GridPane layout = new GridPane();
+        layout.setAlignment(Pos.CENTER);
         layout.getChildren().add(myButton);
+        layout.addRow(1, label);
 
         Scene scene = new Scene(layout, 400, 200);
         scene.getStylesheets().add(Objects.requireNonNull(
