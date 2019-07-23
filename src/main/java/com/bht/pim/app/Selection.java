@@ -9,6 +9,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
@@ -47,11 +48,20 @@ public class Selection extends Application {
         List<CheckBox> checkBoxes = new ArrayList<>();
         List<RadioButton> radioButtons = new ArrayList<>();
 
+        ImageView icon = new ImageView();
         ToggleGroup groupOptions = new ToggleGroup(); // to group all radio buttons
 
-        groupOptions.selectedToggleProperty().addListener(ov -> {
+        groupOptions.selectedToggleProperty().addListener(observableValue -> {
             if (groupOptions.getSelectedToggle() != null) {
-                logger.info(groupOptions.getSelectedToggle().getUserData().toString());
+                String option = groupOptions.getSelectedToggle().getUserData().toString();
+
+                Image image = new Image(Objects.requireNonNull(
+                        classLoader.getResourceAsStream(
+                                "pictures/" + option + ".png")),
+                        150, 150, true, true);
+
+                icon.setImage(image);
+                logger.info(option);
             }
         });
 
@@ -112,9 +122,11 @@ public class Selection extends Application {
 
         layout.setLeft(layout1);
         layout.setCenter(layout2);
+        layout.setRight(icon);
         layout.setBottom(bSubmit);
 
-        Scene scene = new Scene(layout, 370, 200);
+
+        Scene scene = new Scene(layout, 400, 200);
 
         window.setResizable(false);
         window.setScene(scene);
