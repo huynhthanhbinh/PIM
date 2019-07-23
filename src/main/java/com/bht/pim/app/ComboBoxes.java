@@ -1,3 +1,5 @@
+//https://docs.oracle.com/javafx/2/ui_controls/combo-box.htm
+
 package com.bht.pim.app;
 
 import javafx.application.Application;
@@ -49,18 +51,23 @@ public class ComboBoxes extends Application {
             if (comboBox.getSelectionModel() != null) {
                 String option = comboBox.getSelectionModel().getSelectedItem();
 
-                Image image = new Image(Objects.requireNonNull(
-                        classLoader.getResourceAsStream(
-                                "pictures/" + option + ".png")),
-                        150, 150, true, true);
+                try {
+                    Image image = new Image(Objects.requireNonNull(
+                            classLoader.getResourceAsStream(
+                                    "pictures/" + option + ".png")),
+                            150, 150, true, true);
 
-                icon.setImage(image);
-                logger.info(option);
+                    icon.setImage(image);
+                    logger.info(option);
+
+                } catch (NullPointerException exception) {
+                    logger.warn("Null pointer !");
+                }
             }
         });
 
+        comboBox.setEditable(true);
         comboBox.setValue(options[0]);
-
 
         Button bSubmit = new Button("Submit");
         bSubmit.setOnAction(event -> {
