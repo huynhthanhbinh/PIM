@@ -127,13 +127,16 @@ public class Selection extends Application {
 
 
         Scene scene = new Scene(layout, 400, 200);
-
-        window.setResizable(false);
         window.setScene(scene);
+        showWindow(window);
+    }
+
+    private void showWindow(Stage window) {
+        window.setResizable(false);
         window.show();
 
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        primaryStage.setX((screenBounds.getWidth() - primaryStage.getWidth()) / 2);
-        primaryStage.setY((screenBounds.getHeight() - primaryStage.getHeight()) / 2);
+        window.setX((screenBounds.getWidth() - window.getWidth()) / 2);
+        window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
     }
 }
