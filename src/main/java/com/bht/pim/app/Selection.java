@@ -13,12 +13,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Selection extends Application {
+
+    private Logger logger = Logger.getLogger(Selection.class);
 
     private Stage window;
 
@@ -46,6 +49,11 @@ public class Selection extends Application {
 
         ToggleGroup groupOptions = new ToggleGroup(); // to group all radio buttons
 
+        groupOptions.selectedToggleProperty().addListener(ov -> {
+            if (groupOptions.getSelectedToggle() != null) {
+                logger.info(groupOptions.getSelectedToggle().getUserData().toString());
+            }
+        });
 
         for (String role : roles) {
             CheckBox checkBox = new CheckBox(role);
@@ -59,6 +67,7 @@ public class Selection extends Application {
 
         for (String option : options) {
             RadioButton radioButton = new RadioButton(option);
+            radioButton.setUserData(option); // To get selected option back
             radioButton.setToggleGroup(groupOptions);
 
             if (option.equals(options[0])) {
@@ -69,6 +78,8 @@ public class Selection extends Application {
         }
 
         Button bSubmit = new Button("Submit");
+        bSubmit.setOnAction(event -> logger.info("Your option is: " +
+                groupOptions.getSelectedToggle().getUserData()));
 
         BorderPane layout = new BorderPane();
         layout.setPadding(new Insets(20));
@@ -78,17 +89,20 @@ public class Selection extends Application {
         checkBoxes.forEach(
                 checkBox -> layout1.getChildren().add(checkBox));
 
+        BorderPane.setMargin(layout1, new Insets(20));
 
         VBox layout2 = new VBox();
         layout2.setSpacing(5);
         radioButtons.forEach(
                 radioButton -> layout2.getChildren().add(radioButton));
 
+        BorderPane.setMargin(layout2, new Insets(20));
+
         layout.setLeft(layout1);
-        layout.setRight(layout2);
+        layout.setCenter(layout2);
         layout.setBottom(bSubmit);
 
-        Scene scene = new Scene(layout, 370, 150);
+        Scene scene = new Scene(layout, 370, 200);
 
         window.setResizable(false);
         window.setScene(scene);
