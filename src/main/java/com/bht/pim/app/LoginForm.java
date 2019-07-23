@@ -2,9 +2,11 @@ package com.bht.pim.app;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
@@ -14,9 +16,9 @@ import org.apache.log4j.Logger;
 
 import java.util.Objects;
 
-public class GridPanes extends Application {
+public class LoginForm extends Application {
 
-    private Logger logger = Logger.getLogger(GridPanes.class);
+    private Logger logger = Logger.getLogger(LoginForm.class);
 
     private Stage window;
 
@@ -37,6 +39,7 @@ public class GridPanes extends Application {
                         classLoader.getResourceAsStream("pictures/icon.png"))));
 
         GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
 
         // Same size as window
         // So first, let's set the padding (from the window border)
@@ -53,12 +56,12 @@ public class GridPanes extends Application {
         Label lPassword = new Label("Password");
 
         TextField iUsername = new TextField(); // username input
-        TextField iPassword = new TextField(); // password input
+        PasswordField iPassword = new PasswordField(); // password input
 
         // Run the program to see the difference between Text & PromptText
         // PromptText ~ PlaceHolder in HTML input type = "text"
         iUsername.setText("Richard");
-        iPassword.setPromptText("123456789");
+        iPassword.setPromptText("Your password");
 
         GridPane.setConstraints(lUsername, 0, 0);
         GridPane.setConstraints(iUsername, 1, 0);
@@ -68,14 +71,32 @@ public class GridPanes extends Application {
         Button bLogin = new Button("Log in");
         Button bForgot = new Button("Forgot account");
 
-        bLogin.setOnAction(event -> {
-            logger.info("Username input: " + iUsername.getText());
-            logger.info("Password input: " + iPassword.getText());
-        });
-
         HBox hBox = new HBox();
         hBox.getChildren().addAll(bLogin, bForgot);
         hBox.setSpacing(5);
+
+        Label label = new Label();
+        GridPane.setConstraints(label, 1, 3);
+        grid.getChildren().add(label);
+        label.getStyleClass().add("error");
+
+        bLogin.setOnAction(event -> {
+            logger.info("Username input: " + iUsername.getText());
+            logger.info("Password input: " + iPassword.getText());
+
+            if (!isNumber(iPassword.getText())) {
+                iPassword.getStyleClass().add("error");
+                logger.warn("Catch exception");
+
+                label.setText("Password is not in number format !");
+
+            } else {
+                iPassword.getStyleClass().clear();
+                iPassword.getStyleClass().add("text-input");
+
+                label.setText("");
+            }
+        });
 
         GridPane.setConstraints(hBox, 1, 2);
 
@@ -85,8 +106,26 @@ public class GridPanes extends Application {
                 hBox
         );
 
-        Scene scene = new Scene(grid, 350, 150);
+        Scene scene = new Scene(grid, 400, 150);
+
+        scene.getStylesheets().add(Objects.requireNonNull(
+                classLoader.getResource("form.css")).toExternalForm());
+
+        window.setMinWidth(370);
+        window.setMinHeight(190);
         window.setScene(scene);
         window.show();
+    }
+
+    private boolean isNumber(String msg) {
+        try {
+            int number = Integer.parseInt(msg);
+            logger.info("Password is a number !, value is: " + number);
+            return true;
+
+        } catch (NumberFormatException e) {
+            logger.warn("Password is not a number, value is: " + msg);
+            return false;
+        }
     }
 }

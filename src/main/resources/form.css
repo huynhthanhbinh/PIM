@@ -1,0 +1,26 @@
+.root {
+    -fx-background-color: lightgrey;
+}
+
+.label {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: black;
+}
+
+.label.error {
+    -fx-font-style: italic;
+    -fx-text-fill: #F24517;
+}
+
+.text-field {
+    -fx-min-width: 220;
+}
+
+.text-field.error {
+    /*-fx-background-color: orange;*/
+    -fx-text-box-border: #F24517;
+    -fx-focus-color: #F24517;
+    -fx-control-inner-background: #ffe6e6;
+}
