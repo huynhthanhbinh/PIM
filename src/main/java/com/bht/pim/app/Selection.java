@@ -43,16 +43,28 @@ public class Selection extends Application {
 
         List<CheckBox> checkBoxes = new ArrayList<>();
         List<RadioButton> radioButtons = new ArrayList<>();
-        ToggleGroup groupOptions = new ToggleGroup();
+
+        ToggleGroup groupOptions = new ToggleGroup(); // to group all radio buttons
 
 
         for (String role : roles) {
-            checkBoxes.add(new CheckBox(role));
+            CheckBox checkBox = new CheckBox(role);
+
+            if (role.equals(roles[0])) {
+                checkBox.setSelected(true);
+            }
+
+            checkBoxes.add(checkBox);
         }
 
         for (String option : options) {
             RadioButton radioButton = new RadioButton(option);
             radioButton.setToggleGroup(groupOptions);
+
+            if (option.equals(options[0])) {
+                radioButton.setSelected(true);
+            }
+
             radioButtons.add(radioButton);
         }
 
