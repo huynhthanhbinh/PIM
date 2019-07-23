@@ -10,10 +10,13 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 import java.util.Objects;
 
 public class GridPanes extends Application {
+
+    private Logger logger = Logger.getLogger(GridPanes.class);
 
     private Stage window;
 
@@ -38,7 +41,7 @@ public class GridPanes extends Application {
         // Same size as window
         // So first, let's set the padding (from the window border)
         grid.setPadding(new Insets(
-                10, 10, 10, 10));
+                20, 20, 20, 20));
 
         // Then we need to set the the
         // HGap, VGap ~ cellPadding, cellSpacing of each node inside
@@ -64,6 +67,11 @@ public class GridPanes extends Application {
 
         Button bLogin = new Button("Log in");
         Button bForgot = new Button("Forgot account");
+
+        bLogin.setOnAction(event -> {
+            logger.info("Username input: " + iUsername.getText());
+            logger.info("Password input: " + iPassword.getText());
+        });
 
         HBox hBox = new HBox();
         hBox.getChildren().addAll(bLogin, bForgot);
