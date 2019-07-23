@@ -30,7 +30,7 @@ public class Selection extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         ClassLoader classLoader = getClass().getClassLoader();
 
@@ -78,8 +78,20 @@ public class Selection extends Application {
         }
 
         Button bSubmit = new Button("Submit");
-        bSubmit.setOnAction(event -> logger.info("Your option is: " +
-                groupOptions.getSelectedToggle().getUserData()));
+        bSubmit.setOnAction(event -> {
+            logger.info("SUBMIT SUCCESSFUL");
+
+            // Get user's input: checkbox
+            checkBoxes.forEach(checkBox -> {
+                if (checkBox.isSelected()) {
+                    logger.info("Selected checkbox: " + checkBox.getText());
+                }
+            });
+
+            // get user's input: group of radio buttons
+            logger.info("Your option is: " +
+                    groupOptions.getSelectedToggle().getUserData());
+        });
 
         BorderPane layout = new BorderPane();
         layout.setPadding(new Insets(20));
