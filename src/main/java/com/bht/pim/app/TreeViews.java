@@ -26,7 +26,7 @@ public class TreeViews extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         ClassLoader classLoader = getClass().getClassLoader();
 
@@ -63,6 +63,15 @@ public class TreeViews extends Application {
 
         // show/hide the root, just show its children
         tree.setShowRoot(true);
+
+        // get selected value
+        tree.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    if (newValue != null) {
+                        logger.info("Currently select: " +
+                                newValue.getValue());
+                    }
+                });
 
         StackPane layout = new StackPane();
         layout.getChildren().add(tree);
