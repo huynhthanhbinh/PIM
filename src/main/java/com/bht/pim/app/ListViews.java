@@ -109,6 +109,37 @@ public class ListViews extends Application {
             logger.info("");
         });
 
+        listView.setOnKeyReleased(event -> {
+            after = listView.getSelectionModel().getSelectedItems();
+
+            logger.info("Before: " + before);
+            logger.info("After : " + after);
+
+            difference(before, after).forEach(dif -> {
+                if (before.contains(dif)) {
+                    logger.info("Remove: " + dif);
+
+                    for (int i = 0; i < options.size(); i++) {
+                        if (dif.equals(options.get(i))) {
+                            imageList.get(i).setVisible(false);
+                        }
+                    }
+
+                } else {
+                    logger.info("Add   : " + dif);
+
+                    for (int i = 0; i < options.size(); i++) {
+                        if (dif.equals(options.get(i))) {
+                            imageList.get(i).setVisible(true);
+                        }
+                    }
+                }
+            });
+
+            before = new ArrayList<>(after);
+            logger.info("");
+        });
+
         Button bSubmit = new Button("Submit");
         bSubmit.setOnAction(event -> {
             List<String> choices = listView.getSelectionModel().getSelectedItems();
