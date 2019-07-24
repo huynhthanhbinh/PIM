@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
@@ -49,8 +50,21 @@ public class ListViews extends Application {
         HBox hBox = new HBox();
         VBox layout = new VBox();
 
-
         List<String> options = Arrays.asList("Java", ".NET", "Android", "iOS");
+        List<ImageView> imageList = new ArrayList<>();
+
+        for (String s : options) {
+            Image image = new Image(Objects.requireNonNull(
+                    classLoader.getResourceAsStream(
+                            "pictures/" + s + ".png")),
+                    90, 90, true, true);
+
+            ImageView imageView = new ImageView(image);
+            imageView.setVisible(false);
+            imageList.add(imageView);
+        }
+
+        hBox.getChildren().addAll(imageList);
 
         ListView<String> listView = new ListView<>();
 
@@ -73,8 +87,21 @@ public class ListViews extends Application {
             difference(before, after).forEach(dif -> {
                 if (before.contains(dif)) {
                     logger.info("Remove: " + dif);
+
+                    for (int i = 0; i < options.size(); i++) {
+                        if (dif.equals(options.get(i))) {
+                            imageList.get(i).setVisible(false);
+                        }
+                    }
+
                 } else {
                     logger.info("Add   : " + dif);
+
+                    for (int i = 0; i < options.size(); i++) {
+                        if (dif.equals(options.get(i))) {
+                            imageList.get(i).setVisible(true);
+                        }
+                    }
                 }
             });
 
@@ -90,6 +117,7 @@ public class ListViews extends Application {
         });
 
         layout.setPadding(new Insets(20));
+        layout.setSpacing(10);
 
         vBox.getChildren().addAll(listView);
         layout.getChildren().addAll(vBox, hBox, bSubmit);
