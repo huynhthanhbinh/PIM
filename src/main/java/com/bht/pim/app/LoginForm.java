@@ -20,6 +20,8 @@ import java.util.Objects;
 
 public class LoginForm extends Application {
 
+    private static final String error = "error";
+
     private Logger logger = Logger.getLogger(LoginForm.class);
 
     private Stage window;
@@ -80,22 +82,30 @@ public class LoginForm extends Application {
         Label label = new Label();
         GridPane.setConstraints(label, 1, 3);
         grid.getChildren().add(label);
-        label.getStyleClass().add("error");
+        label.getStyleClass().add(error);
 
         bLogin.setOnAction(event -> {
             logger.info("Username input: " + iUsername.getText());
             logger.info("Password input: " + iPassword.getText());
 
+            // If put remove(classError) at ELSE clause
+            // it will catch a bug
+            // when user input incorrect continuous several times
+            // class classError will be add to styleClass several times
+            // therefore, if user input correctly the following try
+            // it just remove 1 class classError
+            // so the css style of classError will be on the field !
+            iPassword.getStyleClass().remove(error);
+
             if (!isNumber(iPassword.getText())) {
-                iPassword.getStyleClass().add("error");
+                iPassword.getStyleClass().add(error);
                 logger.warn("Catch exception");
 
+                logger.info(iPassword.getStyleClass());
                 label.setText("Password is not in number format !");
 
             } else {
-                iPassword.getStyleClass().clear();
-                iPassword.getStyleClass().add("text-input");
-
+                logger.info(iPassword.getStyleClass());
                 label.setText("");
             }
         });

@@ -8,6 +8,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -20,9 +21,13 @@ import java.util.Objects;
 
 public class ComboBoxes extends Application {
 
+    private static final String error = "error";
+
     private Logger logger = Logger.getLogger(Selection.class);
 
     private Stage window;
+
+    private boolean found = false;
 
     public static void main(String[] args) {
         launch(args);
@@ -43,13 +48,19 @@ public class ComboBoxes extends Application {
         String[] options = {"Java", ".NET", "Android", "iOS"};
         ImageView icon = new ImageView();
 
+        Label label = new Label();
+        label.getStyleClass().add(error);
+
         ComboBox<String> comboBox = new ComboBox<>();
         comboBox.getItems().addAll(options);
+
 
         comboBox.getSelectionModel().selectedItemProperty().addListener(observableValue -> {
 
             if (comboBox.getSelectionModel() != null) {
                 String option = comboBox.getSelectionModel().getSelectedItem();
+
+                comboBox.getEditor().getStyleClass().remove(error);
 
                 try {
                     Image image = new Image(Objects.requireNonNull(
@@ -58,10 +69,24 @@ public class ComboBoxes extends Application {
                             150, 150, true, true);
 
                     icon.setImage(image);
+                    label.setText("");
                     logger.info(option);
 
+                    found = true;
+
                 } catch (NullPointerException exception) {
+                    comboBox.getEditor().getStyleClass().add(error);
+
+                    Image image = new Image(Objects.requireNonNull(
+                            classLoader.getResourceAsStream(
+                                    "pictures/warning.png")),
+                            150, 150, true, true);
+
+                    icon.setImage(image);
+                    label.setText("Option not found !");
                     logger.warn("Null pointer !");
+
+                    found = false;
                 }
             }
         });
@@ -71,14 +96,18 @@ public class ComboBoxes extends Application {
 
         Button bSubmit = new Button("Submit");
         bSubmit.setOnAction(event -> {
-            String option = comboBox.getValue();
-            logger.info("Your option is: " + option);
+            if (found) {
+                String option = comboBox.getValue();
+                logger.info("Your option is: " + option);
+            } else {
+                event.consume();
+            }
         });
 
         VBox vbox = new VBox();
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(20));
-        vbox.getChildren().addAll(comboBox, bSubmit);
+        vbox.getChildren().addAll(comboBox, bSubmit, label);
 
         HBox layout = new HBox();
         layout.setSpacing(10);
@@ -86,6 +115,10 @@ public class ComboBoxes extends Application {
         layout.getChildren().addAll(vbox, icon);
 
         Scene scene = new Scene(layout, 400, 200);
+
+        scene.getStylesheets().add(Objects.requireNonNull(
+                classLoader.getResource("form.css")).toExternalForm());
+
         window.setScene(scene);
         showWindow(window);
     }
