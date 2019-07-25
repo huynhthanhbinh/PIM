@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -14,6 +15,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
+@Transactional
 public class ProjectEmployeeDaoImpl implements ProjectEmployeeDao {
 
     @Autowired

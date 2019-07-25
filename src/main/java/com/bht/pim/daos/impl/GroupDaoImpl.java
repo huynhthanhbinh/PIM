@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
+@Transactional
 public class GroupDaoImpl implements GroupDao {
 
     @Autowired
