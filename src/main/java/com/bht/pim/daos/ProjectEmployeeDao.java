@@ -6,19 +6,13 @@ import java.util.List;
 
 public interface ProjectEmployeeDao {
 
-    // Add a new project_employee
-    boolean addProjectEmployee(
-            ProjectEmployeeEntity projectEmployeeEntity);
-
     // Add a list of employee to project
-    boolean addProjectEmployeeList(
+    boolean addProjectEmployees(
             List<ProjectEmployeeEntity> projectEmployeeEntityList);
 
-    // Delete a project_employee
-    boolean deleteProjectEmployee(int id);
-
-    // Get an existing project_employee
-    ProjectEmployeeEntity getProjectEmployeeById(int id);
+    // Remove a list of employee out of project
+    boolean deleteProjectEmployees(
+            List<ProjectEmployeeEntity> projectEmployeeEntityList);
 
     // Get all employee works on a specific project
     List<ProjectEmployeeEntity> getEmployeesByProject(long projectId);

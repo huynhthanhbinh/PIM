@@ -131,7 +131,7 @@ public class TableViews extends Application {
             project.setNumber(id);
             project.setName("Project " + id);
             project.setCustomer("Customer " + id);
-            project.setGroupId("Group " + id);
+            project.setGroupId(id);
 
             projects.add(project);
         }

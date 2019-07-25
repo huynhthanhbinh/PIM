@@ -16,6 +16,23 @@ public class ProjectEmployeeEntity {
     @Column(name = "EMPLOYEE_ID", nullable = false)
     private long employeeId;
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof ProjectEmployeeEntity)) {
+            return false;
+        }
+
+        ProjectEmployeeEntity entity = (ProjectEmployeeEntity) obj;
+        return entity.employeeId == employeeId
+                && entity.projectId == projectId;
+    }
+
     // Getter and Setter
 
     public long getId() {

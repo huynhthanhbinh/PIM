@@ -8,6 +8,7 @@ import com.bht.pim.entities.ProjectEmployeeEntity;
 import com.bht.pim.entities.ProjectEntity;
 import com.bht.pim.models.Project;
 import com.bht.pim.services.ProjectService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ import java.util.List;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
+
+    private Logger logger = Logger.getLogger(ProjectServiceImpl.class);
 
     // Autowired into new ProjectDaoImpl object
     // If we have more than 1 implement for ProjectDao Interface
@@ -38,7 +41,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public boolean addProject(Project project) {
-        List<ProjectEmployeeEntity> projectEmployeeEntities =
+        List<ProjectEmployeeEntity> projectEmployees =
                 new ArrayList<>();
 
         long projectId = projectDao.nextIdValue();
@@ -62,17 +65,16 @@ public class ProjectServiceImpl implements ProjectService {
             projectEmployeeEntity.setProjectId(projectId);
             projectEmployeeEntity.setEmployeeId(employeeId);
 
-            projectEmployeeEntities.add(projectEmployeeEntity);
+            projectEmployees.add(projectEmployeeEntity);
         });
 
-        return projectDao.addProject(projectEntity) &
-                projectEmployeeDao.addProjectEmployeeList(
-                        projectEmployeeEntities);
+        return projectDao.addProject(projectEntity) &&
+                projectEmployeeDao.addProjectEmployees(projectEmployees);
     }
 
     @Override
     public boolean addProject(Project project, long groupLeaderId) {
-        List<ProjectEmployeeEntity> projectEmployeeEntities =
+        List<ProjectEmployeeEntity> projectEmployees =
                 new ArrayList<>();
 
         long projectId = projectDao.nextIdValue();
@@ -96,24 +98,26 @@ public class ProjectServiceImpl implements ProjectService {
             projectEmployeeEntity.setProjectId(projectId);
             projectEmployeeEntity.setEmployeeId(employeeId);
 
-            projectEmployeeEntities.add(projectEmployeeEntity);
+            projectEmployees.add(projectEmployeeEntity);
         });
 
         GroupEntity groupEntity = new GroupEntity();
         groupEntity.setGroupLeaderId(groupLeaderId);
 
-        return groupDao.addGroup(groupEntity) &
-                projectDao.addProject(projectEntity) &
-                projectEmployeeDao.addProjectEmployeeList(
-                        projectEmployeeEntities);
+        return groupDao.addGroup(groupEntity) &&
+                projectDao.addProject(projectEntity) &&
+                projectEmployeeDao.addProjectEmployees(projectEmployees);
     }
 
     @Override
     public boolean updateProject(Project project) {
+        long projectId = project.getId();
+
         ProjectEntity projectEntity =
-                projectDao.getProjectById(project.getId());
+                projectDao.getProjectById(projectId);
 
         if (projectEntity != null) {
+
             projectEntity.setGroupId(project.getGroupId());
             projectEntity.setNumber(project.getNumber());
             projectEntity.setName(project.getName());
@@ -124,12 +128,33 @@ public class ProjectServiceImpl implements ProjectService {
                 projectEntity.setEnd(toSqlDate(project.getEnd()));
             }
 
-            List<List<Long>> memberDifferences = memberDifferences(
-                    projectEmployeeDao
-                            .getEmployeesByProject(project.getId()),
-                    project.getMembers());
+            List<ProjectEmployeeEntity> projectEmployeeEntities
+                    = new ArrayList<>();
 
-            return projectDao.updateProject(projectEntity);
+            project.getMembers().forEach(memberId -> {
+                ProjectEmployeeEntity entity = new ProjectEmployeeEntity();
+                entity.setEmployeeId(memberId);
+                entity.setProjectId(projectId);
+                projectEmployeeEntities.add(entity);
+            });
+
+            List<List<ProjectEmployeeEntity>> differences
+                    = memberDifferences(
+                    projectEmployeeDao.getEmployeesByProject(projectId),
+                    projectEmployeeEntities
+            );
+
+            List<ProjectEmployeeEntity> removeList = differences.get(0);
+            List<ProjectEmployeeEntity> addList = differences.get(1);
+
+            logger.info("Remove List");
+            removeList.forEach(logger::info);
+            logger.info("Add List");
+            addList.forEach(logger::info);
+
+            return projectDao.updateProject(projectEntity) &&
+                    projectEmployeeDao.addProjectEmployees(addList) &&
+                    projectEmployeeDao.deleteProjectEmployees(removeList);
         }
 
         return false;
@@ -246,18 +271,24 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
 
-    private List<List<Long>> memberDifferences(
-            List<Long> oldList, List<Long> newList) {
+    private List<List<ProjectEmployeeEntity>> memberDifferences(
+            List<ProjectEmployeeEntity> oldList,
+            List<ProjectEmployeeEntity> newList) {
 
-        List<Long> remove = new ArrayList<>(oldList);
-        List<Long> add = new ArrayList<>(newList);
+        List<ProjectEmployeeEntity> remove = new ArrayList<>(oldList);
+        List<ProjectEmployeeEntity> add = new ArrayList<>(newList);
 
+        // removeAll : elements in difference
+        // retainAll : elements in commons
         remove.removeAll(newList);
         add.removeAll(oldList);
 
-        List<List<Long>> result = new ArrayList<>();
-        result.add(remove);
-        result.add(add);
+        List<ProjectEmployeeEntity> removeList = new ArrayList<>();
+        List<ProjectEmployeeEntity> addList = new ArrayList<>();
+
+        List<List<ProjectEmployeeEntity>> result = new ArrayList<>();
+        result.add(removeList);
+        result.add(addList);
 
         return result;
     }

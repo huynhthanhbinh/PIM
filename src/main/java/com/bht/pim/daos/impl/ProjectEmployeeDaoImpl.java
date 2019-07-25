@@ -18,25 +18,22 @@ public class ProjectEmployeeDaoImpl implements ProjectEmployeeDao {
 
     @Autowired
     SessionFactory sessionFactory;
+
     private Logger logger = Logger.getLogger(ProjectEmployeeDaoImpl.class);
 
-    @Override
-    public boolean addProjectEmployee(ProjectEmployeeEntity projectEmployeeEntity) {
+    private void addProjectEmployee(ProjectEmployeeEntity projectEmployeeEntity) {
         try {
             sessionFactory.getCurrentSession()
                     .save(projectEmployeeEntity);
 
-            return true;
-
         } catch (Exception exception) {
-            logger.info(exception);
 
-            return false;
+            logger.info(exception);
         }
     }
 
     @Override
-    public boolean addProjectEmployeeList(List<ProjectEmployeeEntity> projectEmployeeEntityList) {
+    public boolean addProjectEmployees(List<ProjectEmployeeEntity> projectEmployeeEntityList) {
         try {
             projectEmployeeEntityList
                     .forEach(this::addProjectEmployee);
@@ -50,11 +47,22 @@ public class ProjectEmployeeDaoImpl implements ProjectEmployeeDao {
         }
     }
 
-    @Override
-    public boolean deleteProjectEmployee(int id) {
+    private void deleteProjectEmployee(ProjectEmployeeEntity projectEmployeeEntity) {
         try {
             sessionFactory.getCurrentSession()
-                    .delete(getProjectEmployeeById(id));
+                    .delete(projectEmployeeEntity);
+
+        } catch (Exception exception) {
+
+            logger.info(exception);
+        }
+    }
+
+    @Override
+    public boolean deleteProjectEmployees(List<ProjectEmployeeEntity> projectEmployeeEntityList) {
+        try {
+            projectEmployeeEntityList
+                    .forEach(this::deleteProjectEmployee);
 
             return true;
 
@@ -63,12 +71,6 @@ public class ProjectEmployeeDaoImpl implements ProjectEmployeeDao {
 
             return false;
         }
-    }
-
-    @Override
-    public ProjectEmployeeEntity getProjectEmployeeById(int id) {
-        return sessionFactory.getCurrentSession()
-                .get(ProjectEmployeeEntity.class, id);
     }
 
     @Override
