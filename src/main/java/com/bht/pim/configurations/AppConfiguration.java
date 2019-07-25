@@ -20,7 +20,6 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:db.properties")
 public class AppConfiguration {
-
     // In Spring, we can use annotation @PropertySource
     // to externalize our configurations to
     // a properties file under src/main/resources folder
