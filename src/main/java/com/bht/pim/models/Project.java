@@ -4,14 +4,19 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-enum Status {
-    NEW,
-    PLANNED,
-    IN_PROGRESS,
-    FINISHED,
-}
+public class Project {
 
-public class ProjectDTO {
+    public Project() {
+        id = 0;
+        number = 0;
+        name = "";
+        customer = "";
+        group = "";
+        status = Status.NEW;
+        start = new Date();
+        end = new Date();
+        members = new HashMap<>();
+    }
 
     private int id;
     private long number;
@@ -24,19 +29,7 @@ public class ProjectDTO {
     //Map.Entry<String, String> member;
     private Map<String, String> members;
 
-    public ProjectDTO() {
-        id = 0;
-        number = 0;
-        name = "";
-        customer = "";
-        group = "";
-        status = Status.NEW;
-        start = new Date();
-        end = new Date();
-        members = new HashMap<>();
-    }
-
-    public ProjectDTO(ProjectDTO project) {
+    public Project(Project project) {
         id = project.id;
         number = project.number;
         name = project.name;
@@ -46,6 +39,13 @@ public class ProjectDTO {
         start = project.start;
         end = project.end;
         members = project.members;
+    }
+
+    private enum Status {
+        NEW,
+        PLANNED,
+        IN_PROGRESS,
+        FINISHED,
     }
 
     public int getId() {

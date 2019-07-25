@@ -1,6 +1,6 @@
 package com.bht.pim.app;
 
-import com.bht.pim.models.ProjectDTO;
+import com.bht.pim.models.Project;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +16,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 public class TableViews extends Application {
@@ -41,44 +42,51 @@ public class TableViews extends Application {
                         classLoader.getResourceAsStream("pictures/icon.png"))));
 
         /*
-        TableColumn<ProjectDTO, Long> cSelect = new TableColumn<>("");
+        TableColumn<Project, Long> cSelect = new TableColumn<>("");
         cSelect.setMinWidth(40);
         cSelect.setCellValueFactory(new PropertyValueFactory<>());
         */
 
 
-        TableColumn<ProjectDTO, Long> cNumber = new TableColumn<>("Number");
+        TableColumn<Project, Long> cNumber = new TableColumn<>("Number");
         cNumber.setMinWidth(40);
         cNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
 
 
-        TableColumn<ProjectDTO, Long> cName = new TableColumn<>("Name");
+        TableColumn<Project, Long> cName = new TableColumn<>("Name");
         cName.setMinWidth(40);
         cName.setCellValueFactory(new PropertyValueFactory<>("name"));
 
 
-        TableColumn<ProjectDTO, Long> cStatus = new TableColumn<>("Status");
+        TableColumn<Project, Long> cStatus = new TableColumn<>("Status");
         cStatus.setMinWidth(40);
         cStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
 
-        TableColumn<ProjectDTO, Long> cCustomer = new TableColumn<>("Customer");
+        TableColumn<Project, Long> cCustomer = new TableColumn<>("Customer");
         cCustomer.setMinWidth(40);
         cCustomer.setCellValueFactory(new PropertyValueFactory<>("customer"));
 
 
-        TableColumn<ProjectDTO, Long> cStart = new TableColumn<>("Start Date");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
+        TableColumn<Project, Long> cStart = new TableColumn<>("Start Date");
         cStart.setMinWidth(40);
-        cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
+//        cStart.setCellFactory(column -> {
+//            // As using with database
+//            // Project --> ProjectEntity
+//            TableCell<Project, Date> cell = new TableCell<>() {
+//
+//            }
+//        });
 
 
         /*
-        TableColumn<ProjectDTO, Long> cDelete = new TableColumn<>("Delete");
+        TableColumn<Project, Long> cDelete = new TableColumn<>("Delete");
         cDelete.setMinWidth(40);
         cDelete.setCellValueFactory(new PropertyValueFactory<>());
         */
 
-        TableView<ProjectDTO> table = new TableView<>();
+        TableView<Project> table = new TableView<>();
         table.setItems(getAllProducts());
         table.getColumns().addAll(cNumber, cName, cStatus, cCustomer, cStart);
 
@@ -106,16 +114,16 @@ public class TableViews extends Application {
     }
 
     // Get all of products
-    public ObservableList<ProjectDTO> getAllProducts() {
+    public ObservableList<Project> getAllProducts() {
 
-        ObservableList<ProjectDTO> projects =
+        ObservableList<Project> projects =
                 FXCollections.observableArrayList();
 
         // Real project : get from database
         // Using service, repository with Spring, Hibernate
         // This is just some sample data
         for (int i = 0; i < 8; i++) {
-            ProjectDTO project = new ProjectDTO();
+            Project project = new Project();
 
             int id = i + 1;
 
