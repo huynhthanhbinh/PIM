@@ -1,58 +1,50 @@
 package com.bht.pim.models;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class Project {
+
+    private long id;
+    private long groupId;
+    private long number;
+    private String name;
+    private String customer;
+    private String status;
+    private List<Long> members;
+    private Date start;
+    private Date end;
 
     public Project() {
         id = 0;
         number = 0;
         name = "";
         customer = "";
-        group = "";
-        status = Status.NEW;
+        groupId = 0;
+        status = "New";
         start = new Date();
-        end = new Date();
-        members = new HashMap<>();
+        end = null;
+        members = new ArrayList<>();
     }
-
-    private int id;
-    private long number;
-    private String name;
-    private String customer;
-    private String group;
-    private Status status;
-    private Date start;
-    private Date end;
-    //Map.Entry<String, String> member;
-    private Map<String, String> members;
 
     public Project(Project project) {
         id = project.id;
         number = project.number;
         name = project.name;
         customer = project.customer;
-        group = project.group;
+        groupId = project.groupId;
         status = project.status;
         start = project.start;
         end = project.end;
         members = project.members;
     }
 
-    private enum Status {
-        NEW,
-        PLANNED,
-        IN_PROGRESS,
-        FINISHED,
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -80,19 +72,19 @@ public class Project {
         this.customer = customer;
     }
 
-    public String getGroup() {
-        return group;
+    public long getGroupId() {
+        return groupId;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setGroupId(long groupId) {
+        this.groupId = groupId;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -112,11 +104,11 @@ public class Project {
         this.end = end;
     }
 
-    public Map<String, String> getMembers() {
+    public List<Long> getMembers() {
         return members;
     }
 
-    public void setMembers(Map<String, String> members) {
+    public void setMembers(List<Long> members) {
         this.members = members;
     }
 }
