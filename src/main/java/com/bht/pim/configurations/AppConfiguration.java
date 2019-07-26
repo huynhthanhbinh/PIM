@@ -1,5 +1,6 @@
 package com.bht.pim.configurations;
 
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -20,6 +21,9 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:db.properties")
 public class AppConfiguration {
+
+    private Logger logger = Logger.getLogger(AppConfiguration.class);
+
     // In Spring, we can use annotation @PropertySource
     // to externalize our configurations to
     // a properties file under src/main/resources folder
@@ -46,6 +50,9 @@ public class AppConfiguration {
     // @PropertySource("classpath:db.properties")
     @Bean
     public DataSource dataSource() {
+        logger.info("");
+        logger.info("<<< PIM - CONFIGURE DATA SOURCE >>>");
+        logger.info("");
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(Objects
@@ -61,6 +68,10 @@ public class AppConfiguration {
     // Use to read messages properties for messages, logging ...
     @Bean
     public MessageSource messageSource() {
+        logger.info("");
+        logger.info("<<< PIM - CONFIGURE MESSAGE SOURCE >>>");
+        logger.info("");
+
         ReloadableResourceBundleMessageSource bundleMessageSource =
                 new ReloadableResourceBundleMessageSource();
 
@@ -78,6 +89,9 @@ public class AppConfiguration {
     // Config Session Factory / Hibernate
     @Bean
     public LocalSessionFactoryBean sessionFactoryBean() {
+        logger.info("");
+        logger.info("<<< PIM - CONFIGURE SESSION FACTORY >>>");
+        logger.info("");
 
         // Session Factory Configure
         LocalSessionFactoryBean bean =
@@ -128,6 +142,10 @@ public class AppConfiguration {
     @Bean("transactionManager")
     public HibernateTransactionManager hibernateTransactionManager(
             @Autowired SessionFactory sessionFactory) {
+
+        logger.info("");
+        logger.info("<<< PIM - TRANSACTION MANAGER >>>");
+        logger.info("");
 
         HibernateTransactionManager hibernateTransactionManager =
                 new HibernateTransactionManager();

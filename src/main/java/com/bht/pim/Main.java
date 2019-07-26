@@ -31,8 +31,13 @@ public class Main extends Application {
     @Override
     public void init() throws Exception {
         applicationContext = SpringApplication.run(Main.class);
-        FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("sample.fxml"));
+
+        logger.info("<<< PIM - ON INIT  >>>");
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass()
+                .getClassLoader()
+                .getResource("templates/sample.fxml"));
+
         fxmlLoader.setControllerFactory(applicationContext::getBean);
 
         rootNode = fxmlLoader.load();
@@ -40,7 +45,9 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
+        logger.info("<<< PIM - ON START >>>");
+
         ClassLoader classLoader = getClass().getClassLoader();
 
         primaryStage.setTitle("Project Information Management");
@@ -56,12 +63,16 @@ public class Main extends Application {
 
 
     @Override
-    public void stop() throws Exception {
+    public void stop() {
+        logger.info("<<< PIM - ON STOP  >>>");
+
         applicationContext.close();
     }
 
 
     private void showWindow(Stage window) {
+        logger.info("<<< PIM - ON SHOW  >>>");
+
         window.setResizable(true);
         window.show();
 
