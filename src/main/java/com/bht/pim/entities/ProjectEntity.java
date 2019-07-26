@@ -41,6 +41,25 @@ public class ProjectEntity {
     @ManyToOne
     @JoinColumn(name = "GROUP_ID", nullable = false)
     private GroupEntity group;
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ProjectEntity)) {
+            return false;
+        }
+
+        ProjectEntity project = (ProjectEntity) obj;
+
+        return number == project.number
+                && name.equals(project.name)
+                && customer.equals(project.customer);
+    }
+
+
     // Getter and Setter
 
     public long getId() {

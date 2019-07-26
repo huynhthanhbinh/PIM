@@ -15,12 +15,29 @@ public class GroupEntity {
 
     @OneToOne
     @JoinColumn(name = "GROUP_LEADER_ID", nullable = false,
-            referencedColumnName = "ID")
+            referencedColumnName = "ID", unique = true)
     private EmployeeEntity groupLeader;
 
 
     @OneToMany(mappedBy = "group")
     private Set<ProjectEntity> joinedProjects;
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof GroupEntity)) {
+            return false;
+        }
+
+        GroupEntity group = (GroupEntity) obj;
+
+        return groupLeader.getVisa()
+                .equals(group.groupLeader.getVisa());
+    }
+
 
     // Getter and Setter
 

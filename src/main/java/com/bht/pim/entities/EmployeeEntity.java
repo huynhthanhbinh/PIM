@@ -34,6 +34,22 @@ public class EmployeeEntity {
     @OneToOne(mappedBy = "groupLeader", cascade = CascadeType.ALL)
     private GroupEntity ledGroup;
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof EmployeeEntity)) {
+            return false;
+        }
+
+        EmployeeEntity employee = (EmployeeEntity) obj;
+
+        return visa.equals(employee.visa);
+    }
+
+
     // Getter and Setter
 
     public long getId() {
