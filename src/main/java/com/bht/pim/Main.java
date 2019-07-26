@@ -22,7 +22,6 @@ public class Main extends Application {
     private ConfigurableApplicationContext applicationContext;
     private Parent rootNode;
 
-
     public static void main(String[] args) {
         launch(args);
     }

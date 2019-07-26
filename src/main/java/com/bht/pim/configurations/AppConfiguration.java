@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -13,12 +14,17 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
 import java.util.Objects;
 import java.util.Properties;
 
 @Configuration
+@EnableWebMvc
+@EnableTransactionManagement
+@ComponentScan("com.bht.pim")
 @PropertySource("classpath:db.properties")
 public class AppConfiguration {
 
@@ -104,8 +110,8 @@ public class AppConfiguration {
 
 
         // Package contains class mapping record to model
-        // eg. com.bht.entities
-        bean.setPackagesToScan("com.bht.entities");
+        // eg. com.bht.pim.entities
+        bean.setPackagesToScan("com.bht.pim.entities");
 
         // Hibernate Properties for hibernate extra config
         Properties hibernateProperties = new Properties();

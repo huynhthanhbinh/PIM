@@ -2,6 +2,7 @@ package com.bht.pim.entities;
 
 import javax.persistence.*;
 
+@Table(name = "[GROUP]")
 @Entity(name = "[GROUP]")
 public class GroupEntity {
 

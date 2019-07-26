@@ -3,6 +3,7 @@ package com.bht.pim.entities;
 import javax.persistence.*;
 import java.sql.Date;
 
+@Table(name = "EMPLOYEE")
 @Entity(name = "EMPLOYEE")
 public class EmployeeEntity {
 

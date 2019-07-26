@@ -2,6 +2,7 @@ package com.bht.pim.entities;
 
 import javax.persistence.*;
 
+@Table(name = "PROJECT_EMPLOYEE")
 @Entity(name = "PROJECT_EMPLOYEE")
 public class ProjectEmployeeEntity {
 
