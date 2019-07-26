@@ -1,6 +1,7 @@
 package com.bht.pim.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Table(name = "[GROUP]")
 @Entity(name = "[GROUP]")
@@ -11,8 +12,15 @@ public class GroupEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "GROUP_LEADER_ID", nullable = false)
-    private long groupLeaderId;
+
+    @OneToOne
+    @JoinColumn(name = "GROUP_LEADER_ID", nullable = false,
+            referencedColumnName = "ID")
+    private EmployeeEntity groupLeader;
+
+
+    @OneToMany(mappedBy = "group")
+    private Set<ProjectEntity> joinedProjects;
 
     // Getter and Setter
 
@@ -24,11 +32,11 @@ public class GroupEntity {
         this.id = id;
     }
 
-    public long getGroupLeaderId() {
-        return groupLeaderId;
+    public EmployeeEntity getGroupLeader() {
+        return groupLeader;
     }
 
-    public void setGroupLeaderId(long groupLeaderId) {
-        this.groupLeaderId = groupLeaderId;
+    public void setGroupLeader(EmployeeEntity groupLeader) {
+        this.groupLeader = groupLeader;
     }
 }

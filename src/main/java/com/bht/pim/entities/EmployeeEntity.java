@@ -2,6 +2,7 @@ package com.bht.pim.entities;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Table(name = "EMPLOYEE")
 @Entity(name = "EMPLOYEE")
@@ -23,6 +24,15 @@ public class EmployeeEntity {
 
     @Column(name = "BIRTH_DATE", nullable = false)
     private Date birthday;
+
+    @ManyToMany
+    @JoinTable(name = "PROJECT_EMPLOYEE",
+            joinColumns = @JoinColumn(name = "EMPLOYEE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "PROJECT_ID"))
+    Set<ProjectEntity> enrolledProjects;
+
+    @OneToOne(mappedBy = "groupLeader", cascade = CascadeType.ALL)
+    private GroupEntity ledGroup;
 
     // Getter and Setter
 
@@ -64,5 +74,21 @@ public class EmployeeEntity {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public Set<ProjectEntity> getEnrolledProjects() {
+        return enrolledProjects;
+    }
+
+    public void setEnrolledProjects(Set<ProjectEntity> enrolledProjects) {
+        this.enrolledProjects = enrolledProjects;
+    }
+
+    public GroupEntity getLedGroup() {
+        return ledGroup;
+    }
+
+    public void setLedGroup(GroupEntity ledGroup) {
+        this.ledGroup = ledGroup;
     }
 }

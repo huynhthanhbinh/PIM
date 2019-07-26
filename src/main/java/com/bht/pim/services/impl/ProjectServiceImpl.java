@@ -1,10 +1,10 @@
 package com.bht.pim.services.impl;
 
+import com.bht.pim.daos.EmployeeDao;
 import com.bht.pim.daos.GroupDao;
 import com.bht.pim.daos.ProjectDao;
-import com.bht.pim.daos.ProjectEmployeeDao;
+import com.bht.pim.entities.EmployeeEntity;
 import com.bht.pim.entities.GroupEntity;
-import com.bht.pim.entities.ProjectEmployeeEntity;
 import com.bht.pim.entities.ProjectEntity;
 import com.bht.pim.models.Project;
 import com.bht.pim.services.ProjectService;
@@ -12,9 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -36,144 +34,128 @@ public class ProjectServiceImpl implements ProjectService {
     GroupDao groupDao;
 
     @Autowired
-    ProjectEmployeeDao projectEmployeeDao;
+    EmployeeDao employeeDao;
 
 
     @Override
     public boolean addProject(Project project) {
-        List<ProjectEmployeeEntity> projectEmployees =
-                new ArrayList<>();
+        try {
+            Set<EmployeeEntity> projectEmployees = new HashSet<>();
+            project.getMembers().forEach(id ->
+                    projectEmployees.add(employeeDao.getEmployeeById(id)));
 
-        long projectId = projectDao.nextIdValue();
 
-        ProjectEntity projectEntity = new ProjectEntity();
-
-        projectEntity.setGroupId(project.getGroupId());
-        projectEntity.setNumber(project.getNumber());
-        projectEntity.setName(project.getName());
-        projectEntity.setCustomer(project.getCustomer());
-        projectEntity.setStatus(toDaoStatus(project.getStatus()));
-        projectEntity.setStart(toSqlDate(project.getStart()));
-        if (project.getEnd() != null) {
-            projectEntity.setEnd(toSqlDate(project.getEnd()));
-        }
-
-        project.getMembers().forEach(employeeId -> {
-            ProjectEmployeeEntity projectEmployeeEntity =
-                    new ProjectEmployeeEntity();
-
-            projectEmployeeEntity.setProjectId(projectId);
-            projectEmployeeEntity.setEmployeeId(employeeId);
-
-            projectEmployees.add(projectEmployeeEntity);
-        });
-
-        return projectDao.addProject(projectEntity) &&
-                projectEmployeeDao.addProjectEmployees(projectEmployees);
-    }
-
-    @Override
-    public boolean addProject(Project project, long groupLeaderId) {
-        List<ProjectEmployeeEntity> projectEmployees =
-                new ArrayList<>();
-
-        long projectId = projectDao.nextIdValue();
-
-        ProjectEntity projectEntity = new ProjectEntity();
-
-        projectEntity.setGroupId(groupDao.nextIdValue());
-        projectEntity.setNumber(project.getNumber());
-        projectEntity.setName(project.getName());
-        projectEntity.setCustomer(project.getCustomer());
-        projectEntity.setStatus(toDaoStatus(project.getStatus()));
-        projectEntity.setStart(toSqlDate(project.getStart()));
-        if (project.getEnd() != null) {
-            projectEntity.setEnd(toSqlDate(project.getEnd()));
-        }
-
-        project.getMembers().forEach(employeeId -> {
-            ProjectEmployeeEntity projectEmployeeEntity =
-                    new ProjectEmployeeEntity();
-
-            projectEmployeeEntity.setProjectId(projectId);
-            projectEmployeeEntity.setEmployeeId(employeeId);
-
-            projectEmployees.add(projectEmployeeEntity);
-        });
-
-        GroupEntity groupEntity = new GroupEntity();
-        groupEntity.setGroupLeaderId(groupLeaderId);
-
-        return groupDao.addGroup(groupEntity) &&
-                projectDao.addProject(projectEntity) &&
-                projectEmployeeDao.addProjectEmployees(projectEmployees);
-    }
-
-    @Override
-    public boolean updateProject(Project project) {
-        long projectId = project.getId();
-
-        ProjectEntity projectEntity =
-                projectDao.getProjectById(projectId);
-
-        if (projectEntity != null) {
-
-            projectEntity.setGroupId(project.getGroupId());
+            ProjectEntity projectEntity = new ProjectEntity();
+            projectEntity.setGroup(groupDao.getGroupById(project.getId()));
             projectEntity.setNumber(project.getNumber());
             projectEntity.setName(project.getName());
             projectEntity.setCustomer(project.getCustomer());
-            projectEntity.setStatus(toDaoStatus(project.getStatus()));
+            projectEntity.setStatus("NEW");
+            projectEntity.setEnrolls(projectEmployees);
             projectEntity.setStart(toSqlDate(project.getStart()));
             if (project.getEnd() != null) {
                 projectEntity.setEnd(toSqlDate(project.getEnd()));
             }
 
-            List<ProjectEmployeeEntity> projectEmployeeEntities
-                    = new ArrayList<>();
+            return projectDao.addProject(projectEntity);
 
-            project.getMembers().forEach(memberId -> {
-                ProjectEmployeeEntity entity = new ProjectEmployeeEntity();
-                entity.setEmployeeId(memberId);
-                entity.setProjectId(projectId);
-                projectEmployeeEntities.add(entity);
-            });
+        } catch (Exception exception) {
 
-            List<List<ProjectEmployeeEntity>> differences
-                    = memberDifferences(
-                    projectEmployeeDao.getEmployeesByProject(projectId),
-                    projectEmployeeEntities
-            );
-
-            List<ProjectEmployeeEntity> removeList = differences.get(0);
-            List<ProjectEmployeeEntity> addList = differences.get(1);
-
-            logger.info("Remove List");
-            removeList.forEach(logger::info);
-            logger.info("Add List");
-            addList.forEach(logger::info);
-
-            return projectDao.updateProject(projectEntity) &&
-                    projectEmployeeDao.addProjectEmployees(addList) &&
-                    projectEmployeeDao.deleteProjectEmployees(removeList);
+            logger.info(exception);
+            return false;
         }
+    }
 
-        return false;
+    @Override
+    public boolean addProject(Project project, long groupLeaderId) {
+        try {
+            Set<EmployeeEntity> projectEmployees = new HashSet<>();
+            project.getMembers().forEach(id ->
+                    projectEmployees.add(employeeDao.getEmployeeById(id)));
+
+            GroupEntity groupEntity = new GroupEntity();
+            groupEntity.setGroupLeader(
+                    employeeDao.getEmployeeById(groupLeaderId));
+
+
+            ProjectEntity projectEntity = new ProjectEntity();
+            projectEntity.setGroup(groupDao
+                    .getGroupById(groupDao.nextIdValue() - 1));
+            projectEntity.setNumber(project.getNumber());
+            projectEntity.setName(project.getName());
+            projectEntity.setCustomer(project.getCustomer());
+            projectEntity.setStatus("NEW");
+            projectEntity.setEnrolls(projectEmployees);
+            projectEntity.setStart(toSqlDate(project.getStart()));
+            if (project.getEnd() != null) {
+                projectEntity.setEnd(toSqlDate(project.getEnd()));
+            }
+
+            return groupDao.addGroup(groupEntity)
+                    && projectDao.addProject(projectEntity);
+
+        } catch (Exception exception) {
+
+            logger.info(exception);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateProject(Project project) {
+        try {
+            ProjectEntity projectEntity =
+                    projectDao.getProjectById(project.getId());
+
+            if (projectEntity != null) {
+
+                Set<EmployeeEntity> projectEmployees = new HashSet<>();
+                project.getMembers().forEach(id ->
+                        projectEmployees.add(employeeDao.getEmployeeById(id)));
+
+                projectEntity.setGroup(
+                        groupDao.getGroupById(project.getGroupId()));
+                projectEntity.setNumber(project.getNumber());
+                projectEntity.setName(project.getName());
+                projectEntity.setCustomer(project.getCustomer());
+                projectEntity.setStatus(toDaoStatus(project.getStatus()));
+                projectEntity.setEnrolls(projectEmployees);
+                projectEntity.setStart(toSqlDate(project.getStart()));
+                if (project.getEnd() != null) {
+                    projectEntity.setEnd(toSqlDate(project.getEnd()));
+                }
+
+                return projectDao.updateProject(projectEntity);
+            }
+            return false;
+
+        } catch (Exception exception) {
+
+            logger.info(exception);
+            return false;
+        }
     }
 
     @Override
     public boolean deleteProject(long id) {
+        try {
+            // Check if project is exist
+            ProjectEntity projectEntity =
+                    projectDao.getProjectById(id);
 
-        // Check if project is exist
-        ProjectEntity projectEntity =
-                projectDao.getProjectById(id);
+            // Check if it is a new project,
+            // otherwise, cannot delete
+            if (projectEntity != null
+                    && projectEntity.getStatus().equals("NEW")) {
+                return projectDao.deleteProject(id);
+            }
+            return false;
 
-        // Check if it is a new project,
-        // otherwise, cannot delete
-        if (projectEntity != null
-                && projectEntity.getStatus().equals("NEW")) {
-            return projectDao.deleteProject(id);
+        } catch (Exception exception) {
+
+            logger.info(exception);
+            return false;
         }
-        return false;
     }
 
     @Override
@@ -188,7 +170,7 @@ public class ProjectServiceImpl implements ProjectService {
             project.setNumber(projectEntity.getNumber());
             project.setName(projectEntity.getName());
             project.setCustomer(projectEntity.getCustomer());
-            project.setGroupId(projectEntity.getGroupId());
+            project.setGroupId(projectEntity.getGroup().getId());
             project.setStatus(toStatus(projectEntity.getStatus()));
             project.setStart(toUtilDate(projectEntity.getStart()));
             if (projectEntity.getEnd() != null) {
@@ -215,7 +197,7 @@ public class ProjectServiceImpl implements ProjectService {
             project.setNumber(projectEntity.getNumber());
             project.setName(projectEntity.getName());
             project.setCustomer(projectEntity.getCustomer());
-            project.setGroupId(projectEntity.getGroupId());
+            project.setGroupId(projectEntity.getGroup().getId());
             project.setStatus(toStatus(projectEntity.getStatus()));
             project.setStart(toUtilDate(projectEntity.getStart()));
             if (projectEntity.getEnd() != null) {
@@ -271,24 +253,25 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
 
-    private List<List<ProjectEmployeeEntity>> memberDifferences(
-            List<ProjectEmployeeEntity> oldList,
-            List<ProjectEmployeeEntity> newList) {
+    private Set<Set<EmployeeEntity>> memberDifferences(
+            Set<EmployeeEntity> oldList, Set<EmployeeEntity> newList) {
 
-        List<ProjectEmployeeEntity> remove = new ArrayList<>(oldList);
-        List<ProjectEmployeeEntity> add = new ArrayList<>(newList);
+        Set<EmployeeEntity> removeList = new HashSet<>(oldList);
+        Set<EmployeeEntity> addList = new HashSet<>(newList);
 
         // removeAll : elements in difference
         // retainAll : elements in commons
-        remove.removeAll(newList);
-        add.removeAll(oldList);
+        removeList.removeAll(newList);
+        addList.removeAll(oldList);
 
-        List<ProjectEmployeeEntity> removeList = new ArrayList<>();
-        List<ProjectEmployeeEntity> addList = new ArrayList<>();
+        Set<Set<EmployeeEntity>> result = new HashSet<>();
+        result.add(removeList); // get element 0
+        result.add(addList);    // get element 1
 
-        List<List<ProjectEmployeeEntity>> result = new ArrayList<>();
-        result.add(removeList);
-        result.add(addList);
+        logger.info("Remove List");
+        removeList.forEach(logger::info);
+        logger.info("Add List");
+        addList.forEach(logger::info);
 
         return result;
     }

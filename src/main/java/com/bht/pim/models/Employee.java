@@ -1,5 +1,6 @@
 package com.bht.pim.models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Employee {
@@ -9,6 +10,20 @@ public class Employee {
     private String firstName;
     private String lastName;
     private Date birthday;
+
+    private final SimpleDateFormat dateFormat =
+            new SimpleDateFormat("dd/MM/yyyy");
+
+    @Override
+    public String toString() {
+        return String.format(
+                "%,6d | %3s | %-10s | %-20s | %10s",
+                id,
+                visa,
+                firstName,
+                lastName,
+                dateFormat.format(birthday));
+    }
 
     public long getId() {
         return id;

@@ -2,6 +2,7 @@ package com.bht.pim.entities;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Table(name = "PROJECT")
 @Entity(name = "PROJECT")
@@ -12,8 +13,8 @@ public class ProjectEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "GROUP_ID", nullable = false)
-    private long groupId;
+    @ManyToMany(mappedBy = "enrolledProjects")
+    Set<EmployeeEntity> enrolls;
 
     @Column(name = "PROJECT_NUMBER", nullable = false, unique = true)
     private long number;
@@ -37,8 +38,9 @@ public class ProjectEntity {
 
     @Column(name = "END_DATE")
     private Date end;
-
-
+    @ManyToOne
+    @JoinColumn(name = "GROUP_ID", nullable = false)
+    private GroupEntity group;
     // Getter and Setter
 
     public long getId() {
@@ -49,12 +51,12 @@ public class ProjectEntity {
         this.id = id;
     }
 
-    public long getGroupId() {
-        return groupId;
+    public GroupEntity getGroup() {
+        return group;
     }
 
-    public void setGroupId(long groupId) {
-        this.groupId = groupId;
+    public void setGroup(GroupEntity group) {
+        this.group = group;
     }
 
     public long getNumber() {
@@ -103,5 +105,13 @@ public class ProjectEntity {
 
     public void setEnd(Date end) {
         this.end = end;
+    }
+
+    public Set<EmployeeEntity> getEnrolls() {
+        return enrolls;
+    }
+
+    public void setEnrolls(Set<EmployeeEntity> enrolls) {
+        this.enrolls = enrolls;
     }
 }

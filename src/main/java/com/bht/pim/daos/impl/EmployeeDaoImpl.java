@@ -35,9 +35,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
         TypedQuery<EmployeeEntity> allQuery = sessionFactory.getCurrentSession()
                 .createQuery(query.select(root));
 
-        logger.info("<<< PIM - EMPLOYEE LIST >>>");
-        allQuery.getResultList().forEach(logger::info);
-
         return allQuery.getResultList();
+    }
+
+    @Override
+    public EmployeeEntity getEmployeeById(long id) {
+        return sessionFactory.getCurrentSession()
+                .get(EmployeeEntity.class, id);
     }
 }
