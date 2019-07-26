@@ -60,6 +60,12 @@ public class ProjectEntity {
     }
 
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+
     // Getter and Setter
 
     public long getId() {

@@ -50,6 +50,12 @@ public class EmployeeEntity {
     }
 
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+
     // Getter and Setter
 
     public long getId() {
