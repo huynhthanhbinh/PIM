@@ -31,7 +31,7 @@ public class Main extends Application {
     public void init() throws Exception {
         applicationContext = SpringApplication.run(Main.class);
 
-        logger.info("<<< PIM - ON INIT  >>>");
+        logger.info("<<< PIM SERVER - ON INIT  >>>");
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
                 .getClassLoader()
@@ -45,7 +45,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("<<< PIM - ON START >>>");
+        logger.info("<<< PIM SERVER - ON START >>>");
 
         ClassLoader classLoader = getClass().getClassLoader();
 
@@ -63,14 +63,14 @@ public class Main extends Application {
 
     @Override
     public void stop() {
-        logger.info("<<< PIM - ON STOP  >>>");
+        logger.info("<<< PIM SERVER - ON STOP  >>>");
 
         applicationContext.close();
     }
 
 
     private void showWindow(Stage window) {
-        logger.info("<<< PIM - ON SHOW  >>>");
+        logger.info("<<< PIM SERVER - ON SHOW  >>>");
 
         window.setResizable(true);
         window.show();
