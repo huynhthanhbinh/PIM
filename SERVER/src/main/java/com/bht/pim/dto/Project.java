@@ -34,6 +34,7 @@ public class Project implements Serializable {
         name = "";
         customer = "";
         groupId = 0;
+        groupLeaderId = 0;
         groupLeaderName = "";
         status = "New";
         start = new Date();
@@ -48,6 +49,7 @@ public class Project implements Serializable {
         customer = project.customer;
         groupId = project.groupId;
         status = project.status;
+        groupLeaderId = project.groupLeaderId;
         groupLeaderName = project.groupLeaderName;
         start = new Date(project.start.getTime());
         end = new Date(project.end.getTime());
@@ -70,6 +72,7 @@ public class Project implements Serializable {
     }
 
     public void printInfo() {
+        logger.info("");
         logger.info("=======================================================");
         logger.info("PROJECT INFORMATION");
         logger.info("ID             : " + id);

@@ -14,6 +14,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -26,11 +28,39 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public long nextIdValue() {
-        String sql = "SELECT IDENT_CURRENT('PROJECT') + 1 AS ID";
-        List results = sessionFactory.getCurrentSession()
-                .createSQLQuery(sql).list();
+        try {
+            String sql = "SELECT IDENT_CURRENT('PROJECT') + 1 AS ID";
+            List results = sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql).list();
 
-        return ((BigDecimal) results.get(0)).longValue();
+            return ((BigDecimal) results.get(0)).longValue();
+
+        } catch (Exception exception) {
+
+            logger.info(exception);
+            return -1;
+        }
+    }
+
+    @Override
+    public List<Long> getAllProjectsNumber() {
+        try {
+            String sql = "SELECT PROJECT_NUMBER AS NUMBER FROM PROJECT";
+
+            List<Long> results = new ArrayList<>();
+
+            sessionFactory.getCurrentSession().createSQLQuery(sql)
+                    .list()
+                    .forEach(value -> results
+                            .add(Long.valueOf((Integer) value)));
+
+            return results;
+
+        } catch (Exception exception) {
+
+            logger.info(exception);
+            return Collections.emptyList();
+        }
     }
 
     @Override
@@ -80,25 +110,39 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public ProjectEntity getProjectById(long id) {
-        ProjectEntity projectEntity = sessionFactory
-                .getCurrentSession()
-                .get(ProjectEntity.class, id);
+        try {
+            ProjectEntity projectEntity = sessionFactory
+                    .getCurrentSession()
+                    .get(ProjectEntity.class, id);
 
-        // As Hibernate is lazy-initialization !
-        Hibernate.initialize(projectEntity.getEnrolls());
+            // As Hibernate is lazy-initialization !
+            Hibernate.initialize(projectEntity.getEnrolledEmployees());
 
-        return projectEntity;
+            return projectEntity;
+
+        } catch (Exception exception) {
+
+            logger.info(exception);
+            return null;
+        }
     }
 
     @Override
     public List<ProjectEntity> getAllProjects() {
-        CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
-        CriteriaQuery<ProjectEntity> query = builder.createQuery(ProjectEntity.class);
+        try {
+            CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+            CriteriaQuery<ProjectEntity> query = builder.createQuery(ProjectEntity.class);
 
-        Root<ProjectEntity> root = query.from(ProjectEntity.class);
-        TypedQuery<ProjectEntity> allQuery = sessionFactory.getCurrentSession()
-                .createQuery(query.select(root));
+            Root<ProjectEntity> root = query.from(ProjectEntity.class);
+            TypedQuery<ProjectEntity> allQuery = sessionFactory.getCurrentSession()
+                    .createQuery(query.select(root));
 
-        return allQuery.getResultList();
+            return allQuery.getResultList();
+
+        } catch (Exception exception) {
+
+            logger.info(exception);
+            return Collections.emptyList();
+        }
     }
 }

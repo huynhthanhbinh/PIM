@@ -55,7 +55,6 @@ public class EmployeeEntity {
         return super.hashCode();
     }
 
-
     // Getter and Setter
 
     public long getId() {

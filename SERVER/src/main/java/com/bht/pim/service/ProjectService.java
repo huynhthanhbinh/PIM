@@ -8,6 +8,9 @@ import java.util.List;
 // Create - Read - Update - Delete
 public interface ProjectService {
 
+    // Get all projects number
+    List<Long> getAllProjectsNumber();
+
     // Add a new project, new group
     boolean addProject(Project project);
 

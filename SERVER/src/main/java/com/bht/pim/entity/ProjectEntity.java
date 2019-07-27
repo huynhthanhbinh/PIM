@@ -14,7 +14,7 @@ public class ProjectEntity {
     private long id;
 
     @ManyToMany(mappedBy = "enrolledProjects")
-    Set<EmployeeEntity> enrolls;
+    Set<EmployeeEntity> enrolledEmployees;
 
     @Column(name = "PROJECT_NUMBER", nullable = false, unique = true)
     private long number;
@@ -38,6 +38,7 @@ public class ProjectEntity {
 
     @Column(name = "END_DATE")
     private Date end;
+
     @ManyToOne
     @JoinColumn(name = "GROUP_ID", nullable = false)
     private GroupEntity group;
@@ -64,7 +65,6 @@ public class ProjectEntity {
     public int hashCode() {
         return super.hashCode();
     }
-
 
     // Getter and Setter
 
@@ -132,11 +132,11 @@ public class ProjectEntity {
         this.end = end;
     }
 
-    public Set<EmployeeEntity> getEnrolls() {
-        return enrolls;
+    public Set<EmployeeEntity> getEnrolledEmployees() {
+        return enrolledEmployees;
     }
 
-    public void setEnrolls(Set<EmployeeEntity> enrolls) {
-        this.enrolls = enrolls;
+    public void setEnrolledEmployees(Set<EmployeeEntity> enrolledEmployees) {
+        this.enrolledEmployees = enrolledEmployees;
     }
 }

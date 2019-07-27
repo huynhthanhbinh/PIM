@@ -1,11 +1,14 @@
 package com.bht.pim.dto;
 
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Group implements Serializable {
 
+    private Logger logger = Logger.getLogger(Group.class);
     private static final long serialVersionUID = 3005199802L;
 
     private long id;
@@ -29,6 +32,24 @@ public class Group implements Serializable {
                 id,
                 groupLeaderId,
                 groupLeaderName);
+    }
+
+    public void printInfo() {
+        logger.info("");
+        logger.info("=============================================================================");
+        logger.info("GROUP INFORMATION");
+        logger.info("ID              : " + id);
+        logger.info("Leader ID       : " + groupLeaderId);
+        logger.info("Leader VISA     : " + groupLeaderVisa);
+        logger.info("Group leader    : " + groupLeaderName);
+        logger.info("Projects enroll : " + projects.size());
+        projects.forEach(project -> logger.info(
+                String.format("%,6d | %,6d | %-30s | %s",
+                        project.getId(),
+                        project.getNumber(),
+                        project.getName(),
+                        project.getCustomer())));
+        logger.info("=============================================================================");
     }
 
     public long getId() {

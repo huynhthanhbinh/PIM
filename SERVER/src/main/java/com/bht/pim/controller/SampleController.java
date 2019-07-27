@@ -35,6 +35,12 @@ public class SampleController {
         employeeService.getAllEmployees().forEach(logger::info);
         groupService.getAllGroups().forEach(logger::info);
         projectService.getAllProjects().forEach(logger::info);
+
         projectService.getProjectById(4).printInfo();
+        groupService.getGroupById(1).printInfo();
+        employeeService.getEmployeeById(2).printInfo();
+
+        logger.info("All projects number exist: ");
+        projectService.getAllProjectsNumber().forEach(logger::info);
     }
 }

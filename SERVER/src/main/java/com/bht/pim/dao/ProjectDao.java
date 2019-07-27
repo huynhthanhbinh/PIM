@@ -15,6 +15,9 @@ public interface ProjectDao {
     // Get next project Id
     long nextIdValue();
 
+    // Get all projects number
+    List<Long> getAllProjectsNumber();
+
     // Add a new project
     boolean addProject(ProjectEntity projectEntity);
 

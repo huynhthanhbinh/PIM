@@ -1,5 +1,7 @@
 package com.bht.pim.dto;
 
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,6 +9,7 @@ import java.util.Set;
 
 public class Employee implements Serializable {
 
+    private Logger logger = Logger.getLogger(Employee.class);
     private static final long serialVersionUID = 3005199803L;
 
     private final SimpleDateFormat dateFormat =
@@ -28,6 +31,25 @@ public class Employee implements Serializable {
                 firstName,
                 lastName,
                 dateFormat.format(birthday));
+    }
+
+    public void printInfo() {
+        logger.info("");
+        logger.info("=============================================================================");
+        logger.info("EMPLOYEE INFORMATION");
+        logger.info("ID              : " + id);
+        logger.info("VISA            : " + visa);
+        logger.info("First-name      : " + firstName);
+        logger.info("Last-name       : " + lastName);
+        logger.info("Birthday        : " + dateFormat.format(birthday));
+        logger.info("Projects enroll : " + enrolledProjects.size());
+        enrolledProjects.forEach(project -> logger.info(
+                String.format("%,6d | %,6d | %-30s | %s",
+                        project.getId(),
+                        project.getNumber(),
+                        project.getName(),
+                        project.getCustomer())));
+        logger.info("=============================================================================");
     }
 
     public long getId() {

@@ -44,7 +44,6 @@ public class GroupEntity {
         return super.hashCode();
     }
 
-
     // Getter and Setter
 
     public long getId() {

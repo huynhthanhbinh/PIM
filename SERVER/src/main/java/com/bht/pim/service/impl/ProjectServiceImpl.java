@@ -39,6 +39,11 @@ public class ProjectServiceImpl implements ProjectService {
 
 
     @Override
+    public List<Long> getAllProjectsNumber() {
+        return projectDao.getAllProjectsNumber();
+    }
+
+    @Override
     public boolean addProject(Project project) {
         try {
             Set<EmployeeEntity> projectEmployees = new HashSet<>();
@@ -53,7 +58,7 @@ public class ProjectServiceImpl implements ProjectService {
             projectEntity.setName(project.getName());
             projectEntity.setCustomer(project.getCustomer());
             projectEntity.setStatus("NEW");
-            projectEntity.setEnrolls(projectEmployees);
+            projectEntity.setEnrolledEmployees(projectEmployees);
             projectEntity.setStart(toSqlDate(project.getStart()));
             if (project.getEnd() != null) {
                 projectEntity.setEnd(toSqlDate(project.getEnd()));
@@ -88,7 +93,7 @@ public class ProjectServiceImpl implements ProjectService {
             projectEntity.setName(project.getName());
             projectEntity.setCustomer(project.getCustomer());
             projectEntity.setStatus("NEW");
-            projectEntity.setEnrolls(projectEmployees);
+            projectEntity.setEnrolledEmployees(projectEmployees);
             projectEntity.setStart(toSqlDate(project.getStart()));
             if (project.getEnd() != null) {
                 projectEntity.setEnd(toSqlDate(project.getEnd()));
@@ -122,7 +127,7 @@ public class ProjectServiceImpl implements ProjectService {
                 projectEntity.setName(project.getName());
                 projectEntity.setCustomer(project.getCustomer());
                 projectEntity.setStatus(toDaoStatus(project.getStatus()));
-                projectEntity.setEnrolls(projectEmployees);
+                projectEntity.setEnrolledEmployees(projectEmployees);
                 projectEntity.setStart(toSqlDate(project.getStart()));
                 if (project.getEnd() != null) {
                     projectEntity.setEnd(toSqlDate(project.getEnd()));
@@ -192,7 +197,7 @@ public class ProjectServiceImpl implements ProjectService {
 
             Set<Employee> employees = new HashSet<>();
 
-            projectEntity.getEnrolls().forEach(employeeEntity -> {
+            projectEntity.getEnrolledEmployees().forEach(employeeEntity -> {
                 Employee employee = new Employee();
 
                 employee.setId(employeeEntity.getId());
