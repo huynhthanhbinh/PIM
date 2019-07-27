@@ -1,17 +1,23 @@
 package com.bht.pim.dto;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
-public class Employee {
+public class Employee implements Serializable {
+
+    private static final long serialVersionUID = 3005199803L;
 
     private final SimpleDateFormat dateFormat =
             new SimpleDateFormat("dd/MM/yyyy");
+
     private long id;
     private String visa;
     private String firstName;
     private String lastName;
     private Date birthday;
+    private Set<Project> enrolledProjects;
 
     @Override
     public String toString() {
@@ -62,5 +68,13 @@ public class Employee {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public Set<Project> getEnrolledProjects() {
+        return enrolledProjects;
+    }
+
+    public void setEnrolledProjects(Set<Project> enrolledProjects) {
+        this.enrolledProjects = enrolledProjects;
     }
 }

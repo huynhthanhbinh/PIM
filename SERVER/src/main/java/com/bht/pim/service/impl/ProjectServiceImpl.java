@@ -3,6 +3,7 @@ package com.bht.pim.service.impl;
 import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.dao.GroupDao;
 import com.bht.pim.dao.ProjectDao;
+import com.bht.pim.dto.Employee;
 import com.bht.pim.dto.Project;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
@@ -41,8 +42,9 @@ public class ProjectServiceImpl implements ProjectService {
     public boolean addProject(Project project) {
         try {
             Set<EmployeeEntity> projectEmployees = new HashSet<>();
-            project.getMembers().forEach(id ->
-                    projectEmployees.add(employeeDao.getEmployeeById(id)));
+            project.getMembers().forEach(member ->
+                    projectEmployees.add(employeeDao
+                            .getEmployeeById(member.getId())));
 
 
             ProjectEntity projectEntity = new ProjectEntity();
@@ -70,8 +72,9 @@ public class ProjectServiceImpl implements ProjectService {
     public boolean addProject(Project project, long groupLeaderId) {
         try {
             Set<EmployeeEntity> projectEmployees = new HashSet<>();
-            project.getMembers().forEach(id ->
-                    projectEmployees.add(employeeDao.getEmployeeById(id)));
+            project.getMembers().forEach(member ->
+                    projectEmployees.add(employeeDao
+                            .getEmployeeById(member.getId())));
 
             GroupEntity groupEntity = new GroupEntity();
             groupEntity.setGroupLeader(
@@ -109,8 +112,9 @@ public class ProjectServiceImpl implements ProjectService {
             if (projectEntity != null) {
 
                 Set<EmployeeEntity> projectEmployees = new HashSet<>();
-                project.getMembers().forEach(id ->
-                        projectEmployees.add(employeeDao.getEmployeeById(id)));
+                project.getMembers().forEach(member ->
+                        projectEmployees.add(employeeDao
+                                .getEmployeeById(member.getId())));
 
                 projectEntity.setGroup(
                         groupDao.getGroupById(project.getGroupId()));
@@ -175,6 +179,31 @@ public class ProjectServiceImpl implements ProjectService {
             if (projectEntity.getEnd() != null) {
                 project.setEnd(toUtilDate(projectEntity.getEnd()));
             }
+
+            EmployeeEntity groupLeader = projectEntity
+                    .getGroup()
+                    .getGroupLeader();
+
+            project.setGroupLeaderId(groupLeader.getId());
+            project.setGroupLeaderName(
+                    groupLeader.getVisa() + " - " +
+                            groupLeader.getLastName() + " " +
+                            groupLeader.getFirstName());
+
+            Set<Employee> employees = new HashSet<>();
+
+            projectEntity.getEnrolls().forEach(employeeEntity -> {
+                Employee employee = new Employee();
+
+                employee.setId(employeeEntity.getId());
+                employee.setVisa(employeeEntity.getVisa());
+                employee.setFirstName(employeeEntity.getFirstName());
+                employee.setLastName(employeeEntity.getLastName());
+
+                employees.add(employee);
+            });
+
+            project.setMembers(employees);
 
             return project;
         }

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Table(name = "[GROUP]")
-@Entity(name = "[GROUP]")
+@Entity(name = "GROUP")
 public class GroupEntity {
 
     @Id
@@ -61,5 +61,13 @@ public class GroupEntity {
 
     public void setGroupLeader(EmployeeEntity groupLeader) {
         this.groupLeader = groupLeader;
+    }
+
+    public Set<ProjectEntity> getJoinedProjects() {
+        return joinedProjects;
+    }
+
+    public void setJoinedProjects(Set<ProjectEntity> joinedProjects) {
+        this.joinedProjects = joinedProjects;
     }
 }

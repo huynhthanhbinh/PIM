@@ -3,6 +3,7 @@ package com.bht.pim.dao.impl;
 import com.bht.pim.dao.ProjectDao;
 import com.bht.pim.entity.ProjectEntity;
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -79,8 +80,14 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public ProjectEntity getProjectById(long id) {
-        return sessionFactory.getCurrentSession()
+        ProjectEntity projectEntity = sessionFactory
+                .getCurrentSession()
                 .get(ProjectEntity.class, id);
+
+        // As Hibernate is lazy-initialization !
+        Hibernate.initialize(projectEntity.getEnrolls());
+
+        return projectEntity;
     }
 
     @Override
