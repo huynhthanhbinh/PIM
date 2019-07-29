@@ -1,5 +1,7 @@
 package com.bht.pim;
 
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -14,6 +16,10 @@ import java.util.Objects;
 
 public class Main extends Application {
 
+    private static final int PORT = 9999;
+    private static final String HOST = "localhost";
+    private ManagedChannel channel;
+
     private Logger logger = Logger.getLogger(Main.class);
     private Parent rootNode;
 
@@ -22,9 +28,17 @@ public class Main extends Application {
         launch(args);
     }
 
-
     @Override
     public void init() throws Exception {
+        // Channel is the abstraction to connect to a service endpoint
+        // Let's use plaintext communication because we don't have certs
+        channel = ManagedChannelBuilder
+                .forAddress(HOST, PORT)
+                .usePlaintext()
+                .build();
+
+        logger.info(channel);
+
         logger.info("<<< PIM SERVER - ON INIT  >>>");
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
@@ -45,6 +59,7 @@ public class Main extends Application {
     @Override
     public void stop() {
         logger.info("<<< PIM SERVER - ON STOP  >>>");
+        channel.shutdown();
     }
 
 

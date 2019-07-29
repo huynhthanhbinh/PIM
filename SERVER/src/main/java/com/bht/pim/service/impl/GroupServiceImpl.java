@@ -6,6 +6,7 @@ import com.bht.pim.dto.Project;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
 import com.bht.pim.service.GroupService;
+import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
+@GRpcService
 public class GroupServiceImpl implements GroupService {
 
     @Autowired

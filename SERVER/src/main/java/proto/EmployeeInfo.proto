@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "Employee.proto";
+import "Project.proto";
+
+package com.bht.pim.proto.employee;
+option java_multiple_files = true;
+
+message EmployeeInfo {
+    Employee employee = 1;
+    repeated project.Project enrolledProjects = 2;
+}
+
+message EmployeeId {
+    int64 id = 1;
+}
+
+service EmployeeService {
+    rpc getEmployeeById (EmployeeId) returns (EmployeeInfo);
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "Project.proto";
+import "ProjectNumbers.proto";
+
+package com.bht.pim.proto.project;
+option java_multiple_files = true;
+
+message ProjectList {
+    repeated Project projectList = 1;
+}
+
+
+message NoParam {
+}
+
+service ProjectListService {
+    rpc getProjectList (NoParam) returns (ProjectList);
+    rpc getProjectNumbers (NoParam) returns (ProjectNumbers);
+}

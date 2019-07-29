@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "Group.proto";
+
+package com.bht.pim.proto.group;
+option java_multiple_files = true;
+
+message GroupList {
+    repeated Group groupList = 1;
+}
+
+message NoParam {
+}
+
+service GroupListService {
+    rpc getEmployeeList (NoParam) returns (GroupList);
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "Date.proto";
+
+package com.bht.pim.proto.project;
+option java_multiple_files = true;
+
+message Project {
+    int64 id = 1;
+    int64 number = 2;
+    string name = 3;
+    string customer = 4;
+    int64 groupId = 5;
+    string status = 6;
+    date.Date start = 7;
+    date.Date end = 8;
+}

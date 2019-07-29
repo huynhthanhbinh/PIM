@@ -17,7 +17,6 @@ import java.util.Objects;
 
 @SpringBootApplication
 public class Main extends Application {
-
     private Logger logger = Logger.getLogger(Main.class);
     private ConfigurableApplicationContext applicationContext;
     private Parent rootNode;

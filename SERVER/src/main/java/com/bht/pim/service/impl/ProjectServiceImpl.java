@@ -10,12 +10,14 @@ import com.bht.pim.entity.GroupEntity;
 import com.bht.pim.entity.ProjectEntity;
 import com.bht.pim.service.ProjectService;
 import org.apache.log4j.Logger;
+import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
+@GRpcService
 public class ProjectServiceImpl implements ProjectService {
 
     private Logger logger = Logger.getLogger(ProjectServiceImpl.class);
