@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79cdd724-f430-4996-acd7-7e0f4f7ae3e3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../SERVER/src/main/java/com/bht/pim/service/EmployeeListServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SERVER/src/main/java/com/bht/pim/service/GroupListServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SERVER/src/main/java/com/bht/pim/service/GroupServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SERVER/src/main/java/com/bht/pim/service/ProjectListServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SERVER/src/main/java/com/bht/pim/service/ProjectServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/bht/pim/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bht/pim/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SERVER/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SERVER/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SERVER/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SERVER/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SERVER/src/main/java/com/bht/pim/configuration/AppConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SERVER/src/main/java/com/bht/pim/configuration/AppConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SERVER/src/main/java/com/bht/pim/service/EmployeeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SERVER/src/main/java/com/bht/pim/service/EmployeeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SERVER/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../SERVER/src/main/resources/db.properties" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,8 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/bht/pim/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="73" column="91" selection-start-line="73" selection-start-column="91" selection-end-line="73" selection-end-column="91" />
+            <state relative-caret-position="-69">
+              <caret line="91" column="88" selection-start-line="91" selection-start-column="88" selection-end-line="91" selection-end-column="88" />
             </state>
           </provider>
         </entry>
@@ -43,10 +51,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="2064" />
-    <option name="height" value="1168" />
+    <option name="x" value="-7" />
+    <option name="width" value="1038" />
+    <option name="height" value="1159" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -173,6 +180,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/bht/pim" />
@@ -226,15 +234,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1564409158922</updated>
-      <workItem from="1564409163297" duration="3827000" />
+      <workItem from="1564409163297" duration="7098000" />
     </task>
+    <task id="LOCAL-00001" summary="remove 2 unnecessary bean SERVER">
+      <created>1564417854283</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1564417854283</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3827000" />
+    <option name="totallyTimeSpent" value="7098000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2064" height="1168" extended-state="6" />
+    <frame x="-8" y="-8" width="2064" height="1168" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" />
@@ -253,7 +269,7 @@
       <window_info anchor="bottom" id="SonarLint" />
       <window_info anchor="bottom" id="Java Enterprise" />
       <window_info anchor="bottom" id="Database Changes" />
-      <window_info active="true" anchor="bottom" id="Version Control" visible="true" weight="0.3294686" />
+      <window_info anchor="bottom" id="Version Control" weight="0.3294686" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Tail" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -278,6 +294,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="remove 2 unnecessary bean SERVER" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove 2 unnecessary bean SERVER" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bht/pim/proto/group/SuccessOrBuilder.java">
@@ -338,8 +358,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/bht/pim/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="73" column="91" selection-start-line="73" selection-start-column="91" selection-end-line="73" selection-end-column="91" />
+        <state relative-caret-position="-69">
+          <caret line="91" column="88" selection-start-line="91" selection-start-column="88" selection-end-line="91" selection-end-column="88" />
         </state>
       </provider>
     </entry>

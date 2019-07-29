@@ -1,12 +1,9 @@
 package com.bht.pim.service;
 
-
-import com.bht.pim.dao.EmployeeDao;
+import com.bht.pim.dao.GroupDao;
 import com.bht.pim.entity.EmployeeEntity;
-import com.bht.pim.proto.employee.Employee;
-import com.bht.pim.proto.employee.EmployeeId;
-import com.bht.pim.proto.employee.EmployeeInfo;
-import com.bht.pim.proto.employee.EmployeeServiceGrpc;
+import com.bht.pim.entity.GroupEntity;
+import com.bht.pim.proto.group.*;
 import com.bht.pim.proto.project.Project;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
@@ -18,31 +15,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 @GRpcService
-public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImplBase {
-
-    private Logger logger = Logger.getLogger(EmployeeServiceImpl.class);
+public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
     @Autowired
-    EmployeeDao employeeDao;
+    GroupDao groupDao;
+    private Logger logger = Logger.getLogger(GroupServiceImpl.class);
 
     @Override
-    public void getEmployeeById(EmployeeId request, StreamObserver<EmployeeInfo> responseObserver) {
+    public void getGroupById(GroupId request, StreamObserver<GroupInfo> responseObserver) {
 
-        EmployeeEntity employeeEntity = employeeDao
-                .getEmployeeById(request.getId());
+        GroupEntity groupEntity = groupDao
+                .getGroupById(request.getId());
 
         try {
-            Employee employee = Employee.newBuilder()
-                    .setId(employeeEntity.getId())
-                    .setVisa(employeeEntity.getVisa())
-                    .setFirstName(employeeEntity.getFirstName())
-                    .setLastName(employeeEntity.getLastName())
-                    .setBirthday(employeeEntity.getBirthday().getTime())
+            EmployeeEntity leader = groupEntity.getGroupLeader();
+
+            Group group = Group.newBuilder()
+                    .setId(groupEntity.getId())
+                    .setGroupLeaderId(leader.getId())
+                    .setGroupLeaderVisa(leader.getVisa())
+                    .setGroupLeaderName(leader.getLastName() + " " + leader.getFirstName())
                     .build();
 
             List<Project> projects = new ArrayList<>();
 
-            employeeEntity.getEnrolledProjects().forEach(projectEntity -> {
+            groupEntity.getJoinedProjects().forEach(projectEntity -> {
                 Date end = projectEntity.getEnd();
 
                 Project project = Project.newBuilder()
@@ -59,13 +56,14 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
                 projects.add(project);
             });
 
-            EmployeeInfo employeeInfo = EmployeeInfo.newBuilder()
-                    .setEmployee(employee)
+            GroupInfo groupInfo = GroupInfo.newBuilder()
+                    .setGroup(group)
                     .addAllEnrolledProjects(projects)
                     .build();
 
-            responseObserver.onNext(employeeInfo);
+            responseObserver.onNext(groupInfo);
             responseObserver.onCompleted();
+            ;
 
         } catch (Exception exception) {
 
@@ -73,5 +71,10 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
             responseObserver.onNext(null);
             responseObserver.onCompleted();
         }
+    }
+
+    @Override
+    public void addNewGroup(Group request, StreamObserver<Success> responseObserver) {
+        super.addNewGroup(request, responseObserver);
     }
 }

@@ -3,6 +3,12 @@ package com.bht.pim;
 import com.bht.pim.proto.employee.EmployeeId;
 import com.bht.pim.proto.employee.EmployeeInfo;
 import com.bht.pim.proto.employee.EmployeeServiceGrpc;
+import com.bht.pim.proto.group.GroupId;
+import com.bht.pim.proto.group.GroupInfo;
+import com.bht.pim.proto.group.GroupServiceGrpc;
+import com.bht.pim.proto.project.ProjectId;
+import com.bht.pim.proto.project.ProjectInfo;
+import com.bht.pim.proto.project.ProjectServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.application.Application;
@@ -61,8 +67,6 @@ public class Main extends Application {
         EmployeeServiceGrpc.EmployeeServiceBlockingStub stub =
                 EmployeeServiceGrpc.newBlockingStub(channel);
 
-        //EmployeeInfo employeeInfo = EmployeeInfo.getDefaultInstance();
-
         EmployeeId employeeId = EmployeeId.newBuilder()
                 .setId(2)
                 .build();
@@ -72,6 +76,33 @@ public class Main extends Application {
         logger.info(employee);
 
         employee.getEnrolledProjectsList().forEach(project -> logger.info(project.getName()));
+
+
+        GroupServiceGrpc.GroupServiceBlockingStub stub1 =
+                GroupServiceGrpc.newBlockingStub(channel);
+
+        GroupId groupId = GroupId.newBuilder()
+                .setId(1)
+                .build();
+
+        GroupInfo group = stub1.getGroupById(groupId);
+
+        logger.info(group);
+
+        group.getEnrolledProjectsList().forEach(project -> logger.info(project.getName()));
+
+        ProjectServiceGrpc.ProjectServiceBlockingStub stub2 =
+                ProjectServiceGrpc.newBlockingStub(channel);
+
+        ProjectId projectId = ProjectId.newBuilder()
+                .setId(4)
+                .build();
+
+        ProjectInfo project = stub2.getProjectById(projectId);
+
+        logger.info(project);
+
+        project.getEmployeesList().forEach(employee1 -> logger.info(employee1.getVisa()));
     }
 
 
