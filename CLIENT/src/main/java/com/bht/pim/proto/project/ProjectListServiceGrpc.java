@@ -20,7 +20,7 @@ public final class ProjectListServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<NoParam,
-      ProjectList> getGetProjectListMethod;
+          ProjectList> getGetProjectListMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "getProjectList",
@@ -28,7 +28,7 @@ public final class ProjectListServiceGrpc {
       responseType = ProjectList.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<NoParam,
-      ProjectList> getGetProjectListMethod() {
+          ProjectList> getGetProjectListMethod() {
     io.grpc.MethodDescriptor<NoParam, ProjectList> getGetProjectListMethod;
     if ((getGetProjectListMethod = ProjectListServiceGrpc.getGetProjectListMethod) == null) {
       synchronized (ProjectListServiceGrpc.class) {
@@ -131,7 +131,7 @@ public final class ProjectListServiceGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 NoParam,
-                ProjectList>(
+                      ProjectList>(
                   this, METHODID_GET_PROJECT_LIST)))
           .addMethod(
             getGetProjectNumbersMethod(),

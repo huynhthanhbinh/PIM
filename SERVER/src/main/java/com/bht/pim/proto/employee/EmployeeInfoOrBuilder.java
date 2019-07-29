@@ -4,49 +4,43 @@
 package com.bht.pim.proto.employee;
 
 public interface EmployeeInfoOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.employee.EmployeeInfo)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.employee.EmployeeInfo)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>.com.bht.pim.proto.employee.Employee employee = 1;</code>
-     */
-    boolean hasEmployee();
+  /**
+   * <code>.com.bht.pim.proto.employee.Employee employee = 1;</code>
+   */
+  boolean hasEmployee();
+  /**
+   * <code>.com.bht.pim.proto.employee.Employee employee = 1;</code>
+   */
+  Employee getEmployee();
+  /**
+   * <code>.com.bht.pim.proto.employee.Employee employee = 1;</code>
+   */
+  EmployeeOrBuilder getEmployeeOrBuilder();
 
-    /**
-     * <code>.com.bht.pim.proto.employee.Employee employee = 1;</code>
-     */
-    Employee getEmployee();
-
-    /**
-     * <code>.com.bht.pim.proto.employee.Employee employee = 1;</code>
-     */
-    EmployeeOrBuilder getEmployeeOrBuilder();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.project.Project enrolledProjects = 2;</code>
-     */
-    java.util.List<com.bht.pim.proto.project.Project>
-    getEnrolledProjectsList();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.project.Project enrolledProjects = 2;</code>
-     */
-    com.bht.pim.proto.project.Project getEnrolledProjects(int index);
-
-    /**
-     * <code>repeated .com.bht.pim.proto.project.Project enrolledProjects = 2;</code>
-     */
-    int getEnrolledProjectsCount();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.project.Project enrolledProjects = 2;</code>
-     */
-    java.util.List<? extends com.bht.pim.proto.project.ProjectOrBuilder>
-    getEnrolledProjectsOrBuilderList();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.project.Project enrolledProjects = 2;</code>
-     */
-    com.bht.pim.proto.project.ProjectOrBuilder getEnrolledProjectsOrBuilder(
-            int index);
+  /**
+   * <code>repeated .com.bht.pim.proto.project.Project enrolledProjects = 2;</code>
+   */
+  java.util.List<com.bht.pim.proto.project.Project> 
+      getEnrolledProjectsList();
+  /**
+   * <code>repeated .com.bht.pim.proto.project.Project enrolledProjects = 2;</code>
+   */
+  com.bht.pim.proto.project.Project getEnrolledProjects(int index);
+  /**
+   * <code>repeated .com.bht.pim.proto.project.Project enrolledProjects = 2;</code>
+   */
+  int getEnrolledProjectsCount();
+  /**
+   * <code>repeated .com.bht.pim.proto.project.Project enrolledProjects = 2;</code>
+   */
+  java.util.List<? extends com.bht.pim.proto.project.ProjectOrBuilder> 
+      getEnrolledProjectsOrBuilderList();
+  /**
+   * <code>repeated .com.bht.pim.proto.project.Project enrolledProjects = 2;</code>
+   */
+  com.bht.pim.proto.project.ProjectOrBuilder getEnrolledProjectsOrBuilder(
+          int index);
 }

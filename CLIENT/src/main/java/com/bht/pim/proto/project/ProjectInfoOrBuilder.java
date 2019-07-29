@@ -21,9 +21,15 @@ public interface ProjectInfoOrBuilder extends
   ProjectOrBuilder getProjectOrBuilder();
 
   /**
-   * <code>int64 groupId = 2;</code>
+   * <code>string groupLeader = 2;</code>
    */
-  long getGroupId();
+  String getGroupLeader();
+
+    /**
+     * <code>string groupLeader = 2;</code>
+     */
+    com.google.protobuf.ByteString
+    getGroupLeaderBytes();
 
   /**
    * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>

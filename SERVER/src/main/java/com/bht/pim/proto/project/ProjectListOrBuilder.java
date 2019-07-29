@@ -4,34 +4,30 @@
 package com.bht.pim.proto.project;
 
 public interface ProjectListOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.project.ProjectList)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.project.ProjectList)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
-     */
-    java.util.List<Project>
-    getProjectListList();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
-     */
-    Project getProjectList(int index);
-
-    /**
-     * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
-     */
-    int getProjectListCount();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
-     */
-    java.util.List<? extends ProjectOrBuilder>
-    getProjectListOrBuilderList();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
-     */
-    ProjectOrBuilder getProjectListOrBuilder(
-            int index);
+  /**
+   * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
+   */
+  java.util.List<Project>
+      getProjectListList();
+  /**
+   * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
+   */
+  Project getProjectList(int index);
+  /**
+   * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
+   */
+  int getProjectListCount();
+  /**
+   * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
+   */
+  java.util.List<? extends ProjectOrBuilder>
+      getProjectListOrBuilderList();
+  /**
+   * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
+   */
+  ProjectOrBuilder getProjectListOrBuilder(
+          int index);
 }

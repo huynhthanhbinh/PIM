@@ -9,7 +9,7 @@ package com.bht.pim.proto.project;
 public  final class Success extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:com.bht.pim.proto.project.Success)
-    SuccessOrBuilder {
+        SuccessOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use Success.newBuilder() to construct.
   private Success(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {

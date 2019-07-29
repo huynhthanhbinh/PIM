@@ -4,11 +4,11 @@
 package com.bht.pim.proto.project;
 
 public interface ProjectIdOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.project.ProjectId)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.project.ProjectId)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    long getId();
+  /**
+   * <code>int64 id = 1;</code>
+   */
+  long getId();
 }

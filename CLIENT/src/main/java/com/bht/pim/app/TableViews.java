@@ -1,6 +1,6 @@
 package com.bht.pim.app;
 
-import com.bht.pim.dto.Project;
+import com.bht.pim.proto.project.Project;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -123,17 +123,17 @@ public class TableViews extends Application {
         // Using service, repository with Spring, Hibernate
         // This is just some sample data
         for (int i = 0; i < 8; i++) {
-            Project project = new Project();
-
-            int id = i + 1;
-
-            project.setId(id);
-            project.setNumber(id);
-            project.setName("Project " + id);
-            project.setCustomer("Customer " + id);
-            project.setGroupId(id);
-
-            projects.add(project);
+//            Project project = new Project();
+//
+//            int id = i + 1;
+//
+//            project.setId(id);
+//            project.setNumber(id);
+//            project.setName("Project " + id);
+//            project.setCustomer("Customer " + id);
+//            project.setGroupId(id);
+//
+//            projects.add(project);
         }
         return projects;
     }

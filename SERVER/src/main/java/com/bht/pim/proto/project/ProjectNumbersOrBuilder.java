@@ -4,21 +4,19 @@
 package com.bht.pim.proto.project;
 
 public interface ProjectNumbersOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.project.ProjectNumbers)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.project.ProjectNumbers)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>repeated int64 projectNumbers = 1;</code>
-     */
-    java.util.List<Long> getProjectNumbersList();
-
-    /**
-     * <code>repeated int64 projectNumbers = 1;</code>
-     */
-    int getProjectNumbersCount();
-
-    /**
-     * <code>repeated int64 projectNumbers = 1;</code>
-     */
-    long getProjectNumbers(int index);
+  /**
+   * <code>repeated int64 projectNumbers = 1;</code>
+   */
+  java.util.List<Long> getProjectNumbersList();
+  /**
+   * <code>repeated int64 projectNumbers = 1;</code>
+   */
+  int getProjectNumbersCount();
+  /**
+   * <code>repeated int64 projectNumbers = 1;</code>
+   */
+  long getProjectNumbers(int index);
 }

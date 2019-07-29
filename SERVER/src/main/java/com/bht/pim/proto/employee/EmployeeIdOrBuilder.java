@@ -4,11 +4,11 @@
 package com.bht.pim.proto.employee;
 
 public interface EmployeeIdOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.employee.EmployeeId)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.employee.EmployeeId)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    long getId();
+  /**
+   * <code>int64 id = 1;</code>
+   */
+  long getId();
 }

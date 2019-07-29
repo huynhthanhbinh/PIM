@@ -9,7 +9,7 @@ package com.bht.pim.proto.project;
 public  final class Project extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:com.bht.pim.proto.project.Project)
-    ProjectOrBuilder {
+        ProjectOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use Project.newBuilder() to construct.
   private Project(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
@@ -152,7 +152,7 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       name_ = s;
@@ -166,7 +166,7 @@ private static final long serialVersionUID = 0L;
       getNameBytes() {
     Object ref = name_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8(
               (String) ref);
       name_ = b;
@@ -186,7 +186,7 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       customer_ = s;
@@ -200,7 +200,7 @@ private static final long serialVersionUID = 0L;
       getCustomerBytes() {
     Object ref = customer_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8(
               (String) ref);
       customer_ = b;
@@ -229,7 +229,7 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs = 
+        com.google.protobuf.ByteString bs =
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       status_ = s;
@@ -243,7 +243,7 @@ private static final long serialVersionUID = 0L;
       getStatusBytes() {
     Object ref = status_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b = 
+        com.google.protobuf.ByteString b =
           com.google.protobuf.ByteString.copyFromUtf8(
               (String) ref);
       status_ = b;

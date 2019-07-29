@@ -6,51 +6,35 @@ package com.bht.pim.proto.group;
 /**
  * Protobuf type {@code com.bht.pim.proto.group.GroupList}
  */
-public final class GroupList extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:com.bht.pim.proto.group.GroupList)
-        GroupListOrBuilder {
-  public static final int GROUPLIST_FIELD_NUMBER = 1;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:com.bht.pim.proto.group.GroupList)
-  private static final GroupList DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<GroupList>
-          PARSER = new com.google.protobuf.AbstractParser<GroupList>() {
-    public GroupList parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      return new GroupList(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new GroupList();
-  }
-
-  private java.util.List<Group> groupList_;
-  private byte memoizedIsInitialized = -1;
-
+public  final class GroupList extends
+    com.google.protobuf.GeneratedMessageV3 implements
+    // @@protoc_insertion_point(message_implements:com.bht.pim.proto.group.GroupList)
+    GroupListOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use GroupList.newBuilder() to construct.
   private GroupList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-
   private GroupList() {
     groupList_ = java.util.Collections.emptyList();
   }
 
+  @Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
   private GroupList(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     if (extensionRegistry == null) {
       throw new NullPointerException();
     }
     int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -61,7 +45,7 @@ public final class GroupList extends
             break;
           default: {
             if (!parseUnknownFieldProto3(
-                    input, unknownFields, extensionRegistry, tag)) {
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -72,7 +56,7 @@ public final class GroupList extends
               mutable_bitField0_ |= 0x00000001;
             }
             groupList_.add(
-                    input.readMessage(Group.parser(), extensionRegistry));
+                input.readMessage(Group.parser(), extensionRegistry));
             break;
           }
         }
@@ -81,7 +65,7 @@ public final class GroupList extends
       throw e.setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
+          e).setUnfinishedMessage(this);
     } finally {
       if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
         groupList_ = java.util.Collections.unmodifiableList(groupList_);
@@ -90,159 +74,54 @@ public final class GroupList extends
       makeExtensionsImmutable();
     }
   }
-
   public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
+      getDescriptor() {
     return com.bht.pim.proto.group.GroupListOuterClass.internal_static_com_bht_pim_proto_group_GroupList_descriptor;
   }
 
-  public static GroupList parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static GroupList parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static GroupList parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static GroupList parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static GroupList parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static GroupList parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static GroupList parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
-
-  public static GroupList parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static GroupList parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static GroupList parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static GroupList parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
-
-  public static GroupList parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(GroupList prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static GroupList getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<GroupList> parser() {
-    return PARSER;
-  }
-
-  @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
   protected FieldAccessorTable
-  internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
     return com.bht.pim.proto.group.GroupListOuterClass.internal_static_com_bht_pim_proto_group_GroupList_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                    GroupList.class, Builder.class);
+        .ensureFieldAccessorsInitialized(
+            GroupList.class, Builder.class);
   }
 
+  public static final int GROUPLIST_FIELD_NUMBER = 1;
+  private java.util.List<Group> groupList_;
   /**
    * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
    */
   public java.util.List<Group> getGroupListList() {
     return groupList_;
   }
-
   /**
    * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
    */
-  public java.util.List<? extends com.bht.pim.proto.group.GroupOrBuilder>
-  getGroupListOrBuilderList() {
+  public java.util.List<? extends com.bht.pim.proto.group.GroupOrBuilder> 
+      getGroupListOrBuilderList() {
     return groupList_;
   }
-
   /**
    * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
    */
   public int getGroupListCount() {
     return groupList_.size();
   }
-
   /**
    * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
    */
   public Group getGroupList(int index) {
     return groupList_.get(index);
   }
-
   /**
    * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
    */
   public com.bht.pim.proto.group.GroupOrBuilder getGroupListOrBuilder(
-          int index) {
+      int index) {
     return groupList_.get(index);
   }
 
+  private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -253,7 +132,7 @@ public final class GroupList extends
   }
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
+                      throws java.io.IOException {
     for (int i = 0; i < groupList_.size(); i++) {
       output.writeMessage(1, groupList_.get(i));
     }
@@ -267,7 +146,7 @@ public final class GroupList extends
     size = 0;
     for (int i = 0; i < groupList_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-              .computeMessageSize(1, groupList_.get(i));
+        .computeMessageSize(1, groupList_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -277,7 +156,7 @@ public final class GroupList extends
   @Override
   public boolean equals(final Object obj) {
     if (obj == this) {
-      return true;
+     return true;
     }
     if (!(obj instanceof GroupList)) {
       return super.equals(obj);
@@ -286,7 +165,7 @@ public final class GroupList extends
 
     boolean result = true;
     result = result && getGroupListList()
-            .equals(other.getGroupListList());
+        .equals(other.getGroupListList());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -307,43 +186,112 @@ public final class GroupList extends
     return hash;
   }
 
-  public Builder newBuilderForType() {
-    return newBuilder();
+  public static GroupList parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static GroupList parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static GroupList parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static GroupList parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static GroupList parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static GroupList parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static GroupList parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static GroupList parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static GroupList parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+  public static GroupList parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static GroupList parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static GroupList parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  public Builder newBuilderForType() { return newBuilder(); }
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+  public static Builder newBuilder(GroupList prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
+        ? new Builder() : new Builder().mergeFrom(this);
   }
 
   @Override
   protected Builder newBuilderForType(
-          BuilderParent parent) {
+      BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
-
-  @Override
-  public com.google.protobuf.Parser<GroupList> getParserForType() {
-    return PARSER;
-  }
-
-  public GroupList getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
   /**
    * Protobuf type {@code com.bht.pim.proto.group.GroupList}
    */
   public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:com.bht.pim.proto.group.GroupList)
-          com.bht.pim.proto.group.GroupListOrBuilder {
-    private int bitField0_;
-    private java.util.List<Group> groupList_ =
-            java.util.Collections.emptyList();
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-            Group, Group.Builder, com.bht.pim.proto.group.GroupOrBuilder> groupListBuilder_;
+      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      // @@protoc_insertion_point(builder_implements:com.bht.pim.proto.group.GroupList)
+      com.bht.pim.proto.group.GroupListOrBuilder {
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.bht.pim.proto.group.GroupListOuterClass.internal_static_com_bht_pim_proto_group_GroupList_descriptor;
+    }
+
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.bht.pim.proto.group.GroupListOuterClass.internal_static_com_bht_pim_proto_group_GroupList_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              GroupList.class, Builder.class);
+    }
 
     // Construct using com.bht.pim.proto.group.GroupList.newBuilder()
     private Builder() {
@@ -351,30 +299,16 @@ public final class GroupList extends
     }
 
     private Builder(
-            BuilderParent parent) {
+        BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return com.bht.pim.proto.group.GroupListOuterClass.internal_static_com_bht_pim_proto_group_GroupList_descriptor;
-    }
-
-    protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.bht.pim.proto.group.GroupListOuterClass.internal_static_com_bht_pim_proto_group_GroupList_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      GroupList.class, Builder.class);
-    }
-
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
         getGroupListFieldBuilder();
       }
     }
-
     public Builder clear() {
       super.clear();
       if (groupListBuilder_ == null) {
@@ -422,38 +356,32 @@ public final class GroupList extends
     public Builder clone() {
       return (Builder) super.clone();
     }
-
     public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        Object value) {
       return (Builder) super.setField(field, value);
     }
-
     public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
+        com.google.protobuf.Descriptors.FieldDescriptor field) {
       return (Builder) super.clearField(field);
     }
-
     public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return (Builder) super.clearOneof(oneof);
     }
-
     public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        int index, Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
-
     public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
-
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof GroupList) {
-        return mergeFrom((GroupList) other);
+        return mergeFrom((GroupList)other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -480,9 +408,9 @@ public final class GroupList extends
             groupListBuilder_ = null;
             groupList_ = other.groupList_;
             bitField0_ = (bitField0_ & ~0x00000001);
-            groupListBuilder_ =
-                    com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                            getGroupListFieldBuilder() : null;
+            groupListBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getGroupListFieldBuilder() : null;
           } else {
             groupListBuilder_.addAllMessages(other.groupList_);
           }
@@ -498,9 +426,9 @@ public final class GroupList extends
     }
 
     public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       GroupList parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
@@ -514,13 +442,19 @@ public final class GroupList extends
       }
       return this;
     }
+    private int bitField0_;
 
+    private java.util.List<Group> groupList_ =
+      java.util.Collections.emptyList();
     private void ensureGroupListIsMutable() {
       if (!((bitField0_ & 0x00000001) == 0x00000001)) {
         groupList_ = new java.util.ArrayList<Group>(groupList_);
         bitField0_ |= 0x00000001;
-      }
+       }
     }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        Group, Group.Builder, com.bht.pim.proto.group.GroupOrBuilder> groupListBuilder_;
 
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
@@ -532,7 +466,6 @@ public final class GroupList extends
         return groupListBuilder_.getMessageList();
       }
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
@@ -543,7 +476,6 @@ public final class GroupList extends
         return groupListBuilder_.getCount();
       }
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
@@ -554,12 +486,11 @@ public final class GroupList extends
         return groupListBuilder_.getMessage(index);
       }
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
     public Builder setGroupList(
-            int index, Group value) {
+        int index, Group value) {
       if (groupListBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -572,12 +503,11 @@ public final class GroupList extends
       }
       return this;
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
     public Builder setGroupList(
-            int index, Group.Builder builderForValue) {
+        int index, Group.Builder builderForValue) {
       if (groupListBuilder_ == null) {
         ensureGroupListIsMutable();
         groupList_.set(index, builderForValue.build());
@@ -587,7 +517,6 @@ public final class GroupList extends
       }
       return this;
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
@@ -604,12 +533,11 @@ public final class GroupList extends
       }
       return this;
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
     public Builder addGroupList(
-            int index, Group value) {
+        int index, Group value) {
       if (groupListBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -622,12 +550,11 @@ public final class GroupList extends
       }
       return this;
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
     public Builder addGroupList(
-            Group.Builder builderForValue) {
+        Group.Builder builderForValue) {
       if (groupListBuilder_ == null) {
         ensureGroupListIsMutable();
         groupList_.add(builderForValue.build());
@@ -637,12 +564,11 @@ public final class GroupList extends
       }
       return this;
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
     public Builder addGroupList(
-            int index, Group.Builder builderForValue) {
+        int index, Group.Builder builderForValue) {
       if (groupListBuilder_ == null) {
         ensureGroupListIsMutable();
         groupList_.add(index, builderForValue.build());
@@ -652,23 +578,21 @@ public final class GroupList extends
       }
       return this;
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
     public Builder addAllGroupList(
-            Iterable<? extends Group> values) {
+        Iterable<? extends Group> values) {
       if (groupListBuilder_ == null) {
         ensureGroupListIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
-                values, groupList_);
+            values, groupList_);
         onChanged();
       } else {
         groupListBuilder_.addAllMessages(values);
       }
       return this;
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
@@ -682,7 +606,6 @@ public final class GroupList extends
       }
       return this;
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
@@ -696,70 +619,62 @@ public final class GroupList extends
       }
       return this;
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
     public Group.Builder getGroupListBuilder(
-            int index) {
+        int index) {
       return getGroupListFieldBuilder().getBuilder(index);
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
     public com.bht.pim.proto.group.GroupOrBuilder getGroupListOrBuilder(
-            int index) {
+        int index) {
       if (groupListBuilder_ == null) {
-        return groupList_.get(index);
-      } else {
+        return groupList_.get(index);  } else {
         return groupListBuilder_.getMessageOrBuilder(index);
       }
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
-    public java.util.List<? extends com.bht.pim.proto.group.GroupOrBuilder>
-    getGroupListOrBuilderList() {
+    public java.util.List<? extends com.bht.pim.proto.group.GroupOrBuilder> 
+         getGroupListOrBuilderList() {
       if (groupListBuilder_ != null) {
         return groupListBuilder_.getMessageOrBuilderList();
       } else {
         return java.util.Collections.unmodifiableList(groupList_);
       }
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
     public Group.Builder addGroupListBuilder() {
       return getGroupListFieldBuilder().addBuilder(
-              Group.getDefaultInstance());
+          Group.getDefaultInstance());
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
     public Group.Builder addGroupListBuilder(
-            int index) {
+        int index) {
       return getGroupListFieldBuilder().addBuilder(
-              index, Group.getDefaultInstance());
+          index, Group.getDefaultInstance());
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
     public java.util.List<Group.Builder>
-    getGroupListBuilderList() {
+         getGroupListBuilderList() {
       return getGroupListFieldBuilder().getBuilderList();
     }
-
     private com.google.protobuf.RepeatedFieldBuilderV3<
-            Group, Group.Builder, com.bht.pim.proto.group.GroupOrBuilder>
-    getGroupListFieldBuilder() {
+        Group, Group.Builder, com.bht.pim.proto.group.GroupOrBuilder>
+        getGroupListFieldBuilder() {
       if (groupListBuilder_ == null) {
         groupListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-                Group, Group.Builder, com.bht.pim.proto.group.GroupOrBuilder>(
+            Group, Group.Builder, com.bht.pim.proto.group.GroupOrBuilder>(
                 groupList_,
                 ((bitField0_ & 0x00000001) == 0x00000001),
                 getParentForChildren(),
@@ -768,19 +683,51 @@ public final class GroupList extends
       }
       return groupListBuilder_;
     }
-
     public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
     }
 
 
     // @@protoc_insertion_point(builder_scope:com.bht.pim.proto.group.GroupList)
+  }
+
+  // @@protoc_insertion_point(class_scope:com.bht.pim.proto.group.GroupList)
+  private static final GroupList DEFAULT_INSTANCE;
+  static {
+    DEFAULT_INSTANCE = new GroupList();
+  }
+
+  public static GroupList getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static final com.google.protobuf.Parser<GroupList>
+      PARSER = new com.google.protobuf.AbstractParser<GroupList>() {
+    public GroupList parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new GroupList(input, extensionRegistry);
+    }
+  };
+
+  public static com.google.protobuf.Parser<GroupList> parser() {
+    return PARSER;
+  }
+
+  @Override
+  public com.google.protobuf.Parser<GroupList> getParserForType() {
+    return PARSER;
+  }
+
+  public GroupList getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
   }
 
 }

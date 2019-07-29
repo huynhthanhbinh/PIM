@@ -1,6 +1,7 @@
 package com.bht.pim.service;
 
 import com.bht.pim.dao.ProjectDao;
+import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.ProjectEntity;
 import com.bht.pim.proto.employee.Employee;
 import com.bht.pim.proto.project.*;
@@ -53,8 +54,12 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
                 employees.add(employee);
             });
 
+            EmployeeEntity leader = projectEntity.getGroup().getGroupLeader();
+            String groupLeader = leader.getVisa() + " - " +
+                    leader.getLastName() + " " + leader.getFirstName();
+
             ProjectInfo projectInfo = ProjectInfo.newBuilder()
-                    .setGroupId(projectEntity.getGroup().getId())
+                    .setGroupLeader(groupLeader)
                     .setProject(project)
                     .addAllEmployees(employees)
                     .build();

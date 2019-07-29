@@ -6,44 +6,15 @@ package com.bht.pim.proto.employee;
 /**
  * Protobuf type {@code com.bht.pim.proto.employee.Employee}
  */
-public final class Employee extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:com.bht.pim.proto.employee.Employee)
-        EmployeeOrBuilder {
-  public static final int ID_FIELD_NUMBER = 1;
-  public static final int VISA_FIELD_NUMBER = 2;
-  public static final int FIRST_NAME_FIELD_NUMBER = 3;
-  public static final int LAST_NAME_FIELD_NUMBER = 4;
-  public static final int BIRTHDAY_FIELD_NUMBER = 5;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:com.bht.pim.proto.employee.Employee)
-  private static final Employee DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<Employee>
-          PARSER = new com.google.protobuf.AbstractParser<Employee>() {
-    public Employee parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Employee(input, extensionRegistry);
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new Employee();
-  }
-
-  private long id_;
-  private volatile Object visa_;
-  private volatile Object firstName_;
-  private volatile Object lastName_;
-  private long birthday_;
-  private byte memoizedIsInitialized = -1;
-
+public  final class Employee extends
+    com.google.protobuf.GeneratedMessageV3 implements
+    // @@protoc_insertion_point(message_implements:com.bht.pim.proto.employee.Employee)
+    EmployeeOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use Employee.newBuilder() to construct.
   private Employee(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-
   private Employee() {
     id_ = 0L;
     visa_ = "";
@@ -52,17 +23,22 @@ public final class Employee extends
     birthday_ = 0L;
   }
 
+  @Override
+  public final com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
   private Employee(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     if (extensionRegistry == null) {
       throw new NullPointerException();
     }
     int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -73,7 +49,7 @@ public final class Employee extends
             break;
           default: {
             if (!parseUnknownFieldProto3(
-                    input, unknownFields, extensionRegistry, tag)) {
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -112,128 +88,26 @@ public final class Employee extends
       throw e.setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
+          e).setUnfinishedMessage(this);
     } finally {
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
-
   public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
+      getDescriptor() {
     return com.bht.pim.proto.employee.EmployeeOuterClass.internal_static_com_bht_pim_proto_employee_Employee_descriptor;
   }
 
-  public static Employee parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static Employee parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static Employee parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static Employee parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static Employee parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static Employee parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static Employee parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
-
-  public static Employee parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Employee parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static Employee parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Employee parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
-
-  public static Employee parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(Employee prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static Employee getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<Employee> parser() {
-    return PARSER;
-  }
-
-  @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
   protected FieldAccessorTable
-  internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
     return com.bht.pim.proto.employee.EmployeeOuterClass.internal_static_com_bht_pim_proto_employee_Employee_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                    Employee.class, Builder.class);
+        .ensureFieldAccessorsInitialized(
+            Employee.class, Builder.class);
   }
 
+  public static final int ID_FIELD_NUMBER = 1;
+  private long id_;
   /**
    * <code>int64 id = 1;</code>
    */
@@ -241,6 +115,8 @@ public final class Employee extends
     return id_;
   }
 
+  public static final int VISA_FIELD_NUMBER = 2;
+  private volatile Object visa_;
   /**
    * <code>string visa = 2;</code>
    */
@@ -249,24 +125,23 @@ public final class Employee extends
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       visa_ = s;
       return s;
     }
   }
-
   /**
    * <code>string visa = 2;</code>
    */
   public com.google.protobuf.ByteString
-  getVisaBytes() {
+      getVisaBytes() {
     Object ref = visa_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b =
-              com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (String) ref);
       visa_ = b;
       return b;
     } else {
@@ -274,6 +149,8 @@ public final class Employee extends
     }
   }
 
+  public static final int FIRST_NAME_FIELD_NUMBER = 3;
+  private volatile Object firstName_;
   /**
    * <code>string first_name = 3;</code>
    */
@@ -282,24 +159,23 @@ public final class Employee extends
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       firstName_ = s;
       return s;
     }
   }
-
   /**
    * <code>string first_name = 3;</code>
    */
   public com.google.protobuf.ByteString
-  getFirstNameBytes() {
+      getFirstNameBytes() {
     Object ref = firstName_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b =
-              com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (String) ref);
       firstName_ = b;
       return b;
     } else {
@@ -307,6 +183,8 @@ public final class Employee extends
     }
   }
 
+  public static final int LAST_NAME_FIELD_NUMBER = 4;
+  private volatile Object lastName_;
   /**
    * <code>string last_name = 4;</code>
    */
@@ -315,24 +193,23 @@ public final class Employee extends
     if (ref instanceof String) {
       return (String) ref;
     } else {
-      com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       lastName_ = s;
       return s;
     }
   }
-
   /**
    * <code>string last_name = 4;</code>
    */
   public com.google.protobuf.ByteString
-  getLastNameBytes() {
+      getLastNameBytes() {
     Object ref = lastName_;
     if (ref instanceof String) {
-      com.google.protobuf.ByteString b =
-              com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (String) ref);
       lastName_ = b;
       return b;
     } else {
@@ -340,6 +217,8 @@ public final class Employee extends
     }
   }
 
+  public static final int BIRTHDAY_FIELD_NUMBER = 5;
+  private long birthday_;
   /**
    * <code>int64 birthday = 5;</code>
    */
@@ -347,6 +226,7 @@ public final class Employee extends
     return birthday_;
   }
 
+  private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -357,7 +237,7 @@ public final class Employee extends
   }
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
+                      throws java.io.IOException {
     if (id_ != 0L) {
       output.writeInt64(1, id_);
     }
@@ -383,7 +263,7 @@ public final class Employee extends
     size = 0;
     if (id_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-              .computeInt64Size(1, id_);
+        .computeInt64Size(1, id_);
     }
     if (!getVisaBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, visa_);
@@ -396,7 +276,7 @@ public final class Employee extends
     }
     if (birthday_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-              .computeInt64Size(5, birthday_);
+        .computeInt64Size(5, birthday_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -406,7 +286,7 @@ public final class Employee extends
   @Override
   public boolean equals(final Object obj) {
     if (obj == this) {
-      return true;
+     return true;
     }
     if (!(obj instanceof Employee)) {
       return super.equals(obj);
@@ -415,15 +295,15 @@ public final class Employee extends
 
     boolean result = true;
     result = result && (getId()
-            == other.getId());
+        == other.getId());
     result = result && getVisa()
-            .equals(other.getVisa());
+        .equals(other.getVisa());
     result = result && getFirstName()
-            .equals(other.getFirstName());
+        .equals(other.getFirstName());
     result = result && getLastName()
-            .equals(other.getLastName());
+        .equals(other.getLastName());
     result = result && (getBirthday()
-            == other.getBirthday());
+        == other.getBirthday());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -437,7 +317,7 @@ public final class Employee extends
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getId());
+        getId());
     hash = (37 * hash) + VISA_FIELD_NUMBER;
     hash = (53 * hash) + getVisa().hashCode();
     hash = (37 * hash) + FIRST_NAME_FIELD_NUMBER;
@@ -446,49 +326,118 @@ public final class Employee extends
     hash = (53 * hash) + getLastName().hashCode();
     hash = (37 * hash) + BIRTHDAY_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getBirthday());
+        getBirthday());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public Builder newBuilderForType() {
-    return newBuilder();
+  public static Employee parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static Employee parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static Employee parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static Employee parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static Employee parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static Employee parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static Employee parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static Employee parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static Employee parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+  public static Employee parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static Employee parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static Employee parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  public Builder newBuilderForType() { return newBuilder(); }
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+  public static Builder newBuilder(Employee prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
+        ? new Builder() : new Builder().mergeFrom(this);
   }
 
   @Override
   protected Builder newBuilderForType(
-          BuilderParent parent) {
+      BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
-
-  @Override
-  public com.google.protobuf.Parser<Employee> getParserForType() {
-    return PARSER;
-  }
-
-  public Employee getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
   /**
    * Protobuf type {@code com.bht.pim.proto.employee.Employee}
    */
   public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:com.bht.pim.proto.employee.Employee)
-          com.bht.pim.proto.employee.EmployeeOrBuilder {
-    private long id_;
-    private Object visa_ = "";
-    private Object firstName_ = "";
-    private Object lastName_ = "";
-    private long birthday_;
+      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      // @@protoc_insertion_point(builder_implements:com.bht.pim.proto.employee.Employee)
+      com.bht.pim.proto.employee.EmployeeOrBuilder {
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.bht.pim.proto.employee.EmployeeOuterClass.internal_static_com_bht_pim_proto_employee_Employee_descriptor;
+    }
+
+    protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.bht.pim.proto.employee.EmployeeOuterClass.internal_static_com_bht_pim_proto_employee_Employee_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              Employee.class, Builder.class);
+    }
 
     // Construct using com.bht.pim.proto.employee.Employee.newBuilder()
     private Builder() {
@@ -496,29 +445,15 @@ public final class Employee extends
     }
 
     private Builder(
-            BuilderParent parent) {
+        BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
     }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return com.bht.pim.proto.employee.EmployeeOuterClass.internal_static_com_bht_pim_proto_employee_Employee_descriptor;
-    }
-
-    protected FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return com.bht.pim.proto.employee.EmployeeOuterClass.internal_static_com_bht_pim_proto_employee_Employee_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      Employee.class, Builder.class);
-    }
-
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
       }
     }
-
     public Builder clear() {
       super.clear();
       id_ = 0L;
@@ -535,7 +470,7 @@ public final class Employee extends
     }
 
     public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
+        getDescriptorForType() {
       return com.bht.pim.proto.employee.EmployeeOuterClass.internal_static_com_bht_pim_proto_employee_Employee_descriptor;
     }
 
@@ -565,38 +500,32 @@ public final class Employee extends
     public Builder clone() {
       return (Builder) super.clone();
     }
-
     public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        Object value) {
       return (Builder) super.setField(field, value);
     }
-
     public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
+        com.google.protobuf.Descriptors.FieldDescriptor field) {
       return (Builder) super.clearField(field);
     }
-
     public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return (Builder) super.clearOneof(oneof);
     }
-
     public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        int index, Object value) {
       return (Builder) super.setRepeatedField(field, index, value);
     }
-
     public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        Object value) {
       return (Builder) super.addRepeatedField(field, value);
     }
-
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof Employee) {
-        return mergeFrom((Employee) other);
+        return mergeFrom((Employee)other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -633,9 +562,9 @@ public final class Employee extends
     }
 
     public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       Employee parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
@@ -650,33 +579,33 @@ public final class Employee extends
       return this;
     }
 
+    private long id_ ;
     /**
      * <code>int64 id = 1;</code>
      */
     public long getId() {
       return id_;
     }
-
     /**
      * <code>int64 id = 1;</code>
      */
     public Builder setId(long value) {
-
+      
       id_ = value;
       onChanged();
       return this;
     }
-
     /**
      * <code>int64 id = 1;</code>
      */
     public Builder clearId() {
-
+      
       id_ = 0L;
       onChanged();
       return this;
     }
 
+    private Object visa_ = "";
     /**
      * <code>string visa = 2;</code>
      */
@@ -684,7 +613,7 @@ public final class Employee extends
       Object ref = visa_;
       if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+            (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         visa_ = s;
         return s;
@@ -692,63 +621,60 @@ public final class Employee extends
         return (String) ref;
       }
     }
-
-    /**
-     * <code>string visa = 2;</code>
-     */
-    public Builder setVisa(
-            String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      visa_ = value;
-      onChanged();
-      return this;
-    }
-
     /**
      * <code>string visa = 2;</code>
      */
     public com.google.protobuf.ByteString
-    getVisaBytes() {
+        getVisaBytes() {
       Object ref = visa_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (String) ref);
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
         visa_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
-
+    /**
+     * <code>string visa = 2;</code>
+     */
+    public Builder setVisa(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      visa_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string visa = 2;</code>
+     */
+    public Builder clearVisa() {
+      
+      visa_ = getDefaultInstance().getVisa();
+      onChanged();
+      return this;
+    }
     /**
      * <code>string visa = 2;</code>
      */
     public Builder setVisaBytes(
-            com.google.protobuf.ByteString value) {
+        com.google.protobuf.ByteString value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
-
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
       visa_ = value;
       onChanged();
       return this;
     }
 
-    /**
-     * <code>string visa = 2;</code>
-     */
-    public Builder clearVisa() {
-
-      visa_ = getDefaultInstance().getVisa();
-      onChanged();
-      return this;
-    }
-
+    private Object firstName_ = "";
     /**
      * <code>string first_name = 3;</code>
      */
@@ -756,7 +682,7 @@ public final class Employee extends
       Object ref = firstName_;
       if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+            (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         firstName_ = s;
         return s;
@@ -764,63 +690,60 @@ public final class Employee extends
         return (String) ref;
       }
     }
-
-    /**
-     * <code>string first_name = 3;</code>
-     */
-    public Builder setFirstName(
-            String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      firstName_ = value;
-      onChanged();
-      return this;
-    }
-
     /**
      * <code>string first_name = 3;</code>
      */
     public com.google.protobuf.ByteString
-    getFirstNameBytes() {
+        getFirstNameBytes() {
       Object ref = firstName_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (String) ref);
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
         firstName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
-
+    /**
+     * <code>string first_name = 3;</code>
+     */
+    public Builder setFirstName(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      firstName_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string first_name = 3;</code>
+     */
+    public Builder clearFirstName() {
+      
+      firstName_ = getDefaultInstance().getFirstName();
+      onChanged();
+      return this;
+    }
     /**
      * <code>string first_name = 3;</code>
      */
     public Builder setFirstNameBytes(
-            com.google.protobuf.ByteString value) {
+        com.google.protobuf.ByteString value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
-
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
       firstName_ = value;
       onChanged();
       return this;
     }
 
-    /**
-     * <code>string first_name = 3;</code>
-     */
-    public Builder clearFirstName() {
-
-      firstName_ = getDefaultInstance().getFirstName();
-      onChanged();
-      return this;
-    }
-
+    private Object lastName_ = "";
     /**
      * <code>string last_name = 4;</code>
      */
@@ -828,7 +751,7 @@ public final class Employee extends
       Object ref = lastName_;
       if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+            (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         lastName_ = s;
         return s;
@@ -836,102 +759,129 @@ public final class Employee extends
         return (String) ref;
       }
     }
-
-    /**
-     * <code>string last_name = 4;</code>
-     */
-    public Builder setLastName(
-            String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-
-      lastName_ = value;
-      onChanged();
-      return this;
-    }
-
     /**
      * <code>string last_name = 4;</code>
      */
     public com.google.protobuf.ByteString
-    getLastNameBytes() {
+        getLastNameBytes() {
       Object ref = lastName_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (String) ref);
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
         lastName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
-
+    /**
+     * <code>string last_name = 4;</code>
+     */
+    public Builder setLastName(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      lastName_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string last_name = 4;</code>
+     */
+    public Builder clearLastName() {
+      
+      lastName_ = getDefaultInstance().getLastName();
+      onChanged();
+      return this;
+    }
     /**
      * <code>string last_name = 4;</code>
      */
     public Builder setLastNameBytes(
-            com.google.protobuf.ByteString value) {
+        com.google.protobuf.ByteString value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
-
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
       lastName_ = value;
       onChanged();
       return this;
     }
 
-    /**
-     * <code>string last_name = 4;</code>
-     */
-    public Builder clearLastName() {
-
-      lastName_ = getDefaultInstance().getLastName();
-      onChanged();
-      return this;
-    }
-
+    private long birthday_ ;
     /**
      * <code>int64 birthday = 5;</code>
      */
     public long getBirthday() {
       return birthday_;
     }
-
     /**
      * <code>int64 birthday = 5;</code>
      */
     public Builder setBirthday(long value) {
-
+      
       birthday_ = value;
       onChanged();
       return this;
     }
-
     /**
      * <code>int64 birthday = 5;</code>
      */
     public Builder clearBirthday() {
-
+      
       birthday_ = 0L;
       onChanged();
       return this;
     }
-
     public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
     }
 
 
     // @@protoc_insertion_point(builder_scope:com.bht.pim.proto.employee.Employee)
+  }
+
+  // @@protoc_insertion_point(class_scope:com.bht.pim.proto.employee.Employee)
+  private static final Employee DEFAULT_INSTANCE;
+  static {
+    DEFAULT_INSTANCE = new Employee();
+  }
+
+  public static Employee getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static final com.google.protobuf.Parser<Employee>
+      PARSER = new com.google.protobuf.AbstractParser<Employee>() {
+    public Employee parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return new Employee(input, extensionRegistry);
+    }
+  };
+
+  public static com.google.protobuf.Parser<Employee> parser() {
+    return PARSER;
+  }
+
+  @Override
+  public com.google.protobuf.Parser<Employee> getParserForType() {
+    return PARSER;
+  }
+
+  public Employee getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
   }
 
 }

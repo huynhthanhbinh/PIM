@@ -53,6 +53,10 @@ public final class ProjectServiceGrpc {
 
   private static volatile io.grpc.MethodDescriptor<Project,
           Success> getAddNewProjectMethod;
+    private static volatile io.grpc.MethodDescriptor<Project,
+            Success> getEditProjectMethod;
+    private static volatile io.grpc.MethodDescriptor<ProjectId,
+            Success> getDeleteProjectMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "addNewProject",
@@ -83,9 +87,6 @@ public final class ProjectServiceGrpc {
      return getAddNewProjectMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Project,
-          Success> getEditProjectMethod;
-
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "editProject",
       requestType = Project.class,
@@ -114,9 +115,6 @@ public final class ProjectServiceGrpc {
      }
      return getEditProjectMethod;
   }
-
-  private static volatile io.grpc.MethodDescriptor<ProjectId,
-          Success> getDeleteProjectMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "deleteProject",

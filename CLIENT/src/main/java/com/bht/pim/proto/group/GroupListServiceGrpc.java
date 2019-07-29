@@ -91,7 +91,7 @@ public final class GroupListServiceGrpc {
             getGetEmployeeListMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                NoParam,
+                      NoParam,
                       GroupList>(
                   this, METHODID_GET_EMPLOYEE_LIST)))
           .build();
