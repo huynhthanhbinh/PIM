@@ -11,13 +11,16 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
+import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -160,5 +163,20 @@ public class AppConfiguration {
         hibernateTransactionManager.setSessionFactory(sessionFactory);
 
         return hibernateTransactionManager;
+    }
+
+
+    // Using for protocol buffer
+    @Bean
+    public ProtobufHttpMessageConverter protobufHttpMessageConverter() {
+        return new ProtobufHttpMessageConverter();
+    }
+
+
+    // Rest template Spring API
+    @Bean
+    public RestTemplate restTemplate(
+            ProtobufHttpMessageConverter httpMessageConverter) {
+        return new RestTemplate(Collections.singletonList(httpMessageConverter));
     }
 }

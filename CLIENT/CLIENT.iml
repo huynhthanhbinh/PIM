@@ -56,7 +56,6 @@
     <orderEntry type="library" name="Maven: org.jvnet.staxex:stax-ex:1.8" level="project" />
     <orderEntry type="library" name="Maven: com.sun.xml.fastinfoset:FastInfoset:1.2.15" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.16" level="project" />
-    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.6.1" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" name="Maven: com.microsoft.sqlserver:mssql-jdbc:7.2.2.jre8" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
@@ -127,5 +126,6 @@
     <orderEntry type="library" name="Maven: org.xmlunit:xmlunit-core:2.6.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework.boot:spring-boot-test:2.1.6.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.9.0" level="project" />
   </component>
 </module>

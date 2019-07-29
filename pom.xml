@@ -24,6 +24,10 @@
         <springframework.version>5.1.8.RELEASE</springframework.version>
         <springboot.version>2.1.6.RELEASE</springboot.version>
         <jackson.version>2.9.9</jackson.version>
+
+        <protobuf.version>3.9.0</protobuf.version>
+        <os-maven-plugin.version>1.6.2</os-maven-plugin.version>
+        <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
     </properties>
 
 
@@ -230,7 +234,6 @@
             <scope>test</scope>
         </dependency>
 
-
         <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
@@ -239,11 +242,26 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Google Protocol Buffer -->
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protobuf.version}</version>
+        </dependency>
+
     </dependencies>
 
 
     <build>
         <finalName>com.bht.pim</finalName>
+        <extensions>
+            <!-- provides os.detected.classifier (i.e. linux-x86_64, osx-x86_64) property -->
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>${os-maven-plugin.version}</version>
+            </extension>
+        </extensions>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -279,19 +297,32 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${springboot.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <groupId>org.xolstice.maven.plugins</groupId>
+                    <artifactId>protobuf-maven-plugin</artifactId>
+                    <version>${protobuf-maven-plugin.version}</version>
+                    <configuration>
+                        <protocArtifact>com.google.protobuf:protoc:3.5.1-1:exe:${os.detected.classifier}
+                        </protocArtifact>
+                        <pluginId>grpc-java</pluginId>
+                        <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.16.1:exe:${os.detected.classifier}
+                        </pluginArtifact>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>compile</goal>
+                                <goal>compile-custom</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
-
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.fxml</include>
-                    <include>**/*.css</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
     </build>
 
 </project>

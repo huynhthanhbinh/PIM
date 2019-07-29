@@ -9,7 +9,79 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>pim.server</artifactId>
+    <artifactId>server</artifactId>
+    <packaging>jar</packaging>
 
-
+    <build>
+        <finalName>com.bht.pim</finalName>
+        <extensions>
+            <!-- provides os.detected.classifier (i.e. linux-x86_64, osx-x86_64) property -->
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>${os-maven-plugin.version}</version>
+            </extension>
+        </extensions>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.0.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${springboot.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+                <plugin>
+                    <groupId>org.xolstice.maven.plugins</groupId>
+                    <artifactId>protobuf-maven-plugin</artifactId>
+                    <version>${protobuf-maven-plugin.version}</version>
+                    <configuration>
+                        <protocArtifact>com.google.protobuf:protoc:3.5.1-1:exe:${os.detected.classifier}
+                        </protocArtifact>
+                        <pluginId>grpc-java</pluginId>
+                        <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.16.1:exe:${os.detected.classifier}
+                        </pluginArtifact>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>compile</goal>
+                                <goal>compile-custom</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
