@@ -70,6 +70,8 @@ public class Main extends Application {
         EmployeeInfo employee = stub.getEmployeeById(employeeId);
 
         logger.info(employee);
+
+        employee.getEnrolledProjectsList().forEach(project -> logger.info(project.getName()));
     }
 
 

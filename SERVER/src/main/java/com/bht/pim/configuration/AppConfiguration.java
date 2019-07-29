@@ -164,19 +164,4 @@ public class AppConfiguration {
 
         return hibernateTransactionManager;
     }
-
-
-    // Using for protocol buffer
-    @Bean
-    public ProtobufHttpMessageConverter protobufHttpMessageConverter() {
-        return new ProtobufHttpMessageConverter();
-    }
-
-
-    // Rest template Spring API
-    @Bean
-    public RestTemplate restTemplate(
-            ProtobufHttpMessageConverter httpMessageConverter) {
-        return new RestTemplate(Collections.singletonList(httpMessageConverter));
-    }
 }
