@@ -2,9 +2,14 @@ package com.bht.pim.controller;
 
 // lib for using label in FX
 
+import com.bht.pim.proto.employee.EmployeeId;
+import com.bht.pim.proto.employee.EmployeeInfo;
+import com.bht.pim.proto.employee.EmployeeServiceGrpc;
 import com.bht.pim.service.EmployeeService;
 import com.bht.pim.service.GroupService;
 import com.bht.pim.service.ProjectService;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.apache.log4j.Logger;
@@ -42,5 +47,24 @@ public class SampleController {
 
         logger.info("All projects number exist: ");
         projectService.getAllProjectsNumber().forEach(logger::info);
+
+        String name;
+        final ManagedChannel channel = ManagedChannelBuilder
+                .forAddress("localhost", 9999)
+                .usePlaintext()
+                .build();
+
+        EmployeeServiceGrpc.EmployeeServiceBlockingStub stub =
+                EmployeeServiceGrpc.newBlockingStub(channel);
+
+        //EmployeeInfo employeeInfo = EmployeeInfo.getDefaultInstance();
+
+        EmployeeId employeeId = EmployeeId.newBuilder()
+                .setId(2)
+                .build();
+
+        EmployeeInfo employee = stub.getEmployeeById(employeeId);
+
+        logger.info(employee);
     }
 }

@@ -5,15 +5,13 @@ import com.bht.pim.dto.Employee;
 import com.bht.pim.dto.Project;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.service.EmployeeService;
-import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 
-@Service
-@GRpcService
+@Service("emp")
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
