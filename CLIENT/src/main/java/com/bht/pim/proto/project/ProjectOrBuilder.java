@@ -4,84 +4,61 @@
 package com.bht.pim.proto.project;
 
 public interface ProjectOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.project.Project)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.project.Project)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    long getId();
+  /**
+   * <code>int64 id = 1;</code>
+   */
+  long getId();
 
-    /**
-     * <code>int64 number = 2;</code>
-     */
-    long getNumber();
+  /**
+   * <code>int64 number = 2;</code>
+   */
+  long getNumber();
 
-    /**
-     * <code>string name = 3;</code>
-     */
-    String getName();
+  /**
+   * <code>string name = 3;</code>
+   */
+  String getName();
+  /**
+   * <code>string name = 3;</code>
+   */
+  com.google.protobuf.ByteString
+      getNameBytes();
 
-    /**
-     * <code>string name = 3;</code>
-     */
-    com.google.protobuf.ByteString
-    getNameBytes();
+  /**
+   * <code>string customer = 4;</code>
+   */
+  String getCustomer();
+  /**
+   * <code>string customer = 4;</code>
+   */
+  com.google.protobuf.ByteString
+      getCustomerBytes();
 
-    /**
-     * <code>string customer = 4;</code>
-     */
-    String getCustomer();
+  /**
+   * <code>int64 groupId = 5;</code>
+   */
+  long getGroupId();
 
-    /**
-     * <code>string customer = 4;</code>
-     */
-    com.google.protobuf.ByteString
-    getCustomerBytes();
+  /**
+   * <code>string status = 6;</code>
+   */
+  String getStatus();
+  /**
+   * <code>string status = 6;</code>
+   */
+  com.google.protobuf.ByteString
+      getStatusBytes();
 
-    /**
-     * <code>int64 groupId = 5;</code>
-     */
-    long getGroupId();
+  /**
+   * <code>int64 start = 7;</code>
+   */
+  long getStart();
 
-    /**
-     * <code>string status = 6;</code>
-     */
-    String getStatus();
-
-    /**
-     * <code>string status = 6;</code>
-     */
-    com.google.protobuf.ByteString
-    getStatusBytes();
-
-    /**
-     * <code>.com.bht.pim.proto.date.Date start = 7;</code>
-     */
-    boolean hasStart();
-
-    /**
-     * <code>.com.bht.pim.proto.date.Date start = 7;</code>
-     */
-    com.bht.pim.proto.date.Date getStart();
-
-    /**
-     * <code>.com.bht.pim.proto.date.Date start = 7;</code>
-     */
-    com.bht.pim.proto.date.DateOrBuilder getStartOrBuilder();
-
-    /**
-     * <code>.com.bht.pim.proto.date.Date end = 8;</code>
-     */
-    boolean hasEnd();
-
-    /**
-     * <code>.com.bht.pim.proto.date.Date end = 8;</code>
-     */
-    com.bht.pim.proto.date.Date getEnd();
-
-    /**
-     * <code>.com.bht.pim.proto.date.Date end = 8;</code>
-     */
-    com.bht.pim.proto.date.DateOrBuilder getEndOrBuilder();
+  /**
+   * <code>int64 end = 8;</code>
+   */
+  long getEnd();
 }

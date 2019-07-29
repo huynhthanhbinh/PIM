@@ -4,34 +4,30 @@
 package com.bht.pim.proto.group;
 
 public interface GroupListOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.group.GroupList)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.group.GroupList)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
-     */
-    java.util.List<Group>
-    getGroupListList();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
-     */
-    Group getGroupList(int index);
-
-    /**
-     * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
-     */
-    int getGroupListCount();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
-     */
-    java.util.List<? extends GroupOrBuilder>
-    getGroupListOrBuilderList();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
-     */
-    GroupOrBuilder getGroupListOrBuilder(
-            int index);
+  /**
+   * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
+   */
+  java.util.List<Group>
+      getGroupListList();
+  /**
+   * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
+   */
+  Group getGroupList(int index);
+  /**
+   * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
+   */
+  int getGroupListCount();
+  /**
+   * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
+   */
+  java.util.List<? extends GroupOrBuilder>
+      getGroupListOrBuilderList();
+  /**
+   * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
+   */
+  GroupOrBuilder getGroupListOrBuilder(
+          int index);
 }

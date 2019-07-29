@@ -42,7 +42,7 @@ public class Main extends Application {
 
         logger.info(channel);
 
-        logger.info("<<< PIM SERVER - ON INIT  >>>");
+        logger.info("<<< PIM CLIENT - ON INIT  >>>");
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
                 .getClassLoader()
@@ -54,7 +54,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        logger.info("<<< PIM SERVER - ON START >>>");
+        logger.info("<<< PIM CLIENT - ON START >>>");
         showWindow(primaryStage);
 
 
@@ -75,13 +75,13 @@ public class Main extends Application {
 
     @Override
     public void stop() {
-        logger.info("<<< PIM SERVER - ON STOP  >>>");
+        logger.info("<<< PIM CLIENT - ON STOP  >>>");
         channel.shutdown();
     }
 
 
     private void showWindow(Stage window) {
-        logger.info("<<< PIM SERVER - ON SHOW  >>>");
+        logger.info("<<< PIM CLIENT - ON SHOW  >>>");
 
         ClassLoader classLoader = getClass().getClassLoader();
 

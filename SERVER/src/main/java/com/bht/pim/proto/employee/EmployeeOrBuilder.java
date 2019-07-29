@@ -46,17 +46,7 @@ public interface EmployeeOrBuilder extends
     getLastNameBytes();
 
     /**
-     * <code>.com.bht.pim.proto.date.Date birthday = 5;</code>
+     * <code>int64 birthday = 5;</code>
      */
-    boolean hasBirthday();
-
-    /**
-     * <code>.com.bht.pim.proto.date.Date birthday = 5;</code>
-     */
-    com.bht.pim.proto.date.Date getBirthday();
-
-    /**
-     * <code>.com.bht.pim.proto.date.Date birthday = 5;</code>
-     */
-    com.bht.pim.proto.date.DateOrBuilder getBirthdayOrBuilder();
+    long getBirthday();
 }

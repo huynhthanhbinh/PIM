@@ -4,38 +4,36 @@
 package com.bht.pim.proto.group;
 
 public interface GroupOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.group.Group)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.group.Group)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    long getId();
+  /**
+   * <code>int64 id = 1;</code>
+   */
+  long getId();
 
-    /**
-     * <code>int64 groupLeaderId = 2;</code>
-     */
-    long getGroupLeaderId();
+  /**
+   * <code>int64 groupLeaderId = 2;</code>
+   */
+  long getGroupLeaderId();
 
-    /**
-     * <code>string groupLeaderVisa = 3;</code>
-     */
-    String getGroupLeaderVisa();
+  /**
+   * <code>string groupLeaderVisa = 3;</code>
+   */
+  String getGroupLeaderVisa();
+  /**
+   * <code>string groupLeaderVisa = 3;</code>
+   */
+  com.google.protobuf.ByteString
+      getGroupLeaderVisaBytes();
 
-    /**
-     * <code>string groupLeaderVisa = 3;</code>
-     */
-    com.google.protobuf.ByteString
-    getGroupLeaderVisaBytes();
-
-    /**
-     * <code>string groupLeaderName = 4;</code>
-     */
-    String getGroupLeaderName();
-
-    /**
-     * <code>string groupLeaderName = 4;</code>
-     */
-    com.google.protobuf.ByteString
-    getGroupLeaderNameBytes();
+  /**
+   * <code>string groupLeaderName = 4;</code>
+   */
+  String getGroupLeaderName();
+  /**
+   * <code>string groupLeaderName = 4;</code>
+   */
+  com.google.protobuf.ByteString
+      getGroupLeaderNameBytes();
 }

@@ -4,6 +4,6 @@
 package com.bht.pim.proto.group;
 
 public interface NoParamOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.group.NoParam)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.group.NoParam)
+    com.google.protobuf.MessageOrBuilder {
 }

@@ -4,11 +4,11 @@
 package com.bht.pim.proto.project;
 
 public interface SuccessOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.project.Success)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.project.Success)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>bool isSuccess = 1;</code>
-     */
-    boolean getIsSuccess();
+  /**
+   * <code>bool isSuccess = 1;</code>
+   */
+  boolean getIsSuccess();
 }

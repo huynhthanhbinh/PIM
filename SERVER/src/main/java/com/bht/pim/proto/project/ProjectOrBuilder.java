@@ -56,32 +56,12 @@ public interface ProjectOrBuilder extends
     getStatusBytes();
 
     /**
-     * <code>.com.bht.pim.proto.date.Date start = 7;</code>
+     * <code>int64 start = 7;</code>
      */
-    boolean hasStart();
+    long getStart();
 
     /**
-     * <code>.com.bht.pim.proto.date.Date start = 7;</code>
+     * <code>int64 end = 8;</code>
      */
-    com.bht.pim.proto.date.Date getStart();
-
-    /**
-     * <code>.com.bht.pim.proto.date.Date start = 7;</code>
-     */
-    com.bht.pim.proto.date.DateOrBuilder getStartOrBuilder();
-
-    /**
-     * <code>.com.bht.pim.proto.date.Date end = 8;</code>
-     */
-    boolean hasEnd();
-
-    /**
-     * <code>.com.bht.pim.proto.date.Date end = 8;</code>
-     */
-    com.bht.pim.proto.date.Date getEnd();
-
-    /**
-     * <code>.com.bht.pim.proto.date.Date end = 8;</code>
-     */
-    com.bht.pim.proto.date.DateOrBuilder getEndOrBuilder();
+    long getEnd();
 }

@@ -4,54 +4,48 @@
 package com.bht.pim.proto.project;
 
 public interface ProjectInfoOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.project.ProjectInfo)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.project.ProjectInfo)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>.com.bht.pim.proto.project.Project project = 1;</code>
-     */
-    boolean hasProject();
+  /**
+   * <code>.com.bht.pim.proto.project.Project project = 1;</code>
+   */
+  boolean hasProject();
+  /**
+   * <code>.com.bht.pim.proto.project.Project project = 1;</code>
+   */
+  Project getProject();
+  /**
+   * <code>.com.bht.pim.proto.project.Project project = 1;</code>
+   */
+  ProjectOrBuilder getProjectOrBuilder();
 
-    /**
-     * <code>.com.bht.pim.proto.project.Project project = 1;</code>
-     */
-    Project getProject();
+  /**
+   * <code>int64 groupId = 2;</code>
+   */
+  long getGroupId();
 
-    /**
-     * <code>.com.bht.pim.proto.project.Project project = 1;</code>
-     */
-    ProjectOrBuilder getProjectOrBuilder();
-
-    /**
-     * <code>int64 groupId = 2;</code>
-     */
-    long getGroupId();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>
-     */
-    java.util.List<com.bht.pim.proto.employee.Employee>
-    getEmployeesList();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>
-     */
-    com.bht.pim.proto.employee.Employee getEmployees(int index);
-
-    /**
-     * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>
-     */
-    int getEmployeesCount();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>
-     */
-    java.util.List<? extends com.bht.pim.proto.employee.EmployeeOrBuilder>
-    getEmployeesOrBuilderList();
-
-    /**
-     * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>
-     */
-    com.bht.pim.proto.employee.EmployeeOrBuilder getEmployeesOrBuilder(
-            int index);
+  /**
+   * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>
+   */
+  java.util.List<com.bht.pim.proto.employee.Employee> 
+      getEmployeesList();
+  /**
+   * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>
+   */
+  com.bht.pim.proto.employee.Employee getEmployees(int index);
+  /**
+   * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>
+   */
+  int getEmployeesCount();
+  /**
+   * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>
+   */
+  java.util.List<? extends com.bht.pim.proto.employee.EmployeeOrBuilder> 
+      getEmployeesOrBuilderList();
+  /**
+   * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>
+   */
+  com.bht.pim.proto.employee.EmployeeOrBuilder getEmployeesOrBuilder(
+          int index);
 }
