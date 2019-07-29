@@ -48,7 +48,6 @@ public class SampleController {
         logger.info("All projects number exist: ");
         projectService.getAllProjectsNumber().forEach(logger::info);
 
-        String name;
         final ManagedChannel channel = ManagedChannelBuilder
                 .forAddress("localhost", 9999)
                 .usePlaintext()

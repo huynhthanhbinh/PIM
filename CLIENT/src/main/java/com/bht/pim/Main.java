@@ -1,5 +1,8 @@
 package com.bht.pim;
 
+import com.bht.pim.proto.employee.EmployeeId;
+import com.bht.pim.proto.employee.EmployeeInfo;
+import com.bht.pim.proto.employee.EmployeeServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.application.Application;
@@ -53,6 +56,20 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         logger.info("<<< PIM SERVER - ON START >>>");
         showWindow(primaryStage);
+
+
+        EmployeeServiceGrpc.EmployeeServiceBlockingStub stub =
+                EmployeeServiceGrpc.newBlockingStub(channel);
+
+        //EmployeeInfo employeeInfo = EmployeeInfo.getDefaultInstance();
+
+        EmployeeId employeeId = EmployeeId.newBuilder()
+                .setId(2)
+                .build();
+
+        EmployeeInfo employee = stub.getEmployeeById(employeeId);
+
+        logger.info(employee);
     }
 
 
