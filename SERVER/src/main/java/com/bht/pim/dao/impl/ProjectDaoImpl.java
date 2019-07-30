@@ -72,8 +72,8 @@ public class ProjectDaoImpl implements ProjectDao {
             return true;
 
         } catch (Exception exception) {
-            logger.info(exception);
 
+            logger.info(exception);
             return false;
         }
     }
@@ -87,8 +87,8 @@ public class ProjectDaoImpl implements ProjectDao {
             return true;
 
         } catch (Exception exception) {
-            logger.info(exception);
 
+            logger.info(exception);
             return false;
         }
     }
@@ -96,16 +96,22 @@ public class ProjectDaoImpl implements ProjectDao {
     @Override
     public boolean deleteProject(long id) {
         try {
-            sessionFactory.getCurrentSession()
-                    .delete(getProjectById(id));
+            ProjectEntity projectEntity = getProjectById(id);
 
-            return true;
+            if (projectEntity.getStatus().equals("NEW")) {
+                sessionFactory.getCurrentSession()
+                        .delete(projectEntity);
+
+                return true;
+            }
 
         } catch (Exception exception) {
-            logger.info(exception);
 
-            return false;
+            logger.info(exception);
         }
+
+        logger.info("CANNOT delete this project !");
+        return false;
     }
 
     @Override
