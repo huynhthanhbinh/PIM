@@ -69,9 +69,16 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
             responseObserver.onNext(groupInfo);
             responseObserver.onCompleted();
 
+            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            logger.info("Successfully get Group " + request.getId());
+            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+
         } catch (Exception exception) {
 
+            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            logger.info("Fail to get Group " + request.getId());
             logger.info(exception);
+            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
             responseObserver.onNext(null);
             responseObserver.onCompleted();
         }
@@ -107,11 +114,13 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
                         .setIsSuccess(isSuccess)
                         .build();
 
+                logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
                 if (isSuccess) {
                     logger.info("<<< Add new group successfully ! >>>");
                 } else {
                     logger.info("<<< Fail to add new group ! >>>");
                 }
+                logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
                 responseObserver.onNext(success);
                 responseObserver.onCompleted();
@@ -122,7 +131,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
             logger.info("<<< Fail to add new group ! >>>");
             logger.info("Group leader is already lead another group");
             logger.info("CONSTRAINT: \"1 employee just lead 1 group\"");
-            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
             responseObserver.onNext(Success.newBuilder()
                     .setIsSuccess(false).build());
@@ -130,8 +139,10 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
         } catch (Exception exception) {
 
+            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             logger.info("<<< Fail to add new group ! >>>");
             logger.info(exception);
+            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
             responseObserver.onNext(Success.newBuilder()
                     .setIsSuccess(false).build());
