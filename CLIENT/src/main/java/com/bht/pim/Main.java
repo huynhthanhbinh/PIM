@@ -1,13 +1,12 @@
 package com.bht.pim;
 
-import com.bht.pim.proto.employee.EmployeeId;
-import com.bht.pim.proto.employee.EmployeeInfo;
-import com.bht.pim.proto.employee.EmployeeServiceGrpc;
+import com.bht.pim.proto.employee.*;
 import com.bht.pim.proto.group.GroupId;
 import com.bht.pim.proto.group.GroupInfo;
 import com.bht.pim.proto.group.GroupServiceGrpc;
 import com.bht.pim.proto.project.ProjectId;
 import com.bht.pim.proto.project.ProjectInfo;
+import com.bht.pim.proto.project.ProjectList;
 import com.bht.pim.proto.project.ProjectServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -103,6 +102,17 @@ public class Main extends Application {
         logger.info(project);
 
         project.getEmployeesList().forEach(employee1 -> logger.info(employee1.getVisa()));
+
+        EmployeeListServiceGrpc.EmployeeListServiceBlockingStub stub3 =
+                EmployeeListServiceGrpc.newBlockingStub(channel);
+
+        NoParam noParam = NoParam.newBuilder().build();
+
+        EmployeeList employeeList = stub3.getEmployeeList(noParam);
+
+        logger.info(employeeList);
+
+        employeeList.getEmployeeListList().forEach(employee1 -> logger.info(employee1.getVisa()));
     }
 
 
