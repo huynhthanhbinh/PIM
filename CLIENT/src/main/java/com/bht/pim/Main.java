@@ -161,7 +161,7 @@ public class Main extends Application {
                 .build();
 
         Success success = stub1.addNewGroup(newGroup);
-        logger.info(success);
+        logger.info(success.getIsSuccess());
     }
 
 

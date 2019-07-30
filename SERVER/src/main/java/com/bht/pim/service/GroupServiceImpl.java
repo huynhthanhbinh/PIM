@@ -88,26 +88,44 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
         try {
 
             EmployeeEntity leader = employeeDao
-                    .getEmployeeById(request.getId());
+                    .getEmployeeById(request.getGroupLeaderId());
 
-            GroupEntity groupEntity = new GroupEntity();
+            // Check constraint again in back-end side
+            // If leader not lead group yet, add new group
+            // Otherwise, it will throw exception =))
+            // As CONSTRAINT GROUP_LEADER_ID is UNIQUE !!!
+            if (leader.getLedGroup() == null) {
 
-            groupEntity.setGroupLeader(leader);
-            groupEntity.setJoinedProjects(Collections.emptySet());
+                GroupEntity groupEntity = new GroupEntity();
 
-            boolean isSuccess = groupDao.addGroup(groupEntity);
+                groupEntity.setGroupLeader(leader);
+                groupEntity.setJoinedProjects(Collections.emptySet());
 
-            Success success = Success.newBuilder()
-                    .setIsSuccess(isSuccess)
-                    .build();
+                boolean isSuccess = groupDao.addGroup(groupEntity);
 
-            if (isSuccess) {
-                logger.info("<<< Add new group successfully ! >>>");
-            } else {
-                logger.info("<<< Fail to add new group ! >>>");
+                Success success = Success.newBuilder()
+                        .setIsSuccess(isSuccess)
+                        .build();
+
+                if (isSuccess) {
+                    logger.info("<<< Add new group successfully ! >>>");
+                } else {
+                    logger.info("<<< Fail to add new group ! >>>");
+                }
+
+                responseObserver.onNext(success);
+                responseObserver.onCompleted();
+                return;
             }
 
-            responseObserver.onNext(success);
+            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            logger.info("<<< Fail to add new group ! >>>");
+            logger.info("Group leader is already lead another group");
+            logger.info("CONSTRAINT: \"1 employee just lead 1 group\"");
+            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+            responseObserver.onNext(Success.newBuilder()
+                    .setIsSuccess(false).build());
             responseObserver.onCompleted();
 
         } catch (Exception exception) {
