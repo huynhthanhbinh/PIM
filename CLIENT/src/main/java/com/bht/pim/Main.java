@@ -1,13 +1,9 @@
 package com.bht.pim;
 
 import com.bht.pim.proto.employee.*;
-import com.bht.pim.proto.group.GroupId;
-import com.bht.pim.proto.group.GroupInfo;
-import com.bht.pim.proto.group.GroupServiceGrpc;
-import com.bht.pim.proto.project.ProjectId;
-import com.bht.pim.proto.project.ProjectInfo;
-import com.bht.pim.proto.project.ProjectList;
-import com.bht.pim.proto.project.ProjectServiceGrpc;
+import com.bht.pim.proto.employee.NoParam;
+import com.bht.pim.proto.group.*;
+import com.bht.pim.proto.project.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.application.Application;
@@ -62,6 +58,7 @@ public class Main extends Application {
         logger.info("<<< PIM CLIENT - ON START >>>");
         showWindow(primaryStage);
 
+        // Get 1 employee info ====================================
 
         EmployeeServiceGrpc.EmployeeServiceBlockingStub stub =
                 EmployeeServiceGrpc.newBlockingStub(channel);
@@ -76,6 +73,7 @@ public class Main extends Application {
 
         employee.getEnrolledProjectsList().forEach(project -> logger.info(project.getName()));
 
+        // Get 1 group info =======================================
 
         GroupServiceGrpc.GroupServiceBlockingStub stub1 =
                 GroupServiceGrpc.newBlockingStub(channel);
@@ -90,6 +88,8 @@ public class Main extends Application {
 
         group.getEnrolledProjectsList().forEach(project -> logger.info(project.getName()));
 
+        // Get 1 project info =====================================
+
         ProjectServiceGrpc.ProjectServiceBlockingStub stub2 =
                 ProjectServiceGrpc.newBlockingStub(channel);
 
@@ -103,6 +103,8 @@ public class Main extends Application {
 
         project.getEmployeesList().forEach(employee1 -> logger.info(employee1.getVisa()));
 
+        // Get employee list =======================================
+
         EmployeeListServiceGrpc.EmployeeListServiceBlockingStub stub3 =
                 EmployeeListServiceGrpc.newBlockingStub(channel);
 
@@ -113,6 +115,32 @@ public class Main extends Application {
         logger.info(employeeList);
 
         employeeList.getEmployeeListList().forEach(employee1 -> logger.info(employee1.getVisa()));
+
+        // Get group list ============================================
+
+        GroupListServiceGrpc.GroupListServiceBlockingStub stub4 =
+                GroupListServiceGrpc.newBlockingStub(channel);
+
+        com.bht.pim.proto.group.NoParam noParam1 =
+                com.bht.pim.proto.group.NoParam.newBuilder().build();
+
+        GroupList groupList = stub4.getGroupList(noParam1);
+
+        logger.info(groupList);
+
+        groupList.getGroupListList().forEach(group1 -> logger.info(group1.getGroupLeaderName()));
+
+        // Get project list ==========================================
+
+        ProjectListServiceGrpc.ProjectListServiceBlockingStub stub5 =
+                ProjectListServiceGrpc.newBlockingStub(channel);
+
+        com.bht.pim.proto.project.NoParam noParam2 =
+                com.bht.pim.proto.project.NoParam.newBuilder().build();
+
+        ProjectList projectList = stub5.getProjectList(noParam2);
+
+        projectList.getProjectListList().forEach(project1 -> logger.info(project1.getName()));
     }
 
 

@@ -94,3 +94,4 @@ log.out
 .idea/encodings.xml
 
 *.log
+*/.idea/*

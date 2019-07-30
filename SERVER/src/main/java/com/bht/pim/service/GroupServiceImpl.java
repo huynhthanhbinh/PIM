@@ -63,7 +63,6 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
             responseObserver.onNext(groupInfo);
             responseObserver.onCompleted();
-            ;
 
         } catch (Exception exception) {
 
