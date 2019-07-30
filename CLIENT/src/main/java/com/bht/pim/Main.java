@@ -3,6 +3,7 @@ package com.bht.pim;
 import com.bht.pim.proto.employee.*;
 import com.bht.pim.proto.employee.NoParam;
 import com.bht.pim.proto.group.*;
+import com.bht.pim.proto.group.Success;
 import com.bht.pim.proto.project.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -152,6 +153,15 @@ public class Main extends Application {
         logger.info(projectNumbers);
 
         projectNumbers.forEach(logger::info);
+
+        // Add a new group ============================================
+
+        Group newGroup = Group.newBuilder()
+                .setGroupLeaderId(2)
+                .build();
+
+        Success success = stub1.addNewGroup(newGroup);
+        logger.info(success);
     }
 
 

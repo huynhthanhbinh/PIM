@@ -1,5 +1,6 @@
 package com.bht.pim.service;
 
+import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.dao.GroupDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @GRpcService
@@ -20,6 +22,9 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
     @Autowired
     GroupDao groupDao;
     private Logger logger = Logger.getLogger(GroupServiceImpl.class);
+
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Override
     public void getGroupById(GroupId request, StreamObserver<GroupInfo> responseObserver) {
@@ -74,6 +79,45 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
     @Override
     public void addNewGroup(Group request, StreamObserver<Success> responseObserver) {
-        super.addNewGroup(request, responseObserver);
+        // each employee just lead 1 group
+        // at front end, when create new group
+        // send list employee as usual, but then
+        // removeAll exist group leaders from this group
+        // then show the list after to the UI
+        // So that we can prevent from unique constraint
+        try {
+
+            EmployeeEntity leader = employeeDao
+                    .getEmployeeById(request.getId());
+
+            GroupEntity groupEntity = new GroupEntity();
+
+            groupEntity.setGroupLeader(leader);
+            groupEntity.setJoinedProjects(Collections.emptySet());
+
+            boolean isSuccess = groupDao.addGroup(groupEntity);
+
+            Success success = Success.newBuilder()
+                    .setIsSuccess(isSuccess)
+                    .build();
+
+            if (isSuccess) {
+                logger.info("<<< Add new group successfully ! >>>");
+            } else {
+                logger.info("<<< Fail to add new group ! >>>");
+            }
+
+            responseObserver.onNext(success);
+            responseObserver.onCompleted();
+
+        } catch (Exception exception) {
+
+            logger.info("<<< Fail to add new group ! >>>");
+            logger.info(exception);
+
+            responseObserver.onNext(Success.newBuilder()
+                    .setIsSuccess(false).build());
+            responseObserver.onCompleted();
+        }
     }
 }
