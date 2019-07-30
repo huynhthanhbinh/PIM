@@ -20,35 +20,35 @@ public final class GroupListServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<NoParam,
-          GroupList> getGetEmployeeListMethod;
+      GroupList> getGetGroupListMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "getEmployeeList",
+      fullMethodName = SERVICE_NAME + '/' + "getGroupList",
       requestType = NoParam.class,
       responseType = GroupList.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<NoParam,
-          GroupList> getGetEmployeeListMethod() {
-    io.grpc.MethodDescriptor<NoParam, GroupList> getGetEmployeeListMethod;
-    if ((getGetEmployeeListMethod = GroupListServiceGrpc.getGetEmployeeListMethod) == null) {
+      GroupList> getGetGroupListMethod() {
+    io.grpc.MethodDescriptor<NoParam, GroupList> getGetGroupListMethod;
+    if ((getGetGroupListMethod = GroupListServiceGrpc.getGetGroupListMethod) == null) {
       synchronized (GroupListServiceGrpc.class) {
-        if ((getGetEmployeeListMethod = GroupListServiceGrpc.getGetEmployeeListMethod) == null) {
-          GroupListServiceGrpc.getGetEmployeeListMethod = getGetEmployeeListMethod =
+        if ((getGetGroupListMethod = GroupListServiceGrpc.getGetGroupListMethod) == null) {
+          GroupListServiceGrpc.getGetGroupListMethod = getGetGroupListMethod =
               io.grpc.MethodDescriptor.<NoParam, GroupList>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "com.bht.pim.proto.group.GroupListService", "getEmployeeList"))
+                  "com.bht.pim.proto.group.GroupListService", "getGroupList"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   NoParam.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GroupList.getDefaultInstance()))
-                  .setSchemaDescriptor(new GroupListServiceMethodDescriptorSupplier("getEmployeeList"))
+                  .setSchemaDescriptor(new GroupListServiceMethodDescriptorSupplier("getGroupList"))
                   .build();
           }
         }
      }
-     return getGetEmployeeListMethod;
+     return getGetGroupListMethod;
   }
 
   /**
@@ -80,20 +80,20 @@ public final class GroupListServiceGrpc {
 
     /**
      */
-    public void getEmployeeList(NoParam request,
-                                io.grpc.stub.StreamObserver<GroupList> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetEmployeeListMethod(), responseObserver);
+    public void getGroupList(NoParam request,
+                             io.grpc.stub.StreamObserver<GroupList> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetGroupListMethod(), responseObserver);
     }
 
     @Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getGetEmployeeListMethod(),
+            getGetGroupListMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                      NoParam,
-                      GroupList>(
-                  this, METHODID_GET_EMPLOYEE_LIST)))
+                NoParam,
+                GroupList>(
+                  this, METHODID_GET_GROUP_LIST)))
           .build();
     }
   }
@@ -118,10 +118,10 @@ public final class GroupListServiceGrpc {
 
     /**
      */
-    public void getEmployeeList(NoParam request,
-                                io.grpc.stub.StreamObserver<GroupList> responseObserver) {
+    public void getGroupList(NoParam request,
+                             io.grpc.stub.StreamObserver<GroupList> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getGetEmployeeListMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetGroupListMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -145,9 +145,9 @@ public final class GroupListServiceGrpc {
 
     /**
      */
-    public GroupList getEmployeeList(NoParam request) {
+    public GroupList getGroupList(NoParam request) {
       return blockingUnaryCall(
-          getChannel(), getGetEmployeeListMethod(), getCallOptions(), request);
+          getChannel(), getGetGroupListMethod(), getCallOptions(), request);
     }
   }
 
@@ -171,14 +171,14 @@ public final class GroupListServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<GroupList> getEmployeeList(
+    public com.google.common.util.concurrent.ListenableFuture<GroupList> getGroupList(
         NoParam request) {
       return futureUnaryCall(
-          getChannel().newCall(getGetEmployeeListMethod(), getCallOptions()), request);
+          getChannel().newCall(getGetGroupListMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_GET_EMPLOYEE_LIST = 0;
+  private static final int METHODID_GET_GROUP_LIST = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -197,8 +197,8 @@ public final class GroupListServiceGrpc {
     @SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_GET_EMPLOYEE_LIST:
-          serviceImpl.getEmployeeList((NoParam) request,
+        case METHODID_GET_GROUP_LIST:
+          serviceImpl.getGroupList((NoParam) request,
               (io.grpc.stub.StreamObserver<GroupList>) responseObserver);
           break;
         default:
@@ -262,7 +262,7 @@ public final class GroupListServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new GroupListServiceFileDescriptorSupplier())
-              .addMethod(getGetEmployeeListMethod())
+              .addMethod(getGetGroupListMethod())
               .build();
         }
       }

@@ -130,7 +130,7 @@ public final class GroupServiceGrpc {
             getGetGroupByIdMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                      GroupId,
+                GroupId,
                 GroupInfo>(
                   this, METHODID_GET_GROUP_BY_ID)))
           .addMethod(

@@ -36,10 +36,10 @@ public final class GroupListOuterClass {
       "\n\017GroupList.proto\022\027com.bht.pim.proto.gro" +
       "up\032\013Group.proto\">\n\tGroupList\0221\n\tgroupLis" +
       "t\030\001 \003(\0132\036.com.bht.pim.proto.group.Group\"" +
-      "\t\n\007NoParam2k\n\020GroupListService\022W\n\017getEmp" +
-      "loyeeList\022 .com.bht.pim.proto.group.NoPa" +
-      "ram\032\".com.bht.pim.proto.group.GroupListB" +
-      "\002P\001b\006proto3"
+      "\t\n\007NoParam2h\n\020GroupListService\022T\n\014getGro" +
+      "upList\022 .com.bht.pim.proto.group.NoParam" +
+      "\032\".com.bht.pim.proto.group.GroupListB\002P\001" +
+      "b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

@@ -1,18 +1,10 @@
 package com.bht.pim.proto.group;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
 import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
 import static io.grpc.stub.ClientCalls.blockingUnaryCall;
 import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
@@ -26,82 +18,100 @@ public final class GroupListServiceGrpc {
 
   public static final String SERVICE_NAME = "com.bht.pim.proto.group.GroupListService";
 
+    private static final int METHODID_GET_GROUP_LIST = 0;
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<NoParam,
-      GroupList> getGetEmployeeListMethod;
+          GroupList> getGetGroupListMethod;
+
+    /**
+     * Creates a new async stub that supports all call types for the service
+     */
+    public static GroupListServiceStub newStub(io.grpc.Channel channel) {
+        return new GroupListServiceStub(channel);
+    }
+
+    /**
+     * Creates a new blocking-style stub that supports unary and streaming output calls on the service
+     */
+    public static GroupListServiceBlockingStub newBlockingStub(
+            io.grpc.Channel channel) {
+        return new GroupListServiceBlockingStub(channel);
+    }
+
+    /**
+     * Creates a new ListenableFuture-style stub that supports unary calls on the service
+     */
+    public static GroupListServiceFutureStub newFutureStub(
+            io.grpc.Channel channel) {
+        return new GroupListServiceFutureStub(channel);
+    }
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "getEmployeeList",
+          fullMethodName = SERVICE_NAME + '/' + "getGroupList",
       requestType = NoParam.class,
       responseType = GroupList.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<NoParam,
-      GroupList> getGetEmployeeListMethod() {
-    io.grpc.MethodDescriptor<NoParam, GroupList> getGetEmployeeListMethod;
-    if ((getGetEmployeeListMethod = GroupListServiceGrpc.getGetEmployeeListMethod) == null) {
+          GroupList> getGetGroupListMethod() {
+      io.grpc.MethodDescriptor<NoParam, GroupList> getGetGroupListMethod;
+      if ((getGetGroupListMethod = GroupListServiceGrpc.getGetGroupListMethod) == null) {
       synchronized (GroupListServiceGrpc.class) {
-        if ((getGetEmployeeListMethod = GroupListServiceGrpc.getGetEmployeeListMethod) == null) {
-          GroupListServiceGrpc.getGetEmployeeListMethod = getGetEmployeeListMethod = 
+          if ((getGetGroupListMethod = GroupListServiceGrpc.getGetGroupListMethod) == null) {
+              GroupListServiceGrpc.getGetGroupListMethod = getGetGroupListMethod =
               io.grpc.MethodDescriptor.<NoParam, GroupList>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "com.bht.pim.proto.group.GroupListService", "getEmployeeList"))
+                      "com.bht.pim.proto.group.GroupListService", "getGroupList"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   NoParam.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   GroupList.getDefaultInstance()))
-                  .setSchemaDescriptor(new GroupListServiceMethodDescriptorSupplier("getEmployeeList"))
+                      .setSchemaDescriptor(new GroupListServiceMethodDescriptorSupplier("getGroupList"))
                   .build();
           }
+      }
+      }
+      return getGetGroupListMethod;
+  }
+
+    public static io.grpc.ServiceDescriptor getServiceDescriptor() {
+        io.grpc.ServiceDescriptor result = serviceDescriptor;
+        if (result == null) {
+            synchronized (GroupListServiceGrpc.class) {
+                result = serviceDescriptor;
+                if (result == null) {
+                    serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
+                            .setSchemaDescriptor(new GroupListServiceFileDescriptorSupplier())
+                            .addMethod(getGetGroupListMethod())
+                            .build();
+                }
+            }
         }
-     }
-     return getGetEmployeeListMethod;
-  }
-
-  /**
-   * Creates a new async stub that supports all call types for the service
-   */
-  public static GroupListServiceStub newStub(io.grpc.Channel channel) {
-    return new GroupListServiceStub(channel);
-  }
-
-  /**
-   * Creates a new blocking-style stub that supports unary and streaming output calls on the service
-   */
-  public static GroupListServiceBlockingStub newBlockingStub(
-      io.grpc.Channel channel) {
-    return new GroupListServiceBlockingStub(channel);
-  }
-
-  /**
-   * Creates a new ListenableFuture-style stub that supports unary calls on the service
-   */
-  public static GroupListServiceFutureStub newFutureStub(
-      io.grpc.Channel channel) {
-    return new GroupListServiceFutureStub(channel);
+        return result;
   }
 
   /**
    */
   public static abstract class GroupListServiceImplBase implements io.grpc.BindableService {
 
-    /**
-     */
-    public void getEmployeeList(NoParam request,
-                                io.grpc.stub.StreamObserver<GroupList> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetEmployeeListMethod(), responseObserver);
+      /**
+       *
+       */
+      public void getGroupList(NoParam request,
+                               io.grpc.stub.StreamObserver<GroupList> responseObserver) {
+          asyncUnimplementedUnaryCall(getGetGroupListMethod(), responseObserver);
     }
 
     @Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getGetEmployeeListMethod(),
+              .addMethod(
+                      getGetGroupListMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 NoParam,
-                GroupList>(
-                  this, METHODID_GET_EMPLOYEE_LIST)))
+                      GroupList>(
+                      this, METHODID_GET_GROUP_LIST)))
           .build();
     }
   }
@@ -124,12 +134,13 @@ public final class GroupListServiceGrpc {
       return new GroupListServiceStub(channel, callOptions);
     }
 
-    /**
-     */
-    public void getEmployeeList(NoParam request,
-                                io.grpc.stub.StreamObserver<GroupList> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getGetEmployeeListMethod(), getCallOptions()), request, responseObserver);
+      /**
+       *
+       */
+      public void getGroupList(NoParam request,
+                               io.grpc.stub.StreamObserver<GroupList> responseObserver) {
+          asyncUnaryCall(
+                  getChannel().newCall(getGetGroupListMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -151,11 +162,12 @@ public final class GroupListServiceGrpc {
       return new GroupListServiceBlockingStub(channel, callOptions);
     }
 
-    /**
-     */
-    public GroupList getEmployeeList(NoParam request) {
-      return blockingUnaryCall(
-          getChannel(), getGetEmployeeListMethod(), getCallOptions(), request);
+      /**
+       *
+       */
+      public GroupList getGroupList(NoParam request) {
+          return blockingUnaryCall(
+                  getChannel(), getGetGroupListMethod(), getCallOptions(), request);
     }
   }
 
@@ -177,16 +189,54 @@ public final class GroupListServiceGrpc {
       return new GroupListServiceFutureStub(channel, callOptions);
     }
 
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<GroupList> getEmployeeList(
+      /**
+       *
+       */
+      public com.google.common.util.concurrent.ListenableFuture<GroupList> getGroupList(
         NoParam request) {
-      return futureUnaryCall(
-          getChannel().newCall(getGetEmployeeListMethod(), getCallOptions()), request);
-    }
+          return futureUnaryCall(
+                  getChannel().newCall(getGetGroupListMethod(), getCallOptions()), request);
+      }
   }
 
-  private static final int METHODID_GET_EMPLOYEE_LIST = 0;
+    private static abstract class GroupListServiceBaseDescriptorSupplier
+            implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+        GroupListServiceBaseDescriptorSupplier() {
+        }
+
+        @Override
+        public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
+            return GroupListOuterClass.getDescriptor();
+        }
+
+        @Override
+        public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+            return getFileDescriptor().findServiceByName("GroupListService");
+        }
+    }
+
+    private static final class GroupListServiceFileDescriptorSupplier
+            extends GroupListServiceBaseDescriptorSupplier {
+        GroupListServiceFileDescriptorSupplier() {
+        }
+    }
+
+    private static final class GroupListServiceMethodDescriptorSupplier
+            extends GroupListServiceBaseDescriptorSupplier
+            implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+        private final String methodName;
+
+        GroupListServiceMethodDescriptorSupplier(String methodName) {
+            this.methodName = methodName;
+        }
+
+        @Override
+        public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+            return getServiceDescriptor().findMethodByName(methodName);
+        }
+    }
+
+    private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -204,9 +254,9 @@ public final class GroupListServiceGrpc {
     @Override
     @SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
-      switch (methodId) {
-        case METHODID_GET_EMPLOYEE_LIST:
-          serviceImpl.getEmployeeList((NoParam) request,
+        switch (methodId) {
+            case METHODID_GET_GROUP_LIST:
+                serviceImpl.getGroupList((NoParam) request,
               (io.grpc.stub.StreamObserver<GroupList>) responseObserver);
           break;
         default:
@@ -223,58 +273,5 @@ public final class GroupListServiceGrpc {
           throw new AssertionError();
       }
     }
-  }
-
-  private static abstract class GroupListServiceBaseDescriptorSupplier
-      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-    GroupListServiceBaseDescriptorSupplier() {}
-
-    @Override
-    public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return GroupListOuterClass.getDescriptor();
-    }
-
-    @Override
-    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
-      return getFileDescriptor().findServiceByName("GroupListService");
-    }
-  }
-
-  private static final class GroupListServiceFileDescriptorSupplier
-      extends GroupListServiceBaseDescriptorSupplier {
-    GroupListServiceFileDescriptorSupplier() {}
-  }
-
-  private static final class GroupListServiceMethodDescriptorSupplier
-      extends GroupListServiceBaseDescriptorSupplier
-      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
-
-    GroupListServiceMethodDescriptorSupplier(String methodName) {
-      this.methodName = methodName;
-    }
-
-    @Override
-    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
-      return getServiceDescriptor().findMethodByName(methodName);
-    }
-  }
-
-  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
-
-  public static io.grpc.ServiceDescriptor getServiceDescriptor() {
-    io.grpc.ServiceDescriptor result = serviceDescriptor;
-    if (result == null) {
-      synchronized (GroupListServiceGrpc.class) {
-        result = serviceDescriptor;
-        if (result == null) {
-          serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new GroupListServiceFileDescriptorSupplier())
-              .addMethod(getGetEmployeeListMethod())
-              .build();
-        }
-      }
-    }
-    return result;
   }
 }

@@ -9,7 +9,7 @@ package com.bht.pim.proto.project;
 public  final class ProjectList extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:com.bht.pim.proto.project.ProjectList)
-        ProjectListOrBuilder {
+    ProjectListOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use ProjectList.newBuilder() to construct.
   private ProjectList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
@@ -97,7 +97,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
    */
-  public java.util.List<? extends com.bht.pim.proto.project.ProjectOrBuilder> 
+  public java.util.List<? extends ProjectOrBuilder>
       getProjectListOrBuilderList() {
     return projectList_;
   }
@@ -408,7 +408,7 @@ private static final long serialVersionUID = 0L;
             projectListBuilder_ = null;
             projectList_ = other.projectList_;
             bitField0_ = (bitField0_ & ~0x00000001);
-            projectListBuilder_ = 
+            projectListBuilder_ =
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getProjectListFieldBuilder() : null;
           } else {
@@ -454,7 +454,7 @@ private static final long serialVersionUID = 0L;
     }
 
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        Project, Project.Builder, com.bht.pim.proto.project.ProjectOrBuilder> projectListBuilder_;
+            Project, Project.Builder, ProjectOrBuilder> projectListBuilder_;
 
     /**
      * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
@@ -639,7 +639,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>repeated .com.bht.pim.proto.project.Project projectList = 1;</code>
      */
-    public java.util.List<? extends com.bht.pim.proto.project.ProjectOrBuilder> 
+    public java.util.List<? extends ProjectOrBuilder>
          getProjectListOrBuilderList() {
       if (projectListBuilder_ != null) {
         return projectListBuilder_.getMessageOrBuilderList();
@@ -670,11 +670,11 @@ private static final long serialVersionUID = 0L;
       return getProjectListFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-        Project, Project.Builder, com.bht.pim.proto.project.ProjectOrBuilder>
+            Project, Project.Builder, ProjectOrBuilder>
         getProjectListFieldBuilder() {
       if (projectListBuilder_ == null) {
         projectListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            Project, Project.Builder, com.bht.pim.proto.project.ProjectOrBuilder>(
+                Project, Project.Builder, ProjectOrBuilder>(
                 projectList_,
                 ((bitField0_ & 0x00000001) == 0x00000001),
                 getParentForChildren(),

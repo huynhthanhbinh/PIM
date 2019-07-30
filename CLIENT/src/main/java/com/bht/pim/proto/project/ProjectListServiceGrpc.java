@@ -130,14 +130,14 @@ public final class ProjectListServiceGrpc {
             getGetProjectListMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                NoParam,
+                      NoParam,
                       ProjectList>(
                   this, METHODID_GET_PROJECT_LIST)))
           .addMethod(
             getGetProjectNumbersMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                NoParam,
+                      NoParam,
                       ProjectNumbers>(
                   this, METHODID_GET_PROJECT_NUMBERS)))
           .build();

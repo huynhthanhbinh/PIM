@@ -9,7 +9,7 @@ package com.bht.pim.proto.group;
 public  final class Group extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:com.bht.pim.proto.group.Group)
-        GroupOrBuilder {
+    GroupOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use Group.newBuilder() to construct.
   private Group(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
@@ -127,7 +127,7 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-        com.google.protobuf.ByteString bs =
+      com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       groupLeaderVisa_ = s;
@@ -141,7 +141,7 @@ private static final long serialVersionUID = 0L;
       getGroupLeaderVisaBytes() {
     Object ref = groupLeaderVisa_;
     if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (String) ref);
       groupLeaderVisa_ = b;
@@ -161,7 +161,7 @@ private static final long serialVersionUID = 0L;
     if (ref instanceof String) {
       return (String) ref;
     } else {
-        com.google.protobuf.ByteString bs =
+      com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       String s = bs.toStringUtf8();
       groupLeaderName_ = s;
@@ -175,7 +175,7 @@ private static final long serialVersionUID = 0L;
       getGroupLeaderNameBytes() {
     Object ref = groupLeaderName_;
     if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (String) ref);
       groupLeaderName_ = b;

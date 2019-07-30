@@ -9,7 +9,7 @@ package com.bht.pim.proto.employee;
 public  final class NoParam extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:com.bht.pim.proto.employee.NoParam)
-        NoParamOrBuilder {
+    NoParamOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use NoParam.newBuilder() to construct.
   private NoParam(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {

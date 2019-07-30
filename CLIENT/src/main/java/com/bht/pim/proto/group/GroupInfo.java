@@ -452,33 +452,6 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-      private com.google.protobuf.SingleFieldBuilderV3<
-              Group, Group.Builder, GroupOrBuilder> groupBuilder_;
-      private int bitField0_;
-      private Group group_ = null;
-
-      public final boolean isInitialized() {
-          return true;
-      }
-
-      public Builder mergeFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws java.io.IOException {
-          GroupInfo parsedMessage = null;
-          try {
-              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-              parsedMessage = (GroupInfo) e.getUnfinishedMessage();
-              throw e.unwrapIOException();
-          } finally {
-              if (parsedMessage != null) {
-                  mergeFrom(parsedMessage);
-              }
-          }
-          return this;
-      }
-
     public Builder mergeFrom(GroupInfo other) {
       if (other == GroupInfo.getDefaultInstance()) return this;
       if (other.hasGroup()) {
@@ -502,7 +475,7 @@ private static final long serialVersionUID = 0L;
             enrolledProjectsBuilder_ = null;
             enrolledProjects_ = other.enrolledProjects_;
             bitField0_ = (bitField0_ & ~0x00000002);
-              enrolledProjectsBuilder_ =
+            enrolledProjectsBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getEnrolledProjectsFieldBuilder() : null;
           } else {
@@ -514,6 +487,33 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
+    public final boolean isInitialized() {
+      return true;
+    }
+
+    public Builder mergeFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      GroupInfo parsedMessage = null;
+      try {
+        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        parsedMessage = (GroupInfo) e.getUnfinishedMessage();
+        throw e.unwrapIOException();
+      } finally {
+        if (parsedMessage != null) {
+          mergeFrom(parsedMessage);
+        }
+      }
+      return this;
+    }
+    private int bitField0_;
+
+    private Group group_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+            Group, Group.Builder, com.bht.pim.proto.group.GroupOrBuilder> groupBuilder_;
     /**
      * <code>.com.bht.pim.proto.group.Group group = 1;</code>
      */
@@ -592,12 +592,11 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
-
     /**
      * <code>.com.bht.pim.proto.group.Group group = 1;</code>
      */
     public Group.Builder getGroupBuilder() {
-
+      
       onChanged();
       return getGroupFieldBuilder().getBuilder();
     }
@@ -616,11 +615,11 @@ private static final long serialVersionUID = 0L;
      * <code>.com.bht.pim.proto.group.Group group = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-            Group, Group.Builder, GroupOrBuilder>
+            Group, Group.Builder, com.bht.pim.proto.group.GroupOrBuilder>
         getGroupFieldBuilder() {
       if (groupBuilder_ == null) {
         groupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                Group, Group.Builder, GroupOrBuilder>(
+                Group, Group.Builder, com.bht.pim.proto.group.GroupOrBuilder>(
                 getGroup(),
                 getParentForChildren(),
                 isClean());

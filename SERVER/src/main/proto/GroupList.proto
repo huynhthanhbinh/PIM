@@ -13,5 +13,5 @@ message NoParam {
 }
 
 service GroupListService {
-    rpc getEmployeeList (NoParam) returns (GroupList);
+    rpc getGroupList (NoParam) returns (GroupList);
 }

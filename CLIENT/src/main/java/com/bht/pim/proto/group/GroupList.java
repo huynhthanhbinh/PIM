@@ -9,7 +9,7 @@ package com.bht.pim.proto.group;
 public  final class GroupList extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:com.bht.pim.proto.group.GroupList)
-    GroupListOrBuilder {
+        GroupListOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use GroupList.newBuilder() to construct.
   private GroupList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
@@ -97,7 +97,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
    */
-  public java.util.List<? extends GroupOrBuilder>
+  public java.util.List<? extends com.bht.pim.proto.group.GroupOrBuilder> 
       getGroupListOrBuilderList() {
     return groupList_;
   }
@@ -388,41 +388,6 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-              Group, Group.Builder, GroupOrBuilder> groupListBuilder_;
-      private int bitField0_;
-      private java.util.List<Group> groupList_ =
-              java.util.Collections.emptyList();
-
-      public final boolean isInitialized() {
-          return true;
-      }
-
-      public Builder mergeFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws java.io.IOException {
-          GroupList parsedMessage = null;
-          try {
-              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-              parsedMessage = (GroupList) e.getUnfinishedMessage();
-              throw e.unwrapIOException();
-          } finally {
-              if (parsedMessage != null) {
-                  mergeFrom(parsedMessage);
-              }
-          }
-          return this;
-      }
-
-      private void ensureGroupListIsMutable() {
-          if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-              groupList_ = new java.util.ArrayList<Group>(groupList_);
-              bitField0_ |= 0x00000001;
-          }
-      }
-
     public Builder mergeFrom(GroupList other) {
       if (other == GroupList.getDefaultInstance()) return this;
       if (groupListBuilder_ == null) {
@@ -443,7 +408,7 @@ private static final long serialVersionUID = 0L;
             groupListBuilder_ = null;
             groupList_ = other.groupList_;
             bitField0_ = (bitField0_ & ~0x00000001);
-              groupListBuilder_ =
+            groupListBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getGroupListFieldBuilder() : null;
           } else {
@@ -455,6 +420,41 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
+    public final boolean isInitialized() {
+      return true;
+    }
+
+    public Builder mergeFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      GroupList parsedMessage = null;
+      try {
+        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        parsedMessage = (GroupList) e.getUnfinishedMessage();
+        throw e.unwrapIOException();
+      } finally {
+        if (parsedMessage != null) {
+          mergeFrom(parsedMessage);
+        }
+      }
+      return this;
+    }
+    private int bitField0_;
+
+    private java.util.List<Group> groupList_ =
+      java.util.Collections.emptyList();
+    private void ensureGroupListIsMutable() {
+      if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        groupList_ = new java.util.ArrayList<Group>(groupList_);
+        bitField0_ |= 0x00000001;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+            Group, Group.Builder, com.bht.pim.proto.group.GroupOrBuilder> groupListBuilder_;
 
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
@@ -636,11 +636,10 @@ private static final long serialVersionUID = 0L;
         return groupListBuilder_.getMessageOrBuilder(index);
       }
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.group.Group groupList = 1;</code>
      */
-    public java.util.List<? extends GroupOrBuilder>
+    public java.util.List<? extends com.bht.pim.proto.group.GroupOrBuilder> 
          getGroupListOrBuilderList() {
       if (groupListBuilder_ != null) {
         return groupListBuilder_.getMessageOrBuilderList();
@@ -671,11 +670,11 @@ private static final long serialVersionUID = 0L;
       return getGroupListFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilderV3<
-            Group, Group.Builder, GroupOrBuilder>
+            Group, Group.Builder, com.bht.pim.proto.group.GroupOrBuilder>
         getGroupListFieldBuilder() {
       if (groupListBuilder_ == null) {
         groupListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-                Group, Group.Builder, GroupOrBuilder>(
+                Group, Group.Builder, com.bht.pim.proto.group.GroupOrBuilder>(
                 groupList_,
                 ((bitField0_ & 0x00000001) == 0x00000001),
                 getParentForChildren(),

@@ -9,7 +9,7 @@ package com.bht.pim.proto.employee;
 public  final class EmployeeInfo extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:com.bht.pim.proto.employee.EmployeeInfo)
-        EmployeeInfoOrBuilder {
+    EmployeeInfoOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use EmployeeInfo.newBuilder() to construct.
   private EmployeeInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
@@ -132,7 +132,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <code>repeated .com.bht.pim.proto.project.Project enrolledProjects = 2;</code>
    */
-  public java.util.List<? extends com.bht.pim.proto.project.ProjectOrBuilder>
+  public java.util.List<? extends com.bht.pim.proto.project.ProjectOrBuilder> 
       getEnrolledProjectsOrBuilderList() {
     return enrolledProjects_;
   }
@@ -452,33 +452,6 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-      private com.google.protobuf.SingleFieldBuilderV3<
-              Employee, Employee.Builder, EmployeeOrBuilder> employeeBuilder_;
-      private int bitField0_;
-      private Employee employee_ = null;
-
-      public final boolean isInitialized() {
-          return true;
-      }
-
-      public Builder mergeFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws java.io.IOException {
-          EmployeeInfo parsedMessage = null;
-          try {
-              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-              parsedMessage = (EmployeeInfo) e.getUnfinishedMessage();
-              throw e.unwrapIOException();
-          } finally {
-              if (parsedMessage != null) {
-                  mergeFrom(parsedMessage);
-              }
-          }
-          return this;
-      }
-
     public Builder mergeFrom(EmployeeInfo other) {
       if (other == EmployeeInfo.getDefaultInstance()) return this;
       if (other.hasEmployee()) {
@@ -502,7 +475,7 @@ private static final long serialVersionUID = 0L;
             enrolledProjectsBuilder_ = null;
             enrolledProjects_ = other.enrolledProjects_;
             bitField0_ = (bitField0_ & ~0x00000002);
-              enrolledProjectsBuilder_ =
+            enrolledProjectsBuilder_ = 
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getEnrolledProjectsFieldBuilder() : null;
           } else {
@@ -514,6 +487,33 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
+    public final boolean isInitialized() {
+      return true;
+    }
+
+    public Builder mergeFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      EmployeeInfo parsedMessage = null;
+      try {
+        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        parsedMessage = (EmployeeInfo) e.getUnfinishedMessage();
+        throw e.unwrapIOException();
+      } finally {
+        if (parsedMessage != null) {
+          mergeFrom(parsedMessage);
+        }
+      }
+      return this;
+    }
+    private int bitField0_;
+
+    private Employee employee_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        Employee, Employee.Builder, com.bht.pim.proto.employee.EmployeeOrBuilder> employeeBuilder_;
     /**
      * <code>.com.bht.pim.proto.employee.Employee employee = 1;</code>
      */
@@ -592,12 +592,11 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
-
     /**
      * <code>.com.bht.pim.proto.employee.Employee employee = 1;</code>
      */
     public Employee.Builder getEmployeeBuilder() {
-
+      
       onChanged();
       return getEmployeeFieldBuilder().getBuilder();
     }
@@ -616,11 +615,11 @@ private static final long serialVersionUID = 0L;
      * <code>.com.bht.pim.proto.employee.Employee employee = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-            Employee, Employee.Builder, EmployeeOrBuilder>
+        Employee, Employee.Builder, com.bht.pim.proto.employee.EmployeeOrBuilder>
         getEmployeeFieldBuilder() {
       if (employeeBuilder_ == null) {
         employeeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                Employee, Employee.Builder, EmployeeOrBuilder>(
+            Employee, Employee.Builder, com.bht.pim.proto.employee.EmployeeOrBuilder>(
                 getEmployee(),
                 getParentForChildren(),
                 isClean());

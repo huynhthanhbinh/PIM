@@ -10,7 +10,7 @@ import org.lognet.springboot.grpc.GRpcService;
 public class GroupListServiceImpl extends GroupListServiceGrpc.GroupListServiceImplBase {
 
     @Override
-    public void getEmployeeList(NoParam request, StreamObserver<GroupList> responseObserver) {
-        super.getEmployeeList(request, responseObserver);
+    public void getGroupList(NoParam request, StreamObserver<GroupList> responseObserver) {
+        super.getGroupList(request, responseObserver);
     }
 }

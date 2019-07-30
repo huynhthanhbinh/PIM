@@ -20,7 +20,7 @@ public final class ProjectServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ProjectId,
-      ProjectInfo> getGetProjectByIdMethod;
+          ProjectInfo> getGetProjectByIdMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "getProjectById",
@@ -28,7 +28,7 @@ public final class ProjectServiceGrpc {
       responseType = ProjectInfo.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<ProjectId,
-      ProjectInfo> getGetProjectByIdMethod() {
+          ProjectInfo> getGetProjectByIdMethod() {
     io.grpc.MethodDescriptor<ProjectId, ProjectInfo> getGetProjectByIdMethod;
     if ((getGetProjectByIdMethod = ProjectServiceGrpc.getGetProjectByIdMethod) == null) {
       synchronized (ProjectServiceGrpc.class) {
@@ -52,11 +52,7 @@ public final class ProjectServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<Project,
-          Success> getAddNewProjectMethod;
-    private static volatile io.grpc.MethodDescriptor<Project,
-            Success> getEditProjectMethod;
-    private static volatile io.grpc.MethodDescriptor<ProjectId,
-            Success> getDeleteProjectMethod;
+      Success> getAddNewProjectMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "addNewProject",
@@ -64,7 +60,7 @@ public final class ProjectServiceGrpc {
       responseType = Success.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<Project,
-          Success> getAddNewProjectMethod() {
+      Success> getAddNewProjectMethod() {
     io.grpc.MethodDescriptor<Project, Success> getAddNewProjectMethod;
     if ((getAddNewProjectMethod = ProjectServiceGrpc.getAddNewProjectMethod) == null) {
       synchronized (ProjectServiceGrpc.class) {
@@ -87,13 +83,16 @@ public final class ProjectServiceGrpc {
      return getAddNewProjectMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<Project,
+      Success> getEditProjectMethod;
+
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "editProject",
       requestType = Project.class,
       responseType = Success.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<Project,
-          Success> getEditProjectMethod() {
+      Success> getEditProjectMethod() {
     io.grpc.MethodDescriptor<Project, Success> getEditProjectMethod;
     if ((getEditProjectMethod = ProjectServiceGrpc.getEditProjectMethod) == null) {
       synchronized (ProjectServiceGrpc.class) {
@@ -116,13 +115,16 @@ public final class ProjectServiceGrpc {
      return getEditProjectMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<ProjectId,
+      Success> getDeleteProjectMethod;
+
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "deleteProject",
       requestType = ProjectId.class,
       responseType = Success.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<ProjectId,
-          Success> getDeleteProjectMethod() {
+      Success> getDeleteProjectMethod() {
     io.grpc.MethodDescriptor<ProjectId, Success> getDeleteProjectMethod;
     if ((getDeleteProjectMethod = ProjectServiceGrpc.getDeleteProjectMethod) == null) {
       synchronized (ProjectServiceGrpc.class) {
@@ -207,28 +209,28 @@ public final class ProjectServiceGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                       ProjectId,
-                ProjectInfo>(
+                      ProjectInfo>(
                   this, METHODID_GET_PROJECT_BY_ID)))
           .addMethod(
             getAddNewProjectMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                       Project,
-                      Success>(
+                Success>(
                   this, METHODID_ADD_NEW_PROJECT)))
           .addMethod(
             getEditProjectMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                       Project,
-                      Success>(
+                Success>(
                   this, METHODID_EDIT_PROJECT)))
           .addMethod(
             getDeleteProjectMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                       ProjectId,
-                      Success>(
+                Success>(
                   this, METHODID_DELETE_PROJECT)))
           .build();
     }

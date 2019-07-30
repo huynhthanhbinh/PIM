@@ -9,7 +9,7 @@ package com.bht.pim.proto.project;
 public  final class ProjectId extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:com.bht.pim.proto.project.ProjectId)
-        ProjectIdOrBuilder {
+    ProjectIdOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use ProjectId.newBuilder() to construct.
   private ProjectId(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {

@@ -388,41 +388,6 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-              Employee, Employee.Builder, EmployeeOrBuilder> employeeListBuilder_;
-      private int bitField0_;
-      private java.util.List<Employee> employeeList_ =
-              java.util.Collections.emptyList();
-
-      public final boolean isInitialized() {
-          return true;
-      }
-
-      public Builder mergeFrom(
-              com.google.protobuf.CodedInputStream input,
-              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-              throws java.io.IOException {
-          EmployeeList parsedMessage = null;
-          try {
-              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-              parsedMessage = (EmployeeList) e.getUnfinishedMessage();
-              throw e.unwrapIOException();
-          } finally {
-              if (parsedMessage != null) {
-                  mergeFrom(parsedMessage);
-              }
-          }
-          return this;
-      }
-
-      private void ensureEmployeeListIsMutable() {
-          if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-              employeeList_ = new java.util.ArrayList<Employee>(employeeList_);
-              bitField0_ |= 0x00000001;
-          }
-      }
-
     public Builder mergeFrom(EmployeeList other) {
       if (other == EmployeeList.getDefaultInstance()) return this;
       if (employeeListBuilder_ == null) {
@@ -443,7 +408,7 @@ private static final long serialVersionUID = 0L;
             employeeListBuilder_ = null;
             employeeList_ = other.employeeList_;
             bitField0_ = (bitField0_ & ~0x00000001);
-              employeeListBuilder_ =
+            employeeListBuilder_ =
               com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                  getEmployeeListFieldBuilder() : null;
           } else {
@@ -455,6 +420,41 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
+    public final boolean isInitialized() {
+      return true;
+    }
+
+    public Builder mergeFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      EmployeeList parsedMessage = null;
+      try {
+        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        parsedMessage = (EmployeeList) e.getUnfinishedMessage();
+        throw e.unwrapIOException();
+      } finally {
+        if (parsedMessage != null) {
+          mergeFrom(parsedMessage);
+        }
+      }
+      return this;
+    }
+    private int bitField0_;
+
+    private java.util.List<Employee> employeeList_ =
+      java.util.Collections.emptyList();
+    private void ensureEmployeeListIsMutable() {
+      if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        employeeList_ = new java.util.ArrayList<Employee>(employeeList_);
+        bitField0_ |= 0x00000001;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+            Employee, Employee.Builder, EmployeeOrBuilder> employeeListBuilder_;
 
     /**
      * <code>repeated .com.bht.pim.proto.employee.Employee employeeList = 1;</code>
@@ -636,7 +636,6 @@ private static final long serialVersionUID = 0L;
         return employeeListBuilder_.getMessageOrBuilder(index);
       }
     }
-
     /**
      * <code>repeated .com.bht.pim.proto.employee.Employee employeeList = 1;</code>
      */

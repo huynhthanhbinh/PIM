@@ -91,7 +91,7 @@ public final class EmployeeServiceGrpc {
             getGetEmployeeByIdMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                      EmployeeId,
+                EmployeeId,
                       EmployeeInfo>(
                   this, METHODID_GET_EMPLOYEE_BY_ID)))
           .build();

@@ -20,7 +20,7 @@ public final class EmployeeListServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<NoParam,
-          EmployeeList> getGetEmployeeListMethod;
+      EmployeeList> getGetEmployeeListMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "getEmployeeList",
@@ -28,7 +28,7 @@ public final class EmployeeListServiceGrpc {
       responseType = EmployeeList.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<NoParam,
-          EmployeeList> getGetEmployeeListMethod() {
+      EmployeeList> getGetEmployeeListMethod() {
     io.grpc.MethodDescriptor<NoParam, EmployeeList> getGetEmployeeListMethod;
     if ((getGetEmployeeListMethod = EmployeeListServiceGrpc.getGetEmployeeListMethod) == null) {
       synchronized (EmployeeListServiceGrpc.class) {
@@ -91,8 +91,8 @@ public final class EmployeeListServiceGrpc {
             getGetEmployeeListMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                      NoParam,
-                      EmployeeList>(
+                NoParam,
+                EmployeeList>(
                   this, METHODID_GET_EMPLOYEE_LIST)))
           .build();
     }

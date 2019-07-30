@@ -15,24 +15,16 @@ private static final long serialVersionUID = 0L;
   private ProjectInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-
-    public static final int GROUPLEADER_FIELD_NUMBER = 2;
+  private ProjectInfo() {
+    groupLeader_ = "";
+    employees_ = java.util.Collections.emptyList();
+  }
 
   @Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
     return this.unknownFields;
   }
-
-    public static final int PROJECT_FIELD_NUMBER = 1;
-    private volatile Object groupLeader_;
-    private int bitField0_;
-    private Project project_;
-
-    private ProjectInfo() {
-        groupLeader_ = "";
-        employees_ = java.util.Collections.emptyList();
-    }
   private ProjectInfo(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -72,10 +64,10 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
-            case 18: {
-                String s = input.readStringRequireUtf8();
+          case 18: {
+            String s = input.readStringRequireUtf8();
 
-                groupLeader_ = s;
+            groupLeader_ = s;
             break;
           }
           case 26: {
@@ -102,71 +94,72 @@ private static final long serialVersionUID = 0L;
       makeExtensionsImmutable();
     }
   }
+  public static final com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return com.bht.pim.proto.project.ProjectInfoOuterClass.internal_static_com_bht_pim_proto_project_ProjectInfo_descriptor;
+  }
 
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-        return com.bht.pim.proto.project.ProjectInfoOuterClass.internal_static_com_bht_pim_proto_project_ProjectInfo_descriptor;
+  protected FieldAccessorTable
+      internalGetFieldAccessorTable() {
+    return com.bht.pim.proto.project.ProjectInfoOuterClass.internal_static_com_bht_pim_proto_project_ProjectInfo_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(
+            ProjectInfo.class, Builder.class);
+  }
+
+  private int bitField0_;
+  public static final int PROJECT_FIELD_NUMBER = 1;
+  private Project project_;
+  /**
+   * <code>.com.bht.pim.proto.project.Project project = 1;</code>
+   */
+  public boolean hasProject() {
+    return project_ != null;
+  }
+  /**
+   * <code>.com.bht.pim.proto.project.Project project = 1;</code>
+   */
+  public Project getProject() {
+    return project_ == null ? Project.getDefaultInstance() : project_;
+  }
+  /**
+   * <code>.com.bht.pim.proto.project.Project project = 1;</code>
+   */
+  public com.bht.pim.proto.project.ProjectOrBuilder getProjectOrBuilder() {
+    return getProject();
+  }
+
+  public static final int GROUPLEADER_FIELD_NUMBER = 2;
+  private volatile Object groupLeader_;
+  /**
+   * <code>string groupLeader = 2;</code>
+   */
+  public String getGroupLeader() {
+    Object ref = groupLeader_;
+    if (ref instanceof String) {
+      return (String) ref;
+    } else {
+      com.google.protobuf.ByteString bs =
+          (com.google.protobuf.ByteString) ref;
+      String s = bs.toStringUtf8();
+      groupLeader_ = s;
+      return s;
     }
-
-    protected FieldAccessorTable
-    internalGetFieldAccessorTable() {
-        return com.bht.pim.proto.project.ProjectInfoOuterClass.internal_static_com_bht_pim_proto_project_ProjectInfo_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        ProjectInfo.class, Builder.class);
+  }
+  /**
+   * <code>string groupLeader = 2;</code>
+   */
+  public com.google.protobuf.ByteString
+      getGroupLeaderBytes() {
+    Object ref = groupLeader_;
+    if (ref instanceof String) {
+      com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (String) ref);
+      groupLeader_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
     }
-
-    /**
-     * <code>.com.bht.pim.proto.project.Project project = 1;</code>
-     */
-    public boolean hasProject() {
-        return project_ != null;
-    }
-
-    /**
-     * <code>.com.bht.pim.proto.project.Project project = 1;</code>
-     */
-    public Project getProject() {
-        return project_ == null ? Project.getDefaultInstance() : project_;
-    }
-
-    /**
-     * <code>.com.bht.pim.proto.project.Project project = 1;</code>
-     */
-    public com.bht.pim.proto.project.ProjectOrBuilder getProjectOrBuilder() {
-        return getProject();
-    }
-
-    /**
-     * <code>string groupLeader = 2;</code>
-     */
-    public String getGroupLeader() {
-        Object ref = groupLeader_;
-        if (ref instanceof String) {
-            return (String) ref;
-        } else {
-            com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
-            groupLeader_ = s;
-            return s;
-        }
-    }
-
-    /**
-     * <code>string groupLeader = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-    getGroupLeaderBytes() {
-        Object ref = groupLeader_;
-        if (ref instanceof String) {
-            com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (String) ref);
-            groupLeader_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
   }
 
   public static final int EMPLOYEES_FIELD_NUMBER = 3;
@@ -180,7 +173,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>
    */
-  public java.util.List<? extends com.bht.pim.proto.employee.EmployeeOrBuilder> 
+  public java.util.List<? extends com.bht.pim.proto.employee.EmployeeOrBuilder>
       getEmployeesOrBuilderList() {
     return employees_;
   }
@@ -219,8 +212,8 @@ private static final long serialVersionUID = 0L;
     if (project_ != null) {
       output.writeMessage(1, getProject());
     }
-      if (!getGroupLeaderBytes().isEmpty()) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 2, groupLeader_);
+    if (!getGroupLeaderBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, groupLeader_);
     }
     for (int i = 0; i < employees_.size(); i++) {
       output.writeMessage(3, employees_.get(i));
@@ -237,8 +230,8 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(1, getProject());
     }
-      if (!getGroupLeaderBytes().isEmpty()) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, groupLeader_);
+    if (!getGroupLeaderBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, groupLeader_);
     }
     for (int i = 0; i < employees_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
@@ -265,8 +258,8 @@ private static final long serialVersionUID = 0L;
       result = result && getProject()
           .equals(other.getProject());
     }
-      result = result && getGroupLeader()
-              .equals(other.getGroupLeader());
+    result = result && getGroupLeader()
+        .equals(other.getGroupLeader());
     result = result && getEmployeesList()
         .equals(other.getEmployeesList());
     result = result && unknownFields.equals(other.unknownFields);
@@ -284,8 +277,8 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + PROJECT_FIELD_NUMBER;
       hash = (53 * hash) + getProject().hashCode();
     }
-      hash = (37 * hash) + GROUPLEADER_FIELD_NUMBER;
-      hash = (53 * hash) + getGroupLeader().hashCode();
+    hash = (37 * hash) + GROUPLEADER_FIELD_NUMBER;
+    hash = (53 * hash) + getGroupLeader().hashCode();
     if (getEmployeesCount() > 0) {
       hash = (37 * hash) + EMPLOYEES_FIELD_NUMBER;
       hash = (53 * hash) + getEmployeesList().hashCode();
@@ -418,9 +411,24 @@ private static final long serialVersionUID = 0L;
         getEmployeesFieldBuilder();
       }
     }
+    public Builder clear() {
+      super.clear();
+      if (projectBuilder_ == null) {
+        project_ = null;
+      } else {
+        project_ = null;
+        projectBuilder_ = null;
+      }
+      groupLeader_ = "";
 
-      private com.google.protobuf.SingleFieldBuilderV3<
-              Project, Project.Builder, com.bht.pim.proto.project.ProjectOrBuilder> projectBuilder_;
+      if (employeesBuilder_ == null) {
+        employees_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+      } else {
+        employeesBuilder_.clear();
+      }
+      return this;
+    }
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
@@ -439,7 +447,29 @@ private static final long serialVersionUID = 0L;
       return result;
     }
 
-      private Object groupLeader_ = "";
+    public ProjectInfo buildPartial() {
+      ProjectInfo result = new ProjectInfo(this);
+      int from_bitField0_ = bitField0_;
+      int to_bitField0_ = 0;
+      if (projectBuilder_ == null) {
+        result.project_ = project_;
+      } else {
+        result.project_ = projectBuilder_.build();
+      }
+      result.groupLeader_ = groupLeader_;
+      if (employeesBuilder_ == null) {
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          employees_ = java.util.Collections.unmodifiableList(employees_);
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.employees_ = employees_;
+      } else {
+        result.employees_ = employeesBuilder_.build();
+      }
+      result.bitField0_ = to_bitField0_;
+      onBuilt();
+      return result;
+    }
 
     public Builder clone() {
       return (Builder) super.clone();
@@ -476,22 +506,43 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-      public Builder clear() {
-          super.clear();
-          if (projectBuilder_ == null) {
-              project_ = null;
+    public Builder mergeFrom(ProjectInfo other) {
+      if (other == ProjectInfo.getDefaultInstance()) return this;
+      if (other.hasProject()) {
+        mergeProject(other.getProject());
+      }
+      if (!other.getGroupLeader().isEmpty()) {
+        groupLeader_ = other.groupLeader_;
+        onChanged();
+      }
+      if (employeesBuilder_ == null) {
+        if (!other.employees_.isEmpty()) {
+          if (employees_.isEmpty()) {
+            employees_ = other.employees_;
+            bitField0_ = (bitField0_ & ~0x00000004);
           } else {
-              project_ = null;
-              projectBuilder_ = null;
+            ensureEmployeesIsMutable();
+            employees_.addAll(other.employees_);
           }
-          groupLeader_ = "";
-
-          if (employeesBuilder_ == null) {
-              employees_ = java.util.Collections.emptyList();
-              bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        }
+      } else {
+        if (!other.employees_.isEmpty()) {
+          if (employeesBuilder_.isEmpty()) {
+            employeesBuilder_.dispose();
+            employeesBuilder_ = null;
+            employees_ = other.employees_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+            employeesBuilder_ =
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getEmployeesFieldBuilder() : null;
           } else {
-              employeesBuilder_.clear();
+            employeesBuilder_.addAllMessages(other.employees_);
           }
+        }
+      }
+      this.mergeUnknownFields(other.unknownFields);
+      onChanged();
       return this;
     }
 
@@ -519,30 +570,8 @@ private static final long serialVersionUID = 0L;
     private int bitField0_;
 
     private Project project_ = null;
-
-      public ProjectInfo buildPartial() {
-          ProjectInfo result = new ProjectInfo(this);
-          int from_bitField0_ = bitField0_;
-          int to_bitField0_ = 0;
-          if (projectBuilder_ == null) {
-              result.project_ = project_;
-          } else {
-              result.project_ = projectBuilder_.build();
-          }
-          result.groupLeader_ = groupLeader_;
-          if (employeesBuilder_ == null) {
-              if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                  employees_ = java.util.Collections.unmodifiableList(employees_);
-                  bitField0_ = (bitField0_ & ~0x00000004);
-              }
-              result.employees_ = employees_;
-          } else {
-              result.employees_ = employeesBuilder_.build();
-          }
-          result.bitField0_ = to_bitField0_;
-          onBuilt();
-          return result;
-      }
+    private com.google.protobuf.SingleFieldBuilderV3<
+            Project, Project.Builder, ProjectOrBuilder> projectBuilder_;
     /**
      * <code>.com.bht.pim.proto.project.Project project = 1;</code>
      */
@@ -621,46 +650,14 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
+    /**
+     * <code>.com.bht.pim.proto.project.Project project = 1;</code>
+     */
+    public Project.Builder getProjectBuilder() {
 
-      public Builder mergeFrom(ProjectInfo other) {
-          if (other == ProjectInfo.getDefaultInstance()) return this;
-          if (other.hasProject()) {
-              mergeProject(other.getProject());
-          }
-          if (!other.getGroupLeader().isEmpty()) {
-              groupLeader_ = other.groupLeader_;
-              onChanged();
-          }
-          if (employeesBuilder_ == null) {
-              if (!other.employees_.isEmpty()) {
-                  if (employees_.isEmpty()) {
-                      employees_ = other.employees_;
-                      bitField0_ = (bitField0_ & ~0x00000004);
-                  } else {
-                      ensureEmployeesIsMutable();
-                      employees_.addAll(other.employees_);
-                  }
-                  onChanged();
-              }
-          } else {
-              if (!other.employees_.isEmpty()) {
-                  if (employeesBuilder_.isEmpty()) {
-                      employeesBuilder_.dispose();
-                      employeesBuilder_ = null;
-                      employees_ = other.employees_;
-                      bitField0_ = (bitField0_ & ~0x00000004);
-                      employeesBuilder_ =
-                              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                                      getEmployeesFieldBuilder() : null;
-                  } else {
-                      employeesBuilder_.addAllMessages(other.employees_);
-                  }
-              }
-          }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
-          return this;
-      }
+      onChanged();
+      return getProjectFieldBuilder().getBuilder();
+    }
     /**
      * <code>.com.bht.pim.proto.project.Project project = 1;</code>
      */
@@ -672,25 +669,15 @@ private static final long serialVersionUID = 0L;
             Project.getDefaultInstance() : project_;
       }
     }
-
-      /**
-       * <code>.com.bht.pim.proto.project.Project project = 1;</code>
-       */
-      public Project.Builder getProjectBuilder() {
-
-          onChanged();
-          return getProjectFieldBuilder().getBuilder();
-      }
-
     /**
      * <code>.com.bht.pim.proto.project.Project project = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-            Project, Project.Builder, com.bht.pim.proto.project.ProjectOrBuilder>
+            Project, Project.Builder, ProjectOrBuilder>
         getProjectFieldBuilder() {
       if (projectBuilder_ == null) {
         projectBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                Project, Project.Builder, com.bht.pim.proto.project.ProjectOrBuilder>(
+                Project, Project.Builder, ProjectOrBuilder>(
                 getProject(),
                 getParentForChildren(),
                 isClean());
@@ -699,74 +686,71 @@ private static final long serialVersionUID = 0L;
       return projectBuilder_;
     }
 
-      /**
-       * <code>string groupLeader = 2;</code>
-       */
-      public String getGroupLeader() {
-          Object ref = groupLeader_;
-          if (!(ref instanceof String)) {
-              com.google.protobuf.ByteString bs =
-                      (com.google.protobuf.ByteString) ref;
-              String s = bs.toStringUtf8();
-              groupLeader_ = s;
-              return s;
-          } else {
-              return (String) ref;
-          }
+    private Object groupLeader_ = "";
+    /**
+     * <code>string groupLeader = 2;</code>
+     */
+    public String getGroupLeader() {
+      Object ref = groupLeader_;
+      if (!(ref instanceof String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        groupLeader_ = s;
+        return s;
+      } else {
+        return (String) ref;
       }
-
-      /**
-       * <code>string groupLeader = 2;</code>
-       */
-      public Builder setGroupLeader(
-              String value) {
-          if (value == null) {
-              throw new NullPointerException();
-          }
-
-          groupLeader_ = value;
-          onChanged();
-          return this;
+    }
+    /**
+     * <code>string groupLeader = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getGroupLeaderBytes() {
+      Object ref = groupLeader_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        groupLeader_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
       }
-
-      /**
-       * <code>string groupLeader = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-      getGroupLeaderBytes() {
-          Object ref = groupLeader_;
-          if (ref instanceof String) {
-              com.google.protobuf.ByteString b =
-                      com.google.protobuf.ByteString.copyFromUtf8(
-                              (String) ref);
-              groupLeader_ = b;
-              return b;
-          } else {
-              return (com.google.protobuf.ByteString) ref;
-          }
-      }
-
-      /**
-       * <code>string groupLeader = 2;</code>
-       */
-      public Builder setGroupLeaderBytes(
-              com.google.protobuf.ByteString value) {
-          if (value == null) {
-              throw new NullPointerException();
-          }
-          checkByteStringIsUtf8(value);
-
-          groupLeader_ = value;
-          onChanged();
-          return this;
-      }
-
-      /**
-       * <code>string groupLeader = 2;</code>
-       */
-      public Builder clearGroupLeader() {
-
-          groupLeader_ = getDefaultInstance().getGroupLeader();
+    }
+    /**
+     * <code>string groupLeader = 2;</code>
+     */
+    public Builder setGroupLeader(
+        String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      groupLeader_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string groupLeader = 2;</code>
+     */
+    public Builder clearGroupLeader() {
+      
+      groupLeader_ = getDefaultInstance().getGroupLeader();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string groupLeader = 2;</code>
+     */
+    public Builder setGroupLeaderBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      groupLeader_ = value;
       onChanged();
       return this;
     }

@@ -9,7 +9,7 @@ package com.bht.pim.proto.employee;
 public  final class EmployeeId extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:com.bht.pim.proto.employee.EmployeeId)
-        EmployeeIdOrBuilder {
+    EmployeeIdOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use EmployeeId.newBuilder() to construct.
   private EmployeeId(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {

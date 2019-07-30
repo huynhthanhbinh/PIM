@@ -24,12 +24,11 @@ public interface ProjectInfoOrBuilder extends
    * <code>string groupLeader = 2;</code>
    */
   String getGroupLeader();
-
-    /**
-     * <code>string groupLeader = 2;</code>
-     */
-    com.google.protobuf.ByteString
-    getGroupLeaderBytes();
+  /**
+   * <code>string groupLeader = 2;</code>
+   */
+  com.google.protobuf.ByteString
+      getGroupLeaderBytes();
 
   /**
    * <code>repeated .com.bht.pim.proto.employee.Employee employees = 3;</code>
