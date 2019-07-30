@@ -16,6 +16,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Main extends Application {
@@ -141,6 +142,16 @@ public class Main extends Application {
         ProjectList projectList = stub5.getProjectList(noParam2);
 
         projectList.getProjectListList().forEach(project1 -> logger.info(project1.getName()));
+
+        // Get all project numbers ====================================
+
+        List<Long> projectNumbers = stub5
+                .getProjectNumbers(noParam2)
+                .getProjectNumbersList();
+
+        logger.info(projectNumbers);
+
+        projectNumbers.forEach(logger::info);
     }
 
 

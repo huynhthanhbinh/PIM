@@ -67,6 +67,26 @@ public class ProjectListServiceImpl extends ProjectListServiceGrpc.ProjectListSe
 
     @Override
     public void getProjectNumbers(NoParam request, StreamObserver<ProjectNumbers> responseObserver) {
-        super.getProjectNumbers(request, responseObserver);
+        try {
+
+            List<Long> numbers = projectDao.getAllProjectsNumber();
+
+            ProjectNumbers projectNumbers = ProjectNumbers.newBuilder()
+                    .addAllProjectNumbers(numbers)
+                    .build();
+
+            responseObserver.onNext(projectNumbers);
+            responseObserver.onCompleted();
+
+        } catch (Exception exception) {
+
+            // log the exception out
+            logger.info(exception);
+
+            // return an empty list not return null value for list
+            responseObserver.onNext(ProjectNumbers.newBuilder()
+                    .addAllProjectNumbers(Collections.emptyList()).build());
+            responseObserver.onCompleted();
+        }
     }
 }
