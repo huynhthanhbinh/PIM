@@ -6,7 +6,7 @@
 <GridPane xmlns:fx="http://javafx.com/fxml"
           fx:controller="com.bht.pim.controller.SampleController"
           alignment="center" hgap="10" vgap="10"
-          stylesheets="/sample.css">
+          stylesheets="/css/sample.css">
 
     <Button text="Say 'Hello World'"
             onAction="#sayHelloWorld"/>

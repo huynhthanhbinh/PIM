@@ -156,7 +156,7 @@ public class ListViews extends Application {
         Scene scene = new Scene(layout, 400, 400);
 
         scene.getStylesheets().add(Objects.requireNonNull(
-                classLoader.getResource("form.css")).toExternalForm());
+                classLoader.getResource("css/form.css")).toExternalForm());
 
         window.setScene(scene);
         showWindow(window);

@@ -11,20 +11,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Objects;
 
 public class TableViews extends Application {
@@ -57,42 +52,52 @@ public class TableViews extends Application {
 
         TableColumn<Project, Long> cSelect = new TableColumn<>("");
         cSelect.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.05));
+        cSelect.setResizable(false);
+
 
         TableColumn<Project, Long> cNumber = new TableColumn<>("Number");
         cNumber.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
+        cNumber.setResizable(false);
 
 
         TableColumn<Project, String> cName = new TableColumn<>("Name");
         cName.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.25));
         cName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        cName.setResizable(false);
 
 
         TableColumn<Project, String> cCustomer = new TableColumn<>("Customer");
         cCustomer.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.25));
         cCustomer.setCellValueFactory(new PropertyValueFactory<>("customer"));
+        cCustomer.setResizable(false);
 
 
         TableColumn<Project, String> cStatus = new TableColumn<>("Status");
         cStatus.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         cStatus.setCellFactory(CellMapping::STATUS);
+        cStatus.setResizable(false);
 
 
         TableColumn<Project, Long> cStart = new TableColumn<>("Start");
         cStart.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
         cStart.setCellFactory(CellMapping::DATE);
+        cStart.setResizable(false);
 
 
         TableColumn<Project, Long> cEnd = new TableColumn<>("End");
         cEnd.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
         cEnd.setCellFactory(CellMapping::DATE);
+        cEnd.setResizable(false);
+
 
         TableColumn<Project, Long> cDelete = new TableColumn<>("Delete");
         cDelete.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.05));
         cDelete.setResizable(false);
+
 
         table.setItems(getAllProducts());
         table.getColumns().addAll(cSelect, cNumber, cName, cCustomer, cStatus, cStart, cEnd, cDelete);
@@ -105,7 +110,9 @@ public class TableViews extends Application {
         Scene scene = new Scene(layout, 1024, 576);
 
         scene.getStylesheets().add(Objects.requireNonNull(
-                classLoader.getResource("form.css")).toExternalForm());
+                classLoader.getResource("css/sample.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(
+                classLoader.getResource("css/project_table.css")).toExternalForm());
 
         window.setScene(scene);
         showWindow(window);

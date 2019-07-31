@@ -121,7 +121,7 @@ public class LoginForm extends Application {
         Scene scene = new Scene(grid, 400, 150);
 
         scene.getStylesheets().add(Objects.requireNonNull(
-                classLoader.getResource("form.css")).toExternalForm());
+                classLoader.getResource("css/form.css")).toExternalForm());
 
         window.setMinWidth(370);
         window.setMinHeight(190);

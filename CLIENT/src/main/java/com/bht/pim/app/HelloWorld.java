@@ -67,7 +67,7 @@ public class HelloWorld extends Application {
 
         Scene scene = new Scene(layout, 400, 200);
         scene.getStylesheets().add(Objects.requireNonNull(
-                classLoader.getResource("sample.css")).toExternalForm());
+                classLoader.getResource("css/sample.css")).toExternalForm());
 
         /*
          * A layout means how we arrange all the things in the window

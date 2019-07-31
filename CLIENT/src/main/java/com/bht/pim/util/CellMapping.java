@@ -21,7 +21,7 @@ public class CellMapping {
                 } else {
                     // Format date
                     if (item == 0) { // Not set date yet
-                        setText("/");
+                        setText("         /");
 
                     } else {
                         Date date = new Date(item);

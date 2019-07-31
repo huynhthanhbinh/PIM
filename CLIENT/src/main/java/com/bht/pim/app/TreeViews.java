@@ -79,7 +79,7 @@ public class TreeViews extends Application {
         Scene scene = new Scene(layout, 350, 250);
 
         scene.getStylesheets().add(Objects.requireNonNull(
-                classLoader.getResource("form.css")).toExternalForm());
+                classLoader.getResource("css/form.css")).toExternalForm());
 
         window.setScene(scene);
         showWindow(window);
