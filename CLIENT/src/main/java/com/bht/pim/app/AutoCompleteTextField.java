@@ -2,6 +2,7 @@
 
 package com.bht.pim.app;
 
+import com.bht.pim.proto.employee.Employee;
 import com.bht.pim.proto.employee.EmployeeList;
 import com.bht.pim.proto.employee.EmployeeListServiceGrpc;
 import com.bht.pim.proto.employee.NoParam;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class AutoCompleteTextField extends Application {
 
@@ -113,13 +115,9 @@ public class AutoCompleteTextField extends Application {
 
         channel.shutdown();
 
-        List<String> employeesList = new ArrayList<>();
-
-        employeeList.getEmployeeListList().forEach(employee -> employeesList.add(
-                "id=" + employee.getId() + " | " + employee.getVisa() +
-                        " - " + employee.getLastName() + " " + employee.getFirstName()));
-
-        return employeesList;
+        return employeeList.getEmployeeListList().stream()
+                .map(this::toEmployeeInfo)
+                .collect(Collectors.toList());
     }
 
     private void configureAutoCompletion() {
@@ -134,14 +132,15 @@ public class AutoCompleteTextField extends Application {
             long id = Long.parseLong(input.substring(start, end));
             String name = input.substring(end + 3);
 
-            Button bRemove = new Button("remove");
-            bRemove.setPadding(new Insets(2));
+            Button bRemove = new Button("  X  ");
 
             table.getItems().add(new Member(id, name, bRemove));
 
             members.add(id);
             logger.info(members);
 
+            // Update autocompletion list
+            // remove the selected one
             employees.remove(input);
             employeeAutoCompletion.dispose();
             configureAutoCompletion();
@@ -159,23 +158,30 @@ public class AutoCompleteTextField extends Application {
         cName.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.6));
         cName.setResizable(false);
 
-        TableColumn<Member, Button> cDelete = new TableColumn<>("DELETE");
-        cDelete.setCellValueFactory(new PropertyValueFactory<>("delete"));
-        cDelete.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.2));
-        cDelete.setResizable(false);
+        TableColumn<Member, Button> cRemove = new TableColumn<>("REMOVE");
+        cRemove.setCellValueFactory(new PropertyValueFactory<>("remove"));
+        cRemove.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.2));
+        cRemove.setResizable(false);
 
-        tableView.getColumns().addAll(cId, cName, cDelete);
+        tableView.getColumns().addAll(cId, cName, cRemove);
     }
 
+    // mapping employee to employee info
+    private String toEmployeeInfo(Employee employee) {
+        return "id=" + employee.getId() + " | " + employee.getVisa() + " - "
+                + employee.getLastName() + " " + employee.getFirstName();
+    }
+
+    // for table initialize
     public class Member {
         private long id;
         private String name;
-        private Button delete;
+        private Button remove;
 
-        public Member(long id, String name, Button delete) {
+        public Member(long id, String name, Button remove) {
             this.id = id;
             this.name = name;
-            this.delete = delete;
+            this.remove = remove;
         }
 
         public long getId() {
@@ -194,12 +200,12 @@ public class AutoCompleteTextField extends Application {
             this.name = name;
         }
 
-        public Button getDelete() {
-            return delete;
+        public Button getRemove() {
+            return remove;
         }
 
-        public void setDelete(Button delete) {
-            this.delete = delete;
+        public void setRemove(Button remove) {
+            this.remove = remove;
         }
     }
 }
