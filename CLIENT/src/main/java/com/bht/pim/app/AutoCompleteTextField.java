@@ -1,5 +1,3 @@
-//https://stackoverflow.com/questions/32282230/fxml-javafx-8-tableview-make-a-delete-button-in-each-row-and-delete-the-row-a
-
 package com.bht.pim.app;
 
 import com.bht.pim.proto.employee.Employee;
@@ -9,13 +7,11 @@ import com.bht.pim.proto.employee.NoParam;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.application.Application;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
@@ -42,10 +38,12 @@ public class AutoCompleteTextField extends Application {
     private AutoCompletionBinding<String> employeeAutoCompletion;
     private List<String> employees = employeeList();
     private List<Long> members = new ArrayList<>();
+    private long leaderId = 13;
 
     public static void main(String[] args) {
         launch(args);
     }
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -87,6 +85,7 @@ public class AutoCompleteTextField extends Application {
         showWindow(primaryStage);
     }
 
+
     private void showWindow(Stage window) {
         window.setResizable(true);
         window.show();
@@ -95,6 +94,7 @@ public class AutoCompleteTextField extends Application {
         window.setX((screenBounds.getWidth() - window.getWidth()) / 2);
         window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
     }
+
 
     private List<String> employeeList() {
         // Channel is the abstraction to connect to a service endpoint
@@ -120,6 +120,7 @@ public class AutoCompleteTextField extends Application {
                 .collect(Collectors.toList());
     }
 
+
     private void configureAutoCompletion() {
         employeeAutoCompletion = TextFields
                 .bindAutoCompletion(textField, employees);
@@ -132,9 +133,7 @@ public class AutoCompleteTextField extends Application {
             long id = Long.parseLong(input.substring(start, end));
             String name = input.substring(end + 3);
 
-            Button bRemove = new Button("  X  ");
-
-            table.getItems().add(new Member(id, name, bRemove));
+            table.getItems().add(new Member(id, name));
 
             members.add(id);
             logger.info(members);
@@ -147,6 +146,7 @@ public class AutoCompleteTextField extends Application {
         });
     }
 
+
     private void configureTableMember(TableView tableView) {
         TableColumn<Member, Long> cId = new TableColumn<>("ID");
         cId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -158,13 +158,16 @@ public class AutoCompleteTextField extends Application {
         cName.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.6));
         cName.setResizable(false);
 
-        TableColumn<Member, Button> cRemove = new TableColumn<>("REMOVE");
-        cRemove.setCellValueFactory(new PropertyValueFactory<>("remove"));
+        TableColumn<Member, Member> cRemove = new TableColumn<>("REMOVE");
         cRemove.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.2));
         cRemove.setResizable(false);
 
+        cRemove.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        cRemove.setCellFactory(this::REMOVE);
+
         tableView.getColumns().addAll(cId, cName, cRemove);
     }
+
 
     // mapping employee to employee info
     private String toEmployeeInfo(Employee employee) {
@@ -172,16 +175,59 @@ public class AutoCompleteTextField extends Application {
                 + employee.getLastName() + " " + employee.getFirstName();
     }
 
+
+    // button remove on each table row of table project members
+    private TableCell<Member, Member> REMOVE(TableColumn<Member, Member> param) {
+        return new TableCell<Member, Member>() {
+            private final Button bRemove = new Button("  X  ");
+
+            @Override
+            protected void updateItem(Member member, boolean empty) {
+                if (member == null || member.id == leaderId) {
+
+                    // Not show the button
+                    // to prevent user delete leader from group
+                    setGraphic(null);
+                    return;
+                }
+
+                // Show the button
+                setGraphic(bRemove);
+
+                bRemove.setOnAction(event -> {
+                    // clear current row selection
+                    table.getSelectionModel().clearSelection();
+
+                    // remove this row from table
+                    table.getItems().remove(member);
+
+                    // add this employee back to employee list
+                    // for autocompletion next times
+                    employees.add(member.toEmployeeInfo());
+
+                    // load auto-completion again
+                    employeeAutoCompletion.dispose();
+                    configureAutoCompletion();
+
+                    // remove this id from the member id list
+                    members.remove(member.id);
+
+                    // log current list member id
+                    logger.info(members);
+                });
+            }
+        };
+    }
+
+
     // for table initialize
     public class Member {
         private long id;
         private String name;
-        private Button remove;
 
-        public Member(long id, String name, Button remove) {
+        public Member(long id, String name) {
             this.id = id;
             this.name = name;
-            this.remove = remove;
         }
 
         public long getId() {
@@ -200,12 +246,8 @@ public class AutoCompleteTextField extends Application {
             this.name = name;
         }
 
-        public Button getRemove() {
-            return remove;
-        }
-
-        public void setRemove(Button remove) {
-            this.remove = remove;
+        public String toEmployeeInfo() {
+            return "id=" + id + " | " + name;
         }
     }
 }

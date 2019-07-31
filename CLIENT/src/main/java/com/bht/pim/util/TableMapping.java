@@ -7,7 +7,11 @@ import javafx.scene.control.TableColumn;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CellMapping {
+public class TableMapping {
+
+    private TableMapping() {
+    }
+
     public static TableCell<Project, Long> DATE(TableColumn<Project, Long> column) {
         return new TableCell<Project, Long>() {
             SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -66,8 +70,5 @@ public class CellMapping {
                 }
             }
         };
-    }
-
-    private CellMapping() {
     }
 }

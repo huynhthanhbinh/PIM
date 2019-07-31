@@ -3,7 +3,7 @@ package com.bht.pim.app;
 import com.bht.pim.proto.project.Project;
 import com.bht.pim.proto.project.ProjectList;
 import com.bht.pim.proto.project.ProjectListServiceGrpc;
-import com.bht.pim.util.CellMapping;
+import com.bht.pim.util.TableMapping;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.application.Application;
@@ -29,9 +29,6 @@ public class TableViews extends Application {
 
     private static final int PORT = 9999;
     private static final String HOST = "localhost";
-    private ManagedChannel channel;
-
-    private Stage window;
 
     public static void main(String[] args) {
         launch(args);
@@ -42,10 +39,8 @@ public class TableViews extends Application {
 
         ClassLoader classLoader = getClass().getClassLoader();
 
-        window = primaryStage;
-
-        window.setTitle("Project Information Management");
-        window.getIcons().add(
+        primaryStage.setTitle("Project Information Management");
+        primaryStage.getIcons().add(
                 new Image(Objects.requireNonNull(
                         classLoader.getResourceAsStream("pictures/icon.png"))));
 
@@ -77,21 +72,21 @@ public class TableViews extends Application {
         TableColumn<Project, String> cStatus = new TableColumn<>("Status");
         cStatus.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        cStatus.setCellFactory(CellMapping::STATUS);
+        cStatus.setCellFactory(TableMapping::STATUS);
         cStatus.setResizable(false);
 
 
         TableColumn<Project, Long> cStart = new TableColumn<>("Start");
         cStart.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
-        cStart.setCellFactory(CellMapping::DATE);
+        cStart.setCellFactory(TableMapping::DATE);
         cStart.setResizable(false);
 
 
         TableColumn<Project, Long> cEnd = new TableColumn<>("End");
         cEnd.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
-        cEnd.setCellFactory(CellMapping::DATE);
+        cEnd.setCellFactory(TableMapping::DATE);
         cEnd.setResizable(false);
 
 
@@ -115,8 +110,8 @@ public class TableViews extends Application {
         scene.getStylesheets().add(Objects.requireNonNull(
                 classLoader.getResource("css/project_table.css")).toExternalForm());
 
-        window.setScene(scene);
-        showWindow(window);
+        primaryStage.setScene(scene);
+        showWindow(primaryStage);
     }
 
     private void showWindow(Stage window) {
@@ -133,7 +128,7 @@ public class TableViews extends Application {
 
         // Channel is the abstraction to connect to a service endpoint
         // Let's use plaintext communication because we don't have certs
-        channel = ManagedChannelBuilder
+        ManagedChannel channel = ManagedChannelBuilder
                 .forAddress(HOST, PORT)
                 .usePlaintext()
                 .build();
