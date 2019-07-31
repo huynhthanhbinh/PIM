@@ -49,8 +49,8 @@ public class AutoCompleteTextField extends Application {
 
         primaryStage.setTitle("Project Information Management");
         primaryStage.getIcons().add(
-                new Image(Objects.requireNonNull(
-                        classLoader.getResourceAsStream("pictures/icon.png"))));
+                new Image(Objects.requireNonNull(classLoader
+                        .getResourceAsStream("pictures/icon.png"))));
 
         textField = new TextField();
         textField.setPromptText("Search for employee");
@@ -74,8 +74,9 @@ public class AutoCompleteTextField extends Application {
 
         Scene scene = new Scene(layout, 450, 400);
 
-        scene.getStylesheets().add(Objects.requireNonNull(
-                classLoader.getResource("css/project_members_table.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(classLoader
+                .getResource("css/project_members_table.css"))
+                .toExternalForm());
 
         primaryStage.setScene(scene);
         showWindow(primaryStage);
@@ -128,7 +129,10 @@ public class AutoCompleteTextField extends Application {
             int start = input.indexOf('=') + 1;
             int end = input.indexOf('|') - 1;
             long id = Long.parseLong(input.substring(start, end));
-            logger.info("Selected ID: " + id);
+            String name = input.substring(end + 3);
+
+            table.getItems().add(new Member(id, name));
+
             members.add(id);
             logger.info(members);
 
@@ -150,15 +154,36 @@ public class AutoCompleteTextField extends Application {
         cName.setResizable(false);
 
         TableColumn<Member, Long> cDelete = new TableColumn<>("DELETE");
-        cDelete.setCellValueFactory(new PropertyValueFactory<>("id"));
+        cDelete.setCellValueFactory(new PropertyValueFactory<>(""));
         cDelete.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.2));
         cDelete.setResizable(false);
 
         tableView.getColumns().addAll(cId, cName, cDelete);
     }
 
-    private class Member {
-        private String id;
+    public class Member {
+        private long id;
         private String name;
+
+        private Member(long id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public long getId() {
+            return id;
+        }
+
+        public void setId(long id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 }
