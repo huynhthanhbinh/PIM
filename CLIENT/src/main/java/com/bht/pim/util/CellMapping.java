@@ -67,4 +67,7 @@ public class CellMapping {
             }
         };
     }
+
+    private CellMapping() {
+    }
 }

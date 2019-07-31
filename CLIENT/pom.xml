@@ -274,6 +274,12 @@
             <version>${grpc-spring-boot-starter.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>8.40.15</version>
+        </dependency>
+
     </dependencies>
 
     <build>

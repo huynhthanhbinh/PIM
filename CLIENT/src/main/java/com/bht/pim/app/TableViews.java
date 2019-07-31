@@ -12,7 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
@@ -128,7 +129,7 @@ public class TableViews extends Application {
     }
 
     // Get all of products
-    public ObservableList<Project> getAllProducts() {
+    private ObservableList<Project> getAllProducts() {
 
         // Channel is the abstraction to connect to a service endpoint
         // Let's use plaintext communication because we don't have certs
@@ -144,10 +145,6 @@ public class TableViews extends Application {
                 com.bht.pim.proto.project.NoParam.newBuilder().build();
 
         ProjectList projectList = stub5.getProjectList(noParam2);
-
-        // Real project : get from database
-        // Using service, repository with Spring, Hibernate
-        // This is just some sample data
 
         channel.shutdown();
 
