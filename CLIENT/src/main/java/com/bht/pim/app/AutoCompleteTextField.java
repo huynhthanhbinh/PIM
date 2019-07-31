@@ -1,3 +1,5 @@
+//https://stackoverflow.com/questions/32282230/fxml-javafx-8-tableview-make-a-delete-button-in-each-row-and-delete-the-row-a
+
 package com.bht.pim.app;
 
 import com.bht.pim.proto.employee.EmployeeList;
@@ -9,6 +11,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -131,7 +134,10 @@ public class AutoCompleteTextField extends Application {
             long id = Long.parseLong(input.substring(start, end));
             String name = input.substring(end + 3);
 
-            table.getItems().add(new Member(id, name));
+            Button bRemove = new Button("remove");
+            bRemove.setPadding(new Insets(2));
+
+            table.getItems().add(new Member(id, name, bRemove));
 
             members.add(id);
             logger.info(members);
@@ -153,8 +159,8 @@ public class AutoCompleteTextField extends Application {
         cName.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.6));
         cName.setResizable(false);
 
-        TableColumn<Member, Long> cDelete = new TableColumn<>("DELETE");
-        cDelete.setCellValueFactory(new PropertyValueFactory<>(""));
+        TableColumn<Member, Button> cDelete = new TableColumn<>("DELETE");
+        cDelete.setCellValueFactory(new PropertyValueFactory<>("delete"));
         cDelete.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.2));
         cDelete.setResizable(false);
 
@@ -164,10 +170,12 @@ public class AutoCompleteTextField extends Application {
     public class Member {
         private long id;
         private String name;
+        private Button delete;
 
-        private Member(long id, String name) {
+        public Member(long id, String name, Button delete) {
             this.id = id;
             this.name = name;
+            this.delete = delete;
         }
 
         public long getId() {
@@ -184,6 +192,14 @@ public class AutoCompleteTextField extends Application {
 
         public void setName(String name) {
             this.name = name;
+        }
+
+        public Button getDelete() {
+            return delete;
+        }
+
+        public void setDelete(Button delete) {
+            this.delete = delete;
         }
     }
 }
