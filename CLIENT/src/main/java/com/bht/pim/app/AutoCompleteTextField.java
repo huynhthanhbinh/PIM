@@ -36,7 +36,7 @@ public class AutoCompleteTextField extends Application {
     private Logger logger = Logger.getLogger(AutoCompleteTextField.class);
 
     private TextField textField;
-    private Label lNumber = new Label("Number of employees : ");
+    private Label lNumber = new Label("Number of members : ");
     private Label lSize = new Label("0");
     private TableView<Member> table = new TableView();
     private AutoCompletionBinding<String> employeeAutoCompletion;
@@ -73,6 +73,8 @@ public class AutoCompleteTextField extends Application {
         HBox hBox = new HBox();
         hBox.getChildren().addAll(lNumber, lSize);
         hBox.getStyleClass().add("size");
+
+        lSize.setId("color-label");
 
         configureTableMember(table);
         table.getItems().addAll(Collections.emptyList());
