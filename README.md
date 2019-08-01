@@ -6,8 +6,8 @@ Multilingual CLIENT-SERVER JavaFX Project
 + bht@elca.vn
 + huynhthanhbinh1998@gmail.com
 <br><br>
-<div>
-<b>Framework supported:</b>
-JacpFX, Spring, Hibernate,
-gRPC with protobuf<br>
-</div>
+
+<b>Programming techniques:</b><br>
++ Maven, Spring, Hibernate, JacpFX<br>
++ gRPC with protobuf, MapStruct, Lombok<br>
++ Multilingual with properties configuration
