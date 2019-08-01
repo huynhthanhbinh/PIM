@@ -1,9 +1,9 @@
 package com.bht.pim;
 
-import com.bht.pim.proto.employee.*;
 import com.bht.pim.proto.employee.NoParam;
-import com.bht.pim.proto.group.*;
+import com.bht.pim.proto.employee.*;
 import com.bht.pim.proto.group.Success;
+import com.bht.pim.proto.group.*;
 import com.bht.pim.proto.project.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -49,7 +49,7 @@ public class Main extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
                 .getClassLoader()
-                .getResource("templates/sample.fxml"));
+                .getResource("templates/AddNewProject.fxml"));
 
         rootNode = fxmlLoader.load();
     }
@@ -182,7 +182,9 @@ public class Main extends Application {
                 new Image(Objects.requireNonNull(classLoader
                         .getResourceAsStream("pictures/icon.png"))));
 
-        Scene scene = new Scene(rootNode, 800, 600);
+        Scene scene = new Scene(rootNode, 1024, 576);
+        window.setMinWidth(1024);
+        window.setMinHeight(576);
         window.setResizable(true);
         window.setScene(scene);
         window.show();

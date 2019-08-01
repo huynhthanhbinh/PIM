@@ -160,20 +160,21 @@ public class AutoCompleteTextField extends Application {
     private void configureTableMember(TableView tableView) {
         TableColumn<Member, Long> cId = new TableColumn<>("ID");
         cId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        cId.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.2));
+        cId.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0));
         cId.setResizable(false);
 
         TableColumn<Member, Long> cName = new TableColumn<>("NAME");
         cName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        cName.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.6));
+        cName.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.85));
         cName.setResizable(false);
 
-        TableColumn<Member, Member> cRemove = new TableColumn<>("REMOVE");
-        cRemove.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.2));
+        TableColumn<Member, Member> cRemove = new TableColumn<>("");
+        cRemove.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.15));
         cRemove.setResizable(false);
 
         cRemove.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         cRemove.setCellFactory(this::REMOVE);
+        cRemove.setStyle("-fx-alignment: CENTER-RIGHT;");
 
         tableView.getColumns().addAll(cId, cName, cRemove);
         tableView.getItems().addListener((ListChangeListener) change ->
@@ -191,7 +192,7 @@ public class AutoCompleteTextField extends Application {
     // button remove on each table row of table project members
     private TableCell<Member, Member> REMOVE(TableColumn<Member, Member> param) {
         return new TableCell<Member, Member>() {
-            private final Button bRemove = new Button("  X  ");
+            private final Button bRemove = new Button("X");
 
             @Override
             protected void updateItem(Member member, boolean empty) {
