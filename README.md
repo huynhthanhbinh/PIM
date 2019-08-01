@@ -1,5 +1,5 @@
 # PIM - Project Information Management
-CLIENT-SERVER JavaFX Project 
+Multilingual CLIENT-SERVER JavaFX Project 
 <br>ELCA VN Internship Summer 2019<br>
 <br>
 <b>Author:</b> BHT - huynhthanhbinh1998<br>
