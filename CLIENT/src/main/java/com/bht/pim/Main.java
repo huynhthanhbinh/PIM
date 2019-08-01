@@ -49,7 +49,7 @@ public class Main extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
                 .getClassLoader()
-                .getResource("templates/AddNewProject.fxml"));
+                .getResource("templates/CreateProject.fxml"));
 
         rootNode = fxmlLoader.load();
     }
@@ -182,9 +182,9 @@ public class Main extends Application {
                 new Image(Objects.requireNonNull(classLoader
                         .getResourceAsStream("pictures/icon.png"))));
 
-        Scene scene = new Scene(rootNode, 1024, 576);
-        window.setMinWidth(1024);
-        window.setMinHeight(576);
+        Scene scene = new Scene(rootNode, 1120, 630);
+        window.setMinWidth(1120);
+        window.setMinHeight(630);
         window.setResizable(true);
         window.setScene(scene);
         window.show();

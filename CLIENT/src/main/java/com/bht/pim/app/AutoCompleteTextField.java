@@ -158,25 +158,20 @@ public class AutoCompleteTextField extends Application {
 
 
     private void configureTableMember(TableView tableView) {
-        TableColumn<Member, Long> cId = new TableColumn<>("ID");
-        cId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        cId.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0));
-        cId.setResizable(false);
-
         TableColumn<Member, Long> cName = new TableColumn<>("NAME");
         cName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        cName.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.85));
+        cName.prefWidthProperty().bind(table.widthProperty().subtract(20).multiply(0.85));
         cName.setResizable(false);
 
         TableColumn<Member, Member> cRemove = new TableColumn<>("");
-        cRemove.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.15));
+        cRemove.prefWidthProperty().bind(table.widthProperty().subtract(20).multiply(0.15));
         cRemove.setResizable(false);
 
         cRemove.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         cRemove.setCellFactory(this::REMOVE);
-        cRemove.setStyle("-fx-alignment: CENTER-RIGHT;");
+        cRemove.setStyle("-fx-alignment: CENTER-RIGHT; -fx-border-insets: 5px;");
 
-        tableView.getColumns().addAll(cId, cName, cRemove);
+        tableView.getColumns().addAll(cName, cRemove);
         tableView.getItems().addListener((ListChangeListener) change ->
                 lSize.setText(String.valueOf(tableView.getItems().size())));
     }
