@@ -8,12 +8,14 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -34,6 +36,8 @@ public class AutoCompleteTextField extends Application {
     private Logger logger = Logger.getLogger(AutoCompleteTextField.class);
 
     private TextField textField;
+    private Label lNumber = new Label("Number of employees : ");
+    private Label lSize = new Label("0");
     private TableView<Member> table = new TableView();
     private AutoCompletionBinding<String> employeeAutoCompletion;
     private List<String> employees = employeeList();
@@ -66,11 +70,15 @@ public class AutoCompleteTextField extends Application {
         VBox vBox = new VBox();
         vBox.getChildren().add(textField);
 
+        HBox hBox = new HBox();
+        hBox.getChildren().addAll(lNumber, lSize);
+        hBox.getStyleClass().add("size");
+
         configureTableMember(table);
         table.getItems().addAll(Collections.emptyList());
 
         VBox layout = new VBox();
-        layout.getChildren().addAll(vBox, table);
+        layout.getChildren().addAll(vBox, hBox, table);
 
         layout.setSpacing(20);
         layout.setPadding(new Insets(20));
@@ -166,6 +174,8 @@ public class AutoCompleteTextField extends Application {
         cRemove.setCellFactory(this::REMOVE);
 
         tableView.getColumns().addAll(cId, cName, cRemove);
+        tableView.getItems().addListener((ListChangeListener) change ->
+                lSize.setText(String.valueOf(tableView.getItems().size())));
     }
 
 

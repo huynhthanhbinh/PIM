@@ -74,3 +74,8 @@
 .table-row-cell .button:hover {
     -fx-cursor: hand;
 }
+
+.size {
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
