@@ -41,6 +41,17 @@ public class ProjectCreate implements Initializable {
     public TableColumn<Member, Long> cName;
     @FXML
     public TableColumn<Member, Member> cRemove;
+    @FXML
+    public ComboBox<String> comboBoxOption;
+    @FXML
+    public ComboBox<String> comboBoxStatus;
+    @FXML
+    public TextField customer;
+    @FXML
+    public TextField name;
+    @FXML
+    public TextField number;
+
     private long leaderId;
     private List<String> employees;
     private List<Long> members;
@@ -52,6 +63,20 @@ public class ProjectCreate implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // Init this scene code go here
         logger.info("[PIM Client - ProjectCreate] On init scene ");
+
+        // force the field to be numeric only
+        number.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                logger.info("ZZZZZZZZZZZZZZZZZZZZZZZ");
+                number.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+
+        comboBoxStatus.getItems().add("New");
+        comboBoxStatus.getSelectionModel().selectFirst();
+
+        String[] options = {"New group", "Current group"};
+        comboBoxOption.getItems().addAll(options);
 
         leaderId = 13;
         employees = employeeList();

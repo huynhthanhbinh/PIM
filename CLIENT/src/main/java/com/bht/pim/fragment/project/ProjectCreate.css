@@ -83,3 +83,11 @@
 #color-label {
     -fx-text-fill: #d9390d;
 }
+
+.text-field {
+    -fx-font-size: 16;
+}
+
+.combo-box {
+    -fx-font-size: 14;
+}
