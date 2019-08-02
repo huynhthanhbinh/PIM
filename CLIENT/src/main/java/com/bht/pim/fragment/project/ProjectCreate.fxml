@@ -238,31 +238,31 @@
                     </font>
                 </Label>
                 <Label text="Project-name cannot be empty !" textFill="#f24517" GridPane.columnIndex="1"
-                       GridPane.columnSpan="2" GridPane.rowIndex="4">
+                       GridPane.columnSpan="2" GridPane.rowIndex="4" fx:id="lNameEmpty">
                     <font>
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>
                 </Label>
                 <Label text="Customer cannot be empty !" textFill="#f24517" GridPane.columnIndex="1"
-                       GridPane.rowIndex="6">
+                       GridPane.rowIndex="6" fx:id="lCustomerEmpty">
                     <font>
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>
                 </Label>
                 <Label text="Please choose group-leader !" textFill="#f24517" GridPane.columnIndex="3"
-                       GridPane.rowIndex="8">
+                       GridPane.rowIndex="8" fx:id="lLeaderChoice">
                     <font>
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>
                 </Label>
                 <Label text="Please specify Start-date !" textFill="#f24517" GridPane.columnIndex="1"
-                       GridPane.rowIndex="10">
+                       GridPane.rowIndex="10" fx:id="lStartEmpty">
                     <font>
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>
                 </Label>
                 <Label text="End-date is after Start-date ! " textFill="#f24517" GridPane.columnIndex="3"
-                       GridPane.rowIndex="10">
+                       GridPane.rowIndex="10" fx:id="lEndInvalid">
                     <font>
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>

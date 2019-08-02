@@ -28,8 +28,6 @@ import java.util.stream.Collectors;
 @Controller
 public class ProjectCreate implements Initializable {
 
-    @FXML
-    public Label lNumberExist;
     private static final int PORT = 9999;
     private static final String HOST = "localhost";
 
@@ -55,8 +53,21 @@ public class ProjectCreate implements Initializable {
     public TextField name;
     @FXML
     public TextField number;
-    private ManagedChannel channel;
+    @FXML
+    public Label lNumberExist;
+    @FXML
+    public Label lNameEmpty;
+    @FXML
+    public Label lCustomerEmpty;
+    @FXML
+    public Label lLeaderChoice;
+    @FXML
+    public Label lStartEmpty;
+    @FXML
+    public Label lEndInvalid;
 
+
+    private ManagedChannel channel;
     private long leaderId;
     private List<Long> projectNumbers;
     private List<String> employees;
@@ -68,6 +79,11 @@ public class ProjectCreate implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lNumberExist.setVisible(false);
+        lNameEmpty.setVisible(false);
+        lCustomerEmpty.setVisible(false);
+        lLeaderChoice.setVisible(false);
+        lStartEmpty.setVisible(false);
+        lEndInvalid.setVisible(false);
 
         // Channel is the abstraction to connect to a service endpoint
         // Let's use plaintext communication because we don't have certs
@@ -256,7 +272,7 @@ public class ProjectCreate implements Initializable {
     }
 
     // Get all project numbers ====================================
-    List<Long> getProjectNumbers() {
+    private List<Long> getProjectNumbers() {
         ProjectListServiceGrpc.ProjectListServiceBlockingStub stub5 =
                 ProjectListServiceGrpc.newBlockingStub(channel);
 
@@ -266,21 +282,6 @@ public class ProjectCreate implements Initializable {
         return stub5.getProjectNumbers(noParam2)
                 .getProjectNumbersList();
     }
-
-    // Get employee list =======================================
-
-//    EmployeeListServiceGrpc.EmployeeListServiceBlockingStub stub3 =
-//            EmployeeListServiceGrpc.newBlockingStub(channel);
-//
-//    NoParam noParam = NoParam.newBuilder().build();
-//
-//    EmployeeList getEmployeeList = stub3.getEmployeeList(noParam);
-//
-//        logger.info(getEmployeeList);
-//
-//        getEmployeeList.getEmployeeListList()
-//                .forEach(employee1 ->logger.info(employee1.getVisa()));
-
 
     // Add a new group ============================================
 //
