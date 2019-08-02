@@ -1,18 +1,37 @@
 package com.bht.pim.util;
 
+import com.bht.pim.proto.project.NoParam;
 import com.bht.pim.proto.project.Project;
+import com.bht.pim.proto.project.ProjectListServiceGrpc;
+import io.grpc.Channel;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import org.apache.log4j.Logger;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
-public class TableMapping {
+public class ProjectUtil {
 
-    private TableMapping() {
+    private static Logger logger = Logger.getLogger(ProjectUtil.class);
+
+    private ProjectUtil() {
     }
 
-    public static TableCell<Project, Long> DATE(TableColumn<Project, Long> column) {
+    // Get all project numbers ====================================
+    public static List<Long> getProjectNumbers(Channel channel) {
+        ProjectListServiceGrpc.ProjectListServiceBlockingStub stub =
+                ProjectListServiceGrpc.newBlockingStub(channel);
+
+        NoParam noParam = NoParam.newBuilder().build();
+
+        return stub.getProjectNumbers(noParam)
+                .getProjectNumbersList();
+    }
+
+    // Format Date : convert from long to Date
+    public static TableCell<Project, Long> dateFormat(TableColumn<Project, Long> column) {
         return new TableCell<Project, Long>() {
             SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -37,7 +56,8 @@ public class TableMapping {
         };
     }
 
-    public static TableCell<Project, String> STATUS(TableColumn<Project, String> column) {
+    // Format Status : convert from server data to status
+    public static TableCell<Project, String> statusFormat(TableColumn<Project, String> column) {
         return new TableCell<Project, String>() {
 
             @Override

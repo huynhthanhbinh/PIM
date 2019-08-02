@@ -1,11 +1,7 @@
 package com.bht.pim.fragment.project;
 
-import com.bht.pim.proto.employee.Employee;
-import com.bht.pim.proto.employee.EmployeeList;
-import com.bht.pim.proto.employee.EmployeeListServiceGrpc;
-import com.bht.pim.proto.employee.NoParam;
-import com.bht.pim.proto.project.ProjectListServiceGrpc;
-import io.grpc.Channel;
+import com.bht.pim.util.EmployeeUtil;
+import com.bht.pim.util.ProjectUtil;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -24,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 @Controller
 public class ProjectCreate implements Initializable {
@@ -117,10 +112,10 @@ public class ProjectCreate implements Initializable {
                 .build();
 
         // Get all exist project numbers
-        projectNumbers = getProjectNumbers(channel);
+        projectNumbers = ProjectUtil.getProjectNumbers(channel);
 
         // Get all employees
-        employees = getEmployeeList(channel);
+        employees = EmployeeUtil.getEmployeeList(channel);
 
         // Turn off connection
         channel.shutdown();
@@ -260,43 +255,6 @@ public class ProjectCreate implements Initializable {
     }
 
 
-    // Get all project numbers ====================================
-    private List<Long> getProjectNumbers(Channel channel) {
-        ProjectListServiceGrpc.ProjectListServiceBlockingStub stub5 =
-                ProjectListServiceGrpc.newBlockingStub(channel);
-
-        com.bht.pim.proto.project.NoParam noParam2 =
-                com.bht.pim.proto.project.NoParam.newBuilder().build();
-
-        return stub5.getProjectNumbers(noParam2)
-                .getProjectNumbersList();
-    }
-
-
-    // Employee List get response from server
-    private List<String> getEmployeeList(Channel channel) {
-        // Get employee list =======================================
-
-        EmployeeListServiceGrpc.EmployeeListServiceBlockingStub stub3 =
-                EmployeeListServiceGrpc.newBlockingStub(channel);
-
-        NoParam noParam = NoParam.newBuilder().build();
-
-        EmployeeList employeeList = stub3.getEmployeeList(noParam);
-
-        return employeeList.getEmployeeListList().stream()
-                .map(this::toEmployeeInfo)
-                .collect(Collectors.toList());
-    }
-
-
-    // mapping employee to employee info
-    private String toEmployeeInfo(Employee employee) {
-        return "id=" + employee.getId() + " | " + employee.getVisa() + " - "
-                + employee.getLastName() + " " + employee.getFirstName();
-    }
-
-
     // for table initialize
     public class Member {
         private long id;
@@ -327,13 +285,4 @@ public class ProjectCreate implements Initializable {
             return "id=" + id + " | " + name;
         }
     }
-
-    // Add a new group ============================================
-//
-//    Group newGroup = Group.newBuilder()
-//            .setGroupLeaderId(2)
-//            .build();
-//
-//    Success success = stub1.addNewGroup(newGroup);
-//        logger.info(success.getIsSuccess());
 }

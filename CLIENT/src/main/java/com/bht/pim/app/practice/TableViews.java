@@ -3,7 +3,7 @@ package com.bht.pim.app.practice;
 import com.bht.pim.proto.project.Project;
 import com.bht.pim.proto.project.ProjectList;
 import com.bht.pim.proto.project.ProjectListServiceGrpc;
-import com.bht.pim.util.TableMapping;
+import com.bht.pim.util.ProjectUtil;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.application.Application;
@@ -72,21 +72,21 @@ public class TableViews extends Application {
         TableColumn<Project, String> cStatus = new TableColumn<>("Status");
         cStatus.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        cStatus.setCellFactory(TableMapping::STATUS);
+        cStatus.setCellFactory(ProjectUtil::statusFormat);
         cStatus.setResizable(false);
 
 
         TableColumn<Project, Long> cStart = new TableColumn<>("Start");
         cStart.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
-        cStart.setCellFactory(TableMapping::DATE);
+        cStart.setCellFactory(ProjectUtil::dateFormat);
         cStart.setResizable(false);
 
 
         TableColumn<Project, Long> cEnd = new TableColumn<>("End");
         cEnd.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
-        cEnd.setCellFactory(TableMapping::DATE);
+        cEnd.setCellFactory(ProjectUtil::dateFormat);
         cEnd.setResizable(false);
 
 
