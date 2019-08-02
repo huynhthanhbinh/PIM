@@ -5,6 +5,7 @@ import com.bht.pim.proto.employee.EmployeeList;
 import com.bht.pim.proto.employee.EmployeeListServiceGrpc;
 import com.bht.pim.proto.employee.NoParam;
 import com.bht.pim.proto.project.ProjectListServiceGrpc;
+import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -78,26 +79,59 @@ public class ProjectCreate implements Initializable {
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // Init this scene code go here
+        logger.info("[PIM Client - ProjectCreate] On init scene ");
+
+        // Get all necessary data from server
+        getNecessaryData();
+
+        // Init all inputs
+        initAllInput();
+
+        // Add all event-listener
+        addAllEventListener();
+
+        // Hide all check-label
+        hideAllCheckLabel();
+    }
+
+
+    // Hide all check-label
+    private void hideAllCheckLabel() {
         lNumberExist.setVisible(false);
         lNameEmpty.setVisible(false);
         lCustomerEmpty.setVisible(false);
         lLeaderChoice.setVisible(false);
         lStartEmpty.setVisible(false);
         lEndInvalid.setVisible(false);
+    }
 
+
+    // Get all necessary data
+    private void getNecessaryData() {
         // Channel is the abstraction to connect to a service endpoint
         // Let's use plaintext communication because we don't have certs
         channel = ManagedChannelBuilder.forAddress(HOST, PORT)
                 .usePlaintext()
                 .build();
 
-        // Init this scene code go here
-        logger.info("[PIM Client - ProjectCreate] On init scene ");
-
         // Get all exist project numbers
-        projectNumbers = getProjectNumbers();
-        logger.info("All exist project numbers:");
-        logger.info(projectNumbers);
+        projectNumbers = getProjectNumbers(channel);
+
+        // Get all employees
+        employees = getEmployeeList(channel);
+
+        // Turn off connection
+        channel.shutdown();
+
+        leaderId = 13;
+        members = new ArrayList<>();
+    }
+
+
+    // Add all event-listener
+    private void addAllEventListener() {
 
         // force the field to be numeric only
         number.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -111,16 +145,22 @@ public class ProjectCreate implements Initializable {
             }
         });
 
+        // check-if the name field is empty or not
+        name.textProperty().addListener((observable, oldValue, newValue) ->
+                lNameEmpty.setVisible(newValue.isEmpty()));
+
+        // check-if the customer field is empty or not
+        customer.textProperty().addListener((observable, oldValue, newValue) ->
+                lCustomerEmpty.setVisible(newValue.isEmpty()));
+    }
+
+    private void initAllInput() {
         comboBoxStatus.getItems().add("New");
         comboBoxStatus.getSelectionModel().selectFirst();
 
         String[] options = {"New group", "Current group"};
         comboBoxOption.getItems().addAll(options);
         comboBoxOption.getSelectionModel().selectFirst();
-
-        leaderId = 13;
-        employees = getEmployeeList();
-        members = new ArrayList<>();
 
         configureAutoCompletion();
         employeeAutoCompletion.setMinWidth(300);
@@ -129,6 +169,34 @@ public class ProjectCreate implements Initializable {
         configureTableMember(table);
         table.getItems().addAll(Collections.emptyList());
     }
+
+
+    // Search employee auto-completion
+    private void configureAutoCompletion() {
+        employeeAutoCompletion = TextFields
+                .bindAutoCompletion(textField, employees);
+        employeeAutoCompletion.setOnAutoCompleted(event -> {
+            String input = textField.getText();
+            textField.clear();
+
+            int start = input.indexOf('=') + 1;
+            int end = input.indexOf('|') - 1;
+            long id = Long.parseLong(input.substring(start, end));
+            String memberName = input.substring(end + 3);
+
+            table.getItems().add(new Member(id, memberName));
+
+            members.add(id);
+            logger.info(members);
+
+            // Update autocompletion list
+            // remove the selected one
+            employees.remove(input);
+            employeeAutoCompletion.dispose();
+            configureAutoCompletion();
+        });
+    }
+
 
     // Config table member, CellValueFactory / CellFactory
     private void configureTableMember(TableView tableView) {
@@ -146,6 +214,7 @@ public class ProjectCreate implements Initializable {
         tableView.getItems().addListener((ListChangeListener) change ->
                 lSize.setText(String.valueOf(tableView.getItems().size())));
     }
+
 
     // Button remove on each table row
     private TableCell<Member, Member> REMOVE(TableColumn<Member, Member> param) {
@@ -190,40 +259,22 @@ public class ProjectCreate implements Initializable {
         };
     }
 
-    // Search employee auto-completion
-    private void configureAutoCompletion() {
-        employeeAutoCompletion = TextFields
-                .bindAutoCompletion(textField, employees);
-        employeeAutoCompletion.setOnAutoCompleted(event -> {
-            String input = textField.getText();
-            textField.clear();
 
-            int start = input.indexOf('=') + 1;
-            int end = input.indexOf('|') - 1;
-            long id = Long.parseLong(input.substring(start, end));
-            String memberName = input.substring(end + 3);
+    // Get all project numbers ====================================
+    private List<Long> getProjectNumbers(Channel channel) {
+        ProjectListServiceGrpc.ProjectListServiceBlockingStub stub5 =
+                ProjectListServiceGrpc.newBlockingStub(channel);
 
-            table.getItems().add(new Member(id, memberName));
+        com.bht.pim.proto.project.NoParam noParam2 =
+                com.bht.pim.proto.project.NoParam.newBuilder().build();
 
-            members.add(id);
-            logger.info(members);
-
-            // Update autocompletion list
-            // remove the selected one
-            employees.remove(input);
-            employeeAutoCompletion.dispose();
-            configureAutoCompletion();
-        });
+        return stub5.getProjectNumbers(noParam2)
+                .getProjectNumbersList();
     }
 
-    // mapping employee to employee info
-    private String toEmployeeInfo(Employee employee) {
-        return "id=" + employee.getId() + " | " + employee.getVisa() + " - "
-                + employee.getLastName() + " " + employee.getFirstName();
-    }
 
     // Employee List get response from server
-    private List<String> getEmployeeList() {
+    private List<String> getEmployeeList(Channel channel) {
         // Get employee list =======================================
 
         EmployeeListServiceGrpc.EmployeeListServiceBlockingStub stub3 =
@@ -233,12 +284,18 @@ public class ProjectCreate implements Initializable {
 
         EmployeeList employeeList = stub3.getEmployeeList(noParam);
 
-        channel.shutdown();
-
         return employeeList.getEmployeeListList().stream()
                 .map(this::toEmployeeInfo)
                 .collect(Collectors.toList());
     }
+
+
+    // mapping employee to employee info
+    private String toEmployeeInfo(Employee employee) {
+        return "id=" + employee.getId() + " | " + employee.getVisa() + " - "
+                + employee.getLastName() + " " + employee.getFirstName();
+    }
+
 
     // for table initialize
     public class Member {
@@ -269,18 +326,6 @@ public class ProjectCreate implements Initializable {
         private String toEmployeeInfo() {
             return "id=" + id + " | " + name;
         }
-    }
-
-    // Get all project numbers ====================================
-    private List<Long> getProjectNumbers() {
-        ProjectListServiceGrpc.ProjectListServiceBlockingStub stub5 =
-                ProjectListServiceGrpc.newBlockingStub(channel);
-
-        com.bht.pim.proto.project.NoParam noParam2 =
-                com.bht.pim.proto.project.NoParam.newBuilder().build();
-
-        return stub5.getProjectNumbers(noParam2)
-                .getProjectNumbersList();
     }
 
     // Add a new group ============================================
