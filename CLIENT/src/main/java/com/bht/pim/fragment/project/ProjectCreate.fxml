@@ -232,7 +232,7 @@
                     </columns>
                 </TableView>
                 <Label text="Project-number already exist !" textFill="#f24517" GridPane.columnIndex="1"
-                       GridPane.rowIndex="2">
+                       GridPane.rowIndex="2" fx:id="lNumberExist">
                     <font>
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>

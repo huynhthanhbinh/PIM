@@ -4,6 +4,7 @@ import com.bht.pim.proto.employee.Employee;
 import com.bht.pim.proto.employee.EmployeeList;
 import com.bht.pim.proto.employee.EmployeeListServiceGrpc;
 import com.bht.pim.proto.employee.NoParam;
+import com.bht.pim.proto.project.ProjectListServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -27,8 +28,11 @@ import java.util.stream.Collectors;
 @Controller
 public class ProjectCreate implements Initializable {
 
+    @FXML
+    public Label lNumberExist;
     private static final int PORT = 9999;
     private static final String HOST = "localhost";
+
     @FXML
     public TextField textField;
     @FXML
@@ -51,8 +55,10 @@ public class ProjectCreate implements Initializable {
     public TextField name;
     @FXML
     public TextField number;
+    private ManagedChannel channel;
 
     private long leaderId;
+    private List<Long> projectNumbers;
     private List<String> employees;
     private List<Long> members;
     private AutoCompletionBinding<String> employeeAutoCompletion;
@@ -61,14 +67,31 @@ public class ProjectCreate implements Initializable {
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        lNumberExist.setVisible(false);
+
+        // Channel is the abstraction to connect to a service endpoint
+        // Let's use plaintext communication because we don't have certs
+        channel = ManagedChannelBuilder.forAddress(HOST, PORT)
+                .usePlaintext()
+                .build();
+
         // Init this scene code go here
         logger.info("[PIM Client - ProjectCreate] On init scene ");
 
+        // Get all exist project numbers
+        projectNumbers = getProjectNumbers();
+        logger.info("All exist project numbers:");
+        logger.info(projectNumbers);
+
         // force the field to be numeric only
         number.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                logger.info("ZZZZZZZZZZZZZZZZZZZZZZZ");
-                number.setText(newValue.replaceAll("[^\\d]", ""));
+            if (!newValue.matches("\\d*")) { // input not number format
+                number.setText(newValue
+                        .replaceAll("[^\\d]", ""));
+
+            } else if (!newValue.isEmpty()) { // input in correct format
+                lNumberExist.setVisible(projectNumbers
+                        .contains(Long.valueOf(newValue)));
             }
         });
 
@@ -77,9 +100,10 @@ public class ProjectCreate implements Initializable {
 
         String[] options = {"New group", "Current group"};
         comboBoxOption.getItems().addAll(options);
+        comboBoxOption.getSelectionModel().selectFirst();
 
         leaderId = 13;
-        employees = employeeList();
+        employees = getEmployeeList();
         members = new ArrayList<>();
 
         configureAutoCompletion();
@@ -161,9 +185,9 @@ public class ProjectCreate implements Initializable {
             int start = input.indexOf('=') + 1;
             int end = input.indexOf('|') - 1;
             long id = Long.parseLong(input.substring(start, end));
-            String name = input.substring(end + 3);
+            String memberName = input.substring(end + 3);
 
-            table.getItems().add(new Member(id, name));
+            table.getItems().add(new Member(id, memberName));
 
             members.add(id);
             logger.info(members);
@@ -183,14 +207,7 @@ public class ProjectCreate implements Initializable {
     }
 
     // Employee List get response from server
-    private List<String> employeeList() {
-        // Channel is the abstraction to connect to a service endpoint
-        // Let's use plaintext communication because we don't have certs
-        ManagedChannel channel = ManagedChannelBuilder
-                .forAddress(HOST, PORT)
-                .usePlaintext()
-                .build();
-
+    private List<String> getEmployeeList() {
         // Get employee list =======================================
 
         EmployeeListServiceGrpc.EmployeeListServiceBlockingStub stub3 =
@@ -239,15 +256,16 @@ public class ProjectCreate implements Initializable {
     }
 
     // Get all project numbers ====================================
+    List<Long> getProjectNumbers() {
+        ProjectListServiceGrpc.ProjectListServiceBlockingStub stub5 =
+                ProjectListServiceGrpc.newBlockingStub(channel);
 
-//    List<Long> projectNumbers = stub5
-//            .getProjectNumbers(noParam2)
-//            .getProjectNumbersList();
-//
-//        logger.info(projectNumbers);
-//
-//        projectNumbers.forEach(logger::info);
+        com.bht.pim.proto.project.NoParam noParam2 =
+                com.bht.pim.proto.project.NoParam.newBuilder().build();
 
+        return stub5.getProjectNumbers(noParam2)
+                .getProjectNumbersList();
+    }
 
     // Get employee list =======================================
 
@@ -256,11 +274,11 @@ public class ProjectCreate implements Initializable {
 //
 //    NoParam noParam = NoParam.newBuilder().build();
 //
-//    EmployeeList employeeList = stub3.getEmployeeList(noParam);
+//    EmployeeList getEmployeeList = stub3.getEmployeeList(noParam);
 //
-//        logger.info(employeeList);
+//        logger.info(getEmployeeList);
 //
-//        employeeList.getEmployeeListList()
+//        getEmployeeList.getEmployeeListList()
 //                .forEach(employee1 ->logger.info(employee1.getVisa()));
 
 
