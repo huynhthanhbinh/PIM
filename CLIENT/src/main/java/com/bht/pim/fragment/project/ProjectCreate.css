@@ -43,7 +43,7 @@
 }
 
 .table-row-cell:empty {
-    -fx-background-color: grey;
+    -fx-background-color: gainsboro;
 }
 
 .table-row-cell:empty.table-cell {
