@@ -17,6 +17,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
+        <jacp.version>2.1</jacp.version>
         <springframework.version>5.1.8.RELEASE</springframework.version>
         <springboot.version>2.1.6.RELEASE</springboot.version>
         <jackson.version>2.9.9</jackson.version>
@@ -278,6 +279,34 @@
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>
             <version>8.40.15</version>
+        </dependency>
+
+        <!-- The JacpFX API -->
+        <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>jacpfx.API</artifactId>
+            <version>${jacp.version}</version>
+        </dependency>
+
+        <!-- The JacpFX implementation -->
+        <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>jacpfx.JavaFX</artifactId>
+            <version>${jacp.version}</version>
+        </dependency>
+
+        <!-- The JacpFX controls -->
+        <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>jacpfx.JavaFXControls</artifactId>
+            <version>${jacp.version}</version>
+        </dependency>
+
+        <!-- The JacpFX launcher -->
+        <dependency>
+            <groupId>org.jacpfx</groupId>
+            <artifactId>jacpfx.JavaFXSpring</artifactId>
+            <version>${jacp.version}</version>
         </dependency>
 
     </dependencies>
