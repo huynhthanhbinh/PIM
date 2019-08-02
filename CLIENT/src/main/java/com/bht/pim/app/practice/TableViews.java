@@ -1,4 +1,4 @@
-package com.bht.pim.app;
+package com.bht.pim.app.practice;
 
 import com.bht.pim.proto.project.Project;
 import com.bht.pim.proto.project.ProjectList;
@@ -106,9 +106,9 @@ public class TableViews extends Application {
         Scene scene = new Scene(layout, 1024, 576);
 
         scene.getStylesheets().add(Objects.requireNonNull(
-                classLoader.getResource("css/sample.css")).toExternalForm());
+                classLoader.getResource("junks/sample.css")).toExternalForm());
         scene.getStylesheets().add(Objects.requireNonNull(
-                classLoader.getResource("css/project_table.css")).toExternalForm());
+                classLoader.getResource("com/bht/pim/fragment/project/ProjectList.css")).toExternalForm());
 
         primaryStage.setScene(scene);
         showWindow(primaryStage);

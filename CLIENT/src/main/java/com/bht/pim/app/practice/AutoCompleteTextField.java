@@ -1,4 +1,4 @@
-package com.bht.pim.app;
+package com.bht.pim.app.practice;
 
 import com.bht.pim.proto.employee.Employee;
 import com.bht.pim.proto.employee.EmployeeList;
@@ -88,7 +88,7 @@ public class AutoCompleteTextField extends Application {
         Scene scene = new Scene(layout, 450, 400);
 
         scene.getStylesheets().add(Objects.requireNonNull(classLoader
-                .getResource("css/project_members_table.css"))
+                .getResource("com/bht/pim/fragment/project/ProjectCreate.css"))
                 .toExternalForm());
 
         primaryStage.setScene(scene);

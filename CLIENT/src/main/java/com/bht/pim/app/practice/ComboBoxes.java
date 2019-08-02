@@ -1,6 +1,6 @@
 //https://docs.oracle.com/javafx/2/ui_controls/combo-box.htm
 
-package com.bht.pim.app;
+package com.bht.pim.app.practice;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -117,7 +117,7 @@ public class ComboBoxes extends Application {
         Scene scene = new Scene(layout, 400, 200);
 
         scene.getStylesheets().add(Objects.requireNonNull(
-                classLoader.getResource("css/form.css")).toExternalForm());
+                classLoader.getResource("junks/form.css")).toExternalForm());
 
         window.setScene(scene);
         showWindow(window);

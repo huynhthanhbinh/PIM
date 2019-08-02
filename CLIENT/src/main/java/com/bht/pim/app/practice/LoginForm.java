@@ -1,4 +1,4 @@
-package com.bht.pim.app;
+package com.bht.pim.app.practice;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -121,7 +121,7 @@ public class LoginForm extends Application {
         Scene scene = new Scene(grid, 400, 150);
 
         scene.getStylesheets().add(Objects.requireNonNull(
-                classLoader.getResource("css/form.css")).toExternalForm());
+                classLoader.getResource("junks/form.css")).toExternalForm());
 
         window.setMinWidth(370);
         window.setMinHeight(190);

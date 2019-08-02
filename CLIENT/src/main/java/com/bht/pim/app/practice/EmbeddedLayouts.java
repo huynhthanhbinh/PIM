@@ -1,4 +1,4 @@
-package com.bht.pim.app;
+package com.bht.pim.app.practice;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

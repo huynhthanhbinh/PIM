@@ -1,4 +1,4 @@
-package com.bht.pim.app;
+package com.bht.pim.app.practice;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -10,25 +10,19 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.apache.log4j.Logger;
 
 import java.util.Objects;
 
-// This demo is aim to demonstrate
-// How windows communicating with the others
-// For eg. let we get the confirm of user
+public class AlertBox extends Application {
 
-public class ConfirmBox extends Application {
-
-    private static boolean confirm;
-    private Logger logger = Logger.getLogger(ConfirmBox.class);
     private Stage window;
+
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    public static boolean display(String title, String msg) {
+    private static void display(String title, String msg) {
 
         Stage window = new Stage();
 
@@ -41,20 +35,11 @@ public class ConfirmBox extends Application {
         Label label = new Label();
         label.setText(msg);
 
-        Button yesButton = new Button("Yes");
-        Button noButton = new Button("No");
-
-        yesButton.setOnAction(event -> {
-            confirm = true;
-            window.close();
-        });
-        noButton.setOnAction(event -> {
-            confirm = false;
-            window.close();
-        });
+        Button closeButton = new Button("Close the window");
+        closeButton.setOnAction(event -> window.close());
 
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(label, yesButton, noButton);
+        layout.getChildren().addAll(label, closeButton);
         layout.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(layout, 300, 300);
@@ -65,8 +50,6 @@ public class ConfirmBox extends Application {
         // before returning to the caller
         // usually use in application with threads -->  Multithreading
         window.showAndWait();
-
-        return confirm;
     }
 
     @Override
@@ -83,10 +66,8 @@ public class ConfirmBox extends Application {
 
 
         Button button = new Button("Click Me");
-        button.setOnAction(event -> {
-            boolean result = ConfirmBox.display("Confirm Window", "Do you want to ... ?");
-            logger.info("Result is : " + result);
-        });
+        button.setOnAction(event ->
+                AlertBox.display("Notice Window", "This is an alert box !"));
 
 
         StackPane layout = new StackPane();

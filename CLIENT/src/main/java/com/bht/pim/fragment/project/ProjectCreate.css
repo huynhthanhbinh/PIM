@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: darkgrey;
+    -fx-background-color: gainsboro;
 }
 
 .table-view {
@@ -12,7 +12,7 @@
 }
 
 .table-view .placeholder {
-    -fx-background-color: darkgrey;
+    -fx-background-color: gainsboro;
 }
 
 .table-view .table-column {
