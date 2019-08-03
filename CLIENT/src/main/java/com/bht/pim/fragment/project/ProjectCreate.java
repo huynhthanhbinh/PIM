@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -40,9 +41,11 @@ public class ProjectCreate implements Initializable {
     @FXML
     public TableColumn<Member, Member> cRemove;
     @FXML
+    public ComboBox<String> comboBoxStatus;
+    @FXML
     public ComboBox<String> comboBoxOption;
     @FXML
-    public ComboBox<String> comboBoxStatus;
+    public ComboBox<String> comboBoxLeader;
     @FXML
     public TextField customer;
     @FXML
@@ -61,9 +64,15 @@ public class ProjectCreate implements Initializable {
     public Label lStartEmpty;
     @FXML
     public Label lEndInvalid;
-
+    @FXML
+    public Label lGroupOption;
+    @FXML
+    public Button bCreate;
+    @FXML
+    public Button bCancel;
 
     private ManagedChannel channel;
+    private boolean chose;
     private long leaderId;
     private List<Long> projectNumbers;
     private List<String> employees;
@@ -100,6 +109,7 @@ public class ProjectCreate implements Initializable {
         lLeaderChoice.setVisible(false);
         lStartEmpty.setVisible(false);
         lEndInvalid.setVisible(false);
+        lGroupOption.setVisible(false);
     }
 
 
@@ -120,6 +130,7 @@ public class ProjectCreate implements Initializable {
         // Turn off connection
         channel.shutdown();
 
+        chose = false;
         leaderId = 13;
         members = new ArrayList<>();
     }
@@ -147,6 +158,12 @@ public class ProjectCreate implements Initializable {
         // check-if the customer field is empty or not
         customer.textProperty().addListener((observable, oldValue, newValue) ->
                 lCustomerEmpty.setVisible(newValue.isEmpty()));
+
+        // if user click create
+        bCreate.setOnMouseClicked(this::onSubmit);
+
+        // if user click cancel
+        bCancel.setOnMouseClicked(this::onCancel);
     }
 
     private void initAllInput() {
@@ -203,7 +220,7 @@ public class ProjectCreate implements Initializable {
         cRemove.setResizable(false);
 
         cRemove.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-        cRemove.setCellFactory(this::REMOVE);
+        cRemove.setCellFactory(this::remove);
         cRemove.setStyle("-fx-alignment: CENTER-RIGHT; -fx-border-insets: 5px;");
 
         tableView.getItems().addListener((ListChangeListener) change ->
@@ -212,7 +229,7 @@ public class ProjectCreate implements Initializable {
 
 
     // Button remove on each table row
-    private TableCell<Member, Member> REMOVE(TableColumn<Member, Member> param) {
+    private TableCell<Member, Member> remove(TableColumn<Member, Member> param) {
         return new TableCell<Member, Member>() {
             private final Button bRemove = new Button("X");
 
@@ -252,6 +269,21 @@ public class ProjectCreate implements Initializable {
                 });
             }
         };
+    }
+
+
+    // when user click button create Project
+    private void onSubmit(MouseEvent event) {
+        logger.info("[bCreate] onClick");
+        if (!chose) {
+            lGroupOption.setVisible(true);
+        }
+    }
+
+
+    // when user click button cancel
+    private void onCancel(MouseEvent event) {
+        logger.info("[bCancel] onClick");
     }
 
 

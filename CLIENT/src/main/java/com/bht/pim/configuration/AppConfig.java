@@ -3,8 +3,8 @@ package com.bht.pim.configuration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
 @ComponentScan("com.bht.pim")
+@Configuration
 public class AppConfig {
     public static final String PERSPECTIVE_ONE = "idPone";
 

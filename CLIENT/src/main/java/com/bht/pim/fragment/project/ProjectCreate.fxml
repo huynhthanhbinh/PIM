@@ -68,14 +68,16 @@
                         <Separator prefWidth="200.0"/>
                         <HBox alignment="CENTER" prefHeight="114.0" prefWidth="1110.0" spacing="20.0">
                             <children>
-                                <Button defaultButton="true" graphicTextGap="10.0" mnemonicParsing="false"
-                                        prefHeight="25.0" prefWidth="180.0" text="CREATE" HBox.hgrow="ALWAYS">
+                                <Button fx:id="bCreate" defaultButton="true" graphicTextGap="10.0"
+                                        mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="CREATE"
+                                        HBox.hgrow="ALWAYS">
                                     <font>
                                         <Font size="16.0"/>
                                     </font>
                                 </Button>
-                                <Button cancelButton="true" graphicTextGap="10.0" mnemonicParsing="false"
-                                        prefHeight="25.0" prefWidth="180.0" text="CANCEL" HBox.hgrow="ALWAYS">
+                                <Button fx:id="bCancel" cancelButton="true" graphicTextGap="10.0"
+                                        mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="CANCEL"
+                                        HBox.hgrow="ALWAYS">
                                     <font>
                                         <Font size="16.0"/>
                                     </font>
@@ -93,20 +95,20 @@
                             GridPane.rowIndex="9"/>
                 <DatePicker prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.hgrow="NEVER"
                             GridPane.rowIndex="9"/>
-                <ComboBox prefHeight="40.0" prefWidth="200.0" promptText="Choose option" GridPane.columnIndex="1"
-                          GridPane.hgrow="NEVER" GridPane.rowIndex="7" fx:id="comboBoxOption"/>
-                <ComboBox prefHeight="40.0" prefWidth="200.0" promptText="Choose leader" GridPane.columnIndex="3"
-                          GridPane.hgrow="NEVER" GridPane.rowIndex="7"/>
-                <TextField prefHeight="40.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.hgrow="NEVER"
-                           GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="NEVER"
-                           promptText="Input customer name" fx:id="customer"/>
-                <TextField prefHeight="40.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.hgrow="NEVER"
-                           GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER"
-                           promptText="Input project name" fx:id="name"/>
-                <TextField prefHeight="40.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="1"
-                           promptText="Input number only" fx:id="number"/>
-                <ComboBox prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.hgrow="NEVER"
-                          GridPane.rowIndex="1" fx:id="comboBoxStatus"/>
+                <ComboBox fx:id="comboBoxOption" prefHeight="40.0" prefWidth="200.0" promptText="Choose option"
+                          GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="7"/>
+                <ComboBox fx:id="comboBoxLeader" prefHeight="40.0" prefWidth="200.0" promptText="Choose leader"
+                          GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="7"/>
+                <TextField fx:id="customer" prefHeight="40.0" promptText="Input customer name" GridPane.columnIndex="1"
+                           GridPane.columnSpan="3" GridPane.hgrow="NEVER" GridPane.rowIndex="5"
+                           GridPane.valignment="CENTER" GridPane.vgrow="NEVER"/>
+                <TextField fx:id="name" prefHeight="40.0" promptText="Input project name" GridPane.columnIndex="1"
+                           GridPane.columnSpan="3" GridPane.hgrow="NEVER" GridPane.rowIndex="3"
+                           GridPane.valignment="CENTER" GridPane.vgrow="NEVER"/>
+                <TextField fx:id="number" prefHeight="40.0" promptText="Input number only" GridPane.columnIndex="1"
+                           GridPane.hgrow="NEVER" GridPane.rowIndex="1"/>
+                <ComboBox fx:id="comboBoxStatus" prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="3"
+                          GridPane.hgrow="NEVER" GridPane.rowIndex="1"/>
                 <Label alignment="TOP_LEFT" text="BASIC INFORMATION" GridPane.columnSpan="2">
                     <font>
                         <Font name="System Bold" size="24.0"/>
@@ -231,38 +233,44 @@
                         <TableColumn fx:id="cRemove" minWidth="9.0" prefWidth="51.0"/>
                     </columns>
                 </TableView>
-                <Label text="Project-number already exist !" textFill="#f24517" GridPane.columnIndex="1"
-                       GridPane.rowIndex="2" fx:id="lNumberExist">
+                <Label fx:id="lNumberExist" text="Project-number already exist !" textFill="#f24517"
+                       GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <font>
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>
                 </Label>
-                <Label text="Project-name cannot be empty !" textFill="#f24517" GridPane.columnIndex="1"
-                       GridPane.columnSpan="2" GridPane.rowIndex="4" fx:id="lNameEmpty">
+                <Label fx:id="lNameEmpty" text="Project-name cannot be empty !" textFill="#f24517"
+                       GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
                     <font>
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>
                 </Label>
-                <Label text="Customer cannot be empty !" textFill="#f24517" GridPane.columnIndex="1"
-                       GridPane.rowIndex="6" fx:id="lCustomerEmpty">
+                <Label fx:id="lCustomerEmpty" text="Customer cannot be empty !" textFill="#f24517"
+                       GridPane.columnIndex="1" GridPane.rowIndex="6">
                     <font>
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>
                 </Label>
-                <Label text="Please choose group-leader !" textFill="#f24517" GridPane.columnIndex="3"
-                       GridPane.rowIndex="8" fx:id="lLeaderChoice">
+                <Label fx:id="lLeaderChoice" text="Please choose group-leader !" textFill="#f24517"
+                       GridPane.columnIndex="3" GridPane.rowIndex="8">
                     <font>
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>
                 </Label>
-                <Label text="Please specify Start-date !" textFill="#f24517" GridPane.columnIndex="1"
-                       GridPane.rowIndex="10" fx:id="lStartEmpty">
+                <Label fx:id="lStartEmpty" text="Please specify Start-date !" textFill="#f24517"
+                       GridPane.columnIndex="1" GridPane.rowIndex="10">
                     <font>
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>
                 </Label>
-                <Label text="End-date is after Start-date ! " textFill="#f24517" GridPane.columnIndex="3"
-                       GridPane.rowIndex="10" fx:id="lEndInvalid">
+                <Label fx:id="lEndInvalid" text="End-date is after Start-date ! " textFill="#f24517"
+                       GridPane.columnIndex="3" GridPane.rowIndex="10">
+                    <font>
+                        <Font name="System Bold Italic" size="14.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="lGroupOption" text="Please choose group-option !" textFill="#f24517"
+                       GridPane.columnIndex="1" GridPane.rowIndex="8">
                     <font>
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>
