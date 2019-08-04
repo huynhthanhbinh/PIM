@@ -3,11 +3,12 @@ package com.bht.pim.service;
 
 import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.entity.EmployeeEntity;
-import com.bht.pim.proto.employee.Employee;
-import com.bht.pim.proto.employee.EmployeeId;
-import com.bht.pim.proto.employee.EmployeeInfo;
-import com.bht.pim.proto.employee.EmployeeServiceGrpc;
-import com.bht.pim.proto.project.Project;
+import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.proto.employees.EmployeeId;
+import com.bht.pim.proto.employees.EmployeeInfo;
+import com.bht.pim.proto.employees.EmployeeServiceGrpc;
+import com.bht.pim.proto.groups.Group;
+import com.bht.pim.proto.projects.Project;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -45,10 +46,14 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
             employeeEntity.getEnrolledProjects().forEach(projectEntity -> {
                 Date end = projectEntity.getEnd();
 
+                Group group = Group.newBuilder()
+                        .setId(projectEntity.getGroup().getId())
+                        .build();
+
                 Project project = Project.newBuilder()
                         .setId(projectEntity.getId())
                         .setNumber(projectEntity.getNumber())
-                        .setGroupId(projectEntity.getGroup().getId())
+                        .setGroup(group)
                         .setName(projectEntity.getName())
                         .setCustomer(projectEntity.getCustomer())
                         .setStatus(projectEntity.getStatus())
@@ -61,7 +66,7 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
 
             EmployeeInfo employeeInfo = EmployeeInfo.newBuilder()
                     .setEmployee(employee)
-                    .addAllEnrolledProjects(projects)
+                    .addAllEnrolledProject(projects)
                     .build();
 
             responseObserver.onNext(employeeInfo);

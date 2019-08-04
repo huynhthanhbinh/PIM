@@ -2,7 +2,8 @@ package com.bht.pim.service;
 
 import com.bht.pim.dao.ProjectDao;
 import com.bht.pim.entity.ProjectEntity;
-import com.bht.pim.proto.project.*;
+import com.bht.pim.proto.groups.Group;
+import com.bht.pim.proto.projects.*;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -32,12 +33,16 @@ public class ProjectListServiceImpl extends ProjectListServiceGrpc.ProjectListSe
             projectEntities.forEach(projectEntity -> {
                 Date end = projectEntity.getEnd();
 
+                Group group = Group.newBuilder()
+                        .setId(projectEntity.getGroup().getId())
+                        .build();
+
                 Project project = Project.newBuilder()
                         .setId(projectEntity.getId())
                         .setNumber(projectEntity.getNumber())
                         .setName(projectEntity.getName())
                         .setCustomer(projectEntity.getCustomer())
-                        .setGroupId(projectEntity.getGroup().getId())
+                        .setGroup(group)
                         .setStatus(projectEntity.getStatus())
                         .setStart(projectEntity.getStart().getTime())
                         .setEnd((end != null) ? end.getTime() : 0)
@@ -47,7 +52,7 @@ public class ProjectListServiceImpl extends ProjectListServiceGrpc.ProjectListSe
             });
 
             ProjectList projectList = ProjectList.newBuilder()
-                    .addAllProjectList(projects)
+                    .addAllProject(projects)
                     .build();
 
             responseObserver.onNext(projectList);
@@ -60,7 +65,7 @@ public class ProjectListServiceImpl extends ProjectListServiceGrpc.ProjectListSe
 
             // return an empty list not return null value for list
             responseObserver.onNext(ProjectList.newBuilder()
-                    .addAllProjectList(Collections.emptyList()).build());
+                    .addAllProject(Collections.emptyList()).build());
             responseObserver.onCompleted();
         }
     }
@@ -72,7 +77,7 @@ public class ProjectListServiceImpl extends ProjectListServiceGrpc.ProjectListSe
             List<Long> numbers = projectDao.getAllProjectsNumber();
 
             ProjectNumbers projectNumbers = ProjectNumbers.newBuilder()
-                    .addAllProjectNumbers(numbers)
+                    .addAllProjectNumber(numbers)
                     .build();
 
             responseObserver.onNext(projectNumbers);
@@ -85,7 +90,7 @@ public class ProjectListServiceImpl extends ProjectListServiceGrpc.ProjectListSe
 
             // return an empty list not return null value for list
             responseObserver.onNext(ProjectNumbers.newBuilder()
-                    .addAllProjectNumbers(Collections.emptyList()).build());
+                    .addAllProjectNumber(Collections.emptyList()).build());
             responseObserver.onCompleted();
         }
     }

@@ -3,8 +3,9 @@ package com.bht.pim.service;
 import com.bht.pim.dao.ProjectDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.ProjectEntity;
-import com.bht.pim.proto.employee.Employee;
-import com.bht.pim.proto.project.*;
+import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.proto.groups.Group;
+import com.bht.pim.proto.projects.*;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -30,12 +31,26 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
         try {
             Date end = projectEntity.getEnd();
 
+            EmployeeEntity leader = projectEntity.getGroup().getGroupLeader();
+
+            Employee groupLeader = Employee.newBuilder()
+                    .setId(leader.getId())
+                    .setVisa(leader.getVisa())
+                    .setLastName(leader.getLastName())
+                    .setFirstName(leader.getFirstName())
+                    .build();
+
+            Group group = Group.newBuilder()
+                    .setId(projectEntity.getGroup().getId())
+                    .setLeader(groupLeader)
+                    .build();
+
             Project project = Project.newBuilder()
                     .setId(projectEntity.getId())
                     .setNumber(projectEntity.getNumber())
                     .setName(projectEntity.getName())
                     .setCustomer(projectEntity.getCustomer())
-                    .setGroupId(projectEntity.getGroup().getId())
+                    .setGroup(group)
                     .setStatus(projectEntity.getStatus())
                     .setStart(projectEntity.getStart().getTime())
                     .setEnd((end != null) ? end.getTime() : 0)
@@ -54,14 +69,11 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
                 employees.add(employee);
             });
 
-            EmployeeEntity leader = projectEntity.getGroup().getGroupLeader();
-            String groupLeader = leader.getVisa() + " - " +
-                    leader.getLastName() + " " + leader.getFirstName();
+
 
             ProjectInfo projectInfo = ProjectInfo.newBuilder()
-                    .setGroupLeader(groupLeader)
                     .setProject(project)
-                    .addAllEmployees(employees)
+                    .addAllEmployee(employees)
                     .build();
 
             responseObserver.onNext(projectInfo);

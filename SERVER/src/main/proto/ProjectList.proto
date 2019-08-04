@@ -3,11 +3,12 @@ syntax = "proto3";
 import "Project.proto";
 import "ProjectNumbers.proto";
 
-package com.bht.pim.proto.project;
+package com.bht.pim.proto.projects;
+option java_generic_services = true;
 option java_multiple_files = true;
 
 message ProjectList {
-    repeated Project projectList = 1;
+    repeated Project project = 1;
 }
 
 

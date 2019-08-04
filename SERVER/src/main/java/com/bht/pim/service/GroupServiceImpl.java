@@ -4,8 +4,9 @@ import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.dao.GroupDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
-import com.bht.pim.proto.group.*;
-import com.bht.pim.proto.project.Project;
+import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.proto.groups.*;
+import com.bht.pim.proto.projects.Project;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -35,11 +36,16 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
         try {
             EmployeeEntity leader = groupEntity.getGroupLeader();
 
+            Employee groupLeader = Employee.newBuilder()
+                    .setId(leader.getId())
+                    .setVisa(leader.getVisa())
+                    .setFirstName(leader.getFirstName())
+                    .setLastName(leader.getLastName())
+                    .build();
+
             Group group = Group.newBuilder()
                     .setId(groupEntity.getId())
-                    .setGroupLeaderId(leader.getId())
-                    .setGroupLeaderVisa(leader.getVisa())
-                    .setGroupLeaderName(leader.getLastName() + " " + leader.getFirstName())
+                    .setLeader(groupLeader)
                     .build();
 
             List<Project> projects = new ArrayList<>();
@@ -50,7 +56,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
                 Project project = Project.newBuilder()
                         .setId(projectEntity.getId())
                         .setNumber(projectEntity.getNumber())
-                        .setGroupId(projectEntity.getGroup().getId())
+                        .setGroup(group)
                         .setName(projectEntity.getName())
                         .setCustomer(projectEntity.getCustomer())
                         .setStatus(projectEntity.getStatus())
@@ -63,7 +69,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
             GroupInfo groupInfo = GroupInfo.newBuilder()
                     .setGroup(group)
-                    .addAllEnrolledProjects(projects)
+                    .addAllEnrolledProject(projects)
                     .build();
 
             responseObserver.onNext(groupInfo);
@@ -95,7 +101,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
         try {
 
             EmployeeEntity leader = employeeDao
-                    .getEmployeeById(request.getGroupLeaderId());
+                    .getEmployeeById(request.getLeader().getId());
 
             // Check constraint again in back-end side
             // If leader not lead group yet, add new group

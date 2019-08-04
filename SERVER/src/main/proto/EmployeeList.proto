@@ -2,11 +2,12 @@ syntax = "proto3";
 
 import "Employee.proto";
 
-package com.bht.pim.proto.employee;
+package com.bht.pim.proto.employees;
+option java_generic_services = true;
 option java_multiple_files = true;
 
 message EmployeeList {
-    repeated Employee employeeList = 1;
+    repeated Employee employee = 1;
 }
 
 message NoParam {

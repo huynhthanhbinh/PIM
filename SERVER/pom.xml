@@ -298,6 +298,28 @@
                     <protocArtifact>com.google.protobuf:protoc:3.5.1-1:exe:${os.detected.classifier}</protocArtifact>
                     <pluginId>grpc-java</pluginId>
                     <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.16.1:exe:${os.detected.classifier}</pluginArtifact>
+                    <includes>
+                        <!-- compile 1st time -->
+                        <include>**/Employee.proto</include>
+
+                        <!-- compile 2nd time -->
+                        <include>**/Group.proto</include>
+
+                        <!-- compile 3rd time -->
+                        <include>**/Project.proto</include>
+
+                        <!-- compile 4th time -->
+                        <include>**/EmployeeInfo.proto</include>
+                        <include>**/GroupInfo.proto</include>
+                        <include>**/ProjectInfo.proto</include>
+                        <include>**/ProjectNumbers.proto</include>
+
+                        <!-- compile last time -->
+                        <include>**/EmployeeList.proto</include>
+                        <include>**/GroupList.proto</include>
+                        <include>**/ProjectList.proto</include>
+
+                    </includes>
                 </configuration>
                 <executions>
                     <execution>

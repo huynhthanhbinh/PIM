@@ -1,8 +1,9 @@
 syntax = "proto3";
 
-package com.bht.pim.proto.project;
+package com.bht.pim.proto.projects;
+option java_generic_services = true;
 option java_multiple_files = true;
 
 message ProjectNumbers {
-    repeated int64 projectNumbers = 1;
+    repeated int64 projectNumber = 1;
 }

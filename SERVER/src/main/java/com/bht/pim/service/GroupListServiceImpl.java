@@ -3,10 +3,11 @@ package com.bht.pim.service;
 import com.bht.pim.dao.GroupDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
-import com.bht.pim.proto.group.Group;
-import com.bht.pim.proto.group.GroupList;
-import com.bht.pim.proto.group.GroupListServiceGrpc;
-import com.bht.pim.proto.group.NoParam;
+import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.proto.groups.Group;
+import com.bht.pim.proto.groups.GroupList;
+import com.bht.pim.proto.groups.GroupListServiceGrpc;
+import com.bht.pim.proto.groups.NoParam;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -35,18 +36,23 @@ public class GroupListServiceImpl extends GroupListServiceGrpc.GroupListServiceI
             groupEntities.forEach(groupEntity -> {
                 EmployeeEntity leader = groupEntity.getGroupLeader();
 
+                Employee groupLeader = Employee.newBuilder()
+                        .setId(leader.getId())
+                        .setVisa(leader.getVisa())
+                        .setFirstName(leader.getFirstName())
+                        .setLastName(leader.getLastName())
+                        .build();
+
                 Group group = Group.newBuilder()
                         .setId(groupEntity.getId())
-                        .setGroupLeaderId(leader.getId())
-                        .setGroupLeaderVisa(leader.getVisa())
-                        .setGroupLeaderName(leader.getLastName() + " " + leader.getFirstName())
+                        .setLeader(groupLeader)
                         .build();
 
                 groups.add(group);
             });
 
             GroupList groupList = GroupList.newBuilder()
-                    .addAllGroupList(groups)
+                    .addAllGroup(groups)
                     .build();
 
             responseObserver.onNext(groupList);
@@ -59,7 +65,7 @@ public class GroupListServiceImpl extends GroupListServiceGrpc.GroupListServiceI
 
             // return an empty list not return null value for list
             responseObserver.onNext(GroupList.newBuilder()
-                    .addAllGroupList(Collections.emptyList()).build());
+                    .addAllGroup(Collections.emptyList()).build());
             responseObserver.onCompleted();
         }
     }

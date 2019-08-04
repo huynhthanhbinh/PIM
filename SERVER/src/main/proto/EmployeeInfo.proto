@@ -3,12 +3,13 @@ syntax = "proto3";
 import "Employee.proto";
 import "Project.proto";
 
-package com.bht.pim.proto.employee;
+package com.bht.pim.proto.employees;
+option java_generic_services = true;
 option java_multiple_files = true;
 
 message EmployeeInfo {
     Employee employee = 1;
-    repeated project.Project enrolledProjects = 2;
+    repeated projects.Project enrolledProject = 2;
 }
 
 message EmployeeId {

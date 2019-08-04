@@ -2,10 +2,10 @@ package com.bht.pim.service;
 
 import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.entity.EmployeeEntity;
-import com.bht.pim.proto.employee.Employee;
-import com.bht.pim.proto.employee.EmployeeList;
-import com.bht.pim.proto.employee.EmployeeListServiceGrpc;
-import com.bht.pim.proto.employee.NoParam;
+import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.proto.employees.EmployeeList;
+import com.bht.pim.proto.employees.EmployeeListServiceGrpc;
+import com.bht.pim.proto.employees.NoParam;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -44,7 +44,7 @@ public class EmployeeListServiceImpl extends EmployeeListServiceGrpc.EmployeeLis
             });
 
             EmployeeList employeeList = EmployeeList.newBuilder()
-                    .addAllEmployeeList(employees)
+                    .addAllEmployee(employees)
                     .build();
 
             responseObserver.onNext(employeeList);
@@ -57,7 +57,7 @@ public class EmployeeListServiceImpl extends EmployeeListServiceGrpc.EmployeeLis
 
             // return an empty list not return null value for list
             responseObserver.onNext(EmployeeList.newBuilder()
-                    .addAllEmployeeList(Collections.emptyList()).build());
+                    .addAllEmployee(Collections.emptyList()).build());
             responseObserver.onCompleted();
         }
     }

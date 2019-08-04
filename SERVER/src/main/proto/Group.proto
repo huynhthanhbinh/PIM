@@ -1,11 +1,12 @@
 syntax = "proto3";
 
-package com.bht.pim.proto.group;
+import "Employee.proto";
+
+package com.bht.pim.proto.groups;
+option java_generic_services = true;
 option java_multiple_files = true;
 
 message Group {
     int64 id = 1;
-    int64 groupLeaderId = 2;
-    string groupLeaderVisa = 3;
-    string groupLeaderName = 4;
+    employees.Employee leader = 2;
 }
