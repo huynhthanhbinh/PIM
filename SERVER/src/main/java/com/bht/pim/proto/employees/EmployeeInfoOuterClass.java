@@ -23,14 +23,14 @@ public final class EmployeeInfoOuterClass {
         String[] descriptorData = {
                 "\n\022EmployeeInfo.proto\022\033com.bht.pim.proto." +
                         "employees\032\016Employee.proto\032\rProject.proto" +
-                        "\"\205\001\n\014EmployeeInfo\0227\n\010employee\030\001 \001(\0132%.co" +
-                        "m.bht.pim.proto.employees.Employee\022<\n\017en" +
-                        "rolledProject\030\002 \003(\0132#.com.bht.pim.proto." +
-                        "projects.Project\"\030\n\nEmployeeId\022\n\n\002id\030\001 \001" +
-                        "(\0032x\n\017EmployeeService\022e\n\017getEmployeeById" +
-                        "\022\'.com.bht.pim.proto.employees.EmployeeI" +
-                        "d\032).com.bht.pim.proto.employees.Employee" +
-                        "InfoB\005P\001\210\001\001b\006proto3"
+                        "\"\206\001\n\014EmployeeInfo\0227\n\010employee\030\001 \001(\0132%.co" +
+                        "m.bht.pim.proto.employees.Employee\022=\n\020en" +
+                        "rolledProjects\030\002 \003(\0132#.com.bht.pim.proto" +
+                        ".projects.Project\"\030\n\nEmployeeId\022\n\n\002id\030\001 " +
+                        "\001(\0032x\n\017EmployeeService\022e\n\017getEmployeeByI" +
+                        "d\022\'.com.bht.pim.proto.employees.Employee" +
+                        "Id\032).com.bht.pim.proto.employees.Employe" +
+                        "eInfoB\005P\001\210\001\001b\006proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -51,7 +51,7 @@ public final class EmployeeInfoOuterClass {
         internal_static_com_bht_pim_proto_employees_EmployeeInfo_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_com_bht_pim_proto_employees_EmployeeInfo_descriptor,
-                new String[]{"Employee", "EnrolledProject",});
+                new String[]{"Employee", "EnrolledProjects",});
         internal_static_com_bht_pim_proto_employees_EmployeeId_descriptor =
                 getDescriptor().getMessageTypes().get(1);
         internal_static_com_bht_pim_proto_employees_EmployeeId_fieldAccessorTable = new

@@ -28,21 +28,12 @@ private static final long serialVersionUID = 0L;
     return this.unknownFields;
   }
 
+    public static final int ID_FIELD_NUMBER = 1;
     public static final int LEADER_FIELD_NUMBER = 2;
     // @@protoc_insertion_point(class_scope:com.bht.pim.proto.groups.Group)
     private static final Group DEFAULT_INSTANCE;
-    private Employee leader_;
-
-    public static final int ID_FIELD_NUMBER = 1;
     private long id_;
-
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    public long getId() {
-        return id_;
-    }
-
+    private Employee leader_;
   private Group(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -113,11 +104,18 @@ private static final long serialVersionUID = 0L;
   }
 
     /**
+     * <code>int64 id = 1;</code>
+     */
+    public long getId() {
+        return id_;
+    }
+
+    /**
      * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
      */
     public boolean hasLeader() {
         return leader_ != null;
-  }
+    }
 
     /**
      * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
@@ -141,7 +139,7 @@ private static final long serialVersionUID = 0L;
      */
     public EmployeeOrBuilder getLeaderOrBuilder() {
         return getLeader();
-    }
+  }
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
@@ -436,6 +434,26 @@ private static final long serialVersionUID = 0L;
       return id_;
     }
 
+        /**
+         * <code>int64 id = 1;</code>
+         */
+        public Builder setId(long value) {
+
+            id_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>int64 id = 1;</code>
+         */
+        public Builder clearId() {
+
+            id_ = 0L;
+            onChanged();
+            return this;
+        }
+
         public Group buildPartial() {
             Group result = new Group(this);
             result.id_ = id_;
@@ -457,29 +475,9 @@ private static final long serialVersionUID = 0L;
                 mergeLeader(other.getLeader());
             }
             this.mergeUnknownFields(other.unknownFields);
-            onChanged();
+      onChanged();
             return this;
         }
-
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    public Builder setId(long value) {
-
-      id_ = value;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    public Builder clearId() {
-
-      id_ = 0L;
-      onChanged();
-      return this;
-    }
 
         /**
          * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
@@ -511,9 +509,9 @@ private static final long serialVersionUID = 0L;
                 onChanged();
             } else {
                 leaderBuilder_.setMessage(value);
-      }
+            }
 
-      return this;
+            return this;
         }
 
         /**
@@ -526,9 +524,9 @@ private static final long serialVersionUID = 0L;
                 onChanged();
             } else {
                 leaderBuilder_.setMessage(builderForValue.build());
-      }
+            }
 
-      return this;
+            return this;
         }
 
         /**
@@ -543,11 +541,11 @@ private static final long serialVersionUID = 0L;
                     leader_ = value;
                 }
                 onChanged();
-            } else {
+      } else {
                 leaderBuilder_.mergeFrom(value);
-      }
+            }
 
-      return this;
+            return this;
         }
 
         /**
@@ -557,12 +555,12 @@ private static final long serialVersionUID = 0L;
             if (leaderBuilder_ == null) {
                 leader_ = null;
                 onChanged();
-            } else {
+      } else {
                 leader_ = null;
                 leaderBuilder_ = null;
-      }
+            }
 
-      return this;
+            return this;
         }
 
         /**
@@ -599,22 +597,21 @@ private static final long serialVersionUID = 0L;
                         getParentForChildren(),
                         isClean());
                 leader_ = null;
-            }
-            return leaderBuilder_;
-        }
-
-        public final Builder setUnknownFields(
+      }
+      return leaderBuilder_;
+    }
+    public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFieldsProto3(unknownFields);
     }
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+        return super.mergeUnknownFields(unknownFields);
     }
 
 
-        // @@protoc_insertion_point(builder_scope:com.bht.pim.proto.groups.Group)
+    // @@protoc_insertion_point(builder_scope:com.bht.pim.proto.groups.Group)
   }
   static {
     DEFAULT_INSTANCE = new Group();

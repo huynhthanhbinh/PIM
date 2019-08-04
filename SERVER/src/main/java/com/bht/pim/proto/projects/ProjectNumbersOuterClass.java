@@ -29,8 +29,8 @@ public final class ProjectNumbersOuterClass {
   static {
     String[] descriptorData = {
             "\n\024ProjectNumbers.proto\022\032com.bht.pim.prot" +
-                    "o.projects\"\'\n\016ProjectNumbers\022\025\n\rprojectN" +
-                    "umber\030\001 \003(\003B\005P\001\210\001\001b\006proto3"
+                    "o.projects\"(\n\016ProjectNumbers\022\026\n\016projectN" +
+                    "umbers\030\001 \003(\003B\005P\001\210\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -49,7 +49,7 @@ public final class ProjectNumbersOuterClass {
       internal_static_com_bht_pim_proto_projects_ProjectNumbers_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
               internal_static_com_bht_pim_proto_projects_ProjectNumbers_descriptor,
-              new String[]{"ProjectNumber",});
+              new String[]{"ProjectNumbers",});
   }
 
   // @@protoc_insertion_point(outer_class_scope)

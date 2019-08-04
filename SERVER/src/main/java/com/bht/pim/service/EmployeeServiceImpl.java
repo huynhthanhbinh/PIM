@@ -66,7 +66,7 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
 
             EmployeeInfo employeeInfo = EmployeeInfo.newBuilder()
                     .setEmployee(employee)
-                    .addAllEnrolledProject(projects)
+                    .addAllEnrolledProjects(projects)
                     .build();
 
             responseObserver.onNext(employeeInfo);

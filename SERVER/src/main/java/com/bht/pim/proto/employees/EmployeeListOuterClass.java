@@ -34,13 +34,13 @@ public final class EmployeeListOuterClass {
   static {
     String[] descriptorData = {
             "\n\022EmployeeList.proto\022\033com.bht.pim.proto." +
-                    "employees\032\016Employee.proto\"G\n\014EmployeeLis" +
-                    "t\0227\n\010employee\030\001 \003(\0132%.com.bht.pim.proto." +
-                    "employees.Employee\"\t\n\007NoParam2y\n\023Employe" +
-                    "eListService\022b\n\017getEmployeeList\022$.com.bh" +
-                    "t.pim.proto.employees.NoParam\032).com.bht." +
-                    "pim.proto.employees.EmployeeListB\005P\001\210\001\001b" +
-                    "\006proto3"
+                    "employees\032\016Employee.proto\"H\n\014EmployeeLis" +
+                    "t\0228\n\temployees\030\001 \003(\0132%.com.bht.pim.proto" +
+                    ".employees.Employee\"\t\n\007NoParam2y\n\023Employ" +
+                    "eeListService\022b\n\017getEmployeeList\022$.com.b" +
+                    "ht.pim.proto.employees.NoParam\032).com.bht" +
+                    ".pim.proto.employees.EmployeeListB\005P\001\210\001\001" +
+                    "b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -60,7 +60,7 @@ public final class EmployeeListOuterClass {
       internal_static_com_bht_pim_proto_employees_EmployeeList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
               internal_static_com_bht_pim_proto_employees_EmployeeList_descriptor,
-              new String[]{"Employee",});
+              new String[]{"Employees",});
       internal_static_com_bht_pim_proto_employees_NoParam_descriptor =
       getDescriptor().getMessageTypes().get(1);
       internal_static_com_bht_pim_proto_employees_NoParam_fieldAccessorTable = new

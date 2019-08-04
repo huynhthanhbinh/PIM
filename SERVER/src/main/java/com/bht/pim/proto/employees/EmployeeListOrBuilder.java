@@ -8,30 +8,30 @@ public interface EmployeeListOrBuilder extends
         com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .com.bht.pim.proto.employees.Employee employee = 1;</code>
+     * <code>repeated .com.bht.pim.proto.employees.Employee employees = 1;</code>
      */
     java.util.List<Employee>
-    getEmployeeList();
+    getEmployeesList();
 
     /**
-     * <code>repeated .com.bht.pim.proto.employees.Employee employee = 1;</code>
+     * <code>repeated .com.bht.pim.proto.employees.Employee employees = 1;</code>
      */
-    Employee getEmployee(int index);
+    Employee getEmployees(int index);
 
     /**
-     * <code>repeated .com.bht.pim.proto.employees.Employee employee = 1;</code>
+     * <code>repeated .com.bht.pim.proto.employees.Employee employees = 1;</code>
      */
-    int getEmployeeCount();
+    int getEmployeesCount();
 
     /**
-     * <code>repeated .com.bht.pim.proto.employees.Employee employee = 1;</code>
+     * <code>repeated .com.bht.pim.proto.employees.Employee employees = 1;</code>
      */
     java.util.List<? extends EmployeeOrBuilder>
-    getEmployeeOrBuilderList();
+    getEmployeesOrBuilderList();
 
     /**
-     * <code>repeated .com.bht.pim.proto.employees.Employee employee = 1;</code>
+     * <code>repeated .com.bht.pim.proto.employees.Employee employees = 1;</code>
      */
-    EmployeeOrBuilder getEmployeeOrBuilder(
+    EmployeeOrBuilder getEmployeesOrBuilder(
             int index);
 }

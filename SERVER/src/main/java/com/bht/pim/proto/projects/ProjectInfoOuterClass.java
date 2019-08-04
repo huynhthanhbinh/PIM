@@ -29,21 +29,21 @@ public final class ProjectInfoOuterClass {
         String[] descriptorData = {
                 "\n\021ProjectInfo.proto\022\032com.bht.pim.proto.p" +
                         "rojects\032\rProject.proto\032\016Employee.proto\032\013" +
-                        "Group.proto\"|\n\013ProjectInfo\0224\n\007project\030\001 " +
+                        "Group.proto\"}\n\013ProjectInfo\0224\n\007project\030\001 " +
                         "\001(\0132#.com.bht.pim.proto.projects.Project" +
-                        "\0227\n\010employee\030\002 \003(\0132%.com.bht.pim.proto.e" +
-                        "mployees.Employee\"\027\n\tProjectId\022\n\n\002id\030\001 \001" +
-                        "(\003\"\034\n\007Success\022\021\n\tisSuccess\030\001 \001(\0102\203\003\n\016Pro" +
-                        "jectService\022`\n\016getProjectById\022%.com.bht." +
-                        "pim.proto.projects.ProjectId\032\'.com.bht.p" +
-                        "im.proto.projects.ProjectInfo\022Y\n\raddNewP" +
-                        "roject\022#.com.bht.pim.proto.projects.Proj" +
-                        "ect\032#.com.bht.pim.proto.projects.Success" +
-                        "\022W\n\013editProject\022#.com.bht.pim.proto.proj" +
-                        "ects.Project\032#.com.bht.pim.proto.project" +
-                        "s.Success\022[\n\rdeleteProject\022%.com.bht.pim" +
-                        ".proto.projects.ProjectId\032#.com.bht.pim." +
-                        "proto.projects.SuccessB\005P\001\210\001\001b\006proto3"
+                        "\0228\n\temployees\030\002 \003(\0132%.com.bht.pim.proto." +
+                        "employees.Employee\"\027\n\tProjectId\022\n\n\002id\030\001 " +
+                        "\001(\003\"\034\n\007Success\022\021\n\tisSuccess\030\001 \001(\0102\203\003\n\016Pr" +
+                        "ojectService\022`\n\016getProjectById\022%.com.bht" +
+                        ".pim.proto.projects.ProjectId\032\'.com.bht." +
+                        "pim.proto.projects.ProjectInfo\022Y\n\raddNew" +
+                        "Project\022#.com.bht.pim.proto.projects.Pro" +
+                        "ject\032#.com.bht.pim.proto.projects.Succes" +
+                        "s\022W\n\013editProject\022#.com.bht.pim.proto.pro" +
+                        "jects.Project\032#.com.bht.pim.proto.projec" +
+                        "ts.Success\022[\n\rdeleteProject\022%.com.bht.pi" +
+                        "m.proto.projects.ProjectId\032#.com.bht.pim" +
+                        ".proto.projects.SuccessB\005P\001\210\001\001b\006proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -65,7 +65,7 @@ public final class ProjectInfoOuterClass {
         internal_static_com_bht_pim_proto_projects_ProjectInfo_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_com_bht_pim_proto_projects_ProjectInfo_descriptor,
-                new String[]{"Project", "Employee",});
+                new String[]{"Project", "Employees",});
         internal_static_com_bht_pim_proto_projects_ProjectId_descriptor =
                 getDescriptor().getMessageTypes().get(1);
         internal_static_com_bht_pim_proto_projects_ProjectId_fieldAccessorTable = new

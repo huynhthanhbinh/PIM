@@ -7,7 +7,7 @@ option java_generic_services = true;
 option java_multiple_files = true;
 
 message GroupList {
-    repeated Group group = 1;
+    repeated Group groups = 1;
 }
 
 message NoParam {

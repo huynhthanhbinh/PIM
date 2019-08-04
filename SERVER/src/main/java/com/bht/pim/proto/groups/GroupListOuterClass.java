@@ -34,12 +34,12 @@ public final class GroupListOuterClass {
   static {
     String[] descriptorData = {
             "\n\017GroupList.proto\022\030com.bht.pim.proto.gro" +
-                    "ups\032\013Group.proto\";\n\tGroupList\022.\n\005group\030\001" +
-                    " \003(\0132\037.com.bht.pim.proto.groups.Group\"\t\n" +
-                    "\007NoParam2j\n\020GroupListService\022V\n\014getGroup" +
-                    "List\022!.com.bht.pim.proto.groups.NoParam\032" +
-                    "#.com.bht.pim.proto.groups.GroupListB\005P\001" +
-                    "\210\001\001b\006proto3"
+                    "ups\032\013Group.proto\"<\n\tGroupList\022/\n\006groups\030" +
+                    "\001 \003(\0132\037.com.bht.pim.proto.groups.Group\"\t" +
+                    "\n\007NoParam2j\n\020GroupListService\022V\n\014getGrou" +
+                    "pList\022!.com.bht.pim.proto.groups.NoParam" +
+                    "\032#.com.bht.pim.proto.groups.GroupListB\005P" +
+                    "\001\210\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -59,7 +59,7 @@ public final class GroupListOuterClass {
       internal_static_com_bht_pim_proto_groups_GroupList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
               internal_static_com_bht_pim_proto_groups_GroupList_descriptor,
-              new String[]{"Group",});
+              new String[]{"Groups",});
       internal_static_com_bht_pim_proto_groups_NoParam_descriptor =
       getDescriptor().getMessageTypes().get(1);
       internal_static_com_bht_pim_proto_groups_NoParam_fieldAccessorTable = new

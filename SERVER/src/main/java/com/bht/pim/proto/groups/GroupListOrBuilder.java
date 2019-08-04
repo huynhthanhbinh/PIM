@@ -8,30 +8,30 @@ public interface GroupListOrBuilder extends
         com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .com.bht.pim.proto.groups.Group group = 1;</code>
+     * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
      */
     java.util.List<Group>
-    getGroupList();
+    getGroupsList();
 
     /**
-     * <code>repeated .com.bht.pim.proto.groups.Group group = 1;</code>
+     * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
      */
-    Group getGroup(int index);
+    Group getGroups(int index);
 
     /**
-     * <code>repeated .com.bht.pim.proto.groups.Group group = 1;</code>
+     * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
      */
-    int getGroupCount();
+    int getGroupsCount();
 
     /**
-     * <code>repeated .com.bht.pim.proto.groups.Group group = 1;</code>
+     * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
      */
     java.util.List<? extends GroupOrBuilder>
-    getGroupOrBuilderList();
+    getGroupsOrBuilderList();
 
     /**
-     * <code>repeated .com.bht.pim.proto.groups.Group group = 1;</code>
+     * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
      */
-    GroupOrBuilder getGroupOrBuilder(
+    GroupOrBuilder getGroupsOrBuilder(
             int index);
 }

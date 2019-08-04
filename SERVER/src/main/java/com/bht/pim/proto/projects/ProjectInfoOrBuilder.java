@@ -26,30 +26,30 @@ public interface ProjectInfoOrBuilder extends
     ProjectOrBuilder getProjectOrBuilder();
 
     /**
-     * <code>repeated .com.bht.pim.proto.employees.Employee employee = 2;</code>
+     * <code>repeated .com.bht.pim.proto.employees.Employee employees = 2;</code>
      */
     java.util.List<Employee>
-    getEmployeeList();
+    getEmployeesList();
 
     /**
-     * <code>repeated .com.bht.pim.proto.employees.Employee employee = 2;</code>
+     * <code>repeated .com.bht.pim.proto.employees.Employee employees = 2;</code>
      */
-    Employee getEmployee(int index);
+    Employee getEmployees(int index);
 
     /**
-     * <code>repeated .com.bht.pim.proto.employees.Employee employee = 2;</code>
+     * <code>repeated .com.bht.pim.proto.employees.Employee employees = 2;</code>
      */
-    int getEmployeeCount();
+    int getEmployeesCount();
 
     /**
-     * <code>repeated .com.bht.pim.proto.employees.Employee employee = 2;</code>
+     * <code>repeated .com.bht.pim.proto.employees.Employee employees = 2;</code>
      */
     java.util.List<? extends EmployeeOrBuilder>
-    getEmployeeOrBuilderList();
+    getEmployeesOrBuilderList();
 
     /**
-     * <code>repeated .com.bht.pim.proto.employees.Employee employee = 2;</code>
+     * <code>repeated .com.bht.pim.proto.employees.Employee employees = 2;</code>
      */
-    EmployeeOrBuilder getEmployeeOrBuilder(
+    EmployeeOrBuilder getEmployeesOrBuilder(
             int index);
 }

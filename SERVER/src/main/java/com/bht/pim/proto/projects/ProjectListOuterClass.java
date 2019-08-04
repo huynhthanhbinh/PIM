@@ -35,14 +35,15 @@ public final class ProjectListOuterClass {
     String[] descriptorData = {
             "\n\021ProjectList.proto\022\032com.bht.pim.proto.p" +
                     "rojects\032\rProject.proto\032\024ProjectNumbers.p" +
-                    "roto\"C\n\013ProjectList\0224\n\007project\030\001 \003(\0132#.c" +
-                    "om.bht.pim.proto.projects.Project\"\t\n\007NoP" +
-                    "aram2\332\001\n\022ProjectListService\022^\n\016getProjec" +
-                    "tList\022#.com.bht.pim.proto.projects.NoPar" +
-                    "am\032\'.com.bht.pim.proto.projects.ProjectL" +
-                    "ist\022d\n\021getProjectNumbers\022#.com.bht.pim.p" +
-                    "roto.projects.NoParam\032*.com.bht.pim.prot" +
-                    "o.projects.ProjectNumbersB\005P\001\210\001\001b\006proto3"
+                    "roto\"D\n\013ProjectList\0225\n\010projects\030\001 \003(\0132#." +
+                    "com.bht.pim.proto.projects.Project\"\t\n\007No" +
+                    "Param2\332\001\n\022ProjectListService\022^\n\016getProje" +
+                    "ctList\022#.com.bht.pim.proto.projects.NoPa" +
+                    "ram\032\'.com.bht.pim.proto.projects.Project" +
+                    "List\022d\n\021getProjectNumbers\022#.com.bht.pim." +
+                    "proto.projects.NoParam\032*.com.bht.pim.pro" +
+                    "to.projects.ProjectNumbersB\005P\001\210\001\001b\006proto" +
+                    "3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -63,7 +64,7 @@ public final class ProjectListOuterClass {
       internal_static_com_bht_pim_proto_projects_ProjectList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
               internal_static_com_bht_pim_proto_projects_ProjectList_descriptor,
-              new String[]{"Project",});
+              new String[]{"Projects",});
       internal_static_com_bht_pim_proto_projects_NoParam_descriptor =
       getDescriptor().getMessageTypes().get(1);
       internal_static_com_bht_pim_proto_projects_NoParam_fieldAccessorTable = new

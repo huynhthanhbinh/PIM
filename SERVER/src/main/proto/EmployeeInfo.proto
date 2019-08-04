@@ -9,7 +9,7 @@ option java_multiple_files = true;
 
 message EmployeeInfo {
     Employee employee = 1;
-    repeated projects.Project enrolledProject = 2;
+    repeated projects.Project enrolledProjects = 2;
 }
 
 message EmployeeId {

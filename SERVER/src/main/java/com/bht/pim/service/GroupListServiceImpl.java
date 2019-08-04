@@ -52,7 +52,7 @@ public class GroupListServiceImpl extends GroupListServiceGrpc.GroupListServiceI
             });
 
             GroupList groupList = GroupList.newBuilder()
-                    .addAllGroup(groups)
+                    .addAllGroups(groups)
                     .build();
 
             responseObserver.onNext(groupList);
@@ -65,7 +65,7 @@ public class GroupListServiceImpl extends GroupListServiceGrpc.GroupListServiceI
 
             // return an empty list not return null value for list
             responseObserver.onNext(GroupList.newBuilder()
-                    .addAllGroup(Collections.emptyList()).build());
+                    .addAllGroups(Collections.emptyList()).build());
             responseObserver.onCompleted();
         }
     }

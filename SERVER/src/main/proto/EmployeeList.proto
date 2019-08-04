@@ -7,7 +7,7 @@ option java_generic_services = true;
 option java_multiple_files = true;
 
 message EmployeeList {
-    repeated Employee employee = 1;
+    repeated Employee employees = 1;
 }
 
 message NoParam {

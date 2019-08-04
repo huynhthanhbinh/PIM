@@ -52,7 +52,7 @@ public class ProjectListServiceImpl extends ProjectListServiceGrpc.ProjectListSe
             });
 
             ProjectList projectList = ProjectList.newBuilder()
-                    .addAllProject(projects)
+                    .addAllProjects(projects)
                     .build();
 
             responseObserver.onNext(projectList);
@@ -65,7 +65,7 @@ public class ProjectListServiceImpl extends ProjectListServiceGrpc.ProjectListSe
 
             // return an empty list not return null value for list
             responseObserver.onNext(ProjectList.newBuilder()
-                    .addAllProject(Collections.emptyList()).build());
+                    .addAllProjects(Collections.emptyList()).build());
             responseObserver.onCompleted();
         }
     }
@@ -77,7 +77,7 @@ public class ProjectListServiceImpl extends ProjectListServiceGrpc.ProjectListSe
             List<Long> numbers = projectDao.getAllProjectsNumber();
 
             ProjectNumbers projectNumbers = ProjectNumbers.newBuilder()
-                    .addAllProjectNumber(numbers)
+                    .addAllProjectNumbers(numbers)
                     .build();
 
             responseObserver.onNext(projectNumbers);
@@ -90,7 +90,7 @@ public class ProjectListServiceImpl extends ProjectListServiceGrpc.ProjectListSe
 
             // return an empty list not return null value for list
             responseObserver.onNext(ProjectNumbers.newBuilder()
-                    .addAllProjectNumber(Collections.emptyList()).build());
+                    .addAllProjectNumbers(Collections.emptyList()).build());
             responseObserver.onCompleted();
         }
     }

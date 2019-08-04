@@ -73,7 +73,7 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
 
             ProjectInfo projectInfo = ProjectInfo.newBuilder()
                     .setProject(project)
-                    .addAllEmployee(employees)
+                    .addAllEmployees(employees)
                     .build();
 
             responseObserver.onNext(projectInfo);

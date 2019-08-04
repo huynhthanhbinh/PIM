@@ -27,17 +27,17 @@ public final class GroupInfoOuterClass {
     static {
         String[] descriptorData = {
                 "\n\017GroupInfo.proto\022\030com.bht.pim.proto.gro" +
-                        "ups\032\013Group.proto\032\rProject.proto\"y\n\tGroup" +
+                        "ups\032\013Group.proto\032\rProject.proto\"z\n\tGroup" +
                         "Info\022.\n\005group\030\001 \001(\0132\037.com.bht.pim.proto." +
-                        "groups.Group\022<\n\017enrolledProject\030\002 \003(\0132#." +
-                        "com.bht.pim.proto.projects.Project\"\025\n\007Gr" +
-                        "oupId\022\n\n\002id\030\001 \001(\003\"\034\n\007Success\022\021\n\tisSucces" +
-                        "s\030\001 \001(\0102\271\001\n\014GroupService\022V\n\014getGroupById" +
-                        "\022!.com.bht.pim.proto.groups.GroupId\032#.co" +
-                        "m.bht.pim.proto.groups.GroupInfo\022Q\n\013addN" +
-                        "ewGroup\022\037.com.bht.pim.proto.groups.Group" +
-                        "\032!.com.bht.pim.proto.groups.SuccessB\005P\001\210" +
-                        "\001\001b\006proto3"
+                        "groups.Group\022=\n\020enrolledProjects\030\002 \003(\0132#" +
+                        ".com.bht.pim.proto.projects.Project\"\025\n\007G" +
+                        "roupId\022\n\n\002id\030\001 \001(\003\"\034\n\007Success\022\021\n\tisSucce" +
+                        "ss\030\001 \001(\0102\271\001\n\014GroupService\022V\n\014getGroupByI" +
+                        "d\022!.com.bht.pim.proto.groups.GroupId\032#.c" +
+                        "om.bht.pim.proto.groups.GroupInfo\022Q\n\013add" +
+                        "NewGroup\022\037.com.bht.pim.proto.groups.Grou" +
+                        "p\032!.com.bht.pim.proto.groups.SuccessB\005P\001" +
+                        "\210\001\001b\006proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -58,7 +58,7 @@ public final class GroupInfoOuterClass {
         internal_static_com_bht_pim_proto_groups_GroupInfo_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_com_bht_pim_proto_groups_GroupInfo_descriptor,
-                new String[]{"Group", "EnrolledProject",});
+                new String[]{"Group", "EnrolledProjects",});
         internal_static_com_bht_pim_proto_groups_GroupId_descriptor =
                 getDescriptor().getMessageTypes().get(1);
         internal_static_com_bht_pim_proto_groups_GroupId_fieldAccessorTable = new

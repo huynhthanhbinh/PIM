@@ -5,5 +5,5 @@ option java_generic_services = true;
 option java_multiple_files = true;
 
 message ProjectNumbers {
-    repeated int64 projectNumber = 1;
+    repeated int64 projectNumbers = 1;
 }

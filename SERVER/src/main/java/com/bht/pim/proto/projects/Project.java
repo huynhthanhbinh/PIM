@@ -34,39 +34,25 @@ private static final long serialVersionUID = 0L;
     return this.unknownFields;
   }
 
+    public static final int ID_FIELD_NUMBER = 1;
+    public static final int NUMBER_FIELD_NUMBER = 2;
+    public static final int NAME_FIELD_NUMBER = 3;
+    public static final int CUSTOMER_FIELD_NUMBER = 4;
     public static final int STATUS_FIELD_NUMBER = 5;
     public static final int START_FIELD_NUMBER = 6;
     public static final int END_FIELD_NUMBER = 7;
-
-    public static final int ID_FIELD_NUMBER = 1;
-    private long id_;
-
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    public long getId() {
-        return id_;
-    }
-
-    public static final int NUMBER_FIELD_NUMBER = 2;
-    private long number_;
-
-    /**
-     * <code>int64 number = 2;</code>
-     */
-    public long getNumber() {
-        return number_;
-    }
-
-    public static final int NAME_FIELD_NUMBER = 3;
-    private volatile Object name_;
     public static final int GROUP_FIELD_NUMBER = 8;
     // @@protoc_insertion_point(class_scope:com.bht.pim.proto.projects.Project)
     private static final Project DEFAULT_INSTANCE;
-
-    public static final int CUSTOMER_FIELD_NUMBER = 4;
+    private long id_;
+    private long number_;
+    private volatile Object name_;
     private volatile Object customer_;
+    private volatile Object status_;
+    private long start_;
+    private long end_;
     private Group group_;
+
   private Project(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -162,14 +148,26 @@ private static final long serialVersionUID = 0L;
       return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_descriptor;
   }
 
-    private volatile Object status_;
-
   protected FieldAccessorTable
       internalGetFieldAccessorTable() {
       return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
                 Project.class, Project.Builder.class);
   }
+
+    /**
+     * <code>int64 id = 1;</code>
+     */
+    public long getId() {
+        return id_;
+    }
+
+    /**
+     * <code>int64 number = 2;</code>
+     */
+    public long getNumber() {
+        return number_;
+    }
 
   /**
    * <code>string name = 3;</code>
@@ -204,8 +202,6 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-    private long start_;
-
   /**
    * <code>string customer = 4;</code>
    */
@@ -238,8 +234,6 @@ private static final long serialVersionUID = 0L;
       return (com.google.protobuf.ByteString) ref;
     }
   }
-
-    private long end_;
 
     /**
      * <code>string status = 5;</code>
@@ -300,7 +294,7 @@ private static final long serialVersionUID = 0L;
      */
     public Group getGroup() {
         return group_ == null ? Group.getDefaultInstance() : group_;
-    }
+  }
 
   private byte memoizedIsInitialized = -1;
   public final boolean isInitialized() {
@@ -317,7 +311,7 @@ private static final long serialVersionUID = 0L;
      */
     public GroupOrBuilder getGroupOrBuilder() {
         return getGroup();
-    }
+  }
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
@@ -338,7 +332,7 @@ private static final long serialVersionUID = 0L;
     }
       if (start_ != 0L) {
           output.writeInt64(6, start_);
-    }
+      }
       if (end_ != 0L) {
           output.writeInt64(7, end_);
       }
@@ -416,7 +410,7 @@ private static final long serialVersionUID = 0L;
       if (hasGroup()) {
           result = result && getGroup()
                   .equals(other.getGroup());
-      }
+    }
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -503,13 +497,6 @@ private static final long serialVersionUID = 0L;
         ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @Override
-  protected Builder newBuilderForType(
-      BuilderParent parent) {
-    Builder builder = new Builder(parent);
-      return builder;
-  }
-
     @Override
     public int hashCode() {
         if (memoizedHashCode != 0) {
@@ -544,6 +531,13 @@ private static final long serialVersionUID = 0L;
         return hash;
     }
 
+    @Override
+    protected Builder newBuilderForType(
+            BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+    }
+
     /**
      * Protobuf type {@code com.bht.pim.proto.projects.Project}
    */
@@ -551,14 +545,9 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:com.bht.pim.proto.projects.Project)
             ProjectOrBuilder {
-        private Group group_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                Group, Group.Builder, GroupOrBuilder> groupBuilder_;
-
-        // Construct using com.bht.pim.proto.projects.Project.newBuilder()
-    private Builder() {
-      maybeForceBuilderInitialization();
-    }
+        private long id_;
+        private long number_;
+        private Object status_ = "";
 
     private Builder(
         BuilderParent parent) {
@@ -571,53 +560,15 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-            return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_descriptor;
-        }
+        private long start_;
+        private long end_;
+        private Group group_ = null;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                Group, Group.Builder, GroupOrBuilder> groupBuilder_;
 
-        protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-            return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            Project.class, Project.Builder.class);
-        }
-
-        public Project getDefaultInstanceForType() {
-            return Project.getDefaultInstance();
-        }
-
-        public Project build() {
-            Project result = buildPartial();
-            if (!result.isInitialized()) {
-                throw newUninitializedMessageException(result);
-            }
-            return result;
-        }
-
-    public Builder clear() {
-      super.clear();
-      id_ = 0L;
-
-      number_ = 0L;
-
-      name_ = "";
-
-      customer_ = "";
-
-      status_ = "";
-
-      start_ = 0L;
-
-        end_ = 0L;
-
-        if (groupBuilder_ == null) {
-            group_ = null;
-        } else {
-            group_ = null;
-            groupBuilder_ = null;
-        }
-      return this;
+        // Construct using com.bht.pim.proto.projects.Project.newBuilder()
+        private Builder() {
+            maybeForceBuilderInitialization();
     }
 
     public Builder clone() {
@@ -655,40 +606,78 @@ private static final long serialVersionUID = 0L;
       }
     }
 
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_descriptor;
+        }
+
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            Project.class, Project.Builder.class);
+        }
+
+        public Builder clear() {
+            super.clear();
+            id_ = 0L;
+
+            number_ = 0L;
+
+            name_ = "";
+
+            customer_ = "";
+
+            status_ = "";
+
+            start_ = 0L;
+
+            end_ = 0L;
+
+            if (groupBuilder_ == null) {
+                group_ = null;
+            } else {
+                group_ = null;
+                groupBuilder_ = null;
+            }
+            return this;
+        }
+
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_descriptor;
         }
 
-        public final boolean isInitialized() {
-            return true;
+        public Project getDefaultInstanceForType() {
+            return Project.getDefaultInstance();
         }
-
-        public Builder mergeFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            Project parsedMessage = null;
-            try {
-                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                parsedMessage = (Project) e.getUnfinishedMessage();
-                throw e.unwrapIOException();
-            } finally {
-                if (parsedMessage != null) {
-                    mergeFrom(parsedMessage);
-                }
-            }
-            return this;
-        }
-
-        private long id_;
 
         /**
          * <code>int64 id = 1;</code>
          */
-        public long getId() {
-            return id_;
+        public Builder setId(long value) {
+
+            id_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>int64 id = 1;</code>
+         */
+        public Builder clearId() {
+
+            id_ = 0L;
+            onChanged();
+            return this;
+        }
+
+        public Project build() {
+            Project result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
         }
 
         public Project buildPartial() {
@@ -707,7 +696,7 @@ private static final long serialVersionUID = 0L;
             }
             onBuilt();
             return result;
-        }
+    }
 
     public Builder mergeFrom(Project other) {
       if (other == Project.getDefaultInstance()) return this;
@@ -733,43 +722,18 @@ private static final long serialVersionUID = 0L;
         setStart(other.getStart());
       }
       if (other.getEnd() != 0L) {
-        setEnd(other.getEnd());
+          setEnd(other.getEnd());
       }
         if (other.hasGroup()) {
             mergeGroup(other.getGroup());
-        }
+      }
       this.mergeUnknownFields(other.unknownFields);
-      onChanged();
+        onChanged();
         return this;
     }
 
-    private long number_;
-
-        /**
-         * <code>int64 number = 2;</code>
-         */
-        public long getNumber() {
-      return number_;
-    }
-
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    public Builder setId(long value) {
-
-      id_ = value;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    public Builder clearId() {
-
-      id_ = 0L;
-      onChanged();
-      return this;
+        public final boolean isInitialized() {
+      return true;
     }
 
     private Object name_ = "";
@@ -785,9 +749,58 @@ private static final long serialVersionUID = 0L;
         name_ = s;
         return s;
       } else {
-        return (String) ref;
+          return (String) ref;
       }
     }
+
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            Project parsedMessage = null;
+            try {
+                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                parsedMessage = (Project) e.getUnfinishedMessage();
+                throw e.unwrapIOException();
+            } finally {
+                if (parsedMessage != null) {
+                    mergeFrom(parsedMessage);
+                }
+            }
+            return this;
+        }
+
+        /**
+         * <code>int64 id = 1;</code>
+         */
+        public long getId() {
+            return id_;
+        }
+
+        /**
+         * <code>int64 number = 2;</code>
+         */
+        public long getNumber() {
+            return number_;
+        }
+
+        /**
+         * <code>string name = 3;</code>
+         */
+        public Builder setNameBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            name_ = value;
+            onChanged();
+            return this;
+        }
+
+        private Object customer_ = "";
 
         /**
          * <code>int64 number = 2;</code>
@@ -806,16 +819,16 @@ private static final long serialVersionUID = 0L;
 
             number_ = 0L;
             onChanged();
-            return this;
-        }
+      return this;
+    }
 
     /**
      * <code>string name = 3;</code>
      */
     public com.google.protobuf.ByteString
-        getNameBytes() {
+    getNameBytes() {
       Object ref = name_;
-        if (ref instanceof String) {
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
@@ -826,22 +839,30 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    /**
-     * <code>string name = 3;</code>
+        /**
+         * <code>string name = 3;</code>
      */
-    public Builder setNameBytes(
-        com.google.protobuf.ByteString value) {
+    public Builder setName(
+        String value) {
       if (value == null) {
     throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+      }
 
-      name_ = value;
+        name_ = value;
+        onChanged();
+        return this;
+    }
+
+        /**
+         * <code>string name = 3;</code>
+         */
+        public Builder clearName() {
+
+            name_ = getDefaultInstance().getName();
       onChanged();
       return this;
     }
 
-    private Object customer_ = "";
     /**
      * <code>string customer = 4;</code>
      */
@@ -851,92 +872,66 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
-        customer_ = s;
-        return s;
+          customer_ = s;
+          return s;
       } else {
           return (String) ref;
       }
     }
 
         /**
-         * <code>string name = 3;</code>
+         * <code>string customer = 4;</code>
          */
-        public Builder setName(
+        public Builder setCustomer(
                 String value) {
             if (value == null) {
                 throw new NullPointerException();
-            }
+  }
 
-            name_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>string name = 3;</code>
-         */
-        public Builder clearName() {
-
-            name_ = getDefaultInstance().getName();
-            onChanged();
-            return this;
-        }
+      customer_ = value;
+      onChanged();
+      return this;
+    }
 
     /**
      * <code>string customer = 4;</code>
      */
     public com.google.protobuf.ByteString
-        getCustomerBytes() {
-        Object ref = customer_;
-        if (ref instanceof String) {
+    getCustomerBytes() {
+      Object ref = customer_;
+      if (ref instanceof String) {
         com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         customer_ = b;
         return b;
       } else {
-        return (com.google.protobuf.ByteString) ref;
+          return (com.google.protobuf.ByteString) ref;
       }
     }
 
         /**
-         * <code>string customer = 4;</code>
+     * <code>string customer = 4;</code>
          */
         public Builder setCustomerBytes(
-        com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
+                com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+      }
+            checkByteStringIsUtf8(value);
 
             customer_ = value;
             onChanged();
-      return this;
-    }
-
-    private Object status_ = "";
+            return this;
+        }
 
         /**
-         * <code>string customer = 4;</code>
+     * <code>string customer = 4;</code>
      */
-    public Builder setCustomer(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-
-      customer_ = value;
-        onChanged();
-        return this;
-    }
-
-        /**
-         * <code>string customer = 4;</code>
-         */
         public Builder clearCustomer() {
 
       customer_ = getDefaultInstance().getCustomer();
-            onChanged();
+      onChanged();
       return this;
     }
 
@@ -948,9 +943,9 @@ private static final long serialVersionUID = 0L;
       if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        status_ = s;
-        return s;
+          String s = bs.toStringUtf8();
+          status_ = s;
+          return s;
       } else {
           return (String) ref;
       }
@@ -962,113 +957,108 @@ private static final long serialVersionUID = 0L;
         public Builder setStatus(
                 String value) {
             if (value == null) {
-                throw new NullPointerException();
-            }
+    throw new NullPointerException();
+  }
 
-            status_ = value;
-            onChanged();
+      status_ = value;
+      onChanged();
       return this;
-    }
+        }
 
-    /**
-     * <code>string status = 5;</code>
-     */
+        /**
+         * <code>string status = 5;</code>
+         */
     public com.google.protobuf.ByteString
-    getStatusBytes() {
-        Object ref = status_;
+        getStatusBytes() {
+      Object ref = status_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        status_ = b;
-        return b;
+                    (String) ref);
+          status_ = b;
+          return b;
       } else {
           return (com.google.protobuf.ByteString) ref;
       }
     }
 
-        private long start_;
-
         /**
          * <code>string status = 5;</code>
          */
         public Builder setStatusBytes(
-                com.google.protobuf.ByteString value) {
+        com.google.protobuf.ByteString value) {
             if (value == null) {
-    throw new NullPointerException();
-  }
+                throw new NullPointerException();
+            }
             checkByteStringIsUtf8(value);
 
             status_ = value;
-            onChanged();
+      onChanged();
       return this;
-    }
+        }
 
         /**
          * <code>string status = 5;</code>
-     */
+         */
     public Builder clearStatus() {
 
         status_ = getDefaultInstance().getStatus();
-        onChanged();
-      return this;
+      onChanged();
+        return this;
     }
 
         /**
          * <code>int64 start = 6;</code>
          */
-    public long getStart() {
-        return start_;
-    }
-
-        private long end_;
-
+        public long getStart() {
+            return start_;
+        }
     /**
-     * <code>int64 start = 6;</code>
+     * <code>int64 end = 7;</code>
      */
-    public Builder setStart(long value) {
-
-        start_ = value;
-        onChanged();
-      return this;
+    public long getEnd() {
+        return end_;
     }
+
+        /**
+         * <code>int64 start = 6;</code>
+         */
+        public Builder setStart(long value) {
+
+      start_ = value;
+      onChanged();
+            return this;
+        }
 
         /**
          * <code>int64 start = 6;</code>
      */
     public Builder clearStart() {
 
-        start_ = 0L;
-        onChanged();
-      return this;
-    }
-
-    /**
-     * <code>int64 end = 7;</code>
-     */
-    public long getEnd() {
-      return end_;
-    }
-
-        /**
-         * <code>int64 end = 7;</code>
-     */
-    public Builder setEnd(long value) {
-
-        end_ = value;
-        onChanged();
-      return this;
-    }
-
-        /**
-         * <code>int64 end = 7;</code>
-     */
-    public Builder clearEnd() {
-
-        end_ = 0L;
-        onChanged();
+      start_ = 0L;
+      onChanged();
         return this;
     }
+
+        /**
+         * <code>int64 end = 7;</code>
+         */
+        public Builder setEnd(long value) {
+
+      end_ = value;
+      onChanged();
+            return this;
+        }
+
+        /**
+         * <code>int64 end = 7;</code>
+         */
+        public Builder clearEnd() {
+
+            end_ = 0L;
+            onChanged();
+            return this;
+        }
 
         /**
          * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
@@ -1187,23 +1177,22 @@ private static final long serialVersionUID = 0L;
                         getGroup(),
                         getParentForChildren(),
                         isClean());
-                group_ = null;
-            }
-            return groupBuilder_;
-        }
-
-        public final Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
+        group_ = null;
+      }
+      return groupBuilder_;
+    }
+    public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFieldsProto3(unknownFields);
     }
 
-    public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
+        public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
     }
 
 
-        // @@protoc_insertion_point(builder_scope:com.bht.pim.proto.projects.Project)
+    // @@protoc_insertion_point(builder_scope:com.bht.pim.proto.projects.Project)
   }
   static {
     DEFAULT_INSTANCE = new Project();

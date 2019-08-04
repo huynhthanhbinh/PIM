@@ -26,30 +26,30 @@ public interface EmployeeInfoOrBuilder extends
     EmployeeOrBuilder getEmployeeOrBuilder();
 
     /**
-     * <code>repeated .com.bht.pim.proto.projects.Project enrolledProject = 2;</code>
+     * <code>repeated .com.bht.pim.proto.projects.Project enrolledProjects = 2;</code>
      */
     java.util.List<Project>
-    getEnrolledProjectList();
+    getEnrolledProjectsList();
 
     /**
-     * <code>repeated .com.bht.pim.proto.projects.Project enrolledProject = 2;</code>
+     * <code>repeated .com.bht.pim.proto.projects.Project enrolledProjects = 2;</code>
      */
-    Project getEnrolledProject(int index);
+    Project getEnrolledProjects(int index);
 
     /**
-     * <code>repeated .com.bht.pim.proto.projects.Project enrolledProject = 2;</code>
+     * <code>repeated .com.bht.pim.proto.projects.Project enrolledProjects = 2;</code>
      */
-    int getEnrolledProjectCount();
+    int getEnrolledProjectsCount();
 
     /**
-     * <code>repeated .com.bht.pim.proto.projects.Project enrolledProject = 2;</code>
+     * <code>repeated .com.bht.pim.proto.projects.Project enrolledProjects = 2;</code>
      */
     java.util.List<? extends ProjectOrBuilder>
-    getEnrolledProjectOrBuilderList();
+    getEnrolledProjectsOrBuilderList();
 
     /**
-     * <code>repeated .com.bht.pim.proto.projects.Project enrolledProject = 2;</code>
+     * <code>repeated .com.bht.pim.proto.projects.Project enrolledProjects = 2;</code>
      */
-    ProjectOrBuilder getEnrolledProjectOrBuilder(
+    ProjectOrBuilder getEnrolledProjectsOrBuilder(
             int index);
 }

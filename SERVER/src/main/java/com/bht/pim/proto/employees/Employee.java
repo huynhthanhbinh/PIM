@@ -95,13 +95,8 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-    // @@protoc_insertion_point(class_scope:com.bht.pim.proto.employees.Employee)
-    private static final Employee DEFAULT_INSTANCE;
-
-  public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-      return EmployeeOuterClass.internal_static_com_bht_pim_proto_employees_Employee_descriptor;
-  }
+    public static final int FIRST_NAME_FIELD_NUMBER = 3;
+    public static final int LAST_NAME_FIELD_NUMBER = 4;
 
   public static final int ID_FIELD_NUMBER = 1;
   private long id_;
@@ -114,6 +109,15 @@ private static final long serialVersionUID = 0L;
 
   public static final int VISA_FIELD_NUMBER = 2;
   private volatile Object visa_;
+    // @@protoc_insertion_point(class_scope:com.bht.pim.proto.employees.Employee)
+    private static final Employee DEFAULT_INSTANCE;
+    private volatile Object firstName_;
+    private volatile Object lastName_;
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+        return EmployeeOuterClass.internal_static_com_bht_pim_proto_employees_Employee_descriptor;
+    }
 
     protected FieldAccessorTable
     internalGetFieldAccessorTable() {
@@ -137,9 +141,6 @@ private static final long serialVersionUID = 0L;
       return s;
     }
   }
-
-    public static final int FIRST_NAME_FIELD_NUMBER = 3;
-    private volatile Object firstName_;
 
   /**
    * <code>string visa = 2;</code>
@@ -173,9 +174,6 @@ private static final long serialVersionUID = 0L;
       return s;
     }
   }
-
-    public static final int LAST_NAME_FIELD_NUMBER = 4;
-    private volatile Object lastName_;
 
   /**
    * <code>string first_name = 3;</code>
@@ -652,12 +650,11 @@ private static final long serialVersionUID = 0L;
         /**
          * <code>string visa = 2;</code>
          */
-        public Builder setVisaBytes(
-                com.google.protobuf.ByteString value) {
+        public Builder setVisa(
+                String value) {
             if (value == null) {
                 throw new NullPointerException();
             }
-            checkByteStringIsUtf8(value);
 
             visa_ = value;
             onChanged();
@@ -667,11 +664,12 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>string visa = 2;</code>
      */
-    public Builder setVisa(
-        String value) {
+    public Builder setVisaBytes(
+            com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
-  }
+      }
+        checkByteStringIsUtf8(value);
 
       visa_ = value;
       onChanged();
@@ -744,14 +742,14 @@ private static final long serialVersionUID = 0L;
         String value) {
       if (value == null) {
     throw new NullPointerException();
-  }
+      }
 
         firstName_ = value;
       onChanged();
       return this;
     }
 
-        /**
+    /**
      * <code>string first_name = 3;</code>
      */
     public Builder clearFirstName() {
@@ -778,7 +776,7 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-        /**
+    /**
      * <code>string last_name = 4;</code>
      */
     public com.google.protobuf.ByteString
@@ -808,23 +806,23 @@ private static final long serialVersionUID = 0L;
             lastName_ = value;
             onChanged();
             return this;
-        }
+    }
 
-        /**
+    /**
      * <code>string last_name = 4;</code>
      */
     public Builder setLastName(
         String value) {
       if (value == null) {
     throw new NullPointerException();
-  }
+      }
 
         lastName_ = value;
       onChanged();
-      return this;
+        return this;
     }
 
-        /**
+    /**
      * <code>string last_name = 4;</code>
      */
     public Builder clearLastName() {
@@ -842,7 +840,7 @@ private static final long serialVersionUID = 0L;
       return birthday_;
     }
 
-        /**
+    /**
      * <code>int64 birthday = 5;</code>
      */
     public Builder setBirthday(long value) {
@@ -856,7 +854,7 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearBirthday() {
 
-        birthday_ = 0L;
+      birthday_ = 0L;
       onChanged();
       return this;
     }

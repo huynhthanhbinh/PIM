@@ -69,7 +69,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
             GroupInfo groupInfo = GroupInfo.newBuilder()
                     .setGroup(group)
-                    .addAllEnrolledProject(projects)
+                    .addAllEnrolledProjects(projects)
                     .build();
 
             responseObserver.onNext(groupInfo);

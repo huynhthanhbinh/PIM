@@ -44,7 +44,7 @@ public class EmployeeListServiceImpl extends EmployeeListServiceGrpc.EmployeeLis
             });
 
             EmployeeList employeeList = EmployeeList.newBuilder()
-                    .addAllEmployee(employees)
+                    .addAllEmployees(employees)
                     .build();
 
             responseObserver.onNext(employeeList);
@@ -57,7 +57,7 @@ public class EmployeeListServiceImpl extends EmployeeListServiceGrpc.EmployeeLis
 
             // return an empty list not return null value for list
             responseObserver.onNext(EmployeeList.newBuilder()
-                    .addAllEmployee(Collections.emptyList()).build());
+                    .addAllEmployees(Collections.emptyList()).build());
             responseObserver.onCompleted();
         }
     }

@@ -8,17 +8,17 @@ public interface ProjectNumbersOrBuilder extends
         com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated int64 projectNumber = 1;</code>
+     * <code>repeated int64 projectNumbers = 1;</code>
      */
-    java.util.List<Long> getProjectNumberList();
+    java.util.List<Long> getProjectNumbersList();
 
     /**
-     * <code>repeated int64 projectNumber = 1;</code>
+     * <code>repeated int64 projectNumbers = 1;</code>
      */
-    int getProjectNumberCount();
+    int getProjectNumbersCount();
 
     /**
-     * <code>repeated int64 projectNumber = 1;</code>
+     * <code>repeated int64 projectNumbers = 1;</code>
      */
-    long getProjectNumber(int index);
+    long getProjectNumbers(int index);
 }

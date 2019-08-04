@@ -8,30 +8,30 @@ public interface ProjectListOrBuilder extends
         com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .com.bht.pim.proto.projects.Project project = 1;</code>
+     * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
      */
     java.util.List<Project>
-    getProjectList();
+    getProjectsList();
 
     /**
-     * <code>repeated .com.bht.pim.proto.projects.Project project = 1;</code>
+     * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
      */
-    Project getProject(int index);
+    Project getProjects(int index);
 
     /**
-     * <code>repeated .com.bht.pim.proto.projects.Project project = 1;</code>
+     * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
      */
-    int getProjectCount();
+    int getProjectsCount();
 
     /**
-     * <code>repeated .com.bht.pim.proto.projects.Project project = 1;</code>
+     * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
      */
     java.util.List<? extends ProjectOrBuilder>
-    getProjectOrBuilderList();
+    getProjectsOrBuilderList();
 
     /**
-     * <code>repeated .com.bht.pim.proto.projects.Project project = 1;</code>
+     * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
      */
-    ProjectOrBuilder getProjectOrBuilder(
+    ProjectOrBuilder getProjectsOrBuilder(
             int index);
 }

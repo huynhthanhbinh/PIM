@@ -11,7 +11,7 @@ option java_multiple_files = true;
 
 message ProjectInfo {
     Project project = 1;
-    repeated employees.Employee employee = 2;
+    repeated employees.Employee employees = 2;
 }
 
 message ProjectId {
