@@ -1,6 +1,6 @@
 package com.bht.pim.app.practice;
 
-import com.bht.pim.proto.project.Project;
+import com.bht.pim.proto.projects.Project;
 import com.bht.pim.util.ProjectUtil;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;

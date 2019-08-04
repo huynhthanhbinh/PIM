@@ -1,6 +1,6 @@
 package com.bht.pim.intermediate;
 
-import com.bht.pim.proto.employee.Employee;
+import com.bht.pim.proto.employees.Employee;
 
 public class Member {
 
@@ -12,6 +12,10 @@ public class Member {
                 employee.getVisa() + " - " +
                         employee.getLastName() + " " + employee.getFirstName());
     }
+
+//    public static Member toMember(Group group) {
+//        //Employee leader = group.
+//    }
 
     public Member(long id, String name) {
         this.id = id;

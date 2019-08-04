@@ -1,9 +1,9 @@
 package com.bht.pim.app.practice;
 
-import com.bht.pim.proto.employee.Employee;
-import com.bht.pim.proto.employee.EmployeeList;
-import com.bht.pim.proto.employee.EmployeeListServiceGrpc;
-import com.bht.pim.proto.employee.NoParam;
+import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.proto.employees.EmployeeList;
+import com.bht.pim.proto.employees.EmployeeListServiceGrpc;
+import com.bht.pim.proto.employees.NoParam;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.application.Application;
@@ -125,7 +125,7 @@ public class AutoCompleteTextField extends Application {
 
         channel.shutdown();
 
-        return employeeList.getEmployeeListList().stream()
+        return employeeList.getEmployeesList().stream()
                 .map(this::toEmployeeInfo)
                 .collect(Collectors.toList());
     }

@@ -1,8 +1,11 @@
 package com.bht.pim.util;
 
-import com.bht.pim.proto.group.Group;
-import com.bht.pim.proto.group.GroupServiceGrpc;
+import com.bht.pim.intermediate.Member;
+import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.proto.groups.*;
 import io.grpc.Channel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.apache.log4j.Logger;
 
 
@@ -14,13 +17,17 @@ public class GroupUtil {
     }
 
     // Add a new group ============================================
-    public static boolean addNewGroup(Channel channel, long leaderId) {
+    public static boolean addNewGroup(Channel channel, Member leader) {
         try {
             GroupServiceGrpc.GroupServiceBlockingStub stub =
                     GroupServiceGrpc.newBlockingStub(channel);
 
+            Employee groupLeader = Employee.newBuilder()
+                    .setId(leader.getId())
+                    .build();
+
             Group newGroup = Group.newBuilder()
-                    .setGroupLeaderId(leaderId)
+                    .setLeader(groupLeader)
                     .build();
 
             return stub.addNewGroup(newGroup).getIsSuccess();
@@ -30,5 +37,18 @@ public class GroupUtil {
             logger.info(exception);
             return false;
         }
+    }
+
+    // Get all groups
+    public static ObservableList<Group> getAllGroups(Channel channel) {
+
+        GroupListServiceGrpc.GroupListServiceBlockingStub stub =
+                GroupListServiceGrpc.newBlockingStub(channel);
+
+        NoParam noParam = NoParam.newBuilder().build();
+
+        GroupList groupList = stub.getGroupList(noParam);
+
+        return FXCollections.observableList(groupList.getGroupsList());
     }
 }

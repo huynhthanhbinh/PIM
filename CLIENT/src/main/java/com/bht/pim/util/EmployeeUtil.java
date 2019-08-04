@@ -1,9 +1,9 @@
 package com.bht.pim.util;
 
-import com.bht.pim.proto.employee.Employee;
-import com.bht.pim.proto.employee.EmployeeList;
-import com.bht.pim.proto.employee.EmployeeListServiceGrpc;
-import com.bht.pim.proto.employee.NoParam;
+import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.proto.employees.EmployeeList;
+import com.bht.pim.proto.employees.EmployeeListServiceGrpc;
+import com.bht.pim.proto.employees.NoParam;
 import io.grpc.Channel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +17,7 @@ public class EmployeeUtil {
     }
 
     // Employee List get response from server
-    public static ObservableList<Employee> getEmployeeList(Channel channel) {
+    public static ObservableList<Employee> getAllEmployees(Channel channel) {
 
         // Get employee list =======================================
         EmployeeListServiceGrpc.EmployeeListServiceBlockingStub stub =
@@ -27,6 +27,6 @@ public class EmployeeUtil {
 
         EmployeeList employeeList = stub.getEmployeeList(noParam);
 
-        return FXCollections.observableArrayList(employeeList.getEmployeeListList());
+        return FXCollections.observableArrayList(employeeList.getEmployeesList());
     }
 }

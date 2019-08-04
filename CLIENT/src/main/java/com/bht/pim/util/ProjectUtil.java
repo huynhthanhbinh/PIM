@@ -1,9 +1,9 @@
 package com.bht.pim.util;
 
-import com.bht.pim.proto.project.NoParam;
-import com.bht.pim.proto.project.Project;
-import com.bht.pim.proto.project.ProjectList;
-import com.bht.pim.proto.project.ProjectListServiceGrpc;
+import com.bht.pim.proto.projects.NoParam;
+import com.bht.pim.proto.projects.Project;
+import com.bht.pim.proto.projects.ProjectList;
+import com.bht.pim.proto.projects.ProjectListServiceGrpc;
 import io.grpc.Channel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,12 +39,11 @@ public class ProjectUtil {
         ProjectListServiceGrpc.ProjectListServiceBlockingStub stub5 =
                 ProjectListServiceGrpc.newBlockingStub(channel);
 
-        com.bht.pim.proto.project.NoParam noParam2 =
-                com.bht.pim.proto.project.NoParam.newBuilder().build();
+        NoParam noParam = NoParam.newBuilder().build();
 
-        ProjectList projectList = stub5.getProjectList(noParam2);
+        ProjectList projectList = stub5.getProjectList(noParam);
 
-        return FXCollections.observableArrayList(projectList.getProjectListList());
+        return FXCollections.observableArrayList(projectList.getProjectsList());
     }
 
     // Format Date : convert from long to Date

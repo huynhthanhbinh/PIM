@@ -130,9 +130,12 @@ public class ProjectCreate implements Initializable {
         projectNumbers = ProjectUtil.getProjectNumbers(channel);
 
         // Get all employees
-        employees = EmployeeUtil.getEmployeeList(channel).stream()
+        employees = EmployeeUtil.getAllEmployees(channel).stream()
                 .map(Member::toMember)
                 .collect(Collectors.toList());
+
+        // Get all current-group leaders
+
 
         // Turn off connection
         channel.shutdown();
@@ -169,7 +172,6 @@ public class ProjectCreate implements Initializable {
         comboBoxOption.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     chose = true;
-                    comboBoxLeader.setDisable(false);
 
                     if (newValue.equals("Current group")) { // current group
                         logger.info(newValue);
@@ -181,6 +183,9 @@ public class ProjectCreate implements Initializable {
                         comboBoxLeader.getItems().addAll();
                         comboBoxLeader.getSelectionModel().selectFirst();
                     }
+
+                    comboBoxLeader.setDisable(false);
+                    textField.setDisable(false);
                 }
         );
 
@@ -199,6 +204,7 @@ public class ProjectCreate implements Initializable {
         comboBoxOption.getItems().addAll(options);
 
         comboBoxLeader.setDisable(true);
+        textField.setDisable(true);
 
         configureAutoCompletion();
         employeeAutoCompletion.setMinWidth(300);
