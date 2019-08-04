@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity"
-      prefHeight="630.0" prefWidth="1120.0" spacing="5.0"
+      minWidth="-Infinity" prefHeight="630.0" prefWidth="1120.0" spacing="5.0"
       stylesheets="/com/bht/pim/fragment/project/ProjectCreate.css" xmlns="http://javafx.com/javafx/8.0.172-ea"
       fx:controller="com.bht.pim.fragment.project.ProjectCreate">
     <padding>
@@ -17,16 +16,14 @@
             <children>
                 <Label alignment="CENTER" text="NEW PROJECT" VBox.vgrow="ALWAYS">
                     <font>
-                        <Font name="System Bold" size="24.0"/>
-                    </font>
-                </Label>
-                <Label text="( * ) mandatory fields" textFill="#f24517">
-                    <font>
-                        <Font name="System Bold Italic" size="16.0"/>
+                        <Font name="System Bold" size="28.0"/>
                     </font>
                 </Label>
                 <Separator prefWidth="200.0"/>
             </children>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
         </VBox>
         <GridPane alignment="CENTER" hgap="30.0" VBox.vgrow="ALWAYS">
             <columnConstraints>
@@ -109,11 +106,6 @@
                            GridPane.hgrow="NEVER" GridPane.rowIndex="1"/>
                 <ComboBox fx:id="comboBoxStatus" prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="3"
                           GridPane.hgrow="NEVER" GridPane.rowIndex="1"/>
-                <Label alignment="TOP_LEFT" text="BASIC INFORMATION" GridPane.columnSpan="2">
-                    <font>
-                        <Font name="System Bold" size="24.0"/>
-                    </font>
-                </Label>
                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <children>
                         <Label text="Project-number">
@@ -275,6 +267,21 @@
                         <Font name="System Bold Italic" size="14.0"/>
                     </font>
                 </Label>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
+                      GridPane.columnSpan="4">
+                    <children>
+                        <Label alignment="TOP_LEFT" text="BASIC INFORMATION">
+                            <font>
+                                <Font name="System Bold" size="24.0"/>
+                            </font>
+                        </Label>
+                        <Label text="Please fill in all mandatory fields ( * ) ! " textFill="#f24517" fx:id="lFillAll">
+                            <font>
+                                <Font name="System Bold Italic" size="16.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
             </children>
             <padding>
                 <Insets left="5.0" right="5.0"/>

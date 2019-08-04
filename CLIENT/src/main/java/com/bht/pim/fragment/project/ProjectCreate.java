@@ -1,5 +1,6 @@
 package com.bht.pim.fragment.project;
 
+import com.bht.pim.intermediate.Member;
 import com.bht.pim.util.EmployeeUtil;
 import com.bht.pim.util.ProjectUtil;
 import io.grpc.ManagedChannel;
@@ -45,7 +46,7 @@ public class ProjectCreate implements Initializable {
     @FXML
     public ComboBox<String> comboBoxOption;
     @FXML
-    public ComboBox<String> comboBoxLeader;
+    public ComboBox<Member> comboBoxLeader;
     @FXML
     public TextField customer;
     @FXML
@@ -66,6 +67,8 @@ public class ProjectCreate implements Initializable {
     public Label lEndInvalid;
     @FXML
     public Label lGroupOption;
+    @FXML
+    public Label lFillAll;
     @FXML
     public Button bCreate;
     @FXML
@@ -110,6 +113,7 @@ public class ProjectCreate implements Initializable {
         lStartEmpty.setVisible(false);
         lEndInvalid.setVisible(false);
         lGroupOption.setVisible(false);
+        lFillAll.setVisible(false);
     }
 
 
@@ -159,6 +163,24 @@ public class ProjectCreate implements Initializable {
         customer.textProperty().addListener((observable, oldValue, newValue) ->
                 lCustomerEmpty.setVisible(newValue.isEmpty()));
 
+        comboBoxOption.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    chose = true;
+                    comboBoxLeader.setDisable(false);
+
+                    if (newValue.equals("Current group")) { // current group
+                        logger.info(newValue);
+                        comboBoxLeader.getItems().addAll();
+                        comboBoxLeader.getSelectionModel().selectFirst();
+
+                    } else { // new group (new a non-exist leader)
+                        logger.info(newValue);
+                        comboBoxLeader.getItems().addAll();
+                        comboBoxLeader.getSelectionModel().selectFirst();
+                    }
+                }
+        );
+
         // if user click create
         bCreate.setOnMouseClicked(this::onSubmit);
 
@@ -172,7 +194,8 @@ public class ProjectCreate implements Initializable {
 
         String[] options = {"New group", "Current group"};
         comboBoxOption.getItems().addAll(options);
-        comboBoxOption.getSelectionModel().selectFirst();
+
+        comboBoxLeader.setDisable(true);
 
         configureAutoCompletion();
         employeeAutoCompletion.setMinWidth(300);
@@ -235,7 +258,7 @@ public class ProjectCreate implements Initializable {
 
             @Override
             protected void updateItem(Member member, boolean empty) {
-                if (member == null || member.id == leaderId) {
+                if (member == null || member.getId() == leaderId) {
 
                     // Not show the button
                     // to prevent user delete leader from group
@@ -262,7 +285,7 @@ public class ProjectCreate implements Initializable {
                     configureAutoCompletion();
 
                     // remove this id from the member id list
-                    members.remove(member.id);
+                    members.remove(member.getId());
 
                     // log current list member id
                     logger.info(members);
@@ -284,37 +307,5 @@ public class ProjectCreate implements Initializable {
     // when user click button cancel
     private void onCancel(MouseEvent event) {
         logger.info("[bCancel] onClick");
-    }
-
-
-    // for table initialize
-    public class Member {
-        private long id;
-        private String name;
-
-        private Member(long id, String name) {
-            this.id = id;
-            this.name = name;
-        }
-
-        public long getId() {
-            return id;
-        }
-
-        public void setId(long id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        private String toEmployeeInfo() {
-            return "id=" + id + " | " + name;
-        }
     }
 }
