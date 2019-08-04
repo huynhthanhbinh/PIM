@@ -1,6 +1,7 @@
 package com.bht.pim.intermediate;
 
 import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.proto.groups.Group;
 
 public class Member {
 
@@ -13,9 +14,10 @@ public class Member {
                         employee.getLastName() + " " + employee.getFirstName());
     }
 
-//    public static Member toMember(Group group) {
-//        //Employee leader = group.
-//    }
+    public static Member toMember(Group group) {
+        Employee leader = group.getLeader();
+        return toMember(leader);
+    }
 
     public Member(long id, String name) {
         this.id = id;
@@ -41,5 +43,23 @@ public class Member {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Member)) {
+            return false;
+        }
+
+        Member member = (Member) obj;
+        return id == member.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

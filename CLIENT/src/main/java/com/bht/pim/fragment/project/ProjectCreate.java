@@ -2,6 +2,7 @@ package com.bht.pim.fragment.project;
 
 import com.bht.pim.intermediate.Member;
 import com.bht.pim.util.EmployeeUtil;
+import com.bht.pim.util.GroupUtil;
 import com.bht.pim.util.ProjectUtil;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -77,10 +78,11 @@ public class ProjectCreate implements Initializable {
 
     private ManagedChannel channel;
     private boolean chose;
-    private long leaderId;
+    private Member leader;
     private List<Long> projectNumbers;
     private List<Long> members;
     private List<Member> employees;
+    private List<Member> leaders;
     private AutoCompletionBinding<Member> employeeAutoCompletion;
     private Logger logger = Logger.getLogger(ProjectCreate.class);
 
@@ -135,13 +137,18 @@ public class ProjectCreate implements Initializable {
                 .collect(Collectors.toList());
 
         // Get all current-group leaders
+        leaders = GroupUtil.getAllGroups(channel).stream()
+                .map(Member::toMember)
+                .collect(Collectors.toList());
 
+        // Init leader options for option new groups
+        employees.removeAll(leaders);
 
         // Turn off connection
         channel.shutdown();
 
         chose = false;
-        leaderId = 13;
+        leader = null;
         members = new ArrayList<>();
     }
 
@@ -173,19 +180,32 @@ public class ProjectCreate implements Initializable {
                 (observable, oldValue, newValue) -> {
                     chose = true;
 
-                    if (newValue.equals("Current group")) { // current group
-                        logger.info(newValue);
-                        comboBoxLeader.getItems().addAll();
-                        comboBoxLeader.getSelectionModel().selectFirst();
-
-                    } else { // new group (new a non-exist leader)
-                        logger.info(newValue);
-                        comboBoxLeader.getItems().addAll();
-                        comboBoxLeader.getSelectionModel().selectFirst();
+                    if (comboBoxLeader.getItems() != null) {
+                        comboBoxLeader.getItems().clear();
                     }
 
+                    if (newValue.equals("Current group")) { // current group
+                        comboBoxLeader.getItems().addAll(leaders);
+
+                    } else { // new group (new a non-exist leader)
+                        comboBoxLeader.getItems().addAll(employees);
+                    }
+
+                    comboBoxLeader.getSelectionModel().selectFirst();
                     comboBoxLeader.setDisable(false);
                     textField.setDisable(false);
+                }
+        );
+
+        comboBoxLeader.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    if (oldValue == null) {
+                        logger.info(newValue.getId());
+                    } else {
+                        if (newValue != null && !newValue.equals(oldValue)) {
+                            logger.info(newValue.getId());
+                        }
+                    }
                 }
         );
 
@@ -202,7 +222,6 @@ public class ProjectCreate implements Initializable {
 
         String[] options = {"New group", "Current group"};
         comboBoxOption.getItems().addAll(options);
-
         comboBoxLeader.setDisable(true);
         textField.setDisable(true);
 
@@ -263,7 +282,7 @@ public class ProjectCreate implements Initializable {
 
             @Override
             protected void updateItem(Member member, boolean empty) {
-                if (member == null || member.getId() == leaderId) {
+                if (member == null || member == leader) {
 
                     // Not show the button
                     // to prevent user delete leader from group

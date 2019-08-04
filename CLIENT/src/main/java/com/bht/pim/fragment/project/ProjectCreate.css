@@ -91,3 +91,7 @@
 .combo-box {
     -fx-font-size: 14;
 }
+
+.combo-box .list-view {
+    -fx-pref-width: 250;
+}
