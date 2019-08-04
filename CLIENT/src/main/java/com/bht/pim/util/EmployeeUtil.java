@@ -5,10 +5,9 @@ import com.bht.pim.proto.employee.EmployeeList;
 import com.bht.pim.proto.employee.EmployeeListServiceGrpc;
 import com.bht.pim.proto.employee.NoParam;
 import io.grpc.Channel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.apache.log4j.Logger;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class EmployeeUtil {
 
@@ -18,7 +17,7 @@ public class EmployeeUtil {
     }
 
     // Employee List get response from server
-    public static List<String> getEmployeeList(Channel channel) {
+    public static ObservableList<Employee> getEmployeeList(Channel channel) {
 
         // Get employee list =======================================
         EmployeeListServiceGrpc.EmployeeListServiceBlockingStub stub =
@@ -28,14 +27,6 @@ public class EmployeeUtil {
 
         EmployeeList employeeList = stub.getEmployeeList(noParam);
 
-        return employeeList.getEmployeeListList().stream()
-                .map(EmployeeUtil::toEmployeeInfo)
-                .collect(Collectors.toList());
-    }
-
-    // mapping employee to employee info
-    private static String toEmployeeInfo(Employee employee) {
-        return "id=" + employee.getId() + " | " + employee.getVisa() + " - "
-                + employee.getLastName() + " " + employee.getFirstName();
+        return FXCollections.observableArrayList(employeeList.getEmployeeListList());
     }
 }

@@ -2,8 +2,11 @@ package com.bht.pim.util;
 
 import com.bht.pim.proto.project.NoParam;
 import com.bht.pim.proto.project.Project;
+import com.bht.pim.proto.project.ProjectList;
 import com.bht.pim.proto.project.ProjectListServiceGrpc;
 import io.grpc.Channel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import org.apache.log4j.Logger;
@@ -28,6 +31,20 @@ public class ProjectUtil {
 
         return stub.getProjectNumbers(noParam)
                 .getProjectNumbersList();
+    }
+
+    // Get all of products
+    public static ObservableList<Project> getAllProjects(Channel channel) {
+
+        ProjectListServiceGrpc.ProjectListServiceBlockingStub stub5 =
+                ProjectListServiceGrpc.newBlockingStub(channel);
+
+        com.bht.pim.proto.project.NoParam noParam2 =
+                com.bht.pim.proto.project.NoParam.newBuilder().build();
+
+        ProjectList projectList = stub5.getProjectList(noParam2);
+
+        return FXCollections.observableArrayList(projectList.getProjectListList());
     }
 
     // Format Date : convert from long to Date

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 @Controller
 public class ProjectCreate implements Initializable {
@@ -78,9 +79,9 @@ public class ProjectCreate implements Initializable {
     private boolean chose;
     private long leaderId;
     private List<Long> projectNumbers;
-    private List<String> employees;
     private List<Long> members;
-    private AutoCompletionBinding<String> employeeAutoCompletion;
+    private List<Member> employees;
+    private AutoCompletionBinding<Member> employeeAutoCompletion;
     private Logger logger = Logger.getLogger(ProjectCreate.class);
 
     @FXML
@@ -129,7 +130,9 @@ public class ProjectCreate implements Initializable {
         projectNumbers = ProjectUtil.getProjectNumbers(channel);
 
         // Get all employees
-        employees = EmployeeUtil.getEmployeeList(channel);
+        employees = EmployeeUtil.getEmployeeList(channel).stream()
+                .map(Member::toMember)
+                .collect(Collectors.toList());
 
         // Turn off connection
         channel.shutdown();
@@ -211,22 +214,18 @@ public class ProjectCreate implements Initializable {
         employeeAutoCompletion = TextFields
                 .bindAutoCompletion(textField, employees);
         employeeAutoCompletion.setOnAutoCompleted(event -> {
-            String input = textField.getText();
+
+            Member member = event.getCompletion();
+
             textField.clear();
+            table.getItems().add(member);
 
-            int start = input.indexOf('=') + 1;
-            int end = input.indexOf('|') - 1;
-            long id = Long.parseLong(input.substring(start, end));
-            String memberName = input.substring(end + 3);
-
-            table.getItems().add(new Member(id, memberName));
-
-            members.add(id);
+            members.add(member.getId());
             logger.info(members);
 
             // Update autocompletion list
             // remove the selected one
-            employees.remove(input);
+            employees.remove(member);
             employeeAutoCompletion.dispose();
             configureAutoCompletion();
         });
@@ -278,7 +277,7 @@ public class ProjectCreate implements Initializable {
 
                     // add this employee back to employee list
                     // for autocompletion next times
-                    employees.add(member.toEmployeeInfo());
+                    employees.add(member);
 
                     // load auto-completion again
                     employeeAutoCompletion.dispose();

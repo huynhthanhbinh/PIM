@@ -1,14 +1,10 @@
 package com.bht.pim.app.practice;
 
 import com.bht.pim.proto.project.Project;
-import com.bht.pim.proto.project.ProjectList;
-import com.bht.pim.proto.project.ProjectListServiceGrpc;
 import com.bht.pim.util.ProjectUtil;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -94,8 +90,17 @@ public class TableViews extends Application {
         cDelete.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.05));
         cDelete.setResizable(false);
 
+        // Channel is the abstraction to connect to a service endpoint
+        // Let's use plaintext communication because we don't have certs
+        ManagedChannel channel = ManagedChannelBuilder
+                .forAddress(HOST, PORT)
+                .usePlaintext()
+                .build();
 
-        table.setItems(getAllProducts());
+        table.setItems(ProjectUtil.getAllProjects(channel));
+
+        channel.shutdown();
+
         table.getColumns().addAll(cSelect, cNumber, cName, cCustomer, cStatus, cStart, cEnd, cDelete);
 
         VBox layout = new VBox();
@@ -121,28 +126,5 @@ public class TableViews extends Application {
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         window.setX((screenBounds.getWidth() - window.getWidth()) / 2);
         window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
-    }
-
-    // Get all of products
-    private ObservableList<Project> getAllProducts() {
-
-        // Channel is the abstraction to connect to a service endpoint
-        // Let's use plaintext communication because we don't have certs
-        ManagedChannel channel = ManagedChannelBuilder
-                .forAddress(HOST, PORT)
-                .usePlaintext()
-                .build();
-
-        ProjectListServiceGrpc.ProjectListServiceBlockingStub stub5 =
-                ProjectListServiceGrpc.newBlockingStub(channel);
-
-        com.bht.pim.proto.project.NoParam noParam2 =
-                com.bht.pim.proto.project.NoParam.newBuilder().build();
-
-        ProjectList projectList = stub5.getProjectList(noParam2);
-
-        channel.shutdown();
-
-        return FXCollections.observableArrayList(projectList.getProjectListList());
     }
 }
