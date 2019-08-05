@@ -84,6 +84,7 @@ public class ProjectCreate implements Initializable {
     private List<Long> members;
     private List<Member> employees;
     private List<Member> leaders;
+    private List<Member> leaderOptions;
     private AutoCompletionBinding<Member> employeeAutoCompletion;
     private Logger logger = Logger.getLogger(ProjectCreate.class);
 
@@ -142,8 +143,9 @@ public class ProjectCreate implements Initializable {
                 .map(Member::toMember)
                 .collect(Collectors.toList());
 
-        // Init leader options for option new groups
+        // Init leader leaderOptions for option new groups
         employees.removeAll(leaders);
+        leaderOptions = new ArrayList<>(employees);
 
         // Turn off connection
         channel.shutdown();
@@ -191,7 +193,7 @@ public class ProjectCreate implements Initializable {
                         current = true;
 
                     } else { // new group (new a non-exist leader)
-                        comboBoxLeader.getItems().addAll(employees);
+                        comboBoxLeader.getItems().addAll(leaderOptions);
                         current = false;
                     }
 
@@ -209,38 +211,46 @@ public class ProjectCreate implements Initializable {
                             employees.remove(newValue);
                         }
 
-                        leader = newValue;
-                        table.getItems().add(newValue);
                         members.add(newValue.getId());
 
+                        // Add new-leader value to the table member
+                        leader = newValue;
+                        table.getItems().add(newValue);
+
                     } else {
+                        // change leader option
                         if (newValue != null && !newValue.equals(oldValue)) {
 
-                            // Remove old-leader value out of table member
-                            table.getItems().remove(oldValue);
-                            members.remove(oldValue.getId());
-
                             if (!current) { // new-group
-                                employees.remove(newValue);
                                 employees.add(oldValue);
-                                table.getItems().add(oldValue);
+                                employees.remove(newValue);
                             }
+
+                            members.remove(oldValue.getId());
+                            members.remove(newValue.getId()); // if exist before
+                            members.add(newValue.getId()); // add and mark as leader
+
+                            // if exist before but non-leader
+                            table.getItems().remove(newValue);
 
                             // the same group option but differ in leader option
                             leader = newValue;
-                            table.getItems().remove(newValue); // if exist before but non-leader
+                            table.getItems().remove(oldValue);
                             table.getItems().add(newValue);
 
                         } else { // Change group-option
-                            if (!leaders.contains(oldValue)) { // option is of preLeaders to Leader
+                            if (!current) { // option is of preLeaders to Leader
                                 employees.add(oldValue);
                             }
 
+                            members.remove(oldValue.getId());
+
                             // Remove old-leader value out of table member
                             table.getItems().remove(oldValue);
-                            members.remove(oldValue.getId());
                         }
                     }
+
+                    logger.info(members);
 
                     // load auto-completion again
                     employeeAutoCompletion.dispose();
