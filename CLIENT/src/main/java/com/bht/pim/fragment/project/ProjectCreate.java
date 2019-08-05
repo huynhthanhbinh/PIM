@@ -148,8 +148,6 @@ public class ProjectCreate implements Initializable {
                 .map(Member::toMember)
                 .collect(Collectors.toList());
 
-        logger.info(EmployeeUtil.getAllEmployees(channel));
-
         // Get all current-group leaders
         leaders = GroupUtil.getAllGroups(channel).stream()
                 .map(Member::toMember)
@@ -350,6 +348,7 @@ public class ProjectCreate implements Initializable {
         boolean emptyName = name.getText().isEmpty();
         boolean emptyCustomer = name.getText().isEmpty();
         boolean emptyStart = start.getEditor().getText().isEmpty();
+        boolean emptyEnd = end.getEditor().getText().isEmpty();
 
         lFillAll.setVisible(false);
         number.getStyleClass().remove("empty");
@@ -358,7 +357,14 @@ public class ProjectCreate implements Initializable {
         start.getEditor().getStyleClass().remove("empty");
         lGroupOption.setVisible(false);
 
-        if (!(emptyNumber && emptyName && emptyCustomer && emptyStart) && chose) {
+        if (chose && !(emptyNumber || emptyName || emptyCustomer || emptyStart)) {
+            if (!emptyEnd && end.getValue().isBefore(start.getValue())) {
+                logger.info("<<< INVALID END-DATE ! >>>");
+                end.getEditor().getStyleClass().add("empty");
+                lEndInvalid.setVisible(true);
+                return;
+            }
+
             logger.info("<<< PIM - On saving new project >>>");
 
             Employee groupLeader = Employee.newBuilder()
@@ -375,6 +381,9 @@ public class ProjectCreate implements Initializable {
                     logger.info("<<< PIM - On creating new group >>>");
                     //GroupUtil.addNewGroup(channel, group);
                 }
+
+                logger.info(emptyStart);
+                logger.info(start.getEditor().getText());
 
                 Project.Builder projectBuilder = Project.newBuilder()
                         .setNumber(Long.parseLong(number.getText()))
@@ -404,6 +413,8 @@ public class ProjectCreate implements Initializable {
 
             } catch (Exception exception) {
                 logger.info(exception);
+
+                exception.printStackTrace();
             }
         } else {
             lFillAll.setVisible(true);
@@ -502,6 +513,19 @@ public class ProjectCreate implements Initializable {
 
                 if (datePicker == start) {
                     lStartEmpty.setVisible(false);
+                }
+                if (end.getValue() != null && start.getValue() != null) {
+                    if (end.getValue().isBefore(start.getValue())) {
+                        end.getEditor().getStyleClass().add("empty");
+                        lEndInvalid.setVisible(true);
+
+                    } else {
+                        end.getEditor().getStyleClass().remove("empty");
+                        lEndInvalid.setVisible(false);
+                    }
+                } else {
+                    end.getEditor().getStyleClass().remove("empty");
+                    lEndInvalid.setVisible(false);
                 }
             }
         });
