@@ -11,3 +11,6 @@ Multilingual CLIENT-SERVER JavaFX Project
 + Maven, Spring, Hibernate, JacpFX<br>
 + gRPC with protobuf, MapStruct, Lombok<br>
 + Multilingual with properties configuration
+
+<br><b>References:</b><br>
++ JFXNotifications : https://github.com/TioCoding/JFXNotifications
