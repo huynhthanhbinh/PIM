@@ -7,6 +7,7 @@ import com.bht.pim.util.ProjectUtil;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -204,59 +205,7 @@ public class ProjectCreate implements Initializable {
         );
 
         comboBoxLeader.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> {
-                    if (oldValue == null) { // change group option
-
-                        if (!current) { // new-group
-                            employees.remove(newValue);
-                        }
-
-                        members.add(newValue.getId());
-
-                        // Add new-leader value to the table member
-                        leader = newValue;
-                        table.getItems().add(newValue);
-
-                    } else {
-                        // change leader option
-                        if (newValue != null && !newValue.equals(oldValue)) {
-
-                            if (!current) { // new-group
-                                employees.add(oldValue);
-                                employees.remove(newValue);
-                            }
-
-                            members.remove(oldValue.getId());
-                            members.remove(newValue.getId()); // if exist before
-                            members.add(newValue.getId()); // add and mark as leader
-
-                            // if exist before but non-leader
-                            table.getItems().remove(newValue);
-
-                            // the same group option but differ in leader option
-                            leader = newValue;
-                            table.getItems().remove(oldValue);
-                            table.getItems().add(newValue);
-
-                        } else { // Change group-option
-                            if (!current) { // option is of preLeaders to Leader
-                                employees.add(oldValue);
-                            }
-
-                            members.remove(oldValue.getId());
-
-                            // Remove old-leader value out of table member
-                            table.getItems().remove(oldValue);
-                        }
-                    }
-
-                    logger.info(members);
-
-                    // load auto-completion again
-                    employeeAutoCompletion.dispose();
-                    configureAutoCompletion();
-                }
-        );
+                this::leaderChoice);
 
         // if user click create
         bCreate.setOnMouseClicked(this::onSubmit);
@@ -380,5 +329,62 @@ public class ProjectCreate implements Initializable {
     // when user click button cancel
     private void onCancel(MouseEvent event) {
         logger.info("[bCancel] onClick");
+    }
+
+
+    // when change leader choice
+    private void leaderChoice(ObservableValue<? extends Member> observable,
+                              Member oldValue, Member newValue) {
+        if (oldValue == null) { // change group option
+
+            if (!current) { // new-group
+                employees.remove(newValue);
+            }
+
+            members.add(newValue.getId());
+
+            // Add new-leader value to the table member
+            leader = newValue;
+            table.getItems().add(newValue);
+
+        } else {
+            // change leader option
+            if (newValue != null && !newValue.equals(oldValue)) {
+
+                if (!current) { // new-group
+                    employees.add(oldValue);
+                    employees.remove(newValue);
+                }
+
+                members.remove(oldValue.getId());
+                members.remove(newValue.getId()); // if exist before
+                members.add(newValue.getId()); // add and mark as leader
+
+                // if exist before but non-leader
+                table.getItems().remove(newValue);
+
+                // the same group option but differ in leader option
+                leader = newValue;
+                table.getItems().remove(oldValue);
+                table.getItems().add(newValue);
+
+            } else { // Change group-option
+
+                if (!current) { // option is of preLeaders to Leader
+                    employees.add(oldValue);
+                }
+
+                members.remove(oldValue.getId());
+
+                // Remove old-leader value out of table member
+                table.getItems().remove(oldValue);
+            }
+        }
+
+        logger.info(members);
+
+        // load auto-completion again
+        employeeAutoCompletion.dispose();
+        configureAutoCompletion();
     }
 }
