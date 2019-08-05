@@ -450,7 +450,7 @@ private static final long serialVersionUID = 0L;
       if (!((bitField0_ & 0x00000001) == 0x00000001)) {
           projectNumbers_ = new java.util.ArrayList<Long>(projectNumbers_);
         bitField0_ |= 0x00000001;
-       }
+      }
         }
 
         /**
@@ -482,7 +482,7 @@ private static final long serialVersionUID = 0L;
                 int index, long value) {
             ensureProjectNumbersIsMutable();
             projectNumbers_.set(index, value);
-      onChanged();
+            onChanged();
             return this;
         }
 
@@ -492,7 +492,7 @@ private static final long serialVersionUID = 0L;
         public Builder addProjectNumbers(long value) {
             ensureProjectNumbersIsMutable();
             projectNumbers_.add(value);
-      onChanged();
+            onChanged();
             return this;
         }
 
@@ -503,7 +503,7 @@ private static final long serialVersionUID = 0L;
                 Iterable<? extends Long> values) {
       ensureProjectNumbersIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(
-          values, projectNumbers_);
+              values, projectNumbers_);
             onChanged();
             return this;
         }

@@ -420,12 +420,12 @@ public final class ProjectInfo extends
             return ProjectInfoOuterClass.internal_static_com_bht_pim_proto_projects_ProjectInfo_descriptor;
         }
 
-    protected FieldAccessorTable
-    internalGetFieldAccessorTable() {
-        return ProjectInfoOuterClass.internal_static_com_bht_pim_proto_projects_ProjectInfo_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        ProjectInfo.class, ProjectInfo.Builder.class);
-    }
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return ProjectInfoOuterClass.internal_static_com_bht_pim_proto_projects_ProjectInfo_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            ProjectInfo.class, ProjectInfo.Builder.class);
+        }
 
         private void maybeForceBuilderInitialization() {
             if (com.google.protobuf.GeneratedMessageV3
@@ -968,12 +968,12 @@ public final class ProjectInfo extends
 
         public final Builder setUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return super.setUnknownFieldsProto3(unknownFields);
-        }
+      return super.setUnknownFieldsProto3(unknownFields);
+    }
 
-        public final Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return super.mergeUnknownFields(unknownFields);
+    public final Builder mergeUnknownFields(
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

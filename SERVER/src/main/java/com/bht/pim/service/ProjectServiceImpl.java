@@ -6,6 +6,7 @@ import com.bht.pim.entity.ProjectEntity;
 import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.groups.Group;
 import com.bht.pim.proto.projects.*;
+import com.bht.pim.util.DateUtil;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -52,8 +53,8 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
                     .setCustomer(projectEntity.getCustomer())
                     .setGroup(group)
                     .setStatus(projectEntity.getStatus())
-                    .setStart(projectEntity.getStart().getTime())
-                    .setEnd((end != null) ? end.getTime() : 0)
+                    .setStart(DateUtil.toTimestamp(projectEntity.getStart()))
+                    .setEnd((end != null) ? DateUtil.toTimestamp(end) : null)
                     .build();
 
             List<Employee> employees = new ArrayList<>();
@@ -88,12 +89,12 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
     }
 
     @Override
-    public void addNewProject(Project request, StreamObserver<Success> responseObserver) {
+    public void addNewProject(ProjectInfo request, StreamObserver<Success> responseObserver) {
         super.addNewProject(request, responseObserver);
     }
 
     @Override
-    public void editProject(Project request, StreamObserver<Success> responseObserver) {
+    public void editProject(ProjectInfo request, StreamObserver<Success> responseObserver) {
         super.editProject(request, responseObserver);
     }
 

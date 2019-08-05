@@ -293,6 +293,7 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:com.bht.pim.proto.groups.GroupList)
             GroupListOrBuilder {
+        private int bitField0_;
         private java.util.List<Group> groups_ =
                 java.util.Collections.emptyList();
         private com.google.protobuf.RepeatedFieldBuilderV3<
@@ -302,7 +303,6 @@ private static final long serialVersionUID = 0L;
     private Builder() {
       maybeForceBuilderInitialization();
     }
-
     private Builder(
         BuilderParent parent) {
       super(parent);
@@ -321,13 +321,6 @@ private static final long serialVersionUID = 0L;
                             GroupList.class, GroupList.Builder.class);
         }
 
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-          getGroupsFieldBuilder();
-      }
-    }
-
     public GroupList getDefaultInstanceForType() {
       return GroupList.getDefaultInstance();
     }
@@ -340,15 +333,11 @@ private static final long serialVersionUID = 0L;
       return result;
     }
 
-        public Builder clear() {
-            super.clear();
-            if (groupsBuilder_ == null) {
-                groups_ = java.util.Collections.emptyList();
-                bitField0_ = (bitField0_ & ~0x00000001);
-      } else {
-                groupsBuilder_.clear();
+        private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+                getGroupsFieldBuilder();
             }
-            return this;
     }
 
     public Builder clone() {
@@ -386,33 +375,21 @@ private static final long serialVersionUID = 0L;
       }
     }
 
+        public Builder clear() {
+            super.clear();
+            if (groupsBuilder_ == null) {
+                groups_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+                groupsBuilder_.clear();
+            }
+            return this;
+        }
+
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return GroupListOuterClass.internal_static_com_bht_pim_proto_groups_GroupList_descriptor;
-    }
-
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      GroupList parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (GroupList) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
         }
-      }
-      return this;
-    }
-    private int bitField0_;
 
         public GroupList buildPartial() {
             GroupList result = new GroupList(this);
@@ -463,11 +440,33 @@ private static final long serialVersionUID = 0L;
             return this;
         }
 
+        public final boolean isInitialized() {
+            return true;
+        }
+
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            GroupList parsedMessage = null;
+            try {
+                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                parsedMessage = (GroupList) e.getUnfinishedMessage();
+                throw e.unwrapIOException();
+            } finally {
+                if (parsedMessage != null) {
+                    mergeFrom(parsedMessage);
+                }
+            }
+            return this;
+        }
+
         private void ensureGroupsIsMutable() {
       if (!((bitField0_ & 0x00000001) == 0x00000001)) {
           groups_ = new java.util.ArrayList<Group>(groups_);
         bitField0_ |= 0x00000001;
-       }
+      }
         }
 
         /**
@@ -512,8 +511,8 @@ private static final long serialVersionUID = 0L;
         if (value == null) {
           throw new NullPointerException();
         }
-          ensureGroupsIsMutable();
-        groups_.set(index, value);
+        ensureGroupsIsMutable();
+          groups_.set(index, value);
           onChanged();
       } else {
           groupsBuilder_.setMessage(index, value);
@@ -524,98 +523,98 @@ private static final long serialVersionUID = 0L;
         /**
          * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
          */
-    public Builder setGroups(
-            int index, Group.Builder builderForValue) {
-        if (groupsBuilder_ == null) {
-            ensureGroupsIsMutable();
-            groups_.set(index, builderForValue.build());
-            onChanged();
-        } else {
-            groupsBuilder_.setMessage(index, builderForValue.build());
+        public Builder setGroups(
+                int index, Group.Builder builderForValue) {
+            if (groupsBuilder_ == null) {
+                ensureGroupsIsMutable();
+                groups_.set(index, builderForValue.build());
+                onChanged();
+            } else {
+                groupsBuilder_.setMessage(index, builderForValue.build());
+            }
+            return this;
         }
-        return this;
-    }
 
         /**
          * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
          */
         public Builder addGroups(Group value) {
       if (groupsBuilder_ == null) {
-        if (value == null) {
-            throw new NullPointerException();
+          if (value == null) {
+              throw new NullPointerException();
         }
-          ensureGroupsIsMutable();
-        groups_.add(value);
-          onChanged();
+        ensureGroupsIsMutable();
+          groups_.add(value);
+        onChanged();
       } else {
-        groupsBuilder_.addMessage(value);
+          groupsBuilder_.addMessage(value);
       }
             return this;
         }
 
         /**
          * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
-     */
-    public Builder addGroups(
-            int index, Group value) {
+         */
+        public Builder addGroups(
+        int index, Group value) {
       if (groupsBuilder_ == null) {
-        if (value == null) {
-            throw new NullPointerException();
+          if (value == null) {
+              throw new NullPointerException();
         }
-          ensureGroupsIsMutable();
-        groups_.add(index, value);
+        ensureGroupsIsMutable();
+          groups_.add(index, value);
           onChanged();
       } else {
           groupsBuilder_.addMessage(index, value);
       }
-        return this;
-    }
-
-        /**
-         * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
-     */
-    public Builder addGroups(
-            Group.Builder builderForValue) {
-        if (groupsBuilder_ == null) {
-            ensureGroupsIsMutable();
-            groups_.add(builderForValue.build());
-            onChanged();
-        } else {
-            groupsBuilder_.addMessage(builderForValue.build());
+            return this;
         }
-        return this;
-    }
 
         /**
          * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
-     */
-    public Builder addGroups(
-            int index, Group.Builder builderForValue) {
-        if (groupsBuilder_ == null) {
-            ensureGroupsIsMutable();
-            groups_.add(index, builderForValue.build());
-            onChanged();
-        } else {
-            groupsBuilder_.addMessage(index, builderForValue.build());
+         */
+        public Builder addGroups(
+                Group.Builder builderForValue) {
+            if (groupsBuilder_ == null) {
+                ensureGroupsIsMutable();
+                groups_.add(builderForValue.build());
+                onChanged();
+            } else {
+                groupsBuilder_.addMessage(builderForValue.build());
+            }
+            return this;
         }
-        return this;
-    }
 
         /**
          * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
-     */
-    public Builder addAllGroups(
-            Iterable<? extends Group> values) {
-        if (groupsBuilder_ == null) {
+         */
+        public Builder addGroups(
+                int index, Group.Builder builderForValue) {
+            if (groupsBuilder_ == null) {
+                ensureGroupsIsMutable();
+                groups_.add(index, builderForValue.build());
+                onChanged();
+            } else {
+                groupsBuilder_.addMessage(index, builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
+         */
+        public Builder addAllGroups(
+                Iterable<? extends Group> values) {
+      if (groupsBuilder_ == null) {
         ensureGroupsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, groups_);
-            onChanged();
-        } else {
-            groupsBuilder_.addAllMessages(values);
+                values, groups_);
+          onChanged();
+      } else {
+          groupsBuilder_.addAllMessages(values);
+      }
+            return this;
         }
-        return this;
-    }
 
         /**
          * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
@@ -623,10 +622,10 @@ private static final long serialVersionUID = 0L;
         public Builder clearGroups() {
             if (groupsBuilder_ == null) {
                 groups_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-                onChanged();
-      } else {
-        groupsBuilder_.clear();
+                bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+            } else {
+                groupsBuilder_.clear();
             }
             return this;
         }
@@ -637,17 +636,17 @@ private static final long serialVersionUID = 0L;
         public Builder removeGroups(int index) {
             if (groupsBuilder_ == null) {
                 ensureGroupsIsMutable();
-                groups_.remove(index);
-                onChanged();
-      } else {
-        groupsBuilder_.remove(index);
+        groups_.remove(index);
+        onChanged();
+            } else {
+                groupsBuilder_.remove(index);
             }
             return this;
         }
 
         /**
          * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
-     */
+         */
         public Group.Builder getGroupsBuilder(
                 int index) {
             return getGroupsFieldBuilder().getBuilder(index);
@@ -655,15 +654,14 @@ private static final long serialVersionUID = 0L;
 
         /**
          * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
-     */
-    public GroupOrBuilder getGroupsOrBuilder(
-            int index) {
-        if (groupsBuilder_ == null) {
-            return groups_.get(index);
-        } else {
-        return groupsBuilder_.getMessageOrBuilder(index);
+         */
+        public GroupOrBuilder getGroupsOrBuilder(
+                int index) {
+            if (groupsBuilder_ == null) {
+        return groups_.get(index);  } else {
+                return groupsBuilder_.getMessageOrBuilder(index);
+            }
         }
-    }
 
         /**
          * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
@@ -672,46 +670,45 @@ private static final long serialVersionUID = 0L;
         getGroupsOrBuilderList() {
             if (groupsBuilder_ != null) {
                 return groupsBuilder_.getMessageOrBuilderList();
-            } else {
-        return java.util.Collections.unmodifiableList(groups_);
+      } else {
+                return java.util.Collections.unmodifiableList(groups_);
             }
         }
 
         /**
          * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
-         */
-        public Group.Builder addGroupsBuilder() {
-      return getGroupsFieldBuilder().addBuilder(
-              Group.getDefaultInstance());
-        }
+     */
+    public Group.Builder addGroupsBuilder() {
+        return getGroupsFieldBuilder().addBuilder(
+                Group.getDefaultInstance());
+    }
 
         /**
          * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
-         */
-        public Group.Builder addGroupsBuilder(
-        int index) {
-      return getGroupsFieldBuilder().addBuilder(
-              index, Group.getDefaultInstance());
-        }
-
-        /**
+     */
+    public Group.Builder addGroupsBuilder(
+            int index) {
+        return getGroupsFieldBuilder().addBuilder(
+          index, Group.getDefaultInstance());
+    }
+    /**
      * <code>repeated .com.bht.pim.proto.groups.Group groups = 1;</code>
-         */
-        public java.util.List<Group.Builder>
-        getGroupsBuilderList() {
-      return getGroupsFieldBuilder().getBuilderList();
-        }
+     */
+    public java.util.List<Group.Builder>
+         getGroupsBuilderList() {
+        return getGroupsFieldBuilder().getBuilderList();
+    }
 
         private com.google.protobuf.RepeatedFieldBuilderV3<
-                Group, Group.Builder, GroupOrBuilder>
+        Group, Group.Builder, GroupOrBuilder>
         getGroupsFieldBuilder() {
             if (groupsBuilder_ == null) {
                 groupsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             Group, Group.Builder, GroupOrBuilder>(
-                groups_,
-                ((bitField0_ & 0x00000001) == 0x00000001),
-                        getParentForChildren(),
-                        isClean());
+                        groups_,
+                        ((bitField0_ & 0x00000001) == 0x00000001),
+                getParentForChildren(),
+                isClean());
         groups_ = null;
       }
       return groupsBuilder_;
@@ -722,7 +719,7 @@ private static final long serialVersionUID = 0L;
     }
 
     public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
     }
 

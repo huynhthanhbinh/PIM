@@ -4,6 +4,7 @@ import com.bht.pim.dao.ProjectDao;
 import com.bht.pim.entity.ProjectEntity;
 import com.bht.pim.proto.groups.Group;
 import com.bht.pim.proto.projects.*;
+import com.bht.pim.util.DateUtil;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -44,8 +45,8 @@ public class ProjectListServiceImpl extends ProjectListServiceGrpc.ProjectListSe
                         .setCustomer(projectEntity.getCustomer())
                         .setGroup(group)
                         .setStatus(projectEntity.getStatus())
-                        .setStart(projectEntity.getStart().getTime())
-                        .setEnd((end != null) ? end.getTime() : 0)
+                        .setStart(DateUtil.toTimestamp(projectEntity.getStart()))
+                        .setEnd((end != null) ? DateUtil.toTimestamp(end) : null)
                         .build();
 
                 projects.add(project);

@@ -6,6 +6,7 @@ import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.employees.EmployeeList;
 import com.bht.pim.proto.employees.EmployeeListServiceGrpc;
 import com.bht.pim.proto.employees.NoParam;
+import com.bht.pim.util.DateUtil;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -32,12 +33,13 @@ public class EmployeeListServiceImpl extends EmployeeListServiceGrpc.EmployeeLis
             List<Employee> employees = new ArrayList<>();
 
             employeeEntities.forEach(employeeEntity -> {
+
                 Employee employee = Employee.newBuilder()
                         .setId(employeeEntity.getId())
                         .setVisa(employeeEntity.getVisa())
                         .setFirstName(employeeEntity.getFirstName())
                         .setLastName(employeeEntity.getLastName())
-                        .setBirthday(employeeEntity.getBirthday().getTime())
+                        .setBirthday(DateUtil.toTimestamp(employeeEntity.getBirthday()))
                         .build();
 
                 employees.add(employee);

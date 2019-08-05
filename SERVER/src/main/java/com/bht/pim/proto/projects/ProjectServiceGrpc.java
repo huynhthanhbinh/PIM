@@ -21,6 +21,10 @@ public final class ProjectServiceGrpc {
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<ProjectId,
       ProjectInfo> getGetProjectByIdMethod;
+    private static volatile io.grpc.MethodDescriptor<ProjectInfo,
+            Success> getAddNewProjectMethod;
+    private static volatile io.grpc.MethodDescriptor<ProjectInfo,
+            Success> getEditProjectMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "getProjectById",
@@ -51,28 +55,25 @@ public final class ProjectServiceGrpc {
      return getGetProjectByIdMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Project,
-      Success> getAddNewProjectMethod;
-
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "addNewProject",
-      requestType = Project.class,
+          requestType = ProjectInfo.class,
       responseType = Success.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Project,
+  public static io.grpc.MethodDescriptor<ProjectInfo,
       Success> getAddNewProjectMethod() {
-    io.grpc.MethodDescriptor<Project, Success> getAddNewProjectMethod;
+      io.grpc.MethodDescriptor<ProjectInfo, Success> getAddNewProjectMethod;
     if ((getAddNewProjectMethod = ProjectServiceGrpc.getAddNewProjectMethod) == null) {
       synchronized (ProjectServiceGrpc.class) {
         if ((getAddNewProjectMethod = ProjectServiceGrpc.getAddNewProjectMethod) == null) {
             ProjectServiceGrpc.getAddNewProjectMethod = getAddNewProjectMethod =
-              io.grpc.MethodDescriptor.<Project, Success>newBuilder()
+                    io.grpc.MethodDescriptor.<ProjectInfo, Success>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                       "com.bht.pim.proto.projects.ProjectService", "addNewProject"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Project.getDefaultInstance()))
+                      ProjectInfo.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   Success.getDefaultInstance()))
                   .setSchemaDescriptor(new ProjectServiceMethodDescriptorSupplier("addNewProject"))
@@ -83,28 +84,25 @@ public final class ProjectServiceGrpc {
      return getAddNewProjectMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<Project,
-      Success> getEditProjectMethod;
-
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "editProject",
-      requestType = Project.class,
+          requestType = ProjectInfo.class,
       responseType = Success.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Project,
+  public static io.grpc.MethodDescriptor<ProjectInfo,
       Success> getEditProjectMethod() {
-    io.grpc.MethodDescriptor<Project, Success> getEditProjectMethod;
+      io.grpc.MethodDescriptor<ProjectInfo, Success> getEditProjectMethod;
     if ((getEditProjectMethod = ProjectServiceGrpc.getEditProjectMethod) == null) {
       synchronized (ProjectServiceGrpc.class) {
         if ((getEditProjectMethod = ProjectServiceGrpc.getEditProjectMethod) == null) {
             ProjectServiceGrpc.getEditProjectMethod = getEditProjectMethod =
-              io.grpc.MethodDescriptor.<Project, Success>newBuilder()
+                    io.grpc.MethodDescriptor.<ProjectInfo, Success>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                       "com.bht.pim.proto.projects.ProjectService", "editProject"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Project.getDefaultInstance()))
+                      ProjectInfo.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   Success.getDefaultInstance()))
                   .setSchemaDescriptor(new ProjectServiceMethodDescriptorSupplier("editProject"))
@@ -183,14 +181,14 @@ public final class ProjectServiceGrpc {
 
     /**
      */
-    public void addNewProject(Project request,
+    public void addNewProject(ProjectInfo request,
                               io.grpc.stub.StreamObserver<Success> responseObserver) {
       asyncUnimplementedUnaryCall(getAddNewProjectMethod(), responseObserver);
     }
 
     /**
      */
-    public void editProject(Project request,
+    public void editProject(ProjectInfo request,
                             io.grpc.stub.StreamObserver<Success> responseObserver) {
       asyncUnimplementedUnaryCall(getEditProjectMethod(), responseObserver);
     }
@@ -215,14 +213,14 @@ public final class ProjectServiceGrpc {
             getAddNewProjectMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                Project,
+                      ProjectInfo,
                 Success>(
                   this, METHODID_ADD_NEW_PROJECT)))
           .addMethod(
             getEditProjectMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                Project,
+                      ProjectInfo,
                 Success>(
                   this, METHODID_EDIT_PROJECT)))
           .addMethod(
@@ -264,7 +262,7 @@ public final class ProjectServiceGrpc {
 
     /**
      */
-    public void addNewProject(Project request,
+    public void addNewProject(ProjectInfo request,
                               io.grpc.stub.StreamObserver<Success> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getAddNewProjectMethod(), getCallOptions()), request, responseObserver);
@@ -272,7 +270,7 @@ public final class ProjectServiceGrpc {
 
     /**
      */
-    public void editProject(Project request,
+    public void editProject(ProjectInfo request,
                             io.grpc.stub.StreamObserver<Success> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getEditProjectMethod(), getCallOptions()), request, responseObserver);
@@ -314,14 +312,14 @@ public final class ProjectServiceGrpc {
 
     /**
      */
-    public Success addNewProject(Project request) {
+    public Success addNewProject(ProjectInfo request) {
       return blockingUnaryCall(
           getChannel(), getAddNewProjectMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public Success editProject(Project request) {
+    public Success editProject(ProjectInfo request) {
       return blockingUnaryCall(
           getChannel(), getEditProjectMethod(), getCallOptions(), request);
     }
@@ -363,7 +361,7 @@ public final class ProjectServiceGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<Success> addNewProject(
-        Project request) {
+            ProjectInfo request) {
       return futureUnaryCall(
           getChannel().newCall(getAddNewProjectMethod(), getCallOptions()), request);
     }
@@ -371,7 +369,7 @@ public final class ProjectServiceGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<Success> editProject(
-        Project request) {
+            ProjectInfo request) {
       return futureUnaryCall(
           getChannel().newCall(getEditProjectMethod(), getCallOptions()), request);
     }
@@ -412,11 +410,11 @@ public final class ProjectServiceGrpc {
               (io.grpc.stub.StreamObserver<ProjectInfo>) responseObserver);
           break;
         case METHODID_ADD_NEW_PROJECT:
-          serviceImpl.addNewProject((Project) request,
+            serviceImpl.addNewProject((ProjectInfo) request,
               (io.grpc.stub.StreamObserver<Success>) responseObserver);
           break;
         case METHODID_EDIT_PROJECT:
-          serviceImpl.editProject((Project) request,
+            serviceImpl.editProject((ProjectInfo) request,
               (io.grpc.stub.StreamObserver<Success>) responseObserver);
           break;
         case METHODID_DELETE_PROJECT:

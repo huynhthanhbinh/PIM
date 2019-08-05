@@ -29,9 +29,11 @@ public final class EmployeeOuterClass {
   static {
     String[] descriptorData = {
             "\n\016Employee.proto\022\033com.bht.pim.proto.empl" +
-                    "oyees\"]\n\010Employee\022\n\n\002id\030\001 \001(\003\022\014\n\004visa\030\002 " +
-                    "\001(\t\022\022\n\nfirst_name\030\003 \001(\t\022\021\n\tlast_name\030\004 \001" +
-                    "(\t\022\020\n\010birthday\030\005 \001(\003B\005P\001\210\001\001b\006proto3"
+                    "oyees\032\037google/protobuf/timestamp.proto\"y" +
+                    "\n\010Employee\022\n\n\002id\030\001 \001(\003\022\014\n\004visa\030\002 \001(\t\022\022\n\n" +
+                    "first_name\030\003 \001(\t\022\021\n\tlast_name\030\004 \001(\t\022,\n\010b" +
+                    "irthday\030\005 \001(\0132\032.google.protobuf.Timestam" +
+                    "pB\005P\001\210\001\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -44,6 +46,7 @@ public final class EmployeeOuterClass {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+                com.google.protobuf.TimestampProto.getDescriptor(),
         }, assigner);
       internal_static_com_bht_pim_proto_employees_Employee_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -51,6 +54,7 @@ public final class EmployeeOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
               internal_static_com_bht_pim_proto_employees_Employee_descriptor,
         new String[] { "Id", "Visa", "FirstName", "LastName", "Birthday", });
+      com.google.protobuf.TimestampProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

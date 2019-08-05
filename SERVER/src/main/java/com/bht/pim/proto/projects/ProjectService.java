@@ -25,7 +25,7 @@ public abstract class ProjectService
             @Override
             public void addNewProject(
                     com.google.protobuf.RpcController controller,
-                    Project request,
+                    ProjectInfo request,
                     com.google.protobuf.RpcCallback<Success> done) {
                 impl.addNewProject(controller, request, done);
             }
@@ -33,7 +33,7 @@ public abstract class ProjectService
             @Override
             public void editProject(
                     com.google.protobuf.RpcController controller,
-                    Project request,
+                    ProjectInfo request,
                     com.google.protobuf.RpcCallback<Success> done) {
                 impl.editProject(controller, request, done);
             }
@@ -71,9 +71,9 @@ public abstract class ProjectService
                     case 0:
                         return impl.getProjectById(controller, (ProjectId) request);
                     case 1:
-                        return impl.addNewProject(controller, (Project) request);
+                        return impl.addNewProject(controller, (ProjectInfo) request);
                     case 2:
-                        return impl.editProject(controller, (Project) request);
+                        return impl.editProject(controller, (ProjectInfo) request);
                     case 3:
                         return impl.deleteProject(controller, (ProjectId) request);
                     default:
@@ -93,9 +93,9 @@ public abstract class ProjectService
                     case 0:
                         return ProjectId.getDefaultInstance();
                     case 1:
-                        return Project.getDefaultInstance();
+                        return ProjectInfo.getDefaultInstance();
                     case 2:
-                        return Project.getDefaultInstance();
+                        return ProjectInfo.getDefaultInstance();
                     case 3:
                         return ProjectId.getDefaultInstance();
                     default:
@@ -152,19 +152,19 @@ public abstract class ProjectService
             com.google.protobuf.RpcCallback<ProjectInfo> done);
 
     /**
-     * <code>rpc addNewProject(.com.bht.pim.proto.projects.Project) returns (.com.bht.pim.proto.projects.Success);</code>
+     * <code>rpc addNewProject(.com.bht.pim.proto.projects.ProjectInfo) returns (.com.bht.pim.proto.projects.Success);</code>
      */
     public abstract void addNewProject(
             com.google.protobuf.RpcController controller,
-            Project request,
+            ProjectInfo request,
             com.google.protobuf.RpcCallback<Success> done);
 
     /**
-     * <code>rpc editProject(.com.bht.pim.proto.projects.Project) returns (.com.bht.pim.proto.projects.Success);</code>
+     * <code>rpc editProject(.com.bht.pim.proto.projects.ProjectInfo) returns (.com.bht.pim.proto.projects.Success);</code>
      */
     public abstract void editProject(
             com.google.protobuf.RpcController controller,
-            Project request,
+            ProjectInfo request,
             com.google.protobuf.RpcCallback<Success> done);
 
     /**
@@ -198,12 +198,12 @@ public abstract class ProjectService
                                 done));
                 return;
             case 1:
-                this.addNewProject(controller, (Project) request,
+                this.addNewProject(controller, (ProjectInfo) request,
                         com.google.protobuf.RpcUtil.<Success>specializeCallback(
                                 done));
                 return;
             case 2:
-                this.editProject(controller, (Project) request,
+                this.editProject(controller, (ProjectInfo) request,
                         com.google.protobuf.RpcUtil.<Success>specializeCallback(
                                 done));
                 return;
@@ -229,9 +229,9 @@ public abstract class ProjectService
             case 0:
                 return ProjectId.getDefaultInstance();
             case 1:
-                return Project.getDefaultInstance();
+                return ProjectInfo.getDefaultInstance();
             case 2:
-                return Project.getDefaultInstance();
+                return ProjectInfo.getDefaultInstance();
             case 3:
                 return ProjectId.getDefaultInstance();
             default:
@@ -271,19 +271,19 @@ public abstract class ProjectService
                 com.google.protobuf.RpcCallback<ProjectInfo> done);
 
         /**
-         * <code>rpc addNewProject(.com.bht.pim.proto.projects.Project) returns (.com.bht.pim.proto.projects.Success);</code>
+         * <code>rpc addNewProject(.com.bht.pim.proto.projects.ProjectInfo) returns (.com.bht.pim.proto.projects.Success);</code>
          */
         public abstract void addNewProject(
                 com.google.protobuf.RpcController controller,
-                Project request,
+                ProjectInfo request,
                 com.google.protobuf.RpcCallback<Success> done);
 
         /**
-         * <code>rpc editProject(.com.bht.pim.proto.projects.Project) returns (.com.bht.pim.proto.projects.Success);</code>
+         * <code>rpc editProject(.com.bht.pim.proto.projects.ProjectInfo) returns (.com.bht.pim.proto.projects.Success);</code>
          */
         public abstract void editProject(
                 com.google.protobuf.RpcController controller,
-                Project request,
+                ProjectInfo request,
                 com.google.protobuf.RpcCallback<Success> done);
 
         /**
@@ -304,12 +304,12 @@ public abstract class ProjectService
 
         public Success addNewProject(
                 com.google.protobuf.RpcController controller,
-                Project request)
+                ProjectInfo request)
                 throws com.google.protobuf.ServiceException;
 
         public Success editProject(
                 com.google.protobuf.RpcController controller,
-                Project request)
+                ProjectInfo request)
                 throws com.google.protobuf.ServiceException;
 
         public Success deleteProject(
@@ -346,7 +346,7 @@ public abstract class ProjectService
 
         public void addNewProject(
                 com.google.protobuf.RpcController controller,
-                Project request,
+                ProjectInfo request,
                 com.google.protobuf.RpcCallback<Success> done) {
             channel.callMethod(
                     getDescriptor().getMethods().get(1),
@@ -361,7 +361,7 @@ public abstract class ProjectService
 
         public void editProject(
                 com.google.protobuf.RpcController controller,
-                Project request,
+                ProjectInfo request,
                 com.google.protobuf.RpcCallback<Success> done) {
             channel.callMethod(
                     getDescriptor().getMethods().get(2),
@@ -411,7 +411,7 @@ public abstract class ProjectService
 
         public Success addNewProject(
                 com.google.protobuf.RpcController controller,
-                Project request)
+                ProjectInfo request)
                 throws com.google.protobuf.ServiceException {
             return (Success) channel.callBlockingMethod(
                     getDescriptor().getMethods().get(1),
@@ -423,7 +423,7 @@ public abstract class ProjectService
 
         public Success editProject(
                 com.google.protobuf.RpcController controller,
-                Project request)
+                ProjectInfo request)
                 throws com.google.protobuf.ServiceException {
             return (Success) channel.callBlockingMethod(
                     getDescriptor().getMethods().get(2),

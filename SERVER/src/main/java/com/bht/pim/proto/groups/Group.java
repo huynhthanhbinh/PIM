@@ -434,26 +434,6 @@ private static final long serialVersionUID = 0L;
       return id_;
     }
 
-        /**
-         * <code>int64 id = 1;</code>
-         */
-        public Builder setId(long value) {
-
-            id_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int64 id = 1;</code>
-         */
-        public Builder clearId() {
-
-            id_ = 0L;
-            onChanged();
-            return this;
-        }
-
         public Group buildPartial() {
             Group result = new Group(this);
             result.id_ = id_;
@@ -475,7 +455,27 @@ private static final long serialVersionUID = 0L;
                 mergeLeader(other.getLeader());
             }
             this.mergeUnknownFields(other.unknownFields);
-      onChanged();
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>int64 id = 1;</code>
+         */
+        public Builder setId(long value) {
+
+            id_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>int64 id = 1;</code>
+         */
+        public Builder clearId() {
+
+            id_ = 0L;
+            onChanged();
             return this;
         }
 
@@ -541,7 +541,7 @@ private static final long serialVersionUID = 0L;
                     leader_ = value;
                 }
                 onChanged();
-      } else {
+            } else {
                 leaderBuilder_.mergeFrom(value);
             }
 
@@ -555,7 +555,7 @@ private static final long serialVersionUID = 0L;
             if (leaderBuilder_ == null) {
                 leader_ = null;
                 onChanged();
-      } else {
+            } else {
                 leader_ = null;
                 leaderBuilder_ = null;
             }
@@ -594,9 +594,9 @@ private static final long serialVersionUID = 0L;
                 leaderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
                         Employee, Employee.Builder, EmployeeOrBuilder>(
                         getLeader(),
-                        getParentForChildren(),
-                        isClean());
-                leader_ = null;
+                getParentForChildren(),
+                isClean());
+        leader_ = null;
       }
       return leaderBuilder_;
     }
@@ -606,8 +606,8 @@ private static final long serialVersionUID = 0L;
     }
 
     public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+      return super.mergeUnknownFields(unknownFields);
     }
 
 

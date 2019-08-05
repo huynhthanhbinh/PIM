@@ -43,7 +43,17 @@ public interface EmployeeOrBuilder extends
       getLastNameBytes();
 
   /**
-   * <code>int64 birthday = 5;</code>
+   * <code>.google.protobuf.Timestamp birthday = 5;</code>
    */
-  long getBirthday();
+  boolean hasBirthday();
+
+    /**
+     * <code>.google.protobuf.Timestamp birthday = 5;</code>
+   */
+    com.google.protobuf.Timestamp getBirthday();
+
+    /**
+     * <code>.google.protobuf.Timestamp birthday = 5;</code>
+     */
+    com.google.protobuf.TimestampOrBuilder getBirthdayOrBuilder();
 }

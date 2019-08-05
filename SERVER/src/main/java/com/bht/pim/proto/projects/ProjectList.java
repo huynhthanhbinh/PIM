@@ -776,11 +776,11 @@ public final class ProjectList extends
 
         public final Builder mergeUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return super.mergeUnknownFields(unknownFields);
-        }
+      return super.mergeUnknownFields(unknownFields);
+    }
 
 
-        // @@protoc_insertion_point(builder_scope:com.bht.pim.proto.projects.ProjectList)
+    // @@protoc_insertion_point(builder_scope:com.bht.pim.proto.projects.ProjectList)
   }
 
 }

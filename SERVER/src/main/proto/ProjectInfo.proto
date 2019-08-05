@@ -24,7 +24,7 @@ message Success {
 
 service ProjectService {
     rpc getProjectById (ProjectId) returns (ProjectInfo);
-    rpc addNewProject (Project) returns (Success);
-    rpc editProject (Project) returns (Success);
+    rpc addNewProject (ProjectInfo) returns (Success);
+    rpc editProject (ProjectInfo) returns (Success);
     rpc deleteProject (ProjectId) returns (Success);
 }

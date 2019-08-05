@@ -33,17 +33,18 @@ public final class ProjectInfoOuterClass {
                         "\001(\0132#.com.bht.pim.proto.projects.Project" +
                         "\0228\n\temployees\030\002 \003(\0132%.com.bht.pim.proto." +
                         "employees.Employee\"\027\n\tProjectId\022\n\n\002id\030\001 " +
-                        "\001(\003\"\034\n\007Success\022\021\n\tisSuccess\030\001 \001(\0102\203\003\n\016Pr" +
+                        "\001(\003\"\034\n\007Success\022\021\n\tisSuccess\030\001 \001(\0102\213\003\n\016Pr" +
                         "ojectService\022`\n\016getProjectById\022%.com.bht" +
                         ".pim.proto.projects.ProjectId\032\'.com.bht." +
-                        "pim.proto.projects.ProjectInfo\022Y\n\raddNew" +
-                        "Project\022#.com.bht.pim.proto.projects.Pro" +
-                        "ject\032#.com.bht.pim.proto.projects.Succes" +
-                        "s\022W\n\013editProject\022#.com.bht.pim.proto.pro" +
-                        "jects.Project\032#.com.bht.pim.proto.projec" +
-                        "ts.Success\022[\n\rdeleteProject\022%.com.bht.pi" +
-                        "m.proto.projects.ProjectId\032#.com.bht.pim" +
-                        ".proto.projects.SuccessB\005P\001\210\001\001b\006proto3"
+                        "pim.proto.projects.ProjectInfo\022]\n\raddNew" +
+                        "Project\022\'.com.bht.pim.proto.projects.Pro" +
+                        "jectInfo\032#.com.bht.pim.proto.projects.Su" +
+                        "ccess\022[\n\013editProject\022\'.com.bht.pim.proto" +
+                        ".projects.ProjectInfo\032#.com.bht.pim.prot" +
+                        "o.projects.Success\022[\n\rdeleteProject\022%.co" +
+                        "m.bht.pim.proto.projects.ProjectId\032#.com" +
+                        ".bht.pim.proto.projects.SuccessB\005P\001\210\001\001b\006" +
+                        "proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

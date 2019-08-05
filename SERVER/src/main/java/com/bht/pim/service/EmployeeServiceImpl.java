@@ -9,6 +9,7 @@ import com.bht.pim.proto.employees.EmployeeInfo;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.Group;
 import com.bht.pim.proto.projects.Project;
+import com.bht.pim.util.DateUtil;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -38,7 +39,7 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
                     .setVisa(employeeEntity.getVisa())
                     .setFirstName(employeeEntity.getFirstName())
                     .setLastName(employeeEntity.getLastName())
-                    .setBirthday(employeeEntity.getBirthday().getTime())
+                    .setBirthday(DateUtil.toTimestamp(employeeEntity.getBirthday()))
                     .build();
 
             List<Project> projects = new ArrayList<>();
@@ -57,8 +58,8 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
                         .setName(projectEntity.getName())
                         .setCustomer(projectEntity.getCustomer())
                         .setStatus(projectEntity.getStatus())
-                        .setStart(projectEntity.getStart().getTime())
-                        .setEnd((end != null) ? end.getTime() : 0)
+                        .setStart(DateUtil.toTimestamp(projectEntity.getStart()))
+                        .setEnd((end != null) ? DateUtil.toTimestamp(end) : null)
                         .build();
 
                 projects.add(project);

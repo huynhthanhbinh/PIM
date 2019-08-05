@@ -20,7 +20,6 @@ private static final long serialVersionUID = 0L;
     visa_ = "";
     firstName_ = "";
     lastName_ = "";
-    birthday_ = 0L;
   }
 
   @Override
@@ -28,6 +27,19 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    public static final int VISA_FIELD_NUMBER = 2;
+    public static final int FIRST_NAME_FIELD_NUMBER = 3;
+    public static final int LAST_NAME_FIELD_NUMBER = 4;
+    // @@protoc_insertion_point(class_scope:com.bht.pim.proto.employees.Employee)
+    private static final Employee DEFAULT_INSTANCE;
+    private long id_;
+    private volatile Object visa_;
+    private volatile Object firstName_;
+    private volatile Object lastName_;
+    private com.google.protobuf.Timestamp birthday_;
+
   private Employee(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -77,9 +89,17 @@ private static final long serialVersionUID = 0L;
             lastName_ = s;
             break;
           }
-          case 40: {
+            case 42: {
+                com.google.protobuf.Timestamp.Builder subBuilder = null;
+                if (birthday_ != null) {
+                    subBuilder = birthday_.toBuilder();
+                }
+                birthday_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+                if (subBuilder != null) {
+                    subBuilder.mergeFrom(birthday_);
+                    birthday_ = subBuilder.buildPartial();
+                }
 
-            birthday_ = input.readInt64();
             break;
           }
         }
@@ -95,25 +115,6 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-    public static final int FIRST_NAME_FIELD_NUMBER = 3;
-    public static final int LAST_NAME_FIELD_NUMBER = 4;
-
-  public static final int ID_FIELD_NUMBER = 1;
-  private long id_;
-  /**
-   * <code>int64 id = 1;</code>
-   */
-  public long getId() {
-    return id_;
-  }
-
-  public static final int VISA_FIELD_NUMBER = 2;
-  private volatile Object visa_;
-    // @@protoc_insertion_point(class_scope:com.bht.pim.proto.employees.Employee)
-    private static final Employee DEFAULT_INSTANCE;
-    private volatile Object firstName_;
-    private volatile Object lastName_;
-
     public static final com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
         return EmployeeOuterClass.internal_static_com_bht_pim_proto_employees_Employee_descriptor;
@@ -124,6 +125,13 @@ private static final long serialVersionUID = 0L;
         return EmployeeOuterClass.internal_static_com_bht_pim_proto_employees_Employee_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
                         Employee.class, Employee.Builder.class);
+    }
+
+    /**
+     * <code>int64 id = 1;</code>
+     */
+    public long getId() {
+        return id_;
     }
 
   /**
@@ -192,6 +200,8 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+    public static final int BIRTHDAY_FIELD_NUMBER = 5;
+
   /**
    * <code>string last_name = 4;</code>
    */
@@ -208,13 +218,35 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int BIRTHDAY_FIELD_NUMBER = 5;
-  private long birthday_;
-  /**
-   * <code>int64 birthday = 5;</code>
-   */
-  public long getBirthday() {
-    return birthday_;
+    /**
+     * <code>string last_name = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+    getLastNameBytes() {
+        Object ref = lastName_;
+        if (ref instanceof String) {
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (String) ref);
+            lastName_ = b;
+            return b;
+        } else {
+            return (com.google.protobuf.ByteString) ref;
+        }
+    }
+
+    /**
+     * <code>.google.protobuf.Timestamp birthday = 5;</code>
+     */
+    public boolean hasBirthday() {
+        return birthday_ != null;
+    }
+
+    /**
+     * <code>.google.protobuf.Timestamp birthday = 5;</code>
+     */
+    public com.google.protobuf.Timestamp getBirthday() {
+        return birthday_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : birthday_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -226,6 +258,13 @@ private static final long serialVersionUID = 0L;
     memoizedIsInitialized = 1;
     return true;
   }
+
+    /**
+     * <code>.google.protobuf.Timestamp birthday = 5;</code>
+     */
+    public com.google.protobuf.TimestampOrBuilder getBirthdayOrBuilder() {
+        return getBirthday();
+    }
 
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
@@ -241,8 +280,8 @@ private static final long serialVersionUID = 0L;
     if (!getLastNameBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 4, lastName_);
     }
-    if (birthday_ != 0L) {
-      output.writeInt64(5, birthday_);
+      if (birthday_ != null) {
+          output.writeMessage(5, getBirthday());
     }
     unknownFields.writeTo(output);
   }
@@ -265,9 +304,9 @@ private static final long serialVersionUID = 0L;
     if (!getLastNameBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, lastName_);
     }
-    if (birthday_ != 0L) {
+      if (birthday_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(5, birthday_);
+              .computeMessageSize(5, getBirthday());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -293,34 +332,13 @@ private static final long serialVersionUID = 0L;
         .equals(other.getFirstName());
     result = result && getLastName()
         .equals(other.getLastName());
-    result = result && (getBirthday()
-        == other.getBirthday());
+      result = result && (hasBirthday() == other.hasBirthday());
+      if (hasBirthday()) {
+          result = result && getBirthday()
+                  .equals(other.getBirthday());
+    }
     result = result && unknownFields.equals(other.unknownFields);
     return result;
-  }
-
-  @Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + ID_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getId());
-    hash = (37 * hash) + VISA_FIELD_NUMBER;
-    hash = (53 * hash) + getVisa().hashCode();
-    hash = (37 * hash) + FIRST_NAME_FIELD_NUMBER;
-    hash = (53 * hash) + getFirstName().hashCode();
-    hash = (37 * hash) + LAST_NAME_FIELD_NUMBER;
-    hash = (53 * hash) + getLastName().hashCode();
-    hash = (37 * hash) + BIRTHDAY_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getBirthday());
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
   }
 
   public static Employee parseFrom(
@@ -412,22 +430,30 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
 
-  /**
-   * <code>string last_name = 4;</code>
-   */
-  public com.google.protobuf.ByteString
-  getLastNameBytes() {
-      Object ref = lastName_;
-      if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-                  com.google.protobuf.ByteString.copyFromUtf8(
-                          (String) ref);
-          lastName_ = b;
-          return b;
-      } else {
-          return (com.google.protobuf.ByteString) ref;
-      }
-  }
+    @Override
+    public int hashCode() {
+        if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + ID_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                getId());
+        hash = (37 * hash) + VISA_FIELD_NUMBER;
+        hash = (53 * hash) + getVisa().hashCode();
+        hash = (37 * hash) + FIRST_NAME_FIELD_NUMBER;
+        hash = (53 * hash) + getFirstName().hashCode();
+        hash = (37 * hash) + LAST_NAME_FIELD_NUMBER;
+        hash = (53 * hash) + getLastName().hashCode();
+        if (hasBirthday()) {
+            hash = (37 * hash) + BIRTHDAY_FIELD_NUMBER;
+            hash = (53 * hash) + getBirthday().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
 
     /**
      * Protobuf type {@code com.bht.pim.proto.employees.Employee}
@@ -436,21 +462,13 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:com.bht.pim.proto.employees.Employee)
             EmployeeOrBuilder {
+        private com.google.protobuf.Timestamp birthday_ = null;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> birthdayBuilder_;
+
         // Construct using com.bht.pim.proto.employees.Employee.newBuilder()
         private Builder() {
             maybeForceBuilderInitialization();
-        }
-
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-        return EmployeeOuterClass.internal_static_com_bht_pim_proto_employees_Employee_descriptor;
-    }
-
-    protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-        return EmployeeOuterClass.internal_static_com_bht_pim_proto_employees_Employee_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-                  Employee.class, Employee.Builder.class);
     }
 
     private Builder(
@@ -463,25 +481,18 @@ private static final long serialVersionUID = 0L;
               .alwaysUseFieldBuilders) {
       }
     }
-    public Builder clear() {
-      super.clear();
-      id_ = 0L;
 
-      visa_ = "";
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return EmployeeOuterClass.internal_static_com_bht_pim_proto_employees_Employee_descriptor;
+        }
 
-      firstName_ = "";
-
-      lastName_ = "";
-
-      birthday_ = 0L;
-
-      return this;
-    }
-
-    public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-        return EmployeeOuterClass.internal_static_com_bht_pim_proto_employees_Employee_descriptor;
-    }
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return EmployeeOuterClass.internal_static_com_bht_pim_proto_employees_Employee_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            Employee.class, Employee.Builder.class);
+        }
 
     public Employee getDefaultInstanceForType() {
       return Employee.getDefaultInstance();
@@ -495,15 +506,23 @@ private static final long serialVersionUID = 0L;
       return result;
     }
 
-    public Employee buildPartial() {
-      Employee result = new Employee(this);
-      result.id_ = id_;
-      result.visa_ = visa_;
-      result.firstName_ = firstName_;
-      result.lastName_ = lastName_;
-      result.birthday_ = birthday_;
-      onBuilt();
-      return result;
+        public Builder clear() {
+            super.clear();
+            id_ = 0L;
+
+            visa_ = "";
+
+            firstName_ = "";
+
+            lastName_ = "";
+
+            if (birthdayBuilder_ == null) {
+                birthday_ = null;
+            } else {
+                birthday_ = null;
+                birthdayBuilder_ = null;
+            }
+            return this;
     }
 
     public Builder clone() {
@@ -541,29 +560,9 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    public Builder mergeFrom(Employee other) {
-      if (other == Employee.getDefaultInstance()) return this;
-      if (other.getId() != 0L) {
-        setId(other.getId());
-      }
-      if (!other.getVisa().isEmpty()) {
-        visa_ = other.visa_;
-        onChanged();
-      }
-      if (!other.getFirstName().isEmpty()) {
-        firstName_ = other.firstName_;
-        onChanged();
-      }
-      if (!other.getLastName().isEmpty()) {
-        lastName_ = other.lastName_;
-        onChanged();
-      }
-      if (other.getBirthday() != 0L) {
-        setBirthday(other.getBirthday());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return EmployeeOuterClass.internal_static_com_bht_pim_proto_employees_Employee_descriptor;
     }
 
     public final boolean isInitialized() {
@@ -630,6 +629,47 @@ private static final long serialVersionUID = 0L;
         return (String) ref;
       }
     }
+
+        public Employee buildPartial() {
+            Employee result = new Employee(this);
+            result.id_ = id_;
+            result.visa_ = visa_;
+            result.firstName_ = firstName_;
+            result.lastName_ = lastName_;
+            if (birthdayBuilder_ == null) {
+                result.birthday_ = birthday_;
+            } else {
+                result.birthday_ = birthdayBuilder_.build();
+            }
+            onBuilt();
+            return result;
+        }
+
+        public Builder mergeFrom(Employee other) {
+            if (other == Employee.getDefaultInstance()) return this;
+            if (other.getId() != 0L) {
+                setId(other.getId());
+            }
+            if (!other.getVisa().isEmpty()) {
+                visa_ = other.visa_;
+                onChanged();
+            }
+            if (!other.getFirstName().isEmpty()) {
+                firstName_ = other.firstName_;
+                onChanged();
+            }
+            if (!other.getLastName().isEmpty()) {
+                lastName_ = other.lastName_;
+                onChanged();
+            }
+            if (other.hasBirthday()) {
+                mergeBirthday(other.getBirthday());
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+        }
+
     /**
      * <code>string visa = 2;</code>
      */
@@ -647,20 +687,6 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-        /**
-         * <code>string visa = 2;</code>
-         */
-        public Builder setVisa(
-                String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
-
-            visa_ = value;
-            onChanged();
-            return this;
-        }
-
     /**
      * <code>string visa = 2;</code>
      */
@@ -672,16 +698,6 @@ private static final long serialVersionUID = 0L;
         checkByteStringIsUtf8(value);
 
       visa_ = value;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <code>string visa = 2;</code>
-     */
-    public Builder clearVisa() {
-
-        visa_ = getDefaultInstance().getVisa();
       onChanged();
       return this;
     }
@@ -704,20 +720,44 @@ private static final long serialVersionUID = 0L;
     }
 
         /**
+         * <code>string visa = 2;</code>
+         */
+        public Builder setVisa(
+                String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            visa_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>string visa = 2;</code>
+         */
+        public Builder clearVisa() {
+
+            visa_ = getDefaultInstance().getVisa();
+            onChanged();
+            return this;
+    }
+
+    /**
      * <code>string first_name = 3;</code>
      */
     public com.google.protobuf.ByteString
         getFirstNameBytes() {
       Object ref = firstName_;
-      if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+        if (ref instanceof String) {
+            com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         firstName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
-      }
+        }
     }
 
         /**
@@ -735,16 +775,34 @@ private static final long serialVersionUID = 0L;
             return this;
         }
 
+        private Object lastName_ = "";
+
         /**
+         * <code>string last_name = 4;</code>
+         */
+        public String getLastName() {
+            Object ref = lastName_;
+            if (!(ref instanceof String)) {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                String s = bs.toStringUtf8();
+                lastName_ = s;
+                return s;
+            } else {
+                return (String) ref;
+      }
+    }
+
+    /**
      * <code>string first_name = 3;</code>
      */
     public Builder setFirstName(
         String value) {
       if (value == null) {
-    throw new NullPointerException();
-      }
+          throw new NullPointerException();
+  }
 
-        firstName_ = value;
+      firstName_ = value;
       onChanged();
       return this;
     }
@@ -759,38 +817,21 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private Object lastName_ = "";
-    /**
-     * <code>string last_name = 4;</code>
-     */
-    public String getLastName() {
-      Object ref = lastName_;
-      if (!(ref instanceof String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        lastName_ = s;
-        return s;
-      } else {
-        return (String) ref;
-      }
-    }
-
     /**
      * <code>string last_name = 4;</code>
      */
     public com.google.protobuf.ByteString
         getLastNameBytes() {
       Object ref = lastName_;
-      if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+        if (ref instanceof String) {
+        com.google.protobuf.ByteString b =
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         lastName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
-      }
+        }
     }
 
         /**
@@ -804,8 +845,8 @@ private static final long serialVersionUID = 0L;
             checkByteStringIsUtf8(value);
 
             lastName_ = value;
-            onChanged();
-            return this;
+      onChanged();
+      return this;
     }
 
     /**
@@ -814,12 +855,12 @@ private static final long serialVersionUID = 0L;
     public Builder setLastName(
         String value) {
       if (value == null) {
-    throw new NullPointerException();
+          throw new NullPointerException();
       }
 
         lastName_ = value;
       onChanged();
-        return this;
+      return this;
     }
 
     /**
@@ -827,37 +868,131 @@ private static final long serialVersionUID = 0L;
      */
     public Builder clearLastName() {
 
-        lastName_ = getDefaultInstance().getLastName();
-      onChanged();
-      return this;
+      lastName_ = getDefaultInstance().getLastName();
+        onChanged();
+        return this;
     }
 
-    private long birthday_ ;
-    /**
-     * <code>int64 birthday = 5;</code>
-     */
-    public long getBirthday() {
-      return birthday_;
-    }
+        /**
+         * <code>.google.protobuf.Timestamp birthday = 5;</code>
+         */
+        public boolean hasBirthday() {
+            return birthdayBuilder_ != null || birthday_ != null;
+        }
 
-    /**
-     * <code>int64 birthday = 5;</code>
-     */
-    public Builder setBirthday(long value) {
+        /**
+         * <code>.google.protobuf.Timestamp birthday = 5;</code>
+         */
+        public com.google.protobuf.Timestamp getBirthday() {
+            if (birthdayBuilder_ == null) {
+                return birthday_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : birthday_;
+            } else {
+                return birthdayBuilder_.getMessage();
+            }
+        }
 
-        birthday_ = value;
-      onChanged();
-      return this;
-    }
+        /**
+         * <code>.google.protobuf.Timestamp birthday = 5;</code>
+         */
+        public Builder setBirthday(com.google.protobuf.Timestamp value) {
+            if (birthdayBuilder_ == null) {
+                if (value == null) {
+          throw new NullPointerException();
+                }
+                birthday_ = value;
+                onChanged();
+            } else {
+                birthdayBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp birthday = 5;</code>
+         */
+        public Builder setBirthday(
+                com.google.protobuf.Timestamp.Builder builderForValue) {
+            if (birthdayBuilder_ == null) {
+                birthday_ = builderForValue.build();
+                onChanged();
+            } else {
+                birthdayBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp birthday = 5;</code>
+         */
+        public Builder mergeBirthday(com.google.protobuf.Timestamp value) {
+            if (birthdayBuilder_ == null) {
+                if (birthday_ != null) {
+                    birthday_ =
+                            com.google.protobuf.Timestamp.newBuilder(birthday_).mergeFrom(value).buildPartial();
+                } else {
+                    birthday_ = value;
+                }
+                onChanged();
+            } else {
+                birthdayBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
     /**
-     * <code>int64 birthday = 5;</code>
+     * <code>.google.protobuf.Timestamp birthday = 5;</code>
      */
     public Builder clearBirthday() {
+        if (birthdayBuilder_ == null) {
+            birthday_ = null;
+            onChanged();
+        } else {
+        birthday_ = null;
+            birthdayBuilder_ = null;
+        }
 
-      birthday_ = 0L;
-      onChanged();
-      return this;
+        return this;
     }
+
+        /**
+         * <code>.google.protobuf.Timestamp birthday = 5;</code>
+         */
+        public com.google.protobuf.Timestamp.Builder getBirthdayBuilder() {
+
+            onChanged();
+            return getBirthdayFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp birthday = 5;</code>
+         */
+        public com.google.protobuf.TimestampOrBuilder getBirthdayOrBuilder() {
+            if (birthdayBuilder_ != null) {
+                return birthdayBuilder_.getMessageOrBuilder();
+            } else {
+                return birthday_ == null ?
+                        com.google.protobuf.Timestamp.getDefaultInstance() : birthday_;
+            }
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp birthday = 5;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
+        getBirthdayFieldBuilder() {
+            if (birthdayBuilder_ == null) {
+                birthdayBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                        getBirthday(),
+                        getParentForChildren(),
+                        isClean());
+                birthday_ = null;
+            }
+            return birthdayBuilder_;
+        }
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFieldsProto3(unknownFields);
@@ -865,11 +1000,11 @@ private static final long serialVersionUID = 0L;
 
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+        return super.mergeUnknownFields(unknownFields);
     }
 
 
-        // @@protoc_insertion_point(builder_scope:com.bht.pim.proto.employees.Employee)
+    // @@protoc_insertion_point(builder_scope:com.bht.pim.proto.employees.Employee)
   }
   static {
     DEFAULT_INSTANCE = new Employee();

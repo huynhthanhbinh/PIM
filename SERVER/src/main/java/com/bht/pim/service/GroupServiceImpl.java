@@ -7,6 +7,7 @@ import com.bht.pim.entity.GroupEntity;
 import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.groups.*;
 import com.bht.pim.proto.projects.Project;
+import com.bht.pim.util.DateUtil;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -60,8 +61,8 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
                         .setName(projectEntity.getName())
                         .setCustomer(projectEntity.getCustomer())
                         .setStatus(projectEntity.getStatus())
-                        .setStart(projectEntity.getStart().getTime())
-                        .setEnd((end != null) ? end.getTime() : 0)
+                        .setStart(DateUtil.toTimestamp(projectEntity.getStart()))
+                        .setEnd((end != null) ? DateUtil.toTimestamp(end) : null)
                         .build();
 
                 projects.add(project);

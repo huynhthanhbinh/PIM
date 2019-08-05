@@ -51,14 +51,34 @@ public interface ProjectOrBuilder extends
       getStatusBytes();
 
   /**
-   * <code>int64 start = 6;</code>
+   * <code>.google.protobuf.Timestamp start = 6;</code>
    */
-  long getStart();
+  boolean hasStart();
 
-  /**
-   * <code>int64 end = 7;</code>
-   */
-  long getEnd();
+    /**
+     * <code>.google.protobuf.Timestamp start = 6;</code>
+     */
+    com.google.protobuf.Timestamp getStart();
+
+    /**
+     * <code>.google.protobuf.Timestamp start = 6;</code>
+     */
+    com.google.protobuf.TimestampOrBuilder getStartOrBuilder();
+
+    /**
+     * <code>.google.protobuf.Timestamp end = 7;</code>
+     */
+    boolean hasEnd();
+
+    /**
+     * <code>.google.protobuf.Timestamp end = 7;</code>
+     */
+    com.google.protobuf.Timestamp getEnd();
+
+    /**
+     * <code>.google.protobuf.Timestamp end = 7;</code>
+     */
+    com.google.protobuf.TimestampOrBuilder getEndOrBuilder();
 
     /**
      * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
