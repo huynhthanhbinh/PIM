@@ -413,8 +413,6 @@ public class ProjectCreate implements Initializable {
 
             } catch (Exception exception) {
                 logger.info(exception);
-
-                exception.printStackTrace();
             }
         } else {
             lFillAll.setVisible(true);
