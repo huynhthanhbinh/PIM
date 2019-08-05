@@ -1,6 +1,7 @@
 package com.bht.pim.fragment.project;
 
 import com.bht.pim.intermediate.Member;
+import com.bht.pim.util.DateUtil;
 import com.bht.pim.util.EmployeeUtil;
 import com.bht.pim.util.GroupUtil;
 import com.bht.pim.util.ProjectUtil;
@@ -76,6 +77,10 @@ public class ProjectCreate implements Initializable {
     public Button bCreate;
     @FXML
     public Button bCancel;
+    @FXML
+    public DatePicker start;
+    @FXML
+    public DatePicker end;
 
     private ManagedChannel channel;
     private boolean chose;
@@ -207,6 +212,9 @@ public class ProjectCreate implements Initializable {
         comboBoxLeader.getSelectionModel().selectedItemProperty().addListener(
                 this::leaderChoice);
 
+        DateUtil.dateChangeListener(start);
+        DateUtil.dateChangeListener(end);
+
         // if user click create
         bCreate.setOnMouseClicked(this::onSubmit);
 
@@ -229,6 +237,12 @@ public class ProjectCreate implements Initializable {
 
         configureTableMember(table);
         table.getItems().addAll(Collections.emptyList());
+
+        start.setPromptText("dd/MM/yyyy");
+        end.setPromptText("dd/MM/yyyy");
+
+        start.setConverter(DateUtil.DATE_STRING_CONVERTER);
+        end.setConverter(DateUtil.DATE_STRING_CONVERTER);
     }
 
 
@@ -323,6 +337,11 @@ public class ProjectCreate implements Initializable {
         if (!chose) {
             lGroupOption.setVisible(true);
         }
+        logger.info(number.getText());
+        logger.info(name.getText());
+        logger.info(customer.getText());
+        logger.info(start.getValue());
+        logger.info(end.getValue());
     }
 
 

@@ -5,8 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="630.0" prefWidth="1120.0" spacing="5.0"
-      stylesheets="/com/bht/pim/fragment/project/ProjectCreate.css" xmlns="http://javafx.com/javafx/8.0.172-ea"
+      minWidth="-Infinity"
+      prefHeight="630.0" prefWidth="1120.0" spacing="5.0"
+      stylesheets="/com/bht/pim/fragment/project/ProjectCreate.css" xmlns="http://javafx.com/javafx/8.0.999-ea"
       fx:controller="com.bht.pim.fragment.project.ProjectCreate">
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
@@ -88,10 +89,10 @@
                         <Font size="16.0"/>
                     </font>
                 </Label>
-                <DatePicker prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER"
-                            GridPane.rowIndex="9"/>
-                <DatePicker prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.hgrow="NEVER"
-                            GridPane.rowIndex="9"/>
+                <DatePicker fx:id="start" prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1"
+                            GridPane.hgrow="NEVER" GridPane.rowIndex="9"/>
+                <DatePicker fx:id="end" prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="3"
+                            GridPane.hgrow="NEVER" GridPane.rowIndex="9"/>
                 <ComboBox fx:id="comboBoxOption" prefHeight="40.0" prefWidth="200.0" promptText="Choose option"
                           GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="7"/>
                 <ComboBox fx:id="comboBoxLeader" prefHeight="40.0" prefWidth="200.0" promptText="Choose leader"
@@ -275,13 +276,14 @@
                                 <Font name="System Bold" size="24.0"/>
                             </font>
                         </Label>
-                        <Label text="Please fill in all mandatory fields ( * ) ! " textFill="#f24517" fx:id="lFillAll">
+                        <Label fx:id="lFillAll" text="Please fill in all mandatory fields ( * ) ! " textFill="#f24517">
                             <font>
                                 <Font name="System Bold Italic" size="16.0"/>
                             </font>
                         </Label>
                     </children>
                 </HBox>
+                <Label GridPane.rowIndex="10"/>
             </children>
             <padding>
                 <Insets left="5.0" right="5.0"/>
