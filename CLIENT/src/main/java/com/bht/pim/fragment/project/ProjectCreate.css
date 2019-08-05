@@ -95,3 +95,9 @@
 .combo-box .list-view {
     -fx-pref-width: 250;
 }
+
+.empty {
+    -fx-text-box-border: #F24517;
+    -fx-focus-color: #F24517;
+    -fx-control-inner-background: #ffe6e6;
+}

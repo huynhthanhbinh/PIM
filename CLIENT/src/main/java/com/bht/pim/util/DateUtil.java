@@ -1,6 +1,5 @@
 package com.bht.pim.util;
 
-import javafx.scene.control.DatePicker;
 import javafx.util.StringConverter;
 import org.apache.log4j.Logger;
 
@@ -13,15 +12,6 @@ public class DateUtil {
     public static final StringConverter<LocalDate> DATE_STRING_CONVERTER
             = new DateUtil().dateStringConverter();
     private Logger logger = Logger.getLogger(DateUtil.class);
-
-    public static void dateChangeListener(DatePicker datePicker) {
-        datePicker.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                datePicker.setValue(datePicker
-                        .getConverter().fromString(datePicker.getEditor().getText()));
-            }
-        });
-    }
 
     private StringConverter<LocalDate> dateStringConverter() {
         return new StringConverter<LocalDate>() {

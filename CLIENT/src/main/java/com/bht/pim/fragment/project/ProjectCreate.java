@@ -173,22 +173,28 @@ public class ProjectCreate implements Initializable {
                         .replaceAll("[^\\d]", ""));
 
             } else if (!newValue.isEmpty()) { // input in correct format
+                number.getStyleClass().remove("empty");
                 lNumberExist.setVisible(projectNumbers
                         .contains(Long.valueOf(newValue)));
             }
         });
 
         // check-if the name field is empty or not
-        name.textProperty().addListener((observable, oldValue, newValue) ->
-                lNameEmpty.setVisible(newValue.isEmpty()));
+        name.textProperty().addListener((observable, oldValue, newValue) -> {
+            name.getStyleClass().remove("empty");
+            lNameEmpty.setVisible(newValue.isEmpty());
+        });
 
         // check-if the customer field is empty or not
-        customer.textProperty().addListener((observable, oldValue, newValue) ->
-                lCustomerEmpty.setVisible(newValue.isEmpty()));
+        customer.textProperty().addListener((observable, oldValue, newValue) -> {
+            customer.getStyleClass().remove("empty");
+            lCustomerEmpty.setVisible(newValue.isEmpty());
+        });
 
         comboBoxOption.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     chose = true;
+                    lGroupOption.setVisible(false);
 
                     if (comboBoxLeader.getItems() != null) {
                         comboBoxLeader.getItems().clear();
@@ -212,8 +218,8 @@ public class ProjectCreate implements Initializable {
         comboBoxLeader.getSelectionModel().selectedItemProperty().addListener(
                 this::leaderChoice);
 
-        DateUtil.dateChangeListener(start);
-        DateUtil.dateChangeListener(end);
+        dateChangeListener(start);
+        dateChangeListener(end);
 
         // if user click create
         bCreate.setOnMouseClicked(this::onSubmit);
@@ -334,14 +340,42 @@ public class ProjectCreate implements Initializable {
     // when user click button create Project
     private void onSubmit(MouseEvent event) {
         logger.info("[bCreate] onClick");
-        if (!chose) {
-            lGroupOption.setVisible(true);
+        boolean emptyNumber = number.getText().isEmpty();
+        boolean emptyName = name.getText().isEmpty();
+        boolean emptyCustomer = name.getText().isEmpty();
+        boolean emptyStart = start.getEditor().getText().isEmpty();
+
+        lFillAll.setVisible(false);
+        number.getStyleClass().remove("empty");
+        name.getStyleClass().remove("empty");
+        customer.getStyleClass().remove("empty");
+        start.getEditor().getStyleClass().remove("empty");
+        lGroupOption.setVisible(false);
+
+        if (!(emptyNumber && emptyName && emptyCustomer && emptyStart) && chose) {
+            logger.info("<<< PIM - On saving new project >>>");
+
+        } else {
+            lFillAll.setVisible(true);
+            if (emptyNumber) {
+                number.getStyleClass().add("empty");
+            }
+            if (emptyName) {
+                name.getStyleClass().add("empty");
+                lNameEmpty.setVisible(true);
+            }
+            if (emptyCustomer) {
+                customer.getStyleClass().add("empty");
+                lCustomerEmpty.setVisible(true);
+            }
+            if (emptyStart) {
+                start.getEditor().getStyleClass().add("empty");
+                lStartEmpty.setVisible(true);
+            }
+            if (!chose) {
+                lGroupOption.setVisible(true);
+            }
         }
-        logger.info(number.getText());
-        logger.info(name.getText());
-        logger.info(customer.getText());
-        logger.info(start.getValue());
-        logger.info(end.getValue());
     }
 
 
@@ -405,5 +439,21 @@ public class ProjectCreate implements Initializable {
         // load auto-completion again
         employeeAutoCompletion.dispose();
         configureAutoCompletion();
+    }
+
+
+    private void dateChangeListener(DatePicker datePicker) {
+        datePicker.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                datePicker.setValue(datePicker
+                        .getConverter().fromString(datePicker.getEditor().getText()));
+
+                datePicker.getEditor().getStyleClass().remove("empty");
+
+                if (datePicker == start) {
+                    lStartEmpty.setVisible(false);
+                }
+            }
+        });
     }
 }
