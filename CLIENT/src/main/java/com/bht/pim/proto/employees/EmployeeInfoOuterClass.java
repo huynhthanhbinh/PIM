@@ -34,6 +34,7 @@ public final class EmployeeInfoOuterClass {
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+                    @Override
                     public com.google.protobuf.ExtensionRegistry assignDescriptors(
                             com.google.protobuf.Descriptors.FileDescriptor root) {
                         descriptor = root;

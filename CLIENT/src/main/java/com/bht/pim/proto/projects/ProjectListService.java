@@ -36,11 +36,13 @@ public abstract class ProjectListService
     public static com.google.protobuf.BlockingService
     newReflectiveBlockingService(final BlockingInterface impl) {
         return new com.google.protobuf.BlockingService() {
+            @Override
             public final com.google.protobuf.Descriptors.ServiceDescriptor
             getDescriptorForType() {
                 return getDescriptor();
             }
 
+            @Override
             public final com.google.protobuf.Message callBlockingMethod(
                     com.google.protobuf.Descriptors.MethodDescriptor method,
                     com.google.protobuf.RpcController controller,
@@ -61,6 +63,7 @@ public abstract class ProjectListService
                 }
             }
 
+            @Override
             public final com.google.protobuf.Message
             getRequestPrototype(
                     com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -79,6 +82,7 @@ public abstract class ProjectListService
                 }
             }
 
+            @Override
             public final com.google.protobuf.Message
             getResponsePrototype(
                     com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -131,11 +135,13 @@ public abstract class ProjectListService
             NoParam request,
             com.google.protobuf.RpcCallback<ProjectNumbers> done);
 
+    @Override
     public final com.google.protobuf.Descriptors.ServiceDescriptor
     getDescriptorForType() {
         return getDescriptor();
     }
 
+    @Override
     public final void callMethod(
             com.google.protobuf.Descriptors.MethodDescriptor method,
             com.google.protobuf.RpcController controller,
@@ -149,12 +155,12 @@ public abstract class ProjectListService
         }
         switch (method.getIndex()) {
             case 0:
-                this.getProjectList(controller, (NoParam) request,
+                getProjectList(controller, (NoParam) request,
                         com.google.protobuf.RpcUtil.<ProjectList>specializeCallback(
                                 done));
                 return;
             case 1:
-                this.getProjectNumbers(controller, (NoParam) request,
+                getProjectNumbers(controller, (NoParam) request,
                         com.google.protobuf.RpcUtil.<ProjectNumbers>specializeCallback(
                                 done));
                 return;
@@ -163,6 +169,7 @@ public abstract class ProjectListService
         }
     }
 
+    @Override
     public final com.google.protobuf.Message
     getRequestPrototype(
             com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -181,6 +188,7 @@ public abstract class ProjectListService
         }
     }
 
+    @Override
     public final com.google.protobuf.Message
     getResponsePrototype(
             com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -241,6 +249,7 @@ public abstract class ProjectListService
             return channel;
         }
 
+        @Override
         public void getProjectList(
                 com.google.protobuf.RpcController controller,
                 NoParam request,
@@ -256,6 +265,7 @@ public abstract class ProjectListService
                             ProjectList.getDefaultInstance()));
         }
 
+        @Override
         public void getProjectNumbers(
                 com.google.protobuf.RpcController controller,
                 NoParam request,
@@ -279,6 +289,7 @@ public abstract class ProjectListService
             this.channel = channel;
         }
 
+        @Override
         public ProjectList getProjectList(
                 com.google.protobuf.RpcController controller,
                 NoParam request)
@@ -291,6 +302,7 @@ public abstract class ProjectListService
         }
 
 
+        @Override
         public ProjectNumbers getProjectNumbers(
                 com.google.protobuf.RpcController controller,
                 NoParam request)

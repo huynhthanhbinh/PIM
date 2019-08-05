@@ -36,11 +36,13 @@ public abstract class GroupService
     public static com.google.protobuf.BlockingService
     newReflectiveBlockingService(final BlockingInterface impl) {
         return new com.google.protobuf.BlockingService() {
+            @Override
             public final com.google.protobuf.Descriptors.ServiceDescriptor
             getDescriptorForType() {
                 return getDescriptor();
             }
 
+            @Override
             public final com.google.protobuf.Message callBlockingMethod(
                     com.google.protobuf.Descriptors.MethodDescriptor method,
                     com.google.protobuf.RpcController controller,
@@ -61,6 +63,7 @@ public abstract class GroupService
                 }
             }
 
+            @Override
             public final com.google.protobuf.Message
             getRequestPrototype(
                     com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -79,6 +82,7 @@ public abstract class GroupService
                 }
             }
 
+            @Override
             public final com.google.protobuf.Message
             getResponsePrototype(
                     com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -131,11 +135,13 @@ public abstract class GroupService
             Group request,
             com.google.protobuf.RpcCallback<Success> done);
 
+    @Override
     public final com.google.protobuf.Descriptors.ServiceDescriptor
     getDescriptorForType() {
         return getDescriptor();
     }
 
+    @Override
     public final void callMethod(
             com.google.protobuf.Descriptors.MethodDescriptor method,
             com.google.protobuf.RpcController controller,
@@ -149,12 +155,12 @@ public abstract class GroupService
         }
         switch (method.getIndex()) {
             case 0:
-                this.getGroupById(controller, (GroupId) request,
+                getGroupById(controller, (GroupId) request,
                         com.google.protobuf.RpcUtil.<GroupInfo>specializeCallback(
                                 done));
                 return;
             case 1:
-                this.addNewGroup(controller, (Group) request,
+                addNewGroup(controller, (Group) request,
                         com.google.protobuf.RpcUtil.<Success>specializeCallback(
                                 done));
                 return;
@@ -163,6 +169,7 @@ public abstract class GroupService
         }
     }
 
+    @Override
     public final com.google.protobuf.Message
     getRequestPrototype(
             com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -181,6 +188,7 @@ public abstract class GroupService
         }
     }
 
+    @Override
     public final com.google.protobuf.Message
     getResponsePrototype(
             com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -241,6 +249,7 @@ public abstract class GroupService
             return channel;
         }
 
+        @Override
         public void getGroupById(
                 com.google.protobuf.RpcController controller,
                 GroupId request,
@@ -256,6 +265,7 @@ public abstract class GroupService
                             GroupInfo.getDefaultInstance()));
         }
 
+        @Override
         public void addNewGroup(
                 com.google.protobuf.RpcController controller,
                 Group request,
@@ -279,6 +289,7 @@ public abstract class GroupService
             this.channel = channel;
         }
 
+        @Override
         public GroupInfo getGroupById(
                 com.google.protobuf.RpcController controller,
                 GroupId request)
@@ -291,6 +302,7 @@ public abstract class GroupService
         }
 
 
+        @Override
         public Success addNewGroup(
                 com.google.protobuf.RpcController controller,
                 Group request)

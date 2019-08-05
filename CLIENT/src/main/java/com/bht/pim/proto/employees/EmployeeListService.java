@@ -28,11 +28,13 @@ public abstract class EmployeeListService
     public static com.google.protobuf.BlockingService
     newReflectiveBlockingService(final BlockingInterface impl) {
         return new com.google.protobuf.BlockingService() {
+            @Override
             public final com.google.protobuf.Descriptors.ServiceDescriptor
             getDescriptorForType() {
                 return getDescriptor();
             }
 
+            @Override
             public final com.google.protobuf.Message callBlockingMethod(
                     com.google.protobuf.Descriptors.MethodDescriptor method,
                     com.google.protobuf.RpcController controller,
@@ -51,6 +53,7 @@ public abstract class EmployeeListService
                 }
             }
 
+            @Override
             public final com.google.protobuf.Message
             getRequestPrototype(
                     com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -67,6 +70,7 @@ public abstract class EmployeeListService
                 }
             }
 
+            @Override
             public final com.google.protobuf.Message
             getResponsePrototype(
                     com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -109,11 +113,13 @@ public abstract class EmployeeListService
             NoParam request,
             com.google.protobuf.RpcCallback<EmployeeList> done);
 
+    @Override
     public final com.google.protobuf.Descriptors.ServiceDescriptor
     getDescriptorForType() {
         return getDescriptor();
     }
 
+    @Override
     public final void callMethod(
             com.google.protobuf.Descriptors.MethodDescriptor method,
             com.google.protobuf.RpcController controller,
@@ -127,7 +133,7 @@ public abstract class EmployeeListService
         }
         switch (method.getIndex()) {
             case 0:
-                this.getEmployeeList(controller, (NoParam) request,
+                getEmployeeList(controller, (NoParam) request,
                         com.google.protobuf.RpcUtil.<EmployeeList>specializeCallback(
                                 done));
                 return;
@@ -136,6 +142,7 @@ public abstract class EmployeeListService
         }
     }
 
+    @Override
     public final com.google.protobuf.Message
     getRequestPrototype(
             com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -152,6 +159,7 @@ public abstract class EmployeeListService
         }
     }
 
+    @Override
     public final com.google.protobuf.Message
     getResponsePrototype(
             com.google.protobuf.Descriptors.MethodDescriptor method) {
@@ -197,6 +205,7 @@ public abstract class EmployeeListService
             return channel;
         }
 
+        @Override
         public void getEmployeeList(
                 com.google.protobuf.RpcController controller,
                 NoParam request,
@@ -220,6 +229,7 @@ public abstract class EmployeeListService
             this.channel = channel;
         }
 
+        @Override
         public EmployeeList getEmployeeList(
                 com.google.protobuf.RpcController controller,
                 NoParam request)

@@ -13,28 +13,7 @@ public final class Group extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:com.bht.pim.proto.groups.Group)
         GroupOrBuilder {
-    public static final int ID_FIELD_NUMBER = 1;
-    public static final int LEADER_FIELD_NUMBER = 2;
     private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:com.bht.pim.proto.groups.Group)
-    private static final Group DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<Group>
-            PARSER = new com.google.protobuf.AbstractParser<Group>() {
-        public Group parsePartialFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return new Group(input, extensionRegistry);
-        }
-    };
-
-    static {
-        DEFAULT_INSTANCE = new Group();
-    }
-
-    private long id_;
-    private Employee leader_;
-    private byte memoizedIsInitialized = -1;
 
     // Use Group.newBuilder() to construct.
     private Group(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
@@ -44,6 +23,19 @@ public final class Group extends
     private Group() {
         id_ = 0L;
     }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return unknownFields;
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    public static final int LEADER_FIELD_NUMBER = 2;
+    // @@protoc_insertion_point(class_scope:com.bht.pim.proto.groups.Group)
+    private static final Group DEFAULT_INSTANCE;
+    private long id_;
+    private Employee leader_;
 
     private Group(
             com.google.protobuf.CodedInputStream input,
@@ -105,6 +97,117 @@ public final class Group extends
     public static final com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
         return GroupOuterClass.internal_static_com_bht_pim_proto_groups_Group_descriptor;
+    }
+
+    @Override
+    protected FieldAccessorTable
+    internalGetFieldAccessorTable() {
+        return GroupOuterClass.internal_static_com_bht_pim_proto_groups_Group_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        Group.class, Group.Builder.class);
+    }
+
+    /**
+     * <code>int64 id = 1;</code>
+     */
+    @Override
+    public long getId() {
+        return id_;
+    }
+
+    /**
+     * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+     */
+    @Override
+    public boolean hasLeader() {
+        return leader_ != null;
+    }
+
+    /**
+     * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+     */
+    @Override
+    public Employee getLeader() {
+        return leader_ == null ? Employee.getDefaultInstance() : leader_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+
+    @Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) {
+            return true;
+        }
+        if (isInitialized == 0) {
+            return false;
+        }
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
+    /**
+     * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+     */
+    @Override
+    public EmployeeOrBuilder getLeaderOrBuilder() {
+        return getLeader();
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (id_ != 0L) {
+            output.writeInt64(1, id_);
+        }
+        if (leader_ != null) {
+            output.writeMessage(2, getLeader());
+        }
+        unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) {
+            return size;
+        }
+
+        size = 0;
+        if (id_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeInt64Size(1, id_);
+        }
+        if (leader_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(2, getLeader());
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Group)) {
+            return super.equals(obj);
+        }
+        Group other = (Group) obj;
+
+        boolean result = true;
+        result = result && (getId()
+                == other.getId());
+        result = result && (hasLeader() == other.hasLeader());
+        if (hasLeader()) {
+            result = result && getLeader()
+                    .equals(other.getLeader());
+        }
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
     }
 
     public static Group parseFrom(
@@ -188,6 +291,11 @@ public final class Group extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    @Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
     public static Builder newBuilder() {
         return DEFAULT_INSTANCE.toBuilder();
     }
@@ -196,119 +304,7 @@ public final class Group extends
         return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
-    public static Group getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<Group> parser() {
-        return PARSER;
-    }
-
     @Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-        return this.unknownFields;
-    }
-
-    protected FieldAccessorTable
-    internalGetFieldAccessorTable() {
-        return GroupOuterClass.internal_static_com_bht_pim_proto_groups_Group_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        Group.class, Group.Builder.class);
-    }
-
-    /**
-     * <code>int64 id = 1;</code>
-     */
-    public long getId() {
-        return id_;
-    }
-
-    /**
-     * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
-     */
-    public boolean hasLeader() {
-        return leader_ != null;
-    }
-
-    /**
-     * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
-     */
-    public Employee getLeader() {
-        return leader_ == null ? Employee.getDefaultInstance() : leader_;
-    }
-
-    public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
-    }
-
-    /**
-     * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
-     */
-    public EmployeeOrBuilder getLeaderOrBuilder() {
-        return getLeader();
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
-        if (id_ != 0L) {
-            output.writeInt64(1, id_);
-        }
-        if (leader_ != null) {
-            output.writeMessage(2, getLeader());
-        }
-        unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        if (id_ != 0L) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeInt64Size(1, id_);
-        }
-        if (leader_ != null) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(2, getLeader());
-        }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
-        return size;
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof Group)) {
-            return super.equals(obj);
-        }
-        Group other = (Group) obj;
-
-        boolean result = true;
-        result = result && (getId()
-                == other.getId());
-        result = result && (hasLeader() == other.hasLeader());
-        if (hasLeader()) {
-            result = result && getLeader()
-                    .equals(other.getLeader());
-        }
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
-    }
-
-    public Builder newBuilderForType() {
-        return newBuilder();
-    }
-
     public Builder toBuilder() {
         return this == DEFAULT_INSTANCE
                 ? new Builder() : new Builder().mergeFrom(this);
@@ -340,15 +336,6 @@ public final class Group extends
         return hash;
     }
 
-    @Override
-    public com.google.protobuf.Parser<Group> getParserForType() {
-        return PARSER;
-    }
-
-    public Group getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-    }
-
     /**
      * Protobuf type {@code com.bht.pim.proto.groups.Group}
      */
@@ -359,7 +346,6 @@ public final class Group extends
         private Employee leader_ = null;
         private com.google.protobuf.SingleFieldBuilderV3<
                 Employee, Employee.Builder, EmployeeOrBuilder> leaderBuilder_;
-        private long id_;
 
         // Construct using com.bht.pim.proto.groups.Group.newBuilder()
         private Builder() {
@@ -372,17 +358,18 @@ public final class Group extends
             maybeForceBuilderInitialization();
         }
 
-        public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-            return GroupOuterClass.internal_static_com_bht_pim_proto_groups_Group_descriptor;
-        }
-
         private void maybeForceBuilderInitialization() {
             if (com.google.protobuf.GeneratedMessageV3
                     .alwaysUseFieldBuilders) {
             }
         }
 
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return GroupOuterClass.internal_static_com_bht_pim_proto_groups_Group_descriptor;
+        }
+
+        @Override
         protected FieldAccessorTable
         internalGetFieldAccessorTable() {
             return GroupOuterClass.internal_static_com_bht_pim_proto_groups_Group_fieldAccessorTable
@@ -390,10 +377,12 @@ public final class Group extends
                             Group.class, Group.Builder.class);
         }
 
+        @Override
         public Group getDefaultInstanceForType() {
             return Group.getDefaultInstance();
         }
 
+        @Override
         public Group build() {
             Group result = buildPartial();
             if (!result.isInitialized()) {
@@ -402,6 +391,7 @@ public final class Group extends
             return result;
         }
 
+        @Override
         public Builder clear() {
             super.clear();
             id_ = 0L;
@@ -415,38 +405,45 @@ public final class Group extends
             return this;
         }
 
+        @Override
         public Builder clone() {
             return (Builder) super.clone();
         }
 
+        @Override
         public Builder setField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
                 Object value) {
             return (Builder) super.setField(field, value);
         }
 
+        @Override
         public Builder clearField(
                 com.google.protobuf.Descriptors.FieldDescriptor field) {
             return (Builder) super.clearField(field);
         }
 
+        @Override
         public Builder clearOneof(
                 com.google.protobuf.Descriptors.OneofDescriptor oneof) {
             return (Builder) super.clearOneof(oneof);
         }
 
+        @Override
         public Builder setRepeatedField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
                 int index, Object value) {
             return (Builder) super.setRepeatedField(field, index, value);
         }
 
+        @Override
         public Builder addRepeatedField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
                 Object value) {
             return (Builder) super.addRepeatedField(field, value);
         }
 
+        @Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
             if (other instanceof Group) {
                 return mergeFrom((Group) other);
@@ -456,15 +453,18 @@ public final class Group extends
             }
         }
 
+        @Override
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return GroupOuterClass.internal_static_com_bht_pim_proto_groups_Group_descriptor;
         }
 
+        @Override
         public final boolean isInitialized() {
             return true;
         }
 
+        @Override
         public Builder mergeFrom(
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -483,11 +483,42 @@ public final class Group extends
             return this;
         }
 
+        private long id_;
+
         /**
          * <code>int64 id = 1;</code>
          */
+        @Override
         public long getId() {
             return id_;
+        }
+
+        @Override
+        public Group buildPartial() {
+            Group result = new Group(this);
+            result.id_ = id_;
+            if (leaderBuilder_ == null) {
+                result.leader_ = leader_;
+            } else {
+                result.leader_ = leaderBuilder_.build();
+            }
+            onBuilt();
+            return result;
+        }
+
+        public Builder mergeFrom(Group other) {
+            if (other == Group.getDefaultInstance()) {
+                return this;
+            }
+            if (other.getId() != 0L) {
+                setId(other.getId());
+            }
+            if (other.hasLeader()) {
+                mergeLeader(other.getLeader());
+            }
+            mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
         }
 
         /**
@@ -510,34 +541,10 @@ public final class Group extends
             return this;
         }
 
-        public Group buildPartial() {
-            Group result = new Group(this);
-            result.id_ = id_;
-            if (leaderBuilder_ == null) {
-                result.leader_ = leader_;
-            } else {
-                result.leader_ = leaderBuilder_.build();
-            }
-            onBuilt();
-            return result;
-        }
-
-        public Builder mergeFrom(Group other) {
-            if (other == Group.getDefaultInstance()) return this;
-            if (other.getId() != 0L) {
-                setId(other.getId());
-            }
-            if (other.hasLeader()) {
-                mergeLeader(other.getLeader());
-            }
-            this.mergeUnknownFields(other.unknownFields);
-            onChanged();
-            return this;
-        }
-
         /**
          * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
          */
+        @Override
         public boolean hasLeader() {
             return leaderBuilder_ != null || leader_ != null;
         }
@@ -545,6 +552,7 @@ public final class Group extends
         /**
          * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
          */
+        @Override
         public Employee getLeader() {
             if (leaderBuilder_ == null) {
                 return leader_ == null ? Employee.getDefaultInstance() : leader_;
@@ -631,6 +639,7 @@ public final class Group extends
         /**
          * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
          */
+        @Override
         public EmployeeOrBuilder getLeaderOrBuilder() {
             if (leaderBuilder_ != null) {
                 return leaderBuilder_.getMessageOrBuilder();
@@ -647,8 +656,7 @@ public final class Group extends
                 Employee, Employee.Builder, EmployeeOrBuilder>
         getLeaderFieldBuilder() {
             if (leaderBuilder_ == null) {
-                leaderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                        Employee, Employee.Builder, EmployeeOrBuilder>(
+                leaderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                         getLeader(),
                         getParentForChildren(),
                         isClean());
@@ -657,11 +665,13 @@ public final class Group extends
             return leaderBuilder_;
         }
 
+        @Override
         public final Builder setUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
             return super.setUnknownFieldsProto3(unknownFields);
         }
 
+        @Override
         public final Builder mergeUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
@@ -669,6 +679,39 @@ public final class Group extends
 
 
         // @@protoc_insertion_point(builder_scope:com.bht.pim.proto.groups.Group)
+    }
+
+    static {
+        DEFAULT_INSTANCE = new Group();
+    }
+
+    public static Group getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Group>
+            PARSER = new com.google.protobuf.AbstractParser<Group>() {
+        @Override
+        public Group parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return new Group(input, extensionRegistry);
+        }
+    };
+
+    public static com.google.protobuf.Parser<Group> parser() {
+        return PARSER;
+    }
+
+    @Override
+    public com.google.protobuf.Parser<Group> getParserForType() {
+        return PARSER;
+    }
+
+    @Override
+    public Group getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
     }
 
 }

@@ -16,6 +16,7 @@ public final class ProjectList extends
     private static final ProjectList DEFAULT_INSTANCE;
     private static final com.google.protobuf.Parser<ProjectList>
             PARSER = new com.google.protobuf.AbstractParser<ProjectList>() {
+        @Override
         public ProjectList parsePartialFrom(
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -68,7 +69,7 @@ public final class ProjectList extends
                     }
                     case 10: {
                         if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                            projects_ = new java.util.ArrayList<Project>();
+                            projects_ = new java.util.ArrayList<>();
                             mutable_bitField0_ |= 0x00000001;
                         }
                         projects_.add(
@@ -196,9 +197,10 @@ public final class ProjectList extends
     @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-        return this.unknownFields;
+        return unknownFields;
     }
 
+    @Override
     protected FieldAccessorTable
     internalGetFieldAccessorTable() {
         return ProjectListOuterClass.internal_static_com_bht_pim_proto_projects_ProjectList_fieldAccessorTable
@@ -209,6 +211,7 @@ public final class ProjectList extends
     /**
      * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
      */
+    @Override
     public java.util.List<Project> getProjectsList() {
         return projects_;
     }
@@ -216,6 +219,7 @@ public final class ProjectList extends
     /**
      * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
      */
+    @Override
     public java.util.List<? extends ProjectOrBuilder>
     getProjectsOrBuilderList() {
         return projects_;
@@ -224,6 +228,7 @@ public final class ProjectList extends
     /**
      * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
      */
+    @Override
     public int getProjectsCount() {
         return projects_.size();
     }
@@ -231,6 +236,7 @@ public final class ProjectList extends
     /**
      * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
      */
+    @Override
     public Project getProjects(int index) {
         return projects_.get(index);
     }
@@ -238,20 +244,27 @@ public final class ProjectList extends
     /**
      * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
      */
+    @Override
     public ProjectOrBuilder getProjectsOrBuilder(
             int index) {
         return projects_.get(index);
     }
 
+    @Override
     public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
+        if (isInitialized == 1) {
+            return true;
+        }
+        if (isInitialized == 0) {
+            return false;
+        }
 
         memoizedIsInitialized = 1;
         return true;
     }
 
+    @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
         for (int i = 0; i < projects_.size(); i++) {
@@ -260,9 +273,12 @@ public final class ProjectList extends
         unknownFields.writeTo(output);
     }
 
+    @Override
     public int getSerializedSize() {
         int size = memoizedSize;
-        if (size != -1) return size;
+        if (size != -1) {
+            return size;
+        }
 
         size = 0;
         for (int i = 0; i < projects_.size(); i++) {
@@ -307,10 +323,12 @@ public final class ProjectList extends
         return hash;
     }
 
+    @Override
     public Builder newBuilderForType() {
         return newBuilder();
     }
 
+    @Override
     public Builder toBuilder() {
         return this == DEFAULT_INSTANCE
                 ? new Builder() : new Builder().mergeFrom(this);
@@ -328,6 +346,7 @@ public final class ProjectList extends
         return PARSER;
     }
 
+    @Override
     public ProjectList getDefaultInstanceForType() {
         return DEFAULT_INSTANCE;
     }
@@ -361,6 +380,7 @@ public final class ProjectList extends
             return ProjectListOuterClass.internal_static_com_bht_pim_proto_projects_ProjectList_descriptor;
         }
 
+        @Override
         protected FieldAccessorTable
         internalGetFieldAccessorTable() {
             return ProjectListOuterClass.internal_static_com_bht_pim_proto_projects_ProjectList_fieldAccessorTable
@@ -375,6 +395,7 @@ public final class ProjectList extends
             }
         }
 
+        @Override
         public Builder clear() {
             super.clear();
             if (projectsBuilder_ == null) {
@@ -386,15 +407,18 @@ public final class ProjectList extends
             return this;
         }
 
+        @Override
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return ProjectListOuterClass.internal_static_com_bht_pim_proto_projects_ProjectList_descriptor;
         }
 
+        @Override
         public ProjectList getDefaultInstanceForType() {
             return ProjectList.getDefaultInstance();
         }
 
+        @Override
         public ProjectList build() {
             ProjectList result = buildPartial();
             if (!result.isInitialized()) {
@@ -403,6 +427,7 @@ public final class ProjectList extends
             return result;
         }
 
+        @Override
         public ProjectList buildPartial() {
             ProjectList result = new ProjectList(this);
             int from_bitField0_ = bitField0_;
@@ -419,38 +444,45 @@ public final class ProjectList extends
             return result;
         }
 
+        @Override
         public Builder clone() {
             return (Builder) super.clone();
         }
 
+        @Override
         public Builder setField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
                 Object value) {
             return (Builder) super.setField(field, value);
         }
 
+        @Override
         public Builder clearField(
                 com.google.protobuf.Descriptors.FieldDescriptor field) {
             return (Builder) super.clearField(field);
         }
 
+        @Override
         public Builder clearOneof(
                 com.google.protobuf.Descriptors.OneofDescriptor oneof) {
             return (Builder) super.clearOneof(oneof);
         }
 
+        @Override
         public Builder setRepeatedField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
                 int index, Object value) {
             return (Builder) super.setRepeatedField(field, index, value);
         }
 
+        @Override
         public Builder addRepeatedField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
                 Object value) {
             return (Builder) super.addRepeatedField(field, value);
         }
 
+        @Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
             if (other instanceof ProjectList) {
                 return mergeFrom((ProjectList) other);
@@ -461,7 +493,9 @@ public final class ProjectList extends
         }
 
         public Builder mergeFrom(ProjectList other) {
-            if (other == ProjectList.getDefaultInstance()) return this;
+            if (other == ProjectList.getDefaultInstance()) {
+                return this;
+            }
             if (projectsBuilder_ == null) {
                 if (!other.projects_.isEmpty()) {
                     if (projects_.isEmpty()) {
@@ -488,15 +522,17 @@ public final class ProjectList extends
                     }
                 }
             }
-            this.mergeUnknownFields(other.unknownFields);
+            mergeUnknownFields(other.unknownFields);
             onChanged();
             return this;
         }
 
+        @Override
         public final boolean isInitialized() {
             return true;
         }
 
+        @Override
         public Builder mergeFrom(
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -517,7 +553,7 @@ public final class ProjectList extends
 
         private void ensureProjectsIsMutable() {
             if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-                projects_ = new java.util.ArrayList<Project>(projects_);
+                projects_ = new java.util.ArrayList<>(projects_);
                 bitField0_ |= 0x00000001;
             }
         }
@@ -525,6 +561,7 @@ public final class ProjectList extends
         /**
          * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
          */
+        @Override
         public java.util.List<Project> getProjectsList() {
             if (projectsBuilder_ == null) {
                 return java.util.Collections.unmodifiableList(projects_);
@@ -536,6 +573,7 @@ public final class ProjectList extends
         /**
          * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
          */
+        @Override
         public int getProjectsCount() {
             if (projectsBuilder_ == null) {
                 return projects_.size();
@@ -547,6 +585,7 @@ public final class ProjectList extends
         /**
          * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
          */
+        @Override
         public Project getProjects(int index) {
             if (projectsBuilder_ == null) {
                 return projects_.get(index);
@@ -708,6 +747,7 @@ public final class ProjectList extends
         /**
          * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
          */
+        @Override
         public ProjectOrBuilder getProjectsOrBuilder(
                 int index) {
             if (projectsBuilder_ == null) {
@@ -720,6 +760,7 @@ public final class ProjectList extends
         /**
          * <code>repeated .com.bht.pim.proto.projects.Project projects = 1;</code>
          */
+        @Override
         public java.util.List<? extends ProjectOrBuilder>
         getProjectsOrBuilderList() {
             if (projectsBuilder_ != null) {
@@ -758,8 +799,7 @@ public final class ProjectList extends
                 Project, Project.Builder, ProjectOrBuilder>
         getProjectsFieldBuilder() {
             if (projectsBuilder_ == null) {
-                projectsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-                        Project, Project.Builder, ProjectOrBuilder>(
+                projectsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
                         projects_,
                         ((bitField0_ & 0x00000001) == 0x00000001),
                         getParentForChildren(),
@@ -769,11 +809,13 @@ public final class ProjectList extends
             return projectsBuilder_;
         }
 
+        @Override
         public final Builder setUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
             return super.setUnknownFieldsProto3(unknownFields);
         }
 
+        @Override
         public final Builder mergeUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);

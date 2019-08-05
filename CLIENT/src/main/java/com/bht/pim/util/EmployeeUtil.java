@@ -27,6 +27,10 @@ public class EmployeeUtil {
 
         EmployeeList employeeList = stub.getEmployeeList(noParam);
 
+        logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        logger.info(employeeList);
+        logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
         return FXCollections.observableArrayList(employeeList.getEmployeesList());
     }
 }

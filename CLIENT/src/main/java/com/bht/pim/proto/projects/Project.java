@@ -9,30 +9,30 @@ import com.bht.pim.proto.groups.GroupOrBuilder;
 /**
  * Protobuf type {@code com.bht.pim.proto.projects.Project}
  */
-public  final class Project extends
-    com.google.protobuf.GeneratedMessageV3 implements
+public final class Project extends
+        com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:com.bht.pim.proto.projects.Project)
-    ProjectOrBuilder {
-private static final long serialVersionUID = 0L;
-  // Use Project.newBuilder() to construct.
-  private Project(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-  private Project() {
-    id_ = 0L;
-    number_ = 0L;
-    name_ = "";
-    customer_ = "";
-    status_ = "";
-    start_ = 0L;
-    end_ = 0L;
-  }
+        ProjectOrBuilder {
+    private static final long serialVersionUID = 0L;
 
-  @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
+    // Use Project.newBuilder() to construct.
+    private Project(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+    }
+
+    private Project() {
+        id_ = 0L;
+        number_ = 0L;
+        name_ = "";
+        customer_ = "";
+        status_ = "";
+    }
+
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return unknownFields;
+    }
 
     public static final int ID_FIELD_NUMBER = 1;
     public static final int NUMBER_FIELD_NUMBER = 2;
@@ -49,115 +49,133 @@ private static final long serialVersionUID = 0L;
     private volatile Object name_;
     private volatile Object customer_;
     private volatile Object status_;
-    private long start_;
-    private long end_;
+    private com.google.protobuf.Timestamp start_;
+    private com.google.protobuf.Timestamp end_;
     private Group group_;
 
-  private Project(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          default: {
-            if (!parseUnknownFieldProto3(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-          case 8: {
-
-            id_ = input.readInt64();
-            break;
-          }
-          case 16: {
-
-            number_ = input.readInt64();
-            break;
-          }
-          case 26: {
-            String s = input.readStringRequireUtf8();
-
-            name_ = s;
-            break;
-          }
-          case 34: {
-            String s = input.readStringRequireUtf8();
-
-            customer_ = s;
-            break;
-          }
-            case 42: {
-            String s = input.readStringRequireUtf8();
-
-            status_ = s;
-            break;
-            }
-            case 48: {
-
-            start_ = input.readInt64();
-            break;
-            }
-            case 56: {
-
-                end_ = input.readInt64();
-                break;
-            }
-            case 66: {
-                Group.Builder subBuilder = null;
-                if (group_ != null) {
-                    subBuilder = group_.toBuilder();
-                }
-                group_ = input.readMessage(Group.parser(), extensionRegistry);
-                if (subBuilder != null) {
-                    subBuilder.mergeFrom(group_);
-                    group_ = subBuilder.buildPartial();
-                }
-
-                break;
-            }
+    private Project(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+            throw new NullPointerException();
         }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+            boolean done = false;
+            while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                    case 0:
+                        done = true;
+                        break;
+                    default: {
+                        if (!parseUnknownFieldProto3(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
+                    case 8: {
+
+                        id_ = input.readInt64();
+                        break;
+                    }
+                    case 16: {
+
+                        number_ = input.readInt64();
+                        break;
+                    }
+                    case 26: {
+                        String s = input.readStringRequireUtf8();
+
+                        name_ = s;
+                        break;
+                    }
+                    case 34: {
+                        String s = input.readStringRequireUtf8();
+
+                        customer_ = s;
+                        break;
+                    }
+                    case 42: {
+                        String s = input.readStringRequireUtf8();
+
+                        status_ = s;
+                        break;
+                    }
+                    case 50: {
+                        com.google.protobuf.Timestamp.Builder subBuilder = null;
+                        if (start_ != null) {
+                            subBuilder = start_.toBuilder();
+                        }
+                        start_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(start_);
+                            start_ = subBuilder.buildPartial();
+                        }
+
+                        break;
+                    }
+                    case 58: {
+                        com.google.protobuf.Timestamp.Builder subBuilder = null;
+                        if (end_ != null) {
+                            subBuilder = end_.toBuilder();
+                        }
+                        end_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(end_);
+                            end_ = subBuilder.buildPartial();
+                        }
+
+                        break;
+                    }
+                    case 66: {
+                        Group.Builder subBuilder = null;
+                        if (group_ != null) {
+                            subBuilder = group_.toBuilder();
+                        }
+                        group_ = input.readMessage(Group.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(group_);
+                            group_ = subBuilder.buildPartial();
+                        }
+
+                        break;
+                    }
+                }
+            }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                    e).setUnfinishedMessage(this);
+        } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+        }
     }
-  }
 
-  public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-      return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_descriptor;
-  }
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+        return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_descriptor;
+    }
 
-  protected FieldAccessorTable
-      internalGetFieldAccessorTable() {
-      return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-                Project.class, Project.Builder.class);
-  }
+    @Override
+    protected FieldAccessorTable
+    internalGetFieldAccessorTable() {
+        return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        Project.class, Project.Builder.class);
+    }
 
     /**
      * <code>int64 id = 1;</code>
      */
+    @Override
     public long getId() {
         return id_;
     }
@@ -165,126 +183,168 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>int64 number = 2;</code>
      */
+    @Override
     public long getNumber() {
         return number_;
     }
 
-  /**
-   * <code>string name = 3;</code>
-   */
-  public String getName() {
-    Object ref = name_;
-    if (ref instanceof String) {
-      return (String) ref;
-    } else {
-        com.google.protobuf.ByteString bs =
-          (com.google.protobuf.ByteString) ref;
-      String s = bs.toStringUtf8();
-      name_ = s;
-      return s;
+    /**
+     * <code>string name = 3;</code>
+     */
+    @Override
+    public String getName() {
+        Object ref = name_;
+        if (ref instanceof String) {
+            return (String) ref;
+        } else {
+            com.google.protobuf.ByteString bs =
+                    (com.google.protobuf.ByteString) ref;
+            String s = bs.toStringUtf8();
+            name_ = s;
+            return s;
+        }
     }
-  }
 
-  /**
-   * <code>string name = 3;</code>
-   */
-  public com.google.protobuf.ByteString
-      getNameBytes() {
-    Object ref = name_;
-    if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (String) ref);
-      name_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
+    /**
+     * <code>string name = 3;</code>
+     */
+    @Override
+    public com.google.protobuf.ByteString
+    getNameBytes() {
+        Object ref = name_;
+        if (ref instanceof String) {
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (String) ref);
+            name_ = b;
+            return b;
+        } else {
+            return (com.google.protobuf.ByteString) ref;
+        }
     }
-  }
 
-  /**
-   * <code>string customer = 4;</code>
-   */
-  public String getCustomer() {
-    Object ref = customer_;
-    if (ref instanceof String) {
-      return (String) ref;
-    } else {
-        com.google.protobuf.ByteString bs =
-          (com.google.protobuf.ByteString) ref;
-      String s = bs.toStringUtf8();
-      customer_ = s;
-      return s;
+    /**
+     * <code>string customer = 4;</code>
+     */
+    @Override
+    public String getCustomer() {
+        Object ref = customer_;
+        if (ref instanceof String) {
+            return (String) ref;
+        } else {
+            com.google.protobuf.ByteString bs =
+                    (com.google.protobuf.ByteString) ref;
+            String s = bs.toStringUtf8();
+            customer_ = s;
+            return s;
+        }
     }
-  }
 
-  /**
-   * <code>string customer = 4;</code>
-   */
-  public com.google.protobuf.ByteString
-      getCustomerBytes() {
-    Object ref = customer_;
-    if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (String) ref);
-      customer_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
+    /**
+     * <code>string customer = 4;</code>
+     */
+    @Override
+    public com.google.protobuf.ByteString
+    getCustomerBytes() {
+        Object ref = customer_;
+        if (ref instanceof String) {
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (String) ref);
+            customer_ = b;
+            return b;
+        } else {
+            return (com.google.protobuf.ByteString) ref;
+        }
     }
-  }
 
     /**
      * <code>string status = 5;</code>
-   */
-  public String getStatus() {
-    Object ref = status_;
-    if (ref instanceof String) {
-      return (String) ref;
-    } else {
-        com.google.protobuf.ByteString bs =
-          (com.google.protobuf.ByteString) ref;
-      String s = bs.toStringUtf8();
-      status_ = s;
-      return s;
+     */
+    @Override
+    public String getStatus() {
+        Object ref = status_;
+        if (ref instanceof String) {
+            return (String) ref;
+        } else {
+            com.google.protobuf.ByteString bs =
+                    (com.google.protobuf.ByteString) ref;
+            String s = bs.toStringUtf8();
+            status_ = s;
+            return s;
+        }
     }
-  }
 
     /**
      * <code>string status = 5;</code>
-   */
-  public com.google.protobuf.ByteString
-      getStatusBytes() {
-    Object ref = status_;
-    if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (String) ref);
-      status_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
+     */
+    @Override
+    public com.google.protobuf.ByteString
+    getStatusBytes() {
+        Object ref = status_;
+        if (ref instanceof String) {
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (String) ref);
+            status_ = b;
+            return b;
+        } else {
+            return (com.google.protobuf.ByteString) ref;
+        }
     }
-  }
 
     /**
-     * <code>int64 start = 6;</code>
-   */
-  public long getStart() {
-    return start_;
-  }
+     * <code>.google.protobuf.Timestamp start = 6;</code>
+     */
+    @Override
+    public boolean hasStart() {
+        return start_ != null;
+    }
 
     /**
-     * <code>int64 end = 7;</code>
-   */
-  public long getEnd() {
-    return end_;
-  }
+     * <code>.google.protobuf.Timestamp start = 6;</code>
+     */
+    @Override
+    public com.google.protobuf.Timestamp getStart() {
+        return start_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : start_;
+    }
+
+    /**
+     * <code>.google.protobuf.Timestamp start = 6;</code>
+     */
+    @Override
+    public com.google.protobuf.TimestampOrBuilder getStartOrBuilder() {
+        return getStart();
+    }
+
+    /**
+     * <code>.google.protobuf.Timestamp end = 7;</code>
+     */
+    @Override
+    public boolean hasEnd() {
+        return end_ != null;
+    }
+
+    /**
+     * <code>.google.protobuf.Timestamp end = 7;</code>
+     */
+    @Override
+    public com.google.protobuf.Timestamp getEnd() {
+        return end_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : end_;
+    }
+
+    /**
+     * <code>.google.protobuf.Timestamp end = 7;</code>
+     */
+    @Override
+    public com.google.protobuf.TimestampOrBuilder getEndOrBuilder() {
+        return getEnd();
+    }
 
     /**
      * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
      */
+    @Override
     public boolean hasGroup() {
         return group_ != null;
     }
@@ -292,210 +352,246 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
      */
+    @Override
     public Group getGroup() {
         return group_ == null ? Group.getDefaultInstance() : group_;
     }
 
-  private byte memoizedIsInitialized = -1;
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    private byte memoizedIsInitialized = -1;
 
-    memoizedIsInitialized = 1;
-    return true;
-  }
+    @Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) {
+            return true;
+        }
+        if (isInitialized == 0) {
+            return false;
+        }
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
 
     /**
      * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
      */
+    @Override
     public GroupOrBuilder getGroupOrBuilder() {
         return getGroup();
     }
 
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    if (id_ != 0L) {
-      output.writeInt64(1, id_);
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (id_ != 0L) {
+            output.writeInt64(1, id_);
+        }
+        if (number_ != 0L) {
+            output.writeInt64(2, number_);
+        }
+        if (!getNameBytes().isEmpty()) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 3, name_);
+        }
+        if (!getCustomerBytes().isEmpty()) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 4, customer_);
+        }
+        if (!getStatusBytes().isEmpty()) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 5, status_);
+        }
+        if (start_ != null) {
+            output.writeMessage(6, getStart());
+        }
+        if (end_ != null) {
+            output.writeMessage(7, getEnd());
+        }
+        if (group_ != null) {
+            output.writeMessage(8, getGroup());
+        }
+        unknownFields.writeTo(output);
     }
-    if (number_ != 0L) {
-      output.writeInt64(2, number_);
-    }
-    if (!getNameBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, name_);
-    }
-    if (!getCustomerBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, customer_);
-    }
-    if (!getStatusBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, status_);
-    }
-      if (start_ != 0L) {
-          output.writeInt64(6, start_);
-      }
-      if (end_ != 0L) {
-          output.writeInt64(7, end_);
-      }
-      if (group_ != null) {
-          output.writeMessage(8, getGroup());
-    }
-    unknownFields.writeTo(output);
-  }
 
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
+    @Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) {
+            return size;
+        }
 
-    size = 0;
-    if (id_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(1, id_);
+        size = 0;
+        if (id_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeInt64Size(1, id_);
+        }
+        if (number_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeInt64Size(2, number_);
+        }
+        if (!getNameBytes().isEmpty()) {
+            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, name_);
+        }
+        if (!getCustomerBytes().isEmpty()) {
+            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, customer_);
+        }
+        if (!getStatusBytes().isEmpty()) {
+            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, status_);
+        }
+        if (start_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(6, getStart());
+        }
+        if (end_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(7, getEnd());
+        }
+        if (group_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(8, getGroup());
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
     }
-    if (number_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(2, number_);
-    }
-    if (!getNameBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, name_);
-    }
-    if (!getCustomerBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, customer_);
-    }
-    if (!getStatusBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, status_);
-    }
-    if (start_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-              .computeInt64Size(6, start_);
-    }
-    if (end_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-              .computeInt64Size(7, end_);
-    }
-      if (group_ != null) {
-          size += com.google.protobuf.CodedOutputStream
-                  .computeMessageSize(8, getGroup());
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
 
-  @Override
-  public boolean equals(final Object obj) {
-    if (obj == this) {
-     return true;
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Project)) {
+            return super.equals(obj);
+        }
+        Project other = (Project) obj;
+
+        boolean result = true;
+        result = result && (getId()
+                == other.getId());
+        result = result && (getNumber()
+                == other.getNumber());
+        result = result && getName()
+                .equals(other.getName());
+        result = result && getCustomer()
+                .equals(other.getCustomer());
+        result = result && getStatus()
+                .equals(other.getStatus());
+        result = result && (hasStart() == other.hasStart());
+        if (hasStart()) {
+            result = result && getStart()
+                    .equals(other.getStart());
+        }
+        result = result && (hasEnd() == other.hasEnd());
+        if (hasEnd()) {
+            result = result && getEnd()
+                    .equals(other.getEnd());
+        }
+        result = result && (hasGroup() == other.hasGroup());
+        if (hasGroup()) {
+            result = result && getGroup()
+                    .equals(other.getGroup());
+        }
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
     }
-    if (!(obj instanceof Project)) {
-      return super.equals(obj);
+
+    public static Project parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
     }
-    Project other = (Project) obj;
 
-    boolean result = true;
-    result = result && (getId()
-        == other.getId());
-    result = result && (getNumber()
-        == other.getNumber());
-    result = result && getName()
-        .equals(other.getName());
-    result = result && getCustomer()
-        .equals(other.getCustomer());
-    result = result && getStatus()
-        .equals(other.getStatus());
-    result = result && (getStart()
-        == other.getStart());
-    result = result && (getEnd()
-            == other.getEnd());
-      result = result && (hasGroup() == other.hasGroup());
-      if (hasGroup()) {
-          result = result && getGroup()
-                  .equals(other.getGroup());
-      }
-    result = result && unknownFields.equals(other.unknownFields);
-    return result;
-  }
+    public static Project parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
 
-  public static Project parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static Project parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static Project parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static Project parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static Project parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static Project parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static Project parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static Project parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static Project parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static Project parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static Project parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static Project parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
+    public static Project parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
 
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(Project prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
+    public static Project parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static Project parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static Project parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static Project parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static Project parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static Project parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static Project parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static Project parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static Project parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(Project prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @Override
     public int hashCode() {
@@ -516,12 +612,14 @@ private static final long serialVersionUID = 0L;
         hash = (53 * hash) + getCustomer().hashCode();
         hash = (37 * hash) + STATUS_FIELD_NUMBER;
         hash = (53 * hash) + getStatus().hashCode();
-        hash = (37 * hash) + START_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                getStart());
-        hash = (37 * hash) + END_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                getEnd());
+        if (hasStart()) {
+            hash = (37 * hash) + START_FIELD_NUMBER;
+            hash = (53 * hash) + getStart().hashCode();
+        }
+        if (hasEnd()) {
+            hash = (37 * hash) + END_FIELD_NUMBER;
+            hash = (53 * hash) + getEnd().hashCode();
+        }
         if (hasGroup()) {
             hash = (37 * hash) + GROUP_FIELD_NUMBER;
             hash = (53 * hash) + getGroup().hashCode();
@@ -540,36 +638,34 @@ private static final long serialVersionUID = 0L;
 
     /**
      * Protobuf type {@code com.bht.pim.proto.projects.Project}
-   */
-  public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
             // @@protoc_insertion_point(builder_implements:com.bht.pim.proto.projects.Project)
             ProjectOrBuilder {
         private long id_;
         private long number_;
+        private Object name_ = "";
+        private Object customer_ = "";
         private Object status_ = "";
-
-    private Builder(
-        BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
-    }
-
-        private long start_;
-        private long end_;
+        private com.google.protobuf.Timestamp start_ = null;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> startBuilder_;
+        private com.google.protobuf.Timestamp end_ = null;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> endBuilder_;
         private Group group_ = null;
         private com.google.protobuf.SingleFieldBuilderV3<
                 Group, Group.Builder, GroupOrBuilder> groupBuilder_;
-        private Object name_ = "";
-        private Object customer_ = "";
 
         // Construct using com.bht.pim.proto.projects.Project.newBuilder()
         private Builder() {
+            maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+                BuilderParent parent) {
+            super(parent);
             maybeForceBuilderInitialization();
         }
 
@@ -578,47 +674,7 @@ private static final long serialVersionUID = 0L;
             return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_descriptor;
         }
 
-        public Builder clone() {
-            return (Builder) super.clone();
-        }
-
-        public Builder setField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                Object value) {
-            return (Builder) super.setField(field, value);
-        }
-
-        public Builder clearField(
-                com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return (Builder) super.clearField(field);
-        }
-
-        public Builder clearOneof(
-                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return (Builder) super.clearOneof(oneof);
-        }
-
-        public Builder setRepeatedField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                int index, Object value) {
-            return (Builder) super.setRepeatedField(field, index, value);
-        }
-
-        public Builder addRepeatedField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                Object value) {
-            return (Builder) super.addRepeatedField(field, value);
-        }
-
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-            if (other instanceof Project) {
-                return mergeFrom((Project) other);
-            } else {
-                super.mergeFrom(other);
-                return this;
-            }
-        }
-
+        @Override
         protected FieldAccessorTable
         internalGetFieldAccessorTable() {
             return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_fieldAccessorTable
@@ -626,6 +682,13 @@ private static final long serialVersionUID = 0L;
                             Project.class, Project.Builder.class);
         }
 
+        private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+        }
+
+        @Override
         public Builder clear() {
             super.clear();
             id_ = 0L;
@@ -638,10 +701,18 @@ private static final long serialVersionUID = 0L;
 
             status_ = "";
 
-            start_ = 0L;
-
-            end_ = 0L;
-
+            if (startBuilder_ == null) {
+                start_ = null;
+            } else {
+                start_ = null;
+                startBuilder_ = null;
+            }
+            if (endBuilder_ == null) {
+                end_ = null;
+            } else {
+                end_ = null;
+                endBuilder_ = null;
+            }
             if (groupBuilder_ == null) {
                 group_ = null;
             } else {
@@ -651,13 +722,177 @@ private static final long serialVersionUID = 0L;
             return this;
         }
 
+        @Override
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return ProjectOuterClass.internal_static_com_bht_pim_proto_projects_Project_descriptor;
         }
 
+        @Override
         public Project getDefaultInstanceForType() {
             return Project.getDefaultInstance();
+        }
+
+        @Override
+        public Project build() {
+            Project result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @Override
+        public Project buildPartial() {
+            Project result = new Project(this);
+            result.id_ = id_;
+            result.number_ = number_;
+            result.name_ = name_;
+            result.customer_ = customer_;
+            result.status_ = status_;
+            if (startBuilder_ == null) {
+                result.start_ = start_;
+            } else {
+                result.start_ = startBuilder_.build();
+            }
+            if (endBuilder_ == null) {
+                result.end_ = end_;
+            } else {
+                result.end_ = endBuilder_.build();
+            }
+            if (groupBuilder_ == null) {
+                result.group_ = group_;
+            } else {
+                result.group_ = groupBuilder_.build();
+            }
+            onBuilt();
+            return result;
+        }
+
+        @Override
+        public Builder clone() {
+            return (Builder) super.clone();
+        }
+
+        @Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return (Builder) super.setField(field, value);
+        }
+
+        @Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return (Builder) super.clearField(field);
+        }
+
+        @Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return (Builder) super.clearOneof(oneof);
+        }
+
+        @Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, Object value) {
+            return (Builder) super.setRepeatedField(field, index, value);
+        }
+
+        @Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return (Builder) super.addRepeatedField(field, value);
+        }
+
+        @Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof Project) {
+                return mergeFrom((Project) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        public Builder mergeFrom(Project other) {
+            if (other == Project.getDefaultInstance()) {
+                return this;
+            }
+            if (other.getId() != 0L) {
+                setId(other.getId());
+            }
+            if (other.getNumber() != 0L) {
+                setNumber(other.getNumber());
+            }
+            if (!other.getName().isEmpty()) {
+                name_ = other.name_;
+                onChanged();
+            }
+            if (!other.getCustomer().isEmpty()) {
+                customer_ = other.customer_;
+                onChanged();
+            }
+            if (!other.getStatus().isEmpty()) {
+                status_ = other.status_;
+                onChanged();
+            }
+            if (other.hasStart()) {
+                mergeStart(other.getStart());
+            }
+            if (other.hasEnd()) {
+                mergeEnd(other.getEnd());
+            }
+            if (other.hasGroup()) {
+                mergeGroup(other.getGroup());
+            }
+            mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final boolean isInitialized() {
+            return true;
+        }
+
+        @Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            Project parsedMessage = null;
+            try {
+                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                parsedMessage = (Project) e.getUnfinishedMessage();
+                throw e.unwrapIOException();
+            } finally {
+                if (parsedMessage != null) {
+                    mergeFrom(parsedMessage);
+                }
+            }
+            return this;
+        }
+
+        /**
+         * <code>int64 id = 1;</code>
+         */
+        @Override
+        public long getId() {
+            return id_;
+        }
+
+        /**
+         * <code>int64 id = 1;</code>
+         */
+        public Builder setId(long value) {
+
+            id_ = value;
+            onChanged();
+            return this;
         }
 
         /**
@@ -670,73 +905,38 @@ private static final long serialVersionUID = 0L;
             return this;
         }
 
-        public Project build() {
-            Project result = buildPartial();
-            if (!result.isInitialized()) {
-                throw newUninitializedMessageException(result);
-            }
-            return result;
+        /**
+         * <code>int64 number = 2;</code>
+         */
+        @Override
+        public long getNumber() {
+            return number_;
         }
 
-        public Project buildPartial() {
-            Project result = new Project(this);
-            result.id_ = id_;
-            result.number_ = number_;
-            result.name_ = name_;
-            result.customer_ = customer_;
-            result.status_ = status_;
-            result.start_ = start_;
-            result.end_ = end_;
-            if (groupBuilder_ == null) {
-                result.group_ = group_;
-            } else {
-                result.group_ = groupBuilder_.build();
-            }
-            onBuilt();
-            return result;
-    }
+        /**
+         * <code>int64 number = 2;</code>
+         */
+        public Builder setNumber(long value) {
 
-    public Builder mergeFrom(Project other) {
-      if (other == Project.getDefaultInstance()) return this;
-      if (other.getId() != 0L) {
-        setId(other.getId());
-      }
-      if (other.getNumber() != 0L) {
-        setNumber(other.getNumber());
-      }
-      if (!other.getName().isEmpty()) {
-        name_ = other.name_;
-        onChanged();
-      }
-      if (!other.getCustomer().isEmpty()) {
-        customer_ = other.customer_;
-        onChanged();
-      }
-      if (!other.getStatus().isEmpty()) {
-        status_ = other.status_;
-        onChanged();
-      }
-      if (other.getStart() != 0L) {
-        setStart(other.getStart());
-      }
-      if (other.getEnd() != 0L) {
-          setEnd(other.getEnd());
-      }
-        if (other.hasGroup()) {
-            mergeGroup(other.getGroup());
+            number_ = value;
+            onChanged();
+            return this;
         }
-      this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-    }
 
-        public final boolean isInitialized() {
-      return true;
-    }
+        /**
+         * <code>int64 number = 2;</code>
+         */
+        public Builder clearNumber() {
+
+            number_ = 0L;
+            onChanged();
+            return this;
+        }
 
         /**
          * <code>string name = 3;</code>
          */
+        @Override
         public String getName() {
             Object ref = name_;
             if (!(ref instanceof String)) {
@@ -764,84 +964,23 @@ private static final long serialVersionUID = 0L;
             return this;
         }
 
-        public Builder mergeFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            Project parsedMessage = null;
-            try {
-                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                parsedMessage = (Project) e.getUnfinishedMessage();
-                throw e.unwrapIOException();
-            } finally {
-                if (parsedMessage != null) {
-                    mergeFrom(parsedMessage);
-                }
+        /**
+         * <code>string name = 3;</code>
+         */
+        @Override
+        public com.google.protobuf.ByteString
+        getNameBytes() {
+            Object ref = name_;
+            if (ref instanceof String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (String) ref);
+                name_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
             }
-            return this;
         }
-
-        /**
-         * <code>int64 id = 1;</code>
-         */
-        public long getId() {
-            return id_;
-        }
-
-        /**
-         * <code>int64 id = 1;</code>
-         */
-        public Builder setId(long value) {
-
-            id_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int64 number = 2;</code>
-         */
-        public long getNumber() {
-            return number_;
-        }
-
-        /**
-         * <code>int64 number = 2;</code>
-         */
-        public Builder setNumber(long value) {
-
-            number_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int64 number = 2;</code>
-         */
-        public Builder clearNumber() {
-
-            number_ = 0L;
-            onChanged();
-      return this;
-    }
-
-    /**
-     * <code>string name = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-    getNameBytes() {
-      Object ref = name_;
-      if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
 
         /**
          * <code>string name = 3;</code>
@@ -864,25 +1003,26 @@ private static final long serialVersionUID = 0L;
         public Builder clearName() {
 
             name_ = getDefaultInstance().getName();
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <code>string customer = 4;</code>
-     */
-    public String getCustomer() {
-        Object ref = customer_;
-        if (!(ref instanceof String)) {
-            com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
-            customer_ = s;
-            return s;
-        } else {
-            return (String) ref;
+            onChanged();
+            return this;
         }
-    }
+
+        /**
+         * <code>string customer = 4;</code>
+         */
+        @Override
+        public String getCustomer() {
+            Object ref = customer_;
+            if (!(ref instanceof String)) {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                String s = bs.toStringUtf8();
+                customer_ = s;
+                return s;
+            } else {
+                return (String) ref;
+            }
+        }
 
         /**
          * <code>string customer = 4;</code>
@@ -898,31 +1038,32 @@ private static final long serialVersionUID = 0L;
             return this;
         }
 
-    /**
-     * <code>string customer = 4;</code>
-     */
-    public com.google.protobuf.ByteString
-    getCustomerBytes() {
-      Object ref = customer_;
-      if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        customer_ = b;
-        return b;
-      } else {
-          return (com.google.protobuf.ByteString) ref;
-      }
-    }
+        /**
+         * <code>string customer = 4;</code>
+         */
+        @Override
+        public com.google.protobuf.ByteString
+        getCustomerBytes() {
+            Object ref = customer_;
+            if (ref instanceof String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (String) ref);
+                customer_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
 
         /**
-     * <code>string customer = 4;</code>
+         * <code>string customer = 4;</code>
          */
         public Builder setCustomerBytes(
                 com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-      }
+            if (value == null) {
+                throw new NullPointerException();
+            }
             checkByteStringIsUtf8(value);
 
             customer_ = value;
@@ -931,30 +1072,31 @@ private static final long serialVersionUID = 0L;
         }
 
         /**
-     * <code>string customer = 4;</code>
+         * <code>string customer = 4;</code>
          */
         public Builder clearCustomer() {
 
-      customer_ = getDefaultInstance().getCustomer();
-      onChanged();
-      return this;
+            customer_ = getDefaultInstance().getCustomer();
+            onChanged();
+            return this;
         }
 
         /**
          * <code>string status = 5;</code>
-     */
-    public String getStatus() {
-      Object ref = status_;
-      if (!(ref instanceof String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
-          status_ = s;
-          return s;
-      } else {
-          return (String) ref;
-      }
-    }
+         */
+        @Override
+        public String getStatus() {
+            Object ref = status_;
+            if (!(ref instanceof String)) {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                String s = bs.toStringUtf8();
+                status_ = s;
+                return s;
+            } else {
+                return (String) ref;
+            }
+        }
 
         /**
          * <code>string status = 5;</code>
@@ -973,19 +1115,20 @@ private static final long serialVersionUID = 0L;
         /**
          * <code>string status = 5;</code>
          */
-    public com.google.protobuf.ByteString
+        @Override
+        public com.google.protobuf.ByteString
         getStatusBytes() {
-      Object ref = status_;
-      if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
-            com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
-          status_ = b;
-          return b;
-      } else {
-          return (com.google.protobuf.ByteString) ref;
-      }
-    }
+            Object ref = status_;
+            if (ref instanceof String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (String) ref);
+                status_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
 
         /**
          * <code>string status = 5;</code>
@@ -998,77 +1141,272 @@ private static final long serialVersionUID = 0L;
             checkByteStringIsUtf8(value);
 
             status_ = value;
-      onChanged();
-      return this;
+            onChanged();
+            return this;
         }
 
         /**
          * <code>string status = 5;</code>
          */
-    public Builder clearStatus() {
+        public Builder clearStatus() {
 
-        status_ = getDefaultInstance().getStatus();
-      onChanged();
-        return this;
-    }
-
-        /**
-         * <code>int64 start = 6;</code>
-         */
-        public long getStart() {
-            return start_;
-        }
-
-        /**
-         * <code>int64 start = 6;</code>
-         */
-        public Builder setStart(long value) {
-
-      start_ = value;
-      onChanged();
+            status_ = getDefaultInstance().getStatus();
+            onChanged();
             return this;
         }
 
         /**
-         * <code>int64 end = 7;</code>
-     */
-    public long getEnd() {
-        return end_;
-    }
+         * <code>.google.protobuf.Timestamp start = 6;</code>
+         */
+        @Override
+        public boolean hasStart() {
+            return startBuilder_ != null || start_ != null;
+        }
 
         /**
-         * <code>int64 end = 7;</code>
+         * <code>.google.protobuf.Timestamp start = 6;</code>
          */
-        public Builder setEnd(long value) {
+        @Override
+        public com.google.protobuf.Timestamp getStart() {
+            if (startBuilder_ == null) {
+                return start_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : start_;
+            } else {
+                return startBuilder_.getMessage();
+            }
+        }
 
-      end_ = value;
-      onChanged();
+        /**
+         * <code>.google.protobuf.Timestamp start = 6;</code>
+         */
+        public Builder setStart(com.google.protobuf.Timestamp value) {
+            if (startBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                start_ = value;
+                onChanged();
+            } else {
+                startBuilder_.setMessage(value);
+            }
+
             return this;
         }
 
         /**
-         * <code>int64 start = 6;</code>
+         * <code>.google.protobuf.Timestamp start = 6;</code>
+         */
+        public Builder setStart(
+                com.google.protobuf.Timestamp.Builder builderForValue) {
+            if (startBuilder_ == null) {
+                start_ = builderForValue.build();
+                onChanged();
+            } else {
+                startBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp start = 6;</code>
+         */
+        public Builder mergeStart(com.google.protobuf.Timestamp value) {
+            if (startBuilder_ == null) {
+                if (start_ != null) {
+                    start_ =
+                            com.google.protobuf.Timestamp.newBuilder(start_).mergeFrom(value).buildPartial();
+                } else {
+                    start_ = value;
+                }
+                onChanged();
+            } else {
+                startBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp start = 6;</code>
          */
         public Builder clearStart() {
+            if (startBuilder_ == null) {
+                start_ = null;
+                onChanged();
+            } else {
+                start_ = null;
+                startBuilder_ = null;
+            }
 
-            start_ = 0L;
-            onChanged();
             return this;
         }
 
         /**
-         * <code>int64 end = 7;</code>
+         * <code>.google.protobuf.Timestamp start = 6;</code>
+         */
+        public com.google.protobuf.Timestamp.Builder getStartBuilder() {
+
+            onChanged();
+            return getStartFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp start = 6;</code>
+         */
+        @Override
+        public com.google.protobuf.TimestampOrBuilder getStartOrBuilder() {
+            if (startBuilder_ != null) {
+                return startBuilder_.getMessageOrBuilder();
+            } else {
+                return start_ == null ?
+                        com.google.protobuf.Timestamp.getDefaultInstance() : start_;
+            }
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp start = 6;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
+        getStartFieldBuilder() {
+            if (startBuilder_ == null) {
+                startBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+                        getStart(),
+                        getParentForChildren(),
+                        isClean());
+                start_ = null;
+            }
+            return startBuilder_;
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp end = 7;</code>
+         */
+        @Override
+        public boolean hasEnd() {
+            return endBuilder_ != null || end_ != null;
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp end = 7;</code>
+         */
+        @Override
+        public com.google.protobuf.Timestamp getEnd() {
+            if (endBuilder_ == null) {
+                return end_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : end_;
+            } else {
+                return endBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp end = 7;</code>
+         */
+        public Builder setEnd(com.google.protobuf.Timestamp value) {
+            if (endBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                end_ = value;
+                onChanged();
+            } else {
+                endBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp end = 7;</code>
+         */
+        public Builder setEnd(
+                com.google.protobuf.Timestamp.Builder builderForValue) {
+            if (endBuilder_ == null) {
+                end_ = builderForValue.build();
+                onChanged();
+            } else {
+                endBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp end = 7;</code>
+         */
+        public Builder mergeEnd(com.google.protobuf.Timestamp value) {
+            if (endBuilder_ == null) {
+                if (end_ != null) {
+                    end_ =
+                            com.google.protobuf.Timestamp.newBuilder(end_).mergeFrom(value).buildPartial();
+                } else {
+                    end_ = value;
+                }
+                onChanged();
+            } else {
+                endBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp end = 7;</code>
          */
         public Builder clearEnd() {
+            if (endBuilder_ == null) {
+                end_ = null;
+                onChanged();
+            } else {
+                end_ = null;
+                endBuilder_ = null;
+            }
 
-            end_ = 0L;
-            onChanged();
             return this;
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp end = 7;</code>
+         */
+        public com.google.protobuf.Timestamp.Builder getEndBuilder() {
+
+            onChanged();
+            return getEndFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp end = 7;</code>
+         */
+        @Override
+        public com.google.protobuf.TimestampOrBuilder getEndOrBuilder() {
+            if (endBuilder_ != null) {
+                return endBuilder_.getMessageOrBuilder();
+            } else {
+                return end_ == null ?
+                        com.google.protobuf.Timestamp.getDefaultInstance() : end_;
+            }
+        }
+
+        /**
+         * <code>.google.protobuf.Timestamp end = 7;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
+        getEndFieldBuilder() {
+            if (endBuilder_ == null) {
+                endBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+                        getEnd(),
+                        getParentForChildren(),
+                        isClean());
+                end_ = null;
+            }
+            return endBuilder_;
         }
 
         /**
          * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
          */
+        @Override
         public boolean hasGroup() {
             return groupBuilder_ != null || group_ != null;
         }
@@ -1076,6 +1414,7 @@ private static final long serialVersionUID = 0L;
         /**
          * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
          */
+        @Override
         public Group getGroup() {
             if (groupBuilder_ == null) {
                 return group_ == null ? Group.getDefaultInstance() : group_;
@@ -1162,6 +1501,7 @@ private static final long serialVersionUID = 0L;
         /**
          * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
          */
+        @Override
         public GroupOrBuilder getGroupOrBuilder() {
             if (groupBuilder_ != null) {
                 return groupBuilder_.getMessageOrBuilder();
@@ -1178,58 +1518,63 @@ private static final long serialVersionUID = 0L;
                 Group, Group.Builder, GroupOrBuilder>
         getGroupFieldBuilder() {
             if (groupBuilder_ == null) {
-                groupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                        Group, Group.Builder, GroupOrBuilder>(
+                groupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
                         getGroup(),
                         getParentForChildren(),
                         isClean());
                 group_ = null;
             }
             return groupBuilder_;
-    }
-    public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFieldsProto3(unknownFields);
-    }
+        }
 
+        @Override
+        public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        @Override
         public final Builder mergeUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+            return super.mergeUnknownFields(unknownFields);
         }
 
 
         // @@protoc_insertion_point(builder_scope:com.bht.pim.proto.projects.Project)
-  }
-  static {
-    DEFAULT_INSTANCE = new Project();
-  }
-
-  public static Project getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<Project>
-      PARSER = new com.google.protobuf.AbstractParser<Project>() {
-    public Project parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Project(input, extensionRegistry);
     }
-  };
 
-  public static com.google.protobuf.Parser<Project> parser() {
-    return PARSER;
-  }
+    static {
+        DEFAULT_INSTANCE = new Project();
+    }
 
-  @Override
-  public com.google.protobuf.Parser<Project> getParserForType() {
-    return PARSER;
-  }
+    public static Project getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
 
-  public Project getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
+    private static final com.google.protobuf.Parser<Project>
+            PARSER = new com.google.protobuf.AbstractParser<Project>() {
+        @Override
+        public Project parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return new Project(input, extensionRegistry);
+        }
+    };
+
+    public static com.google.protobuf.Parser<Project> parser() {
+        return PARSER;
+    }
+
+    @Override
+    public com.google.protobuf.Parser<Project> getParserForType() {
+        return PARSER;
+    }
+
+    @Override
+    public Project getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+    }
 
 }
 

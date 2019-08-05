@@ -1,14 +1,19 @@
 package com.bht.pim.util;
 
+import com.google.protobuf.Timestamp;
 import javafx.util.StringConverter;
 import org.apache.log4j.Logger;
 
+import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class DateUtil {
+
+    private DateUtil() {
+    }
 
     // Converter for pim date-picker controls
     public static final StringConverter<LocalDate> DATE_STRING_CONVERTER
@@ -44,7 +49,28 @@ public class DateUtil {
         };
     }
 
-    public static Date toUtilDate(LocalDate date) {
-        return Date.from(date.atStartOfDay().toInstant(ZoneOffset.UTC));
+    public static Timestamp toTimestamp(LocalDate localDate) {
+        Instant instant = localDate.atStartOfDay().toInstant(ZoneOffset.UTC);
+
+        return Timestamp.newBuilder()
+                .setSeconds(instant.getEpochSecond())
+                .setNanos(instant.getNano())
+                .build();
+    }
+
+    public static Timestamp toTimestamp(Date date) {
+        LocalDate localDate = date.toLocalDate();
+        return toTimestamp(localDate);
+    }
+
+    public static LocalDate toLocalDate(Timestamp timestamp) {
+        return Instant
+                .ofEpochSecond(timestamp.getSeconds(), timestamp.getNanos())
+                .atZone(ZoneOffset.UTC)
+                .toLocalDate();
+    }
+
+    public static Date toSqlDate(Timestamp timestamp) {
+        return Date.valueOf(toLocalDate(timestamp));
     }
 }

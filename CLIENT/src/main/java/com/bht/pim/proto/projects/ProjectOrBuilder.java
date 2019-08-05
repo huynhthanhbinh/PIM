@@ -8,57 +8,80 @@ import com.bht.pim.proto.groups.GroupOrBuilder;
 
 public interface ProjectOrBuilder extends
         // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.projects.Project)
-    com.google.protobuf.MessageOrBuilder {
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>int64 id = 1;</code>
-   */
-  long getId();
+    /**
+     * <code>int64 id = 1;</code>
+     */
+    long getId();
 
-  /**
-   * <code>int64 number = 2;</code>
-   */
-  long getNumber();
+    /**
+     * <code>int64 number = 2;</code>
+     */
+    long getNumber();
 
-  /**
-   * <code>string name = 3;</code>
-   */
-  String getName();
-  /**
-   * <code>string name = 3;</code>
-   */
-  com.google.protobuf.ByteString
-      getNameBytes();
+    /**
+     * <code>string name = 3;</code>
+     */
+    String getName();
 
-  /**
-   * <code>string customer = 4;</code>
-   */
-  String getCustomer();
-  /**
-   * <code>string customer = 4;</code>
-   */
-  com.google.protobuf.ByteString
-      getCustomerBytes();
+    /**
+     * <code>string name = 3;</code>
+     */
+    com.google.protobuf.ByteString
+    getNameBytes();
 
-  /**
-   * <code>string status = 5;</code>
-   */
-  String getStatus();
-  /**
-   * <code>string status = 5;</code>
-   */
-  com.google.protobuf.ByteString
-      getStatusBytes();
+    /**
+     * <code>string customer = 4;</code>
+     */
+    String getCustomer();
 
-  /**
-   * <code>int64 start = 6;</code>
-   */
-  long getStart();
+    /**
+     * <code>string customer = 4;</code>
+     */
+    com.google.protobuf.ByteString
+    getCustomerBytes();
 
-  /**
-   * <code>int64 end = 7;</code>
-   */
-  long getEnd();
+    /**
+     * <code>string status = 5;</code>
+     */
+    String getStatus();
+
+    /**
+     * <code>string status = 5;</code>
+     */
+    com.google.protobuf.ByteString
+    getStatusBytes();
+
+    /**
+     * <code>.google.protobuf.Timestamp start = 6;</code>
+     */
+    boolean hasStart();
+
+    /**
+     * <code>.google.protobuf.Timestamp start = 6;</code>
+     */
+    com.google.protobuf.Timestamp getStart();
+
+    /**
+     * <code>.google.protobuf.Timestamp start = 6;</code>
+     */
+    com.google.protobuf.TimestampOrBuilder getStartOrBuilder();
+
+    /**
+     * <code>.google.protobuf.Timestamp end = 7;</code>
+     */
+    boolean hasEnd();
+
+    /**
+     * <code>.google.protobuf.Timestamp end = 7;</code>
+     */
+    com.google.protobuf.Timestamp getEnd();
+
+    /**
+     * <code>.google.protobuf.Timestamp end = 7;</code>
+     */
+    com.google.protobuf.TimestampOrBuilder getEndOrBuilder();
 
     /**
      * <code>.com.bht.pim.proto.groups.Group group = 8;</code>

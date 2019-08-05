@@ -148,6 +148,8 @@ public class ProjectCreate implements Initializable {
                 .map(Member::toMember)
                 .collect(Collectors.toList());
 
+        logger.info(EmployeeUtil.getAllEmployees(channel));
+
         // Get all current-group leaders
         leaders = GroupUtil.getAllGroups(channel).stream()
                 .map(Member::toMember)
@@ -379,11 +381,10 @@ public class ProjectCreate implements Initializable {
                         .setName(name.getText())
                         .setCustomer(customer.getText())
                         .setGroup(group)
-                        .setStart(DateUtil.toUtilDate(start.getValue()).getTime());
+                        .setStart(DateUtil.toTimestamp(start.getValue()));
 
                 if (end.getValue() != null) {
-                    projectBuilder.setEnd(
-                            DateUtil.toUtilDate(end.getValue()).getTime());
+                    projectBuilder.setEnd(DateUtil.toTimestamp(end.getValue()));
                 }
 
                 Project project = projectBuilder.build();
