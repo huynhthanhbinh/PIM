@@ -1,7 +1,5 @@
 package com.bht.pim.util;
 
-import com.bht.pim.intermediate.Member;
-import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.groups.*;
 import io.grpc.Channel;
 import javafx.collections.FXCollections;
@@ -17,18 +15,10 @@ public class GroupUtil {
     }
 
     // Add a new group ============================================
-    public static boolean addNewGroup(Channel channel, Member leader) {
+    public static boolean addNewGroup(Channel channel, Group newGroup) {
         try {
             GroupServiceGrpc.GroupServiceBlockingStub stub =
                     GroupServiceGrpc.newBlockingStub(channel);
-
-            Employee groupLeader = Employee.newBuilder()
-                    .setId(leader.getId())
-                    .build();
-
-            Group newGroup = Group.newBuilder()
-                    .setLeader(groupLeader)
-                    .build();
 
             return stub.addNewGroup(newGroup).getIsSuccess();
 

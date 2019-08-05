@@ -19,6 +19,10 @@ public class Member {
         return toMember(leader);
     }
 
+    public static Employee toEmployee(long memberId) {
+        return Employee.newBuilder().setId(memberId).build();
+    }
+
     public Member(long id, String name) {
         this.id = id;
         this.name = name;

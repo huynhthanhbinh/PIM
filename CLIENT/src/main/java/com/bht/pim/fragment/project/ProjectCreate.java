@@ -1,6 +1,10 @@
 package com.bht.pim.fragment.project;
 
 import com.bht.pim.intermediate.Member;
+import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.proto.groups.Group;
+import com.bht.pim.proto.projects.Project;
+import com.bht.pim.proto.projects.ProjectInfo;
 import com.bht.pim.util.DateUtil;
 import com.bht.pim.util.EmployeeUtil;
 import com.bht.pim.util.GroupUtil;
@@ -355,6 +359,51 @@ public class ProjectCreate implements Initializable {
         if (!(emptyNumber && emptyName && emptyCustomer && emptyStart) && chose) {
             logger.info("<<< PIM - On saving new project >>>");
 
+            Employee groupLeader = Employee.newBuilder()
+                    .setId(leader.getId())
+                    .build();
+
+            Group group = Group.newBuilder()
+                    .setLeader(groupLeader)
+                    .build();
+
+            try {
+                if (comboBoxOption.getSelectionModel().getSelectedItem().equals("New group")) {
+                    // send group info to server to save
+                    logger.info("<<< PIM - On creating new group >>>");
+                    //GroupUtil.addNewGroup(channel, group);
+                }
+
+                Project.Builder projectBuilder = Project.newBuilder()
+                        .setNumber(Long.parseLong(number.getText()))
+                        .setName(name.getText())
+                        .setCustomer(customer.getText())
+                        .setGroup(group)
+                        .setStart(DateUtil.toUtilDate(start.getValue()).getTime());
+
+                if (end.getValue() != null) {
+                    projectBuilder.setEnd(
+                            DateUtil.toUtilDate(end.getValue()).getTime());
+                }
+
+                Project project = projectBuilder.build();
+
+                List<Employee> employeeList = members.stream()
+                        .map(Member::toEmployee)
+                        .collect(Collectors.toList());
+
+                ProjectInfo projectInfo = ProjectInfo.newBuilder()
+                        .setProject(project)
+                        .addAllEmployees(employeeList)
+                        .build();
+
+                logger.info(projectInfo);
+
+                //ProjectUtil.addNewProject(projectInfo);
+
+            } catch (Exception exception) {
+                logger.info(exception);
+            }
         } else {
             lFillAll.setVisible(true);
             if (emptyNumber) {

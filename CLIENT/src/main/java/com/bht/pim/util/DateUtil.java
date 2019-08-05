@@ -4,7 +4,9 @@ import javafx.util.StringConverter;
 import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class DateUtil {
 
@@ -40,5 +42,9 @@ public class DateUtil {
                 }
             }
         };
+    }
+
+    public static Date toUtilDate(LocalDate date) {
+        return Date.from(date.atStartOfDay().toInstant(ZoneOffset.UTC));
     }
 }
