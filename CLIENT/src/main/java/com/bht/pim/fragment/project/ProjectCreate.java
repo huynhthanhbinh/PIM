@@ -1,14 +1,12 @@
 package com.bht.pim.fragment.project;
 
 import com.bht.pim.intermediate.Member;
+import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.groups.Group;
 import com.bht.pim.proto.projects.Project;
 import com.bht.pim.proto.projects.ProjectInfo;
-import com.bht.pim.util.DateUtil;
-import com.bht.pim.util.EmployeeUtil;
-import com.bht.pim.util.GroupUtil;
-import com.bht.pim.util.ProjectUtil;
+import com.bht.pim.util.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -16,6 +14,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -409,10 +408,15 @@ public class ProjectCreate implements Initializable {
 
                 logger.info(projectInfo);
 
+                String successMsg = "[PIM] Successfully create project !";
+                NotificationUtil.show(
+                        NotificationStyle.SUCCESS, Pos.CENTER, successMsg);
+
                 //ProjectUtil.addNewProject(projectInfo);
 
             } catch (Exception exception) {
                 logger.info(exception);
+                exception.printStackTrace();
             }
         } else {
             lFillAll.setVisible(true);

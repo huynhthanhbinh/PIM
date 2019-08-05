@@ -1,4 +1,4 @@
-package com.notification.notification;
+package com.bht.pim.notification;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.effects.JFXDepthManager;
@@ -27,68 +27,37 @@ import javafx.util.Duration;
 public abstract class JFXNotificationBar extends Region {
 
     private static final double MIN_HEIGHT = 40;
-
-    private final ScrollPane pane;
-    private final HBox paneGeneral;
-    private final VBox paneImage;
-    private final HBox paneBody;
-
     private static final EventType<Event> ON_SHOWING =
             new EventType<>(Event.ANY, "NOTIFICATION_PANE_ON_SHOWING"); //$NON-NLS-1$
-
     /**
      * Called when the NotificationPane shows.
      */
     private static final EventType<Event> ON_SHOWN =
             new EventType<>(Event.ANY, "NOTIFICATION_PANE_ON_SHOWN"); //$NON-NLS-1$
-
     /**
      * Called when the NotificationPane <b>will</b> be hidden.
      */
     private static final EventType<Event> ON_HIDING =
             new EventType<>(Event.ANY, "NOTIFICATION_PANE_ON_HIDING"); //$NON-NLS-1$
-
     /**
      * Called when the NotificationPane is hidden.
      */
     private static final EventType<Event> ON_HIDDEN =
             new EventType<>(Event.ANY, "NOTIFICATION_PANE_ON_HIDDEN"); //$NON-NLS-1$
-
+    private final ScrollPane pane;
+    private final HBox paneGeneral;
+    private final VBox paneImage;
+    private final HBox paneBody;
+    // --- animation timeline code
+    private final Duration TRANSITION_DURATION = new Duration(350.0);
     public DoubleProperty transition = new SimpleDoubleProperty() {
         @Override
         protected void invalidated() {
             requestContainerLayout();
         }
     };
-
-
-    public void requestContainerLayout() {
-        layoutChildren();
-    }
-
-    public String getTitle() {
-        return ""; //$NON-NLS-1$
-    }
-
-    public boolean isCloseButtonVisible() {
-        return true;
-    }
-
-    public abstract String getText();
-
-    public abstract String getTypeNotification();
-
-    public abstract Node getGraphic();
-
-    public abstract void hide();
-
-    public abstract boolean isShowing();
-
-    public abstract boolean isShowFromTop();
-
-    public abstract double getContainerHeight();
-
-    public abstract void relocateInParent(double x, double y);
+    private Timeline timeline;
+    private double transitionStartValue;
 
     public JFXNotificationBar() {
         getStyleClass().add("notification-bar"); //$NON-NLS-1$
@@ -191,6 +160,34 @@ public abstract class JFXNotificationBar extends Region {
         updatePane();
     }
 
+    public void requestContainerLayout() {
+        layoutChildren();
+    }
+
+    public String getTitle() {
+        return ""; //$NON-NLS-1$
+    }
+
+    public boolean isCloseButtonVisible() {
+        return true;
+    }
+
+    public abstract String getText();
+
+    public abstract String getTypeNotification();
+
+    public abstract Node getGraphic();
+
+    public abstract void hide();
+
+    public abstract boolean isShowing();
+
+    public abstract boolean isShowFromTop();
+
+    public abstract double getContainerHeight();
+
+    public abstract void relocateInParent(double x, double y);
+
     private void updatePane() {
         paneGeneral.getChildren().clear();
         paneGeneral.getChildren().add(paneImage);
@@ -236,12 +233,6 @@ public abstract class JFXNotificationBar extends Region {
         transitionStartValue = 1;
         doAnimationTransition();
     }
-
-
-    // --- animation timeline code
-    private final Duration TRANSITION_DURATION = new Duration(350.0);
-    private Timeline timeline;
-    private double transitionStartValue;
 
     private void doAnimationTransition() {
         Duration duration;

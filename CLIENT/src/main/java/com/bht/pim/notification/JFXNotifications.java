@@ -1,14 +1,7 @@
-package com.notification.notification;
+package com.bht.pim.notification;
 
 
-import java.lang.ref.WeakReference;
-import java.util.*;
-
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.ParallelTransition;
-import javafx.animation.Timeline;
-import javafx.animation.Transition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -21,6 +14,9 @@ import javafx.stage.PopupWindow;
 import javafx.stage.Screen;
 import javafx.stage.Window;
 import javafx.util.Duration;
+
+import java.lang.ref.WeakReference;
+import java.util.*;
 
 
 public class JFXNotifications {
@@ -64,6 +60,28 @@ public class JFXNotifications {
         return new JFXNotifications();
     }
 
+    public static Window getWindow(Object owner) throws IllegalArgumentException {
+        if (owner == null) {
+            Window window = null;
+            // lets just get the focused stage and show the dialog in there
+            @SuppressWarnings("deprecation")
+            Iterator<Window> windows = Window.impl_getWindows();
+            while (windows.hasNext()) {
+                window = windows.next();
+                if (window.isFocused() && !(window instanceof PopupWindow)) {
+                    break;
+                }
+            }
+            return window;
+        } else if (owner instanceof Window) {
+            return (Window) owner;
+        } else if (owner instanceof Node) {
+            return ((Node) owner).getScene().getWindow();
+        } else {
+            throw new IllegalArgumentException("Unknown owner: " + owner.getClass()); //$NON-NLS-1$
+        }
+    }
+
     /**
      * Specify the text to show in the notification.
      */
@@ -87,6 +105,7 @@ public class JFXNotifications {
         this.graphic = graphic;
         return this;
     }
+
     /**
      * Specify the position of the notification on screen, by default it is
      * {@link Pos#BOTTOM_RIGHT bottom-right}.
@@ -104,7 +123,7 @@ public class JFXNotifications {
      */
     public JFXNotifications owner(Object owner) {
         if (owner instanceof Screen) {
-            this.screen = (Screen) owner;
+            screen = (Screen) owner;
         } else {
             this.owner = getWindow(owner);
         }
@@ -116,7 +135,7 @@ public class JFXNotifications {
      * will be hidden.
      */
     public JFXNotifications hideAfter(Duration duration) {
-        this.hideAfterDuration = duration;
+        hideAfterDuration = duration;
         return this;
     }
 
@@ -135,7 +154,7 @@ public class JFXNotifications {
      * should not be shown.
      */
     public JFXNotifications hideCloseButton() {
-        this.hideCloseButton = true;
+        hideCloseButton = true;
         return this;
     }
 
@@ -143,8 +162,8 @@ public class JFXNotifications {
      * Instructs the notification to be shown, and that it should use the
      * built-in 'warning' graphic.
      */
-    public void showMessage() {
-        graphic(new ImageView(JFXNotifications.class.getResource("/img/dialog-message.png").toExternalForm())); //$NON-NLS-1$
+    public void showInfo() {
+        graphic(new ImageView(JFXNotifications.class.getResource("icon/dialog-info.png").toExternalForm())); //$NON-NLS-1$
         typeMessage = "MESSAGE";
         show();
     }
@@ -154,7 +173,7 @@ public class JFXNotifications {
      * built-in 'information' graphic.
      */
     public void showSuccess() {
-        graphic(new ImageView(JFXNotifications.class.getResource("/img/dialog-success.png").toExternalForm())); //$NON-NLS-1$
+        graphic(new ImageView(JFXNotifications.class.getResource("icon/dialog-success.png").toExternalForm())); //$NON-NLS-1$
         typeMessage = "SUCCESS";
         show();
     }
@@ -164,7 +183,7 @@ public class JFXNotifications {
      * built-in 'error' graphic.
      */
     public void showError() {
-        graphic(new ImageView(JFXNotifications.class.getResource("/img/dialog-error.png").toExternalForm())); //$NON-NLS-1$
+        graphic(new ImageView(JFXNotifications.class.getResource("icon/dialog-error.png").toExternalForm())); //$NON-NLS-1$
         typeMessage = "ERROR";
         show();
     }
@@ -174,7 +193,7 @@ public class JFXNotifications {
      * built-in 'confirm' graphic.
      */
     public void showWarning() {
-        graphic(new ImageView(JFXNotifications.class.getResource("/img/dialog-warning.png").toExternalForm())); //$NON-NLS-1$
+        graphic(new ImageView(JFXNotifications.class.getResource("icon/dialog-warning.png").toExternalForm())); //$NON-NLS-1$
         typeMessage = "WARNING";
         show();
     }
@@ -194,23 +213,19 @@ public class JFXNotifications {
     private static final class NotificationPopupHandler {
 
         private static final JFXNotifications.NotificationPopupHandler INSTANCE = new JFXNotifications.NotificationPopupHandler();
-
+        private final Map<Pos, List<Popup>> popupsMap = new HashMap<>();
+        private final double padding = 15;
         private double startX;
         private double startY;
         private double screenWidth;
         private double screenHeight;
+        // for animating in the notifications
+        private ParallelTransition parallelTransition = new ParallelTransition();
+        private boolean isShowing = false;
 
         static final JFXNotifications.NotificationPopupHandler getInstance() {
             return INSTANCE;
         }
-
-        private final Map<Pos, List<Popup>> popupsMap = new HashMap<>();
-        private final double padding = 15;
-
-        // for animating in the notifications
-        private ParallelTransition parallelTransition = new ParallelTransition();
-
-        private boolean isShowing = false;
 
         public void show(JFXNotifications notification) {
             Window window;
@@ -250,7 +265,8 @@ public class JFXNotifications {
             // need to install our CSS
             Scene ownerScene = ownerWindow.getScene();
             if (ownerScene != null) {
-                String stylesheetUrl = JFXNotifications.class.getResource("/css/notificationpopup.css").toExternalForm(); //$NON-NLS-1$
+                String stylesheetUrl = JFXNotifications.class.getResource(
+                        "css/notificationpopup.css").toExternalForm(); //$NON-NLS-1$
                 if (!ownerScene.getStylesheets().contains(stylesheetUrl)) {
                     // The stylesheet needs to be added at the beginning so that
                     // the styling can be adjusted with custom stylesheets.
@@ -568,28 +584,6 @@ public class JFXNotifications {
                 }
             }
 
-        }
-    }
-
-    public static Window getWindow(Object owner) throws IllegalArgumentException {
-        if (owner == null) {
-            Window window = null;
-            // lets just get the focused stage and show the dialog in there
-            @SuppressWarnings("deprecation")
-            Iterator<Window> windows = Window.impl_getWindows();
-            while (windows.hasNext()) {
-                window = windows.next();
-                if (window.isFocused() && !(window instanceof PopupWindow)) {
-                    break;
-                }
-            }
-            return window;
-        } else if (owner instanceof Window) {
-            return (Window) owner;
-        } else if (owner instanceof Node) {
-            return ((Node) owner).getScene().getWindow();
-        } else {
-            throw new IllegalArgumentException("Unknown owner: " + owner.getClass()); //$NON-NLS-1$
         }
     }
 }
