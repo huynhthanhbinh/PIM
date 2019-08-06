@@ -10,12 +10,13 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class Main extends Application {
 
     private Logger logger = Logger.getLogger(Main.class);
-    private Parent rootNode;
+    public static Stage primaryStage;
 
     public static void main(String[] args) {
         launch(args);
@@ -24,11 +25,6 @@ public class Main extends Application {
     @Override
     public void init() throws Exception {
         logger.info("<<< PIM CLIENT - ON INIT  >>>");
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                .getResource("fragment/project/ProjectList.fxml"));
-
-        rootNode = fxmlLoader.load();
     }
 
     @Override
@@ -42,15 +38,23 @@ public class Main extends Application {
         logger.info("<<< PIM CLIENT - ON STOP  >>>");
     }
 
-    private void showWindow(Stage window) {
-        ClassLoader classLoader = getClass().getClassLoader();
+    private static void showWindow(Stage window) throws IOException {
+
+        primaryStage = window;
+
+        ClassLoader classLoader = Main.class.getClassLoader();
 
         window.setTitle("Project Information Management");
         window.getIcons().add(
                 new Image(Objects.requireNonNull(classLoader
                         .getResourceAsStream("pictures/icon.png"))));
 
-        Scene scene = new Scene(rootNode, 1120, 630);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class
+                .getResource("fragment/project/ProjectList.fxml"));
+
+        Parent rootNode = fxmlLoader.load();
+        Scene scene = new Scene(rootNode, 1100, 600);
+
         window.setMinWidth(1120);
         window.setMinHeight(630);
         window.setResizable(true);

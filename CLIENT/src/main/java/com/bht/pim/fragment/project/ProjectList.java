@@ -84,6 +84,9 @@ public class ProjectList implements Initializable {
 
     // Init all table fields
     private void initAllFields() {
+
+        //bNew.setOnAction(event -> ((Stage) bNew.getScene().getWindow()).setScene());
+
         cSelect.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.05));
         cSelect.setResizable(false);
 
