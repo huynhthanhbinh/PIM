@@ -6,7 +6,7 @@ import javafx.geometry.Pos;
 import javafx.util.Duration;
 
 public class NotificationUtil {
-    public static void show(NotificationStyle style, Pos position, String message) {
+    public static void showNotification(NotificationStyle style, Pos position, String message) {
         switch (style) {
 
             case INFO:

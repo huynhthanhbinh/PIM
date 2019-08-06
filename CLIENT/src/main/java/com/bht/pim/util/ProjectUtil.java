@@ -33,7 +33,7 @@ public class ProjectUtil {
                 .getProjectNumbersList();
     }
 
-    // Get all of products
+    // Get all of projects
     public static ObservableList<Project> getAllProjects(Channel channel) {
 
         ProjectListServiceGrpc.ProjectListServiceBlockingStub stub5 =

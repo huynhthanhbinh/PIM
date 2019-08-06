@@ -252,6 +252,8 @@ public class ProjectCreate implements Initializable {
 
         start.setConverter(DateUtil.DATE_STRING_CONVERTER);
         end.setConverter(DateUtil.DATE_STRING_CONVERTER);
+
+        end.setDisable(true);
     }
 
 
@@ -375,14 +377,25 @@ public class ProjectCreate implements Initializable {
                     .build();
 
             try {
+                // Channel is the abstraction to connect to a service endpoint
+                // Let's use plaintext communication because we don't have certs
+                channel = ManagedChannelBuilder.forAddress(HOST, PORT)
+                        .usePlaintext()
+                        .build();
+
                 if (comboBoxOption.getSelectionModel().getSelectedItem().equals("New group")) {
                     // send group info to server to save
                     logger.info("<<< PIM - On creating new group >>>");
-                    //GroupUtil.addNewGroup(channel, group);
-                }
 
-                logger.info(emptyStart);
-                logger.info(start.getEditor().getText());
+                    if (GroupUtil.addNewGroup(channel, group)) {
+                        NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
+                                "[PIM] Successfully create new group !");
+                    } else {
+                        NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
+                                "[PIM] Failed to create new group !");
+                        return;
+                    }
+                }
 
                 Project.Builder projectBuilder = Project.newBuilder()
                         .setNumber(Long.parseLong(number.getText()))
@@ -408,15 +421,21 @@ public class ProjectCreate implements Initializable {
 
                 logger.info(projectInfo);
 
+                String infoMsg = "[PIM] On saving new project !";
+                NotificationUtil.showNotification(
+                        NotificationStyle.INFO, Pos.CENTER, infoMsg);
+
                 String successMsg = "[PIM] Successfully create project !";
-                NotificationUtil.show(
+                NotificationUtil.showNotification(
                         NotificationStyle.SUCCESS, Pos.CENTER, successMsg);
 
                 //ProjectUtil.addNewProject(projectInfo);
 
             } catch (Exception exception) {
                 logger.info(exception);
-                exception.printStackTrace();
+
+            } finally {
+                channel.shutdown();
             }
         } else {
             lFillAll.setVisible(true);
