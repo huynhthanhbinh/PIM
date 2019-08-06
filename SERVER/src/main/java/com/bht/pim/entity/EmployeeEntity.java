@@ -1,9 +1,16 @@
 package com.bht.pim.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
 
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "EMPLOYEE")
 @Entity(name = "EMPLOYEE")
 public class EmployeeEntity {
@@ -55,63 +62,5 @@ public class EmployeeEntity {
     @Override
     public int hashCode() {
         return super.hashCode();
-    }
-
-    // Getter and Setter
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getVisa() {
-        return visa;
-    }
-
-    public void setVisa(String visa) {
-        this.visa = visa;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public Set<ProjectEntity> getEnrolledProjects() {
-        return enrolledProjects;
-    }
-
-    public void setEnrolledProjects(Set<ProjectEntity> enrolledProjects) {
-        this.enrolledProjects = enrolledProjects;
-    }
-
-    public GroupEntity getLedGroup() {
-        return ledGroup;
-    }
-
-    public void setLedGroup(GroupEntity ledGroup) {
-        this.ledGroup = ledGroup;
     }
 }

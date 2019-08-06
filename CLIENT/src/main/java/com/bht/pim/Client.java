@@ -8,15 +8,15 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 
 import java.io.IOException;
 import java.util.Objects;
 
+@Log4j
 public class Client extends Application {
 
     public static Stage primaryStage;
-    private Logger logger = Logger.getLogger(Client.class);
 
     public static void main(String[] args) {
         launch(args);
@@ -52,17 +52,17 @@ public class Client extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("<<< PIM CLIENT - ON INIT  >>>");
+        log.info("<<< PIM CLIENT - ON INIT  >>>");
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        logger.info("<<< PIM CLIENT - ON START >>>");
+        log.info("<<< PIM CLIENT - ON START >>>");
         showWindow(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("<<< PIM CLIENT - ON STOP  >>>");
+        log.info("<<< PIM CLIENT - ON STOP  >>>");
     }
 }

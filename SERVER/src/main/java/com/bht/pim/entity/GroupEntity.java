@@ -1,8 +1,15 @@
 package com.bht.pim.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Set;
 
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "[GROUP]")
 @Entity(name = "GROUP")
 public class GroupEntity {
@@ -42,31 +49,5 @@ public class GroupEntity {
     @Override
     public int hashCode() {
         return super.hashCode();
-    }
-
-    // Getter and Setter
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public EmployeeEntity getGroupLeader() {
-        return groupLeader;
-    }
-
-    public void setGroupLeader(EmployeeEntity groupLeader) {
-        this.groupLeader = groupLeader;
-    }
-
-    public Set<ProjectEntity> getJoinedProjects() {
-        return joinedProjects;
-    }
-
-    public void setJoinedProjects(Set<ProjectEntity> joinedProjects) {
-        this.joinedProjects = joinedProjects;
     }
 }

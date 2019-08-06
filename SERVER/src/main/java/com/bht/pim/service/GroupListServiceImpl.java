@@ -9,7 +9,7 @@ import com.bht.pim.proto.groups.GroupList;
 import com.bht.pim.proto.groups.GroupListServiceGrpc;
 import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Log4j
 @GRpcService
 public class GroupListServiceImpl extends GroupListServiceGrpc.GroupListServiceImplBase {
 
     @Autowired
     GroupDao groupDao;
-    private Logger logger = Logger.getLogger(GroupListServiceImpl.class);
 
     @Override
     public void getGroupList(Empty request, StreamObserver<GroupList> responseObserver) {
@@ -61,7 +61,7 @@ public class GroupListServiceImpl extends GroupListServiceGrpc.GroupListServiceI
         } catch (Exception exception) {
 
             // log the exception out
-            logger.info(exception);
+            log.info(exception);
 
             // return an empty list not return null value for list
             responseObserver.onNext(GroupList.newBuilder()

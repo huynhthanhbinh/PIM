@@ -2,7 +2,7 @@ package com.bht.pim.dao.impl;
 
 import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.entity.EmployeeEntity;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +16,13 @@ import javax.persistence.criteria.Root;
 import java.util.Collections;
 import java.util.List;
 
+@Log4j
 @Repository
 @Transactional
 public class EmployeeDaoImpl implements EmployeeDao {
 
     @Autowired
     SessionFactory sessionFactory;
-
-    private Logger logger = Logger.getLogger(ProjectDaoImpl.class);
 
     @Override
     public List<EmployeeEntity> getAllEmployees() {
@@ -39,7 +38,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             return Collections.emptyList();
         }
     }
@@ -58,7 +57,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             return null;
         }
     }

@@ -19,6 +19,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import lombok.extern.log4j.Log4j;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -31,6 +32,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+@Log4j
 @Controller
 public class ProjectCreate implements Initializable {
 

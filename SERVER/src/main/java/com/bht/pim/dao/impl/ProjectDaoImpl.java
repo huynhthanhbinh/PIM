@@ -2,7 +2,7 @@ package com.bht.pim.dao.impl;
 
 import com.bht.pim.dao.ProjectDao;
 import com.bht.pim.entity.ProjectEntity;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Log4j
 @Repository
 @Transactional
 public class ProjectDaoImpl implements ProjectDao {
 
     @Autowired
     SessionFactory sessionFactory;
-    private Logger logger = Logger.getLogger(ProjectDaoImpl.class);
 
     @Override
     public long nextIdValue() {
@@ -37,7 +37,7 @@ public class ProjectDaoImpl implements ProjectDao {
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             return -1;
         }
     }
@@ -59,7 +59,7 @@ public class ProjectDaoImpl implements ProjectDao {
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             return Collections.emptyList();
         }
     }
@@ -74,7 +74,7 @@ public class ProjectDaoImpl implements ProjectDao {
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             return false;
         }
     }
@@ -89,7 +89,7 @@ public class ProjectDaoImpl implements ProjectDao {
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             return false;
         }
     }
@@ -108,10 +108,10 @@ public class ProjectDaoImpl implements ProjectDao {
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
         }
 
-        logger.info("CANNOT delete this project !");
+        log.info("CANNOT delete this project !");
         return false;
     }
 
@@ -129,7 +129,7 @@ public class ProjectDaoImpl implements ProjectDao {
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             return null;
         }
     }
@@ -148,7 +148,7 @@ public class ProjectDaoImpl implements ProjectDao {
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             return Collections.emptyList();
         }
     }

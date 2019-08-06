@@ -1,9 +1,16 @@
 package com.bht.pim.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
 
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "PROJECT")
 @Entity(name = "PROJECT")
 public class ProjectEntity {
@@ -46,14 +53,6 @@ public class ProjectEntity {
     @JoinColumn(name = "GROUP_ID", nullable = false)
     private GroupEntity group;
 
-
-    @Override
-    public String toString() {
-        enrolledEmployees.forEach(System.out::println);
-
-        return super.toString();
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -74,79 +73,5 @@ public class ProjectEntity {
     @Override
     public int hashCode() {
         return super.hashCode();
-    }
-
-    // Getter and Setter
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public GroupEntity getGroup() {
-        return group;
-    }
-
-    public void setGroup(GroupEntity group) {
-        this.group = group;
-    }
-
-    public long getNumber() {
-        return number;
-    }
-
-    public void setNumber(long number) {
-        this.number = number;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(String customer) {
-        this.customer = customer;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getStart() {
-        return start;
-    }
-
-    public void setStart(Date start) {
-        this.start = start;
-    }
-
-    public Date getEnd() {
-        return end;
-    }
-
-    public void setEnd(Date end) {
-        this.end = end;
-    }
-
-    public Set<EmployeeEntity> getEnrolledEmployees() {
-        return enrolledEmployees;
-    }
-
-    public void setEnrolledEmployees(Set<EmployeeEntity> enrolledEmployees) {
-        this.enrolledEmployees = enrolledEmployees;
     }
 }

@@ -1,27 +1,9 @@
 package com.bht.pim.fragment.employee;
 
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Controller;
 
-
+@Log4j
 @Controller
 public class EmployeeInfo {
-
-    private Logger logger = Logger.getLogger(EmployeeInfo.class);
-
-    // Get 1 employee info ====================================
-
-//    EmployeeServiceGrpc.EmployeeServiceBlockingStub stub =
-//            EmployeeServiceGrpc.newBlockingStub(channel);
-//
-//    EmployeeId employeeId = EmployeeId.newBuilder()
-//            .setId(2)
-//            .build();
-//
-//    EmployeeInfo employee = stub.getEmployeeById(employeeId);
-//
-//
-//    logger.info(employee);
-//
-//    employee.getEnrolledProjectsList().forEach(project -> logger.info(project.getName()));
 }

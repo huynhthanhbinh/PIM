@@ -1,6 +1,6 @@
 package com.bht.pim.configuration;
 
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -21,14 +21,13 @@ import javax.sql.DataSource;
 import java.util.Objects;
 import java.util.Properties;
 
+@Log4j
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan("com.bht.pim")
 @PropertySource("classpath:db.properties")
 public class AppConfiguration {
-
-    private Logger logger = Logger.getLogger(AppConfiguration.class);
 
     // In Spring, we can use annotation @PropertySource
     // to externalize our configurations to
@@ -56,9 +55,9 @@ public class AppConfiguration {
     // @PropertySource("classpath:db.properties")
     @Bean
     public DataSource dataSource() {
-        logger.info("");
-        logger.info("<<< PIM SERVER - CONFIGURE DATA SOURCE >>>");
-        logger.info("");
+        log.info("");
+        log.info("<<< PIM SERVER - CONFIGURE DATA SOURCE >>>");
+        log.info("");
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(Objects
@@ -82,9 +81,9 @@ public class AppConfiguration {
     // Use to read messages properties for messages, logging ...
     @Bean
     public MessageSource messageSource() {
-        logger.info("");
-        logger.info("<<< PIM SERVER - CONFIGURE MESSAGE SOURCE >>>");
-        logger.info("");
+        log.info("");
+        log.info("<<< PIM SERVER - CONFIGURE MESSAGE SOURCE >>>");
+        log.info("");
 
         ReloadableResourceBundleMessageSource bundleMessageSource =
                 new ReloadableResourceBundleMessageSource();
@@ -103,9 +102,9 @@ public class AppConfiguration {
     // Config Session Factory / Hibernate
     @Bean
     public LocalSessionFactoryBean sessionFactoryBean() {
-        logger.info("");
-        logger.info("<<< PIM SERVER - CONFIGURE SESSION FACTORY >>>");
-        logger.info("");
+        log.info("");
+        log.info("<<< PIM SERVER - CONFIGURE SESSION FACTORY >>>");
+        log.info("");
 
         // Session Factory Configure
         LocalSessionFactoryBean bean =
@@ -157,9 +156,9 @@ public class AppConfiguration {
     public HibernateTransactionManager hibernateTransactionManager(
             @Autowired SessionFactory sessionFactory) {
 
-        logger.info("");
-        logger.info("<<< PIM SERVER - TRANSACTION MANAGER >>>");
-        logger.info("");
+        log.info("");
+        log.info("<<< PIM SERVER - TRANSACTION MANAGER >>>");
+        log.info("");
 
         HibernateTransactionManager hibernateTransactionManager =
                 new HibernateTransactionManager();

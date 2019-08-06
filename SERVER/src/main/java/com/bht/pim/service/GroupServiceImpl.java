@@ -14,7 +14,7 @@ import com.google.protobuf.BoolValue;
 import com.google.protobuf.Int64Value;
 import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,12 +23,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Log4j
 @GRpcService
 public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
     @Autowired
     GroupDao groupDao;
-    private Logger logger = Logger.getLogger(GroupServiceImpl.class);
 
     @Autowired
     EmployeeDao employeeDao;
@@ -83,16 +83,16 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
             responseObserver.onNext(groupInfo);
             responseObserver.onCompleted();
 
-            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            logger.info("Successfully get Group " + request.getValue());
-            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            log.info("Successfully get Group " + request.getValue());
+            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
         } catch (Exception exception) {
 
-            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            logger.info("Fail to get Group " + request.getValue());
-            logger.info(exception);
-            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            log.info("Fail to get Group " + request.getValue());
+            log.info(exception);
+            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
             responseObserver.onNext(null);
             responseObserver.onCompleted();
         }
@@ -128,34 +128,34 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
                         .setValue(isSuccess)
                         .build();
 
-                logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
                 if (isSuccess) {
-                    logger.info("<<< Add new group successfully ! >>>");
+                    log.info("<<< Add new group successfully ! >>>");
                 } else {
-                    logger.info("<<< Fail to add new group ! >>>");
+                    log.info("<<< Fail to add new group ! >>>");
                 }
-                logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+                log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
                 responseObserver.onNext(success);
                 responseObserver.onCompleted();
                 return;
             }
 
-            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            logger.info("<<< Fail to add new group ! >>>");
-            logger.info("Group leader is already lead another group");
-            logger.info("CONSTRAINT: \"1 employee just lead 1 group\"");
-            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            log.info("<<< Fail to add new group ! >>>");
+            log.info("Group leader is already lead another group");
+            log.info("CONSTRAINT: \"1 employee just lead 1 group\"");
+            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
             responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
             responseObserver.onCompleted();
 
         } catch (Exception exception) {
 
-            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            logger.info("<<< Fail to add new group ! >>>");
-            logger.info(exception);
-            logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
+            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+            log.info("<<< Fail to add new group ! >>>");
+            log.info(exception);
+            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
             responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
             responseObserver.onCompleted();

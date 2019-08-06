@@ -11,7 +11,7 @@ import com.bht.pim.util.DateUtil;
 import com.google.protobuf.Int64Value;
 import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,10 +19,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j
 @GRpcService
 public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImplBase {
-
-    private Logger logger = Logger.getLogger(EmployeeServiceImpl.class);
 
     @Autowired
     EmployeeDao employeeDao;
@@ -77,7 +76,7 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             responseObserver.onNext(null);
             responseObserver.onCompleted();
         }

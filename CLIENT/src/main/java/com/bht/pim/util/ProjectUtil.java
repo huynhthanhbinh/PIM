@@ -8,13 +8,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import org.apache.log4j.Logger;
 
 import java.util.List;
 
 public class ProjectUtil {
-
-    private static Logger logger = Logger.getLogger(ProjectUtil.class);
 
     private ProjectUtil() {
     }

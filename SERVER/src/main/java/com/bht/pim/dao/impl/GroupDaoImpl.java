@@ -2,7 +2,7 @@ package com.bht.pim.dao.impl;
 
 import com.bht.pim.dao.GroupDao;
 import com.bht.pim.entity.GroupEntity;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,13 @@ import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
+@Log4j
 @Repository
 @Transactional
 public class GroupDaoImpl implements GroupDao {
 
     @Autowired
     SessionFactory sessionFactory;
-    private Logger logger = Logger.getLogger(ProjectDaoImpl.class);
 
     @Override
     public long nextIdValue() {
@@ -36,7 +36,7 @@ public class GroupDaoImpl implements GroupDao {
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             return -1;
         }
     }
@@ -50,7 +50,7 @@ public class GroupDaoImpl implements GroupDao {
             return true;
 
         } catch (Exception exception) {
-            logger.info(exception);
+            log.info(exception);
 
             return false;
         }
@@ -65,7 +65,7 @@ public class GroupDaoImpl implements GroupDao {
             return true;
 
         } catch (Exception exception) {
-            logger.info(exception);
+            log.info(exception);
 
             return false;
         }
@@ -80,7 +80,7 @@ public class GroupDaoImpl implements GroupDao {
             return true;
 
         } catch (Exception exception) {
-            logger.info(exception);
+            log.info(exception);
 
             return false;
         }
@@ -100,7 +100,7 @@ public class GroupDaoImpl implements GroupDao {
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             return null;
         }
     }
@@ -119,7 +119,7 @@ public class GroupDaoImpl implements GroupDao {
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             return Collections.emptyList();
         }
     }

@@ -1,21 +1,9 @@
 package com.bht.pim.fragment.employee;
 
+import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Controller;
 
+@Log4j
 @Controller
 public class EmployeeList {
-
-    // Get employee list =======================================
-
-//    EmployeeListServiceGrpc.EmployeeListServiceBlockingStub stub3 =
-//            EmployeeListServiceGrpc.newBlockingStub(channel);
-//
-//    NoParam noParam = NoParam.newBuilder().build();
-//
-//    com.bht.pim.proto.employee.EmployeeList employeeList = stub3.getEmployeeList(noParam);
-//
-//        logger.info(employeeList);
-//
-//        employeeList.getEmployeeListList()
-//                .forEach(employee1 -> logger.info(employee1.getVisa()));
 }

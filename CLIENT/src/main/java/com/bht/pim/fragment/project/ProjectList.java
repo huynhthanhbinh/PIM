@@ -13,12 +13,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lombok.extern.log4j.Log4j;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+@Log4j
 @Controller
 public class ProjectList implements Initializable {
 

@@ -15,7 +15,7 @@ import com.google.protobuf.BoolValue;
 import com.google.protobuf.Int64Value;
 import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Log4j
 @GRpcService
 public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBase {
 
@@ -33,7 +34,6 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
 
     @Autowired
     ProjectDao projectDao;
-    private Logger logger = Logger.getLogger(ProjectServiceImpl.class);
 
     @Override
     public void getProjectById(Int64Value request, StreamObserver<ProjectInfo> responseObserver) {
@@ -95,7 +95,7 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             responseObserver.onNext(null);
             responseObserver.onCompleted();
         }
@@ -142,7 +142,7 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
 
         } catch (Exception exception) {
 
-            logger.info(exception);
+            log.info(exception);
             responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
             responseObserver.onCompleted();
         }

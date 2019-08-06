@@ -8,7 +8,7 @@ import com.bht.pim.proto.employees.EmployeeListServiceGrpc;
 import com.bht.pim.util.DateUtil;
 import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
-import org.apache.log4j.Logger;
+import lombok.extern.log4j.Log4j;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,12 +16,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Log4j
 @GRpcService
 public class EmployeeListServiceImpl extends EmployeeListServiceGrpc.EmployeeListServiceImplBase {
 
     @Autowired
     EmployeeDao employeeDao;
-    private Logger logger = Logger.getLogger(EmployeeListServiceImpl.class);
 
     @Override
     public void getEmployeeList(Empty request, StreamObserver<EmployeeList> responseObserver) {
@@ -55,7 +55,7 @@ public class EmployeeListServiceImpl extends EmployeeListServiceGrpc.EmployeeLis
         } catch (Exception exception) {
 
             // log the exception out
-            logger.info(exception);
+            log.info(exception);
 
             // return an empty list not return null value for list
             responseObserver.onNext(EmployeeList.newBuilder()
