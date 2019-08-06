@@ -421,15 +421,17 @@ public class ProjectCreate implements Initializable {
 
                 logger.info(projectInfo);
 
-                String infoMsg = "[PIM] On saving new project !";
-                NotificationUtil.showNotification(
-                        NotificationStyle.INFO, Pos.CENTER, infoMsg);
+                NotificationUtil.showNotification(NotificationStyle.INFO, Pos.CENTER,
+                        "[PIM] On saving new project !");
 
-                String successMsg = "[PIM] Successfully create project !";
-                NotificationUtil.showNotification(
-                        NotificationStyle.SUCCESS, Pos.CENTER, successMsg);
+                if (ProjectUtil.addNewProject(channel, projectInfo)) {
+                    NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
+                            "[PIM] Successfully create project !");
 
-                //ProjectUtil.addNewProject(projectInfo);
+                } else {
+                    NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
+                            "[PIM] Failed to create new project !");
+                }
 
             } catch (Exception exception) {
                 logger.info(exception);

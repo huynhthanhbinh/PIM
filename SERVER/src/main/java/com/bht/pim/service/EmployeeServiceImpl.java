@@ -10,6 +10,7 @@ import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.Group;
 import com.bht.pim.proto.projects.Project;
 import com.bht.pim.util.DateUtil;
+import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -59,7 +60,9 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
                         .setCustomer(projectEntity.getCustomer())
                         .setStatus(projectEntity.getStatus())
                         .setStart(DateUtil.toTimestamp(projectEntity.getStart()))
-                        .setEnd((end != null) ? DateUtil.toTimestamp(end) : null)
+                        .setEnd((end != null)
+                                ? DateUtil.toTimestamp(end)
+                                : Timestamp.newBuilder().build())
                         .build();
 
                 projects.add(project);

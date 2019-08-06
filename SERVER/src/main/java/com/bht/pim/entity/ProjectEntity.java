@@ -13,8 +13,11 @@ public class ProjectEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToMany(mappedBy = "enrolledProjects")
-    Set<EmployeeEntity> enrolledEmployees;
+    @ManyToMany
+    @JoinTable(name = "PROJECT_EMPLOYEE",
+            joinColumns = @JoinColumn(name = "PROJECT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
+    private Set<EmployeeEntity> enrolledEmployees;
 
     @Column(name = "PROJECT_NUMBER", nullable = false, unique = true)
     private long number;
@@ -43,6 +46,13 @@ public class ProjectEntity {
     @JoinColumn(name = "GROUP_ID", nullable = false)
     private GroupEntity group;
 
+
+    @Override
+    public String toString() {
+        enrolledEmployees.forEach(System.out::println);
+
+        return super.toString();
+    }
 
     @Override
     public boolean equals(Object obj) {

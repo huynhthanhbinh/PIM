@@ -1,9 +1,6 @@
 package com.bht.pim.util;
 
-import com.bht.pim.proto.projects.NoParam;
-import com.bht.pim.proto.projects.Project;
-import com.bht.pim.proto.projects.ProjectList;
-import com.bht.pim.proto.projects.ProjectListServiceGrpc;
+import com.bht.pim.proto.projects.*;
 import io.grpc.Channel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,14 +33,32 @@ public class ProjectUtil {
     // Get all of projects
     public static ObservableList<Project> getAllProjects(Channel channel) {
 
-        ProjectListServiceGrpc.ProjectListServiceBlockingStub stub5 =
+        ProjectListServiceGrpc.ProjectListServiceBlockingStub stub =
                 ProjectListServiceGrpc.newBlockingStub(channel);
 
         NoParam noParam = NoParam.newBuilder().build();
 
-        ProjectList projectList = stub5.getProjectList(noParam);
+        ProjectList projectList = stub.getProjectList(noParam);
 
         return FXCollections.observableArrayList(projectList.getProjectsList());
+    }
+
+    // Add new project
+    public static boolean addNewProject(Channel channel, ProjectInfo projectInfo) {
+        ProjectServiceGrpc.ProjectServiceBlockingStub stub =
+                ProjectServiceGrpc.newBlockingStub(channel);
+
+        return stub.addNewProject(projectInfo).getIsSuccess();
+    }
+
+    // Get a specific project
+    public static ProjectInfo getProjectById(Channel channel, long id) {
+        ProjectServiceGrpc.ProjectServiceBlockingStub stub =
+                ProjectServiceGrpc.newBlockingStub(channel);
+
+        ProjectId projectId = ProjectId.newBuilder().setId(id).build();
+
+        return stub.getProjectById(projectId);
     }
 
     // Format Date : convert from long to Date

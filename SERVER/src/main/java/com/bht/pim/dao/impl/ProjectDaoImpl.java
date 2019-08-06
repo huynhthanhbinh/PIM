@@ -49,10 +49,11 @@ public class ProjectDaoImpl implements ProjectDao {
 
             List<Long> results = new ArrayList<>();
 
-            sessionFactory.getCurrentSession().createSQLQuery(sql)
-                    .list()
-                    .forEach(value -> results
-                            .add(Long.valueOf((Integer) value)));
+            for (Object obj : sessionFactory.getCurrentSession()
+                    .createSQLQuery(sql).list()) {
+
+                results.add(Long.valueOf((Integer) obj));
+            }
 
             return results;
 

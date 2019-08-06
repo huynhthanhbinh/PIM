@@ -25,15 +25,17 @@ public class EmployeeEntity {
     @Column(name = "BIRTH_DATE", nullable = false)
     private Date birthday;
 
-    @ManyToMany
-    @JoinTable(name = "PROJECT_EMPLOYEE",
-            joinColumns = @JoinColumn(name = "EMPLOYEE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "PROJECT_ID"))
-    Set<ProjectEntity> enrolledProjects;
+    @ManyToMany(mappedBy = "enrolledEmployees")
+    private Set<ProjectEntity> enrolledProjects;
 
     @OneToOne(mappedBy = "groupLeader", cascade = CascadeType.ALL)
     private GroupEntity ledGroup;
 
+
+    @Override
+    public String toString() {
+        return visa + " - " + lastName + " " + firstName;
+    }
 
     @Override
     public boolean equals(Object obj) {
