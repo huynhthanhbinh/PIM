@@ -1,43 +1,27 @@
 
-psquid:S2975ä"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
-/squid:S2176˜"Rename this class.(ºœÓ­úÿÿÿÿ
-psquid:S22937"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÁˆåÛ
-vsquid:S2293Ã"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÕŒÂ«ùÿÿÿÿ
-vsquid:S2293¤"YReplace the type specification in this constructor call with the diamond operator ("<>").(ò§´úÿÿÿÿ
-Isquid:S1199."-Extract this nested code block into a method.(Î—­Šşÿÿÿÿ
-Isquid:S11995"-Extract this nested code block into a method.(ê×Êüÿÿÿÿ
-tsquid:S4144e"]Update this method so that its implementation is not identical to "getGroupsList" on line 94.(ÆŒÈó
-{squid:S4144Ù"cUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 706.(«Í•ñ
-vsquid:S1488’"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
-Osquid:S2589§"7Remove this expression which always evaluates to "true"(”ò¡ô
-Gsquid:S4524."+Move this default to the end of the switch.(Î—­Šşÿÿÿÿ
-Bsquid:S1905å"*Remove this unnecessary cast to "Builder".(¥ùšÏ
-Bsquid:S1905ê"*Remove this unnecessary cast to "Builder".(ê„£
-Gsquid:S1905î"*Remove this unnecessary cast to "Builder".(Æ÷¾¢ûÿÿÿÿ
-Bsquid:S1905ò"*Remove this unnecessary cast to "Builder".(ƒ¦†
-Gsquid:S1905÷"*Remove this unnecessary cast to "Builder".(ˆÎ…•şÿÿÿÿ
-Asquid:S1905ü"*Remove this unnecessary cast to "Builder".(İ¤Â\
-Lsquid:S1481Ö"4Remove this unused "from_bitField0_" local variable.(ÆÓ¡€
-jsquid:S3776‡"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(”é³—
-[squid:S1854Ö"CRemove this useless assignment to local variable "from_bitField0_".(ÆÓ¡€
-jsquid:S00116Z"RRename this field "groups_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„—Ã
-nsquid:S00116½"URename this field "bitField0_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö»³Ä
-ksquid:S00116¿"RRename this field "groups_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Á¾öÀ
-rsquid:S00116É"YRename this field "groupsBuilder_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Û±‘ô
-isquid:S00117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß”â¢
-jsquid:S00117Ö"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÓ¡€
-Esquid:S19406")Use the opposite operator ("!=") instead.(•—ùûúÿÿÿÿ
-Asquid:S1940Â")Use the opposite operator ("!=") instead.(‡ã“‹
-Wsquid:S1161†":Add the "@Override" annotation above this method signature(¹õˆÏùÿÿÿÿ
-Rsquid:S1161":Add the "@Override" annotation above this method signature(œè“
-Rsquid:S1161¸":Add the "@Override" annotation above this method signature(öË·š
-Wsquid:S1161ä":Add the "@Override" annotation above this method signature(Îõ¾Òûÿÿÿÿ
-Wsquid:S1161ç":Add the "@Override" annotation above this method signature(ÑÍ“Ëûÿÿÿÿ
-Wsquid:S1161ì":Add the "@Override" annotation above this method signature(Ã•Œƒüÿÿÿÿ
-Wsquid:S1161ğ":Add the "@Override" annotation above this method signature(»¤Å“ûÿÿÿÿ
-Rsquid:S1161ô":Add the "@Override" annotation above this method signature(§ß—¡
-Rsquid:S1161ù":Add the "@Override" annotation above this method signature(¿¸Ú©
-Rsquid:S1161ş":Add the "@Override" annotation above this method signature(”×Ñ¾
-Wsquid:S1161¬":Add the "@Override" annotation above this method signature(˜œö¾ûÿÿÿÿ
-Rsquid:S1161®":Add the "@Override" annotation above this method signature(´çÍê
-Rsquid:S1161³":Add the "@Override" annotation above this method signature(¥ªóÃ
+[squid:S1854±"CRemove this useless assignment to local variable "from_bitField0_".(ÆÓ¡€
+Asquid:S1940«")Use the opposite operator ("!=") instead.(‡ã“‹
+Asquid:S1905â"*Remove this unnecessary cast to "Builder".(İ¤Â\
+ksquid:S00116ê"RRename this field "groups_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Á¾öÀ
+{squid:S4144Ş"cUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 189.(«Í•ñ
+isquid:S001174"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß”â¢
+Isquid:S1199F"-Extract this nested code block into a method.(ê×Êüÿÿÿÿ
+nsquid:S00116é"URename this field "bitField0_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö»³Ä
+Gsquid:S1905Î"*Remove this unnecessary cast to "Builder".(Æ÷¾¢ûÿÿÿÿ
+Lsquid:S1481±"4Remove this unused "from_bitField0_" local variable.(ÆÓ¡€
+Bsquid:S1905Ô"*Remove this unnecessary cast to "Builder".(ƒ¦†
+Osquid:S2589°"7Remove this expression which always evaluates to "true"(”ò¡ô
+psquid:S2975À"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+Bsquid:S1905È"*Remove this unnecessary cast to "Builder".(ê„£
+Isquid:S1199?"-Extract this nested code block into a method.(Î—­Šşÿÿÿÿ
+/squid:S2176å"Rename this class.(ºœÓ­úÿÿÿÿ
+Bsquid:S1905Á"*Remove this unnecessary cast to "Builder".(¥ùšÏ
+jsquid:S3776ï"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(”é³—
+rsquid:S00116í"YRename this field "groupsBuilder_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Û±‘ô
+Esquid:S1940G")Use the opposite operator ("!=") instead.(•—ùûúÿÿÿÿ
+vsquid:S1488Ô"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+Gsquid:S4524?"+Move this default to the end of the switch.(Î—­Šşÿÿÿÿ
+jsquid:S00117±"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÓ¡€
+jsquid:S00116 "RRename this field "groups_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„—Ã
+Gsquid:S1905Û"*Remove this unnecessary cast to "Builder".(ˆÎ…•şÿÿÿÿ
+vsquid:S4144à"^Update this method so that its implementation is not identical to "getGroupsList" on line 215.(ÆŒÈó
