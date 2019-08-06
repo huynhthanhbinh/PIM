@@ -15,6 +15,13 @@
     -fx-background-color: gainsboro;
 }
 
+.table-view .column-header {
+    -fx-table-cell-border-color: transparent;
+    -fx-border-insets: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
 .table-view .table-column {
     -fx-alignment: CENTER_LEFT;
 }

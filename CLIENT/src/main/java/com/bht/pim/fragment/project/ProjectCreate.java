@@ -7,6 +7,7 @@ import com.bht.pim.proto.groups.Group;
 import com.bht.pim.proto.projects.Project;
 import com.bht.pim.proto.projects.ProjectInfo;
 import com.bht.pim.util.*;
+import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -223,6 +224,13 @@ public class ProjectCreate implements Initializable {
 
         dateChangeListener(start);
         dateChangeListener(end);
+
+        // Fixed table header, prevent from changing order of table column
+        table.widthProperty().addListener((source, oldWidth, newWidth) -> {
+            TableHeaderRow header = (TableHeaderRow) table.lookup("TableHeaderRow");
+            header.reorderingProperty().addListener((observable, oldValue, newValue) ->
+                    header.setReordering(false));
+        });
 
         // if user click create
         bCreate.setOnMouseClicked(this::onSubmit);

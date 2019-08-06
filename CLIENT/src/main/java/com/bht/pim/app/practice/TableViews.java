@@ -2,6 +2,8 @@ package com.bht.pim.app.practice;
 
 import com.bht.pim.proto.projects.Project;
 import com.bht.pim.util.ProjectUtil;
+import com.google.protobuf.Timestamp;
+import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.application.Application;
@@ -60,7 +62,7 @@ public class TableViews extends Application {
 
 
         TableColumn<Project, String> cCustomer = new TableColumn<>("Customer");
-        cCustomer.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.25));
+        cCustomer.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.2));
         cCustomer.setCellValueFactory(new PropertyValueFactory<>("customer"));
         cCustomer.setResizable(false);
 
@@ -72,21 +74,25 @@ public class TableViews extends Application {
         cStatus.setResizable(false);
 
 
-        TableColumn<Project, Long> cStart = new TableColumn<>("Start");
+        TableColumn<Project, Timestamp> cStart = new TableColumn<>("Start");
         cStart.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
         cStart.setCellFactory(ProjectUtil::dateFormat);
         cStart.setResizable(false);
 
 
-        TableColumn<Project, Long> cEnd = new TableColumn<>("End");
+        TableColumn<Project, Timestamp> cEnd = new TableColumn<>("End");
         cEnd.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
         cEnd.setCellFactory(ProjectUtil::dateFormat);
         cEnd.setResizable(false);
 
 
-        TableColumn<Project, Long> cDelete = new TableColumn<>("Delete");
+        TableColumn<Project, Project> cInfo = new TableColumn<>("Info");
+        cInfo.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.05));
+
+
+        TableColumn<Project, Project> cDelete = new TableColumn<>("Delete");
         cDelete.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.05));
         cDelete.setResizable(false);
 
@@ -98,10 +104,15 @@ public class TableViews extends Application {
                 .build();
 
         table.setItems(ProjectUtil.getAllProjects(channel));
+        table.widthProperty().addListener((source, oldWidth, newWidth) -> {
+            TableHeaderRow header = (TableHeaderRow) table.lookup("TableHeaderRow");
+            header.reorderingProperty().addListener((observable, oldValue, newValue) ->
+                    header.setReordering(false));
+        });
 
         channel.shutdown();
 
-        table.getColumns().addAll(cSelect, cNumber, cName, cCustomer, cStatus, cStart, cEnd, cDelete);
+        table.getColumns().addAll(cSelect, cNumber, cName, cCustomer, cStatus, cStart, cEnd, cInfo, cDelete);
 
         VBox layout = new VBox();
         layout.setSpacing(10);

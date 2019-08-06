@@ -8,7 +8,7 @@
 }
 
 .table-view {
-    -fx-font-size: 16;
+    -fx-font-size: 15;
     -fx-table-cell-border-color: transparent;
     -fx-border-insets: 0;
     -fx-background-insets: 0;
@@ -43,6 +43,13 @@
 
 .table-row-cell:empty.table-cell {
     -fx-border-width: 0px;
+}
+
+.table-view .column-header {
+    -fx-table-cell-border-color: transparent;
+    -fx-border-insets: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
 }
 
 /*Hide table header*/
