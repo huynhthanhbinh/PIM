@@ -1,6 +1,7 @@
 package com.bht.pim.app.practice;
 
 import com.bht.pim.proto.projects.Project;
+import com.bht.pim.util.DateUtil;
 import com.bht.pim.util.ProjectUtil;
 import com.google.protobuf.Timestamp;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
@@ -77,14 +78,14 @@ public class TableViews extends Application {
         TableColumn<Project, Timestamp> cStart = new TableColumn<>("Start");
         cStart.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
-        cStart.setCellFactory(ProjectUtil::dateFormat);
+        cStart.setCellFactory(DateUtil::dateFormat);
         cStart.setResizable(false);
 
 
         TableColumn<Project, Timestamp> cEnd = new TableColumn<>("End");
         cEnd.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
-        cEnd.setCellFactory(ProjectUtil::dateFormat);
+        cEnd.setCellFactory(DateUtil::dateFormat);
         cEnd.setResizable(false);
 
 

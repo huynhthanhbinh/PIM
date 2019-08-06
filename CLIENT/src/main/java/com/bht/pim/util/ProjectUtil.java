@@ -1,7 +1,6 @@
 package com.bht.pim.util;
 
 import com.bht.pim.proto.projects.*;
-import com.google.protobuf.Timestamp;
 import io.grpc.Channel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,15 +8,11 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import org.apache.log4j.Logger;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ProjectUtil {
 
     private static Logger logger = Logger.getLogger(ProjectUtil.class);
-    private static final Timestamp NON_SETUP = Timestamp.newBuilder().build();
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private ProjectUtil() {
     }
@@ -62,30 +57,6 @@ public class ProjectUtil {
         ProjectId projectId = ProjectId.newBuilder().setId(id).build();
 
         return stub.getProjectById(projectId);
-    }
-
-    // Format Date : convert from long to Date
-    public static TableCell<Project, Timestamp> dateFormat(TableColumn<Project, Timestamp> column) {
-        return new TableCell<Project, Timestamp>() {
-            @Override
-            protected void updateItem(Timestamp item, boolean empty) {
-                if (item == null || empty) {
-                    setText(null);
-                    setStyle("");
-
-                } else {
-                    // Format date
-                    if (item.equals(NON_SETUP)) { // Not set date yet
-                        setText("         /");
-
-                    } else {
-                        LocalDate localDate = DateUtil.toLocalDate(item);
-                        setText(DATE_FORMAT.format(localDate));
-                    }
-                    setStyle("");
-                }
-            }
-        };
     }
 
     // Format Status : convert from server data to status

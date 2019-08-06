@@ -26,7 +26,7 @@ public class Main extends Application {
         logger.info("<<< PIM CLIENT - ON INIT  >>>");
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass()
-                .getResource("fragment/project/ProjectCreate.fxml"));
+                .getResource("fragment/project/ProjectList.fxml"));
 
         rootNode = fxmlLoader.load();
     }

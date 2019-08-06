@@ -1,6 +1,9 @@
 package com.bht.pim.util;
 
+import com.bht.pim.proto.projects.Project;
 import com.google.protobuf.Timestamp;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
 import javafx.util.StringConverter;
 import org.apache.log4j.Logger;
 
@@ -11,6 +14,9 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtil {
+
+    private static final Timestamp NON_SETUP = Timestamp.newBuilder().build();
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private DateUtil() {
     }
@@ -72,5 +78,29 @@ public class DateUtil {
 
     public static Date toSqlDate(Timestamp timestamp) {
         return Date.valueOf(toLocalDate(timestamp));
+    }
+
+    // Format Date : convert from Timestamp to LocalDate
+    public static TableCell<Project, Timestamp> dateFormat(TableColumn<Project, Timestamp> column) {
+        return new TableCell<Project, Timestamp>() {
+            @Override
+            protected void updateItem(Timestamp item, boolean empty) {
+                if (item == null || empty) {
+                    setText(null);
+                    setStyle("");
+
+                } else {
+                    // Format date
+                    if (item.equals(NON_SETUP)) { // Not set date yet
+                        setText("/");
+
+                    } else {
+                        LocalDate localDate = DateUtil.toLocalDate(item);
+                        setText(DATE_FORMAT.format(localDate));
+                    }
+                    setStyle("");
+                }
+            }
+        };
     }
 }
