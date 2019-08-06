@@ -3,7 +3,7 @@ package com.bht.pim.util;
 import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.employees.EmployeeList;
 import com.bht.pim.proto.employees.EmployeeListServiceGrpc;
-import com.bht.pim.proto.employees.NoParam;
+import com.google.protobuf.Empty;
 import io.grpc.Channel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,9 +23,7 @@ public class EmployeeUtil {
         EmployeeListServiceGrpc.EmployeeListServiceBlockingStub stub =
                 EmployeeListServiceGrpc.newBlockingStub(channel);
 
-        NoParam noParam = NoParam.newBuilder().build();
-
-        EmployeeList employeeList = stub.getEmployeeList(noParam);
+        EmployeeList employeeList = stub.getEmployeeList(Empty.getDefaultInstance());
 
         return FXCollections.observableArrayList(employeeList.getEmployeesList());
     }

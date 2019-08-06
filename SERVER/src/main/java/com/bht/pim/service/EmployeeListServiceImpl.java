@@ -5,8 +5,8 @@ import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.employees.EmployeeList;
 import com.bht.pim.proto.employees.EmployeeListServiceGrpc;
-import com.bht.pim.proto.employees.NoParam;
 import com.bht.pim.util.DateUtil;
+import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -24,7 +24,7 @@ public class EmployeeListServiceImpl extends EmployeeListServiceGrpc.EmployeeLis
     private Logger logger = Logger.getLogger(EmployeeListServiceImpl.class);
 
     @Override
-    public void getEmployeeList(NoParam request, StreamObserver<EmployeeList> responseObserver) {
+    public void getEmployeeList(Empty request, StreamObserver<EmployeeList> responseObserver) {
         try {
 
             List<EmployeeEntity> employeeEntities = employeeDao

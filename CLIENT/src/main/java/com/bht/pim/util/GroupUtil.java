@@ -1,6 +1,10 @@
 package com.bht.pim.util;
 
-import com.bht.pim.proto.groups.*;
+import com.bht.pim.proto.groups.Group;
+import com.bht.pim.proto.groups.GroupList;
+import com.bht.pim.proto.groups.GroupListServiceGrpc;
+import com.bht.pim.proto.groups.GroupServiceGrpc;
+import com.google.protobuf.Empty;
 import io.grpc.Channel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +24,7 @@ public class GroupUtil {
             GroupServiceGrpc.GroupServiceBlockingStub stub =
                     GroupServiceGrpc.newBlockingStub(channel);
 
-            return stub.addNewGroup(newGroup).getIsSuccess();
+            return stub.addNewGroup(newGroup).getValue();
 
         } catch (Exception exception) {
 
@@ -35,9 +39,7 @@ public class GroupUtil {
         GroupListServiceGrpc.GroupListServiceBlockingStub stub =
                 GroupListServiceGrpc.newBlockingStub(channel);
 
-        NoParam noParam = NoParam.newBuilder().build();
-
-        GroupList groupList = stub.getGroupList(noParam);
+        GroupList groupList = stub.getGroupList(Empty.getDefaultInstance());
 
         return FXCollections.observableList(groupList.getGroupsList());
     }

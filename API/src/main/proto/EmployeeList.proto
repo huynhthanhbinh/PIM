@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+import "Employee.proto";
+
+package com.bht.pim.proto.employees;
+option java_generic_services = true;
+option java_multiple_files = true;
+
+message EmployeeList {
+    repeated Employee employees = 1;
+}
+
+service EmployeeListService {
+    rpc getEmployeeList (google.protobuf.Empty) returns (EmployeeList);
+}

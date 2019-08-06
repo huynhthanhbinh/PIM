@@ -1,6 +1,8 @@
 package com.bht.pim.util;
 
 import com.bht.pim.proto.projects.*;
+import com.google.protobuf.Empty;
+import com.google.protobuf.Int64Value;
 import io.grpc.Channel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,9 +24,7 @@ public class ProjectUtil {
         ProjectListServiceGrpc.ProjectListServiceBlockingStub stub =
                 ProjectListServiceGrpc.newBlockingStub(channel);
 
-        NoParam noParam = NoParam.newBuilder().build();
-
-        return stub.getProjectNumbers(noParam)
+        return stub.getProjectNumbers(Empty.getDefaultInstance())
                 .getProjectNumbersList();
     }
 
@@ -34,9 +34,7 @@ public class ProjectUtil {
         ProjectListServiceGrpc.ProjectListServiceBlockingStub stub =
                 ProjectListServiceGrpc.newBlockingStub(channel);
 
-        NoParam noParam = NoParam.newBuilder().build();
-
-        ProjectList projectList = stub.getProjectList(noParam);
+        ProjectList projectList = stub.getProjectList(Empty.getDefaultInstance());
 
         return FXCollections.observableArrayList(projectList.getProjectsList());
     }
@@ -46,7 +44,7 @@ public class ProjectUtil {
         ProjectServiceGrpc.ProjectServiceBlockingStub stub =
                 ProjectServiceGrpc.newBlockingStub(channel);
 
-        return stub.addNewProject(projectInfo).getIsSuccess();
+        return stub.addNewProject(projectInfo).getValue();
     }
 
     // Get a specific project
@@ -54,7 +52,7 @@ public class ProjectUtil {
         ProjectServiceGrpc.ProjectServiceBlockingStub stub =
                 ProjectServiceGrpc.newBlockingStub(channel);
 
-        ProjectId projectId = ProjectId.newBuilder().setId(id).build();
+        Int64Value projectId = Int64Value.newBuilder().setValue(id).build();
 
         return stub.getProjectById(projectId);
     }

@@ -7,7 +7,7 @@ import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.groups.Group;
 import com.bht.pim.proto.groups.GroupList;
 import com.bht.pim.proto.groups.GroupListServiceGrpc;
-import com.bht.pim.proto.groups.NoParam;
+import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
 import org.lognet.springboot.grpc.GRpcService;
@@ -25,7 +25,7 @@ public class GroupListServiceImpl extends GroupListServiceGrpc.GroupListServiceI
     private Logger logger = Logger.getLogger(GroupListServiceImpl.class);
 
     @Override
-    public void getGroupList(NoParam request, StreamObserver<GroupList> responseObserver) {
+    public void getGroupList(Empty request, StreamObserver<GroupList> responseObserver) {
         try {
 
             List<GroupEntity> groupEntities = groupDao

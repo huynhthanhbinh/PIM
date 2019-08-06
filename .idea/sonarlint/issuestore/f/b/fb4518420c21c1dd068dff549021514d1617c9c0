@@ -1,0 +1,46 @@
+
+psquid:S2975ê"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
+/squid:S2176§"Rename this class.(ºœÓ­úÿÿÿÿ
+usquid:S22937"YReplace the type specification in this constructor call with the diamond operator ("<>").(Àü¼ñýÿÿÿÿ
+usquid:S2293A"YReplace the type specification in this constructor call with the diamond operator ("<>").(Àü¼ñýÿÿÿÿ
+vsquid:S2293¸"YReplace the type specification in this constructor call with the diamond operator ("<>").(•‚þ©ùÿÿÿÿ
+Isquid:S1199."-Extract this nested code block into a method.(Î—­Šþÿÿÿÿ
+Dsquid:S11995"-Extract this nested code block into a method.(­Ó–Ô
+Isquid:S1199="-Extract this nested code block into a method.(ê×Êüÿÿÿÿ
+Jsquid:S1199˜"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
+{squid:S4144¡"cUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 522.(íŒ…ƒ
+vsquid:S1488¡"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
+Osquid:S2589¶"7Remove this expression which always evaluates to "true"(öàÀÈ
+Gsquid:S4524."+Move this default to the end of the switch.(Î—­Šþÿÿÿÿ
+Bsquid:S1905ë"*Remove this unnecessary cast to "Builder".(¥ùšÏ
+Bsquid:S1905ð"*Remove this unnecessary cast to "Builder".(êŽ„£
+Gsquid:S1905ô"*Remove this unnecessary cast to "Builder".(Æ÷¾¢ûÿÿÿÿ
+Bsquid:S1905ø"*Remove this unnecessary cast to "Builder".(ƒ¦†
+Gsquid:S1905ý"*Remove this unnecessary cast to "Builder".(ˆÎ…•þÿÿÿÿ
+Asquid:S1905‚"*Remove this unnecessary cast to "Builder".(Ý¤Â\
+Lsquid:S1481à"4Remove this unused "from_bitField0_" local variable.(ÆÓ¡€
+isquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(Û¬„Ä
+Bsquid:S00108Ã")Either remove or fill this block of code.(º„ç½
+[squid:S1854à"CRemove this useless assignment to local variable "from_bitField0_".(ÆÓ¡€
+rsquid:S00116f"ZRename this field "projectNumbers_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øè¸ó
+nsquid:S00116³"URename this field "bitField0_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö»³Ä
+ssquid:S00116µ"ZRename this field "projectNumbers_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ž…È±
+isquid:S00117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß”â¢
+jsquid:S00117à"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÓ¡€
+Esquid:S19406")Use the opposite operator ("!=") instead.(•—ùûúÿÿÿÿ
+Esquid:S1940@")Use the opposite operator ("!=") instead.(ØŸÌøÿÿÿÿÿ
+Asquid:S1940·")Use the opposite operator ("!=") instead.(‡ã“‹
+Wsquid:S1161†":Add the "@Override" annotation above this method signature(¹õˆÏùÿÿÿÿ
+Rsquid:S1161“":Add the "@Override" annotation above this method signature(œèž“
+Rsquid:S1161Æ":Add the "@Override" annotation above this method signature(öË·š
+Wsquid:S1161ê":Add the "@Override" annotation above this method signature(Îõ¾Òûÿÿÿÿ
+Wsquid:S1161í":Add the "@Override" annotation above this method signature(ÑÍ“Ëûÿÿÿÿ
+Wsquid:S1161ò":Add the "@Override" annotation above this method signature(Ã•Œƒüÿÿÿÿ
+Wsquid:S1161ö":Add the "@Override" annotation above this method signature(»¤Å“ûÿÿÿÿ
+Rsquid:S1161ú":Add the "@Override" annotation above this method signature(§ß—¡
+Rsquid:S1161ÿ":Add the "@Override" annotation above this method signature(¿¸Ú©
+Rsquid:S1161„":Add the "@Override" annotation above this method signature(”×Ñ¾
+Wsquid:S1161¢":Add the "@Override" annotation above this method signature(˜œö¾ûÿÿÿÿ
+Rsquid:S1161ö":Add the "@Override" annotation above this method signature(´çÍê
+Rsquid:S1161û":Add the "@Override" annotation above this method signature(¥ªóÃ
+[squid:S1155‰">Use isEmpty() to check whether the collection is empty or not.(ÍÙ¸ßýÿÿÿÿ

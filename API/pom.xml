@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.bht.pim</groupId>
+        <artifactId>pim</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>api</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>API</name>
+
+    <!-- TERMINAL : $ mvn compile -->
+    <build>
+        <extensions>
+            <extension>
+                <groupId>kr.motd.maven</groupId>
+                <artifactId>os-maven-plugin</artifactId>
+                <version>${os-maven-plugin.version}</version>
+            </extension>
+        </extensions>
+        <plugins>
+            <plugin>
+                <groupId>org.xolstice.maven.plugins</groupId>
+                <artifactId>protobuf-maven-plugin</artifactId>
+                <version>${protobuf-maven-plugin.version}</version>
+                <configuration>
+                    <protocArtifact>com.google.protobuf:protoc:3.5.1-1:exe:${os.detected.classifier}</protocArtifact>
+                    <pluginId>grpc-java</pluginId>
+                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.16.1:exe:${os.detected.classifier}</pluginArtifact>
+                    <includes>
+                        <!-- compile 1st time -->
+                        <include>**/Employee.proto</include>
+
+                        <!-- compile 2nd time -->
+                        <include>**/Group.proto</include>
+
+                        <!-- compile 3rd time -->
+                        <include>**/Project.proto</include>
+
+                        <!-- compile 4th time -->
+                        <include>**/EmployeeInfo.proto</include>
+                        <include>**/GroupInfo.proto</include>
+                        <include>**/ProjectInfo.proto</include>
+                        <include>**/ProjectNumbers.proto</include>
+
+                        <!-- compile last time -->
+                        <include>**/EmployeeList.proto</include>
+                        <include>**/GroupList.proto</include>
+                        <include>**/ProjectList.proto</include>
+
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>compile-custom</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -7,8 +7,12 @@ import com.bht.pim.entity.GroupEntity;
 import com.bht.pim.entity.ProjectEntity;
 import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.groups.Group;
-import com.bht.pim.proto.projects.*;
+import com.bht.pim.proto.projects.Project;
+import com.bht.pim.proto.projects.ProjectInfo;
+import com.bht.pim.proto.projects.ProjectServiceGrpc;
 import com.bht.pim.util.DateUtil;
+import com.google.protobuf.BoolValue;
+import com.google.protobuf.Int64Value;
 import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
@@ -32,10 +36,10 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
     private Logger logger = Logger.getLogger(ProjectServiceImpl.class);
 
     @Override
-    public void getProjectById(ProjectId request, StreamObserver<ProjectInfo> responseObserver) {
+    public void getProjectById(Int64Value request, StreamObserver<ProjectInfo> responseObserver) {
 
         ProjectEntity projectEntity = projectDao
-                .getProjectById(request.getId());
+                .getProjectById(request.getValue());
 
         try {
             Date end = projectEntity.getEnd();
@@ -98,7 +102,7 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
     }
 
     @Override
-    public void addNewProject(ProjectInfo request, StreamObserver<Success> responseObserver) {
+    public void addNewProject(ProjectInfo request, StreamObserver<BoolValue> responseObserver) {
 
         Project project = request.getProject();
         Employee groupLeader = project.getGroup().getLeader();
@@ -123,8 +127,8 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
                 projectEntity.setEnrolledEmployees(employeeEntities);
                 projectEntity.setStart(DateUtil.toSqlDate(project.getStart()));
 
-                Success success = Success.newBuilder()
-                        .setIsSuccess(projectDao.addProject(projectEntity))
+                BoolValue success = BoolValue.newBuilder()
+                        .setValue(projectDao.addProject(projectEntity))
                         .build();
 
                 responseObserver.onNext(success);
@@ -133,24 +137,24 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
                 return;
             }
 
-            responseObserver.onNext(Success.newBuilder().setIsSuccess(false).build());
+            responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
             responseObserver.onCompleted();
 
         } catch (Exception exception) {
 
             logger.info(exception);
-            responseObserver.onNext(Success.newBuilder().setIsSuccess(false).build());
+            responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
             responseObserver.onCompleted();
         }
     }
 
     @Override
-    public void editProject(ProjectInfo request, StreamObserver<Success> responseObserver) {
+    public void editProject(ProjectInfo request, StreamObserver<BoolValue> responseObserver) {
         super.editProject(request, responseObserver);
     }
 
     @Override
-    public void deleteProject(ProjectId request, StreamObserver<Success> responseObserver) {
+    public void deleteProject(Int64Value request, StreamObserver<BoolValue> responseObserver) {
         super.deleteProject(request, responseObserver);
     }
 }

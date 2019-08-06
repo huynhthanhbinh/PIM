@@ -5,9 +5,13 @@ import com.bht.pim.dao.GroupDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
 import com.bht.pim.proto.employees.Employee;
-import com.bht.pim.proto.groups.*;
+import com.bht.pim.proto.groups.Group;
+import com.bht.pim.proto.groups.GroupInfo;
+import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.proto.projects.Project;
 import com.bht.pim.util.DateUtil;
+import com.google.protobuf.BoolValue;
+import com.google.protobuf.Int64Value;
 import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
@@ -30,10 +34,10 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
     EmployeeDao employeeDao;
 
     @Override
-    public void getGroupById(GroupId request, StreamObserver<GroupInfo> responseObserver) {
+    public void getGroupById(Int64Value request, StreamObserver<GroupInfo> responseObserver) {
 
         GroupEntity groupEntity = groupDao
-                .getGroupById(request.getId());
+                .getGroupById(request.getValue());
 
         try {
             EmployeeEntity leader = groupEntity.getGroupLeader();
@@ -80,13 +84,13 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
             responseObserver.onCompleted();
 
             logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            logger.info("Successfully get Group " + request.getId());
+            logger.info("Successfully get Group " + request.getValue());
             logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
         } catch (Exception exception) {
 
             logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            logger.info("Fail to get Group " + request.getId());
+            logger.info("Fail to get Group " + request.getValue());
             logger.info(exception);
             logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
             responseObserver.onNext(null);
@@ -95,7 +99,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
     }
 
     @Override
-    public void addNewGroup(Group request, StreamObserver<Success> responseObserver) {
+    public void addNewGroup(Group request, StreamObserver<BoolValue> responseObserver) {
         // each employee just lead 1 group
         // at front end, when create new group
         // send list employee as usual, but then
@@ -120,8 +124,8 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
                 boolean isSuccess = groupDao.addGroup(groupEntity);
 
-                Success success = Success.newBuilder()
-                        .setIsSuccess(isSuccess)
+                BoolValue success = BoolValue.newBuilder()
+                        .setValue(isSuccess)
                         .build();
 
                 logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
@@ -143,8 +147,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
             logger.info("CONSTRAINT: \"1 employee just lead 1 group\"");
             logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
-            responseObserver.onNext(Success.newBuilder()
-                    .setIsSuccess(false).build());
+            responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
             responseObserver.onCompleted();
 
         } catch (Exception exception) {
@@ -154,8 +157,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
             logger.info(exception);
             logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
-            responseObserver.onNext(Success.newBuilder()
-                    .setIsSuccess(false).build());
+            responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
             responseObserver.onCompleted();
         }
     }

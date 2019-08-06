@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+import "Project.proto";
+import "ProjectNumbers.proto";
+
+package com.bht.pim.proto.projects;
+option java_generic_services = true;
+option java_multiple_files = true;
+
+message ProjectList {
+    repeated Project projects = 1;
+}
+
+service ProjectListService {
+    rpc getProjectList (google.protobuf.Empty) returns (ProjectList);
+    rpc getProjectNumbers (google.protobuf.Empty) returns (ProjectNumbers);
+}

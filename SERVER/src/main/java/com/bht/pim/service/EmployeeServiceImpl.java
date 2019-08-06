@@ -1,15 +1,14 @@
 package com.bht.pim.service;
 
-
 import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.proto.employees.Employee;
-import com.bht.pim.proto.employees.EmployeeId;
 import com.bht.pim.proto.employees.EmployeeInfo;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.Group;
 import com.bht.pim.proto.projects.Project;
 import com.bht.pim.util.DateUtil;
+import com.google.protobuf.Int64Value;
 import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
 import org.apache.log4j.Logger;
@@ -29,10 +28,10 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
     EmployeeDao employeeDao;
 
     @Override
-    public void getEmployeeById(EmployeeId request, StreamObserver<EmployeeInfo> responseObserver) {
+    public void getEmployeeById(Int64Value request, StreamObserver<EmployeeInfo> responseObserver) {
 
         EmployeeEntity employeeEntity = employeeDao
-                .getEmployeeById(request.getId());
+                .getEmployeeById(request.getValue());
 
         try {
             Employee employee = Employee.newBuilder()
