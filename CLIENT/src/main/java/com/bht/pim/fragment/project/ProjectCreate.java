@@ -36,9 +36,9 @@ import java.util.stream.Collectors;
 
 @Log4j
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_CREATE,
-        viewLocation = "/com/bht/pim/fragment/project/ProjectCreate.fxml",
         resourceBundleLocation = "bundles.languageBundle",
-        scope = Scope.PROTOTYPE)
+        scope = Scope.PROTOTYPE,
+        viewLocation = "/com/bht/pim/fragment/project/ProjectCreate.fxml")
 public class ProjectCreate implements Initializable {
 
     private static final int PORT = 9999;

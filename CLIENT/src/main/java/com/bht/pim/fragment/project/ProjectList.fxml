@@ -7,8 +7,7 @@
 <VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity"
       prefHeight="630.0" prefWidth="1120.0" spacing="5.0"
-      stylesheets="/com/bht/pim/fragment/project/ProjectList.css" xmlns="http://javafx.com/javafx/8.0.999-ea"
-      fx:controller="com.bht.pim.fragment.project.ProjectList">
+      stylesheets="/com/bht/pim/fragment/project/ProjectList.css" xmlns="http://javafx.com/javafx/8.0.999-ea">
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
     </padding>

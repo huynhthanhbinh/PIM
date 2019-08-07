@@ -22,8 +22,7 @@ import org.jacpfx.rcp.context.Context;
 import java.util.ResourceBundle;
 
 @Log4j
-@DeclarativeView(id = AppConfiguration.COMPONENT_TOP,
-        name = "TopPane",
+@DeclarativeView(id = AppConfiguration.COMPONENT_TOP, name = "TopPane",
         resourceBundleLocation = "bundles.languageBundle",
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_TOP,
         viewLocation = "/com/bht/pim/component/TopPane.fxml")

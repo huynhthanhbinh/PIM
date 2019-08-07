@@ -3,8 +3,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
-            fx:controller="com.bht.pim.fragment.control.LeftMenu"
-            stylesheets="LeftMenu.css"
+            stylesheets="/com/bht/pim/fragment/control/LeftMenu.css"
             minHeight="600" minWidth="256" prefHeight="600" prefWidth="256">
 
 </AnchorPane>

@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
-            stylesheets="MainPane.css"
+            stylesheets="/com/bht/pim/component/MainPane.css"
             minHeight="600" minWidth="1024" prefHeight="600.0" prefWidth="1024.0"
             fx:id="mainPane">
 

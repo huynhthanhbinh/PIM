@@ -24,9 +24,9 @@ import java.util.ResourceBundle;
 
 @Log4j
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST,
-        viewLocation = "/com/bht/pim/fragment/project/ProjectList.fxml",
         resourceBundleLocation = "bundles.languageBundle",
-        scope = Scope.PROTOTYPE)
+        scope = Scope.PROTOTYPE,
+        viewLocation = "/com/bht/pim/fragment/project/ProjectList.fxml")
 public class ProjectList implements Initializable {
 
     private static final int PORT = 9999;

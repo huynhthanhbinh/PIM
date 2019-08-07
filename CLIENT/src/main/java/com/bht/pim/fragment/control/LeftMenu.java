@@ -7,8 +7,8 @@ import org.jacpfx.api.fragment.Scope;
 
 @Log4j
 @Fragment(id = AppConfiguration.FRAGMENT_MENU_LEFT,
-        viewLocation = "LeftMenu.fxml",
         resourceBundleLocation = "bundles.languageBundle",
-        scope = Scope.PROTOTYPE)
+        scope = Scope.PROTOTYPE,
+        viewLocation = "/com/bht/pim/fragment/control/LeftMenu.fxml")
 public class LeftMenu {
 }

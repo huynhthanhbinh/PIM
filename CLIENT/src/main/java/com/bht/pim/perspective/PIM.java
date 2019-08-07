@@ -32,13 +32,13 @@ import java.util.ResourceBundle;
 public class PIM implements FXPerspective {
 
     @FXML
-    public VBox rootPane;
+    private VBox rootPane;
     @FXML
-    public HBox topMenu;
+    private HBox topMenu;
     @FXML
-    public AnchorPane leftMenu;
+    private AnchorPane leftMenu;
     @FXML
-    public AnchorPane mainContent;
+    private AnchorPane mainContent;
     @Resource
     private Context context;
     @Resource

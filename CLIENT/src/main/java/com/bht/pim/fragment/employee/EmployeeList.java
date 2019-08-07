@@ -7,8 +7,8 @@ import org.jacpfx.api.fragment.Scope;
 
 @Log4j
 @Fragment(id = AppConfiguration.FRAGMENT_EMPLOYEE_LIST,
-        viewLocation = "EmployeeList.fxml",
         resourceBundleLocation = "bundles.languageBundle",
-        scope = Scope.PROTOTYPE)
+        scope = Scope.PROTOTYPE,
+        viewLocation = "/com/bht/pim/fragment/employee/EmployeeList.fxml")
 public class EmployeeList {
 }
