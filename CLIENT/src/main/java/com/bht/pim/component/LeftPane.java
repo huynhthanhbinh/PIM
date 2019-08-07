@@ -1,7 +1,6 @@
 package com.bht.pim.component;
 
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.control.LeftMenu;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -16,7 +15,6 @@ import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
-import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
 import java.util.ResourceBundle;
@@ -51,11 +49,6 @@ public class LeftPane implements FXComponent {
     @PostConstruct
     public void onStartComponent(final FXComponentLayout arg0,
                                  final ResourceBundle resourceBundle) {
-
-        ManagedFragmentHandler<LeftMenu> fragment = context
-                .getManagedFragmentHandler(LeftMenu.class);
-
-        leftPane.getChildren().add(fragment.getFragmentNode());
     }
 
     @PreDestroy
