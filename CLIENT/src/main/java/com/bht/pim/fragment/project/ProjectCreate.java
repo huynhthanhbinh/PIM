@@ -1,5 +1,6 @@
 package com.bht.pim.fragment.project;
 
+import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.intermediate.Member;
 import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.proto.employees.Employee;
@@ -23,7 +24,8 @@ import lombok.extern.log4j.Log4j;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
-import org.springframework.stereotype.Controller;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,7 +35,10 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 @Log4j
-@Controller
+@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_CREATE,
+        viewLocation = "/com/bht/pim/fragment/project/ProjectCreate.fxml",
+        resourceBundleLocation = "bundles.languageBundle",
+        scope = Scope.PROTOTYPE)
 public class ProjectCreate implements Initializable {
 
     private static final int PORT = 9999;

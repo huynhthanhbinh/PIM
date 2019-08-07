@@ -17,21 +17,7 @@
     <name>CLIENT</name>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-
         <jacp.version>2.1</jacp.version>
-        <springframework.version>5.1.8.RELEASE</springframework.version>
-        <springboot.version>2.1.6.RELEASE</springboot.version>
-        <jackson.version>2.9.9</jackson.version>
-
-        <protobuf.version>3.9.0</protobuf.version>
-        <grpc.version>1.21.0</grpc.version>
-        <grpc-spring-boot-starter.version>3.3.0</grpc-spring-boot-starter.version>
-        <os-maven-plugin.version>1.6.2</os-maven-plugin.version>
-        <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -55,6 +41,7 @@
             <groupId>org.jacpfx</groupId>
             <artifactId>jacpfx.API</artifactId>
             <version>${jacp.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- The JacpFX implementation -->
@@ -62,6 +49,7 @@
             <groupId>org.jacpfx</groupId>
             <artifactId>jacpfx.JavaFX</artifactId>
             <version>${jacp.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- The JacpFX controls -->
@@ -69,6 +57,7 @@
             <groupId>org.jacpfx</groupId>
             <artifactId>jacpfx.JavaFXControls</artifactId>
             <version>${jacp.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- The JacpFX launcher -->
@@ -76,6 +65,7 @@
             <groupId>org.jacpfx</groupId>
             <artifactId>jacpfx.JavaFXSpring</artifactId>
             <version>${jacp.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- Using for Notifications -->

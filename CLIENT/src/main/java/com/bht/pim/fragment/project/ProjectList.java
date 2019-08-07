@@ -1,5 +1,6 @@
 package com.bht.pim.fragment.project;
 
+import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.proto.projects.Project;
 import com.bht.pim.util.DateUtil;
 import com.bht.pim.util.ProjectUtil;
@@ -15,13 +16,17 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.extern.log4j.Log4j;
 import org.apache.log4j.Logger;
-import org.springframework.stereotype.Controller;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 @Log4j
-@Controller
+@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST,
+        viewLocation = "/com/bht/pim/fragment/project/ProjectList.fxml",
+        resourceBundleLocation = "bundles.languageBundle",
+        scope = Scope.PROTOTYPE)
 public class ProjectList implements Initializable {
 
     private static final int PORT = 9999;

@@ -11,8 +11,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="SERVER" />
+        <module name="api" />
         <module name="API" />
         <module name="CLIENT" />
+        <module name="server" />
+        <module name="client" />
       </profile>
     </annotationProcessing>
   </component>

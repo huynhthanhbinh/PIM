@@ -1,5 +1,6 @@
 
-Lsquid:S1191
-"5Use classes from the Java API instead of Sun classes.(¦©†£
-dsquid:S1192´"GDefine a constant instead of duplicating this literal "empty" 16 times.(±±ğùÿÿÿÿ
-jsquid:S3776â"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(ÌÜ”ş
+jsquid:S3776é"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(ÌÜ”ş
+Ksquid:S1172é",Remove this unused method parameter "event".(ÌÜ”ş8Šı–ÓÆ-
+Ksquid:S1172â",Remove this unused method parameter "event".(ˆ›Äš8Šı–ÓÆ-
+Ksquid:S1172½",Remove this unused method parameter "param".(õ£À“8Šı–ÓÆ-
+Usquid:S1172è"1Remove this unused method parameter "observable".(î¥€ûÿÿÿÿ8Šı–ÓÆ-

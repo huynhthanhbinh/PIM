@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="720.0" prefWidth="1280.0"
+            xmlns="http://javafx.com/javafx/8.0.999-ea">
+    <children>
+        <VBox layoutX="53.0" layoutY="25.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="10.0"
+              AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" fx:id="rootPane">
+            <children>
+                <HBox minHeight="100" minWidth="1260" prefHeight="100" prefWidth="1260" fx:id="topMenu"/>
+                <SplitPane dividerPositions="0.2" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600"
+                           prefWidth="1260">
+                    <items>
+                        <AnchorPane minHeight="600" minWidth="256" prefHeight="600" prefWidth="256" fx:id="leftMenu"/>
+                        <AnchorPane minHeight="600" minWidth="1024" prefHeight="600.0" prefWidth="1024.0"
+                                    fx:id="mainContent"/>
+                    </items>
+                </SplitPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

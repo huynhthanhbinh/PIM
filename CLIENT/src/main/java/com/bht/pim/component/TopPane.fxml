@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<HBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx"
+      stylesheets="TopPane.css"
+      minHeight="100" minWidth="1260" prefHeight="100" prefWidth="1260"
+      fx:id="topPane">
+
+</HBox>
