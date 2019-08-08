@@ -11,14 +11,8 @@ import io.grpc.ManagedChannelBuilder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
@@ -57,7 +51,7 @@ public class ProjectList implements Initializable {
     @FXML
     private TableColumn<Project, Long> cNumber;
     @FXML
-    private TableColumn<Project, String> cName;
+    private TableColumn<Project, Project> cName;
     @FXML
     private TableColumn<Project, String> cCustomer;
     @FXML
@@ -118,7 +112,8 @@ public class ProjectList implements Initializable {
         cNumber.setResizable(false);
 
         cName.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.3));
-        cName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        cName.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        cName.setCellFactory(this::name);
         cName.setResizable(false);
 
         cCustomer.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.25));
@@ -136,10 +131,9 @@ public class ProjectList implements Initializable {
         cStart.setResizable(false);
 
         cManagement.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
-        cManagement.setResizable(false);
-
         cManagement.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         cManagement.setCellFactory(this::management);
+        cManagement.setResizable(false);
     }
 
     // Add all event-listener
@@ -156,43 +150,48 @@ public class ProjectList implements Initializable {
         });
     }
 
-    // Button info, management on each table row
+    // Button delete on table row
     private TableCell<Project, Project> management(TableColumn<Project, Project> param) {
         return new TableCell<Project, Project>() {
 
-            private final Button bInfo = new Button("info");
             private final Button bRemove = new Button(" X ");
 
             @Override
             protected void updateItem(Project project, boolean empty) {
-                if (project == null) {
+                if (project == null || empty || !project.getStatus().equals("NEW")) {
                     setGraphic(null);
                     return;
                 }
 
-                // Show the button
-                HBox graphic = new HBox();
-                graphic.setSpacing(10);
-                graphic.setPadding(new Insets(0, 10, 0, 0));
-
-                if (project.getStatus().equals("NEW")) {
-                    graphic.getChildren().add(bRemove);
-                }
-
-                bInfo.setStyle("-fx-background-color: #3399ff; -fx-text-fill: white");
-                graphic.getChildren().add(bInfo);
-
-                setGraphic(graphic);
-
-                graphic.setAlignment(Pos.CENTER_RIGHT);
-
+                setGraphic(bRemove);
                 bRemove.setOnAction(event -> {
                     log.info("Delete " + project);
                 });
+            }
+        };
+    }
 
-                bInfo.setOnAction(event -> {
-                    log.info("Info " + project);
+    // Name label - clickable
+    private TableCell<Project, Project> name(TableColumn<Project, Project> param) {
+        return new TableCell<Project, Project>() {
+
+            private Label lName = new Label();
+
+            @Override
+            protected void updateItem(Project project, boolean empty) {
+                if (project == null || empty) {
+                    setGraphic(null);
+                    return;
+                }
+
+                lName.setText(project.getName());
+                lName.getStyleClass().add("clickable");
+                lName.setPickOnBounds(false);
+                lName.setOnMouseClicked(event -> {
+                    log.info("INFO of project: " + project.getId());
                 });
+
+                setGraphic(lName);
             }
         };
     }

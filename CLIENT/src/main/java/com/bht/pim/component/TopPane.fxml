@@ -26,14 +26,15 @@
             </font>
         </Label>
         <Separator layoutX="856.0" layoutY="20.0" maxHeight="40.0" minHeight="40.0" orientation="VERTICAL"
-                   prefHeight="40.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="320.0"/>
+                   prefHeight="40.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="320.0"
+                   style="-fx-progress-color: #F24517"/>
         <Label fx:id="lFrench" layoutX="869.0" layoutY="32.0" text="FR" textFill="#707070"
                AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="295.0">
             <font>
                 <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <Label fx:id="lHelp" layoutX="1003.0" layoutY="32.0" text="Help" textFill="#3399ff"
+        <Label fx:id="lHelp" layoutX="1003.0" layoutY="32.0" text="Help" textFill="#F24517"
                AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="130.0">
             <font>
                 <Font name="System Bold" size="18.0"/>

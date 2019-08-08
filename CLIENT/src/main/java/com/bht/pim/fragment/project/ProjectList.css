@@ -54,6 +54,14 @@
     -fx-alignment: CENTER;
 }
 
+#cManagement .label {
+    -fx-alignment: CENTER;
+}
+
+#cManagement {
+    -fx-alignment: CENTER;
+}
+
 .table-row-cell:odd {
     -fx-background-color: #f2f2f2;
 }
@@ -63,18 +71,30 @@
 }
 
 .table-row-cell:hover {
-    -fx-background-color: #ff8c66;
+    -fx-background-color: #ffcba9;
+}
+
+.clickable:hover {
+    -fx-cursor: hand;
+    -fx-underline: true;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F24517;
 }
 
 .table-row-cell:selected {
     -fx-table-cell-border-color: transparent;
     -fx-background-color: #F24517;
-    -fx-text-fill: white;
+    -fx-text-fill: white !important;
 }
 
 .table-row-cell:selected .text {
     /*-fx-fill: white;*/
     -fx-font-weight: bold;
+}
+
+.table-row-cell:selected .clickable {
+    -fx-text-fill: white;
 }
 
 .table-row-cell:empty {

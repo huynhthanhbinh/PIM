@@ -3,7 +3,10 @@
 }
 
 .active {
-    -fx-text-fill: #3399ff;
+    -fx-text-fill: #F24517;
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
 }
 
 .clickable:hover {

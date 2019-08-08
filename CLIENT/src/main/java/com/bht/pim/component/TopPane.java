@@ -74,9 +74,20 @@ public class TopPane implements FXComponent {
         lHelp.getStyleClass().add("clickable");
         lLogout.getStyleClass().add("clickable");
 
-        lEnglish.setOnMouseClicked(event -> log.info("[TopPane] Clicked English"));
-        lFrench.setOnMouseClicked(event -> log.info("[TopPane] Clicked French"));
+        lEnglish.setOnMouseClicked(event -> {
+            log.info("[TopPane] Clicked English");
+            lFrench.getStyleClass().remove("active");
+            lEnglish.getStyleClass().add("active");
+        });
+
+        lFrench.setOnMouseClicked(event -> {
+            log.info("[TopPane] Clicked French");
+            lEnglish.getStyleClass().remove("active");
+            lFrench.getStyleClass().add("active");
+        });
+
         lHelp.setOnMouseClicked(event -> log.info("[TopPane] Clicked Help"));
+
         lLogout.setOnMouseClicked(event -> log.info("[TopPane] Clicked Log-out"));
 
         topPane.prefWidthProperty().bind(
