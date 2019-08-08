@@ -4,6 +4,7 @@ import com.bht.pim.configuration.AppConfiguration;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import lombok.extern.log4j.Log4j;
@@ -33,6 +34,18 @@ public class TopPane implements FXComponent {
     @FXML
     private ImageView logo;
 
+    @FXML
+    private Label lEnglish;
+
+    @FXML
+    private Label lFrench;
+
+    @FXML
+    private Label lHelp;
+
+    @FXML
+    private Label lLogout;
+
     @Resource
     private Context context;
 
@@ -54,6 +67,18 @@ public class TopPane implements FXComponent {
                                  final ResourceBundle resourceBundle) {
 
         logo.setPreserveRatio(true);
+        lEnglish.getStyleClass().add("active");
+
+        lEnglish.getStyleClass().add("clickable");
+        lFrench.getStyleClass().add("clickable");
+        lHelp.getStyleClass().add("clickable");
+        lLogout.getStyleClass().add("clickable");
+
+        lEnglish.setOnMouseClicked(event -> log.info("[TopPane] Clicked English"));
+        lFrench.setOnMouseClicked(event -> log.info("[TopPane] Clicked French"));
+        lHelp.setOnMouseClicked(event -> log.info("[TopPane] Clicked Help"));
+        lLogout.setOnMouseClicked(event -> log.info("[TopPane] Clicked Log-out"));
+
         topPane.prefWidthProperty().bind(
                 layout.getGlassPane().widthProperty().subtract(20));
     }

@@ -19,28 +19,28 @@
                 <Font name="System Bold" size="32.0"/>
             </font>
         </Label>
-        <Label layoutX="823.0" layoutY="32.0" text="EN" textFill="#707070" AnchorPane.bottomAnchor="30.0"
-               AnchorPane.rightAnchor="330.0">
+        <Label fx:id="lEnglish" layoutX="823.0" layoutY="32.0" text="EN" textFill="#707070"
+               AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="330.0">
             <font>
                 <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
         <Separator layoutX="856.0" layoutY="20.0" maxHeight="40.0" minHeight="40.0" orientation="VERTICAL"
                    prefHeight="40.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="320.0"/>
-        <Label layoutX="869.0" layoutY="32.0" text="FR" textFill="#707070" AnchorPane.bottomAnchor="30.0"
-               AnchorPane.rightAnchor="295.0">
+        <Label fx:id="lFrench" layoutX="869.0" layoutY="32.0" text="FR" textFill="#707070"
+               AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="295.0">
             <font>
                 <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
         <Label layoutX="1003.0" layoutY="32.0" text="Help" textFill="#3399ff" AnchorPane.bottomAnchor="30.0"
-               AnchorPane.rightAnchor="130.0">
+               AnchorPane.rightAnchor="130.0" fx:id="lHelp">
             <font>
                 <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
         <Label layoutX="1149.0" layoutY="32.0" text="Log out" textFill="#bebebe" AnchorPane.bottomAnchor="30.0"
-               AnchorPane.rightAnchor="45.0">
+               AnchorPane.rightAnchor="45.0" fx:id="lLogout">
             <font>
                 <Font name="System Bold" size="18.0"/>
             </font>
