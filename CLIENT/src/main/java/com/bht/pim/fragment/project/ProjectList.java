@@ -8,12 +8,17 @@ import com.google.protobuf.Timestamp;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
@@ -131,6 +136,10 @@ public class ProjectList implements Initializable {
         cStart.setResizable(false);
 
         cManagement.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
+        cManagement.setResizable(false);
+
+        cManagement.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        cManagement.setCellFactory(this::management);
     }
 
     // Add all event-listener
@@ -145,5 +154,46 @@ public class ProjectList implements Initializable {
             log.info("[NEW] on mouse clicked");
             context.send(AppConfiguration.COMPONENT_MAIN, AppConfiguration.FRAGMENT_PROJECT_CREATE);
         });
+    }
+
+    // Button info, management on each table row
+    private TableCell<Project, Project> management(TableColumn<Project, Project> param) {
+        return new TableCell<Project, Project>() {
+
+            private final Button bInfo = new Button("info");
+            private final Button bRemove = new Button(" X ");
+
+            @Override
+            protected void updateItem(Project project, boolean empty) {
+                if (project == null) {
+                    setGraphic(null);
+                    return;
+                }
+
+                // Show the button
+                HBox graphic = new HBox();
+                graphic.setSpacing(10);
+                graphic.setPadding(new Insets(0, 10, 0, 0));
+
+                if (project.getStatus().equals("NEW")) {
+                    graphic.getChildren().add(bRemove);
+                }
+
+                bInfo.setStyle("-fx-background-color: #3399ff; -fx-text-fill: white");
+                graphic.getChildren().add(bInfo);
+
+                setGraphic(graphic);
+
+                graphic.setAlignment(Pos.CENTER_RIGHT);
+
+                bRemove.setOnAction(event -> {
+                    log.info("Delete " + project);
+                });
+
+                bInfo.setOnAction(event -> {
+                    log.info("Info " + project);
+                });
+            }
+        };
     }
 }
