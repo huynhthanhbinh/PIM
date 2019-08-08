@@ -17,9 +17,6 @@ public class AppConfiguration {
     public static final String COMPONENT_LEFT = "idcLeft";
     public static final String COMPONENT_MAIN = "idcMain";
 
-    public static final String FRAGMENT_MENU_TOP = "idfMTop";
-    public static final String FRAGMENT_MENU_LEFT = "idfMLeft";
-
     public static final String FRAGMENT_PROJECT_LIST = "idfPList";
     public static final String FRAGMENT_PROJECT_INFO = "idfPInfo";
     public static final String FRAGMENT_PROJECT_CREATE = "idfPCreate";

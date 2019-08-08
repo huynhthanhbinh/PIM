@@ -33,27 +33,25 @@ public class ProjectList implements Initializable {
     private static final String HOST = "localhost";
 
     @FXML
-    public Button bDelete;
+    private Button bDelete;
     @FXML
-    public Button bNew;
+    private Button bNew;
     @FXML
-    public TableView<Project> table;
+    private TableView<Project> table;
     @FXML
-    public TableColumn<Project, Project> cSelect;
+    private TableColumn<Project, Project> cSelect;
     @FXML
-    public TableColumn<Project, Long> cNumber;
+    private TableColumn<Project, Long> cNumber;
     @FXML
-    public TableColumn<Project, String> cName;
+    private TableColumn<Project, String> cName;
     @FXML
-    public TableColumn<Project, String> cCustomer;
+    private TableColumn<Project, String> cCustomer;
     @FXML
-    public TableColumn<Project, String> cStatus;
+    private TableColumn<Project, String> cStatus;
     @FXML
-    public TableColumn<Project, Timestamp> cStart;
+    private TableColumn<Project, Timestamp> cStart;
     @FXML
-    public TableColumn<Project, Timestamp> cEnd;
-    @FXML
-    public TableColumn<Project, Project> cManagement;
+    private TableColumn<Project, Project> cManagement;
 
     private Logger logger = Logger.getLogger(ProjectList.class);
     private ManagedChannel channel;
@@ -101,11 +99,11 @@ public class ProjectList implements Initializable {
         cNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
         cNumber.setResizable(false);
 
-        cName.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.25));
+        cName.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.3));
         cName.setCellValueFactory(new PropertyValueFactory<>("name"));
         cName.setResizable(false);
 
-        cCustomer.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.2));
+        cCustomer.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.25));
         cCustomer.setCellValueFactory(new PropertyValueFactory<>("customer"));
         cCustomer.setResizable(false);
 
@@ -118,11 +116,6 @@ public class ProjectList implements Initializable {
         cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
         cStart.setCellFactory(DateUtil::dateFormat);
         cStart.setResizable(false);
-
-        cEnd.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
-        cEnd.setCellValueFactory(new PropertyValueFactory<>("end"));
-        cEnd.setCellFactory(DateUtil::dateFormat);
-        cEnd.setResizable(false);
 
         cManagement.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
     }

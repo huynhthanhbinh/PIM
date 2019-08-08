@@ -49,7 +49,7 @@ public class MainPane implements FXComponent {
     }
 
     @PostConstruct
-    public void onStartComponent(final FXComponentLayout arg0,
+    public void onStartComponent(final FXComponentLayout layout,
                                  final ResourceBundle resourceBundle) {
 
         ManagedFragmentHandler<ProjectList> fragment = context

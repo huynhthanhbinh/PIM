@@ -4,7 +4,6 @@ import com.bht.pim.configuration.AppConfiguration;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
@@ -33,11 +32,11 @@ public class PIM implements FXPerspective {
     @FXML
     private AnchorPane rootPane;
     @FXML
-    private HBox topMenu;
+    private AnchorPane topPane;
     @FXML
-    private AnchorPane leftMenu;
+    private AnchorPane leftPane;
     @FXML
-    private AnchorPane mainContent;
+    private AnchorPane mainPane;
     @Resource
     private Context context;
     @Resource
@@ -71,10 +70,10 @@ public class PIM implements FXPerspective {
         perspectiveLayout.registerRootComponent(rootPane);
         // Register other components
         perspectiveLayout.registerTargetLayoutComponent(
-                AppConfiguration.TARGET_CONTAINER_TOP, topMenu);
+                AppConfiguration.TARGET_CONTAINER_TOP, topPane);
         perspectiveLayout.registerTargetLayoutComponent(
-                AppConfiguration.TARGET_CONTAINER_LEFT, leftMenu);
+                AppConfiguration.TARGET_CONTAINER_LEFT, leftPane);
         perspectiveLayout.registerTargetLayoutComponent(
-                AppConfiguration.TARGET_CONTAINER_MAIN, mainContent);
+                AppConfiguration.TARGET_CONTAINER_MAIN, mainPane);
     }
 }

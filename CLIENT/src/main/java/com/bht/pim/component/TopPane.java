@@ -50,9 +50,12 @@ public class TopPane implements FXComponent {
     }
 
     @PostConstruct
-    public void onStartComponent(final FXComponentLayout arg0,
+    public void onStartComponent(final FXComponentLayout layout,
                                  final ResourceBundle resourceBundle) {
+
         logo.setPreserveRatio(true);
+        topPane.prefWidthProperty().bind(
+                layout.getGlassPane().widthProperty().subtract(20));
     }
 
     @PreDestroy

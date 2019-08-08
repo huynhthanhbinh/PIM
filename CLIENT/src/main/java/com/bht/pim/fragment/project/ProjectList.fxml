@@ -6,26 +6,26 @@
 <?import javafx.scene.text.Font?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
       minWidth="-Infinity"
-      prefHeight="630.0" prefWidth="1120.0" spacing="5.0"
+      prefHeight="600.0" prefWidth="1050.0" spacing="5.0"
       stylesheets="/com/bht/pim/fragment/project/ProjectList.css" xmlns="http://javafx.com/javafx/8.0.999-ea">
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
     </padding>
     <children>
-        <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1110.0">
+        <VBox alignment="CENTER" prefHeight="60.0" prefWidth="1050.0">
             <children>
                 <Label alignment="CENTER" text="PROJECT LIST" VBox.vgrow="ALWAYS">
                     <font>
                         <Font name="System Bold" size="28.0"/>
                     </font>
                 </Label>
-                <Separator prefWidth="200.0"/>
+                <Separator prefWidth="200.0" VBox.vgrow="ALWAYS"/>
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
             </padding>
         </VBox>
-        <AnchorPane prefHeight="560.0" prefWidth="1110.0" VBox.vgrow="ALWAYS">
+        <AnchorPane prefHeight="560.0" prefWidth="1050.0" VBox.vgrow="ALWAYS">
             <children>
                 <Button fx:id="bNew" layoutX="1015.0" layoutY="-8.0" mnemonicParsing="false" text="NEW"
                         AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
@@ -49,7 +49,6 @@
                         <TableColumn id="cCustomer" fx:id="cCustomer" prefWidth="75.0" text="Customer"/>
                         <TableColumn id="cStatus" fx:id="cStatus" prefWidth="75.0" text="Status"/>
                         <TableColumn id="cStart" fx:id="cStart" prefWidth="75.0" text="Start"/>
-                        <TableColumn id="cEnd" fx:id="cEnd" prefWidth="75.0" text="End"/>
                         <TableColumn id="cManagement" fx:id="cManagement" prefWidth="75.0" text="Management"/>
                     </columns>
                 </TableView>
