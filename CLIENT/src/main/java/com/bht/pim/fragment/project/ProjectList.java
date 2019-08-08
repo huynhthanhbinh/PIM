@@ -14,10 +14,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
-import org.apache.log4j.Logger;
+import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,6 +35,12 @@ public class ProjectList implements Initializable {
     private static final int PORT = 9999;
     private static final String HOST = "localhost";
 
+    @Resource
+    private Context context;
+    @Resource
+    private ResourceBundle bundle;
+    @FXML
+    private VBox mainPane;
     @FXML
     private Button bDelete;
     @FXML
@@ -53,14 +62,18 @@ public class ProjectList implements Initializable {
     @FXML
     private TableColumn<Project, Project> cManagement;
 
-    private Logger logger = Logger.getLogger(ProjectList.class);
     private ManagedChannel channel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         // Init this scene code go here
-        logger.info("[PIM Client - ProjectCreate] On init scene ");
+        log.info("[PIM Client - ProjectCreate] On init scene ");
+
+        Pane main = context.getComponentLayout().getGlassPane();
+        mainPane.prefWidthProperty().bind(main.widthProperty().subtract(227));
+        mainPane.prefHeightProperty().bind(main.heightProperty().subtract(100));
+
 
         // Get all necessary data from server
         getNecessaryData();
@@ -126,6 +139,11 @@ public class ProjectList implements Initializable {
             TableHeaderRow header = (TableHeaderRow) table.lookup("TableHeaderRow");
             header.reorderingProperty().addListener((observable, oldValue, newValue) ->
                     header.setReordering(false));
+        });
+
+        bNew.setOnMouseClicked(event -> {
+            log.info("[NEW] on mouse clicked");
+            context.send(AppConfiguration.COMPONENT_MAIN, AppConfiguration.FRAGMENT_PROJECT_CREATE);
         });
     }
 }

@@ -41,5 +41,9 @@ public class Client extends AFXSpringJavaConfigLauncher {
         stage.getIcons().add(
                 new Image(Objects.requireNonNull(classLoader
                         .getResourceAsStream("pictures/icon.png"))));
+
+        stage.sizeToScene();
+        stage.setMinWidth(1280);
+        stage.setMinHeight(720);
     }
 }

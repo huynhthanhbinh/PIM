@@ -49,8 +49,8 @@ public class PIM implements FXPerspective {
     }
 
     @OnShow
-    public void onShowComponent(final FXComponentLayout componentLayout) {
-        log.info("[SHOW] FXComponentLayout: " + componentLayout + " in: " + context.getId());
+    public void onShowComponent(final FXComponentLayout perspectiveLayout) {
+        log.info("[SHOW] FXPerspectiveLayout: " + perspectiveLayout + " in: " + context.getId());
     }
 
     @OnHide
@@ -75,5 +75,8 @@ public class PIM implements FXPerspective {
                 AppConfiguration.TARGET_CONTAINER_LEFT, leftPane);
         perspectiveLayout.registerTargetLayoutComponent(
                 AppConfiguration.TARGET_CONTAINER_MAIN, mainPane);
+
+        layout.getGlassPane().setMinWidth(1280);
+        layout.getGlassPane().setMinHeight(720);
     }
 }

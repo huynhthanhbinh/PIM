@@ -23,7 +23,7 @@ public class PimWorkbench implements FXWorkbench {
             WorkbenchLayout<Node> layout, Stage stage) {
 
         log.info("<<< PIM Client - On handleInitialLayout >>>");
-        layout.setWorkbenchXYSize(1280, 720);
+        layout.setWorkbenchXYSize(1280, 690);
         layout.setStyle(StageStyle.DECORATED);
         layout.setMenuEnabled(false);
         /*layout.registerToolBar(ToolbarPosition.NORTH);*/

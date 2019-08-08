@@ -21,11 +21,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.log4j.Log4j;
-import org.apache.log4j.Logger;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
+import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,54 +45,58 @@ public class ProjectCreate implements Initializable {
     private static final int PORT = 9999;
     private static final String HOST = "localhost";
 
+    @Resource
+    private Context context;
+    @Resource
+    private ResourceBundle bundle;
     @FXML
-    public TextField textField;
+    private TextField textField;
     @FXML
-    public Label lNumber;
+    private Label lNumber;
     @FXML
-    public Label lSize;
+    private Label lSize;
     @FXML
-    public TableView table;
+    private TableView<Member> table;
     @FXML
-    public TableColumn<Member, Long> cName;
+    private TableColumn<Member, Long> cName;
     @FXML
-    public TableColumn<Member, Member> cRemove;
+    private TableColumn<Member, Member> cRemove;
     @FXML
-    public ComboBox<String> comboBoxStatus;
+    private ComboBox<String> comboBoxStatus;
     @FXML
-    public ComboBox<String> comboBoxOption;
+    private ComboBox<String> comboBoxOption;
     @FXML
-    public ComboBox<Member> comboBoxLeader;
+    private ComboBox<Member> comboBoxLeader;
     @FXML
-    public TextField customer;
+    private TextField customer;
     @FXML
-    public TextField name;
+    private TextField name;
     @FXML
-    public TextField number;
+    private TextField number;
     @FXML
-    public Label lNumberExist;
+    private Label lNumberExist;
     @FXML
-    public Label lNameEmpty;
+    private Label lNameEmpty;
     @FXML
-    public Label lCustomerEmpty;
+    private Label lCustomerEmpty;
     @FXML
-    public Label lLeaderChoice;
+    private Label lLeaderChoice;
     @FXML
-    public Label lStartEmpty;
+    private Label lStartEmpty;
     @FXML
-    public Label lEndInvalid;
+    private Label lEndInvalid;
     @FXML
-    public Label lGroupOption;
+    private Label lGroupOption;
     @FXML
-    public Label lFillAll;
+    private Label lFillAll;
     @FXML
-    public Button bCreate;
+    private Button bCreate;
     @FXML
-    public Button bCancel;
+    private Button bCancel;
     @FXML
-    public DatePicker start;
+    private DatePicker start;
     @FXML
-    public DatePicker end;
+    private DatePicker end;
 
     private ManagedChannel channel;
     private boolean chose;
@@ -103,14 +108,13 @@ public class ProjectCreate implements Initializable {
     private List<Member> leaders;
     private List<Member> leaderOptions;
     private AutoCompletionBinding<Member> employeeAutoCompletion;
-    private Logger logger = Logger.getLogger(ProjectCreate.class);
 
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         // Init this scene code go here
-        logger.info("[PIM Client - ProjectCreate] On init scene ");
+        log.info("[PIM Client - ProjectCreate] On init scene ");
 
         // Get all necessary data from server
         getNecessaryData();
@@ -284,7 +288,7 @@ public class ProjectCreate implements Initializable {
             table.getItems().add(member);
 
             members.add(member.getId());
-            logger.info(members);
+            log.info(members);
 
             // Update autocompletion list
             // remove the selected one
@@ -350,7 +354,7 @@ public class ProjectCreate implements Initializable {
                     members.remove(member.getId());
 
                     // log current list member id
-                    logger.info(members);
+                    log.info(members);
                 });
             }
         };
@@ -359,7 +363,7 @@ public class ProjectCreate implements Initializable {
 
     // when user click button create Project
     private void onSubmit(MouseEvent event) {
-        logger.info("[bCreate] onClick");
+        log.info("[bCreate] onClick");
         boolean emptyNumber = number.getText().isEmpty();
         boolean emptyName = name.getText().isEmpty();
         boolean emptyCustomer = name.getText().isEmpty();
@@ -375,13 +379,13 @@ public class ProjectCreate implements Initializable {
 
         if (chose && !(emptyNumber || emptyName || emptyCustomer || emptyStart)) {
             if (!emptyEnd && end.getValue().isBefore(start.getValue())) {
-                logger.info("<<< INVALID END-DATE ! >>>");
+                log.info("<<< INVALID END-DATE ! >>>");
                 end.getEditor().getStyleClass().add("empty");
                 lEndInvalid.setVisible(true);
                 return;
             }
 
-            logger.info("<<< PIM - On saving new project >>>");
+            log.info("<<< PIM - On saving new project >>>");
 
             Employee groupLeader = Employee.newBuilder()
                     .setId(leader.getId())
@@ -400,7 +404,7 @@ public class ProjectCreate implements Initializable {
 
                 if (comboBoxOption.getSelectionModel().getSelectedItem().equals("New group")) {
                     // send group info to server to save
-                    logger.info("<<< PIM - On creating new group >>>");
+                    log.info("<<< PIM - On creating new group >>>");
 
                     if (GroupUtil.addNewGroup(channel, group)) {
                         NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
@@ -434,7 +438,7 @@ public class ProjectCreate implements Initializable {
                         .addAllEmployees(employeeList)
                         .build();
 
-                logger.info(projectInfo);
+                log.info(projectInfo);
 
                 NotificationUtil.showNotification(NotificationStyle.INFO, Pos.CENTER,
                         "[PIM] On saving new project !");
@@ -449,7 +453,7 @@ public class ProjectCreate implements Initializable {
                 }
 
             } catch (Exception exception) {
-                logger.info(exception);
+                log.info(exception);
 
             } finally {
                 channel.shutdown();
@@ -480,7 +484,8 @@ public class ProjectCreate implements Initializable {
 
     // when user click button cancel
     private void onCancel(MouseEvent event) {
-        logger.info("[bCancel] onClick");
+        log.info("[bCancel] onClick");
+        context.send(AppConfiguration.COMPONENT_MAIN, AppConfiguration.FRAGMENT_PROJECT_LIST);
     }
 
 
@@ -533,7 +538,7 @@ public class ProjectCreate implements Initializable {
             }
         }
 
-        logger.info(members);
+        log.info(members);
 
         // load auto-completion again
         employeeAutoCompletion.dispose();

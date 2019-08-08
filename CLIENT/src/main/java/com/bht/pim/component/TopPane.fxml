@@ -5,42 +5,42 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="topPane" maxHeight="80.0" minHeight="80.0" prefHeight="80.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="topPane" maxHeight="100.0" minHeight="100.0" prefHeight="100.0"
             prefWidth="1260" stylesheets="/com/bht/pim/component/TopPane.css"
             xmlns="http://javafx.com/javafx/8.0.999-ea">
     <children>
-        <ImageView fx:id="logo" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true"
-                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
+        <ImageView fx:id="logo" fitHeight="70.0" fitWidth="70.0" layoutX="14.0" layoutY="25.0" preserveRatio="true"
+                   AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
             <Image url="/pictures/logo.png"/>
         </ImageView>
         <Label layoutX="90.0" layoutY="22.0" text="Project Information Management" textFill="#606060"
-               AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="25.0">
+               AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="120.0">
             <font>
-                <Font name="System Bold" size="28.0"/>
+                <Font name="System Bold" size="32.0"/>
             </font>
         </Label>
-        <Label layoutX="823.0" layoutY="32.0" text="EN" textFill="#707070" AnchorPane.rightAnchor="330.0"
-               AnchorPane.topAnchor="30.0">
+        <Label layoutX="823.0" layoutY="32.0" text="EN" textFill="#707070" AnchorPane.bottomAnchor="30.0"
+               AnchorPane.rightAnchor="330.0">
             <font>
                 <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
         <Separator layoutX="856.0" layoutY="20.0" maxHeight="40.0" minHeight="40.0" orientation="VERTICAL"
-                   prefHeight="40.0" AnchorPane.rightAnchor="320.0" AnchorPane.topAnchor="20.0"/>
-        <Label layoutX="869.0" layoutY="32.0" text="FR" textFill="#707070" AnchorPane.rightAnchor="295.0"
-               AnchorPane.topAnchor="30.0">
+                   prefHeight="40.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="320.0"/>
+        <Label layoutX="869.0" layoutY="32.0" text="FR" textFill="#707070" AnchorPane.bottomAnchor="30.0"
+               AnchorPane.rightAnchor="295.0">
             <font>
                 <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <Label layoutX="1003.0" layoutY="32.0" text="Help" textFill="#3399ff" AnchorPane.rightAnchor="130.0"
-               AnchorPane.topAnchor="30.0">
+        <Label layoutX="1003.0" layoutY="32.0" text="Help" textFill="#3399ff" AnchorPane.bottomAnchor="30.0"
+               AnchorPane.rightAnchor="130.0">
             <font>
                 <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <Label layoutX="1149.0" layoutY="32.0" text="Log out" textFill="#bebebe" AnchorPane.rightAnchor="45.0"
-               AnchorPane.topAnchor="30.0">
+        <Label layoutX="1149.0" layoutY="32.0" text="Log out" textFill="#bebebe" AnchorPane.bottomAnchor="30.0"
+               AnchorPane.rightAnchor="45.0">
             <font>
                 <Font name="System Bold" size="18.0"/>
             </font>

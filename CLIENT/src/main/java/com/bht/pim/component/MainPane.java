@@ -1,7 +1,14 @@
 package com.bht.pim.component;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.employee.EmployeeInfo;
+import com.bht.pim.fragment.employee.EmployeeList;
+import com.bht.pim.fragment.group.GroupInfo;
+import com.bht.pim.fragment.group.GroupList;
+import com.bht.pim.fragment.project.ProjectCreate;
+import com.bht.pim.fragment.project.ProjectInfo;
 import com.bht.pim.fragment.project.ProjectList;
+import com.bht.pim.fragment.project.ProjectUpdate;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -30,7 +37,7 @@ import java.util.ResourceBundle;
 public class MainPane implements FXComponent {
 
     @FXML
-    public AnchorPane mainPane;
+    private AnchorPane mainPane;
 
     @Resource
     private Context context;
@@ -45,6 +52,47 @@ public class MainPane implements FXComponent {
 
     @Override
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
+
+        log.info(message);
+
+        switch (message.getMessageBody().toString()) {
+
+            case AppConfiguration.FRAGMENT_PROJECT_LIST:
+                alterFragment(ProjectList.class);
+                break;
+
+            case AppConfiguration.FRAGMENT_PROJECT_INFO:
+                alterFragment(ProjectInfo.class);
+                break;
+
+            case AppConfiguration.FRAGMENT_PROJECT_CREATE:
+                alterFragment(ProjectCreate.class);
+                break;
+
+            case AppConfiguration.FRAGMENT_PROJECT_UPDATE:
+                alterFragment(ProjectUpdate.class);
+                break;
+
+            case AppConfiguration.FRAGMENT_GROUP_LIST:
+                alterFragment(GroupList.class);
+                break;
+
+            case AppConfiguration.FRAGMENT_GROUP_INFO:
+                alterFragment(GroupInfo.class);
+                break;
+
+            case AppConfiguration.FRAGMENT_EMPLOYEE_LIST:
+                alterFragment(EmployeeList.class);
+                break;
+
+            case AppConfiguration.FRAGMENT_EMPLOYEE_INFO:
+                alterFragment(EmployeeInfo.class);
+                break;
+
+            default:
+                break;
+        }
+
         return null;
     }
 
@@ -73,5 +121,12 @@ public class MainPane implements FXComponent {
     @OnHide
     public void onHide(final FXComponentLayout componentLayout) {
         log.info("[HIDE] FXComponentLayout: " + componentLayout + " in: " + context.getId());
+    }
+
+    @SuppressWarnings("unchecked")
+    private void alterFragment(Class fragment) {
+        mainPane.getChildren().remove(mainPane.getChildren().get(0));
+        mainPane.getChildren().add(context
+                .getManagedFragmentHandler(fragment).getFragmentNode());
     }
 }
