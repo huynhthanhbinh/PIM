@@ -56,6 +56,9 @@ public class MainPane implements FXComponent {
                 .getManagedFragmentHandler(ProjectList.class);
 
         mainPane.getChildren().add(fragment.getFragmentNode());
+
+        mainPane.prefWidthProperty().bind(layout.getGlassPane().widthProperty().subtract(227));
+        mainPane.prefHeightProperty().bind(layout.getGlassPane().heightProperty().subtract(100));
     }
 
     @PreDestroy

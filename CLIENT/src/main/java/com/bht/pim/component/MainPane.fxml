@@ -5,6 +5,7 @@
             xmlns="http://javafx.com/javafx"
             stylesheets="/com/bht/pim/component/MainPane.css"
             minHeight="600" minWidth="1024" prefHeight="600.0" prefWidth="1024.0"
+            style="-fx-background-color: yellow"
             fx:id="mainPane">
 
 </AnchorPane>
