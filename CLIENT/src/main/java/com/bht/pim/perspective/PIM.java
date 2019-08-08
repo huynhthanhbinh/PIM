@@ -3,6 +3,7 @@ package com.bht.pim.perspective;
 import com.bht.pim.configuration.AppConfiguration;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
@@ -29,6 +30,8 @@ import java.util.ResourceBundle;
                 AppConfiguration.COMPONENT_MAIN,})
 public class PIM implements FXPerspective {
 
+    @FXML
+    private SplitPane splitPane;
     @FXML
     private AnchorPane rootPane;
     @FXML

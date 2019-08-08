@@ -33,17 +33,19 @@
                 <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <Label layoutX="1003.0" layoutY="32.0" text="Help" textFill="#3399ff" AnchorPane.bottomAnchor="30.0"
-               AnchorPane.rightAnchor="130.0" fx:id="lHelp">
+        <Label fx:id="lHelp" layoutX="1003.0" layoutY="32.0" text="Help" textFill="#3399ff"
+               AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="130.0">
             <font>
                 <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <Label layoutX="1149.0" layoutY="32.0" text="Log out" textFill="#bebebe" AnchorPane.bottomAnchor="30.0"
-               AnchorPane.rightAnchor="45.0" fx:id="lLogout">
+        <Label fx:id="lLogout" layoutX="1149.0" layoutY="32.0" text="Log out" textFill="#bebebe"
+               AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="45.0">
             <font>
                 <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
+        <Separator layoutX="341.0" layoutY="85.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0"
+                   AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"/>
     </children>
 </AnchorPane>

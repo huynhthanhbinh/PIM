@@ -68,7 +68,7 @@ public class ProjectList implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // Init this scene code go here
-        log.info("[PIM Client - ProjectCreate] On init scene ");
+        log.info("[PIM Client - ProjectList] On init scene ");
 
         Pane main = context.getComponentLayout().getGlassPane();
         mainPane.prefWidthProperty().bind(main.widthProperty().subtract(227));

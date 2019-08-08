@@ -12,7 +12,7 @@
                     AnchorPane.topAnchor="10.0"/>
         <SplitPane dividerPositions="0.15" minHeight="600.0" minWidth="1260.0" prefHeight="600.0" prefWidth="1260"
                    AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
-                   AnchorPane.topAnchor="100.0">
+                   AnchorPane.topAnchor="100.0" style="-fx-box-border: transparent;">
             <items>
                 <AnchorPane fx:id="leftPane" maxWidth="200.0" minHeight="600" minWidth="200.0" prefHeight="600"
                             prefWidth="200.0"/>
