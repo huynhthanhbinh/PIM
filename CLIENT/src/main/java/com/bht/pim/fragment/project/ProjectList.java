@@ -1,6 +1,8 @@
 package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.message.impl.FragmentSwitching;
+import com.bht.pim.message.impl.LabelUpdating;
 import com.bht.pim.proto.projects.Project;
 import com.bht.pim.util.DateUtil;
 import com.bht.pim.util.ProjectUtil;
@@ -26,7 +28,7 @@ import java.util.ResourceBundle;
 
 @Log4j
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST,
-        resourceBundleLocation = "bundles.languageBundle",
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/project/ProjectList.fxml")
 public class ProjectList implements Initializable {
@@ -68,6 +70,9 @@ public class ProjectList implements Initializable {
 
         // Init this scene code go here
         log.info("[PIM Client - ProjectList] On init scene ");
+
+        LabelUpdating labelUpdating = new LabelUpdating(AppConfiguration.LABEL_PROJECT_LIST);
+        context.send(AppConfiguration.COMPONENT_MAIN, labelUpdating);
 
         Pane main = context.getComponentLayout().getGlassPane();
         mainPane.prefWidthProperty().bind(main.widthProperty().subtract(227));
@@ -146,7 +151,11 @@ public class ProjectList implements Initializable {
 
         bNew.setOnMouseClicked(event -> {
             log.info("[NEW] on mouse clicked");
-            context.send(AppConfiguration.COMPONENT_MAIN, AppConfiguration.FRAGMENT_PROJECT_CREATE);
+
+            FragmentSwitching switching = new FragmentSwitching(
+                    AppConfiguration.FRAGMENT_PROJECT_CREATE);
+
+            context.send(AppConfiguration.COMPONENT_MAIN, switching);
         });
     }
 

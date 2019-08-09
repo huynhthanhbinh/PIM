@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfiguration {
 
+    public static final String LANGUAGE_BUNDLES = "bundles.languageBundle";
+
     public static final String PERSPECTIVE = "idPerspective";
 
     public static final String TARGET_CONTAINER_TOP = "PTop";
@@ -16,6 +18,8 @@ public class AppConfiguration {
     public static final String COMPONENT_TOP = "idcTop";
     public static final String COMPONENT_LEFT = "idcLeft";
     public static final String COMPONENT_MAIN = "idcMain";
+
+    public static final String FRAGMENT_MAIN_LABEL = "idfMLabel";
 
     public static final String FRAGMENT_PROJECT_LIST = "idfPList";
     public static final String FRAGMENT_PROJECT_INFO = "idfPInfo";
@@ -27,4 +31,7 @@ public class AppConfiguration {
 
     public static final String FRAGMENT_EMPLOYEE_LIST = "idfEList";
     public static final String FRAGMENT_EMPLOYEE_INFO = "idfEInfo";
+
+    public static final String LABEL_PROJECT_LIST = "PROJECT LIST";
+    public static final String LABEL_PROJECT_CREATE = "NEW PROJECT";
 }

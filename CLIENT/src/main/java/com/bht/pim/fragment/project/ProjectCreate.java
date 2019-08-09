@@ -2,6 +2,8 @@ package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.intermediate.Member;
+import com.bht.pim.message.impl.FragmentSwitching;
+import com.bht.pim.message.impl.LabelUpdating;
 import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.groups.Group;
@@ -37,7 +39,7 @@ import java.util.stream.Collectors;
 
 @Log4j
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_CREATE,
-        resourceBundleLocation = "bundles.languageBundle",
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/project/ProjectCreate.fxml")
 public class ProjectCreate implements Initializable {
@@ -115,6 +117,9 @@ public class ProjectCreate implements Initializable {
 
         // Init this scene code go here
         log.info("[PIM Client - ProjectCreate] On init scene ");
+
+        LabelUpdating labelUpdating = new LabelUpdating(AppConfiguration.LABEL_PROJECT_CREATE);
+        context.send(AppConfiguration.COMPONENT_MAIN, labelUpdating);
 
         // Get all necessary data from server
         getNecessaryData();
@@ -485,7 +490,11 @@ public class ProjectCreate implements Initializable {
     // when user click button cancel
     private void onCancel(MouseEvent event) {
         log.info("[bCancel] onClick");
-        context.send(AppConfiguration.COMPONENT_MAIN, AppConfiguration.FRAGMENT_PROJECT_LIST);
+
+        FragmentSwitching switching = new FragmentSwitching(
+                AppConfiguration.FRAGMENT_PROJECT_LIST);
+
+        context.send(AppConfiguration.COMPONENT_MAIN, switching);
     }
 
 

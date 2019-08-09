@@ -7,7 +7,7 @@ import org.jacpfx.api.fragment.Scope;
 
 @Log4j
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_UPDATE,
-        resourceBundleLocation = "bundles.languageBundle",
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/project/ProjectUpdate.fxml")
 public class ProjectUpdate {

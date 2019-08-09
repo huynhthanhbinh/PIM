@@ -1,18 +1,15 @@
 package com.bht.pim.component;
 
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.employee.EmployeeInfo;
-import com.bht.pim.fragment.employee.EmployeeList;
-import com.bht.pim.fragment.group.GroupInfo;
-import com.bht.pim.fragment.group.GroupList;
-import com.bht.pim.fragment.project.ProjectCreate;
-import com.bht.pim.fragment.project.ProjectInfo;
+import com.bht.pim.fragment.label.MainLabel;
 import com.bht.pim.fragment.project.ProjectList;
-import com.bht.pim.fragment.project.ProjectUpdate;
+import com.bht.pim.message.PimMessage;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
@@ -29,21 +26,25 @@ import org.jacpfx.rcp.context.Context;
 import java.util.ResourceBundle;
 
 @Log4j
+@Getter
+@Setter
 @DeclarativeView(id = AppConfiguration.COMPONENT_MAIN,
         name = "MainPane",
-        resourceBundleLocation = "bundles.languageBundle",
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_MAIN,
         viewLocation = "/com/bht/pim/component/MainPane.fxml")
 public class MainPane implements FXComponent {
-
     @FXML
-    private AnchorPane mainPane;
+    private VBox mainPane;
 
     @Resource
     private Context context;
 
     @Resource
     private ResourceBundle bundle;
+
+    private ManagedFragmentHandler<MainLabel> labelFragment;
+    private ManagedFragmentHandler mainFragment;
 
     @Override
     public Node handle(Message<Event, Object> message) throws Exception {
@@ -53,57 +54,29 @@ public class MainPane implements FXComponent {
     @Override
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
 
-        log.info(message);
+        log.info("Node: " + node);
+        log.info("Message: " + message);
 
-        switch (message.getMessageBody().toString()) {
+        Node xNode = null;
+        Object messageBody = message.getMessageBody();
 
-            case AppConfiguration.FRAGMENT_PROJECT_LIST:
-                alterFragment(ProjectList.class);
-                break;
-
-            case AppConfiguration.FRAGMENT_PROJECT_INFO:
-                alterFragment(ProjectInfo.class);
-                break;
-
-            case AppConfiguration.FRAGMENT_PROJECT_CREATE:
-                alterFragment(ProjectCreate.class);
-                break;
-
-            case AppConfiguration.FRAGMENT_PROJECT_UPDATE:
-                alterFragment(ProjectUpdate.class);
-                break;
-
-            case AppConfiguration.FRAGMENT_GROUP_LIST:
-                alterFragment(GroupList.class);
-                break;
-
-            case AppConfiguration.FRAGMENT_GROUP_INFO:
-                alterFragment(GroupInfo.class);
-                break;
-
-            case AppConfiguration.FRAGMENT_EMPLOYEE_LIST:
-                alterFragment(EmployeeList.class);
-                break;
-
-            case AppConfiguration.FRAGMENT_EMPLOYEE_INFO:
-                alterFragment(EmployeeInfo.class);
-                break;
-
-            default:
-                break;
+        if (messageBody instanceof PimMessage) {
+            log.info("[PIM Message] " + messageBody.getClass().getSimpleName());
+            xNode = ((PimMessage) messageBody).postHandle(node, this);
         }
 
-        return null;
+        return xNode;
     }
 
     @PostConstruct
     public void onStartComponent(final FXComponentLayout layout,
                                  final ResourceBundle resourceBundle) {
 
-        ManagedFragmentHandler<ProjectList> fragment = context
-                .getManagedFragmentHandler(ProjectList.class);
+        labelFragment = context.getManagedFragmentHandler(MainLabel.class);
+        mainFragment = context.getManagedFragmentHandler(ProjectList.class);
 
-        mainPane.getChildren().add(fragment.getFragmentNode());
+        mainPane.getChildren().add(labelFragment.getFragmentNode());
+        mainPane.getChildren().add(mainFragment.getFragmentNode());
 
         mainPane.prefWidthProperty().bind(layout.getGlassPane().widthProperty().subtract(227));
         mainPane.prefHeightProperty().bind(layout.getGlassPane().heightProperty().subtract(100));
@@ -123,10 +96,5 @@ public class MainPane implements FXComponent {
         log.info("[HIDE] FXComponentLayout: " + componentLayout + " in: " + context.getId());
     }
 
-    @SuppressWarnings("unchecked")
-    private void alterFragment(Class fragment) {
-        mainPane.getChildren().remove(mainPane.getChildren().get(0));
-        mainPane.getChildren().add(context
-                .getManagedFragmentHandler(fragment).getFragmentNode());
-    }
+
 }

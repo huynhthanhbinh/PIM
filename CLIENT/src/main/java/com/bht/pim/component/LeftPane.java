@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 @Log4j
 @DeclarativeView(id = AppConfiguration.COMPONENT_LEFT,
         name = "LeftPane",
-        resourceBundleLocation = "bundles.languageBundle",
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_LEFT,
         viewLocation = "/com/bht/pim/component/LeftPane.fxml")
 public class LeftPane implements FXComponent {
