@@ -51,18 +51,19 @@ public class PIM implements FXPerspective {
         log.info("On handle perspective: " + perspectiveLayout + " in " + context.getId());
     }
 
+    @PreDestroy
+    public void onTearDownComponent(final FXComponentLayout componentLayout) {
+        log.info("[DESTROY] FXPerspective: " + context.getId());
+    }
+
     @OnShow
-    public void onShowComponent(final FXComponentLayout perspectiveLayout) {
-        log.info("[SHOW] FXPerspectiveLayout: " + perspectiveLayout + " in: " + context.getId());
+    public void onShowComponent(final FXComponentLayout componentLayout) {
+        log.info("[SHOW] FXPerspective: " + context.getId());
     }
 
     @OnHide
     public void onHide(final FXComponentLayout componentLayout) {
-        log.info("[HIDE] FXComponentLayout: " + componentLayout + " in: " + context.getId());
-    }
-
-    @PreDestroy
-    public void onTearDownPerspective(final FXComponentLayout arg0) {
+        log.info("[HIDE] FXPerspective: " + context.getId());
     }
 
     @PostConstruct
