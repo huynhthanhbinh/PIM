@@ -4,6 +4,7 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.label.MainLabel;
 import com.bht.pim.fragment.project.ProjectList;
 import com.bht.pim.message.PimMessage;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -53,10 +54,6 @@ public class MainPane implements FXComponent {
 
     @Override
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
-
-        log.info("Node: " + node);
-        log.info("Message: " + message);
-
         Node xNode = null;
         Object messageBody = message.getMessageBody();
 
@@ -82,19 +79,28 @@ public class MainPane implements FXComponent {
         mainPane.prefHeightProperty().bind(layout.getGlassPane().heightProperty().subtract(100));
     }
 
+    @FXML
+    @SuppressWarnings("unchecked")
+    public static void switchFragment(MainPane mainPane, Class fragmentClazz) {
+        ObservableList<Node> nodes = mainPane.getMainPane().getChildren();
+        nodes.remove(nodes.get(1));
+        mainPane.setMainFragment(mainPane.getContext()
+                .getManagedFragmentHandler(fragmentClazz));
+        nodes.add(mainPane.getMainFragment().getFragmentNode());
+    }
+
     @PreDestroy
-    public void onTearDownComponent(final FXComponentLayout arg0) {
+    public void onTearDownComponent(final FXComponentLayout componentLayout) {
+        log.info("[DESTROY] FXComponentLayout: " + context.getId());
     }
 
     @OnShow
     public void onShowComponent(final FXComponentLayout componentLayout) {
-        log.info("[SHOW] FXComponentLayout: " + componentLayout + " in: " + context.getId());
+        log.info("[SHOW] FXComponentLayout: " + context.getId());
     }
 
     @OnHide
     public void onHide(final FXComponentLayout componentLayout) {
-        log.info("[HIDE] FXComponentLayout: " + componentLayout + " in: " + context.getId());
+        log.info("[HIDE] FXComponentLayout: " + context.getId());
     }
-
-
 }

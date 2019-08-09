@@ -52,16 +52,17 @@ public class LeftPane implements FXComponent {
     }
 
     @PreDestroy
-    public void onTearDownComponent(final FXComponentLayout arg0) {
+    public void onTearDownComponent(final FXComponentLayout componentLayout) {
+        log.info("[DESTROY] FXComponentLayout: " + context.getId());
     }
 
     @OnShow
     public void onShowComponent(final FXComponentLayout componentLayout) {
-        log.info("[SHOW] FXComponentLayout: " + componentLayout + " in: " + context.getId());
+        log.info("[SHOW] FXComponentLayout: " + context.getId());
     }
 
     @OnHide
     public void onHide(final FXComponentLayout componentLayout) {
-        log.info("[HIDE] FXComponentLayout: " + componentLayout + " in: " + context.getId());
+        log.info("[HIDE] FXComponentLayout: " + context.getId());
     }
 }

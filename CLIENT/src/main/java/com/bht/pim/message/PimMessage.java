@@ -3,7 +3,6 @@ package com.bht.pim.message;
 import com.bht.pim.component.MainPane;
 import javafx.scene.Node;
 
-
 public interface PimMessage {
 
     // post handle Pim messages for MainPane

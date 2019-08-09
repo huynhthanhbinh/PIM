@@ -11,31 +11,16 @@ import com.bht.pim.fragment.project.ProjectInfo;
 import com.bht.pim.fragment.project.ProjectList;
 import com.bht.pim.fragment.project.ProjectUpdate;
 import com.bht.pim.message.PimMessage;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
-@Getter
 @AllArgsConstructor
 public class FragmentSwitching implements PimMessage {
     private String newFragment;
 
     @Override
-    @SuppressWarnings("unchecked")
     public Node postHandle(Node node, MainPane mainPane) {
-        Class clazz = toFragmentClass(newFragment);
-
-        ObservableList<Node> nodes =
-                mainPane.getMainPane().getChildren();
-
-        nodes.remove(nodes.get(1));
-
-        mainPane.setMainFragment(mainPane.getContext()
-                .getManagedFragmentHandler(clazz));
-
-        nodes.add(mainPane.getMainFragment().getFragmentNode());
-
+        MainPane.switchFragment(mainPane, toFragmentClass(newFragment));
         return null;
     }
 

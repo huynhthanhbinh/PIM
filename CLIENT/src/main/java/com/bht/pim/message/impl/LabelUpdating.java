@@ -4,10 +4,7 @@ import com.bht.pim.component.MainPane;
 import com.bht.pim.message.PimMessage;
 import javafx.scene.Node;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
-
-@Getter
 @AllArgsConstructor
 public class LabelUpdating implements PimMessage {
     private String newLabel;
