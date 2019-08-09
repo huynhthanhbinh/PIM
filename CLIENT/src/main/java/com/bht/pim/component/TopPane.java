@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_TOP,
         viewLocation = "/com/bht/pim/component/TopPane.fxml")
 public class TopPane implements FXComponent {
-
     @FXML
     private AnchorPane topPane;
 
@@ -65,7 +64,6 @@ public class TopPane implements FXComponent {
     @PostConstruct
     public void onStartComponent(final FXComponentLayout layout,
                                  final ResourceBundle resourceBundle) {
-
         logo.setPreserveRatio(true);
         lEnglish.getStyleClass().add("active");
 
@@ -75,13 +73,27 @@ public class TopPane implements FXComponent {
         lLogout.getStyleClass().add("clickable");
 
         lEnglish.setOnMouseClicked(event -> {
+
             log.info("[TopPane] Clicked English");
+
+            if (lEnglish.getStyleClass().contains("active")) {
+                event.consume();
+                return;
+            }
+
             lFrench.getStyleClass().remove("active");
             lEnglish.getStyleClass().add("active");
         });
 
         lFrench.setOnMouseClicked(event -> {
+
             log.info("[TopPane] Clicked French");
+
+            if (lFrench.getStyleClass().contains("active")) {
+                event.consume();
+                return;
+            }
+
             lEnglish.getStyleClass().remove("active");
             lFrench.getStyleClass().add("active");
         });
