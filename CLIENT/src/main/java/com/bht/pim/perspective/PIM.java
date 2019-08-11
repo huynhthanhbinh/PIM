@@ -48,7 +48,8 @@ public class PIM implements FXPerspective {
     @Override
     public void handlePerspective(Message<Event, Object> message,
                                   PerspectiveLayout perspectiveLayout) {
-        log.info("On handle perspective: " + perspectiveLayout + " in " + context.getId());
+        log.info("On handle perspective: " + perspectiveLayout.getClass().getSimpleName() +
+                " >>> in: " + context.getId());
     }
 
     @PreDestroy

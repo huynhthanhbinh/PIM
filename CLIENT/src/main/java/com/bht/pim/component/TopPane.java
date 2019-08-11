@@ -52,12 +52,12 @@ public class TopPane implements FXComponent {
     private ResourceBundle bundle;
 
     @Override
-    public Node handle(Message<Event, Object> message) throws Exception {
+    public Node handle(Message<Event, Object> message) {
         return null;
     }
 
     @Override
-    public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
+    public Node postHandle(Node node, Message<Event, Object> message) {
         return null;
     }
 

@@ -29,8 +29,7 @@ import java.util.ResourceBundle;
 @Log4j
 @Getter
 @Setter
-@DeclarativeView(id = AppConfiguration.COMPONENT_MAIN,
-        name = "MainPane",
+@DeclarativeView(id = AppConfiguration.COMPONENT_MAIN, name = "MainPane",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_MAIN,
         viewLocation = "/com/bht/pim/component/MainPane.fxml")
@@ -48,18 +47,21 @@ public class MainPane implements FXComponent {
     private ManagedFragmentHandler mainFragment;
 
     @Override
-    public Node handle(Message<Event, Object> message) throws Exception {
+    public Node handle(Message<Event, Object> message) {
         return null;
     }
 
     @Override
-    public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
+    public Node postHandle(Node node, Message<Event, Object> message) {
         Node xNode = null;
-        Object messageBody = message.getMessageBody();
 
-        if (messageBody instanceof PimMessage) {
-            log.info("[PIM Message] " + messageBody.getClass().getSimpleName());
-            xNode = ((PimMessage) messageBody).postHandle(node, this);
+        if (message.isMessageBodyTypeOf(PimMessage.class)) {
+            PimMessage messageBody = (PimMessage) message.getMessageBody();
+
+            log.info("[PIM Message] " + messageBody.getClass().getSimpleName() +
+                    " >>> sent from: " + messageBody.getFragmentSent());
+
+            xNode = messageBody.postHandle(node, this);
         }
 
         return xNode;

@@ -7,7 +7,14 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class LabelUpdating implements PimMessage {
+
+    private String fragmentSent;
     private String newLabel;
+
+    @Override
+    public String getFragmentSent() {
+        return fragmentSent;
+    }
 
     @Override
     public Node postHandle(Node node, MainPane mainPane) {

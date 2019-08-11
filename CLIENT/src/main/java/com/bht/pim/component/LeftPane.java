@@ -20,8 +20,7 @@ import org.jacpfx.rcp.context.Context;
 import java.util.ResourceBundle;
 
 @Log4j
-@DeclarativeView(id = AppConfiguration.COMPONENT_LEFT,
-        name = "LeftPane",
+@DeclarativeView(id = AppConfiguration.COMPONENT_LEFT, name = "LeftPane",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_LEFT,
         viewLocation = "/com/bht/pim/component/LeftPane.fxml")
@@ -37,12 +36,12 @@ public class LeftPane implements FXComponent {
     private ResourceBundle bundle;
 
     @Override
-    public Node handle(Message<Event, Object> message) throws Exception {
+    public Node handle(Message<Event, Object> message) {
         return null;
     }
 
     @Override
-    public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
+    public Node postHandle(Node node, Message<Event, Object> message) {
         return null;
     }
 

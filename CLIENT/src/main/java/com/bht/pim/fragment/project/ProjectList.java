@@ -8,6 +8,7 @@ import com.bht.pim.util.DateUtil;
 import com.bht.pim.util.ProjectUtil;
 import com.google.protobuf.Timestamp;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
+import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -69,9 +70,12 @@ public class ProjectList implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // Init this scene code go here
-        log.info("[PIM Client - ProjectList] On init scene ");
+        log.info("[Project List] On init scene ");
 
-        LabelUpdating labelUpdating = new LabelUpdating(AppConfiguration.LABEL_PROJECT_LIST);
+        LabelUpdating labelUpdating = new LabelUpdating(
+                AppConfiguration.FRAGMENT_PROJECT_LIST,
+                AppConfiguration.LABEL_PROJECT_LIST);
+
         context.send(AppConfiguration.COMPONENT_MAIN, labelUpdating);
 
         Pane main = context.getComponentLayout().getGlassPane();
@@ -143,9 +147,9 @@ public class ProjectList implements Initializable {
 
     // Add all event-listener
     private void addAllEventListener() {
-        table.widthProperty().addListener((source, oldWidth, newWidth) -> {
-            TableHeaderRow header = (TableHeaderRow) table.lookup("TableHeaderRow");
-            header.reorderingProperty().addListener((observable, oldValue, newValue) ->
+        table.skinProperty().addListener((observable, oldSkin, newSkin) -> {
+            TableHeaderRow header = ((TableViewSkinBase) newSkin).getTableHeaderRow();
+            header.reorderingProperty().addListener((observable0, oldValue, newValue) ->
                     header.setReordering(false));
         });
 
@@ -153,6 +157,7 @@ public class ProjectList implements Initializable {
             log.info("[NEW] on mouse clicked");
 
             FragmentSwitching switching = new FragmentSwitching(
+                    AppConfiguration.FRAGMENT_PROJECT_LIST,
                     AppConfiguration.FRAGMENT_PROJECT_CREATE);
 
             context.send(AppConfiguration.COMPONENT_MAIN, switching);

@@ -6,10 +6,12 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("com.bht.pim")
 @Configuration
 public class AppConfiguration {
+    public static final String PERSPECTIVE = "idPIMPerspective";
 
     public static final String LANGUAGE_BUNDLES = "bundles.languageBundle";
 
-    public static final String PERSPECTIVE = "idPerspective";
+    private AppConfiguration() {
+    }
 
     public static final String TARGET_CONTAINER_TOP = "PTop";
     public static final String TARGET_CONTAINER_LEFT = "PLeft";

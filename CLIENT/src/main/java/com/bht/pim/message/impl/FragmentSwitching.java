@@ -16,7 +16,14 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class FragmentSwitching implements PimMessage {
+
+    private String fragmentSent;
     private String newFragment;
+
+    @Override
+    public String getFragmentSent() {
+        return fragmentSent;
+    }
 
     @Override
     public Node postHandle(Node node, MainPane mainPane) {

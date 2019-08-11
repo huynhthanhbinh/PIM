@@ -8,7 +8,13 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class LeaderChoosing implements PimMessage {
 
+    private String fragmentSent;
     private long leaderId;
+
+    @Override
+    public String getFragmentSent() {
+        return fragmentSent;
+    }
 
     @Override
     public Node postHandle(Node node, MainPane mainPane) {

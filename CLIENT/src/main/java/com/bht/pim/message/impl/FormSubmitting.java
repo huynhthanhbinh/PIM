@@ -8,6 +8,13 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class FormSubmitting implements PimMessage {
 
+    private String fragmentSent;
+
+    @Override
+    public String getFragmentSent() {
+        return fragmentSent;
+    }
+
     @Override
     public Node postHandle(Node node, MainPane mainPane) {
         return null;
