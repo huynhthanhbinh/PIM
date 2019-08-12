@@ -4,10 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" fx:id="mainPane"
-      prefHeight="600.0" prefWidth="1050.0" spacing="5.0"
-      stylesheets="/com/bht/pim/fragment/project/ProjectList.css" xmlns="http://javafx.com/javafx/8.0.999-ea">
+<VBox fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="600.0" prefWidth="1050.0" spacing="5.0" stylesheets="/com/bht/pim/fragment/project/ProjectList.css"
+      xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
     </padding>
@@ -24,8 +23,8 @@
                 <Font name="System Bold" size="20.0"/>
             </font>
         </Button>
-        <TableView fx:id="table" layoutX="24.0" layoutY="27.0" prefHeight="200.0" prefWidth="200.0"
-                   AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
+        <TableView fx:id="table" layoutX="24.0" layoutY="27.0" prefHeight="320.0" prefWidth="1000.0"
+                   AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
                    AnchorPane.topAnchor="50.0">
             <columns>
                 <TableColumn id="cSelect" fx:id="cSelect" prefWidth="75.0"/>

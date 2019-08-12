@@ -15,6 +15,7 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -112,7 +113,7 @@ public class ProjectList implements Initializable {
     private void initAllFields() {
         cSelect.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.05));
         cSelect.setCellValueFactory(new PropertyValueFactory<>("isSelected"));
-        cSelect.setCellFactory(this::select);
+        cSelect.setCellFactory(CheckBoxTableCell.forTableColumn(cSelect));
         cSelect.setResizable(false);
 
         cNumber.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
@@ -211,23 +212,29 @@ public class ProjectList implements Initializable {
 
     // Checkbox Select
     private TableCell<Project, Boolean> select(TableColumn<Project, Boolean> param) {
-        return new TableCell<Project, Boolean>() {
-
-            private CheckBox checkBox = new CheckBox();
+        return new CheckBoxTableCell<Project, Boolean>() {
 
             @Override
-            protected void updateItem(Boolean value, boolean empty) {
+            public void updateItem(Boolean value, boolean empty) {
                 if (value == null || empty) {
                     setGraphic(null);
                     return;
                 }
 
-                checkBox.selectedProperty().addListener(
-                        (observable, oldValue, newValue) -> {
-
-                        });
-
+                CheckBox checkBox = new CheckBox();
                 setGraphic(checkBox);
+
+                if (getTableRow() != null) {
+                    int rowNo = getTableRow().getIndex();
+                    TableView.TableViewSelectionModel selectionModel =
+                            getTableView().getSelectionModel();
+
+                    if (value) {
+                        selectionModel.select(rowNo);
+                    } else {
+                        selectionModel.clearSelection(rowNo);
+                    }
+                }
             }
         };
     }
