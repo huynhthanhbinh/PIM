@@ -1,9 +1,9 @@
 package com.bht.pim.util;
 
-import com.bht.pim.proto.groups.Group;
-import com.bht.pim.proto.groups.GroupList;
-import com.bht.pim.proto.groups.GroupListServiceGrpc;
-import com.bht.pim.proto.groups.GroupServiceGrpc;
+import com.bht.pim.dto.groups.Group;
+import com.bht.pim.dto.groups.GroupList;
+import com.bht.pim.dto.groups.GroupListServiceGrpc;
+import com.bht.pim.dto.groups.GroupServiceGrpc;
 import com.google.protobuf.Empty;
 import io.grpc.Channel;
 import javafx.collections.FXCollections;

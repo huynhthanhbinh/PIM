@@ -1,12 +1,12 @@
 package com.bht.pim.service;
 
 import com.bht.pim.dao.EmployeeDao;
+import com.bht.pim.dto.employees.Employee;
+import com.bht.pim.dto.employees.EmployeeInfo;
+import com.bht.pim.dto.employees.EmployeeServiceGrpc;
+import com.bht.pim.dto.groups.Group;
+import com.bht.pim.dto.projects.Project;
 import com.bht.pim.entity.EmployeeEntity;
-import com.bht.pim.proto.employees.Employee;
-import com.bht.pim.proto.employees.EmployeeInfo;
-import com.bht.pim.proto.employees.EmployeeServiceGrpc;
-import com.bht.pim.proto.groups.Group;
-import com.bht.pim.proto.projects.Project;
 import com.bht.pim.util.DateUtil;
 import com.google.protobuf.Int64Value;
 import com.google.protobuf.Timestamp;

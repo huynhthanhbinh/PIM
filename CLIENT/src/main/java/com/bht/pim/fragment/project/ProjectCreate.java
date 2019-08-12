@@ -1,16 +1,16 @@
 package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.dto.employees.Employee;
+import com.bht.pim.dto.groups.Group;
+import com.bht.pim.dto.projects.Project;
+import com.bht.pim.dto.projects.ProjectInfo;
 import com.bht.pim.fragment.confirm.Confirmable;
-import com.bht.pim.intermediate.Member;
 import com.bht.pim.message.impl.ConfirmBoxAdding;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.MainLabelUpdating;
 import com.bht.pim.notification.NotificationStyle;
-import com.bht.pim.proto.employees.Employee;
-import com.bht.pim.proto.groups.Group;
-import com.bht.pim.proto.projects.Project;
-import com.bht.pim.proto.projects.ProjectInfo;
+import com.bht.pim.pseudo.Member;
 import com.bht.pim.util.*;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
@@ -121,7 +121,7 @@ public class ProjectCreate implements Initializable, Confirmable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // Init this scene code go here
-        log.info("[Project Create] On init scene ");
+        log.info("[ProjectModel Create] On init scene ");
 
         log.info(mainPane.prefHeightProperty());
         log.info(context

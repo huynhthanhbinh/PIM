@@ -1,12 +1,12 @@
 package com.bht.pim.service;
 
 import com.bht.pim.dao.ProjectDao;
+import com.bht.pim.dto.groups.Group;
+import com.bht.pim.dto.projects.Project;
+import com.bht.pim.dto.projects.ProjectList;
+import com.bht.pim.dto.projects.ProjectListServiceGrpc;
+import com.bht.pim.dto.projects.ProjectNumbers;
 import com.bht.pim.entity.ProjectEntity;
-import com.bht.pim.proto.groups.Group;
-import com.bht.pim.proto.projects.Project;
-import com.bht.pim.proto.projects.ProjectList;
-import com.bht.pim.proto.projects.ProjectListServiceGrpc;
-import com.bht.pim.proto.projects.ProjectNumbers;
 import com.bht.pim.util.DateUtil;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Timestamp;

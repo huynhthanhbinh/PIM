@@ -5,7 +5,7 @@ import "google/protobuf/wrappers.proto";
 import "Employee.proto";
 import "Project.proto";
 
-package com.bht.pim.proto.employees;
+package com.bht.pim.dto.employees;
 option java_generic_services = true;
 option java_multiple_files = true;
 

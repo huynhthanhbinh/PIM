@@ -1,10 +1,10 @@
 package com.bht.pim.service;
 
 import com.bht.pim.dao.EmployeeDao;
+import com.bht.pim.dto.employees.Employee;
+import com.bht.pim.dto.employees.EmployeeList;
+import com.bht.pim.dto.employees.EmployeeListServiceGrpc;
 import com.bht.pim.entity.EmployeeEntity;
-import com.bht.pim.proto.employees.Employee;
-import com.bht.pim.proto.employees.EmployeeList;
-import com.bht.pim.proto.employees.EmployeeListServiceGrpc;
 import com.bht.pim.util.DateUtil;
 import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;

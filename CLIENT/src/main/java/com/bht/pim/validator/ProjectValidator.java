@@ -1,6 +1,6 @@
 package com.bht.pim.validator;
 
-import com.bht.pim.proto.projects.Project;
+import com.bht.pim.dto.projects.Project;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -8,7 +8,7 @@ public class ProjectValidator implements Validator {
 
     // Support method
     // make sure that Validator use for supported class
-    // Eg. class UserValidator support class Project
+    // Eg. class UserValidator support class ProjectModel
     @Override
     public boolean supports(Class<?> aClass) {
         return Project.class.isAssignableFrom(aClass);
@@ -16,7 +16,7 @@ public class ProjectValidator implements Validator {
 
 
     // Customize Validator for project (model) object
-    // Must down-casting from (Object) to (Project) o
+    // Must down-casting from (Object) to (ProjectModel) o
     // Errors argument is used for binding in Controller
     // ... if (bindingResult.hasErrors()) do_sth ...
     @Override

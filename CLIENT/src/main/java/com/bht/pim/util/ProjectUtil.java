@@ -1,6 +1,6 @@
 package com.bht.pim.util;
 
-import com.bht.pim.proto.projects.*;
+import com.bht.pim.dto.projects.*;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
 import io.grpc.Channel;

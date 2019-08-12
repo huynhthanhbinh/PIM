@@ -6,7 +6,7 @@ import "Project.proto";
 import "Employee.proto";
 import "Group.proto";
 
-package com.bht.pim.proto.projects;
+package com.bht.pim.dto.projects;
 option java_generic_services = true;
 option java_multiple_files = true;
 

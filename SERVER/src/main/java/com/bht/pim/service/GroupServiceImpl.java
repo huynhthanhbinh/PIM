@@ -2,13 +2,13 @@ package com.bht.pim.service;
 
 import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.dao.GroupDao;
+import com.bht.pim.dto.employees.Employee;
+import com.bht.pim.dto.groups.Group;
+import com.bht.pim.dto.groups.GroupInfo;
+import com.bht.pim.dto.groups.GroupServiceGrpc;
+import com.bht.pim.dto.projects.Project;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
-import com.bht.pim.proto.employees.Employee;
-import com.bht.pim.proto.groups.Group;
-import com.bht.pim.proto.groups.GroupInfo;
-import com.bht.pim.proto.groups.GroupServiceGrpc;
-import com.bht.pim.proto.projects.Project;
 import com.bht.pim.util.DateUtil;
 import com.google.protobuf.BoolValue;
 import com.google.protobuf.Int64Value;

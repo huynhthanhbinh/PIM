@@ -1,12 +1,12 @@
 package com.bht.pim.service;
 
 import com.bht.pim.dao.GroupDao;
+import com.bht.pim.dto.employees.Employee;
+import com.bht.pim.dto.groups.Group;
+import com.bht.pim.dto.groups.GroupList;
+import com.bht.pim.dto.groups.GroupListServiceGrpc;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
-import com.bht.pim.proto.employees.Employee;
-import com.bht.pim.proto.groups.Group;
-import com.bht.pim.proto.groups.GroupList;
-import com.bht.pim.proto.groups.GroupListServiceGrpc;
 import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.log4j.Log4j;

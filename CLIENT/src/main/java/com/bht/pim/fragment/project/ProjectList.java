@@ -1,9 +1,9 @@
 package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.dto.projects.Project;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.MainLabelUpdating;
-import com.bht.pim.proto.projects.Project;
 import com.bht.pim.util.DateUtil;
 import com.bht.pim.util.ProjectUtil;
 import com.google.protobuf.Timestamp;
@@ -50,7 +50,7 @@ public class ProjectList implements Initializable {
     @FXML
     private TableView<Project> table;
     @FXML
-    private TableColumn<Project, Project> cSelect;
+    private TableColumn<Project, Boolean> cSelect;
     @FXML
     private TableColumn<Project, Long> cNumber;
     @FXML
@@ -70,7 +70,7 @@ public class ProjectList implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // Init this scene code go here
-        log.info("[Project List] On init scene ");
+        log.info("[ProjectModel List] On init scene ");
 
         MainLabelUpdating mainLabelUpdating = new MainLabelUpdating(
                 AppConfiguration.FRAGMENT_PROJECT_LIST,
@@ -110,10 +110,9 @@ public class ProjectList implements Initializable {
 
     // Init all table fields
     private void initAllFields() {
-
-        //bNew.setOnAction(event -> ((Stage) bNew.getScene().getWindow()).setScene());
-
         cSelect.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.05));
+        cSelect.setCellValueFactory(new PropertyValueFactory<>("isSelected"));
+        cSelect.setCellFactory(this::select);
         cSelect.setResizable(false);
 
         cNumber.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
@@ -206,6 +205,17 @@ public class ProjectList implements Initializable {
                 });
 
                 setGraphic(lName);
+            }
+        };
+    }
+
+    // Checkbox Select
+    private TableCell<Project, Boolean> select(TableColumn<Project, Boolean> param) {
+        return new TableCell<Project, Boolean>() {
+
+            @Override
+            protected void updateItem(Boolean project, boolean empty) {
+                super.updateItem(project, empty);
             }
         };
     }

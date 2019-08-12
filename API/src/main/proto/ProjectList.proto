@@ -5,7 +5,7 @@ import "google/protobuf/empty.proto";
 import "Project.proto";
 import "ProjectNumbers.proto";
 
-package com.bht.pim.proto.projects;
+package com.bht.pim.dto.projects;
 option java_generic_services = true;
 option java_multiple_files = true;
 
