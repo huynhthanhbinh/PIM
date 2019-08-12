@@ -2,7 +2,7 @@ package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.message.impl.FragmentSwitching;
-import com.bht.pim.message.impl.LabelUpdating;
+import com.bht.pim.message.impl.MainLabelUpdating;
 import com.bht.pim.proto.projects.Project;
 import com.bht.pim.util.DateUtil;
 import com.bht.pim.util.ProjectUtil;
@@ -72,11 +72,11 @@ public class ProjectList implements Initializable {
         // Init this scene code go here
         log.info("[Project List] On init scene ");
 
-        LabelUpdating labelUpdating = new LabelUpdating(
+        MainLabelUpdating mainLabelUpdating = new MainLabelUpdating(
                 AppConfiguration.FRAGMENT_PROJECT_LIST,
                 AppConfiguration.LABEL_PROJECT_LIST);
 
-        context.send(AppConfiguration.COMPONENT_MAIN, labelUpdating);
+        context.send(AppConfiguration.COMPONENT_MAIN, mainLabelUpdating);
 
         Pane main = context.getComponentLayout().getGlassPane();
         mainPane.prefWidthProperty().bind(main.widthProperty().subtract(227));

@@ -43,53 +43,34 @@
                 </font>
             </Label>
         </Pane>
-        <VBox prefHeight="46.0" prefWidth="143.0" GridPane.columnSpan="7" GridPane.rowIndex="11">
-            <Separator prefWidth="200.0"/>
-            <HBox alignment="CENTER" prefHeight="114.0" prefWidth="1110.0" spacing="20.0">
-                <Button fx:id="bCreate" defaultButton="true" graphicTextGap="10.0"
-                        mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="CREATE"
-                        HBox.hgrow="ALWAYS">
-                    <font>
-                        <Font size="16.0"/>
-                    </font>
-                </Button>
-                <Button fx:id="bCancel" cancelButton="true" graphicTextGap="10.0"
-                        mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" text="CANCEL"
-                        HBox.hgrow="ALWAYS">
-                    <font>
-                        <Font size="16.0"/>
-                    </font>
-                </Button>
-            </HBox>
-        </VBox>
         <Label text="End-date" GridPane.columnIndex="2" GridPane.rowIndex="9">
             <font>
                 <Font size="16.0"/>
             </font>
         </Label>
-        <DatePicker fx:id="start" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
-                    GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="9"/>
-        <DatePicker fx:id="end" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
-                    GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="9"/>
+        <TextField fx:id="number" maxHeight="40.0" minHeight="30.0" prefHeight="30.0"
+                   promptText="Input number only" GridPane.columnIndex="1" GridPane.hgrow="NEVER"
+                   GridPane.rowIndex="1"/>
+        <ComboBox fx:id="comboBoxStatus" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
+                  GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="1"/>
+        <TextField fx:id="name" maxHeight="40.0" minHeight="30.0" prefHeight="30.0"
+                   promptText="Input project name" GridPane.columnIndex="1" GridPane.columnSpan="3"
+                   GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER"
+                   GridPane.vgrow="NEVER"/>
+        <TextField fx:id="customer" maxHeight="40.0" minHeight="30.0" prefHeight="30.0"
+                   promptText="Input customer name" GridPane.columnIndex="1" GridPane.columnSpan="3"
+                   GridPane.hgrow="NEVER" GridPane.rowIndex="5" GridPane.valignment="CENTER"
+                   GridPane.vgrow="NEVER"/>
         <ComboBox fx:id="comboBoxOption" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
                   promptText="Choose option" GridPane.columnIndex="1" GridPane.hgrow="NEVER"
                   GridPane.rowIndex="7"/>
         <ComboBox fx:id="comboBoxLeader" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
                   promptText="Choose leader" GridPane.columnIndex="3" GridPane.hgrow="NEVER"
                   GridPane.rowIndex="7"/>
-        <TextField fx:id="customer" maxHeight="40.0" minHeight="30.0" prefHeight="30.0"
-                   promptText="Input customer name" GridPane.columnIndex="1" GridPane.columnSpan="3"
-                   GridPane.hgrow="NEVER" GridPane.rowIndex="5" GridPane.valignment="CENTER"
-                   GridPane.vgrow="NEVER"/>
-        <TextField fx:id="name" maxHeight="40.0" minHeight="30.0" prefHeight="30.0"
-                   promptText="Input project name" GridPane.columnIndex="1" GridPane.columnSpan="3"
-                   GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER"
-                   GridPane.vgrow="NEVER"/>
-        <TextField fx:id="number" maxHeight="40.0" minHeight="30.0" prefHeight="30.0"
-                   promptText="Input number only" GridPane.columnIndex="1" GridPane.hgrow="NEVER"
-                   GridPane.rowIndex="1"/>
-        <ComboBox fx:id="comboBoxStatus" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
-                  GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="1"/>
+        <DatePicker fx:id="start" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
+                    GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="9"/>
+        <DatePicker fx:id="end" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
+                    GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="9"/>
         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
             <Label text="Project-number">
                 <font>
@@ -196,7 +177,7 @@
                 <TableColumn fx:id="cRemove" minWidth="9.0" prefWidth="51.0"/>
             </columns>
         </TableView>
-        <Label fx:id="lNumberExist" text="Project-number already exist !" textFill="#f24517"
+        <Label fx:id="lNumberExist" text="Number already exist !" textFill="#f24517"
                GridPane.columnIndex="1" GridPane.rowIndex="2">
             <font>
                 <Font name="System Bold Italic" size="14.0"/>

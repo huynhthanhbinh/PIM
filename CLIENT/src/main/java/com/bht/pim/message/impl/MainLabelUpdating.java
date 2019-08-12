@@ -6,7 +6,7 @@ import javafx.scene.Node;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class LabelUpdating implements PimMessage {
+public class MainLabelUpdating implements PimMessage {
 
     private String fragmentSent;
     private String newLabel;

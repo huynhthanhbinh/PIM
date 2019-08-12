@@ -3,7 +3,7 @@ package com.bht.pim.fragment.project;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.intermediate.Member;
 import com.bht.pim.message.impl.FragmentSwitching;
-import com.bht.pim.message.impl.LabelUpdating;
+import com.bht.pim.message.impl.MainLabelUpdating;
 import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.groups.Group;
@@ -93,10 +93,6 @@ public class ProjectCreate implements Initializable {
     @FXML
     private Label lFillAll;
     @FXML
-    private Button bCreate;
-    @FXML
-    private Button bCancel;
-    @FXML
     private DatePicker start;
     @FXML
     private DatePicker end;
@@ -119,11 +115,11 @@ public class ProjectCreate implements Initializable {
         // Init this scene code go here
         log.info("[Project Create] On init scene ");
 
-        LabelUpdating labelUpdating = new LabelUpdating(
+        MainLabelUpdating mainLabelUpdating = new MainLabelUpdating(
                 AppConfiguration.FRAGMENT_PROJECT_CREATE,
                 AppConfiguration.LABEL_PROJECT_CREATE);
 
-        context.send(AppConfiguration.COMPONENT_MAIN, labelUpdating);
+        context.send(AppConfiguration.COMPONENT_MAIN, mainLabelUpdating);
 
         // Get all necessary data from server
         getNecessaryData();
@@ -251,12 +247,6 @@ public class ProjectCreate implements Initializable {
             header.reorderingProperty().addListener((observable0, oldValue, newValue) ->
                     header.setReordering(false));
         });
-
-        // if user click create
-        bCreate.setOnMouseClicked(this::onSubmit);
-
-        // if user click cancel
-        bCancel.setOnMouseClicked(this::onCancel);
     }
 
     private void initAllInput() {

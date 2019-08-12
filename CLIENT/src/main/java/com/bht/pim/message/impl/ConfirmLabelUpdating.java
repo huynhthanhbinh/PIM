@@ -6,10 +6,10 @@ import javafx.scene.Node;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class LeaderChoosing implements PimMessage {
+public class ConfirmLabelUpdating implements PimMessage {
 
     private String fragmentSent;
-    private long leaderId;
+    private String newLabel;
 
     @Override
     public String getFragmentSent() {
