@@ -1,7 +1,9 @@
 package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.confirm.Confirmable;
 import com.bht.pim.intermediate.Member;
+import com.bht.pim.message.impl.ConfirmBoxAdding;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.MainLabelUpdating;
 import com.bht.pim.notification.NotificationStyle;
@@ -23,6 +25,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -43,7 +47,7 @@ import java.util.stream.Collectors;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/project/ProjectCreate.fxml")
-public class ProjectCreate implements Initializable {
+public class ProjectCreate implements Initializable, Confirmable {
 
     private static final int PORT = 9999;
     private static final String HOST = "localhost";
@@ -52,6 +56,10 @@ public class ProjectCreate implements Initializable {
     private Context context;
     @Resource
     private ResourceBundle bundle;
+    @FXML
+    private VBox mainPane;
+    @FXML
+    private GridPane gridPane;
     @FXML
     private TextField textField;
     @FXML
@@ -114,6 +122,20 @@ public class ProjectCreate implements Initializable {
 
         // Init this scene code go here
         log.info("[Project Create] On init scene ");
+
+        log.info(mainPane.prefHeightProperty());
+        log.info(context
+                .getComponentLayout().getGlassPane().heightProperty());
+
+        mainPane.prefHeightProperty().bind(context
+                .getComponentLayout().getGlassPane().heightProperty().subtract(220));
+        mainPane.prefWidthProperty().bind(context
+                .getComponentLayout().getGlassPane().widthProperty().subtract(220));
+
+        ConfirmBoxAdding confirmBoxAdding = new ConfirmBoxAdding(
+                AppConfiguration.FRAGMENT_PROJECT_CREATE, "CREATE");
+
+        context.send(AppConfiguration.COMPONENT_MAIN, confirmBoxAdding);
 
         MainLabelUpdating mainLabelUpdating = new MainLabelUpdating(
                 AppConfiguration.FRAGMENT_PROJECT_CREATE,
@@ -360,25 +382,22 @@ public class ProjectCreate implements Initializable {
     }
 
 
-    // when user click button create Project
-    private void onSubmit(MouseEvent event) {
+    @Override
+    public void onSubmit(MouseEvent event) {
         log.info("[bCreate] onClick");
+
+        hideAllValidation();
+
         boolean emptyNumber = number.getText().isEmpty();
         boolean emptyName = name.getText().isEmpty();
         boolean emptyCustomer = name.getText().isEmpty();
         boolean emptyStart = start.getEditor().getText().isEmpty();
         boolean emptyEnd = end.getEditor().getText().isEmpty();
+        boolean valid = chose && !(emptyNumber || emptyName || emptyCustomer || emptyStart);
+        boolean validEnd = !emptyEnd && end.getValue().isAfter(start.getValue());
 
-        lFillAll.setVisible(false);
-        number.getStyleClass().remove("empty");
-        name.getStyleClass().remove("empty");
-        customer.getStyleClass().remove("empty");
-        start.getEditor().getStyleClass().remove("empty");
-        lGroupOption.setVisible(false);
-
-        if (chose && !(emptyNumber || emptyName || emptyCustomer || emptyStart)) {
-            if (!emptyEnd && end.getValue().isBefore(start.getValue())) {
-                log.info("<<< INVALID END-DATE ! >>>");
+        if (valid) {
+            if (!validEnd) {
                 end.getEditor().getStyleClass().add("empty");
                 lEndInvalid.setVisible(true);
                 return;
@@ -401,18 +420,12 @@ public class ProjectCreate implements Initializable {
                         .usePlaintext()
                         .build();
 
-                if (comboBoxOption.getSelectionModel().getSelectedItem().equals("New group")) {
-                    // send group info to server to save
-                    log.info("<<< PIM - On creating new group >>>");
-
-                    if (GroupUtil.addNewGroup(channel, group)) {
-                        NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
-                                "[PIM] Successfully create new group !");
-                    } else {
-                        NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
-                                "[PIM] Failed to create new group !");
-                        return;
-                    }
+                if (saveNewGroup(group)) {
+                    NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
+                            "[PIM] Successfully create new group !");
+                } else {
+                    NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
+                            "[PIM] Failed to create new group !");
                 }
 
                 Project.Builder projectBuilder = Project.newBuilder()
@@ -458,31 +471,60 @@ public class ProjectCreate implements Initializable {
                 channel.shutdown();
             }
         } else {
-            lFillAll.setVisible(true);
-            if (emptyNumber) {
-                number.getStyleClass().add("empty");
-            }
-            if (emptyName) {
-                name.getStyleClass().add("empty");
-                lNameEmpty.setVisible(true);
-            }
-            if (emptyCustomer) {
-                customer.getStyleClass().add("empty");
-                lCustomerEmpty.setVisible(true);
-            }
-            if (emptyStart) {
-                start.getEditor().getStyleClass().add("empty");
-                lStartEmpty.setVisible(true);
-            }
-            if (!chose) {
-                lGroupOption.setVisible(true);
-            }
+            warnOnInvalid(emptyNumber, emptyName, emptyCustomer, emptyStart);
         }
     }
 
 
-    // when user click button cancel
-    private void onCancel(MouseEvent event) {
+    private void hideAllValidation() {
+        lFillAll.setVisible(false);
+        number.getStyleClass().remove("empty");
+        name.getStyleClass().remove("empty");
+        customer.getStyleClass().remove("empty");
+        start.getEditor().getStyleClass().remove("empty");
+        end.getEditor().getStyleClass().remove("empty");
+        lGroupOption.setVisible(false);
+    }
+
+
+    private void warnOnInvalid(boolean emptyNumber,
+                               boolean emptyName,
+                               boolean emptyCustomer,
+                               boolean emptyStart) {
+        lFillAll.setVisible(true);
+        if (emptyNumber) {
+            number.getStyleClass().add("empty");
+        }
+        if (emptyName) {
+            name.getStyleClass().add("empty");
+            lNameEmpty.setVisible(true);
+        }
+        if (emptyCustomer) {
+            customer.getStyleClass().add("empty");
+            lCustomerEmpty.setVisible(true);
+        }
+        if (emptyStart) {
+            start.getEditor().getStyleClass().add("empty");
+            lStartEmpty.setVisible(true);
+        }
+        if (!chose) {
+            lGroupOption.setVisible(true);
+        }
+    }
+
+
+    private boolean saveNewGroup(Group group) {
+        if (comboBoxOption.getSelectionModel().getSelectedItem().equals("New group")) {
+            // send group info to server to save
+            log.info("<<< PIM - On creating new group >>>");
+            return GroupUtil.addNewGroup(channel, group);
+        }
+        return false;
+    }
+
+
+    @Override
+    public void onCancel(MouseEvent event) {
         log.info("[bCancel] onClick");
 
         FragmentSwitching switching = new FragmentSwitching(

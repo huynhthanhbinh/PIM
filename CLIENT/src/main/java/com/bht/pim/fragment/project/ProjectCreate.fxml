@@ -4,20 +4,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity"
-      prefHeight="500.0" prefWidth="1060.0" spacing="5.0"
-      stylesheets="/com/bht/pim/fragment/project/ProjectCreate.css" xmlns="http://javafx.com/javafx/8">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="1800.0"
+      minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="1060.0"
+      spacing="5.0" stylesheets="/com/bht/pim/fragment/project/ProjectCreate.css"
+      xmlns="http://javafx.com/javafx/8.0.999-ea">
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
     </padding>
-    <GridPane alignment="CENTER" hgap="30.0" prefHeight="500.0" prefWidth="1060.0" VBox.vgrow="ALWAYS">
+    <GridPane fx:id="gridPane" alignment="CENTER" hgap="30.0" maxWidth="1800.0" prefHeight="480.0" prefWidth="1060.0"
+              VBox.vgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="NEVER" maxWidth="141.0" minWidth="10.0" prefWidth="160.0"/>
-            <ColumnConstraints hgrow="NEVER" maxWidth="250.0" minWidth="10.0" prefWidth="180.0"/>
-            <ColumnConstraints hgrow="NEVER" maxWidth="203.0" minWidth="0.0" prefWidth="80.0"/>
-            <ColumnConstraints hgrow="NEVER" maxWidth="250.0" minWidth="10.0" prefWidth="180.0"/>
-            <ColumnConstraints hgrow="NEVER" maxWidth="270.0" minWidth="10.0" prefWidth="210.0"/>
+            <ColumnConstraints hgrow="NEVER" maxWidth="150.0" minWidth="10.0" prefWidth="140.0"/>
+            <ColumnConstraints hgrow="NEVER" maxWidth="400.0" minWidth="10.0" prefWidth="180.0"/>
+            <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="0.0" prefWidth="80.0"/>
+            <ColumnConstraints hgrow="NEVER" maxWidth="400.0" minWidth="10.0" prefWidth="180.0"/>
+            <ColumnConstraints hgrow="NEVER" maxWidth="300.0" minWidth="10.0" prefWidth="10.0"/>
+            <ColumnConstraints hgrow="NEVER" maxWidth="400.0" minWidth="10.0" prefWidth="210.0"/>
             <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="80.0"/>
             <ColumnConstraints/>
         </columnConstraints>
@@ -33,10 +35,9 @@
             <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="NEVER"/>
             <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="NEVER"/>
             <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="NEVER"/>
-            <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="NEVER"/>
         </rowConstraints>
         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="4"/>
-        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2">
+        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.columnSpan="2">
             <Label layoutX="1.0" layoutY="19.0" text="PROJECT'S MEMBERS">
                 <font>
                     <Font name="System Bold" size="24.0"/>
@@ -48,25 +49,20 @@
                 <Font size="16.0"/>
             </font>
         </Label>
-        <TextField fx:id="number" maxHeight="40.0" minHeight="30.0" prefHeight="30.0"
-                   promptText="Input number only" GridPane.columnIndex="1" GridPane.hgrow="NEVER"
-                   GridPane.rowIndex="1"/>
+        <TextField fx:id="number" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" promptText="Input number only"
+                   GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="1"/>
         <ComboBox fx:id="comboBoxStatus" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
                   GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="1"/>
-        <TextField fx:id="name" maxHeight="40.0" minHeight="30.0" prefHeight="30.0"
-                   promptText="Input project name" GridPane.columnIndex="1" GridPane.columnSpan="3"
-                   GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER"
-                   GridPane.vgrow="NEVER"/>
-        <TextField fx:id="customer" maxHeight="40.0" minHeight="30.0" prefHeight="30.0"
-                   promptText="Input customer name" GridPane.columnIndex="1" GridPane.columnSpan="3"
-                   GridPane.hgrow="NEVER" GridPane.rowIndex="5" GridPane.valignment="CENTER"
-                   GridPane.vgrow="NEVER"/>
+        <TextField fx:id="name" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" promptText="Input project name"
+                   GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.hgrow="NEVER" GridPane.rowIndex="3"
+                   GridPane.valignment="CENTER" GridPane.vgrow="NEVER"/>
+        <TextField fx:id="customer" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" promptText="Input customer name"
+                   GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.hgrow="NEVER" GridPane.rowIndex="5"
+                   GridPane.valignment="CENTER" GridPane.vgrow="NEVER"/>
         <ComboBox fx:id="comboBoxOption" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
-                  promptText="Choose option" GridPane.columnIndex="1" GridPane.hgrow="NEVER"
-                  GridPane.rowIndex="7"/>
+                  promptText="Choose option" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="7"/>
         <ComboBox fx:id="comboBoxLeader" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
-                  promptText="Choose leader" GridPane.columnIndex="3" GridPane.hgrow="NEVER"
-                  GridPane.rowIndex="7"/>
+                  promptText="Choose leader" GridPane.columnIndex="3" GridPane.hgrow="NEVER" GridPane.rowIndex="7"/>
         <DatePicker fx:id="start" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
                     GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="9"/>
         <DatePicker fx:id="end" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0"
@@ -158,39 +154,39 @@
             </Label>
         </HBox>
         <TextField fx:id="textField" maxHeight="40.0" minHeight="30.0" prefHeight="30.0"
-                   promptText="Search for employee to add" GridPane.columnIndex="4" GridPane.columnSpan="2"
+                   promptText="Search for employee to add" GridPane.columnIndex="5" GridPane.columnSpan="2"
                    GridPane.rowIndex="1"/>
-        <Label fx:id="lNumber" text="Number of members : " GridPane.columnIndex="4" GridPane.rowIndex="2">
+        <Label fx:id="lNumber" text="Number of members : " GridPane.columnIndex="5" GridPane.rowIndex="2">
             <font>
                 <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <Label fx:id="lSize" text="0" textFill="#f24517" GridPane.columnIndex="5" GridPane.rowIndex="2">
+        <Label fx:id="lSize" text="0" textFill="#f24517" GridPane.columnIndex="6" GridPane.rowIndex="2">
             <font>
                 <Font name="System Bold" size="22.0"/>
             </font>
         </Label>
-        <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4"
-                   GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="7">
+        <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.columnSpan="2"
+                   GridPane.rowIndex="3" GridPane.rowSpan="7">
             <columns>
                 <TableColumn fx:id="cName" prefWidth="227.0" text="NAME"/>
                 <TableColumn fx:id="cRemove" minWidth="9.0" prefWidth="51.0"/>
             </columns>
         </TableView>
-        <Label fx:id="lNumberExist" text="Number already exist !" textFill="#f24517"
-               GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <Label fx:id="lNumberExist" text="Number already exist !" textFill="#f24517" GridPane.columnIndex="1"
+               GridPane.rowIndex="2">
             <font>
                 <Font name="System Bold Italic" size="14.0"/>
             </font>
         </Label>
-        <Label fx:id="lNameEmpty" text="Project-name cannot be empty !" textFill="#f24517"
-               GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
+        <Label fx:id="lNameEmpty" text="Project-name cannot be empty !" textFill="#f24517" GridPane.columnIndex="1"
+               GridPane.columnSpan="2" GridPane.rowIndex="4">
             <font>
                 <Font name="System Bold Italic" size="14.0"/>
             </font>
         </Label>
-        <Label fx:id="lCustomerEmpty" text="Customer cannot be empty !" textFill="#f24517"
-               GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6">
+        <Label fx:id="lCustomerEmpty" text="Customer cannot be empty !" textFill="#f24517" GridPane.columnIndex="1"
+               GridPane.columnSpan="3" GridPane.rowIndex="6">
             <font>
                 <Font name="System Bold Italic" size="14.0"/>
             </font>
@@ -201,8 +197,8 @@
                 <Font name="System Bold Italic" size="14.0"/>
             </font>
         </Label>
-        <Label fx:id="lStartEmpty" text="Please specify Start-date !" textFill="#f24517"
-               GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="10">
+        <Label fx:id="lStartEmpty" text="Please specify Start-date !" textFill="#f24517" GridPane.columnIndex="1"
+               GridPane.columnSpan="2" GridPane.rowIndex="10">
             <font>
                 <Font name="System Bold Italic" size="14.0"/>
             </font>
@@ -219,8 +215,7 @@
                 <Font name="System Bold Italic" size="14.0"/>
             </font>
         </Label>
-        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
-              GridPane.columnSpan="4">
+        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnSpan="4">
             <Label alignment="TOP_LEFT" text="BASIC INFORMATION">
                 <font>
                     <Font name="System Bold" size="24.0"/>
@@ -234,7 +229,7 @@
         </HBox>
         <Label GridPane.rowIndex="10"/>
         <padding>
-            <Insets left="5.0" right="5.0"/>
+            <Insets left="5.0"/>
         </padding>
         <VBox.margin>
             <Insets left="10.0" right="10.0"/>

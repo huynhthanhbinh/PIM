@@ -1,9 +1,12 @@
 package com.bht.pim.fragment.confirm;
 
 import com.bht.pim.configuration.AppConfiguration;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
@@ -21,7 +24,11 @@ import java.util.ResourceBundle;
 public class Confirm implements Initializable {
 
     @FXML
+    private VBox confirmPane;
+
+    @FXML
     private Button bSubmit;
+
     @FXML
     private Button bCancel;
 
@@ -38,10 +45,16 @@ public class Confirm implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // if user click create
-        bSubmit.setOnMouseClicked(null);
+        log.info("[Confirm Box] Initialization");
+    }
 
+    public void setOnSubmit(EventHandler<MouseEvent> onSubmit) {
+        // if user click submit
+        bSubmit.setOnMouseClicked(onSubmit);
+    }
+
+    public void setOnCancel(EventHandler<MouseEvent> onCancel) {
         // if user click cancel
-        bCancel.setOnMouseClicked(null);
+        bCancel.setOnMouseClicked(onCancel);
     }
 }

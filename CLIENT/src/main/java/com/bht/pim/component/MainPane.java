@@ -1,6 +1,8 @@
 package com.bht.pim.component;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.confirm.Confirm;
+import com.bht.pim.fragment.confirm.Confirmable;
 import com.bht.pim.fragment.label.MainLabel;
 import com.bht.pim.fragment.project.ProjectList;
 import com.bht.pim.message.PimMessage;
@@ -43,6 +45,7 @@ public class MainPane implements FXComponent {
     @Resource
     private ResourceBundle bundle;
 
+    private ManagedFragmentHandler<Confirm> confirmFragment;
     private ManagedFragmentHandler<MainLabel> labelFragment;
     private ManagedFragmentHandler mainFragment;
 
@@ -67,6 +70,21 @@ public class MainPane implements FXComponent {
         return xNode;
     }
 
+    @FXML
+    @SuppressWarnings("unchecked")
+    public static void switchFragment(MainPane mainPane, Class fragmentClazz) {
+        ObservableList<Node> nodes = mainPane.getMainPane().getChildren();
+
+        // remove all pane except label pane
+        for (int i = nodes.size() - 1; i > 0; i--) {
+            nodes.remove(nodes.get(i));
+        }
+
+        mainPane.setMainFragment(mainPane.getContext()
+                .getManagedFragmentHandler(fragmentClazz));
+        nodes.add(mainPane.getMainFragment().getFragmentNode());
+    }
+
     @PostConstruct
     public void onStartComponent(final FXComponentLayout layout,
                                  final ResourceBundle resourceBundle) {
@@ -78,17 +96,24 @@ public class MainPane implements FXComponent {
         mainPane.getChildren().add(mainFragment.getFragmentNode());
 
         mainPane.prefWidthProperty().bind(layout.getGlassPane().widthProperty().subtract(227));
-        mainPane.prefHeightProperty().bind(layout.getGlassPane().heightProperty().subtract(100));
+        mainPane.prefHeightProperty().bind(layout.getGlassPane().heightProperty().subtract(120));
     }
 
     @FXML
-    @SuppressWarnings("unchecked")
-    public static void switchFragment(MainPane mainPane, Class fragmentClazz) {
-        ObservableList<Node> nodes = mainPane.getMainPane().getChildren();
-        nodes.remove(nodes.get(1));
-        mainPane.setMainFragment(mainPane.getContext()
-                .getManagedFragmentHandler(fragmentClazz));
-        nodes.add(mainPane.getMainFragment().getFragmentNode());
+    public void addConfirmBox(String newLabel) {
+        // add fragment Confirm Box (OK-CANCEL)
+        confirmFragment = context.getManagedFragmentHandler(Confirm.class);
+        mainPane.getChildren().add(confirmFragment.getFragmentNode());
+
+        // set label for submit button
+        confirmFragment.getController().setLabelText(newLabel);
+
+        // handle for submit button
+        confirmFragment.getController().setOnSubmit(
+                ((Confirmable) mainFragment.getController())::onSubmit);
+        // handle for cancel button
+        confirmFragment.getController().setOnCancel(
+                ((Confirmable) mainFragment.getController())::onCancel);
     }
 
     @PreDestroy

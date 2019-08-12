@@ -6,7 +6,7 @@ import javafx.scene.Node;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class ConfirmLabelUpdating implements PimMessage {
+public class ConfirmBoxAdding implements PimMessage {
 
     private String fragmentSent;
     private String newLabel;
@@ -18,6 +18,7 @@ public class ConfirmLabelUpdating implements PimMessage {
 
     @Override
     public Node postHandle(Node node, MainPane mainPane) {
+        mainPane.addConfirmBox(newLabel);
         return null;
     }
 }
