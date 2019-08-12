@@ -213,9 +213,21 @@ public class ProjectList implements Initializable {
     private TableCell<Project, Boolean> select(TableColumn<Project, Boolean> param) {
         return new TableCell<Project, Boolean>() {
 
+            private CheckBox checkBox = new CheckBox();
+
             @Override
-            protected void updateItem(Boolean project, boolean empty) {
-                super.updateItem(project, empty);
+            protected void updateItem(Boolean value, boolean empty) {
+                if (value == null || empty) {
+                    setGraphic(null);
+                    return;
+                }
+
+                checkBox.selectedProperty().addListener(
+                        (observable, oldValue, newValue) -> {
+
+                        });
+
+                setGraphic(checkBox);
             }
         };
     }
