@@ -1,30 +1,0 @@
-
-Bsquid:S00108‘")Either remove or fill this block of code.(º„ç½
-isquid:S001175"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß”â¢
-vsquid:S1488ß"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
-Bsquid:S1905À"*Remove this unnecessary cast to "Builder".(¥ùšÏ
-Isquid:S1199O"-Extract this nested code block into a method.(ê×Êüÿÿÿÿ
-Jsquid:S1199"-Extract this nested code block into a method.(ÒÌâ–øÿÿÿÿ
-rsquid:S00116 "ZRename this field "projectNumbers_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øè¸ó
-Bsquid:S1905Ç"*Remove this unnecessary cast to "Builder".(êŽ„£
-ssquid:S00116õ"ZRename this field "projectNumbers_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ž…È±
-Bsquid:S1905Ó"*Remove this unnecessary cast to "Builder".(ƒ¦†
-[squid:S1854´"CRemove this useless assignment to local variable "from_bitField0_".(ÆÓ¡€
-Osquid:S2589»"7Remove this expression which always evaluates to "true"(öàÀÈ
-Asquid:S1905á"*Remove this unnecessary cast to "Builder".(Ý¤Â\
-/squid:S2176ð"Rename this class.(ºœÓ­úÿÿÿÿ
-Asquid:S1940š")Use the opposite operator ("!=") instead.(‡ã“‹
-Isquid:S1199@"-Extract this nested code block into a method.(Î—­Šþÿÿÿÿ
-Dsquid:S1199G"-Extract this nested code block into a method.(­Ó–Ô
-nsquid:S00116ô"URename this field "bitField0_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö»³Ä
-Gsquid:S4524@"+Move this default to the end of the switch.(Î—­Šþÿÿÿÿ
-{squid:S4144é"cUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 202.(íŒ…ƒ
-Gsquid:S1905Ú"*Remove this unnecessary cast to "Builder".(ˆÎ…•þÿÿÿÿ
-psquid:S2975¿"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
-Esquid:S1940R")Use the opposite operator ("!=") instead.(ØŸÌøÿÿÿÿÿ
-jsquid:S00117´"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÓ¡€
-Lsquid:S1481´"4Remove this unused "from_bitField0_" local variable.(ÆÓ¡€
-Esquid:S1940H")Use the opposite operator ("!=") instead.(•—ùûúÿÿÿÿ
-isquid:S3776-"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(Û¬„Ä
-[squid:S1155‹">Use isEmpty() to check whether the collection is empty or not.(ÍÙ¸ßýÿÿÿÿ
-Gsquid:S1905Í"*Remove this unnecessary cast to "Builder".(Æ÷¾¢ûÿÿÿÿ

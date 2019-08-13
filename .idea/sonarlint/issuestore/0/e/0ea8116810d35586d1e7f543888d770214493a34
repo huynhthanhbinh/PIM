@@ -1,27 +1,0 @@
-
-[squid:S1854±"CRemove this useless assignment to local variable "from_bitField0_".(ÆÓ¡€
-Asquid:S1940«")Use the opposite operator ("!=") instead.(‡ã“‹
-Asquid:S1905â"*Remove this unnecessary cast to "Builder".(İ¤Â\
-ksquid:S00116ê"RRename this field "groups_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Á¾öÀ
-{squid:S4144Ş"cUpdate this method so that its implementation is not identical to "getDefaultInstance" on line 189.(«Í•ñ
-isquid:S001174"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß”â¢
-Isquid:S1199F"-Extract this nested code block into a method.(ê×Êüÿÿÿÿ
-nsquid:S00116é"URename this field "bitField0_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö»³Ä
-Gsquid:S1905Î"*Remove this unnecessary cast to "Builder".(Æ÷¾¢ûÿÿÿÿ
-Lsquid:S1481±"4Remove this unused "from_bitField0_" local variable.(ÆÓ¡€
-Bsquid:S1905Ô"*Remove this unnecessary cast to "Builder".(ƒ¦†
-Osquid:S2589°"7Remove this expression which always evaluates to "true"(”ò¡ô
-psquid:S2975À"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(Îõ¾Òûÿÿÿÿ
-Bsquid:S1905È"*Remove this unnecessary cast to "Builder".(ê„£
-Isquid:S1199?"-Extract this nested code block into a method.(Î—­Šşÿÿÿÿ
-/squid:S2176å"Rename this class.(ºœÓ­úÿÿÿÿ
-Bsquid:S1905Á"*Remove this unnecessary cast to "Builder".(¥ùšÏ
-jsquid:S3776ï"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(”é³—
-rsquid:S00116í"YRename this field "groupsBuilder_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Û±‘ô
-Esquid:S1940G")Use the opposite operator ("!=") instead.(•—ùûúÿÿÿÿ
-vsquid:S1488Ô"_Immediately return this expression instead of assigning it to the temporary variable "builder".(«‰Ÿ~
-Gsquid:S4524?"+Move this default to the end of the switch.(Î—­Šşÿÿÿÿ
-jsquid:S00117±"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÓ¡€
-jsquid:S00116 "RRename this field "groups_" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„—Ã
-Gsquid:S1905Û"*Remove this unnecessary cast to "Builder".(ˆÎ…•şÿÿÿÿ
-vsquid:S4144à"^Update this method so that its implementation is not identical to "getGroupsList" on line 215.(ÆŒÈó

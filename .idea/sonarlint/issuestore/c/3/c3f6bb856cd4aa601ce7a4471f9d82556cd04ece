@@ -1,5 +1,0 @@
-
-squid:S1186:"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ƒ°‡ıÿÿÿÿ
-osquid:CallToDeprecatedMethod"BRemove this use of "InternalDescriptorAssigner"; it is deprecated.(ƒ½™òùÿÿÿÿ
-msquid:CallToDeprecatedMethod&"FRemove this use of "internalBuildGeneratedFileFrom"; it is deprecated.(Ñ÷Ëz
-?squid:S1604"(Make this anonymous inner class a lambda(ş¦•Ã
