@@ -51,10 +51,6 @@ import java.util.stream.Collectors;
         viewLocation = "/com/bht/pim/fragment/project/ProjectCreate.fxml")
 public class ProjectCreate implements Initializable, Confirmable {
 
-    private static final int PORT = 9999;
-    private static final String HOST = "localhost";
-
-
     @Autowired
     private EmployeeListService employeeListService;
     @Autowired
