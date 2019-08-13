@@ -71,7 +71,7 @@ public class ProjectList implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // Init this scene code go here
-        log.info("[ProjectModel List] On init scene ");
+        log.info("[Project List] On init scene ");
 
         MainLabelUpdating mainLabelUpdating = new MainLabelUpdating(
                 AppConfiguration.FRAGMENT_PROJECT_LIST,

@@ -72,7 +72,6 @@ public class AppConfiguration {
     @Bean
     public EmployeeListServiceGrpc.EmployeeListServiceBlockingStub employeeListServiceBlockingStub() {
         log.info("[PIM] Creating bean of < EmployeeListServiceBlockingStub >");
-        log.info("\n\n\n" + channel + "\n\n\n");
         return EmployeeListServiceGrpc.newBlockingStub(channel);
     }
 

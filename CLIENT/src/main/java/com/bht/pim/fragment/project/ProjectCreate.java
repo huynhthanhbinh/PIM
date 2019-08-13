@@ -135,7 +135,7 @@ public class ProjectCreate implements Initializable, Confirmable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // Init this scene code go here
-        log.info("[ProjectModel Create] On init scene ");
+        log.info("[Project Create] On init scene ");
 
         log.info(mainPane.prefHeightProperty());
         log.info(context
