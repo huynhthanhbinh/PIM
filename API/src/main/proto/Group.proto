@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "Employee.proto";
 
-package com.bht.pim.dto.groups;
+package com.bht.pim.proto.groups;
 option java_generic_services = true;
 option java_multiple_files = true;
 

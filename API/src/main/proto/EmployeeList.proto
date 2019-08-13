@@ -4,7 +4,7 @@ import "google/protobuf/empty.proto";
 
 import "Employee.proto";
 
-package com.bht.pim.dto.employees;
+package com.bht.pim.proto.employees;
 option java_generic_services = true;
 option java_multiple_files = true;
 

@@ -1,16 +1,15 @@
 package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.dto.projects.Project;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.MainLabelUpdating;
+import com.bht.pim.proto.projects.Project;
+import com.bht.pim.service.ProjectListService;
 import com.bht.pim.util.DateUtil;
 import com.bht.pim.util.ProjectUtil;
 import com.google.protobuf.Timestamp;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,19 +22,23 @@ import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 @Log4j
+@Controller
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/project/ProjectList.fxml")
 public class ProjectList implements Initializable {
 
-    private static final int PORT = 9999;
-    private static final String HOST = "localhost";
+    @Autowired
+    private ProjectListService projectListService;
+
 
     @Resource
     private Context context;
@@ -50,7 +53,7 @@ public class ProjectList implements Initializable {
     @FXML
     private TableView<Project> table;
     @FXML
-    private TableColumn<Project, Boolean> cSelect;
+    private TableColumn<Project, Project> cSelect;
     @FXML
     private TableColumn<Project, Long> cNumber;
     @FXML
@@ -63,8 +66,6 @@ public class ProjectList implements Initializable {
     private TableColumn<Project, Timestamp> cStart;
     @FXML
     private TableColumn<Project, Project> cManagement;
-
-    private ManagedChannel channel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -96,22 +97,13 @@ public class ProjectList implements Initializable {
 
     // Get all necessary data
     private void getNecessaryData() {
-        // Channel is the abstraction to connect to a service endpoint
-        // Let's use plaintext communication because we don't have certs
-        channel = ManagedChannelBuilder.forAddress(HOST, PORT)
-                .usePlaintext()
-                .build();
-
-        table.setItems(ProjectUtil.getAllProjects(channel));
-
-        // Turn off connection
-        channel.shutdown();
+        table.setItems(projectListService.getAllProjects());
     }
 
     // Init all table fields
     private void initAllFields() {
         cSelect.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.05));
-        cSelect.setCellValueFactory(new PropertyValueFactory<>("isSelected"));
+        cSelect.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         cSelect.setCellFactory(this::select);
         cSelect.setResizable(false);
 
@@ -210,12 +202,23 @@ public class ProjectList implements Initializable {
     }
 
     // Checkbox Select
-    private TableCell<Project, Boolean> select(TableColumn<Project, Boolean> param) {
-        return new TableCell<Project, Boolean>() {
+    private TableCell<Project, Project> select(TableColumn<Project, Project> param) {
+        return new TableCell<Project, Project>() {
 
             @Override
-            protected void updateItem(Boolean project, boolean empty) {
-                super.updateItem(project, empty);
+            protected void updateItem(Project project, boolean empty) {
+                if (project == null || empty) {
+                    setGraphic(null);
+                    return;
+                }
+
+                CheckBox checkBox = new CheckBox();
+                setGraphic(checkBox);
+
+                checkBox.selectedProperty().addListener(
+                        (observable, oldValue, newValue) -> {
+
+                        });
             }
         };
     }

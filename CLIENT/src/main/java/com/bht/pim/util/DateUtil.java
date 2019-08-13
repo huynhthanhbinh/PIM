@@ -1,6 +1,6 @@
 package com.bht.pim.util;
 
-import com.bht.pim.dto.projects.Project;
+import com.bht.pim.proto.projects.Project;
 import com.google.protobuf.Timestamp;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;

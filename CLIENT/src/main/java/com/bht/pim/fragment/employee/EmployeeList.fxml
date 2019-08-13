@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
-            fx:controller="com.bht.pim.fragment.employee.EmployeeList"
+            fx:controller="com.bht.pim.fragment.employeeDTO.EmployeeList"
             stylesheets="EmployeeList.css"
             prefHeight="400.0" prefWidth="600.0">
 

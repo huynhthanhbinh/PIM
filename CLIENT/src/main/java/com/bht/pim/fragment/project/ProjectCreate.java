@@ -1,21 +1,20 @@
 package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.dto.employees.Employee;
-import com.bht.pim.dto.groups.Group;
-import com.bht.pim.dto.projects.Project;
-import com.bht.pim.dto.projects.ProjectInfo;
+import com.bht.pim.dto.EmployeeDTO;
 import com.bht.pim.fragment.confirm.Confirmable;
 import com.bht.pim.message.impl.ConfirmBoxAdding;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.MainLabelUpdating;
 import com.bht.pim.notification.NotificationStyle;
-import com.bht.pim.pseudo.Member;
-import com.bht.pim.util.*;
+import com.bht.pim.proto.groups.Group;
+import com.bht.pim.proto.projects.Project;
+import com.bht.pim.proto.projects.ProjectInfo;
+import com.bht.pim.service.*;
+import com.bht.pim.util.DateUtil;
+import com.bht.pim.util.NotificationUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
@@ -34,6 +33,8 @@ import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 @Log4j
+@Controller
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_CREATE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
@@ -51,6 +53,19 @@ public class ProjectCreate implements Initializable, Confirmable {
 
     private static final int PORT = 9999;
     private static final String HOST = "localhost";
+
+
+    @Autowired
+    private EmployeeListService employeeListService;
+    @Autowired
+    private GroupService groupService;
+    @Autowired
+    private GroupListService groupListService;
+    @Autowired
+    private ProjectService projectService;
+    @Autowired
+    private ProjectListService projectListService;
+
 
     @Resource
     private Context context;
@@ -67,17 +82,17 @@ public class ProjectCreate implements Initializable, Confirmable {
     @FXML
     private Label lSize;
     @FXML
-    private TableView<Member> table;
+    private TableView<EmployeeDTO> table;
     @FXML
-    private TableColumn<Member, Long> cName;
+    private TableColumn<EmployeeDTO, Long> cName;
     @FXML
-    private TableColumn<Member, Member> cRemove;
+    private TableColumn<EmployeeDTO, EmployeeDTO> cRemove;
     @FXML
     private ComboBox<String> comboBoxStatus;
     @FXML
     private ComboBox<String> comboBoxOption;
     @FXML
-    private ComboBox<Member> comboBoxLeader;
+    private ComboBox<EmployeeDTO> comboBoxLeader;
     @FXML
     private TextField customer;
     @FXML
@@ -105,16 +120,15 @@ public class ProjectCreate implements Initializable, Confirmable {
     @FXML
     private DatePicker end;
 
-    private ManagedChannel channel;
     private boolean chose;
     private boolean current;
-    private Member leader;
+    private EmployeeDTO leader;
     private List<Long> projectNumbers;
     private List<Long> members;
-    private List<Member> employees;
-    private List<Member> leaders;
-    private List<Member> leaderOptions;
-    private AutoCompletionBinding<Member> employeeAutoCompletion;
+    private List<EmployeeDTO> employees;
+    private List<EmployeeDTO> leaders;
+    private List<EmployeeDTO> leaderOptions;
+    private AutoCompletionBinding<EmployeeDTO> employeeAutoCompletion;
 
     @FXML
     @Override
@@ -172,31 +186,22 @@ public class ProjectCreate implements Initializable, Confirmable {
 
     // Get all necessary data
     private void getNecessaryData() {
-        // Channel is the abstraction to connect to a service endpoint
-        // Let's use plaintext communication because we don't have certs
-        channel = ManagedChannelBuilder.forAddress(HOST, PORT)
-                .usePlaintext()
-                .build();
-
         // Get all exist project numbers
-        projectNumbers = ProjectUtil.getProjectNumbers(channel);
+        projectNumbers = projectListService.getProjectNumbers();
 
         // Get all employees
-        employees = EmployeeUtil.getAllEmployees(channel).stream()
-                .map(Member::toMember)
+        employees = employeeListService.getAllEmployees().stream()
+                .map(EmployeeDTO::toMember)
                 .collect(Collectors.toList());
 
         // Get all current-group leaders
-        leaders = GroupUtil.getAllGroups(channel).stream()
-                .map(Member::toMember)
+        leaders = groupListService.getAllGroups().stream()
+                .map(EmployeeDTO::toMember)
                 .collect(Collectors.toList());
 
         // Init leader leaderOptions for option new groups
         employees.removeAll(leaders);
         leaderOptions = new ArrayList<>(employees);
-
-        // Turn off connection
-        channel.shutdown();
 
         chose = false;
         current = false;
@@ -303,17 +308,17 @@ public class ProjectCreate implements Initializable, Confirmable {
                 .bindAutoCompletion(textField, employees);
         employeeAutoCompletion.setOnAutoCompleted(event -> {
 
-            Member member = event.getCompletion();
+            EmployeeDTO employeeDTO = event.getCompletion();
 
             textField.clear();
-            table.getItems().add(member);
+            table.getItems().add(employeeDTO);
 
-            members.add(member.getId());
+            members.add(employeeDTO.getId());
             log.info(members);
 
             // Update autocompletion list
             // remove the selected one
-            employees.remove(member);
+            employees.remove(employeeDTO);
             employeeAutoCompletion.dispose();
             configureAutoCompletion();
         });
@@ -339,13 +344,13 @@ public class ProjectCreate implements Initializable, Confirmable {
 
 
     // Button remove on each table row
-    private TableCell<Member, Member> remove(TableColumn<Member, Member> param) {
-        return new TableCell<Member, Member>() {
+    private TableCell<EmployeeDTO, EmployeeDTO> remove(TableColumn<EmployeeDTO, EmployeeDTO> param) {
+        return new TableCell<EmployeeDTO, EmployeeDTO>() {
             private final Button bRemove = new Button("X");
 
             @Override
-            protected void updateItem(Member member, boolean empty) {
-                if (member == null || member == leader) {
+            protected void updateItem(EmployeeDTO employeeDTO, boolean empty) {
+                if (employeeDTO == null || employeeDTO == leader) {
 
                     // Not show the button
                     // to prevent user delete leader from group
@@ -361,20 +366,20 @@ public class ProjectCreate implements Initializable, Confirmable {
                     table.getSelectionModel().clearSelection();
 
                     // remove this row from table
-                    table.getItems().remove(member);
+                    table.getItems().remove(employeeDTO);
 
-                    // add this employee back to employee list
+                    // add this employeeDTO back to employeeDTO list
                     // for autocompletion next times
-                    employees.add(member);
+                    employees.add(employeeDTO);
 
                     // load auto-completion again
                     employeeAutoCompletion.dispose();
                     configureAutoCompletion();
 
-                    // remove this id from the member id list
-                    members.remove(member.getId());
+                    // remove this id from the employeeDTO id list
+                    members.remove(employeeDTO.getId());
 
-                    // log current list member id
+                    // log current list employeeDTO id
                     log.info(members);
                 });
             }
@@ -405,7 +410,7 @@ public class ProjectCreate implements Initializable, Confirmable {
 
             log.info("<<< PIM - On saving new project >>>");
 
-            Employee groupLeader = Employee.newBuilder()
+            com.bht.pim.proto.employees.Employee groupLeader = com.bht.pim.proto.employees.Employee.newBuilder()
                     .setId(leader.getId())
                     .build();
 
@@ -414,12 +419,6 @@ public class ProjectCreate implements Initializable, Confirmable {
                     .build();
 
             try {
-                // Channel is the abstraction to connect to a service endpoint
-                // Let's use plaintext communication because we don't have certs
-                channel = ManagedChannelBuilder.forAddress(HOST, PORT)
-                        .usePlaintext()
-                        .build();
-
                 if (saveNewGroup(group)) {
                     NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
                             "[PIM] Successfully create new group !");
@@ -441,8 +440,8 @@ public class ProjectCreate implements Initializable, Confirmable {
 
                 Project project = projectBuilder.build();
 
-                List<Employee> employeeList = members.stream()
-                        .map(Member::toEmployee)
+                List<com.bht.pim.proto.employees.Employee> employeeList = members.stream()
+                        .map(EmployeeDTO::toEmployee)
                         .collect(Collectors.toList());
 
                 ProjectInfo projectInfo = ProjectInfo.newBuilder()
@@ -455,7 +454,7 @@ public class ProjectCreate implements Initializable, Confirmable {
                 NotificationUtil.showNotification(NotificationStyle.INFO, Pos.CENTER,
                         "[PIM] On saving new project !");
 
-                if (ProjectUtil.addNewProject(channel, projectInfo)) {
+                if (projectService.addNewProject(projectInfo)) {
                     NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
                             "[PIM] Successfully create project !");
 
@@ -466,9 +465,6 @@ public class ProjectCreate implements Initializable, Confirmable {
 
             } catch (Exception exception) {
                 log.info(exception);
-
-            } finally {
-                channel.shutdown();
             }
         } else {
             warnOnInvalid(emptyNumber, emptyName, emptyCustomer, emptyStart);
@@ -517,7 +513,7 @@ public class ProjectCreate implements Initializable, Confirmable {
         if (comboBoxOption.getSelectionModel().getSelectedItem().equals("New group")) {
             // send group info to server to save
             log.info("<<< PIM - On creating new group >>>");
-            return GroupUtil.addNewGroup(channel, group);
+            return groupService.addNewGroup(group);
         }
         return false;
     }
@@ -536,8 +532,8 @@ public class ProjectCreate implements Initializable, Confirmable {
 
 
     // when change leader choice
-    private void leaderChoice(ObservableValue<? extends Member> observable,
-                              Member oldValue, Member newValue) {
+    private void leaderChoice(ObservableValue<? extends EmployeeDTO> observable,
+                              EmployeeDTO oldValue, EmployeeDTO newValue) {
         if (oldValue == null) { // change group option
 
             if (!current) { // new-group
