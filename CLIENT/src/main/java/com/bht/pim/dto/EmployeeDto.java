@@ -15,7 +15,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class EmployeeDto {
-
     @NonNull
     private final long id;
     @NonNull

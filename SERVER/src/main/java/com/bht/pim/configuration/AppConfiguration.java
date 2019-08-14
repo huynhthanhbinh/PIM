@@ -1,7 +1,12 @@
 package com.bht.pim.configuration;
 
+import com.bht.pim.mapper.EmployeeMapper;
+import com.bht.pim.mapper.GroupMapper;
+import com.bht.pim.mapper.ProjectMapper;
 import lombok.extern.log4j.Log4j;
 import org.hibernate.SessionFactory;
+import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +32,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan("com.bht.pim")
 @PropertySource("classpath:db.properties")
-public class AppConfiguration {
+public class AppConfiguration implements InitializingBean {
 
     // In Spring, we can use annotation @PropertySource
     // to externalize our configurations to
@@ -37,7 +42,7 @@ public class AppConfiguration {
     // For eg. @Value("${mssql.url}") private String url
     // Remind: using # for comment in properties file !
     @Autowired
-    Environment environment;
+    private Environment environment;
 
 
     // As Environment obj is in the same class
@@ -168,5 +173,29 @@ public class AppConfiguration {
         hibernateTransactionManager.setRollbackOnCommitFailure(true);
 
         return hibernateTransactionManager;
+    }
+
+
+    @Bean
+    public EmployeeMapper employeeMapper() {
+        log.info("[PIM] Creating bean of < EmployeeMapper >");
+        return Mappers.getMapper(EmployeeMapper.class);
+    }
+
+    @Bean
+    public GroupMapper groupMapper() {
+        log.info("[PIM] Creating bean of < GroupMapper >");
+        return Mappers.getMapper(GroupMapper.class);
+    }
+
+    @Bean
+    public ProjectMapper projectMapper() {
+        log.info("[PIM] Creating bean of < ProjectMapper >");
+        return Mappers.getMapper(ProjectMapper.class);
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        log.info("[PIM} Finish initializing beans !");
     }
 }
