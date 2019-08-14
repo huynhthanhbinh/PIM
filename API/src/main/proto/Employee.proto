@@ -1,15 +1,25 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+import "info/EmployeeInfo.proto";
+import "info/ProjectInfo.proto";
 
 package com.bht.pim.proto.employees;
 option java_generic_services = true;
 option java_multiple_files = true;
 
 message Employee {
-    int64 id = 1;
-    string visa = 2;
-    string first_name = 3;
-    string last_name = 4;
-    google.protobuf.Timestamp birthday = 5;
+    EmployeeInfo employeeInfo = 1;
+    repeated projects.ProjectInfo enrolledProjects = 2;
+}
+
+message EmployeeList {
+    repeated Employee employees = 1;
+}
+
+service EmployeeService {
+    rpc getEmployeeById (google.protobuf.Int64Value) returns (Employee);
+    rpc getEmployeeList (google.protobuf.Empty) returns (EmployeeList);
 }

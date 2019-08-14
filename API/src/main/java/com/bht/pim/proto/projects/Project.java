@@ -3,8 +3,8 @@
 
 package com.bht.pim.proto.projects;
 
-import com.bht.pim.proto.groups.Group;
-import com.bht.pim.proto.groups.GroupOrBuilder;
+import com.bht.pim.proto.employees.EmployeeInfo;
+import com.bht.pim.proto.employees.EmployeeInfoOrBuilder;
 
 /**
  * Protobuf type {@code com.bht.pim.proto.projects.Project}
@@ -21,11 +21,7 @@ public final class Project extends
     }
 
     private Project() {
-        id_ = 0L;
-        number_ = 0L;
-        name_ = "";
-        customer_ = "";
-        status_ = "";
+        members_ = java.util.Collections.emptyList();
     }
 
     @Override
@@ -60,71 +56,26 @@ public final class Project extends
                         }
                         break;
                     }
-                    case 8: {
-
-                        id_ = input.readInt64();
-                        break;
-                    }
-                    case 16: {
-
-                        number_ = input.readInt64();
-                        break;
-                    }
-                    case 26: {
-                        String s = input.readStringRequireUtf8();
-
-                        name_ = s;
-                        break;
-                    }
-                    case 34: {
-                        String s = input.readStringRequireUtf8();
-
-                        customer_ = s;
-                        break;
-                    }
-                    case 42: {
-                        String s = input.readStringRequireUtf8();
-
-                        status_ = s;
-                        break;
-                    }
-                    case 50: {
-                        com.google.protobuf.Timestamp.Builder subBuilder = null;
-                        if (start_ != null) {
-                            subBuilder = start_.toBuilder();
+                    case 10: {
+                        ProjectInfo.Builder subBuilder = null;
+                        if (projectInfo_ != null) {
+                            subBuilder = projectInfo_.toBuilder();
                         }
-                        start_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
+                        projectInfo_ = input.readMessage(ProjectInfo.parser(), extensionRegistry);
                         if (subBuilder != null) {
-                            subBuilder.mergeFrom(start_);
-                            start_ = subBuilder.buildPartial();
+                            subBuilder.mergeFrom(projectInfo_);
+                            projectInfo_ = subBuilder.buildPartial();
                         }
 
                         break;
                     }
-                    case 58: {
-                        com.google.protobuf.Timestamp.Builder subBuilder = null;
-                        if (end_ != null) {
-                            subBuilder = end_.toBuilder();
+                    case 18: {
+                        if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                            members_ = new java.util.ArrayList<>();
+                            mutable_bitField0_ |= 0x00000002;
                         }
-                        end_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-                        if (subBuilder != null) {
-                            subBuilder.mergeFrom(end_);
-                            end_ = subBuilder.buildPartial();
-                        }
-
-                        break;
-                    }
-                    case 66: {
-                        Group.Builder subBuilder = null;
-                        if (group_ != null) {
-                            subBuilder = group_.toBuilder();
-                        }
-                        group_ = input.readMessage(Group.parser(), extensionRegistry);
-                        if (subBuilder != null) {
-                            subBuilder.mergeFrom(group_);
-                            group_ = subBuilder.buildPartial();
-                        }
-
+                        members_.add(
+                                input.readMessage(EmployeeInfo.parser(), extensionRegistry));
                         break;
                     }
                 }
@@ -135,6 +86,9 @@ public final class Project extends
             throw new com.google.protobuf.InvalidProtocolBufferException(
                     e).setUnfinishedMessage(this);
         } finally {
+            if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                members_ = java.util.Collections.unmodifiableList(members_);
+            }
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
         }
@@ -153,221 +107,77 @@ public final class Project extends
                         Project.class, Project.Builder.class);
     }
 
-    public static final int ID_FIELD_NUMBER = 1;
-    private long id_;
+    private int bitField0_;
+    public static final int PROJECTINFO_FIELD_NUMBER = 1;
+    private ProjectInfo projectInfo_;
 
     /**
-     * <code>int64 id = 1;</code>
+     * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
      */
     @Override
-    public long getId() {
-        return id_;
-    }
-
-    public static final int NUMBER_FIELD_NUMBER = 2;
-    private long number_;
-
-    /**
-     * <code>int64 number = 2;</code>
-     */
-    @Override
-    public long getNumber() {
-        return number_;
-    }
-
-    public static final int NAME_FIELD_NUMBER = 3;
-    private volatile Object name_;
-
-    /**
-     * <code>string name = 3;</code>
-     */
-    @Override
-    public String getName() {
-        Object ref = name_;
-        if (ref instanceof String) {
-            return (String) ref;
-        } else {
-            com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
-            name_ = s;
-            return s;
-        }
+    public boolean hasProjectInfo() {
+        return projectInfo_ != null;
     }
 
     /**
-     * <code>string name = 3;</code>
+     * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getNameBytes() {
-        Object ref = name_;
-        if (ref instanceof String) {
-            com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (String) ref);
-            name_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
-    }
-
-    public static final int CUSTOMER_FIELD_NUMBER = 4;
-    private volatile Object customer_;
-
-    /**
-     * <code>string customer = 4;</code>
-     */
-    @Override
-    public String getCustomer() {
-        Object ref = customer_;
-        if (ref instanceof String) {
-            return (String) ref;
-        } else {
-            com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
-            customer_ = s;
-            return s;
-        }
+    public ProjectInfo getProjectInfo() {
+        return projectInfo_ == null ? ProjectInfo.getDefaultInstance() : projectInfo_;
     }
 
     /**
-     * <code>string customer = 4;</code>
+     * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getCustomerBytes() {
-        Object ref = customer_;
-        if (ref instanceof String) {
-            com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (String) ref);
-            customer_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+    public ProjectInfoOrBuilder getProjectInfoOrBuilder() {
+        return getProjectInfo();
     }
 
-    public static final int STATUS_FIELD_NUMBER = 5;
-    private volatile Object status_;
+    public static final int MEMBERS_FIELD_NUMBER = 2;
+    private java.util.List<EmployeeInfo> members_;
 
     /**
-     * <code>string status = 5;</code>
+     * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
      */
     @Override
-    public String getStatus() {
-        Object ref = status_;
-        if (ref instanceof String) {
-            return (String) ref;
-        } else {
-            com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
-            status_ = s;
-            return s;
-        }
+    public java.util.List<EmployeeInfo> getMembersList() {
+        return members_;
     }
 
     /**
-     * <code>string status = 5;</code>
+     * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
      */
     @Override
-    public com.google.protobuf.ByteString
-    getStatusBytes() {
-        Object ref = status_;
-        if (ref instanceof String) {
-            com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (String) ref);
-            status_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
-    }
-
-    public static final int START_FIELD_NUMBER = 6;
-    private com.google.protobuf.Timestamp start_;
-
-    /**
-     * <code>.google.protobuf.Timestamp start = 6;</code>
-     */
-    @Override
-    public boolean hasStart() {
-        return start_ != null;
+    public java.util.List<? extends EmployeeInfoOrBuilder>
+    getMembersOrBuilderList() {
+        return members_;
     }
 
     /**
-     * <code>.google.protobuf.Timestamp start = 6;</code>
+     * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
      */
     @Override
-    public com.google.protobuf.Timestamp getStart() {
-        return start_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : start_;
+    public int getMembersCount() {
+        return members_.size();
     }
 
     /**
-     * <code>.google.protobuf.Timestamp start = 6;</code>
+     * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
      */
     @Override
-    public com.google.protobuf.TimestampOrBuilder getStartOrBuilder() {
-        return getStart();
-    }
-
-    public static final int END_FIELD_NUMBER = 7;
-    private com.google.protobuf.Timestamp end_;
-
-    /**
-     * <code>.google.protobuf.Timestamp end = 7;</code>
-     */
-    @Override
-    public boolean hasEnd() {
-        return end_ != null;
+    public EmployeeInfo getMembers(int index) {
+        return members_.get(index);
     }
 
     /**
-     * <code>.google.protobuf.Timestamp end = 7;</code>
+     * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
      */
     @Override
-    public com.google.protobuf.Timestamp getEnd() {
-        return end_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : end_;
-    }
-
-    /**
-     * <code>.google.protobuf.Timestamp end = 7;</code>
-     */
-    @Override
-    public com.google.protobuf.TimestampOrBuilder getEndOrBuilder() {
-        return getEnd();
-    }
-
-    public static final int GROUP_FIELD_NUMBER = 8;
-    private Group group_;
-
-    /**
-     * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
-     */
-    @Override
-    public boolean hasGroup() {
-        return group_ != null;
-    }
-
-    /**
-     * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
-     */
-    @Override
-    public Group getGroup() {
-        return group_ == null ? Group.getDefaultInstance() : group_;
-    }
-
-    /**
-     * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
-     */
-    @Override
-    public GroupOrBuilder getGroupOrBuilder() {
-        return getGroup();
+    public EmployeeInfoOrBuilder getMembersOrBuilder(
+            int index) {
+        return members_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -389,29 +199,11 @@ public final class Project extends
     @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
-        if (id_ != 0L) {
-            output.writeInt64(1, id_);
+        if (projectInfo_ != null) {
+            output.writeMessage(1, getProjectInfo());
         }
-        if (number_ != 0L) {
-            output.writeInt64(2, number_);
-        }
-        if (!getNameBytes().isEmpty()) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 3, name_);
-        }
-        if (!getCustomerBytes().isEmpty()) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 4, customer_);
-        }
-        if (!getStatusBytes().isEmpty()) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 5, status_);
-        }
-        if (start_ != null) {
-            output.writeMessage(6, getStart());
-        }
-        if (end_ != null) {
-            output.writeMessage(7, getEnd());
-        }
-        if (group_ != null) {
-            output.writeMessage(8, getGroup());
+        for (int i = 0; i < members_.size(); i++) {
+            output.writeMessage(2, members_.get(i));
         }
         unknownFields.writeTo(output);
     }
@@ -424,34 +216,13 @@ public final class Project extends
         }
 
         size = 0;
-        if (id_ != 0L) {
+        if (projectInfo_ != null) {
             size += com.google.protobuf.CodedOutputStream
-                    .computeInt64Size(1, id_);
+                    .computeMessageSize(1, getProjectInfo());
         }
-        if (number_ != 0L) {
+        for (int i = 0; i < members_.size(); i++) {
             size += com.google.protobuf.CodedOutputStream
-                    .computeInt64Size(2, number_);
-        }
-        if (!getNameBytes().isEmpty()) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, name_);
-        }
-        if (!getCustomerBytes().isEmpty()) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, customer_);
-        }
-        if (!getStatusBytes().isEmpty()) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, status_);
-        }
-        if (start_ != null) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(6, getStart());
-        }
-        if (end_ != null) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(7, getEnd());
-        }
-        if (group_ != null) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(8, getGroup());
+                    .computeMessageSize(2, members_.get(i));
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
@@ -469,31 +240,13 @@ public final class Project extends
         Project other = (Project) obj;
 
         boolean result = true;
-        result = result && (getId()
-                == other.getId());
-        result = result && (getNumber()
-                == other.getNumber());
-        result = result && getName()
-                .equals(other.getName());
-        result = result && getCustomer()
-                .equals(other.getCustomer());
-        result = result && getStatus()
-                .equals(other.getStatus());
-        result = result && (hasStart() == other.hasStart());
-        if (hasStart()) {
-            result = result && getStart()
-                    .equals(other.getStart());
+        result = result && (hasProjectInfo() == other.hasProjectInfo());
+        if (hasProjectInfo()) {
+            result = result && getProjectInfo()
+                    .equals(other.getProjectInfo());
         }
-        result = result && (hasEnd() == other.hasEnd());
-        if (hasEnd()) {
-            result = result && getEnd()
-                    .equals(other.getEnd());
-        }
-        result = result && (hasGroup() == other.hasGroup());
-        if (hasGroup()) {
-            result = result && getGroup()
-                    .equals(other.getGroup());
-        }
+        result = result && getMembersList()
+                .equals(other.getMembersList());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
     }
@@ -505,29 +258,13 @@ public final class Project extends
         }
         int hash = 41;
         hash = (19 * hash) + getDescriptor().hashCode();
-        hash = (37 * hash) + ID_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                getId());
-        hash = (37 * hash) + NUMBER_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                getNumber());
-        hash = (37 * hash) + NAME_FIELD_NUMBER;
-        hash = (53 * hash) + getName().hashCode();
-        hash = (37 * hash) + CUSTOMER_FIELD_NUMBER;
-        hash = (53 * hash) + getCustomer().hashCode();
-        hash = (37 * hash) + STATUS_FIELD_NUMBER;
-        hash = (53 * hash) + getStatus().hashCode();
-        if (hasStart()) {
-            hash = (37 * hash) + START_FIELD_NUMBER;
-            hash = (53 * hash) + getStart().hashCode();
+        if (hasProjectInfo()) {
+            hash = (37 * hash) + PROJECTINFO_FIELD_NUMBER;
+            hash = (53 * hash) + getProjectInfo().hashCode();
         }
-        if (hasEnd()) {
-            hash = (37 * hash) + END_FIELD_NUMBER;
-            hash = (53 * hash) + getEnd().hashCode();
-        }
-        if (hasGroup()) {
-            hash = (37 * hash) + GROUP_FIELD_NUMBER;
-            hash = (53 * hash) + getGroup().hashCode();
+        if (getMembersCount() > 0) {
+            hash = (37 * hash) + MEMBERS_FIELD_NUMBER;
+            hash = (53 * hash) + getMembersList().hashCode();
         }
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
@@ -675,39 +412,24 @@ public final class Project extends
         private void maybeForceBuilderInitialization() {
             if (com.google.protobuf.GeneratedMessageV3
                     .alwaysUseFieldBuilders) {
+                getMembersFieldBuilder();
             }
         }
 
         @Override
         public Builder clear() {
             super.clear();
-            id_ = 0L;
-
-            number_ = 0L;
-
-            name_ = "";
-
-            customer_ = "";
-
-            status_ = "";
-
-            if (startBuilder_ == null) {
-                start_ = null;
+            if (projectInfoBuilder_ == null) {
+                projectInfo_ = null;
             } else {
-                start_ = null;
-                startBuilder_ = null;
+                projectInfo_ = null;
+                projectInfoBuilder_ = null;
             }
-            if (endBuilder_ == null) {
-                end_ = null;
+            if (membersBuilder_ == null) {
+                members_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000002);
             } else {
-                end_ = null;
-                endBuilder_ = null;
-            }
-            if (groupBuilder_ == null) {
-                group_ = null;
-            } else {
-                group_ = null;
-                groupBuilder_ = null;
+                membersBuilder_.clear();
             }
             return this;
         }
@@ -735,26 +457,23 @@ public final class Project extends
         @Override
         public Project buildPartial() {
             Project result = new Project(this);
-            result.id_ = id_;
-            result.number_ = number_;
-            result.name_ = name_;
-            result.customer_ = customer_;
-            result.status_ = status_;
-            if (startBuilder_ == null) {
-                result.start_ = start_;
+            int from_bitField0_ = bitField0_;
+            int to_bitField0_ = 0;
+            if (projectInfoBuilder_ == null) {
+                result.projectInfo_ = projectInfo_;
             } else {
-                result.start_ = startBuilder_.build();
+                result.projectInfo_ = projectInfoBuilder_.build();
             }
-            if (endBuilder_ == null) {
-                result.end_ = end_;
+            if (membersBuilder_ == null) {
+                if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                    members_ = java.util.Collections.unmodifiableList(members_);
+                    bitField0_ = (bitField0_ & ~0x00000002);
+                }
+                result.members_ = members_;
             } else {
-                result.end_ = endBuilder_.build();
+                result.members_ = membersBuilder_.build();
             }
-            if (groupBuilder_ == null) {
-                result.group_ = group_;
-            } else {
-                result.group_ = groupBuilder_.build();
-            }
+            result.bitField0_ = to_bitField0_;
             onBuilt();
             return result;
         }
@@ -811,32 +530,34 @@ public final class Project extends
             if (other == Project.getDefaultInstance()) {
                 return this;
             }
-            if (other.getId() != 0L) {
-                setId(other.getId());
+            if (other.hasProjectInfo()) {
+                mergeProjectInfo(other.getProjectInfo());
             }
-            if (other.getNumber() != 0L) {
-                setNumber(other.getNumber());
-            }
-            if (!other.getName().isEmpty()) {
-                name_ = other.name_;
-                onChanged();
-            }
-            if (!other.getCustomer().isEmpty()) {
-                customer_ = other.customer_;
-                onChanged();
-            }
-            if (!other.getStatus().isEmpty()) {
-                status_ = other.status_;
-                onChanged();
-            }
-            if (other.hasStart()) {
-                mergeStart(other.getStart());
-            }
-            if (other.hasEnd()) {
-                mergeEnd(other.getEnd());
-            }
-            if (other.hasGroup()) {
-                mergeGroup(other.getGroup());
+            if (membersBuilder_ == null) {
+                if (!other.members_.isEmpty()) {
+                    if (members_.isEmpty()) {
+                        members_ = other.members_;
+                        bitField0_ = (bitField0_ & ~0x00000002);
+                    } else {
+                        ensureMembersIsMutable();
+                        members_.addAll(other.members_);
+                    }
+                    onChanged();
+                }
+            } else {
+                if (!other.members_.isEmpty()) {
+                    if (membersBuilder_.isEmpty()) {
+                        membersBuilder_.dispose();
+                        membersBuilder_ = null;
+                        members_ = other.members_;
+                        bitField0_ = (bitField0_ & ~0x00000002);
+                        membersBuilder_ =
+                                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                                        getMembersFieldBuilder() : null;
+                    } else {
+                        membersBuilder_.addAllMessages(other.members_);
+                    }
+                }
             }
             mergeUnknownFields(other.unknownFields);
             onChanged();
@@ -867,676 +588,398 @@ public final class Project extends
             return this;
         }
 
-        private long id_;
+        private int bitField0_;
 
-        /**
-         * <code>int64 id = 1;</code>
-         */
-        @Override
-        public long getId() {
-            return id_;
-        }
-
-        /**
-         * <code>int64 id = 1;</code>
-         */
-        public Builder setId(long value) {
-
-            id_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int64 id = 1;</code>
-         */
-        public Builder clearId() {
-
-            id_ = 0L;
-            onChanged();
-            return this;
-        }
-
-        private long number_;
-
-        /**
-         * <code>int64 number = 2;</code>
-         */
-        @Override
-        public long getNumber() {
-            return number_;
-        }
-
-        /**
-         * <code>int64 number = 2;</code>
-         */
-        public Builder setNumber(long value) {
-
-            number_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int64 number = 2;</code>
-         */
-        public Builder clearNumber() {
-
-            number_ = 0L;
-            onChanged();
-            return this;
-        }
-
-        private Object name_ = "";
-
-        /**
-         * <code>string name = 3;</code>
-         */
-        @Override
-        public String getName() {
-            Object ref = name_;
-            if (!(ref instanceof String)) {
-                com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                String s = bs.toStringUtf8();
-                name_ = s;
-                return s;
-            } else {
-                return (String) ref;
-            }
-        }
-
-        /**
-         * <code>string name = 3;</code>
-         */
-        @Override
-        public com.google.protobuf.ByteString
-        getNameBytes() {
-            Object ref = name_;
-            if (ref instanceof String) {
-                com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (String) ref);
-                name_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
-        }
-
-        /**
-         * <code>string name = 3;</code>
-         */
-        public Builder setName(
-                String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
-
-            name_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>string name = 3;</code>
-         */
-        public Builder clearName() {
-
-            name_ = getDefaultInstance().getName();
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>string name = 3;</code>
-         */
-        public Builder setNameBytes(
-                com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
-            checkByteStringIsUtf8(value);
-
-            name_ = value;
-            onChanged();
-            return this;
-        }
-
-        private Object customer_ = "";
-
-        /**
-         * <code>string customer = 4;</code>
-         */
-        @Override
-        public String getCustomer() {
-            Object ref = customer_;
-            if (!(ref instanceof String)) {
-                com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                String s = bs.toStringUtf8();
-                customer_ = s;
-                return s;
-            } else {
-                return (String) ref;
-            }
-        }
-
-        /**
-         * <code>string customer = 4;</code>
-         */
-        @Override
-        public com.google.protobuf.ByteString
-        getCustomerBytes() {
-            Object ref = customer_;
-            if (ref instanceof String) {
-                com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (String) ref);
-                customer_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
-        }
-
-        /**
-         * <code>string customer = 4;</code>
-         */
-        public Builder setCustomer(
-                String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
-
-            customer_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>string customer = 4;</code>
-         */
-        public Builder clearCustomer() {
-
-            customer_ = getDefaultInstance().getCustomer();
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>string customer = 4;</code>
-         */
-        public Builder setCustomerBytes(
-                com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
-            checkByteStringIsUtf8(value);
-
-            customer_ = value;
-            onChanged();
-            return this;
-        }
-
-        private Object status_ = "";
-
-        /**
-         * <code>string status = 5;</code>
-         */
-        @Override
-        public String getStatus() {
-            Object ref = status_;
-            if (!(ref instanceof String)) {
-                com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                String s = bs.toStringUtf8();
-                status_ = s;
-                return s;
-            } else {
-                return (String) ref;
-            }
-        }
-
-        /**
-         * <code>string status = 5;</code>
-         */
-        @Override
-        public com.google.protobuf.ByteString
-        getStatusBytes() {
-            Object ref = status_;
-            if (ref instanceof String) {
-                com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (String) ref);
-                status_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
-        }
-
-        /**
-         * <code>string status = 5;</code>
-         */
-        public Builder setStatus(
-                String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
-
-            status_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>string status = 5;</code>
-         */
-        public Builder clearStatus() {
-
-            status_ = getDefaultInstance().getStatus();
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>string status = 5;</code>
-         */
-        public Builder setStatusBytes(
-                com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
-            checkByteStringIsUtf8(value);
-
-            status_ = value;
-            onChanged();
-            return this;
-        }
-
-        private com.google.protobuf.Timestamp start_ = null;
+        private ProjectInfo projectInfo_ = null;
         private com.google.protobuf.SingleFieldBuilderV3<
-                com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> startBuilder_;
+                ProjectInfo, ProjectInfo.Builder, ProjectInfoOrBuilder> projectInfoBuilder_;
 
         /**
-         * <code>.google.protobuf.Timestamp start = 6;</code>
+         * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
          */
         @Override
-        public boolean hasStart() {
-            return startBuilder_ != null || start_ != null;
+        public boolean hasProjectInfo() {
+            return projectInfoBuilder_ != null || projectInfo_ != null;
         }
 
         /**
-         * <code>.google.protobuf.Timestamp start = 6;</code>
+         * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
          */
         @Override
-        public com.google.protobuf.Timestamp getStart() {
-            if (startBuilder_ == null) {
-                return start_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : start_;
+        public ProjectInfo getProjectInfo() {
+            if (projectInfoBuilder_ == null) {
+                return projectInfo_ == null ? ProjectInfo.getDefaultInstance() : projectInfo_;
             } else {
-                return startBuilder_.getMessage();
+                return projectInfoBuilder_.getMessage();
             }
         }
 
         /**
-         * <code>.google.protobuf.Timestamp start = 6;</code>
+         * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
          */
-        public Builder setStart(com.google.protobuf.Timestamp value) {
-            if (startBuilder_ == null) {
+        public Builder setProjectInfo(ProjectInfo value) {
+            if (projectInfoBuilder_ == null) {
                 if (value == null) {
                     throw new NullPointerException();
                 }
-                start_ = value;
+                projectInfo_ = value;
                 onChanged();
             } else {
-                startBuilder_.setMessage(value);
+                projectInfoBuilder_.setMessage(value);
             }
 
             return this;
         }
 
         /**
-         * <code>.google.protobuf.Timestamp start = 6;</code>
+         * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
          */
-        public Builder setStart(
-                com.google.protobuf.Timestamp.Builder builderForValue) {
-            if (startBuilder_ == null) {
-                start_ = builderForValue.build();
+        public Builder setProjectInfo(
+                ProjectInfo.Builder builderForValue) {
+            if (projectInfoBuilder_ == null) {
+                projectInfo_ = builderForValue.build();
                 onChanged();
             } else {
-                startBuilder_.setMessage(builderForValue.build());
+                projectInfoBuilder_.setMessage(builderForValue.build());
             }
 
             return this;
         }
 
         /**
-         * <code>.google.protobuf.Timestamp start = 6;</code>
+         * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
          */
-        public Builder mergeStart(com.google.protobuf.Timestamp value) {
-            if (startBuilder_ == null) {
-                if (start_ != null) {
-                    start_ =
-                            com.google.protobuf.Timestamp.newBuilder(start_).mergeFrom(value).buildPartial();
+        public Builder mergeProjectInfo(ProjectInfo value) {
+            if (projectInfoBuilder_ == null) {
+                if (projectInfo_ != null) {
+                    projectInfo_ =
+                            ProjectInfo.newBuilder(projectInfo_).mergeFrom(value).buildPartial();
                 } else {
-                    start_ = value;
+                    projectInfo_ = value;
                 }
                 onChanged();
             } else {
-                startBuilder_.mergeFrom(value);
+                projectInfoBuilder_.mergeFrom(value);
             }
 
             return this;
         }
 
         /**
-         * <code>.google.protobuf.Timestamp start = 6;</code>
+         * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
          */
-        public Builder clearStart() {
-            if (startBuilder_ == null) {
-                start_ = null;
+        public Builder clearProjectInfo() {
+            if (projectInfoBuilder_ == null) {
+                projectInfo_ = null;
                 onChanged();
             } else {
-                start_ = null;
-                startBuilder_ = null;
+                projectInfo_ = null;
+                projectInfoBuilder_ = null;
             }
 
             return this;
         }
 
         /**
-         * <code>.google.protobuf.Timestamp start = 6;</code>
+         * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
          */
-        public com.google.protobuf.Timestamp.Builder getStartBuilder() {
+        public ProjectInfo.Builder getProjectInfoBuilder() {
 
             onChanged();
-            return getStartFieldBuilder().getBuilder();
+            return getProjectInfoFieldBuilder().getBuilder();
         }
 
         /**
-         * <code>.google.protobuf.Timestamp start = 6;</code>
+         * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
          */
         @Override
-        public com.google.protobuf.TimestampOrBuilder getStartOrBuilder() {
-            if (startBuilder_ != null) {
-                return startBuilder_.getMessageOrBuilder();
+        public ProjectInfoOrBuilder getProjectInfoOrBuilder() {
+            if (projectInfoBuilder_ != null) {
+                return projectInfoBuilder_.getMessageOrBuilder();
             } else {
-                return start_ == null ?
-                        com.google.protobuf.Timestamp.getDefaultInstance() : start_;
+                return projectInfo_ == null ?
+                        ProjectInfo.getDefaultInstance() : projectInfo_;
             }
         }
 
         /**
-         * <code>.google.protobuf.Timestamp start = 6;</code>
+         * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
          */
         private com.google.protobuf.SingleFieldBuilderV3<
-                com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
-        getStartFieldBuilder() {
-            if (startBuilder_ == null) {
-                startBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getStart(),
+                ProjectInfo, ProjectInfo.Builder, ProjectInfoOrBuilder>
+        getProjectInfoFieldBuilder() {
+            if (projectInfoBuilder_ == null) {
+                projectInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+                        getProjectInfo(),
                         getParentForChildren(),
                         isClean());
-                start_ = null;
+                projectInfo_ = null;
             }
-            return startBuilder_;
+            return projectInfoBuilder_;
         }
 
-        private com.google.protobuf.Timestamp end_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> endBuilder_;
+        private java.util.List<EmployeeInfo> members_ =
+                java.util.Collections.emptyList();
 
-        /**
-         * <code>.google.protobuf.Timestamp end = 7;</code>
-         */
-        @Override
-        public boolean hasEnd() {
-            return endBuilder_ != null || end_ != null;
+        private void ensureMembersIsMutable() {
+            if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+                members_ = new java.util.ArrayList<>(members_);
+                bitField0_ |= 0x00000002;
+            }
         }
 
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+                EmployeeInfo, EmployeeInfo.Builder, EmployeeInfoOrBuilder> membersBuilder_;
+
         /**
-         * <code>.google.protobuf.Timestamp end = 7;</code>
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
          */
         @Override
-        public com.google.protobuf.Timestamp getEnd() {
-            if (endBuilder_ == null) {
-                return end_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : end_;
+        public java.util.List<EmployeeInfo> getMembersList() {
+            if (membersBuilder_ == null) {
+                return java.util.Collections.unmodifiableList(members_);
             } else {
-                return endBuilder_.getMessage();
+                return membersBuilder_.getMessageList();
             }
         }
 
         /**
-         * <code>.google.protobuf.Timestamp end = 7;</code>
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
          */
-        public Builder setEnd(com.google.protobuf.Timestamp value) {
-            if (endBuilder_ == null) {
+        @Override
+        public int getMembersCount() {
+            if (membersBuilder_ == null) {
+                return members_.size();
+            } else {
+                return membersBuilder_.getCount();
+            }
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
+         */
+        @Override
+        public EmployeeInfo getMembers(int index) {
+            if (membersBuilder_ == null) {
+                return members_.get(index);
+            } else {
+                return membersBuilder_.getMessage(index);
+            }
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
+         */
+        public Builder setMembers(
+                int index, EmployeeInfo value) {
+            if (membersBuilder_ == null) {
                 if (value == null) {
                     throw new NullPointerException();
                 }
-                end_ = value;
+                ensureMembersIsMutable();
+                members_.set(index, value);
                 onChanged();
             } else {
-                endBuilder_.setMessage(value);
+                membersBuilder_.setMessage(index, value);
             }
-
             return this;
         }
 
         /**
-         * <code>.google.protobuf.Timestamp end = 7;</code>
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
          */
-        public Builder setEnd(
-                com.google.protobuf.Timestamp.Builder builderForValue) {
-            if (endBuilder_ == null) {
-                end_ = builderForValue.build();
+        public Builder setMembers(
+                int index, EmployeeInfo.Builder builderForValue) {
+            if (membersBuilder_ == null) {
+                ensureMembersIsMutable();
+                members_.set(index, builderForValue.build());
                 onChanged();
             } else {
-                endBuilder_.setMessage(builderForValue.build());
+                membersBuilder_.setMessage(index, builderForValue.build());
             }
-
             return this;
         }
 
         /**
-         * <code>.google.protobuf.Timestamp end = 7;</code>
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
          */
-        public Builder mergeEnd(com.google.protobuf.Timestamp value) {
-            if (endBuilder_ == null) {
-                if (end_ != null) {
-                    end_ =
-                            com.google.protobuf.Timestamp.newBuilder(end_).mergeFrom(value).buildPartial();
-                } else {
-                    end_ = value;
-                }
-                onChanged();
-            } else {
-                endBuilder_.mergeFrom(value);
-            }
-
-            return this;
-        }
-
-        /**
-         * <code>.google.protobuf.Timestamp end = 7;</code>
-         */
-        public Builder clearEnd() {
-            if (endBuilder_ == null) {
-                end_ = null;
-                onChanged();
-            } else {
-                end_ = null;
-                endBuilder_ = null;
-            }
-
-            return this;
-        }
-
-        /**
-         * <code>.google.protobuf.Timestamp end = 7;</code>
-         */
-        public com.google.protobuf.Timestamp.Builder getEndBuilder() {
-
-            onChanged();
-            return getEndFieldBuilder().getBuilder();
-        }
-
-        /**
-         * <code>.google.protobuf.Timestamp end = 7;</code>
-         */
-        @Override
-        public com.google.protobuf.TimestampOrBuilder getEndOrBuilder() {
-            if (endBuilder_ != null) {
-                return endBuilder_.getMessageOrBuilder();
-            } else {
-                return end_ == null ?
-                        com.google.protobuf.Timestamp.getDefaultInstance() : end_;
-            }
-        }
-
-        /**
-         * <code>.google.protobuf.Timestamp end = 7;</code>
-         */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
-        getEndFieldBuilder() {
-            if (endBuilder_ == null) {
-                endBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getEnd(),
-                        getParentForChildren(),
-                        isClean());
-                end_ = null;
-            }
-            return endBuilder_;
-        }
-
-        private Group group_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                Group, Group.Builder, GroupOrBuilder> groupBuilder_;
-
-        /**
-         * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
-         */
-        @Override
-        public boolean hasGroup() {
-            return groupBuilder_ != null || group_ != null;
-        }
-
-        /**
-         * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
-         */
-        @Override
-        public Group getGroup() {
-            if (groupBuilder_ == null) {
-                return group_ == null ? Group.getDefaultInstance() : group_;
-            } else {
-                return groupBuilder_.getMessage();
-            }
-        }
-
-        /**
-         * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
-         */
-        public Builder setGroup(Group value) {
-            if (groupBuilder_ == null) {
+        public Builder addMembers(EmployeeInfo value) {
+            if (membersBuilder_ == null) {
                 if (value == null) {
                     throw new NullPointerException();
                 }
-                group_ = value;
+                ensureMembersIsMutable();
+                members_.add(value);
                 onChanged();
             } else {
-                groupBuilder_.setMessage(value);
+                membersBuilder_.addMessage(value);
             }
-
             return this;
         }
 
         /**
-         * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
          */
-        public Builder setGroup(
-                Group.Builder builderForValue) {
-            if (groupBuilder_ == null) {
-                group_ = builderForValue.build();
-                onChanged();
-            } else {
-                groupBuilder_.setMessage(builderForValue.build());
-            }
-
-            return this;
-        }
-
-        /**
-         * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
-         */
-        public Builder mergeGroup(Group value) {
-            if (groupBuilder_ == null) {
-                if (group_ != null) {
-                    group_ =
-                            Group.newBuilder(group_).mergeFrom(value).buildPartial();
-                } else {
-                    group_ = value;
+        public Builder addMembers(
+                int index, EmployeeInfo value) {
+            if (membersBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
                 }
+                ensureMembersIsMutable();
+                members_.add(index, value);
                 onChanged();
             } else {
-                groupBuilder_.mergeFrom(value);
+                membersBuilder_.addMessage(index, value);
             }
-
             return this;
         }
 
         /**
-         * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
          */
-        public Builder clearGroup() {
-            if (groupBuilder_ == null) {
-                group_ = null;
+        public Builder addMembers(
+                EmployeeInfo.Builder builderForValue) {
+            if (membersBuilder_ == null) {
+                ensureMembersIsMutable();
+                members_.add(builderForValue.build());
                 onChanged();
             } else {
-                group_ = null;
-                groupBuilder_ = null;
+                membersBuilder_.addMessage(builderForValue.build());
             }
-
             return this;
         }
 
         /**
-         * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
          */
-        public Group.Builder getGroupBuilder() {
-
-            onChanged();
-            return getGroupFieldBuilder().getBuilder();
+        public Builder addMembers(
+                int index, EmployeeInfo.Builder builderForValue) {
+            if (membersBuilder_ == null) {
+                ensureMembersIsMutable();
+                members_.add(index, builderForValue.build());
+                onChanged();
+            } else {
+                membersBuilder_.addMessage(index, builderForValue.build());
+            }
+            return this;
         }
 
         /**
-         * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
+         */
+        public Builder addAllMembers(
+                Iterable<? extends EmployeeInfo> values) {
+            if (membersBuilder_ == null) {
+                ensureMembersIsMutable();
+                com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                        values, members_);
+                onChanged();
+            } else {
+                membersBuilder_.addAllMessages(values);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
+         */
+        public Builder clearMembers() {
+            if (membersBuilder_ == null) {
+                members_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000002);
+                onChanged();
+            } else {
+                membersBuilder_.clear();
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
+         */
+        public Builder removeMembers(int index) {
+            if (membersBuilder_ == null) {
+                ensureMembersIsMutable();
+                members_.remove(index);
+                onChanged();
+            } else {
+                membersBuilder_.remove(index);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
+         */
+        public EmployeeInfo.Builder getMembersBuilder(
+                int index) {
+            return getMembersFieldBuilder().getBuilder(index);
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
          */
         @Override
-        public GroupOrBuilder getGroupOrBuilder() {
-            if (groupBuilder_ != null) {
-                return groupBuilder_.getMessageOrBuilder();
+        public EmployeeInfoOrBuilder getMembersOrBuilder(
+                int index) {
+            if (membersBuilder_ == null) {
+                return members_.get(index);
             } else {
-                return group_ == null ?
-                        Group.getDefaultInstance() : group_;
+                return membersBuilder_.getMessageOrBuilder(index);
             }
         }
 
         /**
-         * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
          */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                Group, Group.Builder, GroupOrBuilder>
-        getGroupFieldBuilder() {
-            if (groupBuilder_ == null) {
-                groupBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getGroup(),
+        @Override
+        public java.util.List<? extends EmployeeInfoOrBuilder>
+        getMembersOrBuilderList() {
+            if (membersBuilder_ != null) {
+                return membersBuilder_.getMessageOrBuilderList();
+            } else {
+                return java.util.Collections.unmodifiableList(members_);
+            }
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
+         */
+        public EmployeeInfo.Builder addMembersBuilder() {
+            return getMembersFieldBuilder().addBuilder(
+                    EmployeeInfo.getDefaultInstance());
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
+         */
+        public EmployeeInfo.Builder addMembersBuilder(
+                int index) {
+            return getMembersFieldBuilder().addBuilder(
+                    index, EmployeeInfo.getDefaultInstance());
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
+         */
+        public java.util.List<EmployeeInfo.Builder>
+        getMembersBuilderList() {
+            return getMembersFieldBuilder().getBuilderList();
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+                EmployeeInfo, EmployeeInfo.Builder, EmployeeInfoOrBuilder>
+        getMembersFieldBuilder() {
+            if (membersBuilder_ == null) {
+                membersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+                        members_,
+                        ((bitField0_ & 0x00000002) == 0x00000002),
                         getParentForChildren(),
                         isClean());
-                group_ = null;
+                members_ = null;
             }
-            return groupBuilder_;
+            return membersBuilder_;
         }
 
         @Override

@@ -1,6 +1,7 @@
 package com.bht.pim.dto;
 
 import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.proto.employees.EmployeeInfo;
 import com.bht.pim.proto.groups.Group;
 import lombok.*;
 import lombok.extern.log4j.Log4j;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class EmployeeDTO {
+public class EmployeeDto {
 
     @NonNull
     private final long id;
@@ -24,18 +25,22 @@ public class EmployeeDTO {
 
     private LocalDate birthday;
 
-    public static EmployeeDTO toMember(Employee employee) {
-        return new EmployeeDTO(employee.getId(), employee.getVisa(),
-                employee.getLastName() + " " + employee.getFirstName());
+    public static EmployeeDto toMember(Employee employee) {
+        return toMember(employee.getEmployeeInfo());
     }
 
-    public static EmployeeDTO toMember(Group group) {
-        Employee leader = group.getLeader();
+    private static EmployeeDto toMember(EmployeeInfo employeeInfo) {
+        return new EmployeeDto(employeeInfo.getId(), employeeInfo.getVisa(),
+                employeeInfo.getLastName() + " " + employeeInfo.getFirstName());
+    }
+
+    public static EmployeeDto toMember(Group group) {
+        EmployeeInfo leader = group.getGroupInfo().getLeader();
         return toMember(leader);
     }
 
-    public static Employee toEmployee(long memberId) {
-        return Employee.newBuilder().setId(memberId).build();
+    public static EmployeeInfo toEmployeeInfo(long memberId) {
+        return EmployeeInfo.newBuilder().setId(memberId).build();
     }
 
     @Override
@@ -48,11 +53,11 @@ public class EmployeeDTO {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof EmployeeDTO)) {
+        if (!(obj instanceof EmployeeDto)) {
             return false;
         }
 
-        EmployeeDTO employeeDTO = (EmployeeDTO) obj;
+        EmployeeDto employeeDTO = (EmployeeDto) obj;
         return id == employeeDTO.id;
     }
 

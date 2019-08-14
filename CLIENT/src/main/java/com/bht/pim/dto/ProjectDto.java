@@ -13,7 +13,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class ProjectDTO {
+public class ProjectDto {
 
     private BooleanProperty isSelected;
 
@@ -26,6 +26,6 @@ public class ProjectDTO {
     private String status;
     private LocalDate start;
     private LocalDate end;
-    private GroupDTO group;
-    private Set<EmployeeDTO> members;
+    private GroupDto group;
+    private Set<EmployeeDto> members;
 }

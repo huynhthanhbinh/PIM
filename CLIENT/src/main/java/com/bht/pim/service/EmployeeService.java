@@ -1,9 +1,13 @@
 package com.bht.pim.service;
 
-import com.bht.pim.proto.employees.EmployeeInfo;
+import com.bht.pim.proto.employees.Employee;
+import javafx.collections.ObservableList;
 
 public interface EmployeeService {
 
     // get a specific employee
-    EmployeeInfo getEmployeeById(long id);
+    Employee getEmployeeById(long id);
+
+    // Employee List get response from server
+    ObservableList<Employee> getAllEmployees();
 }

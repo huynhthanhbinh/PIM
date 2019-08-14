@@ -1,20 +1,35 @@
 syntax = "proto3";
 
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+import "info/ProjectInfo.proto";
+import "info/EmployeeInfo.proto";
 import "Group.proto";
-import "google/protobuf/timestamp.proto";
 
 package com.bht.pim.proto.projects;
 option java_generic_services = true;
 option java_multiple_files = true;
 
-
 message Project {
-    int64 id = 1;
-    int64 number = 2;
-    string name = 3;
-    string customer = 4;
-    string status = 5;
-    google.protobuf.Timestamp start = 6;
-    google.protobuf.Timestamp end = 7;
-    groups.Group group = 8;
+    ProjectInfo projectInfo = 1;
+    repeated employees.EmployeeInfo members = 2;
+}
+
+message ProjectList {
+    repeated Project projects = 1;
+}
+
+message ProjectNumbers {
+    repeated int64 projectNumbers = 1;
+}
+
+service ProjectService {
+    rpc getProjectById (google.protobuf.Int64Value) returns (Project);
+    rpc addNewProject (Project) returns (google.protobuf.BoolValue);
+    rpc editProject (Project) returns (google.protobuf.BoolValue);
+    rpc deleteProject (google.protobuf.Int64Value) returns (google.protobuf.BoolValue);
+
+    rpc getProjectList (google.protobuf.Empty) returns (ProjectList);
+    rpc getProjectNumbers (google.protobuf.Empty) returns (ProjectNumbers);
 }

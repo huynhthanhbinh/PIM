@@ -1,16 +1,18 @@
-package com.bht.pim.service.group;
+package com.bht.pim.service;
 
 import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.dao.GroupDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
-import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.proto.employees.EmployeeInfo;
 import com.bht.pim.proto.groups.Group;
 import com.bht.pim.proto.groups.GroupInfo;
+import com.bht.pim.proto.groups.GroupList;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
-import com.bht.pim.proto.projects.Project;
+import com.bht.pim.proto.projects.ProjectInfo;
 import com.bht.pim.util.DateUtil;
 import com.google.protobuf.BoolValue;
+import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
 import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
@@ -34,7 +36,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
     EmployeeDao employeeDao;
 
     @Override
-    public void getGroupById(Int64Value request, StreamObserver<GroupInfo> responseObserver) {
+    public void getGroupById(Int64Value request, StreamObserver<Group> responseObserver) {
 
         GroupEntity groupEntity = groupDao
                 .getGroupById(request.getValue());
@@ -42,27 +44,27 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
         try {
             EmployeeEntity leader = groupEntity.getGroupLeader();
 
-            Employee groupLeader = Employee.newBuilder()
+            EmployeeInfo groupLeader = EmployeeInfo.newBuilder()
                     .setId(leader.getId())
                     .setVisa(leader.getVisa())
                     .setFirstName(leader.getFirstName())
                     .setLastName(leader.getLastName())
                     .build();
 
-            Group group = Group.newBuilder()
+            GroupInfo groupInfo = GroupInfo.newBuilder()
                     .setId(groupEntity.getId())
                     .setLeader(groupLeader)
                     .build();
 
-            List<Project> projects = new ArrayList<>();
+            List<ProjectInfo> projects = new ArrayList<>();
 
             groupEntity.getJoinedProjects().forEach(projectEntity -> {
                 Date end = projectEntity.getEnd();
 
-                Project project = Project.newBuilder()
+                ProjectInfo project = ProjectInfo.newBuilder()
                         .setId(projectEntity.getId())
                         .setNumber(projectEntity.getNumber())
-                        .setGroup(group)
+                        .setGroup(groupInfo)
                         .setName(projectEntity.getName())
                         .setCustomer(projectEntity.getCustomer())
                         .setStatus(projectEntity.getStatus())
@@ -75,12 +77,12 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
                 projects.add(project);
             });
 
-            GroupInfo groupInfo = GroupInfo.newBuilder()
-                    .setGroup(group)
+            Group group = Group.newBuilder()
+                    .setGroupInfo(groupInfo)
                     .addAllEnrolledProjects(projects)
                     .build();
 
-            responseObserver.onNext(groupInfo);
+            responseObserver.onNext(group);
             responseObserver.onCompleted();
 
             log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
@@ -109,7 +111,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
         try {
 
             EmployeeEntity leader = employeeDao
-                    .getEmployeeById(request.getLeader().getId());
+                    .getEmployeeById(request.getGroupInfo().getLeader().getId());
 
             // Check constraint again in back-end side
             // If leader not lead group yet, add new group
@@ -158,6 +160,56 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
             log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
             responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
+            responseObserver.onCompleted();
+        }
+    }
+
+    @Override
+    public void getGroupList(Empty request, StreamObserver<GroupList> responseObserver) {
+        try {
+
+            List<GroupEntity> groupEntities = groupDao
+                    .getAllGroups();
+
+            List<Group> groups = new ArrayList<>();
+
+            groupEntities.forEach(groupEntity -> {
+                EmployeeEntity leader = groupEntity.getGroupLeader();
+
+                EmployeeInfo groupLeader = EmployeeInfo.newBuilder()
+                        .setId(leader.getId())
+                        .setVisa(leader.getVisa())
+                        .setFirstName(leader.getFirstName())
+                        .setLastName(leader.getLastName())
+                        .build();
+
+                GroupInfo groupInfo = GroupInfo.newBuilder()
+                        .setId(groupEntity.getId())
+                        .setLeader(groupLeader)
+                        .build();
+
+                Group group = Group.newBuilder()
+                        .setGroupInfo(groupInfo)
+                        .build();
+
+                groups.add(group);
+            });
+
+            GroupList groupList = GroupList.newBuilder()
+                    .addAllGroups(groups)
+                    .build();
+
+            responseObserver.onNext(groupList);
+            responseObserver.onCompleted();
+
+        } catch (Exception exception) {
+
+            // log the exception out
+            log.info(exception);
+
+            // return an empty list not return null value for list
+            responseObserver.onNext(GroupList.newBuilder()
+                    .addAllGroups(Collections.emptyList()).build());
             responseObserver.onCompleted();
         }
     }

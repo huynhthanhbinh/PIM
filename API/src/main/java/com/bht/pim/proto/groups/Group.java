@@ -3,8 +3,8 @@
 
 package com.bht.pim.proto.groups;
 
-import com.bht.pim.proto.employees.Employee;
-import com.bht.pim.proto.employees.EmployeeOrBuilder;
+import com.bht.pim.proto.projects.ProjectInfo;
+import com.bht.pim.proto.projects.ProjectInfoOrBuilder;
 
 /**
  * Protobuf type {@code com.bht.pim.proto.groups.Group}
@@ -21,7 +21,7 @@ public final class Group extends
     }
 
     private Group() {
-        id_ = 0L;
+        enrolledProjects_ = java.util.Collections.emptyList();
     }
 
     @Override
@@ -56,22 +56,26 @@ public final class Group extends
                         }
                         break;
                     }
-                    case 8: {
+                    case 10: {
+                        GroupInfo.Builder subBuilder = null;
+                        if (groupInfo_ != null) {
+                            subBuilder = groupInfo_.toBuilder();
+                        }
+                        groupInfo_ = input.readMessage(GroupInfo.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(groupInfo_);
+                            groupInfo_ = subBuilder.buildPartial();
+                        }
 
-                        id_ = input.readInt64();
                         break;
                     }
                     case 18: {
-                        Employee.Builder subBuilder = null;
-                        if (leader_ != null) {
-                            subBuilder = leader_.toBuilder();
+                        if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                            enrolledProjects_ = new java.util.ArrayList<>();
+                            mutable_bitField0_ |= 0x00000002;
                         }
-                        leader_ = input.readMessage(Employee.parser(), extensionRegistry);
-                        if (subBuilder != null) {
-                            subBuilder.mergeFrom(leader_);
-                            leader_ = subBuilder.buildPartial();
-                        }
-
+                        enrolledProjects_.add(
+                                input.readMessage(ProjectInfo.parser(), extensionRegistry));
                         break;
                     }
                 }
@@ -82,6 +86,9 @@ public final class Group extends
             throw new com.google.protobuf.InvalidProtocolBufferException(
                     e).setUnfinishedMessage(this);
         } finally {
+            if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                enrolledProjects_ = java.util.Collections.unmodifiableList(enrolledProjects_);
+            }
             this.unknownFields = unknownFields.build();
             makeExtensionsImmutable();
         }
@@ -100,42 +107,77 @@ public final class Group extends
                         Group.class, Group.Builder.class);
     }
 
-    public static final int ID_FIELD_NUMBER = 1;
-    private long id_;
+    private int bitField0_;
+    public static final int GROUPINFO_FIELD_NUMBER = 1;
+    private GroupInfo groupInfo_;
 
     /**
-     * <code>int64 id = 1;</code>
+     * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
      */
     @Override
-    public long getId() {
-        return id_;
-    }
-
-    public static final int LEADER_FIELD_NUMBER = 2;
-    private Employee leader_;
-
-    /**
-     * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
-     */
-    @Override
-    public boolean hasLeader() {
-        return leader_ != null;
+    public boolean hasGroupInfo() {
+        return groupInfo_ != null;
     }
 
     /**
-     * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+     * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
      */
     @Override
-    public Employee getLeader() {
-        return leader_ == null ? Employee.getDefaultInstance() : leader_;
+    public GroupInfo getGroupInfo() {
+        return groupInfo_ == null ? GroupInfo.getDefaultInstance() : groupInfo_;
     }
 
     /**
-     * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+     * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
      */
     @Override
-    public EmployeeOrBuilder getLeaderOrBuilder() {
-        return getLeader();
+    public GroupInfoOrBuilder getGroupInfoOrBuilder() {
+        return getGroupInfo();
+    }
+
+    public static final int ENROLLEDPROJECTS_FIELD_NUMBER = 2;
+    private java.util.List<ProjectInfo> enrolledProjects_;
+
+    /**
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+     */
+    @Override
+    public java.util.List<ProjectInfo> getEnrolledProjectsList() {
+        return enrolledProjects_;
+    }
+
+    /**
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+     */
+    @Override
+    public java.util.List<? extends ProjectInfoOrBuilder>
+    getEnrolledProjectsOrBuilderList() {
+        return enrolledProjects_;
+    }
+
+    /**
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+     */
+    @Override
+    public int getEnrolledProjectsCount() {
+        return enrolledProjects_.size();
+    }
+
+    /**
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+     */
+    @Override
+    public ProjectInfo getEnrolledProjects(int index) {
+        return enrolledProjects_.get(index);
+    }
+
+    /**
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+     */
+    @Override
+    public ProjectInfoOrBuilder getEnrolledProjectsOrBuilder(
+            int index) {
+        return enrolledProjects_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -157,11 +199,11 @@ public final class Group extends
     @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
-        if (id_ != 0L) {
-            output.writeInt64(1, id_);
+        if (groupInfo_ != null) {
+            output.writeMessage(1, getGroupInfo());
         }
-        if (leader_ != null) {
-            output.writeMessage(2, getLeader());
+        for (int i = 0; i < enrolledProjects_.size(); i++) {
+            output.writeMessage(2, enrolledProjects_.get(i));
         }
         unknownFields.writeTo(output);
     }
@@ -174,13 +216,13 @@ public final class Group extends
         }
 
         size = 0;
-        if (id_ != 0L) {
+        if (groupInfo_ != null) {
             size += com.google.protobuf.CodedOutputStream
-                    .computeInt64Size(1, id_);
+                    .computeMessageSize(1, getGroupInfo());
         }
-        if (leader_ != null) {
+        for (int i = 0; i < enrolledProjects_.size(); i++) {
             size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(2, getLeader());
+                    .computeMessageSize(2, enrolledProjects_.get(i));
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
@@ -198,13 +240,13 @@ public final class Group extends
         Group other = (Group) obj;
 
         boolean result = true;
-        result = result && (getId()
-                == other.getId());
-        result = result && (hasLeader() == other.hasLeader());
-        if (hasLeader()) {
-            result = result && getLeader()
-                    .equals(other.getLeader());
+        result = result && (hasGroupInfo() == other.hasGroupInfo());
+        if (hasGroupInfo()) {
+            result = result && getGroupInfo()
+                    .equals(other.getGroupInfo());
         }
+        result = result && getEnrolledProjectsList()
+                .equals(other.getEnrolledProjectsList());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
     }
@@ -216,12 +258,13 @@ public final class Group extends
         }
         int hash = 41;
         hash = (19 * hash) + getDescriptor().hashCode();
-        hash = (37 * hash) + ID_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                getId());
-        if (hasLeader()) {
-            hash = (37 * hash) + LEADER_FIELD_NUMBER;
-            hash = (53 * hash) + getLeader().hashCode();
+        if (hasGroupInfo()) {
+            hash = (37 * hash) + GROUPINFO_FIELD_NUMBER;
+            hash = (53 * hash) + getGroupInfo().hashCode();
+        }
+        if (getEnrolledProjectsCount() > 0) {
+            hash = (37 * hash) + ENROLLEDPROJECTS_FIELD_NUMBER;
+            hash = (53 * hash) + getEnrolledProjectsList().hashCode();
         }
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
@@ -369,19 +412,24 @@ public final class Group extends
         private void maybeForceBuilderInitialization() {
             if (com.google.protobuf.GeneratedMessageV3
                     .alwaysUseFieldBuilders) {
+                getEnrolledProjectsFieldBuilder();
             }
         }
 
         @Override
         public Builder clear() {
             super.clear();
-            id_ = 0L;
-
-            if (leaderBuilder_ == null) {
-                leader_ = null;
+            if (groupInfoBuilder_ == null) {
+                groupInfo_ = null;
             } else {
-                leader_ = null;
-                leaderBuilder_ = null;
+                groupInfo_ = null;
+                groupInfoBuilder_ = null;
+            }
+            if (enrolledProjectsBuilder_ == null) {
+                enrolledProjects_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+                enrolledProjectsBuilder_.clear();
             }
             return this;
         }
@@ -409,12 +457,23 @@ public final class Group extends
         @Override
         public Group buildPartial() {
             Group result = new Group(this);
-            result.id_ = id_;
-            if (leaderBuilder_ == null) {
-                result.leader_ = leader_;
+            int from_bitField0_ = bitField0_;
+            int to_bitField0_ = 0;
+            if (groupInfoBuilder_ == null) {
+                result.groupInfo_ = groupInfo_;
             } else {
-                result.leader_ = leaderBuilder_.build();
+                result.groupInfo_ = groupInfoBuilder_.build();
             }
+            if (enrolledProjectsBuilder_ == null) {
+                if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                    enrolledProjects_ = java.util.Collections.unmodifiableList(enrolledProjects_);
+                    bitField0_ = (bitField0_ & ~0x00000002);
+                }
+                result.enrolledProjects_ = enrolledProjects_;
+            } else {
+                result.enrolledProjects_ = enrolledProjectsBuilder_.build();
+            }
+            result.bitField0_ = to_bitField0_;
             onBuilt();
             return result;
         }
@@ -471,11 +530,34 @@ public final class Group extends
             if (other == Group.getDefaultInstance()) {
                 return this;
             }
-            if (other.getId() != 0L) {
-                setId(other.getId());
+            if (other.hasGroupInfo()) {
+                mergeGroupInfo(other.getGroupInfo());
             }
-            if (other.hasLeader()) {
-                mergeLeader(other.getLeader());
+            if (enrolledProjectsBuilder_ == null) {
+                if (!other.enrolledProjects_.isEmpty()) {
+                    if (enrolledProjects_.isEmpty()) {
+                        enrolledProjects_ = other.enrolledProjects_;
+                        bitField0_ = (bitField0_ & ~0x00000002);
+                    } else {
+                        ensureEnrolledProjectsIsMutable();
+                        enrolledProjects_.addAll(other.enrolledProjects_);
+                    }
+                    onChanged();
+                }
+            } else {
+                if (!other.enrolledProjects_.isEmpty()) {
+                    if (enrolledProjectsBuilder_.isEmpty()) {
+                        enrolledProjectsBuilder_.dispose();
+                        enrolledProjectsBuilder_ = null;
+                        enrolledProjects_ = other.enrolledProjects_;
+                        bitField0_ = (bitField0_ & ~0x00000002);
+                        enrolledProjectsBuilder_ =
+                                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                                        getEnrolledProjectsFieldBuilder() : null;
+                    } else {
+                        enrolledProjectsBuilder_.addAllMessages(other.enrolledProjects_);
+                    }
+                }
             }
             mergeUnknownFields(other.unknownFields);
             onChanged();
@@ -506,162 +588,398 @@ public final class Group extends
             return this;
         }
 
-        private long id_;
+        private int bitField0_;
 
-        /**
-         * <code>int64 id = 1;</code>
-         */
-        @Override
-        public long getId() {
-            return id_;
-        }
-
-        /**
-         * <code>int64 id = 1;</code>
-         */
-        public Builder setId(long value) {
-
-            id_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int64 id = 1;</code>
-         */
-        public Builder clearId() {
-
-            id_ = 0L;
-            onChanged();
-            return this;
-        }
-
-        private Employee leader_ = null;
+        private GroupInfo groupInfo_ = null;
         private com.google.protobuf.SingleFieldBuilderV3<
-                Employee, Employee.Builder, EmployeeOrBuilder> leaderBuilder_;
+                GroupInfo, GroupInfo.Builder, GroupInfoOrBuilder> groupInfoBuilder_;
 
         /**
-         * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+         * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
          */
         @Override
-        public boolean hasLeader() {
-            return leaderBuilder_ != null || leader_ != null;
+        public boolean hasGroupInfo() {
+            return groupInfoBuilder_ != null || groupInfo_ != null;
         }
 
         /**
-         * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+         * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
          */
         @Override
-        public Employee getLeader() {
-            if (leaderBuilder_ == null) {
-                return leader_ == null ? Employee.getDefaultInstance() : leader_;
+        public GroupInfo getGroupInfo() {
+            if (groupInfoBuilder_ == null) {
+                return groupInfo_ == null ? GroupInfo.getDefaultInstance() : groupInfo_;
             } else {
-                return leaderBuilder_.getMessage();
+                return groupInfoBuilder_.getMessage();
             }
         }
 
         /**
-         * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+         * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
          */
-        public Builder setLeader(Employee value) {
-            if (leaderBuilder_ == null) {
+        public Builder setGroupInfo(GroupInfo value) {
+            if (groupInfoBuilder_ == null) {
                 if (value == null) {
                     throw new NullPointerException();
                 }
-                leader_ = value;
+                groupInfo_ = value;
                 onChanged();
             } else {
-                leaderBuilder_.setMessage(value);
+                groupInfoBuilder_.setMessage(value);
             }
 
             return this;
         }
 
         /**
-         * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+         * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
          */
-        public Builder setLeader(
-                Employee.Builder builderForValue) {
-            if (leaderBuilder_ == null) {
-                leader_ = builderForValue.build();
+        public Builder setGroupInfo(
+                GroupInfo.Builder builderForValue) {
+            if (groupInfoBuilder_ == null) {
+                groupInfo_ = builderForValue.build();
                 onChanged();
             } else {
-                leaderBuilder_.setMessage(builderForValue.build());
+                groupInfoBuilder_.setMessage(builderForValue.build());
             }
 
             return this;
         }
 
         /**
-         * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+         * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
          */
-        public Builder mergeLeader(Employee value) {
-            if (leaderBuilder_ == null) {
-                if (leader_ != null) {
-                    leader_ =
-                            Employee.newBuilder(leader_).mergeFrom(value).buildPartial();
+        public Builder mergeGroupInfo(GroupInfo value) {
+            if (groupInfoBuilder_ == null) {
+                if (groupInfo_ != null) {
+                    groupInfo_ =
+                            GroupInfo.newBuilder(groupInfo_).mergeFrom(value).buildPartial();
                 } else {
-                    leader_ = value;
+                    groupInfo_ = value;
                 }
                 onChanged();
             } else {
-                leaderBuilder_.mergeFrom(value);
+                groupInfoBuilder_.mergeFrom(value);
             }
 
             return this;
         }
 
         /**
-         * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+         * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
          */
-        public Builder clearLeader() {
-            if (leaderBuilder_ == null) {
-                leader_ = null;
+        public Builder clearGroupInfo() {
+            if (groupInfoBuilder_ == null) {
+                groupInfo_ = null;
                 onChanged();
             } else {
-                leader_ = null;
-                leaderBuilder_ = null;
+                groupInfo_ = null;
+                groupInfoBuilder_ = null;
             }
 
             return this;
         }
 
         /**
-         * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+         * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
          */
-        public Employee.Builder getLeaderBuilder() {
+        public GroupInfo.Builder getGroupInfoBuilder() {
 
             onChanged();
-            return getLeaderFieldBuilder().getBuilder();
+            return getGroupInfoFieldBuilder().getBuilder();
         }
 
         /**
-         * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+         * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
          */
         @Override
-        public EmployeeOrBuilder getLeaderOrBuilder() {
-            if (leaderBuilder_ != null) {
-                return leaderBuilder_.getMessageOrBuilder();
+        public GroupInfoOrBuilder getGroupInfoOrBuilder() {
+            if (groupInfoBuilder_ != null) {
+                return groupInfoBuilder_.getMessageOrBuilder();
             } else {
-                return leader_ == null ?
-                        Employee.getDefaultInstance() : leader_;
+                return groupInfo_ == null ?
+                        GroupInfo.getDefaultInstance() : groupInfo_;
             }
         }
 
         /**
-         * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+         * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
          */
         private com.google.protobuf.SingleFieldBuilderV3<
-                Employee, Employee.Builder, EmployeeOrBuilder>
-        getLeaderFieldBuilder() {
-            if (leaderBuilder_ == null) {
-                leaderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
-                        getLeader(),
+                GroupInfo, GroupInfo.Builder, GroupInfoOrBuilder>
+        getGroupInfoFieldBuilder() {
+            if (groupInfoBuilder_ == null) {
+                groupInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<>(
+                        getGroupInfo(),
                         getParentForChildren(),
                         isClean());
-                leader_ = null;
+                groupInfo_ = null;
             }
-            return leaderBuilder_;
+            return groupInfoBuilder_;
+        }
+
+        private java.util.List<ProjectInfo> enrolledProjects_ =
+                java.util.Collections.emptyList();
+
+        private void ensureEnrolledProjectsIsMutable() {
+            if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+                enrolledProjects_ = new java.util.ArrayList<>(enrolledProjects_);
+                bitField0_ |= 0x00000002;
+            }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+                ProjectInfo, ProjectInfo.Builder, ProjectInfoOrBuilder> enrolledProjectsBuilder_;
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        @Override
+        public java.util.List<ProjectInfo> getEnrolledProjectsList() {
+            if (enrolledProjectsBuilder_ == null) {
+                return java.util.Collections.unmodifiableList(enrolledProjects_);
+            } else {
+                return enrolledProjectsBuilder_.getMessageList();
+            }
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        @Override
+        public int getEnrolledProjectsCount() {
+            if (enrolledProjectsBuilder_ == null) {
+                return enrolledProjects_.size();
+            } else {
+                return enrolledProjectsBuilder_.getCount();
+            }
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        @Override
+        public ProjectInfo getEnrolledProjects(int index) {
+            if (enrolledProjectsBuilder_ == null) {
+                return enrolledProjects_.get(index);
+            } else {
+                return enrolledProjectsBuilder_.getMessage(index);
+            }
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public Builder setEnrolledProjects(
+                int index, ProjectInfo value) {
+            if (enrolledProjectsBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureEnrolledProjectsIsMutable();
+                enrolledProjects_.set(index, value);
+                onChanged();
+            } else {
+                enrolledProjectsBuilder_.setMessage(index, value);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public Builder setEnrolledProjects(
+                int index, ProjectInfo.Builder builderForValue) {
+            if (enrolledProjectsBuilder_ == null) {
+                ensureEnrolledProjectsIsMutable();
+                enrolledProjects_.set(index, builderForValue.build());
+                onChanged();
+            } else {
+                enrolledProjectsBuilder_.setMessage(index, builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public Builder addEnrolledProjects(ProjectInfo value) {
+            if (enrolledProjectsBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureEnrolledProjectsIsMutable();
+                enrolledProjects_.add(value);
+                onChanged();
+            } else {
+                enrolledProjectsBuilder_.addMessage(value);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public Builder addEnrolledProjects(
+                int index, ProjectInfo value) {
+            if (enrolledProjectsBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureEnrolledProjectsIsMutable();
+                enrolledProjects_.add(index, value);
+                onChanged();
+            } else {
+                enrolledProjectsBuilder_.addMessage(index, value);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public Builder addEnrolledProjects(
+                ProjectInfo.Builder builderForValue) {
+            if (enrolledProjectsBuilder_ == null) {
+                ensureEnrolledProjectsIsMutable();
+                enrolledProjects_.add(builderForValue.build());
+                onChanged();
+            } else {
+                enrolledProjectsBuilder_.addMessage(builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public Builder addEnrolledProjects(
+                int index, ProjectInfo.Builder builderForValue) {
+            if (enrolledProjectsBuilder_ == null) {
+                ensureEnrolledProjectsIsMutable();
+                enrolledProjects_.add(index, builderForValue.build());
+                onChanged();
+            } else {
+                enrolledProjectsBuilder_.addMessage(index, builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public Builder addAllEnrolledProjects(
+                Iterable<? extends ProjectInfo> values) {
+            if (enrolledProjectsBuilder_ == null) {
+                ensureEnrolledProjectsIsMutable();
+                com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                        values, enrolledProjects_);
+                onChanged();
+            } else {
+                enrolledProjectsBuilder_.addAllMessages(values);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public Builder clearEnrolledProjects() {
+            if (enrolledProjectsBuilder_ == null) {
+                enrolledProjects_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000002);
+                onChanged();
+            } else {
+                enrolledProjectsBuilder_.clear();
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public Builder removeEnrolledProjects(int index) {
+            if (enrolledProjectsBuilder_ == null) {
+                ensureEnrolledProjectsIsMutable();
+                enrolledProjects_.remove(index);
+                onChanged();
+            } else {
+                enrolledProjectsBuilder_.remove(index);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public ProjectInfo.Builder getEnrolledProjectsBuilder(
+                int index) {
+            return getEnrolledProjectsFieldBuilder().getBuilder(index);
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        @Override
+        public ProjectInfoOrBuilder getEnrolledProjectsOrBuilder(
+                int index) {
+            if (enrolledProjectsBuilder_ == null) {
+                return enrolledProjects_.get(index);
+            } else {
+                return enrolledProjectsBuilder_.getMessageOrBuilder(index);
+            }
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        @Override
+        public java.util.List<? extends ProjectInfoOrBuilder>
+        getEnrolledProjectsOrBuilderList() {
+            if (enrolledProjectsBuilder_ != null) {
+                return enrolledProjectsBuilder_.getMessageOrBuilderList();
+            } else {
+                return java.util.Collections.unmodifiableList(enrolledProjects_);
+            }
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public ProjectInfo.Builder addEnrolledProjectsBuilder() {
+            return getEnrolledProjectsFieldBuilder().addBuilder(
+                    ProjectInfo.getDefaultInstance());
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public ProjectInfo.Builder addEnrolledProjectsBuilder(
+                int index) {
+            return getEnrolledProjectsFieldBuilder().addBuilder(
+                    index, ProjectInfo.getDefaultInstance());
+        }
+
+        /**
+         * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+         */
+        public java.util.List<ProjectInfo.Builder>
+        getEnrolledProjectsBuilderList() {
+            return getEnrolledProjectsFieldBuilder().getBuilderList();
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+                ProjectInfo, ProjectInfo.Builder, ProjectInfoOrBuilder>
+        getEnrolledProjectsFieldBuilder() {
+            if (enrolledProjectsBuilder_ == null) {
+                enrolledProjectsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<>(
+                        enrolledProjects_,
+                        ((bitField0_ & 0x00000002) == 0x00000002),
+                        getParentForChildren(),
+                        isClean());
+                enrolledProjects_ = null;
+            }
+            return enrolledProjectsBuilder_;
         }
 
         @Override

@@ -3,60 +3,53 @@
 
 package com.bht.pim.proto.employees;
 
+import com.bht.pim.proto.projects.ProjectInfo;
+import com.bht.pim.proto.projects.ProjectInfoOrBuilder;
+
 public interface EmployeeOrBuilder extends
         // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.employees.Employee)
         com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int64 id = 1;</code>
+     * <code>.com.bht.pim.proto.employees.EmployeeInfo employeeInfo = 1;</code>
      */
-    long getId();
+    boolean hasEmployeeInfo();
 
     /**
-     * <code>string visa = 2;</code>
+     * <code>.com.bht.pim.proto.employees.EmployeeInfo employeeInfo = 1;</code>
      */
-    String getVisa();
+    EmployeeInfo getEmployeeInfo();
 
     /**
-     * <code>string visa = 2;</code>
+     * <code>.com.bht.pim.proto.employees.EmployeeInfo employeeInfo = 1;</code>
      */
-    com.google.protobuf.ByteString
-    getVisaBytes();
+    EmployeeInfoOrBuilder getEmployeeInfoOrBuilder();
 
     /**
-     * <code>string first_name = 3;</code>
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
      */
-    String getFirstName();
+    java.util.List<ProjectInfo>
+    getEnrolledProjectsList();
 
     /**
-     * <code>string first_name = 3;</code>
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
      */
-    com.google.protobuf.ByteString
-    getFirstNameBytes();
+    ProjectInfo getEnrolledProjects(int index);
 
     /**
-     * <code>string last_name = 4;</code>
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
      */
-    String getLastName();
+    int getEnrolledProjectsCount();
 
     /**
-     * <code>string last_name = 4;</code>
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
      */
-    com.google.protobuf.ByteString
-    getLastNameBytes();
+    java.util.List<? extends ProjectInfoOrBuilder>
+    getEnrolledProjectsOrBuilderList();
 
     /**
-     * <code>.google.protobuf.Timestamp birthday = 5;</code>
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
      */
-    boolean hasBirthday();
-
-    /**
-     * <code>.google.protobuf.Timestamp birthday = 5;</code>
-     */
-    com.google.protobuf.Timestamp getBirthday();
-
-    /**
-     * <code>.google.protobuf.Timestamp birthday = 5;</code>
-     */
-    com.google.protobuf.TimestampOrBuilder getBirthdayOrBuilder();
+    ProjectInfoOrBuilder getEnrolledProjectsOrBuilder(
+            int index);
 }

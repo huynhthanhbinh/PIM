@@ -1,10 +1,7 @@
 package com.bht.pim.configuration;
 
-import com.bht.pim.proto.employees.EmployeeListServiceGrpc;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
-import com.bht.pim.proto.groups.GroupListServiceGrpc;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
-import com.bht.pim.proto.projects.ProjectListServiceGrpc;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -70,32 +67,14 @@ public class AppConfiguration {
     }
 
     @Bean
-    public EmployeeListServiceGrpc.EmployeeListServiceBlockingStub employeeListServiceBlockingStub() {
-        log.info("[PIM] Creating bean of < EmployeeListServiceBlockingStub >");
-        return EmployeeListServiceGrpc.newBlockingStub(channel);
-    }
-
-    @Bean
     public GroupServiceGrpc.GroupServiceBlockingStub groupServiceBlockingStub() {
         log.info("[PIM] Creating bean of < GroupServiceBlockingStub >");
         return GroupServiceGrpc.newBlockingStub(channel);
     }
 
     @Bean
-    public GroupListServiceGrpc.GroupListServiceBlockingStub groupListServiceBlockingStub() {
-        log.info("[PIM] Creating bean of < GroupListServiceBlockingStub >");
-        return GroupListServiceGrpc.newBlockingStub(channel);
-    }
-
-    @Bean
     public ProjectServiceGrpc.ProjectServiceBlockingStub projectServiceBlockingStub() {
         log.info("[PIM] Creating bean of < ProjectServiceBlockingStub >");
         return ProjectServiceGrpc.newBlockingStub(channel);
-    }
-
-    @Bean
-    public ProjectListServiceGrpc.ProjectListServiceBlockingStub projectListServiceBlockingStub() {
-        log.info("[PIM] Creating bean of < ProjectListServiceBlockingStub >");
-        return ProjectListServiceGrpc.newBlockingStub(channel);
     }
 }

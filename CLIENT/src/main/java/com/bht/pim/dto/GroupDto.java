@@ -9,10 +9,10 @@ import lombok.extern.log4j.Log4j;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class GroupDTO {
+public class GroupDto {
 
     @NonNull
     private long id;
 
-    private EmployeeDTO leader;
+    private EmployeeDto leader;
 }

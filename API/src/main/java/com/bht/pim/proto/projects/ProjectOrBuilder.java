@@ -3,98 +3,53 @@
 
 package com.bht.pim.proto.projects;
 
-import com.bht.pim.proto.groups.Group;
-import com.bht.pim.proto.groups.GroupOrBuilder;
+import com.bht.pim.proto.employees.EmployeeInfo;
+import com.bht.pim.proto.employees.EmployeeInfoOrBuilder;
 
 public interface ProjectOrBuilder extends
         // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.projects.Project)
         com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int64 id = 1;</code>
+     * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
      */
-    long getId();
+    boolean hasProjectInfo();
 
     /**
-     * <code>int64 number = 2;</code>
+     * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
      */
-    long getNumber();
+    ProjectInfo getProjectInfo();
 
     /**
-     * <code>string name = 3;</code>
+     * <code>.com.bht.pim.proto.projects.ProjectInfo projectInfo = 1;</code>
      */
-    String getName();
+    ProjectInfoOrBuilder getProjectInfoOrBuilder();
 
     /**
-     * <code>string name = 3;</code>
+     * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
      */
-    com.google.protobuf.ByteString
-    getNameBytes();
+    java.util.List<EmployeeInfo>
+    getMembersList();
 
     /**
-     * <code>string customer = 4;</code>
+     * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
      */
-    String getCustomer();
+    EmployeeInfo getMembers(int index);
 
     /**
-     * <code>string customer = 4;</code>
+     * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
      */
-    com.google.protobuf.ByteString
-    getCustomerBytes();
+    int getMembersCount();
 
     /**
-     * <code>string status = 5;</code>
+     * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
      */
-    String getStatus();
+    java.util.List<? extends EmployeeInfoOrBuilder>
+    getMembersOrBuilderList();
 
     /**
-     * <code>string status = 5;</code>
+     * <code>repeated .com.bht.pim.proto.employees.EmployeeInfo members = 2;</code>
      */
-    com.google.protobuf.ByteString
-    getStatusBytes();
-
-    /**
-     * <code>.google.protobuf.Timestamp start = 6;</code>
-     */
-    boolean hasStart();
-
-    /**
-     * <code>.google.protobuf.Timestamp start = 6;</code>
-     */
-    com.google.protobuf.Timestamp getStart();
-
-    /**
-     * <code>.google.protobuf.Timestamp start = 6;</code>
-     */
-    com.google.protobuf.TimestampOrBuilder getStartOrBuilder();
-
-    /**
-     * <code>.google.protobuf.Timestamp end = 7;</code>
-     */
-    boolean hasEnd();
-
-    /**
-     * <code>.google.protobuf.Timestamp end = 7;</code>
-     */
-    com.google.protobuf.Timestamp getEnd();
-
-    /**
-     * <code>.google.protobuf.Timestamp end = 7;</code>
-     */
-    com.google.protobuf.TimestampOrBuilder getEndOrBuilder();
-
-    /**
-     * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
-     */
-    boolean hasGroup();
-
-    /**
-     * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
-     */
-    Group getGroup();
-
-    /**
-     * <code>.com.bht.pim.proto.groups.Group group = 8;</code>
-     */
-    GroupOrBuilder getGroupOrBuilder();
+    EmployeeInfoOrBuilder getMembersOrBuilder(
+            int index);
 }

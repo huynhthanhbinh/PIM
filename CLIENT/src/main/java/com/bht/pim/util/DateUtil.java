@@ -1,6 +1,6 @@
 package com.bht.pim.util;
 
-import com.bht.pim.proto.projects.Project;
+import com.bht.pim.proto.projects.ProjectInfo;
 import com.google.protobuf.Timestamp;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -81,8 +81,8 @@ public class DateUtil {
     }
 
     // Format Date : convert from Timestamp to LocalDate
-    public static TableCell<Project, Timestamp> dateFormat(TableColumn<Project, Timestamp> column) {
-        return new TableCell<Project, Timestamp>() {
+    public static TableCell<ProjectInfo, Timestamp> dateFormat(TableColumn<ProjectInfo, Timestamp> column) {
+        return new TableCell<ProjectInfo, Timestamp>() {
             @Override
             protected void updateItem(Timestamp item, boolean empty) {
                 if (item == null || empty) {

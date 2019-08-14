@@ -1,18 +1,27 @@
 package com.bht.pim.service;
 
-import com.bht.pim.proto.projects.ProjectInfo;
+import com.bht.pim.proto.projects.Project;
+import javafx.collections.ObservableList;
+
+import java.util.List;
 
 public interface ProjectService {
 
     // Add new project
-    boolean addNewProject(ProjectInfo projectInfo);
+    boolean addNewProject(Project project);
 
     // Get a specific project
-    ProjectInfo getProjectById(long id);
+    Project getProjectById(long id);
 
     // Update a specific project
-    boolean updateProject(ProjectInfo projectInfo);
+    boolean updateProject(Project project);
 
     // Delete a specific project
     boolean deleteProject(long id);
+
+    // Get all project numbers
+    List<Long> getProjectNumbers();
+
+    // Get all of projects
+    ObservableList<Project> getAllProjects();
 }

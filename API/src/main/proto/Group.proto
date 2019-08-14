@@ -1,12 +1,26 @@
 syntax = "proto3";
 
-import "Employee.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+import "info/GroupInfo.proto";
+import "info/ProjectInfo.proto";
 
 package com.bht.pim.proto.groups;
 option java_generic_services = true;
 option java_multiple_files = true;
 
 message Group {
-    int64 id = 1;
-    employees.Employee leader = 2;
+    GroupInfo groupInfo = 1;
+    repeated projects.ProjectInfo enrolledProjects = 2;
+}
+
+message GroupList {
+    repeated Group groups = 1;
+}
+
+service GroupService {
+    rpc getGroupById (google.protobuf.Int64Value) returns (Group);
+    rpc addNewGroup (Group) returns (google.protobuf.BoolValue);
+    rpc getGroupList (google.protobuf.Empty) returns (GroupList);
 }

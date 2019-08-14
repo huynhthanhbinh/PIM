@@ -3,6 +3,7 @@
 
 package com.bht.pim.proto.projects;
 
+import com.bht.pim.proto.employees.EmployeeInfoOuterClass;
 import com.bht.pim.proto.groups.GroupOuterClass;
 
 public final class ProjectOuterClass {
@@ -24,6 +25,16 @@ public final class ProjectOuterClass {
     static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internal_static_com_bht_pim_proto_projects_Project_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_com_bht_pim_proto_projects_ProjectList_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_com_bht_pim_proto_projects_ProjectList_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_com_bht_pim_proto_projects_ProjectNumbers_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_com_bht_pim_proto_projects_ProjectNumbers_fieldAccessorTable;
 
     public static com.google.protobuf.Descriptors.FileDescriptor
     getDescriptor() {
@@ -36,14 +47,29 @@ public final class ProjectOuterClass {
     static {
         String[] descriptorData = {
                 "\n\rProject.proto\022\032com.bht.pim.proto.proje" +
-                        "cts\032\013Group.proto\032\037google/protobuf/timest" +
-                        "amp.proto\"\331\001\n\007Project\022\n\n\002id\030\001 \001(\003\022\016\n\006num" +
-                        "ber\030\002 \001(\003\022\014\n\004name\030\003 \001(\t\022\020\n\010customer\030\004 \001(" +
-                        "\t\022\016\n\006status\030\005 \001(\t\022)\n\005start\030\006 \001(\0132\032.googl" +
-                        "e.protobuf.Timestamp\022\'\n\003end\030\007 \001(\0132\032.goog" +
-                        "le.protobuf.Timestamp\022.\n\005group\030\010 \001(\0132\037.c" +
-                        "om.bht.pim.proto.groups.GroupB\005P\001\210\001\001b\006pr" +
-                        "oto3"
+                        "cts\032\036google/protobuf/wrappers.proto\032\033goo" +
+                        "gle/protobuf/empty.proto\032\026info/ProjectIn" +
+                        "fo.proto\032\027info/EmployeeInfo.proto\032\013Group" +
+                        ".proto\"\203\001\n\007Project\022<\n\013projectInfo\030\001 \001(\0132" +
+                        "\'.com.bht.pim.proto.projects.ProjectInfo" +
+                        "\022:\n\007members\030\002 \003(\0132).com.bht.pim.proto.em" +
+                        "ployees.EmployeeInfo\"D\n\013ProjectList\0225\n\010p" +
+                        "rojects\030\001 \003(\0132#.com.bht.pim.proto.projec" +
+                        "ts.Project\"(\n\016ProjectNumbers\022\026\n\016projectN" +
+                        "umbers\030\001 \003(\0032\374\003\n\016ProjectService\022R\n\016getPr" +
+                        "ojectById\022\033.google.protobuf.Int64Value\032#" +
+                        ".com.bht.pim.proto.projects.Project\022P\n\ra" +
+                        "ddNewProject\022#.com.bht.pim.proto.project" +
+                        "s.Project\032\032.google.protobuf.BoolValue\022N\n" +
+                        "\013editProject\022#.com.bht.pim.proto.project" +
+                        "s.Project\032\032.google.protobuf.BoolValue\022H\n" +
+                        "\rdeleteProject\022\033.google.protobuf.Int64Va" +
+                        "lue\032\032.google.protobuf.BoolValue\022Q\n\016getPr" +
+                        "ojectList\022\026.google.protobuf.Empty\032\'.com." +
+                        "bht.pim.proto.projects.ProjectList\022W\n\021ge" +
+                        "tProjectNumbers\022\026.google.protobuf.Empty\032" +
+                        "*.com.bht.pim.proto.projects.ProjectNumb" +
+                        "ersB\005P\001\210\001\001b\006proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -57,17 +83,35 @@ public final class ProjectOuterClass {
         com.google.protobuf.Descriptors.FileDescriptor
                 .internalBuildGeneratedFileFrom(descriptorData,
                         new com.google.protobuf.Descriptors.FileDescriptor[]{
+                                com.google.protobuf.WrappersProto.getDescriptor(),
+                                com.google.protobuf.EmptyProto.getDescriptor(),
+                                ProjectInfoOuterClass.getDescriptor(),
+                                EmployeeInfoOuterClass.getDescriptor(),
                                 GroupOuterClass.getDescriptor(),
-                                com.google.protobuf.TimestampProto.getDescriptor(),
                         }, assigner);
         internal_static_com_bht_pim_proto_projects_Project_descriptor =
                 getDescriptor().getMessageTypes().get(0);
         internal_static_com_bht_pim_proto_projects_Project_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_com_bht_pim_proto_projects_Project_descriptor,
-                new String[]{"Id", "Number", "Name", "Customer", "Status", "Start", "End", "Group",});
+                new String[]{"ProjectInfo", "Members",});
+        internal_static_com_bht_pim_proto_projects_ProjectList_descriptor =
+                getDescriptor().getMessageTypes().get(1);
+        internal_static_com_bht_pim_proto_projects_ProjectList_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_com_bht_pim_proto_projects_ProjectList_descriptor,
+                new String[]{"Projects",});
+        internal_static_com_bht_pim_proto_projects_ProjectNumbers_descriptor =
+                getDescriptor().getMessageTypes().get(2);
+        internal_static_com_bht_pim_proto_projects_ProjectNumbers_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_com_bht_pim_proto_projects_ProjectNumbers_descriptor,
+                new String[]{"ProjectNumbers",});
+        com.google.protobuf.WrappersProto.getDescriptor();
+        com.google.protobuf.EmptyProto.getDescriptor();
+        ProjectInfoOuterClass.getDescriptor();
+        EmployeeInfoOuterClass.getDescriptor();
         GroupOuterClass.getDescriptor();
-        com.google.protobuf.TimestampProto.getDescriptor();
     }
 
     // @@protoc_insertion_point(outer_class_scope)

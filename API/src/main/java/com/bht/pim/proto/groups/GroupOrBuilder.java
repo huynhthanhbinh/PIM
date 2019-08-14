@@ -3,30 +3,53 @@
 
 package com.bht.pim.proto.groups;
 
-import com.bht.pim.proto.employees.Employee;
-import com.bht.pim.proto.employees.EmployeeOrBuilder;
+import com.bht.pim.proto.projects.ProjectInfo;
+import com.bht.pim.proto.projects.ProjectInfoOrBuilder;
 
 public interface GroupOrBuilder extends
         // @@protoc_insertion_point(interface_extends:com.bht.pim.proto.groups.Group)
         com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int64 id = 1;</code>
+     * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
      */
-    long getId();
+    boolean hasGroupInfo();
 
     /**
-     * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+     * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
      */
-    boolean hasLeader();
+    GroupInfo getGroupInfo();
 
     /**
-     * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+     * <code>.com.bht.pim.proto.groups.GroupInfo groupInfo = 1;</code>
      */
-    Employee getLeader();
+    GroupInfoOrBuilder getGroupInfoOrBuilder();
 
     /**
-     * <code>.com.bht.pim.proto.employees.Employee leader = 2;</code>
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
      */
-    EmployeeOrBuilder getLeaderOrBuilder();
+    java.util.List<ProjectInfo>
+    getEnrolledProjectsList();
+
+    /**
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+     */
+    ProjectInfo getEnrolledProjects(int index);
+
+    /**
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+     */
+    int getEnrolledProjectsCount();
+
+    /**
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+     */
+    java.util.List<? extends ProjectInfoOrBuilder>
+    getEnrolledProjectsOrBuilderList();
+
+    /**
+     * <code>repeated .com.bht.pim.proto.projects.ProjectInfo enrolledProjects = 2;</code>
+     */
+    ProjectInfoOrBuilder getEnrolledProjectsOrBuilder(
+            int index);
 }

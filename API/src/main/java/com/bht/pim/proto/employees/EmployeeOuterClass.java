@@ -3,6 +3,8 @@
 
 package com.bht.pim.proto.employees;
 
+import com.bht.pim.proto.projects.ProjectInfoOuterClass;
+
 public final class EmployeeOuterClass {
     private EmployeeOuterClass() {
     }
@@ -22,6 +24,11 @@ public final class EmployeeOuterClass {
     static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internal_static_com_bht_pim_proto_employees_Employee_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_com_bht_pim_proto_employees_EmployeeList_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_com_bht_pim_proto_employees_EmployeeList_fieldAccessorTable;
 
     public static com.google.protobuf.Descriptors.FileDescriptor
     getDescriptor() {
@@ -34,11 +41,20 @@ public final class EmployeeOuterClass {
     static {
         String[] descriptorData = {
                 "\n\016Employee.proto\022\033com.bht.pim.proto.empl" +
-                        "oyees\032\037google/protobuf/timestamp.proto\"y" +
-                        "\n\010Employee\022\n\n\002id\030\001 \001(\003\022\014\n\004visa\030\002 \001(\t\022\022\n\n" +
-                        "first_name\030\003 \001(\t\022\021\n\tlast_name\030\004 \001(\t\022,\n\010b" +
-                        "irthday\030\005 \001(\0132\032.google.protobuf.Timestam" +
-                        "pB\005P\001\210\001\001b\006proto3"
+                        "oyees\032\036google/protobuf/wrappers.proto\032\033g" +
+                        "oogle/protobuf/empty.proto\032\027info/Employe" +
+                        "eInfo.proto\032\026info/ProjectInfo.proto\"\216\001\n\010" +
+                        "Employee\022?\n\014employeeInfo\030\001 \001(\0132).com.bht" +
+                        ".pim.proto.employees.EmployeeInfo\022A\n\020enr" +
+                        "olledProjects\030\002 \003(\0132\'.com.bht.pim.proto." +
+                        "projects.ProjectInfo\"H\n\014EmployeeList\0228\n\t" +
+                        "employees\030\001 \003(\0132%.com.bht.pim.proto.empl" +
+                        "oyees.Employee2\276\001\n\017EmployeeService\022U\n\017ge" +
+                        "tEmployeeById\022\033.google.protobuf.Int64Val" +
+                        "ue\032%.com.bht.pim.proto.employees.Employe" +
+                        "e\022T\n\017getEmployeeList\022\026.google.protobuf.E" +
+                        "mpty\032).com.bht.pim.proto.employees.Emplo" +
+                        "yeeListB\005P\001\210\001\001b\006proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -52,15 +68,27 @@ public final class EmployeeOuterClass {
         com.google.protobuf.Descriptors.FileDescriptor
                 .internalBuildGeneratedFileFrom(descriptorData,
                         new com.google.protobuf.Descriptors.FileDescriptor[]{
-                                com.google.protobuf.TimestampProto.getDescriptor(),
+                                com.google.protobuf.WrappersProto.getDescriptor(),
+                                com.google.protobuf.EmptyProto.getDescriptor(),
+                                EmployeeInfoOuterClass.getDescriptor(),
+                                ProjectInfoOuterClass.getDescriptor(),
                         }, assigner);
         internal_static_com_bht_pim_proto_employees_Employee_descriptor =
                 getDescriptor().getMessageTypes().get(0);
         internal_static_com_bht_pim_proto_employees_Employee_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_com_bht_pim_proto_employees_Employee_descriptor,
-                new String[]{"Id", "Visa", "FirstName", "LastName", "Birthday",});
-        com.google.protobuf.TimestampProto.getDescriptor();
+                new String[]{"EmployeeInfo", "EnrolledProjects",});
+        internal_static_com_bht_pim_proto_employees_EmployeeList_descriptor =
+                getDescriptor().getMessageTypes().get(1);
+        internal_static_com_bht_pim_proto_employees_EmployeeList_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_com_bht_pim_proto_employees_EmployeeList_descriptor,
+                new String[]{"Employees",});
+        com.google.protobuf.WrappersProto.getDescriptor();
+        com.google.protobuf.EmptyProto.getDescriptor();
+        EmployeeInfoOuterClass.getDescriptor();
+        ProjectInfoOuterClass.getDescriptor();
     }
 
     // @@protoc_insertion_point(outer_class_scope)

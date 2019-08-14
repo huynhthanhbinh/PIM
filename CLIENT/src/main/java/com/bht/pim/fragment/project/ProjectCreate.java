@@ -1,16 +1,20 @@
 package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.dto.EmployeeDTO;
+import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.fragment.confirm.Confirmable;
 import com.bht.pim.message.impl.ConfirmBoxAdding;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.MainLabelUpdating;
 import com.bht.pim.notification.NotificationStyle;
+import com.bht.pim.proto.employees.EmployeeInfo;
 import com.bht.pim.proto.groups.Group;
+import com.bht.pim.proto.groups.GroupInfo;
 import com.bht.pim.proto.projects.Project;
 import com.bht.pim.proto.projects.ProjectInfo;
-import com.bht.pim.service.*;
+import com.bht.pim.service.EmployeeService;
+import com.bht.pim.service.GroupService;
+import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.DateUtil;
 import com.bht.pim.util.NotificationUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
@@ -52,15 +56,11 @@ import java.util.stream.Collectors;
 public class ProjectCreate implements Initializable, Confirmable {
 
     @Autowired
-    private EmployeeListService employeeListService;
+    private EmployeeService employeeService;
     @Autowired
     private GroupService groupService;
     @Autowired
-    private GroupListService groupListService;
-    @Autowired
     private ProjectService projectService;
-    @Autowired
-    private ProjectListService projectListService;
 
 
     @Resource
@@ -78,17 +78,17 @@ public class ProjectCreate implements Initializable, Confirmable {
     @FXML
     private Label lSize;
     @FXML
-    private TableView<EmployeeDTO> table;
+    private TableView<EmployeeDto> table;
     @FXML
-    private TableColumn<EmployeeDTO, Long> cName;
+    private TableColumn<EmployeeDto, Long> cName;
     @FXML
-    private TableColumn<EmployeeDTO, EmployeeDTO> cRemove;
+    private TableColumn<EmployeeDto, EmployeeDto> cRemove;
     @FXML
     private ComboBox<String> comboBoxStatus;
     @FXML
     private ComboBox<String> comboBoxOption;
     @FXML
-    private ComboBox<EmployeeDTO> comboBoxLeader;
+    private ComboBox<EmployeeDto> comboBoxLeader;
     @FXML
     private TextField customer;
     @FXML
@@ -118,13 +118,13 @@ public class ProjectCreate implements Initializable, Confirmable {
 
     private boolean chose;
     private boolean current;
-    private EmployeeDTO leader;
+    private EmployeeDto leader;
     private List<Long> projectNumbers;
     private List<Long> members;
-    private List<EmployeeDTO> employees;
-    private List<EmployeeDTO> leaders;
-    private List<EmployeeDTO> leaderOptions;
-    private AutoCompletionBinding<EmployeeDTO> employeeAutoCompletion;
+    private List<EmployeeDto> employees;
+    private List<EmployeeDto> leaders;
+    private List<EmployeeDto> leaderOptions;
+    private AutoCompletionBinding<EmployeeDto> employeeAutoCompletion;
 
     @FXML
     @Override
@@ -183,16 +183,16 @@ public class ProjectCreate implements Initializable, Confirmable {
     // Get all necessary data
     private void getNecessaryData() {
         // Get all exist project numbers
-        projectNumbers = projectListService.getProjectNumbers();
+        projectNumbers = projectService.getProjectNumbers();
 
         // Get all employees
-        employees = employeeListService.getAllEmployees().stream()
-                .map(EmployeeDTO::toMember)
+        employees = employeeService.getAllEmployees().stream()
+                .map(EmployeeDto::toMember)
                 .collect(Collectors.toList());
 
         // Get all current-group leaders
-        leaders = groupListService.getAllGroups().stream()
-                .map(EmployeeDTO::toMember)
+        leaders = groupService.getAllGroups().stream()
+                .map(EmployeeDto::toMember)
                 .collect(Collectors.toList());
 
         // Init leader leaderOptions for option new groups
@@ -304,7 +304,7 @@ public class ProjectCreate implements Initializable, Confirmable {
                 .bindAutoCompletion(textField, employees);
         employeeAutoCompletion.setOnAutoCompleted(event -> {
 
-            EmployeeDTO employeeDTO = event.getCompletion();
+            EmployeeDto employeeDTO = event.getCompletion();
 
             textField.clear();
             table.getItems().add(employeeDTO);
@@ -340,12 +340,12 @@ public class ProjectCreate implements Initializable, Confirmable {
 
 
     // Button remove on each table row
-    private TableCell<EmployeeDTO, EmployeeDTO> remove(TableColumn<EmployeeDTO, EmployeeDTO> param) {
-        return new TableCell<EmployeeDTO, EmployeeDTO>() {
+    private TableCell<EmployeeDto, EmployeeDto> remove(TableColumn<EmployeeDto, EmployeeDto> param) {
+        return new TableCell<EmployeeDto, EmployeeDto>() {
             private final Button bRemove = new Button("X");
 
             @Override
-            protected void updateItem(EmployeeDTO employeeDTO, boolean empty) {
+            protected void updateItem(EmployeeDto employeeDTO, boolean empty) {
                 if (employeeDTO == null || employeeDTO == leader) {
 
                     // Not show the button
@@ -406,12 +406,16 @@ public class ProjectCreate implements Initializable, Confirmable {
 
             log.info("<<< PIM - On saving new project >>>");
 
-            com.bht.pim.proto.employees.Employee groupLeader = com.bht.pim.proto.employees.Employee.newBuilder()
+            EmployeeInfo groupLeader = EmployeeInfo.newBuilder()
                     .setId(leader.getId())
                     .build();
 
-            Group group = Group.newBuilder()
+            GroupInfo groupInfo = GroupInfo.newBuilder()
                     .setLeader(groupLeader)
+                    .build();
+
+            Group group = Group.newBuilder()
+                    .setGroupInfo(groupInfo)
                     .build();
 
             try {
@@ -423,34 +427,34 @@ public class ProjectCreate implements Initializable, Confirmable {
                             "[PIM] Failed to create new group !");
                 }
 
-                Project.Builder projectBuilder = Project.newBuilder()
+                ProjectInfo.Builder projectInfoBuilder = ProjectInfo.newBuilder()
                         .setNumber(Long.parseLong(number.getText()))
                         .setName(name.getText())
                         .setCustomer(customer.getText())
-                        .setGroup(group)
+                        .setGroup(groupInfo)
                         .setStart(DateUtil.toTimestamp(start.getValue()));
 
                 if (end.getValue() != null) {
-                    projectBuilder.setEnd(DateUtil.toTimestamp(end.getValue()));
+                    projectInfoBuilder.setEnd(DateUtil.toTimestamp(end.getValue()));
                 }
 
-                Project project = projectBuilder.build();
+                ProjectInfo projectInfo = projectInfoBuilder.build();
 
-                List<com.bht.pim.proto.employees.Employee> employeeList = members.stream()
-                        .map(EmployeeDTO::toEmployee)
+                List<EmployeeInfo> employeeList = members.stream()
+                        .map(EmployeeDto::toEmployeeInfo)
                         .collect(Collectors.toList());
 
-                ProjectInfo projectInfo = ProjectInfo.newBuilder()
-                        .setProject(project)
-                        .addAllEmployees(employeeList)
+                Project project = Project.newBuilder()
+                        .setProjectInfo(projectInfo)
+                        .addAllMembers(employeeList)
                         .build();
 
-                log.info(projectInfo);
+                log.info(project);
 
                 NotificationUtil.showNotification(NotificationStyle.INFO, Pos.CENTER,
                         "[PIM] On saving new project !");
 
-                if (projectService.addNewProject(projectInfo)) {
+                if (projectService.addNewProject(project)) {
                     NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
                             "[PIM] Successfully create project !");
 
@@ -528,8 +532,8 @@ public class ProjectCreate implements Initializable, Confirmable {
 
 
     // when change leader choice
-    private void leaderChoice(ObservableValue<? extends EmployeeDTO> observable,
-                              EmployeeDTO oldValue, EmployeeDTO newValue) {
+    private void leaderChoice(ObservableValue<? extends EmployeeDto> observable,
+                              EmployeeDto oldValue, EmployeeDto newValue) {
         if (oldValue == null) { // change group option
 
             if (!current) { // new-group
