@@ -39,11 +39,10 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
     @Override
     public void getGroupById(Int64Value request, StreamObserver<Group> responseObserver) {
-
-        GroupEntity groupEntity = groupDao
-                .getGroupById(request.getValue());
-
         try {
+            GroupEntity groupEntity = groupDao
+                    .getGroupById(request.getValue());
+
             EmployeeEntity leader = groupEntity.getGroupLeader();
 
             EmployeeInfo groupLeader = EmployeeInfo.newBuilder()
