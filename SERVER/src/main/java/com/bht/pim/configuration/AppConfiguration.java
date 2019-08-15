@@ -1,5 +1,6 @@
 package com.bht.pim.configuration;
 
+import com.bht.pim.mapper.CustomizedMapper;
 import com.bht.pim.mapper.EmployeeMapper;
 import com.bht.pim.mapper.GroupMapper;
 import com.bht.pim.mapper.ProjectMapper;
@@ -192,6 +193,12 @@ public class AppConfiguration implements InitializingBean {
     public GroupMapper groupMapper() {
         log.info("[PIM] Creating bean of < GroupMapper >");
         return Mappers.getMapper(GroupMapper.class);
+    }
+
+    @Bean
+    public CustomizedMapper customizedMapper() {
+        log.info("[PIM] Creating bean of < CustomizedMapper >");
+        return Mappers.getMapper(CustomizedMapper.class);
     }
 
     @Override

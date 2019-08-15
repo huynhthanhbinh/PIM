@@ -31,13 +31,11 @@ import java.util.List;
 public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
     @Autowired
-    GroupDao groupDao;
-
+    private GroupDao groupDao;
     @Autowired
-    EmployeeDao employeeDao;
-
+    private EmployeeDao employeeDao;
     @Autowired
-    GroupMapper groupMapper;
+    private GroupMapper groupMapper;
 
     @Override
     public void getGroupById(Int64Value request, StreamObserver<Group> responseObserver) {

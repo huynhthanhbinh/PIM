@@ -31,13 +31,11 @@ import java.util.stream.Collectors;
 public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBase {
 
     @Autowired
-    EmployeeDao employeeDao;
-
+    private EmployeeDao employeeDao;
     @Autowired
-    ProjectDao projectDao;
-
+    private ProjectDao projectDao;
     @Autowired
-    ProjectMapper projectMapper;
+    private ProjectMapper projectMapper;
 
     @Override
     public void getProjectById(Int64Value request, StreamObserver<Project> responseObserver) {
