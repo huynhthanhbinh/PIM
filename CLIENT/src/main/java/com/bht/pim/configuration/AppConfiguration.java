@@ -1,15 +1,11 @@
 package com.bht.pim.configuration;
 
-import com.bht.pim.mapper.EmployeeMapper;
-import com.bht.pim.mapper.GroupMapper;
-import com.bht.pim.mapper.ProjectMapper;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.extern.log4j.Log4j;
-import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -82,21 +78,21 @@ public class AppConfiguration {
         return ProjectServiceGrpc.newBlockingStub(channel);
     }
 
-    @Bean
-    public EmployeeMapper employeeMapper() {
-        log.info("[PIM] Creating bean of < EmployeeMapper >");
-        return Mappers.getMapper(EmployeeMapper.class);
-    }
-
-    @Bean
-    public GroupMapper groupMapper() {
-        log.info("[PIM] Creating bean of < GroupMapper >");
-        return Mappers.getMapper(GroupMapper.class);
-    }
-
-    @Bean
-    public ProjectMapper projectMapper() {
-        log.info("[PIM] Creating bean of < ProjectMapper >");
-        return Mappers.getMapper(ProjectMapper.class);
-    }
+//    @Bean
+//    public EmployeeMapper employeeMapper() {
+//        log.info("[PIM] Creating bean of < EmployeeMapper >");
+//        return Mappers.getMapper(EmployeeMapper.class);
+//    }
+//
+//    @Bean
+//    public GroupMapper groupMapper() {
+//        log.info("[PIM] Creating bean of < GroupMapper >");
+//        return Mappers.getMapper(GroupMapper.class);
+//    }
+//
+//    @Bean
+//    public ProjectMapper projectMapper() {
+//        log.info("[PIM] Creating bean of < ProjectMapper >");
+//        return Mappers.getMapper(ProjectMapper.class);
+//    }
 }

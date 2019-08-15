@@ -50,14 +50,12 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
                     .getAllEmployees();
 
             List<Employee> employees = employeeEntities.stream()
-                    .map(employeeMapper::toEmployeeIgnoreProjects)
+                    .map(employeeMapper::toEmployee)
                     .collect(Collectors.toList());
 
             EmployeeList employeeList = EmployeeList.newBuilder()
                     .addAllEmployees(employees)
                     .build();
-
-            log.info(employeeMapper.toEmployee(employeeDao.getEmployeeById(2)));
 
             responseObserver.onNext(employeeList);
             responseObserver.onCompleted();
@@ -66,7 +64,6 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
 
             // log the exception out
             log.info(exception);
-            exception.printStackTrace();
 
             // return an empty list not return null value for list
             responseObserver.onNext(EmployeeList.newBuilder()

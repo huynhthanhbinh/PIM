@@ -4,6 +4,7 @@ import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.dao.GroupDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
+import com.bht.pim.mapper.GroupMapper;
 import com.bht.pim.proto.employees.EmployeeInfo;
 import com.bht.pim.proto.groups.Group;
 import com.bht.pim.proto.groups.GroupInfo;
@@ -34,6 +35,9 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
     @Autowired
     EmployeeDao employeeDao;
+
+    @Autowired
+    GroupMapper groupMapper;
 
     @Override
     public void getGroupById(Int64Value request, StreamObserver<Group> responseObserver) {

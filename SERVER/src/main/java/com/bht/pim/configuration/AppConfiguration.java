@@ -183,15 +183,15 @@ public class AppConfiguration implements InitializingBean {
     }
 
     @Bean
-    public GroupMapper groupMapper() {
-        log.info("[PIM] Creating bean of < GroupMapper >");
-        return Mappers.getMapper(GroupMapper.class);
-    }
-
-    @Bean
     public ProjectMapper projectMapper() {
         log.info("[PIM] Creating bean of < ProjectMapper >");
         return Mappers.getMapper(ProjectMapper.class);
+    }
+
+    @Bean
+    public GroupMapper groupMapper() {
+        log.info("[PIM] Creating bean of < GroupMapper >");
+        return Mappers.getMapper(GroupMapper.class);
     }
 
     @Override

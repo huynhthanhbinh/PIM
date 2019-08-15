@@ -5,6 +5,7 @@ import com.bht.pim.dao.ProjectDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
 import com.bht.pim.entity.ProjectEntity;
+import com.bht.pim.mapper.ProjectMapper;
 import com.bht.pim.proto.employees.EmployeeInfo;
 import com.bht.pim.proto.groups.GroupInfo;
 import com.bht.pim.proto.projects.*;
@@ -34,6 +35,9 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
 
     @Autowired
     ProjectDao projectDao;
+
+    @Autowired
+    ProjectMapper projectMapper;
 
     @Override
     public void getProjectById(Int64Value request, StreamObserver<Project> responseObserver) {
