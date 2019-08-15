@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Log4j
 @GRpcService
@@ -46,12 +45,8 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
     @Override
     public void getEmployeeList(Empty request, StreamObserver<EmployeeList> responseObserver) {
         try {
-            List<EmployeeEntity> employeeEntities = employeeDao
-                    .getAllEmployees();
-
-            List<Employee> employees = employeeEntities.stream()
-                    .map(employeeMapper::toEmployee)
-                    .collect(Collectors.toList());
+            List<EmployeeEntity> employeeEntities = employeeDao.getAllEmployees();
+            List<Employee> employees = employeeMapper.toEmployeeList(employeeEntities);
 
             EmployeeList employeeList = EmployeeList.newBuilder()
                     .addAllEmployees(employees)

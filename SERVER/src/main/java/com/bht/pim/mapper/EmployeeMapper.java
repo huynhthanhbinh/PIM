@@ -7,9 +7,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 @Mapper(collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED,
         uses = CustomizedMapper.class, componentModel = "spring")
 public interface EmployeeMapper {
+
+    List<Employee> toEmployeeList(final List<EmployeeEntity> employeeEntities);
 
     @Mappings({
             @Mapping(source = "employeeEntity", target = "employeeInfo"),
