@@ -4,6 +4,7 @@ import com.bht.pim.proto.groups.Group;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.service.GroupService;
 import com.google.protobuf.Empty;
+import com.google.protobuf.Int64Value;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,14 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public boolean addNewGroup(Group newGroup) {
         return stub.addNewGroup(newGroup).getValue();
+    }
+
+    // Get a specific group
+    @Override
+    public Group getGroupById(long id) {
+        return stub.getGroupById(Int64Value.newBuilder()
+                .setValue(id)
+                .build());
     }
 
     // Get all groups

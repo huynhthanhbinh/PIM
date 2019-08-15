@@ -5,24 +5,17 @@ import com.bht.pim.dao.GroupDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
 import com.bht.pim.mapper.GroupMapper;
-import com.bht.pim.proto.employees.EmployeeInfo;
 import com.bht.pim.proto.groups.Group;
-import com.bht.pim.proto.groups.GroupInfo;
 import com.bht.pim.proto.groups.GroupList;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
-import com.bht.pim.proto.projects.ProjectInfo;
-import com.bht.pim.util.DateUtil;
 import com.google.protobuf.BoolValue;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
-import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.log4j.Log4j;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,48 +33,8 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
     @Override
     public void getGroupById(Int64Value request, StreamObserver<Group> responseObserver) {
         try {
-            GroupEntity groupEntity = groupDao
-                    .getGroupById(request.getValue());
-
-            EmployeeEntity leader = groupEntity.getGroupLeader();
-
-            EmployeeInfo groupLeader = EmployeeInfo.newBuilder()
-                    .setId(leader.getId())
-                    .setVisa(leader.getVisa())
-                    .setFirstName(leader.getFirstName())
-                    .setLastName(leader.getLastName())
-                    .build();
-
-            GroupInfo groupInfo = GroupInfo.newBuilder()
-                    .setId(groupEntity.getId())
-                    .setLeader(groupLeader)
-                    .build();
-
-            List<ProjectInfo> projects = new ArrayList<>();
-
-            groupEntity.getJoinedProjects().forEach(projectEntity -> {
-                Date end = projectEntity.getEnd();
-
-                ProjectInfo project = ProjectInfo.newBuilder()
-                        .setId(projectEntity.getId())
-                        .setNumber(projectEntity.getNumber())
-                        .setGroup(groupInfo)
-                        .setName(projectEntity.getName())
-                        .setCustomer(projectEntity.getCustomer())
-                        .setStatus(projectEntity.getStatus())
-                        .setStart(DateUtil.toTimestamp(projectEntity.getStart()))
-                        .setEnd((end != null)
-                                ? DateUtil.toTimestamp(end)
-                                : Timestamp.newBuilder().build())
-                        .build();
-
-                projects.add(project);
-            });
-
-            Group group = Group.newBuilder()
-                    .setGroupInfo(groupInfo)
-                    .addAllEnrolledProjects(projects)
-                    .build();
+            GroupEntity groupEntity = groupDao.getGroupById(request.getValue());
+            Group group = groupMapper.toGroup(groupEntity);
 
             responseObserver.onNext(group);
             responseObserver.onCompleted();
@@ -110,7 +63,6 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
         // then show the list after to the UI
         // So that we can prevent from unique constraint
         try {
-
             EmployeeEntity leader = employeeDao
                     .getEmployeeById(request.getGroupInfo().getLeader().getId());
 
@@ -120,11 +72,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
             // As CONSTRAINT GROUP_LEADER_ID is UNIQUE !!!
             if (leader.getLedGroup() == null) {
 
-                GroupEntity groupEntity = new GroupEntity();
-
-                groupEntity.setGroupLeader(leader);
-                groupEntity.setJoinedProjects(Collections.emptySet());
-
+                GroupEntity groupEntity = groupMapper.toGroupEntity(request);
                 boolean isSuccess = groupDao.addGroup(groupEntity);
 
                 BoolValue success = BoolValue.newBuilder()
@@ -168,33 +116,8 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
     @Override
     public void getGroupList(Empty request, StreamObserver<GroupList> responseObserver) {
         try {
-
-            List<GroupEntity> groupEntities = groupDao
-                    .getAllGroups();
-
-            List<Group> groups = new ArrayList<>();
-
-            groupEntities.forEach(groupEntity -> {
-                EmployeeEntity leader = groupEntity.getGroupLeader();
-
-                EmployeeInfo groupLeader = EmployeeInfo.newBuilder()
-                        .setId(leader.getId())
-                        .setVisa(leader.getVisa())
-                        .setFirstName(leader.getFirstName())
-                        .setLastName(leader.getLastName())
-                        .build();
-
-                GroupInfo groupInfo = GroupInfo.newBuilder()
-                        .setId(groupEntity.getId())
-                        .setLeader(groupLeader)
-                        .build();
-
-                Group group = Group.newBuilder()
-                        .setGroupInfo(groupInfo)
-                        .build();
-
-                groups.add(group);
-            });
+            List<GroupEntity> groupEntities = groupDao.getAllGroups();
+            List<Group> groups = groupMapper.toGroupList(groupEntities);
 
             GroupList groupList = GroupList.newBuilder()
                     .addAllGroups(groups)

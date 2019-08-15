@@ -1,39 +1,47 @@
 package com.bht.pim.mapper;
 
+import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
 import com.bht.pim.entity.ProjectEntity;
 import com.bht.pim.proto.employees.EmployeeInfo;
 import com.bht.pim.proto.groups.GroupInfo;
 import com.bht.pim.proto.projects.ProjectInfo;
-import com.bht.pim.util.DateUtil;
-import com.google.protobuf.Timestamp;
+import lombok.extern.log4j.Log4j;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.Named;
+import org.mapstruct.NullValueMappingStrategy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
-
-@Mapper
+@Log4j
 @Component
-public interface CustomizedMapper {
+@Mapper(uses = DateTimeMapper.class, nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
+public abstract class CustomizedMapper {
 
-    @Named("toEmployeeInfo")
+    @Autowired
+    private EmployeeDao employeeDao;
+
+
     @Mappings({
             @Mapping(source = "id", target = "id"),
             @Mapping(source = "visa", target = "visa"),
             @Mapping(source = "firstName", target = "firstName"),
             @Mapping(source = "lastName", target = "lastName"),
             @Mapping(source = "birthday", target = "birthday")})
-    EmployeeInfo map(final EmployeeEntity employeeEntity);
+    abstract EmployeeInfo map(final EmployeeEntity employeeEntity);
+
+
+    EmployeeEntity map(final EmployeeInfo employeeInfo) {
+        return employeeDao.getEmployeeById(employeeInfo.getId());
+    }
 
 
     @Mappings({
             @Mapping(source = "id", target = "id"),
             @Mapping(source = "groupLeader", target = "leader")})
-    GroupInfo map(final GroupEntity groupEntity);
+    abstract GroupInfo map(final GroupEntity groupEntity);
 
 
     @Mappings({
@@ -45,12 +53,5 @@ public interface CustomizedMapper {
             @Mapping(source = "start", target = "start"),
             @Mapping(source = "end", target = "end"),
             @Mapping(source = "group", target = "group")})
-    ProjectInfo map(final ProjectEntity projectEntity);
-
-
-    default Timestamp map(final Date date) {
-        return (date != null)
-                ? (DateUtil.toTimestamp(date))
-                : (Timestamp.newBuilder().build());
-    }
+    abstract ProjectInfo map(final ProjectEntity projectEntity);
 }

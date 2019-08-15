@@ -26,7 +26,7 @@ public class GroupEntity {
     private EmployeeEntity groupLeader;
 
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<ProjectEntity> joinedProjects;
 
 

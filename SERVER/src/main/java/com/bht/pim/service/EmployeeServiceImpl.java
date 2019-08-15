@@ -52,6 +52,8 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
                     .addAllEmployees(employees)
                     .build();
 
+            employees.forEach(employee -> log.info(employee.getEmployeeInfo()));
+
             responseObserver.onNext(employeeList);
             responseObserver.onCompleted();
 

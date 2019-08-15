@@ -1,9 +1,6 @@
 package com.bht.pim.configuration;
 
-import com.bht.pim.mapper.CustomizedMapper;
-import com.bht.pim.mapper.EmployeeMapper;
-import com.bht.pim.mapper.GroupMapper;
-import com.bht.pim.mapper.ProjectMapper;
+import com.bht.pim.mapper.*;
 import lombok.extern.log4j.Log4j;
 import org.hibernate.SessionFactory;
 import org.mapstruct.factory.Mappers;
@@ -198,5 +195,11 @@ public class AppConfiguration {
     public CustomizedMapper customizedMapper() {
         log.info("[PIM] Creating bean of < CustomizedMapper >");
         return Mappers.getMapper(CustomizedMapper.class);
+    }
+
+    @Bean
+    public DateTimeMapper dateTimeMapper() {
+        log.info("[PIM] Creating bean of < DateTimeMapper >");
+        return Mappers.getMapper(DateTimeMapper.class);
     }
 }

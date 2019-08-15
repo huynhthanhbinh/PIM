@@ -191,7 +191,8 @@ public class ProjectCreate implements Initializable, Confirmable {
                 .collect(Collectors.toList());
 
         employees.forEach(log::info);
-        log.info(employeeService.getEmployeeById(2));
+        employeeService.getAllEmployees().forEach(employee ->
+                log.info(employee.getEmployeeInfo().getBirthday()));
 
         // Get all current-group leaders
         leaders = groupService.getAllGroups().stream()
@@ -398,10 +399,10 @@ public class ProjectCreate implements Initializable, Confirmable {
         boolean emptyStart = start.getEditor().getText().isEmpty();
         boolean emptyEnd = end.getEditor().getText().isEmpty();
         boolean valid = chose && !(emptyNumber || emptyName || emptyCustomer || emptyStart);
-        boolean validEnd = !emptyEnd && end.getValue().isAfter(start.getValue());
 
         if (valid) {
-            if (!validEnd) {
+            if (!emptyEnd && end.getValue().isBefore(start.getValue())) {
+
                 end.getEditor().getStyleClass().add("empty");
                 lEndInvalid.setVisible(true);
                 return;

@@ -12,7 +12,7 @@ public class DateUtil {
     private DateUtil() {
     }
 
-    public static Timestamp toTimestamp(LocalDate localDate) {
+    private static Timestamp toTimestamp(LocalDate localDate) {
         Instant instant = localDate.atStartOfDay().toInstant(ZoneOffset.UTC);
 
         return Timestamp.newBuilder()
@@ -26,7 +26,7 @@ public class DateUtil {
         return toTimestamp(localDate);
     }
 
-    public static LocalDate toLocalDate(Timestamp timestamp) {
+    private static LocalDate toLocalDate(Timestamp timestamp) {
         return Instant
                 .ofEpochSecond(timestamp.getSeconds(), timestamp.getNanos())
                 .atZone(ZoneOffset.UTC)

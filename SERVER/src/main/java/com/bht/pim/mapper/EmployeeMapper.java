@@ -9,8 +9,9 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED,
-        uses = CustomizedMapper.class)
+@Mapper(componentModel = "spring",
+        collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED,
+        uses = {CustomizedMapper.class, DateTimeMapper.class})
 public interface EmployeeMapper {
 
     List<Employee> toEmployeeList(final List<EmployeeEntity> employeeEntities);
