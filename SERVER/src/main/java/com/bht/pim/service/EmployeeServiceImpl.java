@@ -2,17 +2,18 @@ package com.bht.pim.service;
 
 import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.entity.EmployeeEntity;
+import com.bht.pim.mapper.DateTimeMapper;
 import com.bht.pim.mapper.EmployeeMapper;
 import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.employees.EmployeeList;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
-import com.bht.pim.util.DateUtil;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
 import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.log4j.Log4j;
 import org.lognet.springboot.grpc.GRpcService;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collections;
@@ -55,21 +56,22 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
                     .build();
 
             Timestamp timestamp;
-            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(11).getBirthday());
+            DateTimeMapper dateTimeMapper = Mappers.getMapper(DateTimeMapper.class);
+            timestamp = dateTimeMapper.toTimestamp(employeeDao.getEmployeeById(11).getBirthday());
             log.info(timestamp);
-            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(12).getBirthday());
+            timestamp = dateTimeMapper.toTimestamp(employeeDao.getEmployeeById(12).getBirthday());
             log.info(timestamp);
-            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(13).getBirthday());
+            timestamp = dateTimeMapper.toTimestamp(employeeDao.getEmployeeById(13).getBirthday());
             log.info(timestamp);
-            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(14).getBirthday());
+            timestamp = dateTimeMapper.toTimestamp(employeeDao.getEmployeeById(14).getBirthday());
             log.info(timestamp);
-            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(15).getBirthday());
+            timestamp = dateTimeMapper.toTimestamp(employeeDao.getEmployeeById(15).getBirthday());
             log.info(timestamp);
-            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(16).getBirthday());
+            timestamp = dateTimeMapper.toTimestamp(employeeDao.getEmployeeById(16).getBirthday());
             log.info(timestamp);
-            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(17).getBirthday());
+            timestamp = dateTimeMapper.toTimestamp(employeeDao.getEmployeeById(17).getBirthday());
             log.info(timestamp);
-            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(18).getBirthday());
+            timestamp = dateTimeMapper.toTimestamp(employeeDao.getEmployeeById(18).getBirthday());
             log.info(timestamp);
 
             responseObserver.onNext(employeeList);

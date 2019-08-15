@@ -5,11 +5,11 @@ import com.bht.pim.dao.ProjectDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
 import com.bht.pim.entity.ProjectEntity;
+import com.bht.pim.mapper.DateTimeMapper;
 import com.bht.pim.mapper.ProjectMapper;
 import com.bht.pim.proto.employees.EmployeeInfo;
 import com.bht.pim.proto.groups.GroupInfo;
 import com.bht.pim.proto.projects.*;
-import com.bht.pim.util.DateUtil;
 import com.google.protobuf.BoolValue;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
@@ -36,6 +36,8 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
     private ProjectDao projectDao;
     @Autowired
     private ProjectMapper projectMapper;
+    @Autowired
+    private DateTimeMapper dateTimeMapper;
 
     @Override
     public void getProjectById(Int64Value request, StreamObserver<Project> responseObserver) {
@@ -67,9 +69,9 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
                     .setCustomer(projectEntity.getCustomer())
                     .setGroup(group)
                     .setStatus(projectEntity.getStatus())
-                    .setStart(DateUtil.toTimestamp(projectEntity.getStart()))
+                    .setStart(dateTimeMapper.toTimestamp(projectEntity.getStart()))
                     .setEnd((end != null)
-                            ? DateUtil.toTimestamp(end)
+                            ? dateTimeMapper.toTimestamp(end)
                             : Timestamp.newBuilder().build())
                     .build();
 
@@ -127,7 +129,7 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
                 projectEntity.setCustomer(projectInfo.getCustomer());
                 projectEntity.setGroup(groupEntity);
                 projectEntity.setEnrolledEmployees(employeeEntities);
-                projectEntity.setStart(DateUtil.toSqlDate(projectInfo.getStart()));
+                projectEntity.setStart(dateTimeMapper.toSqlDate(projectInfo.getStart()));
 
                 BoolValue success = BoolValue.newBuilder()
                         .setValue(projectDao.addProject(projectEntity))
@@ -183,9 +185,9 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
                         .setCustomer(projectEntity.getCustomer())
                         .setGroup(group)
                         .setStatus(projectEntity.getStatus())
-                        .setStart(DateUtil.toTimestamp(projectEntity.getStart()))
+                        .setStart(dateTimeMapper.toTimestamp(projectEntity.getStart()))
                         .setEnd((end != null)
-                                ? DateUtil.toTimestamp(end)
+                                ? dateTimeMapper.toTimestamp(end)
                                 : Timestamp.newBuilder().build())
                         .build();
 
