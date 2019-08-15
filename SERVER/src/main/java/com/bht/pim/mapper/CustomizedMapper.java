@@ -10,48 +10,40 @@ import com.bht.pim.proto.projects.ProjectInfo;
 import lombok.extern.log4j.Log4j;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.Named;
 import org.mapstruct.NullValueMappingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Log4j
 @Component
-@Mapper(uses = DateTimeMapper.class, nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
+@Mapper(uses = DateTimeMapper.class, componentModel = "spring",
+        nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
 public abstract class CustomizedMapper {
 
     @Autowired
     private EmployeeDao employeeDao;
 
-
-    @Mappings({
-            @Mapping(source = "id", target = "id"),
-            @Mapping(source = "visa", target = "visa"),
-            @Mapping(source = "firstName", target = "firstName"),
-            @Mapping(source = "lastName", target = "lastName"),
-            @Mapping(source = "birthday", target = "birthday")})
-    abstract EmployeeInfo map(final EmployeeEntity employeeEntity);
-
-
     EmployeeEntity map(final EmployeeInfo employeeInfo) {
         return employeeDao.getEmployeeById(employeeInfo.getId());
     }
 
+    @Named("getGroupInfo")
+    @Mapping(source = "groupLeader", target = "leader")
+    abstract GroupInfo getGroupInfo(final GroupEntity groupEntity);
 
-    @Mappings({
-            @Mapping(source = "id", target = "id"),
-            @Mapping(source = "groupLeader", target = "leader")})
-    abstract GroupInfo map(final GroupEntity groupEntity);
+    @Named("getGroupInfoIgnoreLeader")
+    @Mapping(source = "groupLeader", target = "leader", ignore = true)
+    abstract GroupInfo getGroupInfoIgnoreLeader(final GroupEntity groupEntity);
 
 
-    @Mappings({
-            @Mapping(source = "id", target = "id"),
-            @Mapping(source = "number", target = "number"),
-            @Mapping(source = "name", target = "name"),
-            @Mapping(source = "customer", target = "customer"),
-            @Mapping(source = "status", target = "status"),
-            @Mapping(source = "start", target = "start"),
-            @Mapping(source = "end", target = "end"),
-            @Mapping(source = "group", target = "group")})
-    abstract ProjectInfo map(final ProjectEntity projectEntity);
+    @Named("getProjectInfo")
+    abstract ProjectInfo getProjectInfo(final ProjectEntity projectEntity);
+
+    @Named("getProjectInfoIgnoreGroup")
+    @Mapping(source = "group", target = "group", ignore = true)
+    abstract ProjectInfo getProjectInfoIgnoreGroup(final ProjectEntity projectEntity);
+
+    @Named("getEmployeeInfo")
+    abstract EmployeeInfo getEmployeeInfo(final EmployeeEntity employeeEntity);
 }

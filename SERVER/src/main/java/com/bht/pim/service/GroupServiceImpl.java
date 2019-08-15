@@ -119,6 +119,8 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
             List<GroupEntity> groupEntities = groupDao.getAllGroups();
             List<Group> groups = groupMapper.toGroupList(groupEntities);
 
+            groups.forEach(log::info);
+
             GroupList groupList = GroupList.newBuilder()
                     .addAllGroups(groups)
                     .build();

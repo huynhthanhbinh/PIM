@@ -22,8 +22,9 @@ public class DateUtil {
     }
 
     public static Timestamp toTimestamp(Date date) {
-        LocalDate localDate = date.toLocalDate();
-        return toTimestamp(localDate);
+        return (date != null)
+                ? toTimestamp(date.toLocalDate())
+                : Timestamp.getDefaultInstance();
     }
 
     private static LocalDate toLocalDate(Timestamp timestamp) {
@@ -34,6 +35,8 @@ public class DateUtil {
     }
 
     public static Date toSqlDate(Timestamp timestamp) {
-        return Date.valueOf(toLocalDate(timestamp));
+        return (timestamp != Timestamp.getDefaultInstance())
+                ? Date.valueOf(toLocalDate(timestamp))
+                : null;
     }
 }

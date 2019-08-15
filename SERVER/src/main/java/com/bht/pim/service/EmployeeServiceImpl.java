@@ -6,8 +6,10 @@ import com.bht.pim.mapper.EmployeeMapper;
 import com.bht.pim.proto.employees.Employee;
 import com.bht.pim.proto.employees.EmployeeList;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
+import com.bht.pim.util.DateUtil;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
+import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.log4j.Log4j;
 import org.lognet.springboot.grpc.GRpcService;
@@ -52,7 +54,23 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
                     .addAllEmployees(employees)
                     .build();
 
-            employees.forEach(employee -> log.info(employee.getEmployeeInfo()));
+            Timestamp timestamp;
+            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(11).getBirthday());
+            log.info(timestamp);
+            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(12).getBirthday());
+            log.info(timestamp);
+            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(13).getBirthday());
+            log.info(timestamp);
+            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(14).getBirthday());
+            log.info(timestamp);
+            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(15).getBirthday());
+            log.info(timestamp);
+            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(16).getBirthday());
+            log.info(timestamp);
+            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(17).getBirthday());
+            log.info(timestamp);
+            timestamp = DateUtil.toTimestamp(employeeDao.getEmployeeById(18).getBirthday());
+            log.info(timestamp);
 
             responseObserver.onNext(employeeList);
             responseObserver.onCompleted();

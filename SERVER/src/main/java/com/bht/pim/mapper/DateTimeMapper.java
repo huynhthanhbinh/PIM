@@ -11,8 +11,6 @@ public interface DateTimeMapper {
 
     default Timestamp map(final Date date) {
 
-        return (date != null)
-                ? (DateUtil.toTimestamp(date))
-                : (Timestamp.newBuilder().build());
+        return DateUtil.toTimestamp(date);
     }
 }
