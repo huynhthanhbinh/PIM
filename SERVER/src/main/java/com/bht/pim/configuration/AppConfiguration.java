@@ -7,7 +7,6 @@ import com.bht.pim.mapper.ProjectMapper;
 import lombok.extern.log4j.Log4j;
 import org.hibernate.SessionFactory;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -33,7 +32,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan("com.bht.pim")
 @PropertySource("classpath:db.properties")
-public class AppConfiguration implements InitializingBean {
+public class AppConfiguration {
 
     // In Spring, we can use annotation @PropertySource
     // to externalize our configurations to
@@ -199,10 +198,5 @@ public class AppConfiguration implements InitializingBean {
     public CustomizedMapper customizedMapper() {
         log.info("[PIM] Creating bean of < CustomizedMapper >");
         return Mappers.getMapper(CustomizedMapper.class);
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        log.info("[PIM} Finish initializing beans !");
     }
 }

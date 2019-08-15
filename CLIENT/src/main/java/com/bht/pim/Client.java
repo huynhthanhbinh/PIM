@@ -8,10 +8,12 @@ import javafx.stage.Stage;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 import org.jacpfx.spring.launcher.AFXSpringJavaConfigLauncher;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Objects;
 
 @Log4j
+@SpringBootApplication
 public class Client extends AFXSpringJavaConfigLauncher {
 
     public static void main(String[] args) {
