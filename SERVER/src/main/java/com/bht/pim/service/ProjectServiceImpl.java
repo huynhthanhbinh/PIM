@@ -4,7 +4,6 @@ import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.dao.ProjectDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.ProjectEntity;
-import com.bht.pim.mapper.DateTimeMapper;
 import com.bht.pim.mapper.ProjectMapper;
 import com.bht.pim.proto.employees.EmployeeInfo;
 import com.bht.pim.proto.projects.Project;
@@ -33,8 +32,6 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
     private ProjectDao projectDao;
     @Autowired
     private ProjectMapper projectMapper;
-    @Autowired
-    private DateTimeMapper dateTimeMapper;
 
 
     @Override
@@ -86,12 +83,56 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
 
     @Override
     public void editProject(Project request, StreamObserver<BoolValue> responseObserver) {
-        super.editProject(request, responseObserver);
+        try {
+            ProjectEntity projectEntity = projectDao.getProjectById(request.getProjectInfo().getId());
+
+            if (projectEntity != null) {
+                BoolValue success = BoolValue.newBuilder()
+                        .setValue(projectDao.updateProject(projectMapper.toProjectEntity(request)))
+                        .build();
+
+                responseObserver.onNext(success);
+                responseObserver.onCompleted();
+
+                return;
+            }
+
+            responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
+            responseObserver.onCompleted();
+
+        } catch (Exception exception) {
+
+            log.info(exception);
+            responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
+            responseObserver.onCompleted();
+        }
     }
 
     @Override
     public void deleteProject(Int64Value request, StreamObserver<BoolValue> responseObserver) {
-        super.deleteProject(request, responseObserver);
+        try {
+            ProjectEntity projectEntity = projectDao.getProjectById(request.getValue());
+
+            if (projectEntity != null) {
+                BoolValue success = BoolValue.newBuilder()
+                        .setValue(projectDao.deleteProject(request.getValue()))
+                        .build();
+
+                responseObserver.onNext(success);
+                responseObserver.onCompleted();
+
+                return;
+            }
+
+            responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
+            responseObserver.onCompleted();
+
+        } catch (Exception exception) {
+
+            log.info(exception);
+            responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
+            responseObserver.onCompleted();
+        }
     }
 
     @Override

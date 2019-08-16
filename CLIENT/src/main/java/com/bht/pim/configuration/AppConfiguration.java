@@ -1,7 +1,6 @@
 package com.bht.pim.configuration;
 
-import com.bht.pim.mapper.DateTimeMapper;
-import com.bht.pim.mapper.StatusMapper;
+import com.bht.pim.mapper.*;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
@@ -93,21 +92,21 @@ public class AppConfiguration {
         return Mappers.getMapper(DateTimeMapper.class);
     }
 
-//    @Bean
-//    public EmployeeMapper employeeMapper() {
-//        log.info("[PIM] Creating bean of < EmployeeMapper >");
-//        return Mappers.getMapper(EmployeeMapper.class);
-//    }
-//
-//    @Bean
-//    public GroupMapper groupMapper() {
-//        log.info("[PIM] Creating bean of < GroupMapper >");
-//        return Mappers.getMapper(GroupMapper.class);
-//    }
-//
-//    @Bean
-//    public ProjectMapper projectMapper() {
-//        log.info("[PIM] Creating bean of < ProjectMapper >");
-//        return Mappers.getMapper(ProjectMapper.class);
-//    }
+    @Bean
+    public EmployeeMapper employeeMapper() {
+        log.info("[PIM] Creating bean of < EmployeeMapper >");
+        return Mappers.getMapper(EmployeeMapper.class);
+    }
+
+    @Bean
+    public GroupMapper groupMapper() {
+        log.info("[PIM] Creating bean of < GroupMapper >");
+        return Mappers.getMapper(GroupMapper.class);
+    }
+
+    @Bean
+    public ProjectMapper projectMapper() {
+        log.info("[PIM] Creating bean of < ProjectMapper >");
+        return Mappers.getMapper(ProjectMapper.class);
+    }
 }

@@ -75,7 +75,6 @@ public class ProjectDaoImpl implements ProjectDao {
         } catch (Exception exception) {
 
             log.info(exception);
-            exception.printStackTrace();
             return false;
         }
     }
@@ -85,6 +84,8 @@ public class ProjectDaoImpl implements ProjectDao {
         try {
             sessionFactory.getCurrentSession()
                     .merge(projectEntity);
+            // To avoid the NonUniqueObjectException,
+            // use the merge method offered by the JPA
 
             return true;
 

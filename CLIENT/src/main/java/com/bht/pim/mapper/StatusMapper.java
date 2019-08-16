@@ -19,11 +19,11 @@ public abstract class StatusMapper {
 
     private Map<String, String> availableStatus = availableStatus();
 
-    public String toGUIstatus(String sqlStatus) {
+    public String toGuiStatus(String sqlStatus) {
         return availableStatus.get(sqlStatus);
     }
 
-    public String toSQLstatus(String guiStatus) {
+    public String toSqlStatus(String guiStatus) {
         for (Map.Entry<String, String> entry : availableStatus.entrySet()) {
             if (entry.getValue().equals(guiStatus)) {
                 return entry.getKey();

@@ -38,7 +38,7 @@ public class ProjectUtil {
                     setText(null);
 
                 } else {
-                    setText(statusMapper.toGUIstatus(item));
+                    setText(statusMapper.toGuiStatus(item));
                 }
             }
         };

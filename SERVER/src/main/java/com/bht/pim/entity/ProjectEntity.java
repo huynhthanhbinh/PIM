@@ -1,6 +1,7 @@
 package com.bht.pim.entity;
 
 import lombok.*;
+import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@SelectBeforeUpdate
 @Table(name = "PROJECT")
 @Entity(name = "PROJECT")
 public class ProjectEntity {

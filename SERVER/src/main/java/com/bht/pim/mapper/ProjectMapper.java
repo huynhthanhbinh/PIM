@@ -32,6 +32,7 @@ public interface ProjectMapper {
     }
 
 
+    @Mapping(source = "project.projectInfo.id", target = "id")
     @Mapping(source = "project.projectInfo.number", target = "number")
     @Mapping(source = "project.projectInfo.name", target = "name")
     @Mapping(source = "project.projectInfo.customer", target = "customer")
