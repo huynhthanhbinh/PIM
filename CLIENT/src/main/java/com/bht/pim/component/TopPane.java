@@ -40,10 +40,10 @@ public class TopPane implements FXComponent {
     private Label lFrench;
 
     @FXML
-    private Label lHelp;
+    private ImageView bHelp;
 
     @FXML
-    private Label lLogout;
+    private ImageView bLogout;
 
     @Resource
     private Context context;
@@ -69,8 +69,6 @@ public class TopPane implements FXComponent {
 
         lEnglish.getStyleClass().add("clickable");
         lFrench.getStyleClass().add("clickable");
-        lHelp.getStyleClass().add("clickable");
-        lLogout.getStyleClass().add("clickable");
 
         lEnglish.setOnMouseClicked(event -> {
 
@@ -98,9 +96,8 @@ public class TopPane implements FXComponent {
             lFrench.getStyleClass().add("active");
         });
 
-        lHelp.setOnMouseClicked(event -> log.info("[TopPane] Clicked Help"));
-
-        lLogout.setOnMouseClicked(event -> log.info("[TopPane] Clicked Log-out"));
+        bHelp.setOnMouseClicked(event -> log.info("[PIM] Clicked help button"));
+        bLogout.setOnMouseClicked(event -> log.info("[PIM} Clicked Logout button"));
 
         topPane.prefWidthProperty().bind(
                 layout.getGlassPane().widthProperty().subtract(20));

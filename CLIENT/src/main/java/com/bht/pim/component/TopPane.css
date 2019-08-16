@@ -16,3 +16,12 @@
     -fx-font-size: 20;
     -fx-font-weight: bold;
 }
+
+.icon {
+    -fx-opacity: 0.2;
+}
+
+.icon:hover {
+    -fx-opacity: 1;
+    -fx-cursor: hand;
+}
