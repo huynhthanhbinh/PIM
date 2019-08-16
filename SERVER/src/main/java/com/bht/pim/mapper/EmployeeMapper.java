@@ -14,7 +14,7 @@ public interface EmployeeMapper {
 
     @Named("toEmployee")
     @Mapping(source = "employeeEntity", target = "employeeInfo")
-    @Mapping(source = "enrolledProjects", target = "enrolledProjectsList", qualifiedByName = "getProjectInfoIgnoreGroup")
+    @Mapping(source = "enrolledProjects", target = "enrolledProjectsList", qualifiedByName = "getProjectInfoIgnoreGroupLeader")
     Employee toEmployee(final EmployeeEntity employeeEntity);
 
 

@@ -23,12 +23,14 @@ import java.util.List;
 @GRpcService
 public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
+
     @Autowired
     private GroupDao groupDao;
     @Autowired
     private EmployeeDao employeeDao;
     @Autowired
     private GroupMapper groupMapper;
+
 
     @Override
     public void getGroupById(Int64Value request, StreamObserver<Group> responseObserver) {
@@ -39,16 +41,9 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
             responseObserver.onNext(group);
             responseObserver.onCompleted();
 
-            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            log.info("Successfully get Group " + request.getValue());
-            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
-
         } catch (Exception exception) {
 
-            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-            log.info("Fail to get Group " + request.getValue());
             log.info(exception);
-            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
             responseObserver.onNext(null);
             responseObserver.onCompleted();
         }
@@ -79,34 +74,28 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
                         .setValue(isSuccess)
                         .build();
 
-                log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
                 if (isSuccess) {
                     log.info("<<< Add new group successfully ! >>>");
                 } else {
                     log.info("<<< Fail to add new group ! >>>");
                 }
-                log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
                 responseObserver.onNext(success);
                 responseObserver.onCompleted();
                 return;
             }
 
-            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             log.info("<<< Fail to add new group ! >>>");
             log.info("Group leader is already lead another group");
             log.info("CONSTRAINT: \"1 employee just lead 1 group\"");
-            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
             responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
             responseObserver.onCompleted();
 
         } catch (Exception exception) {
 
-            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
             log.info("<<< Fail to add new group ! >>>");
             log.info(exception);
-            log.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n");
 
             responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
             responseObserver.onCompleted();
@@ -118,8 +107,6 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
         try {
             List<GroupEntity> groupEntities = groupDao.getAllGroups();
             List<Group> groups = groupMapper.toGroupList(groupEntities);
-
-            groups.forEach(log::info);
 
             GroupList groupList = GroupList.newBuilder()
                     .addAllGroups(groups)

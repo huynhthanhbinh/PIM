@@ -8,19 +8,15 @@ import com.bht.pim.entity.ProjectEntity;
 import com.bht.pim.mapper.DateTimeMapper;
 import com.bht.pim.mapper.ProjectMapper;
 import com.bht.pim.proto.employees.EmployeeInfo;
-import com.bht.pim.proto.groups.GroupInfo;
 import com.bht.pim.proto.projects.*;
 import com.google.protobuf.BoolValue;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
-import com.google.protobuf.Timestamp;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.log4j.Log4j;
 import org.lognet.springboot.grpc.GRpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +25,7 @@ import java.util.stream.Collectors;
 @Log4j
 @GRpcService
 public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBase {
+
 
     @Autowired
     private EmployeeDao employeeDao;
@@ -39,60 +36,12 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
     @Autowired
     private DateTimeMapper dateTimeMapper;
 
+
     @Override
     public void getProjectById(Int64Value request, StreamObserver<Project> responseObserver) {
-
-        ProjectEntity projectEntity = projectDao
-                .getProjectById(request.getValue());
-
         try {
-            Date end = projectEntity.getEnd();
-
-            EmployeeEntity leader = projectEntity.getGroup().getGroupLeader();
-
-            EmployeeInfo groupLeader = EmployeeInfo.newBuilder()
-                    .setId(leader.getId())
-                    .setVisa(leader.getVisa())
-                    .setLastName(leader.getLastName())
-                    .setFirstName(leader.getFirstName())
-                    .build();
-
-            GroupInfo group = GroupInfo.newBuilder()
-                    .setId(projectEntity.getGroup().getId())
-                    .setLeader(groupLeader)
-                    .build();
-
-            ProjectInfo projectInfo = ProjectInfo.newBuilder()
-                    .setId(projectEntity.getId())
-                    .setNumber(projectEntity.getNumber())
-                    .setName(projectEntity.getName())
-                    .setCustomer(projectEntity.getCustomer())
-                    .setGroup(group)
-                    .setStatus(projectEntity.getStatus())
-                    .setStart(dateTimeMapper.toTimestamp(projectEntity.getStart()))
-                    .setEnd((end != null)
-                            ? dateTimeMapper.toTimestamp(end)
-                            : Timestamp.newBuilder().build())
-                    .build();
-
-            List<EmployeeInfo> employees = new ArrayList<>();
-
-            projectEntity.getEnrolledEmployees().forEach(employeeEntity -> {
-                EmployeeInfo employeeInfo = EmployeeInfo.newBuilder()
-                        .setId(employeeEntity.getId())
-                        .setVisa(employeeEntity.getVisa())
-                        .setFirstName(employeeEntity.getFirstName())
-                        .setLastName(employeeEntity.getLastName())
-                        .build();
-
-                employees.add(employeeInfo);
-            });
-
-
-            Project project = Project.newBuilder()
-                    .setProjectInfo(projectInfo)
-                    .addAllMembers(employees)
-                    .build();
+            ProjectEntity projectEntity = projectDao.getProjectById(request.getValue());
+            Project project = projectMapper.toProject(projectEntity);
 
             responseObserver.onNext(project);
             responseObserver.onCompleted();
@@ -165,38 +114,8 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
     @Override
     public void getProjectList(Empty request, StreamObserver<ProjectList> responseObserver) {
         try {
-
-            List<ProjectEntity> projectEntities = projectDao
-                    .getAllProjects();
-
-            List<Project> projects = new ArrayList<>();
-
-            projectEntities.forEach(projectEntity -> {
-                Date end = projectEntity.getEnd();
-
-                GroupInfo group = GroupInfo.newBuilder()
-                        .setId(projectEntity.getGroup().getId())
-                        .build();
-
-                ProjectInfo projectInfo = ProjectInfo.newBuilder()
-                        .setId(projectEntity.getId())
-                        .setNumber(projectEntity.getNumber())
-                        .setName(projectEntity.getName())
-                        .setCustomer(projectEntity.getCustomer())
-                        .setGroup(group)
-                        .setStatus(projectEntity.getStatus())
-                        .setStart(dateTimeMapper.toTimestamp(projectEntity.getStart()))
-                        .setEnd((end != null)
-                                ? dateTimeMapper.toTimestamp(end)
-                                : Timestamp.newBuilder().build())
-                        .build();
-
-                Project project = Project.newBuilder()
-                        .setProjectInfo(projectInfo)
-                        .build();
-
-                projects.add(project);
-            });
+            List<ProjectEntity> projectEntities = projectDao.getAllProjects();
+            List<Project> projects = projectMapper.toProjectList(projectEntities);
 
             ProjectList projectList = ProjectList.newBuilder()
                     .addAllProjects(projects)

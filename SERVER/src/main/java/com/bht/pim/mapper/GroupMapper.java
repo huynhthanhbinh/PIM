@@ -15,7 +15,7 @@ public interface GroupMapper {
 
     @Named("toGroup")
     @Mapping(source = "groupEntity", target = "groupInfo", qualifiedByName = "getGroupInfo")
-    @Mapping(source = "groupEntity.joinedProjects", target = "enrolledProjectsList", qualifiedByName = "getProjectInfoIgnoreGroup")
+    @Mapping(source = "groupEntity.joinedProjects", target = "enrolledProjectsList", qualifiedByName = "getProjectInfoIgnoreGroupLeader")
     Group toGroup(final GroupEntity groupEntity);
 
 

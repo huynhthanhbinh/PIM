@@ -191,8 +191,6 @@ public class ProjectCreate implements Initializable, Confirmable {
                 .collect(Collectors.toList());
 
         employees.forEach(log::info);
-        employeeService.getAllEmployees().forEach(employee ->
-                log.info(employee.getEmployeeInfo().getBirthday()));
 
         // Get all current-group leaders
         leaders = groupService.getAllGroups().stream()
