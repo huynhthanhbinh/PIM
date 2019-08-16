@@ -4,6 +4,7 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.fragment.confirm.Confirmable;
 import com.bht.pim.mapper.DateTimeMapper;
+import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.ConfirmBoxAdding;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.MainLabelUpdating;
@@ -66,6 +67,8 @@ public class ProjectCreate implements Initializable, Confirmable {
     private ProjectUtil projectUtil;
     @Autowired
     private DateTimeMapper dateTimeMapper;
+    @Autowired
+    private StatusMapper statusMapper;
 
 
     @Resource
@@ -426,12 +429,15 @@ public class ProjectCreate implements Initializable, Confirmable {
                     .build();
 
             try {
-                if (saveNewGroup(group)) {
-                    NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
-                            "[PIM] Successfully create new group !");
-                } else {
-                    NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
-                            "[PIM] Failed to create new group !");
+                if (comboBoxOption.getValue().equals("New group")) {
+                    if (saveNewGroup(group)) {
+                        NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
+                                "[PIM] Successfully create new group !");
+                    } else {
+                        NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
+                                "[PIM] Failed to create new group !");
+                        return;
+                    }
                 }
 
                 ProjectInfo.Builder projectInfoBuilder = ProjectInfo.newBuilder()
@@ -439,7 +445,7 @@ public class ProjectCreate implements Initializable, Confirmable {
                         .setName(name.getText())
                         .setCustomer(customer.getText())
                         .setGroup(groupInfo)
-                        .setStatus(comboBoxStatus.getValue())
+                        .setStatus(statusMapper.toSqlStatus(comboBoxStatus.getValue()))
                         .setStart(dateTimeMapper.toTimestamp(start.getValue()));
 
                 if (end.getValue() != null) {
