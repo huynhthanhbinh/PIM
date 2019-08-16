@@ -75,6 +75,7 @@ public class ProjectDaoImpl implements ProjectDao {
         } catch (Exception exception) {
 
             log.info(exception);
+            exception.printStackTrace();
             return false;
         }
     }

@@ -6,7 +6,6 @@ import com.bht.pim.message.impl.MainLabelUpdating;
 import com.bht.pim.proto.projects.Project;
 import com.bht.pim.proto.projects.ProjectInfo;
 import com.bht.pim.service.ProjectService;
-import com.bht.pim.util.DateUtil;
 import com.bht.pim.util.ProjectUtil;
 import com.google.protobuf.Timestamp;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
@@ -41,6 +40,8 @@ public class ProjectList implements Initializable {
 
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private ProjectUtil projectUtil;
 
 
     @Resource
@@ -127,12 +128,12 @@ public class ProjectList implements Initializable {
 
         cStatus.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        cStatus.setCellFactory(ProjectUtil::statusFormat);
+        cStatus.setCellFactory(projectUtil::statusFormat);
         cStatus.setResizable(false);
 
         cStart.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
-        cStart.setCellFactory(DateUtil::dateFormat);
+        cStart.setCellFactory(projectUtil::dateFormat);
         cStart.setResizable(false);
 
         cManagement.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));

@@ -3,12 +3,14 @@ package com.bht.pim.service;
 import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.dao.ProjectDao;
 import com.bht.pim.entity.EmployeeEntity;
-import com.bht.pim.entity.GroupEntity;
 import com.bht.pim.entity.ProjectEntity;
 import com.bht.pim.mapper.DateTimeMapper;
 import com.bht.pim.mapper.ProjectMapper;
 import com.bht.pim.proto.employees.EmployeeInfo;
-import com.bht.pim.proto.projects.*;
+import com.bht.pim.proto.projects.Project;
+import com.bht.pim.proto.projects.ProjectList;
+import com.bht.pim.proto.projects.ProjectNumbers;
+import com.bht.pim.proto.projects.ProjectServiceGrpc;
 import com.google.protobuf.BoolValue;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
@@ -19,8 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Log4j
 @GRpcService
@@ -56,29 +56,12 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
 
     @Override
     public void addNewProject(Project request, StreamObserver<BoolValue> responseObserver) {
-
-        ProjectInfo projectInfo = request.getProjectInfo();
-        EmployeeInfo groupLeader = projectInfo.getGroup().getLeader();
-        List<EmployeeInfo> employees = request.getMembersList();
-
         try {
+            EmployeeInfo groupLeader = request.getProjectInfo().getGroup().getLeader();
             EmployeeEntity leader = employeeDao.getEmployeeById(groupLeader.getId());
 
             if (leader != null && leader.getLedGroup() != null) {
-                Set<EmployeeEntity> employeeEntities = employees.stream()
-                        .map(employee -> employeeDao.getEmployeeById(employee.getId()))
-                        .collect(Collectors.toSet());
-
-                GroupEntity groupEntity = leader.getLedGroup();
-                ProjectEntity projectEntity = new ProjectEntity();
-
-                projectEntity.setStatus("NEW");
-                projectEntity.setNumber(projectInfo.getNumber());
-                projectEntity.setName(projectInfo.getName());
-                projectEntity.setCustomer(projectInfo.getCustomer());
-                projectEntity.setGroup(groupEntity);
-                projectEntity.setEnrolledEmployees(employeeEntities);
-                projectEntity.setStart(dateTimeMapper.toSqlDate(projectInfo.getStart()));
+                ProjectEntity projectEntity = projectMapper.toProjectEntity(request);
 
                 BoolValue success = BoolValue.newBuilder()
                         .setValue(projectDao.addProject(projectEntity))

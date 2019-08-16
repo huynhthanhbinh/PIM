@@ -57,36 +57,6 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     @Override
-    public boolean updateGroup(GroupEntity groupEntity) {
-        try {
-            sessionFactory.getCurrentSession()
-                    .merge(groupEntity);
-
-            return true;
-
-        } catch (Exception exception) {
-            log.info(exception);
-
-            return false;
-        }
-    }
-
-    @Override
-    public boolean deleteGroup(long id) {
-        try {
-            sessionFactory.getCurrentSession()
-                    .delete(getGroupById(id));
-
-            return true;
-
-        } catch (Exception exception) {
-            log.info(exception);
-
-            return false;
-        }
-    }
-
-    @Override
     public GroupEntity getGroupById(long id) {
         try {
             GroupEntity groupEntity =

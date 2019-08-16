@@ -12,12 +12,6 @@ public interface GroupDao {
     // Add a new group
     boolean addGroup(GroupEntity groupEntity);
 
-    // Edit an existing group
-    boolean updateGroup(GroupEntity groupEntity);
-
-    // Delete a group
-    boolean deleteGroup(long id);
-
     // Get an existing group
     GroupEntity getGroupById(long id);
 

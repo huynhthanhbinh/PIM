@@ -1,7 +1,6 @@
 package com.bht.pim.mapper;
 
 import com.bht.pim.dao.EmployeeDao;
-import com.bht.pim.dao.ProjectDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
 import com.bht.pim.entity.ProjectEntity;
@@ -24,13 +23,20 @@ public abstract class CustomizedMapper {
 
     @Autowired
     private EmployeeDao employeeDao;
-    @Autowired
-    private ProjectDao projectDao;
 
 
     EmployeeEntity map(final EmployeeInfo employeeInfo) {
-        return employeeDao.getEmployeeById(employeeInfo.getId());
+        return employeeDao
+                .getEmployeeById(employeeInfo.getId());
     }
+
+
+    GroupEntity map(final GroupInfo groupInfo) {
+        return employeeDao
+                .getEmployeeById(groupInfo.getLeader().getId())
+                .getLedGroup();
+    }
+
 
     @Named("getGroupInfo")
     @Mapping(source = "groupLeader", target = "leader")

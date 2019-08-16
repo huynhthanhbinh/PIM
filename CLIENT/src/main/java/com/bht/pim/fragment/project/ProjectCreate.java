@@ -3,6 +3,7 @@ package com.bht.pim.fragment.project;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.fragment.confirm.Confirmable;
+import com.bht.pim.mapper.DateTimeMapper;
 import com.bht.pim.message.impl.ConfirmBoxAdding;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.MainLabelUpdating;
@@ -15,8 +16,8 @@ import com.bht.pim.proto.projects.ProjectInfo;
 import com.bht.pim.service.EmployeeService;
 import com.bht.pim.service.GroupService;
 import com.bht.pim.service.ProjectService;
-import com.bht.pim.util.DateUtil;
 import com.bht.pim.util.NotificationUtil;
+import com.bht.pim.util.ProjectUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -61,6 +62,10 @@ public class ProjectCreate implements Initializable, Confirmable {
     private GroupService groupService;
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private ProjectUtil projectUtil;
+    @Autowired
+    private DateTimeMapper dateTimeMapper;
 
 
     @Resource
@@ -293,8 +298,8 @@ public class ProjectCreate implements Initializable, Confirmable {
         start.setPromptText("dd/MM/yyyy");
         end.setPromptText("dd/MM/yyyy");
 
-        start.setConverter(DateUtil.DATE_STRING_CONVERTER);
-        end.setConverter(DateUtil.DATE_STRING_CONVERTER);
+        start.setConverter(projectUtil.dateStringConverter);
+        end.setConverter(projectUtil.dateStringConverter);
 
         end.setDisable(true);
     }
@@ -434,10 +439,11 @@ public class ProjectCreate implements Initializable, Confirmable {
                         .setName(name.getText())
                         .setCustomer(customer.getText())
                         .setGroup(groupInfo)
-                        .setStart(DateUtil.toTimestamp(start.getValue()));
+                        .setStatus(comboBoxStatus.getValue())
+                        .setStart(dateTimeMapper.toTimestamp(start.getValue()));
 
                 if (end.getValue() != null) {
-                    projectInfoBuilder.setEnd(DateUtil.toTimestamp(end.getValue()));
+                    projectInfoBuilder.setEnd(dateTimeMapper.toTimestamp(end.getValue()));
                 }
 
                 ProjectInfo projectInfo = projectInfoBuilder.build();
@@ -460,9 +466,27 @@ public class ProjectCreate implements Initializable, Confirmable {
                     NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
                             "[PIM] Successfully create project !");
 
+                    FragmentSwitching switching = new FragmentSwitching(
+                            AppConfiguration.FRAGMENT_PROJECT_CREATE,
+                            AppConfiguration.FRAGMENT_PROJECT_LIST);
+
+                    context.send(AppConfiguration.COMPONENT_MAIN, switching);
+
                 } else {
                     NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
                             "[PIM] Failed to create new project !");
+
+                    // Get all necessary data from server
+                    getNecessaryData();
+
+                    // Init all inputs
+                    initAllInput();
+
+                    // Add all event-listener
+                    addAllEventListener();
+
+                    // Hide all check-label
+                    hideAllCheckLabel();
                 }
 
             } catch (Exception exception) {

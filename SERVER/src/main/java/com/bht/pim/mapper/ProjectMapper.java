@@ -30,4 +30,15 @@ public interface ProjectMapper {
                 .map(this::toProjectIgnoreMembers)
                 .collect(Collectors.toList());
     }
+
+
+    @Mapping(source = "project.projectInfo.number", target = "number")
+    @Mapping(source = "project.projectInfo.name", target = "name")
+    @Mapping(source = "project.projectInfo.customer", target = "customer")
+    @Mapping(source = "project.projectInfo.status", target = "status")
+    @Mapping(source = "project.projectInfo.start", target = "start")
+    @Mapping(source = "project.projectInfo.end", target = "end")
+    @Mapping(source = "project.projectInfo.group", target = "group")
+    @Mapping(source = "project.membersList", target = "enrolledEmployees")
+    ProjectEntity toProjectEntity(final Project project);
 }

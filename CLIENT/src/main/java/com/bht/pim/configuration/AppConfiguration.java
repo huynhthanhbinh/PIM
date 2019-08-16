@@ -1,11 +1,14 @@
 package com.bht.pim.configuration;
 
+import com.bht.pim.mapper.DateTimeMapper;
+import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.extern.log4j.Log4j;
+import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -76,6 +79,18 @@ public class AppConfiguration {
     public ProjectServiceGrpc.ProjectServiceBlockingStub projectServiceBlockingStub() {
         log.info("[PIM] Creating bean of < ProjectServiceBlockingStub >");
         return ProjectServiceGrpc.newBlockingStub(channel);
+    }
+
+    @Bean
+    public StatusMapper statusMapper() {
+        log.info("[PIM] Creating bean of < StatusMapper >");
+        return Mappers.getMapper(StatusMapper.class);
+    }
+
+    @Bean
+    public DateTimeMapper dateTimeMapper() {
+        log.info("[PIM] Creating bean of < DateTimeMapper >");
+        return Mappers.getMapper(DateTimeMapper.class);
     }
 
 //    @Bean

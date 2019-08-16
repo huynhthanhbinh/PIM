@@ -32,7 +32,7 @@ public class EmployeeEntity {
     @Column(name = "BIRTH_DATE", nullable = false)
     private Date birthday;
 
-    @ManyToMany(mappedBy = "enrolledEmployees", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "enrolledEmployees", fetch = FetchType.EAGER)
     private Set<ProjectEntity> enrolledProjects;
 
     @OneToOne(mappedBy = "groupLeader", cascade = CascadeType.ALL)
