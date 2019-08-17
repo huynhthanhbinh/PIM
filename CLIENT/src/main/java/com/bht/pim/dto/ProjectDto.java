@@ -10,9 +10,9 @@ import java.util.List;
 @Log4j
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
+@Builder(toBuilder = true, builderClassName = "Builder", builderMethodName = "newBuilder")
 public class ProjectDto {
 
     private BooleanProperty isSelected;

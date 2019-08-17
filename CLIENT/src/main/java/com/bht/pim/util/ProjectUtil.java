@@ -1,9 +1,7 @@
 package com.bht.pim.util;
 
+import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.mapper.DateTimeMapper;
-import com.bht.pim.mapper.StatusMapper;
-import com.bht.pim.proto.projects.ProjectInfo;
-import com.google.protobuf.Timestamp;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.StringConverter;
@@ -19,49 +17,22 @@ import java.time.format.DateTimeFormatter;
 public class ProjectUtil {
 
     public final StringConverter<LocalDate> dateStringConverter = dateStringConverter();
-    private final Timestamp nonSetup = Timestamp.newBuilder().build();
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @Autowired
-    private StatusMapper statusMapper;
-    @Autowired
     private DateTimeMapper dateTimeMapper;
 
-    // Format Status : convert from server data to status
-    public TableCell<ProjectInfo, String> statusFormat(TableColumn<ProjectInfo, String> column) {
-        return new TableCell<ProjectInfo, String>() {
-
-            @Override
-            protected void updateItem(String item, boolean empty) {
-
-                if (item == null || empty) {
-                    setText(null);
-
-                } else {
-                    setText(statusMapper.toGuiStatus(item));
-                }
-            }
-        };
-    }
-
     // Format Date : convert from Timestamp to LocalDate
-    public TableCell<ProjectInfo, Timestamp> dateFormat(TableColumn<ProjectInfo, Timestamp> column) {
-        return new TableCell<ProjectInfo, Timestamp>() {
+    public TableCell<ProjectDto, LocalDate> dateFormat(TableColumn<ProjectDto, LocalDate> column) {
+        return new TableCell<ProjectDto, LocalDate>() {
             @Override
-            protected void updateItem(Timestamp item, boolean empty) {
-                if (item == null || empty) {
+            protected void updateItem(LocalDate localDate, boolean empty) {
+                if (localDate == null || empty) {
                     setText(null);
                     setStyle("");
 
                 } else {
-                    // Format date
-                    if (item.equals(nonSetup)) { // Not set date yet
-                        setText("/");
-
-                    } else {
-                        LocalDate localDate = dateTimeMapper.toLocalDate(item);
-                        setText(dateFormatter.format(localDate));
-                    }
+                    setText(dateFormatter.format(localDate));
                     setStyle("");
                 }
             }

@@ -1,17 +1,14 @@
 package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.MainLabelUpdating;
-import com.bht.pim.proto.projects.Project;
-import com.bht.pim.proto.projects.ProjectInfo;
 import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.ProjectUtil;
-import com.google.protobuf.Timestamp;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -27,8 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 @Log4j
 @Controller
@@ -55,21 +52,21 @@ public class ProjectList implements Initializable {
     @FXML
     private Button bNew;
     @FXML
-    private TableView<ProjectInfo> table;
+    private TableView<ProjectDto> table;
     @FXML
-    private TableColumn<ProjectInfo, ProjectInfo> cSelect;
+    private TableColumn<ProjectDto, ProjectDto> cSelect;
     @FXML
-    private TableColumn<ProjectInfo, Long> cNumber;
+    private TableColumn<ProjectDto, Long> cNumber;
     @FXML
-    private TableColumn<ProjectInfo, ProjectInfo> cName;
+    private TableColumn<ProjectDto, ProjectDto> cName;
     @FXML
-    private TableColumn<ProjectInfo, String> cCustomer;
+    private TableColumn<ProjectDto, String> cCustomer;
     @FXML
-    private TableColumn<ProjectInfo, String> cStatus;
+    private TableColumn<ProjectDto, String> cStatus;
     @FXML
-    private TableColumn<ProjectInfo, Timestamp> cStart;
+    private TableColumn<ProjectDto, LocalDate> cStart;
     @FXML
-    private TableColumn<ProjectInfo, ProjectInfo> cManagement;
+    private TableColumn<ProjectDto, ProjectDto> cManagement;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -101,9 +98,7 @@ public class ProjectList implements Initializable {
 
     // Get all necessary data
     private void getNecessaryData() {
-        table.setItems(projectService.getAllProjects().stream()
-                .map(Project::getProjectInfo)
-                .collect(Collectors.toCollection(FXCollections::observableArrayList)));
+        table.setItems(projectService.getAllProjects());
     }
 
     // Init all table fields
@@ -128,7 +123,6 @@ public class ProjectList implements Initializable {
 
         cStatus.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
         cStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        cStatus.setCellFactory(projectUtil::statusFormat);
         cStatus.setResizable(false);
 
         cStart.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
@@ -162,13 +156,13 @@ public class ProjectList implements Initializable {
     }
 
     // Button delete on table row
-    private TableCell<ProjectInfo, ProjectInfo> management(TableColumn<ProjectInfo, ProjectInfo> param) {
-        return new TableCell<ProjectInfo, ProjectInfo>() {
+    private TableCell<ProjectDto, ProjectDto> management(TableColumn<ProjectDto, ProjectDto> param) {
+        return new TableCell<ProjectDto, ProjectDto>() {
 
             private final Button bRemove = new Button(" X ");
 
             @Override
-            protected void updateItem(ProjectInfo project, boolean empty) {
+            protected void updateItem(ProjectDto project, boolean empty) {
                 if (project == null || empty || !project.getStatus().equals("NEW")) {
                     setGraphic(null);
                     return;
@@ -183,13 +177,13 @@ public class ProjectList implements Initializable {
     }
 
     // Name label - clickable
-    private TableCell<ProjectInfo, ProjectInfo> name(TableColumn<ProjectInfo, ProjectInfo> param) {
-        return new TableCell<ProjectInfo, ProjectInfo>() {
+    private TableCell<ProjectDto, ProjectDto> name(TableColumn<ProjectDto, ProjectDto> param) {
+        return new TableCell<ProjectDto, ProjectDto>() {
 
             private Label lName = new Label();
 
             @Override
-            protected void updateItem(ProjectInfo project, boolean empty) {
+            protected void updateItem(ProjectDto project, boolean empty) {
                 if (project == null || empty) {
                     setGraphic(null);
                     return;
@@ -208,11 +202,11 @@ public class ProjectList implements Initializable {
     }
 
     // Checkbox Select
-    private TableCell<ProjectInfo, ProjectInfo> select(TableColumn<ProjectInfo, ProjectInfo> param) {
-        return new TableCell<ProjectInfo, ProjectInfo>() {
+    private TableCell<ProjectDto, ProjectDto> select(TableColumn<ProjectDto, ProjectDto> param) {
+        return new TableCell<ProjectDto, ProjectDto>() {
 
             @Override
-            protected void updateItem(ProjectInfo project, boolean empty) {
+            protected void updateItem(ProjectDto project, boolean empty) {
                 if (project == null || empty) {
                     setGraphic(null);
                     return;
