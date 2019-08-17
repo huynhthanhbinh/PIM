@@ -5,7 +5,7 @@ import lombok.*;
 import lombok.extern.log4j.Log4j;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Log4j
 @Getter
@@ -27,5 +27,5 @@ public class ProjectDto {
     private LocalDate start;
     private LocalDate end;
     private GroupDto group;
-    private Set<EmployeeDto> members;
+    private List<EmployeeDto> members;
 }

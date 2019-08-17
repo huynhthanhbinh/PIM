@@ -1,6 +1,7 @@
 package com.bht.pim.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Named;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,10 +20,12 @@ public abstract class StatusMapper {
 
     private Map<String, String> availableStatus = availableStatus();
 
+    @Named("toGuiStatus")
     public String toGuiStatus(String sqlStatus) {
         return availableStatus.get(sqlStatus);
     }
 
+    @Named("toSqlStatus")
     public String toSqlStatus(String guiStatus) {
         for (Map.Entry<String, String> entry : availableStatus.entrySet()) {
             if (entry.getValue().equals(guiStatus)) {

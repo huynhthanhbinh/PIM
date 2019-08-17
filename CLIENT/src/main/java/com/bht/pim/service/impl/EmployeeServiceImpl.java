@@ -1,6 +1,7 @@
 package com.bht.pim.service.impl;
 
-import com.bht.pim.proto.employees.Employee;
+import com.bht.pim.dto.EmployeeDto;
+import com.bht.pim.mapper.EmployeeMapper;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.service.EmployeeService;
 import com.google.protobuf.Empty;
@@ -14,22 +15,26 @@ import org.springframework.stereotype.Service;
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
+    private EmployeeMapper employeeMapper;
+    @Autowired
     private EmployeeServiceGrpc.EmployeeServiceBlockingStub stub;
 
     // get a specific employee
     @Override
-    public Employee getEmployeeById(long id) {
-        return stub.getEmployeeById(Int64Value.newBuilder()
-                .setValue(id)
-                .build());
+    public EmployeeDto getEmployeeById(long id) {
+        return employeeMapper.toEmployeeDto(stub.
+                getEmployeeById(Int64Value.newBuilder()
+                        .setValue(id)
+                        .build()));
     }
 
     // Employee List get response from server
     @Override
-    public ObservableList<Employee> getAllEmployees() {
-        return FXCollections.observableArrayList(stub
-                .getEmployeeList(Empty.getDefaultInstance())
-                .getEmployeesList());
+    public ObservableList<EmployeeDto> getAllEmployees() {
+        return FXCollections.observableArrayList(
+                employeeMapper.toEmployeeDtoList(stub
+                        .getEmployeeList(Empty.getDefaultInstance())
+                        .getEmployeesList()));
     }
 }
 

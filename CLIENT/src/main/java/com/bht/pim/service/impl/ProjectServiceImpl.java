@@ -1,6 +1,7 @@
 package com.bht.pim.service.impl;
 
-import com.bht.pim.proto.projects.Project;
+import com.bht.pim.dto.ProjectDto;
+import com.bht.pim.mapper.ProjectMapper;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
 import com.bht.pim.service.ProjectService;
 import com.google.protobuf.Empty;
@@ -16,25 +17,32 @@ import java.util.List;
 public class ProjectServiceImpl implements ProjectService {
 
     @Autowired
+    private ProjectMapper projectMapper;
+    @Autowired
     private ProjectServiceGrpc.ProjectServiceBlockingStub stub;
 
     // Add new project
     @Override
-    public boolean addNewProject(Project project) {
-        return stub.addNewProject(project).getValue();
+    public boolean addNewProject(ProjectDto project) {
+        return stub.addNewProject(projectMapper
+                .toProject(project))
+                .getValue();
     }
 
     // Get a specific project
     @Override
-    public Project getProjectById(long id) {
+    public ProjectDto getProjectById(long id) {
         Int64Value projectId = Int64Value.newBuilder().setValue(id).build();
-        return stub.getProjectById(projectId);
+        return projectMapper.toProjectDto(stub
+                .getProjectById(projectId));
     }
 
     // Update a specific project
     @Override
-    public boolean updateProject(Project project) {
-        return stub.editProject(project).getValue();
+    public boolean updateProject(ProjectDto project) {
+        return stub.editProject(projectMapper
+                .toProject(project))
+                .getValue();
     }
 
     // Delete a specific project
@@ -53,9 +61,10 @@ public class ProjectServiceImpl implements ProjectService {
 
     // Get all of projects
     @Override
-    public ObservableList<Project> getAllProjects() {
-        return FXCollections.observableArrayList(stub
-                .getProjectList(Empty.getDefaultInstance())
-                .getProjectsList());
+    public ObservableList<ProjectDto> getAllProjects() {
+        return FXCollections.observableArrayList(
+                projectMapper.toProjectDtoList(stub
+                        .getProjectList(Empty.getDefaultInstance())
+                        .getProjectsList()));
     }
 }

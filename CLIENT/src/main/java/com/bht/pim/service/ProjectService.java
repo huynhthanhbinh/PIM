@@ -1,6 +1,6 @@
 package com.bht.pim.service;
 
-import com.bht.pim.proto.projects.Project;
+import com.bht.pim.dto.ProjectDto;
 import javafx.collections.ObservableList;
 
 import java.util.List;
@@ -8,13 +8,13 @@ import java.util.List;
 public interface ProjectService {
 
     // Add new project
-    boolean addNewProject(Project project);
+    boolean addNewProject(ProjectDto project);
 
     // Get a specific project
-    Project getProjectById(long id);
+    ProjectDto getProjectById(long id);
 
     // Update a specific project
-    boolean updateProject(Project project);
+    boolean updateProject(ProjectDto project);
 
     // Delete a specific project
     boolean deleteProject(long id);
@@ -23,5 +23,5 @@ public interface ProjectService {
     List<Long> getProjectNumbers();
 
     // Get all of projects
-    ObservableList<Project> getAllProjects();
+    ObservableList<ProjectDto> getAllProjects();
 }
