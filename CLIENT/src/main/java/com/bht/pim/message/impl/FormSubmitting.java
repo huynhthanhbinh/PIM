@@ -11,7 +11,7 @@ public class FormSubmitting implements PimMessage {
     private String fragmentSent;
 
     @Override
-    public String getFragmentSent() {
+    public String getIdFragmentSent() {
         return fragmentSent;
     }
 

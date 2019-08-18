@@ -1,11 +1,8 @@
 package com.bht.pim.component;
 
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.children.confirm.Confirm;
+import com.bht.pim.fragment.children.confirm.ConfirmBoxContaining;
 import com.bht.pim.fragment.children.confirm.Confirmable;
-import com.bht.pim.fragment.children.label.MainLabel;
-import com.bht.pim.fragment.children.pagination.PimPagination;
-import com.bht.pim.fragment.children.project.ProjectListUtil;
 import com.bht.pim.fragment.parent.employee.EmployeeInfo;
 import com.bht.pim.fragment.parent.employee.EmployeeList;
 import com.bht.pim.fragment.parent.group.GroupInfo;
@@ -35,6 +32,8 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 @Log4j
@@ -45,20 +44,17 @@ import java.util.ResourceBundle;
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_MAIN,
         viewLocation = "/com/bht/pim/component/MainPane.fxml")
 public class MainPane implements FXComponent {
+
+    private final Map<String, ManagedFragmentHandler> fragments = fragments();
+
     @FXML
     private VBox mainPane;
-
     @Resource
     private Context context;
-
     @Resource
     private ResourceBundle bundle;
 
     private ManagedFragmentHandler mainFragment;
-    private ManagedFragmentHandler<Confirm> confirmFragment;
-    private ManagedFragmentHandler<MainLabel> labelFragment;
-    private ManagedFragmentHandler<PimPagination> paginationFragment;
-
     private ManagedFragmentHandler<EmployeeInfo> employeeInfoFragment;
     private ManagedFragmentHandler<EmployeeList> employeeListFragment;
     private ManagedFragmentHandler<GroupInfo> groupInfoFragment;
@@ -67,7 +63,6 @@ public class MainPane implements FXComponent {
     private ManagedFragmentHandler<ProjectUpdate> projectUpdateFragment;
     private ManagedFragmentHandler<ProjectInfo> projectInfoFragment;
     private ManagedFragmentHandler<ProjectList> projectListFragment;
-    private ManagedFragmentHandler<ProjectListUtil> projectListUtilFragment;
 
 
     @Override
@@ -83,7 +78,7 @@ public class MainPane implements FXComponent {
             PimMessage messageBody = (PimMessage) message.getMessageBody();
 
             log.info("[PIM Message] " + messageBody.getClass().getSimpleName() +
-                    " >>> sent from: " + messageBody.getFragmentSent());
+                    " >>> sent from: " + messageBody.getIdFragmentSent());
 
             xNode = messageBody.postHandle(node, this);
         }
@@ -92,17 +87,11 @@ public class MainPane implements FXComponent {
     }
 
     @FXML
-    @SuppressWarnings("unchecked")
-    public static void switchFragment(MainPane mainPane, Class fragmentClazz) {
+    public void switchFragment(MainPane mainPane, String idTargetFragment) {
         ObservableList<Node> nodes = mainPane.getMainPane().getChildren();
+        nodes.remove(nodes.get(0));
 
-        // remove all pane except label pane
-        for (int i = nodes.size() - 1; i > 0; i--) {
-            nodes.remove(nodes.get(i));
-        }
-
-        mainPane.setMainFragment(mainPane.getContext()
-                .getManagedFragmentHandler(fragmentClazz));
+        mainPane.setMainFragment(fragments.get(idTargetFragment));
         nodes.add(mainPane.getMainFragment().getFragmentNode());
     }
 
@@ -110,44 +99,50 @@ public class MainPane implements FXComponent {
     public void onStartComponent(final FXComponentLayout layout,
                                  final ResourceBundle resourceBundle) {
 
-        labelFragment = context.getManagedFragmentHandler(MainLabel.class);
-        confirmFragment = context.getManagedFragmentHandler(Confirm.class);
-        paginationFragment = context.getManagedFragmentHandler(PimPagination.class);
-
-        employeeInfoFragment = context.getManagedFragmentHandler(EmployeeInfo.class);
-        employeeListFragment = context.getManagedFragmentHandler(EmployeeList.class);
-        groupInfoFragment = context.getManagedFragmentHandler(GroupInfo.class);
-        groupListFragment = context.getManagedFragmentHandler(GroupList.class);
-        projectCreateFragment = context.getManagedFragmentHandler(ProjectCreate.class);
-        projectUpdateFragment = context.getManagedFragmentHandler(ProjectUpdate.class);
-        projectInfoFragment = context.getManagedFragmentHandler(ProjectInfo.class);
-        projectListFragment = context.getManagedFragmentHandler(ProjectList.class);
-        projectListUtilFragment = context.getManagedFragmentHandler(ProjectListUtil.class);
+        configureFragments();
 
         mainFragment = projectListFragment;
-
-        mainPane.getChildren().add(labelFragment.getFragmentNode());
         mainPane.getChildren().add(mainFragment.getFragmentNode());
 
         mainPane.prefWidthProperty().bind(layout.getGlassPane().widthProperty().subtract(227));
         mainPane.prefHeightProperty().bind(layout.getGlassPane().heightProperty().subtract(120));
     }
 
-    @FXML
-    public void addConfirmBox(String newLabel) {
-        if (mainFragment instanceof Confirmable) {
-            // add fragment Confirm Box (OK-CANCEL)
-            mainPane.getChildren().add(confirmFragment.getFragmentNode());
+    private Map<String, ManagedFragmentHandler> fragments() {
+        Map<String, ManagedFragmentHandler> fragmentHandlerMap = new HashMap<>();
+        fragmentHandlerMap.put(AppConfiguration.FRAGMENT_EMPLOYEE_INFO, employeeInfoFragment);
+        fragmentHandlerMap.put(AppConfiguration.FRAGMENT_EMPLOYEE_LIST, employeeListFragment);
+        fragmentHandlerMap.put(AppConfiguration.FRAGMENT_GROUP_INFO, groupInfoFragment);
+        fragmentHandlerMap.put(AppConfiguration.FRAGMENT_GROUP_LIST, groupListFragment);
+        fragmentHandlerMap.put(AppConfiguration.FRAGMENT_PROJECT_INFO, projectInfoFragment);
+        fragmentHandlerMap.put(AppConfiguration.FRAGMENT_PROJECT_LIST, projectListFragment);
+        fragmentHandlerMap.put(AppConfiguration.FRAGMENT_PROJECT_CREATE, projectCreateFragment);
+        fragmentHandlerMap.put(AppConfiguration.FRAGMENT_PROJECT_UPDATE, projectUpdateFragment);
+        return fragmentHandlerMap;
+    }
 
-            // set label for submit button
-            confirmFragment.getController().setLabelText(newLabel);
+    private void configureFragments() {
+        employeeInfoFragment = context.getManagedFragmentHandler(EmployeeInfo.class);
+        employeeListFragment = context.getManagedFragmentHandler(EmployeeList.class);
+        groupInfoFragment = context.getManagedFragmentHandler(GroupInfo.class);
+        groupListFragment = context.getManagedFragmentHandler(GroupList.class);
+        projectListFragment = context.getManagedFragmentHandler(ProjectList.class);
+        projectCreateFragment = context.getManagedFragmentHandler(ProjectCreate.class);
+        projectUpdateFragment = context.getManagedFragmentHandler(ProjectUpdate.class);
+        projectInfoFragment = context.getManagedFragmentHandler(ProjectInfo.class);
+    }
+
+    public void configureConfirmBox() {
+        if (mainFragment instanceof Confirmable) {
+            ConfirmBoxContaining parent = (ConfirmBoxContaining) mainFragment;
 
             // handle for submit button
-            confirmFragment.getController().setOnSubmit(
-                    ((Confirmable) mainFragment.getController())::onSubmit);
+            parent.getConfirmBox().setOnSubmit(((Confirmable)
+                    parent.getConfirmForm().getController())::onSubmit);
+
             // handle for cancel button
-            confirmFragment.getController().setOnCancel(
-                    ((Confirmable) mainFragment.getController())::onCancel);
+            parent.getConfirmBox().setOnCancel(((Confirmable)
+                    parent.getConfirmForm().getController())::onCancel);
         }
     }
 

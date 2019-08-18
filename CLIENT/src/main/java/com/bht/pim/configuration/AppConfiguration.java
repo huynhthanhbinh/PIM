@@ -21,9 +21,6 @@ public class AppConfiguration {
         log.info("[PIM] On init configuration beans !\n");
     }
 
-    private static final int PORT = 9999;
-    private static final String HOST = "localhost";
-
     // Channel is the abstraction to connect to a service endpoint
     // Let's use plaintext communication because we don't have certs
     private final ManagedChannel channel = ManagedChannelBuilder
@@ -32,22 +29,25 @@ public class AppConfiguration {
             .maxInboundMessageSize(10 * 1024 * 1024)
             .build();
 
+    // Network configuration ======================================================
+    private static final int PORT = 9999;
+    private static final String HOST = "localhost";
+
+    // Configurations =============================================================
     public static final String PERSPECTIVE = "idPIMPerspective";
     public static final String LANGUAGE_BUNDLES_LOCATION = "bundles.languageBundle";
 
-    public static final String TARGET_CONTAINER_TOP = "PTop";
-    public static final String TARGET_CONTAINER_LEFT = "PLeft";
-    public static final String TARGET_CONTAINER_MAIN = "PMain";
+    // Containers =================================================================
+    public static final String TARGET_CONTAINER_TOP = "paneTop";
+    public static final String TARGET_CONTAINER_LEFT = "paneLeft";
+    public static final String TARGET_CONTAINER_MAIN = "paneMain";
 
+    // Components =================================================================
     public static final String COMPONENT_TOP = "idcTop";
     public static final String COMPONENT_LEFT = "idcLeft";
     public static final String COMPONENT_MAIN = "idcMain";
 
-    public static final String FRAGMENT_MAIN_LABEL = "idfMLabel";
-    public static final String FRAGMENT_CONFIRM = "idfConfirm"; // ok_cancel
-    public static final String FRAGMENT_PAGINATION = "idfPagination";
-
-    public static final String FRAGMENT_PROJECT_LIST_UTIL = "idfPListUtil";
+    // Parent fragments ===========================================================
     public static final String FRAGMENT_PROJECT_LIST = "idfPList";
     public static final String FRAGMENT_PROJECT_INFO = "idfPInfo";
     public static final String FRAGMENT_PROJECT_CREATE = "idfPCreate";
@@ -59,11 +59,35 @@ public class AppConfiguration {
     public static final String FRAGMENT_EMPLOYEE_LIST = "idfEList";
     public static final String FRAGMENT_EMPLOYEE_INFO = "idfEInfo";
 
+    // Child fragments ============================================================
+    public static final String FRAGMENT_MAIN_LABEL = "idfMLabel";
+    public static final String FRAGMENT_CONFIRM = "idfConfirm"; // ok_cancel
+    public static final String FRAGMENT_PAGINATION = "idfPagination";
+
+    public static final String FRAGMENT_EMPLOYEE_DETAIL = "idfEDetail";
+    public static final String FRAGMENT_EMPLOYEE_LIST_TABLE = "idfEListTable";
+
+    public static final String FRAGMENT_GROUP_DETAIL = "idfGDetail";
+    public static final String FRAGMENT_GROUP_LIST_TABLE = "idfGListTable";
+
+    public static final String FRAGMENT_PROJECT_DETAIL = "idfPDetail";
+    public static final String FRAGMENT_PROJECT_LIST_TABLE = "idfPListTable";
+    public static final String FRAGMENT_PROJECT_EDITABLE_FORM = "idfPEditableForm";
+    public static final String FRAGMENT_PROJECT_LIST_UTIL = "idfPListUtil";
+
+    // Main labels ================================================================
+    public static final String LABEL_EMPLOYEE_LIST = "EMPLOYEE LIST";
+    public static final String LABEL_EMPLOYEE_INFO = "EMPLOYEE INFORMATION";
+
+    public static final String LABEL_GROUP_LIST = "GROUP LIST";
+    public static final String LABEL_GROUP_INFO = "GROUP INFORMATION";
+
     public static final String LABEL_PROJECT_LIST = "PROJECT LIST";
     public static final String LABEL_PROJECT_CREATE = "NEW PROJECT";
     public static final String LABEL_PROJECT_INFO = "PROJECT INFORMATION";
     public static final String LABEL_PROJECT_UPDATE = "UPDATE PROJECT";
 
+    // Spring Beans injecting/autowiring config ===================================
     @Bean
     public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub() {
         log.info("[PIM] Creating bean of < EmployeeServiceBlockingStub >");

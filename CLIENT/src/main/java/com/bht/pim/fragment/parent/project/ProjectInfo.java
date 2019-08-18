@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_INFO,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
-        scope = Scope.SINGLETON,
-        viewLocation = "/com/bht/pim/fragment/parent/project/ProjectInfo.fxml")
+        scope = Scope.SINGLETON)
 public class ProjectInfo {
 }
