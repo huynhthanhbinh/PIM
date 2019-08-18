@@ -33,7 +33,7 @@ public class AppConfiguration {
             .build();
 
     public static final String PERSPECTIVE = "idPIMPerspective";
-    public static final String LANGUAGE_BUNDLES = "bundles.languageBundle";
+    public static final String LANGUAGE_BUNDLES_LOCATION = "bundles.languageBundle";
 
     public static final String TARGET_CONTAINER_TOP = "PTop";
     public static final String TARGET_CONTAINER_LEFT = "PLeft";
@@ -45,7 +45,9 @@ public class AppConfiguration {
 
     public static final String FRAGMENT_MAIN_LABEL = "idfMLabel";
     public static final String FRAGMENT_CONFIRM = "idfConfirm"; // ok_cancel
+    public static final String FRAGMENT_PAGINATION = "idfPagination";
 
+    public static final String FRAGMENT_PROJECT_LIST_UTIL = "idfPListUtil";
     public static final String FRAGMENT_PROJECT_LIST = "idfPList";
     public static final String FRAGMENT_PROJECT_INFO = "idfPInfo";
     public static final String FRAGMENT_PROJECT_CREATE = "idfPCreate";

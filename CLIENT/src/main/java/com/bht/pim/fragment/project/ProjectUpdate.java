@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 @Log4j
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_UPDATE,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        scope = Scope.PROTOTYPE,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
+        scope = Scope.SINGLETON,
         viewLocation = "/com/bht/pim/fragment/project/ProjectUpdate.fxml")
 public class ProjectUpdate {
 }

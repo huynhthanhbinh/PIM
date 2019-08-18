@@ -20,8 +20,8 @@ import java.util.ResourceBundle;
 @Log4j
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_CONFIRM,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        scope = Scope.PROTOTYPE,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
+        scope = Scope.SINGLETON,
         viewLocation = "/com/bht/pim/fragment/confirm/Confirm.fxml")
 public class Confirm implements Initializable {
 

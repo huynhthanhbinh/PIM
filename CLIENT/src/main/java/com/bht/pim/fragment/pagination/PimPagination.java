@@ -1,4 +1,4 @@
-package com.bht.pim.fragment.employee;
+package com.bht.pim.fragment.pagination;
 
 import com.bht.pim.configuration.AppConfiguration;
 import lombok.extern.log4j.Log4j;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 
 @Log4j
 @Controller
-@Fragment(id = AppConfiguration.FRAGMENT_EMPLOYEE_INFO,
+@Fragment(id = AppConfiguration.FRAGMENT_PAGINATION,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
         scope = Scope.SINGLETON,
-        viewLocation = "/com/bht/pim/fragment/employee/EmployeeInfo.fxml")
-public class EmployeeInfo {
+        viewLocation = "/com/bht/pim/fragment/pagination/PimPagination.fxml")
+public class PimPagination {
 }

@@ -30,8 +30,8 @@ import java.util.ResourceBundle;
 @Log4j
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        scope = Scope.PROTOTYPE,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
+        scope = Scope.SINGLETON,
         viewLocation = "/com/bht/pim/fragment/project/ProjectList.fxml")
 public class ProjectList implements Initializable {
 

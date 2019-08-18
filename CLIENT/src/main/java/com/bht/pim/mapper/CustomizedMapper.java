@@ -70,6 +70,6 @@ public abstract class CustomizedMapper {
 
     @Named("toGroupInfo")
     @Mapping(source = "id", target = "id")
-    @Mapping(source = "leader", target = "leader", ignore = true)
+    @Mapping(source = "leader", target = "leader", qualifiedByName = "toEmployeeInfo")
     abstract GroupInfo toGroupInfo(final GroupDto groupDto);
 }

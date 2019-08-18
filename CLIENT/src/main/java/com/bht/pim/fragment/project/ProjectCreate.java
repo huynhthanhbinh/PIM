@@ -48,8 +48,8 @@ import java.util.stream.Collectors;
 @Log4j
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_CREATE,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        scope = Scope.PROTOTYPE,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
+        scope = Scope.SINGLETON,
         viewLocation = "/com/bht/pim/fragment/project/ProjectCreate.fxml")
 public class ProjectCreate implements Initializable, Confirmable {
 
@@ -410,12 +410,8 @@ public class ProjectCreate implements Initializable, Confirmable {
 
             log.info("<<< PIM - On saving new project >>>");
 
-            EmployeeDto groupLeader = EmployeeDto.newBuilder()
-                    .id(leader.getId())
-                    .build();
-
             GroupDto groupDto = GroupDto.newBuilder()
-                    .leader(groupLeader)
+                    .leader(leader)
                     .build();
 
             try {

@@ -8,12 +8,11 @@ import java.util.List;
 @Log4j
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Builder(toBuilder = true, builderClassName = "Builder", builderMethodName = "newBuilder")
 public class GroupDto {
 
-    @NonNull
     private long id;
     private EmployeeDto leader;
     private List<ProjectDto> enrolledProjects;

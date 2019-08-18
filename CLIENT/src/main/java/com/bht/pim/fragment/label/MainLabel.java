@@ -16,8 +16,8 @@ import java.util.ResourceBundle;
 @Log4j
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_MAIN_LABEL,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        scope = Scope.PROTOTYPE,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
+        scope = Scope.SINGLETON,
         viewLocation = "/com/bht/pim/fragment/label/MainLabel.fxml")
 public class MainLabel {
 

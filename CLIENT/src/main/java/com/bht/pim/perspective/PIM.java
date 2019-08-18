@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 
 @Log4j
 @Perspective(id = AppConfiguration.PERSPECTIVE, name = "Perspective",
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
         viewLocation = "/com/bht/pim/perspective/PIM.fxml",
         components = {
                 AppConfiguration.COMPONENT_TOP,
