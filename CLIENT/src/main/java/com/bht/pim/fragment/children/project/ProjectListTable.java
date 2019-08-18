@@ -8,6 +8,7 @@ import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.extern.log4j.Log4j;
@@ -18,6 +19,7 @@ import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -27,7 +29,7 @@ import java.util.ResourceBundle;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
         scope = Scope.SINGLETON,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectListTable.fxml")
-public class ProjectListTable {
+public class ProjectListTable implements Initializable {
 
     @Resource
     private Context context;
@@ -57,7 +59,8 @@ public class ProjectListTable {
     private TableColumn<ProjectDto, ProjectDto> cManagement;
 
 
-    public void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         // Get all necessary data from server
         getNecessaryData();
 

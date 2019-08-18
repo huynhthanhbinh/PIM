@@ -6,7 +6,8 @@ import com.bht.pim.fragment.children.label.MainLabelContaining;
 import com.bht.pim.fragment.children.pagination.PimPagination;
 import com.bht.pim.fragment.children.project.ProjectListTable;
 import com.bht.pim.fragment.children.project.ProjectListUtil;
-import javafx.fxml.FXML;
+import com.bht.pim.fragment.parent.ChildrenContainer;
+import com.bht.pim.fragment.parent.ChildrenContaining;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Priority;
@@ -28,14 +29,14 @@ import java.util.ResourceBundle;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
         scope = Scope.SINGLETON,
         viewLocation = "/com/bht/pim/fragment/parent/project/ProjectList.fxml")
-public class ProjectList implements Initializable, MainLabelContaining {
+public class ProjectList implements Initializable, MainLabelContaining, ChildrenContaining {
 
     @Resource
     private Context context;
     @Resource
     private ResourceBundle bundle;
-    @FXML
-    private VBox mainPane;
+
+    private VBox mainPane = new VBox();
 
     private ManagedFragmentHandler<MainLabel> mainLabelFragment;
     private ManagedFragmentHandler<ProjectListUtil> projectListUtilFragment;
@@ -44,15 +45,23 @@ public class ProjectList implements Initializable, MainLabelContaining {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        mainLabelFragment = context.getManagedFragmentHandler(MainLabel.class);
-        projectListUtilFragment = context.getManagedFragmentHandler(ProjectListUtil.class);
-        projectListTableFragment = context.getManagedFragmentHandler(ProjectListTable.class);
-        paginationFragment = context.getManagedFragmentHandler(PimPagination.class);
-
         mainPane.setPrefWidth(1050);
         mainPane.setPrefHeight(600);
         mainPane.setSpacing(5);
         mainPane.setPadding(new Insets(5));
+    }
+
+    @Override
+    public void setMainLabelText(String mainLabelText) {
+        mainLabelFragment.getController().setLabelText(mainLabelText);
+    }
+
+    @Override
+    public void configureChildrenFragments(ChildrenContainer container) {
+        mainLabelFragment = container.getMainLabelFragment();
+        projectListUtilFragment = container.getProjectListUtilFragment();
+        projectListTableFragment = container.getProjectListTableFragment();
+        paginationFragment = container.getPaginationFragment();
 
         mainPane.getChildren().addAll(
                 mainLabelFragment.getFragmentNode(),
@@ -61,10 +70,5 @@ public class ProjectList implements Initializable, MainLabelContaining {
                 paginationFragment.getFragmentNode());
 
         mainPane.getChildren().forEach(node -> VBox.setVgrow(node, Priority.ALWAYS));
-    }
-
-    @Override
-    public void setMainLabelText(String mainLabelText) {
-        mainLabelFragment.getController().setLabelText(mainLabelText);
     }
 }

@@ -6,6 +6,8 @@ import com.bht.pim.fragment.children.confirm.ConfirmBoxContaining;
 import com.bht.pim.fragment.children.label.MainLabel;
 import com.bht.pim.fragment.children.label.MainLabelContaining;
 import com.bht.pim.fragment.children.project.ProjectEditableForm;
+import com.bht.pim.fragment.parent.ChildrenContainer;
+import com.bht.pim.fragment.parent.ChildrenContaining;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
@@ -25,8 +27,9 @@ import java.util.ResourceBundle;
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_CREATE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
-        scope = Scope.SINGLETON)
-public class ProjectCreate implements Initializable, ConfirmBoxContaining, MainLabelContaining {
+        scope = Scope.SINGLETON,
+        viewLocation = "/com/bht/pim/fragment/parent/project/ProjectCreate.fxml")
+public class ProjectCreate implements Initializable, ConfirmBoxContaining, MainLabelContaining, ChildrenContaining {
 
     @Resource
     private Context context;
@@ -71,5 +74,12 @@ public class ProjectCreate implements Initializable, ConfirmBoxContaining, MainL
     @Override
     public void setMainLabelText(String mainLabelText) {
         mainLabelFragment.getController().setLabelText(mainLabelText);
+    }
+
+    @Override
+    public void configureChildrenFragments(ChildrenContainer container) {
+        mainLabelFragment = container.getMainLabelFragment();
+        projectEditableFormFragment = container.getProjectEditableFormFragment();
+        confirmFragment = container.getConfirmFragment();
     }
 }

@@ -4,7 +4,18 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.confirm.Confirm;
 import com.bht.pim.fragment.children.confirm.ConfirmBoxContaining;
 import com.bht.pim.fragment.children.confirm.Confirmable;
+import com.bht.pim.fragment.children.employee.EmployeeDetail;
+import com.bht.pim.fragment.children.employee.EmployeeListTable;
+import com.bht.pim.fragment.children.group.GroupDetail;
+import com.bht.pim.fragment.children.group.GroupListTable;
+import com.bht.pim.fragment.children.label.MainLabel;
 import com.bht.pim.fragment.children.label.MainLabelContaining;
+import com.bht.pim.fragment.children.pagination.PimPagination;
+import com.bht.pim.fragment.children.project.ProjectDetail;
+import com.bht.pim.fragment.children.project.ProjectEditableForm;
+import com.bht.pim.fragment.children.project.ProjectListTable;
+import com.bht.pim.fragment.children.project.ProjectListUtil;
+import com.bht.pim.fragment.parent.ChildrenContainer;
 import com.bht.pim.fragment.parent.employee.EmployeeInfo;
 import com.bht.pim.fragment.parent.employee.EmployeeList;
 import com.bht.pim.fragment.parent.group.GroupInfo;
@@ -57,7 +68,9 @@ public class MainPane implements FXComponent {
     @Resource
     private ResourceBundle bundle;
 
+    private ChildrenContainer childrenContainer;
     private ManagedFragmentHandler mainFragment;
+
     private ManagedFragmentHandler<EmployeeInfo> employeeInfoFragment;
     private ManagedFragmentHandler<EmployeeList> employeeListFragment;
     private ManagedFragmentHandler<GroupInfo> groupInfoFragment;
@@ -66,6 +79,24 @@ public class MainPane implements FXComponent {
     private ManagedFragmentHandler<ProjectUpdate> projectUpdateFragment;
     private ManagedFragmentHandler<ProjectInfo> projectInfoFragment;
     private ManagedFragmentHandler<ProjectList> projectListFragment;
+
+    private ManagedFragmentHandler<Confirm> confirmFragment;
+    private ManagedFragmentHandler<MainLabel> mainLabelFragment;
+    private ManagedFragmentHandler<PimPagination> paginationFragment;
+
+
+    private ManagedFragmentHandler<EmployeeDetail> employeeDetailFragment;
+    private ManagedFragmentHandler<EmployeeListTable> employeeListTableFragment;
+
+
+    private ManagedFragmentHandler<GroupDetail> groupDetailFragment;
+    private ManagedFragmentHandler<GroupListTable> groupListTableFragment;
+
+
+    private ManagedFragmentHandler<ProjectDetail> projectDetailFragment;
+    private ManagedFragmentHandler<ProjectListTable> projectListTableFragment;
+    private ManagedFragmentHandler<ProjectEditableForm> projectEditableFormFragment;
+    private ManagedFragmentHandler<ProjectListUtil> projectListUtilFragment;
 
 
     @Override
@@ -94,6 +125,8 @@ public class MainPane implements FXComponent {
                                  final ResourceBundle resourceBundle) {
 
         configureFragments();
+        createChildrenContainer();
+        initChildrenForFragments();
 
         mainFragment = projectListFragment;
         mainPane.getChildren().add(mainFragment.getFragmentNode());
@@ -139,6 +172,26 @@ public class MainPane implements FXComponent {
         projectCreateFragment = context.getManagedFragmentHandler(ProjectCreate.class);
         projectUpdateFragment = context.getManagedFragmentHandler(ProjectUpdate.class);
         projectInfoFragment = context.getManagedFragmentHandler(ProjectInfo.class);
+    }
+
+    private void createChildrenContainer() {
+        childrenContainer = ChildrenContainer.newBuilder()
+                .confirmFragment(context.getManagedFragmentHandler(Confirm.class))
+                .mainLabelFragment(context.getManagedFragmentHandler(MainLabel.class))
+                .paginationFragment(context.getManagedFragmentHandler(PimPagination.class))
+                .employeeDetailFragment(context.getManagedFragmentHandler(EmployeeDetail.class))
+                .employeeListTableFragment(context.getManagedFragmentHandler(EmployeeListTable.class))
+                .groupDetailFragment(context.getManagedFragmentHandler(GroupDetail.class))
+                .groupListTableFragment(context.getManagedFragmentHandler(GroupListTable.class))
+                .projectDetailFragment(context.getManagedFragmentHandler(ProjectDetail.class))
+                .projectListTableFragment(context.getManagedFragmentHandler(ProjectListTable.class))
+                .projectListUtilFragment(context.getManagedFragmentHandler(ProjectListUtil.class))
+                .projectEditableFormFragment(context.getManagedFragmentHandler(ProjectEditableForm.class))
+                .build();
+    }
+
+    private void initChildrenForFragments() {
+        projectListFragment.getController().configureChildrenFragments(childrenContainer);
     }
 
     public void switchFragment(MainPane mainPane, String idFragmentTarget) {

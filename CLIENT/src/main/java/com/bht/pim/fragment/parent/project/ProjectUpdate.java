@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_UPDATE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
-        scope = Scope.SINGLETON)
+        scope = Scope.SINGLETON,
+        viewLocation = "/com/bht/pim/fragment/parent/project/ProjectUpdate.fxml")
 public class ProjectUpdate {
 }
