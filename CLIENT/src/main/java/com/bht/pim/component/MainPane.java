@@ -1,10 +1,19 @@
 package com.bht.pim.component;
 
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.confirm.Confirm;
-import com.bht.pim.fragment.confirm.Confirmable;
-import com.bht.pim.fragment.label.MainLabel;
-import com.bht.pim.fragment.project.ProjectList;
+import com.bht.pim.fragment.children.confirm.Confirm;
+import com.bht.pim.fragment.children.confirm.Confirmable;
+import com.bht.pim.fragment.children.label.MainLabel;
+import com.bht.pim.fragment.children.pagination.PimPagination;
+import com.bht.pim.fragment.children.project.ProjectListUtil;
+import com.bht.pim.fragment.parent.employee.EmployeeInfo;
+import com.bht.pim.fragment.parent.employee.EmployeeList;
+import com.bht.pim.fragment.parent.group.GroupInfo;
+import com.bht.pim.fragment.parent.group.GroupList;
+import com.bht.pim.fragment.parent.project.ProjectCreate;
+import com.bht.pim.fragment.parent.project.ProjectInfo;
+import com.bht.pim.fragment.parent.project.ProjectList;
+import com.bht.pim.fragment.parent.project.ProjectUpdate;
 import com.bht.pim.message.PimMessage;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -45,9 +54,21 @@ public class MainPane implements FXComponent {
     @Resource
     private ResourceBundle bundle;
 
+    private ManagedFragmentHandler mainFragment;
     private ManagedFragmentHandler<Confirm> confirmFragment;
     private ManagedFragmentHandler<MainLabel> labelFragment;
-    private ManagedFragmentHandler mainFragment;
+    private ManagedFragmentHandler<PimPagination> paginationFragment;
+
+    private ManagedFragmentHandler<EmployeeInfo> employeeInfoFragment;
+    private ManagedFragmentHandler<EmployeeList> employeeListFragment;
+    private ManagedFragmentHandler<GroupInfo> groupInfoFragment;
+    private ManagedFragmentHandler<GroupList> groupListFragment;
+    private ManagedFragmentHandler<ProjectCreate> projectCreateFragment;
+    private ManagedFragmentHandler<ProjectUpdate> projectUpdateFragment;
+    private ManagedFragmentHandler<ProjectInfo> projectInfoFragment;
+    private ManagedFragmentHandler<ProjectList> projectListFragment;
+    private ManagedFragmentHandler<ProjectListUtil> projectListUtilFragment;
+
 
     @Override
     public Node handle(Message<Event, Object> message) {
@@ -90,7 +111,20 @@ public class MainPane implements FXComponent {
                                  final ResourceBundle resourceBundle) {
 
         labelFragment = context.getManagedFragmentHandler(MainLabel.class);
-        mainFragment = context.getManagedFragmentHandler(ProjectList.class);
+        confirmFragment = context.getManagedFragmentHandler(Confirm.class);
+        paginationFragment = context.getManagedFragmentHandler(PimPagination.class);
+
+        employeeInfoFragment = context.getManagedFragmentHandler(EmployeeInfo.class);
+        employeeListFragment = context.getManagedFragmentHandler(EmployeeList.class);
+        groupInfoFragment = context.getManagedFragmentHandler(GroupInfo.class);
+        groupListFragment = context.getManagedFragmentHandler(GroupList.class);
+        projectCreateFragment = context.getManagedFragmentHandler(ProjectCreate.class);
+        projectUpdateFragment = context.getManagedFragmentHandler(ProjectUpdate.class);
+        projectInfoFragment = context.getManagedFragmentHandler(ProjectInfo.class);
+        projectListFragment = context.getManagedFragmentHandler(ProjectList.class);
+        projectListUtilFragment = context.getManagedFragmentHandler(ProjectListUtil.class);
+
+        mainFragment = projectListFragment;
 
         mainPane.getChildren().add(labelFragment.getFragmentNode());
         mainPane.getChildren().add(mainFragment.getFragmentNode());
@@ -101,19 +135,20 @@ public class MainPane implements FXComponent {
 
     @FXML
     public void addConfirmBox(String newLabel) {
-        // add fragment Confirm Box (OK-CANCEL)
-        confirmFragment = context.getManagedFragmentHandler(Confirm.class);
-        mainPane.getChildren().add(confirmFragment.getFragmentNode());
+        if (mainFragment instanceof Confirmable) {
+            // add fragment Confirm Box (OK-CANCEL)
+            mainPane.getChildren().add(confirmFragment.getFragmentNode());
 
-        // set label for submit button
-        confirmFragment.getController().setLabelText(newLabel);
+            // set label for submit button
+            confirmFragment.getController().setLabelText(newLabel);
 
-        // handle for submit button
-        confirmFragment.getController().setOnSubmit(
-                ((Confirmable) mainFragment.getController())::onSubmit);
-        // handle for cancel button
-        confirmFragment.getController().setOnCancel(
-                ((Confirmable) mainFragment.getController())::onCancel);
+            // handle for submit button
+            confirmFragment.getController().setOnSubmit(
+                    ((Confirmable) mainFragment.getController())::onSubmit);
+            // handle for cancel button
+            confirmFragment.getController().setOnCancel(
+                    ((Confirmable) mainFragment.getController())::onCancel);
+        }
     }
 
     @PreDestroy

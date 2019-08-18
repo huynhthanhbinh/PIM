@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      xmlns="http://javafx.com/javafx" fx:id="mainLabel"
+      stylesheets="/com/bht/pim/fragment/children/label/MainLabel.css"
+      alignment="CENTER" prefHeight="60.0" minHeight="60.0" maxHeight="60.0"
+      prefWidth="1050.0">
+
+    <Label alignment="CENTER" text="MAIN LABEL" VBox.vgrow="ALWAYS" fx:id="label" textFill="#606060">
+        <font>
+            <Font name="System Bold" size="28.0"/>
+        </font>
+    </Label>
+    <Separator prefWidth="200.0" VBox.vgrow="ALWAYS"/>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+    </padding>
+</VBox>
