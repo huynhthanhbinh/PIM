@@ -28,6 +28,8 @@ import lombok.extern.log4j.Log4j;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +43,10 @@ import java.util.stream.Collectors;
 
 @Log4j
 @Controller
+@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_EDITABLE_FORM,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
+        scope = Scope.SINGLETON,
+        viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditableForm.fxml")
 public class ProjectEditableForm implements Initializable, Confirmable {
 
     @Autowired

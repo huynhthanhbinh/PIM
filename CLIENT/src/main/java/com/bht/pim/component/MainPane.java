@@ -1,8 +1,10 @@
 package com.bht.pim.component;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.children.confirm.Confirm;
 import com.bht.pim.fragment.children.confirm.ConfirmBoxContaining;
 import com.bht.pim.fragment.children.confirm.Confirmable;
+import com.bht.pim.fragment.children.label.MainLabelContaining;
 import com.bht.pim.fragment.parent.employee.EmployeeInfo;
 import com.bht.pim.fragment.parent.employee.EmployeeList;
 import com.bht.pim.fragment.parent.group.GroupInfo;
@@ -45,6 +47,7 @@ import java.util.ResourceBundle;
         viewLocation = "/com/bht/pim/component/MainPane.fxml")
 public class MainPane implements FXComponent {
 
+    private final Map<String, String> labels = labels();
     private final Map<String, ManagedFragmentHandler> fragments = fragments();
 
     @FXML
@@ -86,15 +89,6 @@ public class MainPane implements FXComponent {
         return xNode;
     }
 
-    @FXML
-    public void switchFragment(MainPane mainPane, String idTargetFragment) {
-        ObservableList<Node> nodes = mainPane.getMainPane().getChildren();
-        nodes.remove(nodes.get(0));
-
-        mainPane.setMainFragment(fragments.get(idTargetFragment));
-        nodes.add(mainPane.getMainFragment().getFragmentNode());
-    }
-
     @PostConstruct
     public void onStartComponent(final FXComponentLayout layout,
                                  final ResourceBundle resourceBundle) {
@@ -103,9 +97,24 @@ public class MainPane implements FXComponent {
 
         mainFragment = projectListFragment;
         mainPane.getChildren().add(mainFragment.getFragmentNode());
+        ((MainLabelContaining) mainFragment.getController())
+                .setMainLabelText(AppConfiguration.LABEL_PROJECT_LIST);
 
         mainPane.prefWidthProperty().bind(layout.getGlassPane().widthProperty().subtract(227));
         mainPane.prefHeightProperty().bind(layout.getGlassPane().heightProperty().subtract(120));
+    }
+
+    private Map<String, String> labels() {
+        Map<String, String> labelMap = new HashMap<>();
+        labelMap.put(AppConfiguration.FRAGMENT_EMPLOYEE_INFO, AppConfiguration.LABEL_EMPLOYEE_INFO);
+        labelMap.put(AppConfiguration.FRAGMENT_EMPLOYEE_LIST, AppConfiguration.LABEL_EMPLOYEE_LIST);
+        labelMap.put(AppConfiguration.FRAGMENT_GROUP_INFO, AppConfiguration.LABEL_GROUP_INFO);
+        labelMap.put(AppConfiguration.FRAGMENT_GROUP_LIST, AppConfiguration.LABEL_GROUP_LIST);
+        labelMap.put(AppConfiguration.FRAGMENT_PROJECT_INFO, AppConfiguration.LABEL_PROJECT_INFO);
+        labelMap.put(AppConfiguration.FRAGMENT_PROJECT_LIST, AppConfiguration.LABEL_PROJECT_LIST);
+        labelMap.put(AppConfiguration.FRAGMENT_PROJECT_CREATE, AppConfiguration.LABEL_PROJECT_CREATE);
+        labelMap.put(AppConfiguration.FRAGMENT_PROJECT_UPDATE, AppConfiguration.LABEL_PROJECT_UPDATE);
+        return labelMap;
     }
 
     private Map<String, ManagedFragmentHandler> fragments() {
@@ -132,17 +141,30 @@ public class MainPane implements FXComponent {
         projectInfoFragment = context.getManagedFragmentHandler(ProjectInfo.class);
     }
 
-    public void configureConfirmBox() {
-        if (mainFragment instanceof Confirmable) {
-            ConfirmBoxContaining parent = (ConfirmBoxContaining) mainFragment;
+    public void switchFragment(MainPane mainPane, String idFragmentTarget) {
+
+        ObservableList<Node> nodes = mainPane.getMainPane().getChildren();
+        nodes.remove(nodes.get(0));
+
+        mainPane.setMainFragment(fragments.get(idFragmentTarget));
+        nodes.add(mainPane.getMainFragment().getFragmentNode());
+
+        ((MainLabelContaining) mainFragment.getController())
+                .setMainLabelText(labels.get(idFragmentTarget));
+
+        if (mainFragment.getController() instanceof ConfirmBoxContaining) {
+            ConfirmBoxContaining parent = (ConfirmBoxContaining) mainFragment.getController();
+
+            // set new label for parent fragment
+            parent.setConfirmLabel(parent.getConfirmLabel());
 
             // handle for submit button
-            parent.getConfirmBox().setOnSubmit(((Confirmable)
-                    parent.getConfirmForm().getController())::onSubmit);
+            ((Confirm) parent.getConfirmBox().getController()).setOnSubmit(
+                    ((Confirmable) parent.getConfirmForm().getController())::onSubmit);
 
             // handle for cancel button
-            parent.getConfirmBox().setOnCancel(((Confirmable)
-                    parent.getConfirmForm().getController())::onCancel);
+            ((Confirm) parent.getConfirmBox().getController()).setOnCancel(
+                    ((Confirmable) parent.getConfirmForm().getController())::onCancel);
         }
     }
 

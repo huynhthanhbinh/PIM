@@ -3,9 +3,9 @@ package com.bht.pim.fragment.parent.project;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.confirm.Confirm;
 import com.bht.pim.fragment.children.confirm.ConfirmBoxContaining;
+import com.bht.pim.fragment.children.label.MainLabel;
 import com.bht.pim.fragment.children.label.MainLabelContaining;
-import com.bht.pim.message.impl.ConfirmBoxSetting;
-import com.bht.pim.message.impl.MainLabelUpdating;
+import com.bht.pim.fragment.children.project.ProjectEditableForm;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
@@ -37,52 +37,39 @@ public class ProjectCreate implements Initializable, ConfirmBoxContaining, MainL
     @FXML
     private GridPane gridPane;
 
+    private ManagedFragmentHandler<MainLabel> mainLabelFragment;
+    private ManagedFragmentHandler<ProjectEditableForm> projectEditableFormFragment;
+    private ManagedFragmentHandler<Confirm> confirmFragment;
+
 
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // Init this scene code go here
-        log.info("[Project Create] On init scene ");
+    }
 
-        log.info(mainPane.prefHeightProperty());
-        log.info(context
-                .getComponentLayout().getGlassPane().heightProperty());
-
-        mainPane.prefHeightProperty().bind(context
-                .getComponentLayout().getGlassPane().heightProperty().subtract(220));
-        mainPane.prefWidthProperty().bind(context
-                .getComponentLayout().getGlassPane().widthProperty().subtract(220));
-
-        ConfirmBoxSetting confirmBoxSetting = new ConfirmBoxSetting(
-                AppConfiguration.FRAGMENT_PROJECT_CREATE, "CREATE");
-
-        context.send(AppConfiguration.COMPONENT_MAIN, confirmBoxSetting);
-
-        MainLabelUpdating mainLabelUpdating = new MainLabelUpdating(
-                AppConfiguration.FRAGMENT_PROJECT_CREATE,
-                AppConfiguration.LABEL_PROJECT_CREATE);
-
-        context.send(AppConfiguration.COMPONENT_MAIN, mainLabelUpdating);
+    @Override
+    public String getConfirmLabel() {
+        return "CREATE";
     }
 
     @Override
     public void setConfirmLabel(String confirmLabel) {
-
+        confirmFragment.getController().setConfirmLabelText(confirmLabel);
     }
 
     @Override
-    public Confirm getConfirmBox() {
-        return null;
+    public ManagedFragmentHandler getConfirmBox() {
+        return confirmFragment;
     }
 
     @Override
     public ManagedFragmentHandler getConfirmForm() {
-        return null;
+        return projectEditableFormFragment;
     }
 
     @Override
     public void setMainLabelText(String mainLabelText) {
-
+        mainLabelFragment.getController().setLabelText(mainLabelText);
     }
 }

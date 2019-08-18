@@ -2,7 +2,6 @@ package com.bht.pim.fragment.children.project;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.ProjectDto;
-import com.bht.pim.message.impl.MainLabelUpdating;
 import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.ProjectUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
@@ -11,9 +10,10 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +23,10 @@ import java.util.ResourceBundle;
 
 @Log4j
 @Controller
+@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST_TABLE,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
+        scope = Scope.SINGLETON,
+        viewLocation = "/com/bht/pim/fragment/children/project/ProjectListTable.fxml")
 public class ProjectListTable {
 
     @Resource
@@ -54,21 +58,6 @@ public class ProjectListTable {
 
 
     public void initialize() {
-
-        // Init this scene code go here
-        log.info("[Project List] On init scene ");
-
-        MainLabelUpdating mainLabelUpdating = new MainLabelUpdating(
-                AppConfiguration.FRAGMENT_PROJECT_LIST,
-                AppConfiguration.LABEL_PROJECT_LIST);
-
-        context.send(AppConfiguration.COMPONENT_MAIN, mainLabelUpdating);
-
-        Pane main = context.getComponentLayout().getGlassPane();
-        table.prefWidthProperty().bind(main.widthProperty().subtract(227));
-        table.prefHeightProperty().bind(main.heightProperty().subtract(100));
-
-
         // Get all necessary data from server
         getNecessaryData();
 

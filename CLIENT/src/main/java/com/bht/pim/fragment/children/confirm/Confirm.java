@@ -41,7 +41,7 @@ public class Confirm implements Initializable {
     private ResourceBundle bundle;
 
     @FXML
-    public void setLabelText(String label) {
+    public void setConfirmLabelText(String label) {
         bSubmit.setText(label);
     }
 

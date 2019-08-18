@@ -4,11 +4,14 @@ import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 
 public interface ConfirmBoxContaining {
 
+    // Get confirm-label
+    String getConfirmLabel();
+
     // Set label for confirm-button
     void setConfirmLabel(String confirmLabel);
 
     // Get confirm-box
-    Confirm getConfirmBox();
+    ManagedFragmentHandler getConfirmBox();
 
     // Get confirm-form
     ManagedFragmentHandler getConfirmForm();
