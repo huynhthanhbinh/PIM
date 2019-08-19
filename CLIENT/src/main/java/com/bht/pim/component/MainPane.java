@@ -33,8 +33,11 @@ import java.util.ResourceBundle;
 @Getter
 @Setter
 <<<<<<< HEAD
+<<<<<<< HEAD
 @Controller
 @SuppressWarnings("unchecked")
+=======
+>>>>>>> parent of 142f52d... JACP
 =======
 >>>>>>> parent of 142f52d... JACP
 @DeclarativeView(id = AppConfiguration.COMPONENT_MAIN, name = "MainPane",
@@ -101,7 +104,10 @@ public class MainPane implements FXComponent {
         mainPane.getChildren().add(labelFragment.getFragmentNode());
         mainPane.getChildren().add(mainFragment.getFragmentNode());
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 142f52d... JACP
 
 >>>>>>> parent of 142f52d... JACP
         mainPane.prefWidthProperty().bind(layout.getGlassPane().widthProperty().subtract(227));
