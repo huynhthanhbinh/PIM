@@ -25,12 +25,14 @@ import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
+import org.springframework.stereotype.Controller;
 
 import java.util.ResourceBundle;
 
 @Log4j
 @Getter
 @Setter
+@Controller
 @SuppressWarnings("unchecked")
 @DeclarativeView(id = AppConfiguration.COMPONENT_MAIN, name = "MainPane",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
@@ -82,7 +84,7 @@ public class MainPane implements FXComponent {
             PimMessage messageBody = (PimMessage) message.getMessageBody();
 
             log.info("[PIM Message] " + messageBody.getClass().getSimpleName() +
-                    " >>> sent from: " + messageBody.getFragmentSent());
+                    " >>> sent from: " + messageBody.getIdFragmentSent());
 
             xNode = messageBody.postHandle(node, this);
         }
@@ -108,8 +110,6 @@ public class MainPane implements FXComponent {
         assignChildren();
 
         mainPane.getChildren().add(mainFragment.getFragmentNode());
-        ((VBox) mainPane.getChildren().get(0)).getChildren().forEach(log::info);
-
         mainPane.prefWidthProperty().bind(layout.getGlassPane().widthProperty().subtract(227));
         mainPane.prefHeightProperty().bind(layout.getGlassPane().heightProperty().subtract(120));
     }

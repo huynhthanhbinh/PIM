@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="500.0" prefWidth="1050.0">
+
+    <TableView fx:id="table" layoutX="24.0" layoutY="27.0" prefHeight="500.0" prefWidth="1000.0"
+               AnchorPane.topAnchor="5.0" AnchorPane.leftAnchor="20.0"
+               AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="5.0">
+        <columns>
+            <TableColumn id="cSelect" fx:id="cSelect" prefWidth="75.0"/>
+            <TableColumn id="cNumber" fx:id="cNumber" prefWidth="75.0" text="Number"/>
+            <TableColumn id="cName" fx:id="cName" prefWidth="75.0" text="Name"/>
+            <TableColumn id="cCustomer" fx:id="cCustomer" prefWidth="75.0" text="Customer"/>
+            <TableColumn id="cStatus" fx:id="cStatus" prefWidth="75.0" text="Status"/>
+            <TableColumn id="cStart" fx:id="cStart" prefWidth="75.0" text="Start"/>
+            <TableColumn id="cManagement" fx:id="cManagement" prefWidth="75.0" text="Management"/>
+        </columns>
+    </TableView>
+</AnchorPane>

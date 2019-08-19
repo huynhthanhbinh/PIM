@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" prefHeight="50.0" prefWidth="400.0"
-      stylesheets="/com/bht/pim/fragment/confirm/Confirm.css" xmlns="http://javafx.com/javafx/8.0.999-ea"
+      stylesheets="/com/bht/pim/fragment/children/confirm/Confirm.css" xmlns="http://javafx.com/javafx/8.0.999-ea"
       fx:id="confirmPane">
 
     <Separator prefWidth="200.0"/>

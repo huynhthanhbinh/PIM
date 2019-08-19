@@ -5,7 +5,7 @@ import javafx.scene.Node;
 
 public interface PimMessage {
 
-    String getFragmentSent();
+    String getIdFragmentSent();
 
     // post handle Pim messages for MainPane
     Node postHandle(Node node, MainPane mainPane);
