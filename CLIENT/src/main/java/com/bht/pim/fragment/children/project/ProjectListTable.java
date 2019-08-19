@@ -163,14 +163,14 @@ public class ProjectList implements Initializable {
 
             @Override
             protected void updateItem(ProjectDto project, boolean empty) {
-                if (project == null || empty || !project.getStatus().equals("New")) {
+                if (project == null || empty || !project.getStatus().equals("NEW")) {
                     setGraphic(null);
                     return;
                 }
 
                 setGraphic(bRemove);
                 bRemove.setOnAction(event -> {
-                    log.info("Delete project id = " + project.getId());
+                    log.info("Delete " + project);
                 });
             }
         };
@@ -193,7 +193,7 @@ public class ProjectList implements Initializable {
                 lName.getStyleClass().add("clickable");
                 lName.setPickOnBounds(false);
                 lName.setOnMouseClicked(event -> {
-                    log.info("view info of project id = " + project.getId());
+                    log.info("INFO of project: " + project.getId());
                 });
 
                 setGraphic(lName);
