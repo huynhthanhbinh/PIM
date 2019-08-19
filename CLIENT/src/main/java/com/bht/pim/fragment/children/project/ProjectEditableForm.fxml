@@ -4,10 +4,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="editableForm" alignment="CENTER" maxHeight="-Infinity"
-      maxWidth="1800.0"
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="1800.0"
+<<<<<<< HEAD:CLIENT/src/main/java/com/bht/pim/fragment/children/project/ProjectEditableForm.fxml
+      minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1050.0"
+      spacing="5.0" stylesheets="/com/bht/pim/fragment/project/ProjectCreate.css">
+
+=======
       minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="1060.0"
-      spacing="5.0" stylesheets="/com/bht/pim/fragment/parent/project/ProjectCreate.css"
+      spacing="5.0" stylesheets="/com/bht/pim/fragment/project/ProjectCreate.css"
       xmlns="http://javafx.com/javafx/8.0.999-ea">
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
@@ -236,4 +240,5 @@
             <Insets left="10.0" right="10.0"/>
         </VBox.margin>
     </GridPane>
+>>>>>>> parent of 142f52d... JACP:CLIENT/src/main/java/com/bht/pim/fragment/project/ProjectCreate.fxml
 </VBox>

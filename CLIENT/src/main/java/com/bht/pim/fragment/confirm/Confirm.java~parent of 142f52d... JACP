@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/confirm/Confirm.fxml")
-public class ConfirmBox implements Initializable {
+public class Confirm implements Initializable {
 
     @FXML
     private VBox confirmPane;

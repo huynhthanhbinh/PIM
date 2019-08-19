@@ -108,3 +108,7 @@ e
 5CLIENT/src/main/java/com/bht/pim/perspective/PIM.java,0\1\01a58a61bf122f5af6b4721957aa5ad37d24a08d
 e
 5CLIENT/src/main/java/com/bht/pim/perspective/PIM.fxml,3\f\3f74f35306cefd9ddae47a14f739e4899dcaf3fe
+ƒ
+SCLIENT/src/main/java/com/bht/pim/fragment/children/project/ProjectEditableForm.fxml,f\1\f19a2a919fed86e20b028368be3b02cab23b9c13
+€
+PCLIENT/src/main/java/com/bht/pim/fragment/children/project/ProjectListTable.java,5\0\5036e644536c1099be0a89a9e79e779c5a86bc44
