@@ -8,8 +8,11 @@ import com.bht.pim.fragment.children.project.ProjectListTable;
 import com.bht.pim.fragment.children.project.ProjectListUtil;
 import com.bht.pim.fragment.parent.ChildrenContainer;
 import com.bht.pim.fragment.parent.ChildrenContaining;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
@@ -27,7 +30,7 @@ import java.util.ResourceBundle;
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
-        scope = Scope.SINGLETON,
+        scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/parent/project/ProjectList.fxml")
 public class ProjectList implements Initializable, MainLabelContaining, ChildrenContaining {
 
@@ -35,8 +38,8 @@ public class ProjectList implements Initializable, MainLabelContaining, Children
     private Context context;
     @Resource
     private ResourceBundle bundle;
-
-    private VBox mainPane = new VBox();
+    @FXML
+    private VBox mainPane;
 
     private ManagedFragmentHandler<MainLabel> mainLabelFragment;
     private ManagedFragmentHandler<ProjectListUtil> projectListUtilFragment;
@@ -69,6 +72,16 @@ public class ProjectList implements Initializable, MainLabelContaining, Children
                 projectListTableFragment.getFragmentNode(),
                 paginationFragment.getFragmentNode());
 
+        mainPane.getChildren().forEach(log::info);
+
         mainPane.getChildren().forEach(node -> VBox.setVgrow(node, Priority.ALWAYS));
+    }
+
+    @Override
+    public void removeAllChilrenFragments() {
+        ObservableList<Node> nodes = mainPane.getChildren();
+        for (int i = nodes.size() - 1; i >= 0; i--) {
+            nodes.remove(nodes.get(i));
+        }
     }
 }

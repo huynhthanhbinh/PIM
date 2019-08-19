@@ -47,6 +47,18 @@ public class AppConfiguration {
     public static final String COMPONENT_LEFT = "idcLeft";
     public static final String COMPONENT_MAIN = "idcMain";
 
+    // Main labels ================================================================
+    public static final String LABEL_EMPLOYEE_LIST = "EMPLOYEE LIST";
+    public static final String LABEL_EMPLOYEE_INFO = "EMPLOYEE INFORMATION";
+
+    public static final String LABEL_GROUP_LIST = "GROUP LIST";
+    public static final String LABEL_GROUP_INFO = "GROUP INFORMATION";
+
+    public static final String LABEL_PROJECT_LIST = "PROJECT LIST";
+    public static final String LABEL_PROJECT_CREATE = "NEW PROJECT";
+    public static final String LABEL_PROJECT_INFO = "PROJECT INFORMATION";
+    public static final String LABEL_PROJECT_UPDATE = "UPDATE PROJECT";
+
     // Parent fragments ===========================================================
     public static final String FRAGMENT_PROJECT_LIST = "idfPList";
     public static final String FRAGMENT_PROJECT_INFO = "idfPInfo";
@@ -75,17 +87,21 @@ public class AppConfiguration {
     public static final String FRAGMENT_PROJECT_EDITABLE_FORM = "idfPEditableForm";
     public static final String FRAGMENT_PROJECT_LIST_UTIL = "idfPListUtil";
 
-    // Main labels ================================================================
-    public static final String LABEL_EMPLOYEE_LIST = "EMPLOYEE LIST";
-    public static final String LABEL_EMPLOYEE_INFO = "EMPLOYEE INFORMATION";
-
-    public static final String LABEL_GROUP_LIST = "GROUP LIST";
-    public static final String LABEL_GROUP_INFO = "GROUP INFORMATION";
-
-    public static final String LABEL_PROJECT_LIST = "PROJECT LIST";
-    public static final String LABEL_PROJECT_CREATE = "NEW PROJECT";
-    public static final String LABEL_PROJECT_INFO = "PROJECT INFORMATION";
-    public static final String LABEL_PROJECT_UPDATE = "UPDATE PROJECT";
+//    // Children-fragment-nodes ====================================================
+//    public static final Node MAIN_LABEL = getChildFragment("label/MainLabel");
+//    public static final Node CONFIRM_BOX = getChildFragment("confirm/Confirm");
+//    public static final Node PAGINATION = getChildFragment("pagination/PimPagination");
+//
+//    public static final Node EMPLOYEE_DETAIL = getChildFragment("employee/EmployeeDetail");
+//    public static final Node EMPLOYEE_LIST_TABLE = getChildFragment("employee/EmployeeListTable");
+//
+//    public static final Node GROUP_DETAIL = getChildFragment("group/GroupDetail");
+//    public static final Node GROUP_LIST_TABLE = getChildFragment("group/GroupListTable");
+//
+//    public static final Node PROJECT_DETAIL = getChildFragment("project/ProjectDetail");
+//    public static final Node PROJECT_LIST_TABLE = getChildFragment("project/ProjectListTable");
+//    public static final Node PROJECT_EDITABLE_FORM = getChildFragment("project/ProjectEditableForm");
+//    public static final Node PROJECT_LIST_UTIL = getChildFragment("project/ProjectListUtil");
 
     // Spring Beans injecting/autowiring config ===================================
     @Bean
@@ -135,4 +151,15 @@ public class AppConfiguration {
         log.info("[PIM] Creating bean of < ProjectMapper >");
         return Mappers.getMapper(ProjectMapper.class);
     }
+
+//    // Get child-fragment-node
+//    private static Node getChildFragment(String path) {
+//        try {
+//            return FXMLLoader.load(Objects.requireNonNull(AppConfiguration.class.getClassLoader()
+//                    .getResource("com/bht/pim/fragment/children/" + path + ".fxml")));
+//        } catch (IOException e) {
+//            log.info(e);
+//            return null;
+//        }
+//    }
 }

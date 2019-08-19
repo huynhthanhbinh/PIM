@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_GROUP_LIST_TABLE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
-        scope = Scope.SINGLETON,
+        scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/group/GroupListTable.fxml")
 public class GroupListTable {
 }

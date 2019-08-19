@@ -45,7 +45,7 @@ import java.util.stream.Collectors;
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_EDITABLE_FORM,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
-        scope = Scope.SINGLETON,
+        scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditableForm.fxml")
 public class ProjectEditableForm implements Initializable, Confirmable {
 

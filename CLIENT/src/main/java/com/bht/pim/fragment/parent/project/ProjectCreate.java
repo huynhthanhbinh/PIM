@@ -8,9 +8,12 @@ import com.bht.pim.fragment.children.label.MainLabelContaining;
 import com.bht.pim.fragment.children.project.ProjectEditableForm;
 import com.bht.pim.fragment.parent.ChildrenContainer;
 import com.bht.pim.fragment.parent.ChildrenContaining;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
@@ -27,7 +30,7 @@ import java.util.ResourceBundle;
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_CREATE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
-        scope = Scope.SINGLETON,
+        scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/parent/project/ProjectCreate.fxml")
 public class ProjectCreate implements Initializable, ConfirmBoxContaining, MainLabelContaining, ChildrenContaining {
 
@@ -73,6 +76,7 @@ public class ProjectCreate implements Initializable, ConfirmBoxContaining, MainL
 
     @Override
     public void setMainLabelText(String mainLabelText) {
+        log.info(mainLabelFragment);
         mainLabelFragment.getController().setLabelText(mainLabelText);
     }
 
@@ -81,5 +85,22 @@ public class ProjectCreate implements Initializable, ConfirmBoxContaining, MainL
         mainLabelFragment = container.getMainLabelFragment();
         projectEditableFormFragment = container.getProjectEditableFormFragment();
         confirmFragment = container.getConfirmFragment();
+
+        mainPane.getChildren().addAll(
+                mainLabelFragment.getFragmentNode(),
+                projectEditableFormFragment.getFragmentNode(),
+                confirmFragment.getFragmentNode());
+
+        mainPane.getChildren().forEach(log::info);
+
+        mainPane.getChildren().forEach(node -> VBox.setVgrow(node, Priority.ALWAYS));
+    }
+
+    @Override
+    public void removeAllChilrenFragments() {
+        ObservableList<Node> nodes = mainPane.getChildren();
+        for (int i = nodes.size() - 1; i >= 0; i--) {
+            nodes.remove(nodes.get(i));
+        }
     }
 }

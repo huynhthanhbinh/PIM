@@ -16,6 +16,7 @@ import com.bht.pim.fragment.children.project.ProjectEditableForm;
 import com.bht.pim.fragment.children.project.ProjectListTable;
 import com.bht.pim.fragment.children.project.ProjectListUtil;
 import com.bht.pim.fragment.parent.ChildrenContainer;
+import com.bht.pim.fragment.parent.ChildrenContaining;
 import com.bht.pim.fragment.parent.employee.EmployeeInfo;
 import com.bht.pim.fragment.parent.employee.EmployeeList;
 import com.bht.pim.fragment.parent.group.GroupInfo;
@@ -44,6 +45,7 @@ import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
+import org.springframework.stereotype.Controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,14 +54,15 @@ import java.util.ResourceBundle;
 @Log4j
 @Getter
 @Setter
+@Controller
 @DeclarativeView(id = AppConfiguration.COMPONENT_MAIN, name = "MainPane",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_MAIN,
         viewLocation = "/com/bht/pim/component/MainPane.fxml")
 public class MainPane implements FXComponent {
 
-    private final Map<String, String> labels = labels();
-    private final Map<String, ManagedFragmentHandler> fragments = fragments();
+    private Map<String, String> labels;
+    private Map<String, ManagedFragmentHandler> fragments;
 
     @FXML
     private VBox mainPane;
@@ -68,7 +71,6 @@ public class MainPane implements FXComponent {
     @Resource
     private ResourceBundle bundle;
 
-    private ChildrenContainer childrenContainer;
     private ManagedFragmentHandler mainFragment;
 
     private ManagedFragmentHandler<EmployeeInfo> employeeInfoFragment;
@@ -125,8 +127,10 @@ public class MainPane implements FXComponent {
                                  final ResourceBundle resourceBundle) {
 
         configureFragments();
-        createChildrenContainer();
+        getChildrenContainer();
         initChildrenForFragments();
+
+        projectListFragment.getController().configureChildrenFragments(getChildrenContainer());
 
         mainFragment = projectListFragment;
         mainPane.getChildren().add(mainFragment.getFragmentNode());
@@ -172,10 +176,13 @@ public class MainPane implements FXComponent {
         projectCreateFragment = context.getManagedFragmentHandler(ProjectCreate.class);
         projectUpdateFragment = context.getManagedFragmentHandler(ProjectUpdate.class);
         projectInfoFragment = context.getManagedFragmentHandler(ProjectInfo.class);
+
+        labels = labels();
+        fragments = fragments();
     }
 
-    private void createChildrenContainer() {
-        childrenContainer = ChildrenContainer.newBuilder()
+    private ChildrenContainer getChildrenContainer() {
+        return ChildrenContainer.newBuilder()
                 .confirmFragment(context.getManagedFragmentHandler(Confirm.class))
                 .mainLabelFragment(context.getManagedFragmentHandler(MainLabel.class))
                 .paginationFragment(context.getManagedFragmentHandler(PimPagination.class))
@@ -191,15 +198,31 @@ public class MainPane implements FXComponent {
     }
 
     private void initChildrenForFragments() {
-        projectListFragment.getController().configureChildrenFragments(childrenContainer);
+
+        log.info(getChildrenContainer().getMainLabelFragment());
+        log.info(getChildrenContainer().getMainLabelFragment());
+        log.info(getChildrenContainer().getMainLabelFragment());
+        log.info(getChildrenContainer().getMainLabelFragment());
+        log.info(getChildrenContainer().getMainLabelFragment());
+        log.info(getChildrenContainer().getMainLabelFragment());
+
+        //projectCreateFragment.getController().configureChildrenFragments(getChildrenContainer());
     }
 
     public void switchFragment(MainPane mainPane, String idFragmentTarget) {
 
         ObservableList<Node> nodes = mainPane.getMainPane().getChildren();
+
+        ((ChildrenContaining) mainFragment.getController())
+                .removeAllChilrenFragments();
+
         nodes.remove(nodes.get(0));
 
-        mainPane.setMainFragment(fragments.get(idFragmentTarget));
+        mainFragment = fragments.get(idFragmentTarget);
+
+        ((ChildrenContaining) mainFragment.getController())
+                .configureChildrenFragments(getChildrenContainer());
+
         nodes.add(mainPane.getMainFragment().getFragmentNode());
 
         ((MainLabelContaining) mainFragment.getController())
@@ -234,5 +257,9 @@ public class MainPane implements FXComponent {
     @OnHide
     public void onHide(final FXComponentLayout componentLayout) {
         log.info("[HIDE] FXComponentLayout: " + context.getId());
+    }
+
+    public ManagedFragmentHandler createFragment(Object fragment) {
+        return context.getManagedFragmentHandler(fragment.getClass());
     }
 }

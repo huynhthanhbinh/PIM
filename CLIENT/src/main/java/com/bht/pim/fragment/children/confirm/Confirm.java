@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_CONFIRM,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
-        scope = Scope.SINGLETON,
+        scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/confirm/Confirm.fxml")
 public class Confirm implements Initializable {
 

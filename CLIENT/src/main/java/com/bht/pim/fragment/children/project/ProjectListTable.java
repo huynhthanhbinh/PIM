@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST_TABLE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
-        scope = Scope.SINGLETON,
+        scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectListTable.fxml")
 public class ProjectListTable implements Initializable {
 
