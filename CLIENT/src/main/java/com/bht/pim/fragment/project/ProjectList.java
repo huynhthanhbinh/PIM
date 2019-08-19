@@ -4,15 +4,22 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.MainLabelUpdating;
+import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.service.ProjectService;
+import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.ProjectUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
@@ -25,6 +32,7 @@ import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 @Log4j
@@ -34,6 +42,12 @@ import java.util.ResourceBundle;
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/project/ProjectList.fxml")
 public class ProjectList implements Initializable {
+
+    private final Image delete = getImage("delete");
+    private final Image edit = getImage("edit");
+    private final Image delete_inverse = getImage("delete_inverse");
+    private final Image edit_inverse = getImage("edit_inverse");
+
 
     @Autowired
     private ProjectService projectService;
@@ -159,18 +173,62 @@ public class ProjectList implements Initializable {
     private TableCell<ProjectDto, ProjectDto> management(TableColumn<ProjectDto, ProjectDto> param) {
         return new TableCell<ProjectDto, ProjectDto>() {
 
-            private final Button bRemove = new Button(" X ");
+            private Button bRemove = new Button();
+            private Button bEdit = new Button();
+
+            private ImageView iRemove = new ImageView();
+            private ImageView iEdit = new ImageView();
 
             @Override
-            protected void updateItem(ProjectDto project, boolean empty) {
-                if (project == null || empty || !project.getStatus().equals("New")) {
+            protected void updateItem(ProjectDto projectDto, boolean empty) {
+                if (projectDto == null || empty) {
                     setGraphic(null);
                     return;
                 }
 
-                setGraphic(bRemove);
+                bRemove.setGraphic(iRemove);
+                bEdit.setGraphic(iEdit);
+
+                iRemove.imageProperty().bind(
+                        Bindings.when(getTableRow().selectedProperty())
+                                .then(delete_inverse)
+                                .otherwise(delete));
+
+                iEdit.imageProperty().bind(
+                        Bindings.when(getTableRow().selectedProperty())
+                                .then(edit_inverse)
+                                .otherwise(edit));
+
+                HBox hBox = new HBox();
+                hBox.getChildren().addAll(bEdit, bRemove);
+                setGraphic(hBox);
+
                 bRemove.setOnAction(event -> {
-                    log.info("Delete project id = " + project.getId());
+                    if (!projectDto.getStatus().equals("New")) {
+                        NotificationUtil.showNotification(
+                                NotificationStyle.ERROR,
+                                Pos.CENTER,
+                                "Cannot delete project which status is not \"New\"!");
+                        return;
+                    }
+                    log.info("Delete project id = " + projectDto.getId());
+
+                    if (projectService.deleteProject(projectDto.getId())) {
+                        NotificationUtil.showNotification(
+                                NotificationStyle.SUCCESS,
+                                Pos.CENTER,
+                                "Successfully delete project !");
+                        table.getItems().remove(projectDto);
+                    } else {
+                        NotificationUtil.showNotification(
+                                NotificationStyle.WARNING,
+                                Pos.CENTER,
+                                "Failed to delete project !");
+                    }
+                });
+
+                bEdit.setOnAction(event -> {
+                    log.info("Edit project id = " + projectDto.getId());
                 });
             }
         };
@@ -221,5 +279,10 @@ public class ProjectList implements Initializable {
                         });
             }
         };
+    }
+
+    private Image getImage(String path) {
+        return new Image(Objects.requireNonNull(getClass().getClassLoader()
+                .getResourceAsStream("pictures/" + path + ".png")));
     }
 }

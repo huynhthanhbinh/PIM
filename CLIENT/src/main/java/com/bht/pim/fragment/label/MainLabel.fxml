@@ -11,7 +11,7 @@
       alignment="CENTER" prefHeight="60.0" minHeight="60.0" maxHeight="60.0"
       prefWidth="1050.0">
 
-    <Label alignment="CENTER" text="MAIN LABEL" VBox.vgrow="ALWAYS" fx:id="label" textFill="#606060">
+    <Label alignment="CENTER" VBox.vgrow="ALWAYS" fx:id="label" textFill="#606060">
         <font>
             <Font name="System Bold" size="28.0"/>
         </font>

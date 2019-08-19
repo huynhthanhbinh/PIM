@@ -112,7 +112,7 @@
 /*}*/
 
 .table-row-cell .button {
-    -fx-background-color: linear-gradient(#ff5400, #be1d00);
+    -fx-background-color: transparent;
     -fx-background-radius: 30;
     -fx-background-insets: 0;
     -fx-text-fill: white;
@@ -123,7 +123,7 @@
 
 .table-row-cell:selected .button {
     -fx-text-fill: #F24517;
-    -fx-background-color: white;
+    -fx-background-color: transparent;
 }
 
 .table-row-cell .button:hover {
