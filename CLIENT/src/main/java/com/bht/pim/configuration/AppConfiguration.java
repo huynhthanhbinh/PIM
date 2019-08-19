@@ -51,6 +51,10 @@ public class AppConfiguration {
     public static final String FRAGMENT_PROJECT_CREATE = "idfPCreate";
     public static final String FRAGMENT_PROJECT_UPDATE = "idfPUpdate";
 
+    public static final String FRAGMENT_PROJECT_UTIL = "idfPUtil";
+    public static final String FRAGMENT_PROJECT_TABLE = "idfPTable";
+    public static final String FRAGMENT_PROJECT_EDIT_FORM = "iffPEditForm";
+
     public static final String FRAGMENT_GROUP_LIST = "idfGList";
     public static final String FRAGMENT_GROUP_INFO = "idfGInfo";
 
