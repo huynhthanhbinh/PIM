@@ -475,6 +475,7 @@ public class ProjectCreate implements Initializable, Confirmable {
 
             } catch (Exception exception) {
                 log.info(exception);
+                exception.printStackTrace();
             }
         } else {
             warnOnInvalid(emptyNumber, emptyName, emptyCustomer, emptyStart);

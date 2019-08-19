@@ -16,11 +16,8 @@ public class EmployeeDto {
 
     @NonNull
     private long id;
-    @NonNull
     private String visa;
-    @NonNull
     private String lastName;
-    @NonNull
     private String firstName;
     private LocalDate birthday;
     private List<ProjectDto> enrolledProjects;

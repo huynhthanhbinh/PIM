@@ -11,6 +11,10 @@ import java.time.ZoneOffset;
 public interface DateTimeMapper {
 
     default Timestamp toTimestamp(final LocalDate localDate) {
+        if (localDate == null) {
+            return Timestamp.newBuilder().build();
+        }
+
         Instant instant = localDate.atStartOfDay().toInstant(ZoneOffset.UTC);
 
         return Timestamp.newBuilder()
@@ -20,6 +24,10 @@ public interface DateTimeMapper {
     }
 
     default LocalDate toLocalDate(final Timestamp timestamp) {
+        if (timestamp.equals(Timestamp.newBuilder().build())) {
+            return null;
+        }
+
         return Instant
                 .ofEpochSecond(timestamp.getSeconds(), timestamp.getNanos())
                 .atZone(ZoneOffset.UTC)
