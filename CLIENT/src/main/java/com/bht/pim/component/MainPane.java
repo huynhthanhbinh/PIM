@@ -36,8 +36,11 @@ import java.util.ResourceBundle;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 @Controller
 @SuppressWarnings("unchecked")
+=======
+>>>>>>> parent of 142f52d... JACP
 =======
 >>>>>>> parent of 142f52d... JACP
 =======
@@ -113,11 +116,15 @@ public class MainPane implements FXComponent {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 142f52d... JACP
 =======
 >>>>>>> parent of 142f52d... JACP
+
+>>>>>>> parent of 142f52d... JACP
+=======
 
 >>>>>>> parent of 142f52d... JACP
 =======
