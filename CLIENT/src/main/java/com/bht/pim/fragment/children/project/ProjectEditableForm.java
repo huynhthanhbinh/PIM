@@ -1,13 +1,15 @@
-package com.bht.pim.fragment.children.project;
+package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.dto.GroupDto;
 import com.bht.pim.dto.ProjectDto;
-import com.bht.pim.fragment.children.confirm.Confirmable;
+import com.bht.pim.fragment.confirm.Confirmable;
 import com.bht.pim.mapper.DateTimeMapper;
 import com.bht.pim.mapper.StatusMapper;
+import com.bht.pim.message.impl.ConfirmBoxAdding;
 import com.bht.pim.message.impl.FragmentSwitching;
+import com.bht.pim.message.impl.MainLabelUpdating;
 import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.service.EmployeeService;
 import com.bht.pim.service.GroupService;
@@ -24,6 +26,8 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -43,19 +47,11 @@ import java.util.stream.Collectors;
 
 @Log4j
 @Controller
-<<<<<<< HEAD:CLIENT/src/main/java/com/bht/pim/fragment/children/project/ProjectEditableForm.java
-@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_EDITABLE_FORM,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
-        scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditableForm.fxml")
-public class ProjectEditableForm implements Initializable, Confirmable {
-=======
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_CREATE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/project/ProjectCreate.fxml")
 public class ProjectCreate implements Initializable, Confirmable {
->>>>>>> parent of f33f974... [ProjectCreate] Saving Project:CLIENT/src/main/java/com/bht/pim/fragment/project/ProjectCreate.java
 
     @Autowired
     private EmployeeService employeeService;
@@ -75,8 +71,10 @@ public class ProjectCreate implements Initializable, Confirmable {
     private Context context;
     @Resource
     private ResourceBundle bundle;
-
-
+    @FXML
+    private VBox mainPane;
+    @FXML
+    private GridPane gridPane;
     @FXML
     private TextField textField;
     @FXML
@@ -132,10 +130,46 @@ public class ProjectCreate implements Initializable, Confirmable {
     private List<EmployeeDto> leaderOptions; // for-creating-new-group
     private AutoCompletionBinding<EmployeeDto> employeeAutoCompletion;
 
+    @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadFragment();
+
+        // Init this scene code go here
+        log.info("[Project Create] On init scene ");
+
+        log.info(mainPane.prefHeightProperty());
+        log.info(context
+                .getComponentLayout().getGlassPane().heightProperty());
+
+        mainPane.prefHeightProperty().bind(context
+                .getComponentLayout().getGlassPane().heightProperty().subtract(220));
+        mainPane.prefWidthProperty().bind(context
+                .getComponentLayout().getGlassPane().widthProperty().subtract(220));
+
+        ConfirmBoxAdding confirmBoxAdding = new ConfirmBoxAdding(
+                AppConfiguration.FRAGMENT_PROJECT_CREATE, "CREATE");
+
+        context.send(AppConfiguration.COMPONENT_MAIN, confirmBoxAdding);
+
+        MainLabelUpdating mainLabelUpdating = new MainLabelUpdating(
+                AppConfiguration.FRAGMENT_PROJECT_CREATE,
+                AppConfiguration.LABEL_PROJECT_CREATE);
+
+        context.send(AppConfiguration.COMPONENT_MAIN, mainLabelUpdating);
+
+        // Get all necessary data from server
+        getNecessaryData();
+
+        // Init all inputs
+        initAllInput();
+
+        // Add all event-listener
+        addAllEventListener();
+
+        // Hide all check-label
+        hideAllCheckLabel();
     }
+
 
     // Hide all check-label
     private void hideAllCheckLabel() {
@@ -426,7 +460,17 @@ public class ProjectCreate implements Initializable, Confirmable {
                     NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
                             "[PIM] Failed to create new project !");
 
-                    loadFragment();
+                    // Get all necessary data from server
+                    getNecessaryData();
+
+                    // Init all inputs
+                    initAllInput();
+
+                    // Add all event-listener
+                    addAllEventListener();
+
+                    // Hide all check-label
+                    hideAllCheckLabel();
                 }
 
             } catch (Exception exception) {
@@ -580,19 +624,5 @@ public class ProjectCreate implements Initializable, Confirmable {
                 }
             }
         });
-    }
-
-    private void loadFragment() {
-        // Get all necessary data from server
-        getNecessaryData();
-
-        // Init all inputs
-        initAllInput();
-
-        // Add all event-listener
-        addAllEventListener();
-
-        // Hide all check-label
-        hideAllCheckLabel();
     }
 }

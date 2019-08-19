@@ -1,4 +1,4 @@
-package com.bht.pim.fragment.children.confirm;
+package com.bht.pim.fragment.confirm;
 
 import com.bht.pim.configuration.AppConfiguration;
 import javafx.event.EventHandler;
@@ -20,15 +20,9 @@ import java.util.ResourceBundle;
 @Log4j
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_CONFIRM,
-<<<<<<< HEAD:CLIENT/src/main/java/com/bht/pim/fragment/children/confirm/Confirm.java
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
-        scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/children/confirm/Confirm.fxml")
-=======
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/confirm/Confirm.fxml")
->>>>>>> parent of f33f974... [ProjectCreate] Saving Project:CLIENT/src/main/java/com/bht/pim/fragment/confirm/Confirm.java
 public class Confirm implements Initializable {
 
     @FXML
@@ -47,7 +41,7 @@ public class Confirm implements Initializable {
     private ResourceBundle bundle;
 
     @FXML
-    public void setConfirmLabelText(String label) {
+    public void setLabelText(String label) {
         bSubmit.setText(label);
     }
 

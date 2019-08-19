@@ -1,7 +1,9 @@
-package com.bht.pim.fragment.children.project;
+package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.ProjectDto;
+import com.bht.pim.message.impl.FragmentSwitching;
+import com.bht.pim.message.impl.MainLabelUpdating;
 import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.ProjectUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
@@ -11,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
@@ -25,30 +29,28 @@ import java.util.ResourceBundle;
 
 @Log4j
 @Controller
-<<<<<<< HEAD:CLIENT/src/main/java/com/bht/pim/fragment/children/project/ProjectListTable.java
-@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST_TABLE,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
-        scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/children/project/ProjectListTable.fxml")
-public class ProjectListTable implements Initializable {
-=======
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/project/ProjectList.fxml")
 public class ProjectList implements Initializable {
->>>>>>> parent of f33f974... [ProjectCreate] Saving Project:CLIENT/src/main/java/com/bht/pim/fragment/project/ProjectList.java
 
-    @Resource
-    private Context context;
-    @Resource
-    private ResourceBundle bundle;
     @Autowired
     private ProjectService projectService;
     @Autowired
     private ProjectUtil projectUtil;
 
 
+    @Resource
+    private Context context;
+    @Resource
+    private ResourceBundle bundle;
+    @FXML
+    private VBox mainPane;
+    @FXML
+    private Button bDelete;
+    @FXML
+    private Button bNew;
     @FXML
     private TableView<ProjectDto> table;
     @FXML
@@ -66,9 +68,23 @@ public class ProjectList implements Initializable {
     @FXML
     private TableColumn<ProjectDto, ProjectDto> cManagement;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // Init this scene code go here
+        log.info("[Project List] On init scene ");
+
+        MainLabelUpdating mainLabelUpdating = new MainLabelUpdating(
+                AppConfiguration.FRAGMENT_PROJECT_LIST,
+                AppConfiguration.LABEL_PROJECT_LIST);
+
+        context.send(AppConfiguration.COMPONENT_MAIN, mainLabelUpdating);
+
+        Pane main = context.getComponentLayout().getGlassPane();
+        mainPane.prefWidthProperty().bind(main.widthProperty().subtract(227));
+        mainPane.prefHeightProperty().bind(main.heightProperty().subtract(100));
+
+
         // Get all necessary data from server
         getNecessaryData();
 
@@ -120,6 +136,25 @@ public class ProjectList implements Initializable {
         cManagement.setResizable(false);
     }
 
+    // Add all event-listener
+    private void addAllEventListener() {
+        table.skinProperty().addListener((observable, oldSkin, newSkin) -> {
+            TableHeaderRow header = ((TableViewSkinBase) newSkin).getTableHeaderRow();
+            header.reorderingProperty().addListener((observable0, oldValue, newValue) ->
+                    header.setReordering(false));
+        });
+
+        bNew.setOnMouseClicked(event -> {
+            log.info("[NEW] on mouse clicked");
+
+            FragmentSwitching switching = new FragmentSwitching(
+                    AppConfiguration.FRAGMENT_PROJECT_LIST,
+                    AppConfiguration.FRAGMENT_PROJECT_CREATE);
+
+            context.send(AppConfiguration.COMPONENT_MAIN, switching);
+        });
+    }
+
     // Button delete on table row
     private TableCell<ProjectDto, ProjectDto> management(TableColumn<ProjectDto, ProjectDto> param) {
         return new TableCell<ProjectDto, ProjectDto>() {
@@ -139,15 +174,6 @@ public class ProjectList implements Initializable {
                 });
             }
         };
-    }
-
-    // Add all event-listener
-    private void addAllEventListener() {
-        table.skinProperty().addListener((observable, oldSkin, newSkin) -> {
-            TableHeaderRow header = ((TableViewSkinBase) newSkin).getTableHeaderRow();
-            header.reorderingProperty().addListener((observable0, oldValue, newValue) ->
-                    header.setReordering(false));
-        });
     }
 
     // Name label - clickable
