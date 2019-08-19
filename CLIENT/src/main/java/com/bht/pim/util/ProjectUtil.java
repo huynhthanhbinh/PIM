@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 
 @Log4j
 @Component
-public class PimUtil {
+public class ProjectUtil {
 
     public final StringConverter<LocalDate> dateStringConverter = dateStringConverter();
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
