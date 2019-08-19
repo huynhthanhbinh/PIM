@@ -1,12 +1,10 @@
 package com.bht.pim.fragment.project;
 
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.ChildrenContaining;
+import com.bht.pim.message.impl.FragmentSwitching;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.layout.VBox;
-import javafx.util.Pair;
+import javafx.scene.control.Button;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
@@ -19,31 +17,29 @@ import java.util.ResourceBundle;
 
 @Log4j
 @Controller
-@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_CREATE,
+@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_UTIL,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        scope = Scope.SINGLETON,
-        viewLocation = "/com/bht/pim/fragment/project/ProjectCreate.fxml")
-public class ProjectCreate implements Initializable, ChildrenContaining {
+        scope = Scope.PROTOTYPE,
+        viewLocation = "/com/bht/pim/fragment/project/ProjectUtil.fxml")
+public class ProjectUtil implements Initializable {
 
     @Resource
     private Context context;
     @Resource
     private ResourceBundle bundle;
     @FXML
-    private VBox mainPane;
+    private Button bNew;
 
-    @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Init this scene code go here
-        log.info("[Project Create] On init scene ");
+        bNew.setOnMouseClicked(event -> {
+            log.info("[NEW] on mouse clicked");
 
-    }
+            FragmentSwitching switching = new FragmentSwitching(
+                    AppConfiguration.FRAGMENT_PROJECT_LIST,
+                    AppConfiguration.FRAGMENT_PROJECT_CREATE);
 
-    @Override
-    public final <T> void addAllChildren(Pair<T, Node>[] children) {
-        for (Pair<T, Node> child : children) {
-            mainPane.getChildren().add(child.getValue());
-        }
+            context.send(AppConfiguration.COMPONENT_MAIN, switching);
+        });
     }
 }
