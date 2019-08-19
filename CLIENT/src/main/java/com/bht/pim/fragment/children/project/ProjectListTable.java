@@ -25,11 +25,19 @@ import java.util.ResourceBundle;
 
 @Log4j
 @Controller
+<<<<<<< HEAD:CLIENT/src/main/java/com/bht/pim/fragment/children/project/ProjectListTable.java
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST_TABLE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectListTable.fxml")
 public class ProjectListTable implements Initializable {
+=======
+@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        scope = Scope.PROTOTYPE,
+        viewLocation = "/com/bht/pim/fragment/project/ProjectList.fxml")
+public class ProjectList implements Initializable {
+>>>>>>> parent of f33f974... [ProjectCreate] Saving Project:CLIENT/src/main/java/com/bht/pim/fragment/project/ProjectList.java
 
     @Resource
     private Context context;

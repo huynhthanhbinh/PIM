@@ -16,9 +16,15 @@ import java.util.ResourceBundle;
 @Log4j
 @Controller
 @Fragment(id = AppConfiguration.FRAGMENT_MAIN_LABEL,
+<<<<<<< HEAD:CLIENT/src/main/java/com/bht/pim/fragment/children/label/MainLabel.java
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/label/MainLabel.fxml")
+=======
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        scope = Scope.PROTOTYPE,
+        viewLocation = "/com/bht/pim/fragment/label/MainLabel.fxml")
+>>>>>>> parent of f33f974... [ProjectCreate] Saving Project:CLIENT/src/main/java/com/bht/pim/fragment/label/MainLabel.java
 public class MainLabel {
 
     @FXML

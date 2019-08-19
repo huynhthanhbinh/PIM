@@ -56,7 +56,7 @@ import java.util.ResourceBundle;
 @Setter
 @Controller
 @DeclarativeView(id = AppConfiguration.COMPONENT_MAIN, name = "MainPane",
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_MAIN,
         viewLocation = "/com/bht/pim/component/MainPane.fxml")
 public class MainPane implements FXComponent {

@@ -35,7 +35,7 @@ public class AppConfiguration {
 
     // Configurations =============================================================
     public static final String PERSPECTIVE = "idPIMPerspective";
-    public static final String LANGUAGE_BUNDLES_LOCATION = "bundles.languageBundle";
+    public static final String LANGUAGE_BUNDLES = "bundles.languageBundle";
 
     // Containers =================================================================
     public static final String TARGET_CONTAINER_TOP = "paneTop";
@@ -47,6 +47,7 @@ public class AppConfiguration {
     public static final String COMPONENT_LEFT = "idcLeft";
     public static final String COMPONENT_MAIN = "idcMain";
 
+<<<<<<< HEAD
     // Main labels ================================================================
     public static final String LABEL_EMPLOYEE_LIST = "EMPLOYEE LIST";
     public static final String LABEL_EMPLOYEE_INFO = "EMPLOYEE INFORMATION";
@@ -60,6 +61,11 @@ public class AppConfiguration {
     public static final String LABEL_PROJECT_UPDATE = "UPDATE PROJECT";
 
     // Parent fragments ===========================================================
+=======
+    public static final String FRAGMENT_MAIN_LABEL = "idfMLabel";
+    public static final String FRAGMENT_CONFIRM = "idfConfirm"; // ok_cancel
+
+>>>>>>> parent of f33f974... [ProjectCreate] Saving Project
     public static final String FRAGMENT_PROJECT_LIST = "idfPList";
     public static final String FRAGMENT_PROJECT_INFO = "idfPInfo";
     public static final String FRAGMENT_PROJECT_CREATE = "idfPCreate";

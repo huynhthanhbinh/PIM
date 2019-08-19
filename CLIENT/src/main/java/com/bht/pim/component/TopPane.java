@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 @Log4j
 @DeclarativeView(id = AppConfiguration.COMPONENT_TOP, name = "TopPane",
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_TOP,
         viewLocation = "/com/bht/pim/component/TopPane.fxml")
 public class TopPane implements FXComponent {

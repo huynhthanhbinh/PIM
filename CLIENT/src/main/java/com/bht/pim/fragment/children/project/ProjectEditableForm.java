@@ -43,11 +43,19 @@ import java.util.stream.Collectors;
 
 @Log4j
 @Controller
+<<<<<<< HEAD:CLIENT/src/main/java/com/bht/pim/fragment/children/project/ProjectEditableForm.java
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_EDITABLE_FORM,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES_LOCATION,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditableForm.fxml")
 public class ProjectEditableForm implements Initializable, Confirmable {
+=======
+@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_CREATE,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        scope = Scope.PROTOTYPE,
+        viewLocation = "/com/bht/pim/fragment/project/ProjectCreate.fxml")
+public class ProjectCreate implements Initializable, Confirmable {
+>>>>>>> parent of f33f974... [ProjectCreate] Saving Project:CLIENT/src/main/java/com/bht/pim/fragment/project/ProjectCreate.java
 
     @Autowired
     private EmployeeService employeeService;
@@ -368,8 +376,12 @@ public class ProjectEditableForm implements Initializable, Confirmable {
 
             log.info("<<< PIM - On saving new project >>>");
 
+            EmployeeDto groupLeader = EmployeeDto.newBuilder()
+                    .id(leader.getId())
+                    .build();
+
             GroupDto groupDto = GroupDto.newBuilder()
-                    .leader(leader)
+                    .leader(groupLeader)
                     .build();
 
             try {

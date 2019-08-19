@@ -10,14 +10,16 @@ import java.util.List;
 @Log4j
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Builder(toBuilder = true, builderClassName = "Builder", builderMethodName = "newBuilder")
 public class ProjectDto {
 
     private BooleanProperty isSelected;
 
+    @NonNull
     private long id;
+
     private long number;
     private String name;
     private String customer;
