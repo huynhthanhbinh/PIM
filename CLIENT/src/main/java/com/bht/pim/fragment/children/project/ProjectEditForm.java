@@ -1,10 +1,10 @@
-package com.bht.pim.fragment.project;
+package com.bht.pim.fragment.children.project;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.dto.GroupDto;
 import com.bht.pim.dto.ProjectDto;
-import com.bht.pim.fragment.confirm.Confirmable;
+import com.bht.pim.fragment.children.confirm.Confirmable;
 import com.bht.pim.mapper.DateTimeMapper;
 import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
@@ -48,7 +48,7 @@ import java.util.stream.Collectors;
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_EDIT_FORM,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/project/ProjectEditForm.fxml")
+        viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditForm.fxml")
 public class ProjectEditForm implements Initializable, Confirmable {
 
     @Autowired

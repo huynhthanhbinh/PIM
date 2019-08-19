@@ -3,8 +3,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
-            fx:controller="com.bht.pim.fragment.project.ProjectInfo"
-            stylesheets="ProjectInfo.css"
+            fx:controller="com.bht.pim.fragment.parent.project.ProjectUpdate"
+            stylesheets="ProjectUpdate.css"
             prefHeight="400.0" prefWidth="600.0">
 
 </AnchorPane>

@@ -1,7 +1,7 @@
-package com.bht.pim.fragment.project;
+package com.bht.pim.fragment.parent.project;
 
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.ChildrenContaining;
+import com.bht.pim.fragment.parent.ChildrenContaining;
 import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.PimUtil;
 import javafx.fxml.FXML;
@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.SINGLETON,
-        viewLocation = "/com/bht/pim/fragment/project/ProjectList.fxml")
+        viewLocation = "/com/bht/pim/fragment/parent/project/ProjectList.fxml")
 public class ProjectList implements Initializable, ChildrenContaining {
 
 

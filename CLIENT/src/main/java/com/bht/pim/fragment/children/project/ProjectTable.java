@@ -1,4 +1,4 @@
-package com.bht.pim.fragment.project;
+package com.bht.pim.fragment.children.project;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.ProjectDto;
@@ -37,7 +37,7 @@ import java.util.ResourceBundle;
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_TABLE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/project/ProjectTable.fxml")
+        viewLocation = "/com/bht/pim/fragment/children/project/ProjectTable.fxml")
 public class ProjectTable implements Initializable {
 
     private final Image delete = getImage("delete");

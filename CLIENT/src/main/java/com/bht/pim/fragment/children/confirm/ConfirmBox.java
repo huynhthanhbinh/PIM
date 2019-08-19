@@ -1,4 +1,4 @@
-package com.bht.pim.fragment.confirm;
+package com.bht.pim.fragment.children.confirm;
 
 import com.bht.pim.configuration.AppConfiguration;
 import javafx.event.EventHandler;
@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 @Fragment(id = AppConfiguration.FRAGMENT_CONFIRM,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/confirm/Confirm.fxml")
+        viewLocation = "/com/bht/pim/fragment/children/confirm/Confirm.fxml")
 public class ConfirmBox implements Initializable {
 
     @FXML

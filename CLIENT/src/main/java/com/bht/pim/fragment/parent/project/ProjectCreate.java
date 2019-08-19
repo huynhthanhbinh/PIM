@@ -1,7 +1,7 @@
-package com.bht.pim.fragment.project;
+package com.bht.pim.fragment.parent.project;
 
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.ChildrenContaining;
+import com.bht.pim.fragment.parent.ChildrenContaining;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_CREATE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.SINGLETON,
-        viewLocation = "/com/bht/pim/fragment/project/ProjectCreate.fxml")
+        viewLocation = "/com/bht/pim/fragment/parent/project/ProjectCreate.fxml")
 public class ProjectCreate implements Initializable, ChildrenContaining {
 
     @Resource

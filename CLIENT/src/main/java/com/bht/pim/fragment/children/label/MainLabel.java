@@ -1,4 +1,4 @@
-package com.bht.pim.fragment.label;
+package com.bht.pim.fragment.children.label;
 
 import com.bht.pim.configuration.AppConfiguration;
 import javafx.fxml.FXML;
@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 @Fragment(id = AppConfiguration.FRAGMENT_MAIN_LABEL,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/label/MainLabel.fxml")
+        viewLocation = "/com/bht/pim/fragment/children/label/MainLabel.fxml")
 public class MainLabel {
 
     @FXML

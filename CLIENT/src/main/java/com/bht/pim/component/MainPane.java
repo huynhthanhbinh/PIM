@@ -1,9 +1,13 @@
 package com.bht.pim.component;
 
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.confirm.ConfirmBox;
-import com.bht.pim.fragment.label.MainLabel;
-import com.bht.pim.fragment.project.*;
+import com.bht.pim.fragment.children.confirm.ConfirmBox;
+import com.bht.pim.fragment.children.label.MainLabel;
+import com.bht.pim.fragment.children.project.ProjectEditForm;
+import com.bht.pim.fragment.children.project.ProjectTable;
+import com.bht.pim.fragment.children.project.ProjectUtil;
+import com.bht.pim.fragment.parent.project.ProjectCreate;
+import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.message.PimMessage;
 import javafx.collections.ObservableList;
 import javafx.event.Event;

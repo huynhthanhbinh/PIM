@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       xmlns="http://javafx.com/javafx" fx:id="mainLabel"
-      stylesheets="/com/bht/pim/fragment/label/MainLabel.css"
+      stylesheets="/com/bht/pim/fragment/children/label/MainLabel.css"
       alignment="CENTER" prefHeight="60.0" minHeight="60.0" maxHeight="60.0"
       prefWidth="1050.0">
 

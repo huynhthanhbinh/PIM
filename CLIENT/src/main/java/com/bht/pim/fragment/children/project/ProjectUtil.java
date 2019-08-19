@@ -1,4 +1,4 @@
-package com.bht.pim.fragment.project;
+package com.bht.pim.fragment.children.project;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.message.impl.FragmentSwitching;
@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 @Fragment(id = AppConfiguration.FRAGMENT_PROJECT_UTIL,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/project/ProjectUtil.fxml")
+        viewLocation = "/com/bht/pim/fragment/children/project/ProjectUtil.fxml")
 public class ProjectUtil implements Initializable {
 
     @Resource
