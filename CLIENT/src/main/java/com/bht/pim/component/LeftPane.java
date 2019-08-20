@@ -1,6 +1,7 @@
 package com.bht.pim.component;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.util.LanguageUtil;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -17,10 +18,12 @@ import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
+import org.springframework.stereotype.Controller;
 
 import java.util.ResourceBundle;
 
 @Log4j
+@Controller
 @DeclarativeView(id = AppConfiguration.COMPONENT_LEFT, name = "LeftPane",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_LEFT,
@@ -54,6 +57,10 @@ public class LeftPane implements FXComponent {
     @PostConstruct
     public void onStartComponent(final FXComponentLayout arg0,
                                  final ResourceBundle resourceBundle) {
+
+        LanguageUtil.initLabel(lProjectList.textProperty(), AppConfiguration.LABEL_LEFT_LIST_PROJECT);
+        LanguageUtil.initLabel(lGroupList.textProperty(), AppConfiguration.LABEL_LEFT_LIST_GROUP);
+        LanguageUtil.initLabel(lEmployeeList.textProperty(), AppConfiguration.LABEL_LEFT_LIST_EMPLOYEE);
 
         lProjectList.getStyleClass().add("clickable");
         lGroupList.getStyleClass().add("clickable");

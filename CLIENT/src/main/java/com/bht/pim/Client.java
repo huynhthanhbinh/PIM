@@ -39,7 +39,7 @@ public class Client extends AFXSpringJavaConfigLauncher {
     protected void postInit(Stage stage) {
         ClassLoader classLoader = Client.class.getClassLoader();
 
-        stage.setTitle("ProjectModel Information Management");
+        stage.setTitle("Project Information Management");
         stage.getIcons().add(
                 new Image(Objects.requireNonNull(classLoader
                         .getResourceAsStream("pictures/icon.png"))));

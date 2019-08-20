@@ -11,7 +11,6 @@ import java.util.ResourceBundle;
 
 @Scope("singleton")
 public class LanguageProperty {
-
     @Getter
     private ObjectProperty<Locale> localeProperty;
     @Getter

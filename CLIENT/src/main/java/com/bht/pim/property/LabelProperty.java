@@ -1,24 +1,21 @@
 package com.bht.pim.property;
 
+import com.bht.pim.configuration.AppConfiguration;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import java.util.ResourceBundle;
 
-@Component
-@Scope("prototype")
 public class LabelProperty {
-    @Autowired
-    private LanguageProperty languageProperty;
+
     @Getter
     private StringProperty stringProperty;
+    private LanguageProperty languageProperty;
 
     public LabelProperty() {
+        languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
         stringProperty = new SimpleStringProperty();
     }
 

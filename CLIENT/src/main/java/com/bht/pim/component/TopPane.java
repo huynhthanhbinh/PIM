@@ -2,6 +2,7 @@ package com.bht.pim.component;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.property.LanguageProperty;
+import com.bht.pim.util.LanguageUtil;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -19,7 +20,6 @@ import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.util.Locale;
@@ -33,8 +33,9 @@ import java.util.ResourceBundle;
         viewLocation = "/com/bht/pim/component/TopPane.fxml")
 public class TopPane implements FXComponent {
 
-    @Autowired
-    private LanguageProperty languageProperty;
+    private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
+    @FXML
+    private Label lApp;
     @FXML
     private AnchorPane topPane;
     @FXML
@@ -49,8 +50,6 @@ public class TopPane implements FXComponent {
     private ImageView bLogout;
     @Resource
     private Context context;
-    @Autowired
-    private ResourceBundle resourceBundle;
 
     @Override
     public Node handle(Message<Event, Object> message) {
@@ -65,52 +64,19 @@ public class TopPane implements FXComponent {
     @PostConstruct
     public void onStartComponent(final FXComponentLayout layout,
                                  final ResourceBundle resourceBundle) {
-        logo.setPreserveRatio(true);
-        lEnglish.getStyleClass().add("active");
 
-        lEnglish.getStyleClass().add("clickable");
-        lFrench.getStyleClass().add("clickable");
-
-        lEnglish.setOnMouseClicked(event -> {
-
-            log.info("[TopPane] Clicked English");
-
-            if (lEnglish.getStyleClass().contains("active")) {
-                event.consume();
-                return;
-            }
-
-            lFrench.getStyleClass().remove("active");
-            lEnglish.getStyleClass().add("active");
-            Locale.setDefault(Locale.ENGLISH);
-
-            languageProperty.getLocaleProperty().set(Locale.ENGLISH);
-
-            log.info(Locale.getDefault());
-        });
-
-        lFrench.setOnMouseClicked(event -> {
-
-            log.info("[TopPane] Clicked French");
-
-            if (lFrench.getStyleClass().contains("active")) {
-                event.consume();
-                return;
-            }
-
-            lEnglish.getStyleClass().remove("active");
-            lFrench.getStyleClass().add("active");
-
-            languageProperty.getLocaleProperty().set(Locale.FRENCH);
-
-            log.info(Locale.getDefault());
-        });
-
-        bHelp.setOnMouseClicked(event -> log.info("[PIM] Clicked help button"));
-        bLogout.setOnMouseClicked(event -> log.info("[PIM} Clicked Logout button"));
+        LanguageUtil.initLabel(lApp.textProperty(), AppConfiguration.LABEL_PIM_MAIN);
 
         topPane.prefWidthProperty().bind(
                 layout.getGlassPane().widthProperty().subtract(20));
+
+        logo.setPreserveRatio(true);
+        lEnglish.getStyleClass().add("active");
+
+        addLabelEnglishEventHandler();
+        addLabelFrenchEventHandler();
+        addButtonHelpEventHandler();
+        addButtonLogoutEventHandler();
     }
 
     @PreDestroy
@@ -126,5 +92,45 @@ public class TopPane implements FXComponent {
     @OnHide
     public void onHide(final FXComponentLayout componentLayout) {
         log.info("[HIDE] FXComponentLayout: " + context.getId());
+    }
+
+    private void addLabelEnglishEventHandler() {
+        lEnglish.getStyleClass().add("clickable");
+        lEnglish.setOnMouseClicked(event -> {
+
+            if (lEnglish.getStyleClass().contains("active")) {
+                event.consume();
+                return;
+            }
+
+            lFrench.getStyleClass().remove("active");
+            lEnglish.getStyleClass().add("active");
+
+            languageProperty.getLocaleProperty().set(Locale.ENGLISH);
+        });
+    }
+
+    private void addLabelFrenchEventHandler() {
+        lFrench.getStyleClass().add("clickable");
+        lFrench.setOnMouseClicked(event -> {
+
+            if (lFrench.getStyleClass().contains("active")) {
+                event.consume();
+                return;
+            }
+
+            lEnglish.getStyleClass().remove("active");
+            lFrench.getStyleClass().add("active");
+
+            languageProperty.getLocaleProperty().set(Locale.FRENCH);
+        });
+    }
+
+    private void addButtonHelpEventHandler() {
+        bHelp.setOnMouseClicked(event -> log.info("[PIM] Clicked help button"));
+    }
+
+    private void addButtonLogoutEventHandler() {
+        bLogout.setOnMouseClicked(event -> log.info("[PIM} Clicked Logout button"));
     }
 }

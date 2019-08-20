@@ -49,8 +49,6 @@ public class MainPane implements FXComponent {
     private VBox mainPane;
     @Resource
     private Context context;
-    @Resource
-    private ResourceBundle bundle;
 
     private ManagedFragmentHandler mainFragment;
     private ManagedFragmentHandler<ProjectList> projectListFragment;

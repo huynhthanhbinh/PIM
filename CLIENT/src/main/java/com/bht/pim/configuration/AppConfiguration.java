@@ -14,7 +14,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 @Log4j
 @ComponentScan("com.bht.pim")
@@ -66,10 +65,17 @@ public class AppConfiguration {
     public static final String FRAGMENT_EMPLOYEE_LIST = "idfEList";
     public static final String FRAGMENT_EMPLOYEE_INFO = "idfEInfo";
 
+    public static final String LABEL_PIM_MAIN = "label.pim.main";
+    public static final String LABEL_LEFT_LIST_PROJECT = "label.pim.left.list.project";
+    public static final String LABEL_LEFT_LIST_GROUP = "label.pim.left.list.group";
+    public static final String LABEL_LEFT_LIST_EMPLOYEE = "label.pim.left.list.employee";
+
     public static final String LABEL_PROJECT_LIST = "label.project.list";
     public static final String LABEL_PROJECT_CREATE = "label.project.create";
     public static final String LABEL_PROJECT_INFO = "label.project.info";
     public static final String LABEL_PROJECT_UPDATE = "label.project.update";
+
+    public static final LanguageProperty LANGUAGE_PROPERTY = new LanguageProperty(Locale.ENGLISH);
 
     @Bean
     public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub() {
@@ -87,18 +93,6 @@ public class AppConfiguration {
     public ProjectServiceGrpc.ProjectServiceBlockingStub projectServiceBlockingStub() {
         log.info("[PIM] Creating bean of < ProjectServiceBlockingStub >");
         return ProjectServiceGrpc.newBlockingStub(channel);
-    }
-
-    @Bean
-    public LanguageProperty languageProperty() {
-        log.info("[PIM] Creating bean of < LanguageProperty >");
-        return new LanguageProperty(Locale.ENGLISH);
-    }
-
-    @Bean
-    public ResourceBundle resourceBundle() {
-        log.info("[PIM] Creating bean of < ResourceBundle >");
-        return ResourceBundle.getBundle(LANGUAGE_BUNDLES);
     }
 
     @Bean
