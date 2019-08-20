@@ -6,6 +6,7 @@ import com.bht.pim.fragment.children.label.MainLabel;
 import com.bht.pim.fragment.children.project.ProjectEditForm;
 import com.bht.pim.fragment.children.project.ProjectTable;
 import com.bht.pim.fragment.children.project.ProjectUtil;
+import com.bht.pim.fragment.parent.ChildrenContaining;
 import com.bht.pim.fragment.parent.project.ProjectCreate;
 import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.message.PimMessage;
@@ -57,8 +58,6 @@ public class MainPane implements FXComponent {
     private void loadFragments() {
         projectListFragment = context.getManagedFragmentHandler(ProjectList.class);
         projectCreateFragment = context.getManagedFragmentHandler(ProjectCreate.class);
-
-        mainFragment = projectListFragment;
     }
 
     private void assignChildren() {
@@ -97,10 +96,14 @@ public class MainPane implements FXComponent {
     @FXML
     public static void switchFragment(MainPane mainPane, Class fragmentClazz) {
         ObservableList<Node> nodes = mainPane.getMainPane().getChildren();
-        nodes.remove(nodes.get(0));
+        nodes.clear();
 
-        mainPane.setMainFragment(mainPane.getContext()
-                .getManagedFragmentHandler(fragmentClazz));
+        ManagedFragmentHandler target = mainPane.getContext()
+                .getManagedFragmentHandler(fragmentClazz);
+
+        ((ChildrenContaining) target.getController()).onSwitchParentFragment();
+
+        mainPane.setMainFragment(target);
         nodes.add(mainPane.getMainFragment().getFragmentNode());
     }
 
@@ -111,8 +114,7 @@ public class MainPane implements FXComponent {
         loadFragments();
         assignChildren();
 
-        mainPane.getChildren().add(mainFragment.getFragmentNode());
-        ((VBox) mainPane.getChildren().get(0)).getChildren().forEach(log::info);
+        switchFragment(this, ProjectList.class);
 
         mainPane.prefWidthProperty().bind(layout.getGlassPane().widthProperty().subtract(227));
         mainPane.prefHeightProperty().bind(layout.getGlassPane().heightProperty().subtract(120));

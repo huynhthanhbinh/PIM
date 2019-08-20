@@ -1,9 +1,10 @@
 package com.bht.pim.fragment.parent.project;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.children.label.MainLabel;
+import com.bht.pim.fragment.children.project.ProjectTable;
+import com.bht.pim.fragment.children.project.ProjectUtil;
 import com.bht.pim.fragment.parent.ChildrenContaining;
-import com.bht.pim.service.ProjectService;
-import com.bht.pim.util.PimUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -14,7 +15,6 @@ import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -28,12 +28,9 @@ import java.util.ResourceBundle;
         viewLocation = "/com/bht/pim/fragment/parent/project/ProjectList.fxml")
 public class ProjectList implements Initializable, ChildrenContaining {
 
-
-    @Autowired
-    private ProjectService projectService;
-    @Autowired
-    private PimUtil projectUtil;
-
+    private MainLabel mainLabel;
+    private ProjectUtil projectUtil;
+    private ProjectTable projectTable;
 
     @Resource
     private Context context;
@@ -44,9 +41,7 @@ public class ProjectList implements Initializable, ChildrenContaining {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Init this scene code go here
         log.info("[Project List] On init scene ");
-
     }
 
     @Override
@@ -54,5 +49,16 @@ public class ProjectList implements Initializable, ChildrenContaining {
         for (Pair<T, Node> child : children) {
             mainPane.getChildren().add(child.getValue());
         }
+
+        mainLabel = (MainLabel) children[0].getKey();
+        projectUtil = (ProjectUtil) children[1].getKey();
+        projectTable = (ProjectTable) children[2].getKey();
+
+        mainLabel.setLabelText("PROJECT LIST");
+    }
+
+    @Override
+    public void onSwitchParentFragment() {
+        log.info("Switching fragment, new fragment: " + getClass().getSimpleName());
     }
 }

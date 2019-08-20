@@ -1,6 +1,9 @@
 package com.bht.pim.fragment.parent.project;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.children.confirm.ConfirmBox;
+import com.bht.pim.fragment.children.label.MainLabel;
+import com.bht.pim.fragment.children.project.ProjectEditForm;
 import com.bht.pim.fragment.parent.ChildrenContaining;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +28,10 @@ import java.util.ResourceBundle;
         viewLocation = "/com/bht/pim/fragment/parent/project/ProjectCreate.fxml")
 public class ProjectCreate implements Initializable, ChildrenContaining {
 
+    private MainLabel mainLabel;
+    private ProjectEditForm projectEditForm;
+    private ConfirmBox confirmBox;
+
     @Resource
     private Context context;
     @Resource
@@ -35,9 +42,7 @@ public class ProjectCreate implements Initializable, ChildrenContaining {
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Init this scene code go here
         log.info("[Project Create] On init scene ");
-
     }
 
     @Override
@@ -45,5 +50,19 @@ public class ProjectCreate implements Initializable, ChildrenContaining {
         for (Pair<T, Node> child : children) {
             mainPane.getChildren().add(child.getValue());
         }
+
+        mainLabel = (MainLabel) children[0].getKey();
+        projectEditForm = (ProjectEditForm) children[1].getKey();
+        confirmBox = (ConfirmBox) children[2].getKey();
+
+        mainLabel.setLabelText("CREATE PROJECT");
+        confirmBox.setLabelText("CREATE");
+        confirmBox.setOnSubmit(projectEditForm::onSubmit);
+        confirmBox.setOnCancel(projectEditForm::onCancel);
+    }
+
+    @Override
+    public void onSwitchParentFragment() {
+        log.info("Switching fragment, new fragment: " + getClass().getSimpleName());
     }
 }

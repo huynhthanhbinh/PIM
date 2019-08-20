@@ -9,4 +9,6 @@ import javafx.util.Pair;
 public interface ChildrenContaining {
 
     <T> void addAllChildren(Pair<T, Node>[] children);
+
+    void onSwitchParentFragment();
 }
