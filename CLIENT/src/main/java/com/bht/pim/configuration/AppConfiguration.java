@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.ResourceBundle;
+
 @Log4j
 @ComponentScan("com.bht.pim")
 @Configuration
@@ -62,10 +64,10 @@ public class AppConfiguration {
     public static final String FRAGMENT_EMPLOYEE_LIST = "idfEList";
     public static final String FRAGMENT_EMPLOYEE_INFO = "idfEInfo";
 
-    public static final String LABEL_PROJECT_LIST = "PROJECT LIST";
-    public static final String LABEL_PROJECT_CREATE = "CREATE PROJECT";
-    public static final String LABEL_PROJECT_INFO = "PROJECT INFORMATION";
-    public static final String LABEL_PROJECT_UPDATE = "UPDATE PROJECT";
+    public static final String LABEL_PROJECT_LIST = "label.project.list";
+    public static final String LABEL_PROJECT_CREATE = "label.project.create";
+    public static final String LABEL_PROJECT_INFO = "label.project.info";
+    public static final String LABEL_PROJECT_UPDATE = "label.project.update";
 
     @Bean
     public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub() {
@@ -83,6 +85,12 @@ public class AppConfiguration {
     public ProjectServiceGrpc.ProjectServiceBlockingStub projectServiceBlockingStub() {
         log.info("[PIM] Creating bean of < ProjectServiceBlockingStub >");
         return ProjectServiceGrpc.newBlockingStub(channel);
+    }
+
+    @Bean
+    public ResourceBundle resourceBundle() {
+        log.info("[PIM] Creating bean of < ResourceBundle >");
+        return ResourceBundle.getBundle(LANGUAGE_BUNDLES);
     }
 
     @Bean

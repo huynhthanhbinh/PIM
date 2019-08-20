@@ -121,6 +121,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     private boolean chose;
     private boolean current;
+    private boolean isUpdate;
     private EmployeeDto leader;
     private List<Long> projectNumbers;
     private List<EmployeeDto> members; // member-of-this-projects
@@ -132,11 +133,15 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     @Override
     public void onSwitchParentFragment() {
+        if (isUpdate) {
 
+        } else {
+            
+        }
     }
 
     public void setIsUpdateState(boolean isUpdateState) {
-
+        isUpdate = isUpdateState;
     }
 
     @Override

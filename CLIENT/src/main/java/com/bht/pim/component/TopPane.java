@@ -18,10 +18,14 @@ import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 @Log4j
+@Controller
 @DeclarativeView(id = AppConfiguration.COMPONENT_TOP, name = "TopPane",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_TOP,
@@ -48,8 +52,8 @@ public class TopPane implements FXComponent {
     @Resource
     private Context context;
 
-    @Resource
-    private ResourceBundle bundle;
+    @Autowired
+    private ResourceBundle resourceBundle;
 
     @Override
     public Node handle(Message<Event, Object> message) {
@@ -81,6 +85,9 @@ public class TopPane implements FXComponent {
 
             lFrench.getStyleClass().remove("active");
             lEnglish.getStyleClass().add("active");
+            Locale.setDefault(Locale.ENGLISH);
+
+            log.info(Locale.getDefault());
         });
 
         lFrench.setOnMouseClicked(event -> {
@@ -94,6 +101,9 @@ public class TopPane implements FXComponent {
 
             lEnglish.getStyleClass().remove("active");
             lFrench.getStyleClass().add("active");
+            Locale.setDefault(Locale.FRENCH);
+
+            log.info(Locale.getDefault());
         });
 
         bHelp.setOnMouseClicked(event -> log.info("[PIM] Clicked help button"));
