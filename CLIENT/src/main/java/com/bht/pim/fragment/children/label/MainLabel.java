@@ -2,7 +2,7 @@ package com.bht.pim.fragment.children.label;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.ParentOwning;
-import javafx.beans.binding.StringBinding;
+import com.bht.pim.property.LabelProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import lombok.extern.log4j.Log4j;
@@ -30,15 +30,13 @@ public class MainLabel implements ParentOwning {
     private Context context;
     @Autowired
     private ResourceBundle resourceBundle;
+    @Autowired
+    private LabelProperty labelProperty;
 
     @FXML
     public void setLabelText(String newLabel) {
-        label.textProperty().bind(new StringBinding() {
-            @Override
-            protected String computeValue() {
-                return resourceBundle.getString(newLabel);
-            }
-        });
+        labelProperty.setBundleKey(newLabel);
+        label.textProperty().bind(labelProperty.getStringProperty());
     }
 
     @Override

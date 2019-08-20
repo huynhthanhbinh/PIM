@@ -1,6 +1,7 @@
 package com.bht.pim.component;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.property.LanguageProperty;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -31,27 +32,23 @@ import java.util.ResourceBundle;
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_TOP,
         viewLocation = "/com/bht/pim/component/TopPane.fxml")
 public class TopPane implements FXComponent {
+
+    @Autowired
+    private LanguageProperty languageProperty;
     @FXML
     private AnchorPane topPane;
-
     @FXML
     private ImageView logo;
-
     @FXML
     private Label lEnglish;
-
     @FXML
     private Label lFrench;
-
     @FXML
     private ImageView bHelp;
-
     @FXML
     private ImageView bLogout;
-
     @Resource
     private Context context;
-
     @Autowired
     private ResourceBundle resourceBundle;
 
@@ -87,6 +84,8 @@ public class TopPane implements FXComponent {
             lEnglish.getStyleClass().add("active");
             Locale.setDefault(Locale.ENGLISH);
 
+            languageProperty.getLocaleProperty().set(Locale.ENGLISH);
+
             log.info(Locale.getDefault());
         });
 
@@ -101,7 +100,8 @@ public class TopPane implements FXComponent {
 
             lEnglish.getStyleClass().remove("active");
             lFrench.getStyleClass().add("active");
-            Locale.setDefault(Locale.FRENCH);
+
+            languageProperty.getLocaleProperty().set(Locale.FRENCH);
 
             log.info(Locale.getDefault());
         });

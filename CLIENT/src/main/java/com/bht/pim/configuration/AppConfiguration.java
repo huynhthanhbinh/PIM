@@ -1,6 +1,7 @@
 package com.bht.pim.configuration;
 
 import com.bht.pim.mapper.*;
+import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 @Log4j
@@ -85,6 +87,12 @@ public class AppConfiguration {
     public ProjectServiceGrpc.ProjectServiceBlockingStub projectServiceBlockingStub() {
         log.info("[PIM] Creating bean of < ProjectServiceBlockingStub >");
         return ProjectServiceGrpc.newBlockingStub(channel);
+    }
+
+    @Bean
+    public LanguageProperty languageProperty() {
+        log.info("[PIM] Creating bean of < LanguageProperty >");
+        return new LanguageProperty(Locale.ENGLISH);
     }
 
     @Bean
