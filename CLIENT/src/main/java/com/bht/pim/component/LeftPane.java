@@ -4,6 +4,7 @@ import com.bht.pim.configuration.AppConfiguration;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
@@ -27,11 +28,16 @@ import java.util.ResourceBundle;
 public class LeftPane implements FXComponent {
 
     @FXML
-    public AnchorPane leftPane;
+    private Label lProjectList;
+    @FXML
+    private Label lGroupList;
+    @FXML
+    private Label lEmployeeList;
 
+    @FXML
+    public AnchorPane leftPane;
     @Resource
     private Context context;
-
     @Resource
     private ResourceBundle bundle;
 
@@ -48,6 +54,54 @@ public class LeftPane implements FXComponent {
     @PostConstruct
     public void onStartComponent(final FXComponentLayout arg0,
                                  final ResourceBundle resourceBundle) {
+
+        lProjectList.getStyleClass().add("clickable");
+        lGroupList.getStyleClass().add("clickable");
+        lEmployeeList.getStyleClass().add("clickable");
+
+        lProjectList.getStyleClass().add("active");
+
+        lProjectList.setOnMouseClicked(event -> {
+
+            log.info("[LeftPane] Clicked Project List");
+
+            if (lProjectList.getStyleClass().contains("active")) {
+                event.consume();
+                return;
+            }
+
+            lGroupList.getStyleClass().remove("active");
+            lEmployeeList.getStyleClass().remove("active");
+            lProjectList.getStyleClass().add("active");
+        });
+
+        lGroupList.setOnMouseClicked(event -> {
+
+            log.info("[LeftPane] Clicked Group List");
+
+            if (lGroupList.getStyleClass().contains("active")) {
+                event.consume();
+                return;
+            }
+
+            lProjectList.getStyleClass().remove("active");
+            lEmployeeList.getStyleClass().remove("active");
+            lGroupList.getStyleClass().add("active");
+        });
+
+        lEmployeeList.setOnMouseClicked(event -> {
+
+            log.info("[LeftPane] Clicked Employee List");
+
+            if (lEmployeeList.getStyleClass().contains("active")) {
+                event.consume();
+                return;
+            }
+
+            lGroupList.getStyleClass().remove("active");
+            lProjectList.getStyleClass().remove("active");
+            lEmployeeList.getStyleClass().add("active");
+        });
     }
 
     @PreDestroy

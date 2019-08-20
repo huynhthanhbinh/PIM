@@ -1,0 +1,18 @@
+.label {
+    -fx-font-family: "Segoe UI";
+}
+
+.active {
+    -fx-text-fill: #F24517;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
+}
+
+.clickable:hover {
+    -fx-cursor: hand;
+    -fx-underline: true;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+}

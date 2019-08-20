@@ -5,15 +5,13 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<VBox xmlns:fx="http://javafx.com/fxml"
-      xmlns="http://javafx.com/javafx" fx:id="mainLabel"
-      stylesheets="/com/bht/pim/fragment/children/label/MainLabel.css"
-      alignment="CENTER" prefHeight="60.0" minHeight="60.0" maxHeight="60.0"
-      prefWidth="1050.0">
+<VBox fx:id="mainLabel" alignment="CENTER" maxHeight="60.0" minHeight="60.0" prefHeight="60.0" prefWidth="1050.0"
+      stylesheets="/com/bht/pim/fragment/children/label/MainLabel.css" xmlns="http://javafx.com/javafx/8.0.999-ea"
+      xmlns:fx="http://javafx.com/fxml/1">
 
-    <Label alignment="CENTER" VBox.vgrow="ALWAYS" text="MAIN LABEL" fx:id="label" textFill="#606060">
+    <Label fx:id="label" alignment="CENTER" text="MAIN LABEL" textFill="#606060" VBox.vgrow="ALWAYS">
         <font>
-            <Font name="System Bold" size="28.0"/>
+            <Font name="Segoe UI Bold" size="28.0"/>
         </font>
     </Label>
     <Separator prefWidth="200.0" VBox.vgrow="ALWAYS"/>
