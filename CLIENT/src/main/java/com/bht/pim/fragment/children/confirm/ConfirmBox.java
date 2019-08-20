@@ -1,6 +1,7 @@
 package com.bht.pim.fragment.children.confirm;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.children.ParentOwning;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,8 +23,8 @@ import java.util.ResourceBundle;
 @Fragment(id = AppConfiguration.FRAGMENT_CONFIRM,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/children/confirm/Confirm.fxml")
-public class ConfirmBox implements Initializable {
+        viewLocation = "/com/bht/pim/fragment/children/confirm/ConfirmBox.fxml")
+public class ConfirmBox implements Initializable, ParentOwning {
 
     @FXML
     private VBox confirmPane;
@@ -58,5 +59,10 @@ public class ConfirmBox implements Initializable {
     public void setOnCancel(EventHandler<MouseEvent> onCancel) {
         // if user click cancel
         bCancel.setOnMouseClicked(onCancel);
+    }
+
+    @Override
+    public void onSwitchParentFragment() {
+
     }
 }

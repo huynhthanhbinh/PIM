@@ -1,6 +1,9 @@
 package com.bht.pim.fragment.children.project;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.children.ParentOwning;
+import com.bht.pim.fragment.parent.project.ProjectCreate;
+import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.util.PimUtil;
 import javafx.fxml.FXML;
@@ -27,7 +30,7 @@ import java.util.ResourceBundle;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectUtil.fxml")
-public class ProjectUtil implements Initializable {
+public class ProjectUtil implements Initializable, ParentOwning {
 
     @Resource
     private Context context;
@@ -70,10 +73,15 @@ public class ProjectUtil implements Initializable {
             log.info("[NEW] on mouse clicked");
 
             FragmentSwitching switching = new FragmentSwitching(
-                    AppConfiguration.FRAGMENT_PROJECT_LIST,
-                    AppConfiguration.FRAGMENT_PROJECT_CREATE);
+                    ProjectList.class,
+                    ProjectCreate.class);
 
             context.send(AppConfiguration.COMPONENT_MAIN, switching);
         });
+    }
+
+    @Override
+    public void onSwitchParentFragment() {
+
     }
 }

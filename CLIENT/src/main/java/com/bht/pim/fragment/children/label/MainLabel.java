@@ -1,6 +1,7 @@
 package com.bht.pim.fragment.children.label;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.children.ParentOwning;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import lombok.extern.log4j.Log4j;
@@ -19,7 +20,7 @@ import java.util.ResourceBundle;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/label/MainLabel.fxml")
-public class MainLabel {
+public class MainLabel implements ParentOwning {
 
     @FXML
     private Label label;
@@ -33,5 +34,10 @@ public class MainLabel {
     @FXML
     public void setLabelText(String main) {
         label.setText(main);
+    }
+
+    @Override
+    public void onSwitchParentFragment() {
+
     }
 }

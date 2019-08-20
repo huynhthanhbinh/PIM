@@ -1,15 +1,17 @@
 package com.bht.pim.message.impl;
 
 import com.bht.pim.component.MainPane;
+import com.bht.pim.fragment.parent.IdentifierNeeding;
 import com.bht.pim.message.PimMessage;
 import javafx.scene.Node;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class FragmentSwitching implements PimMessage {
+public class IdentifierSending implements PimMessage {
 
     private Class fragmentSent;
     private Class fragmentTarget;
+    private long id;
 
     @Override
     public Class getFragmentSent() {
@@ -17,8 +19,13 @@ public class FragmentSwitching implements PimMessage {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Node postHandle(Node node, MainPane mainPane) {
-        MainPane.switchFragment(mainPane, fragmentTarget);
+        ((IdentifierNeeding) mainPane.getContext()
+                .getManagedFragmentHandler(fragmentTarget)
+                .getController())
+                .getObjectWithIdentifier(id);
+
         return null;
     }
 }

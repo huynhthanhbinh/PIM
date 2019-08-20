@@ -4,7 +4,9 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.dto.GroupDto;
 import com.bht.pim.dto.ProjectDto;
+import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.fragment.children.confirm.Confirmable;
+import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.mapper.DateTimeMapper;
 import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
@@ -49,7 +51,7 @@ import java.util.stream.Collectors;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditForm.fxml")
-public class ProjectEditForm implements Initializable, Confirmable {
+public class ProjectEditForm implements Initializable, Confirmable, ParentOwning {
 
     @Autowired
     private EmployeeService employeeService;
@@ -127,6 +129,15 @@ public class ProjectEditForm implements Initializable, Confirmable {
     private List<EmployeeDto> leaderOptions; // for-creating-new-group
     private AutoCompletionBinding<EmployeeDto> employeeAutoCompletion;
 
+
+    @Override
+    public void onSwitchParentFragment() {
+
+    }
+
+    public void setIsUpdateState(boolean isUpdateState) {
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -423,8 +434,8 @@ public class ProjectEditForm implements Initializable, Confirmable {
                             "[PIM] Successfully create project !");
 
                     FragmentSwitching switching = new FragmentSwitching(
-                            AppConfiguration.FRAGMENT_PROJECT_CREATE,
-                            AppConfiguration.FRAGMENT_PROJECT_LIST);
+                            ProjectEditForm.class,
+                            ProjectList.class);
 
                     context.send(AppConfiguration.COMPONENT_MAIN, switching);
 
@@ -507,8 +518,8 @@ public class ProjectEditForm implements Initializable, Confirmable {
         log.info("[bCancel] onClick");
 
         FragmentSwitching switching = new FragmentSwitching(
-                AppConfiguration.FRAGMENT_PROJECT_CREATE,
-                AppConfiguration.FRAGMENT_PROJECT_LIST);
+                ProjectEditForm.class,
+                ProjectList.class);
 
         context.send(AppConfiguration.COMPONENT_MAIN, switching);
     }
@@ -597,5 +608,10 @@ public class ProjectEditForm implements Initializable, Confirmable {
                 }
             }
         });
+    }
+
+    public boolean getProjectById(long projectId) {
+
+        return false;
     }
 }

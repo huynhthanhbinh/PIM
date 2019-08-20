@@ -10,6 +10,7 @@ import com.bht.pim.fragment.children.project.ProjectUtil;
 import com.bht.pim.fragment.parent.ChildrenContaining;
 import com.bht.pim.fragment.parent.project.ProjectCreate;
 import com.bht.pim.fragment.parent.project.ProjectList;
+import com.bht.pim.fragment.parent.project.ProjectUpdate;
 import com.bht.pim.message.PimMessage;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -54,11 +55,13 @@ public class MainPane implements FXComponent {
     private ManagedFragmentHandler mainFragment;
     private ManagedFragmentHandler<ProjectList> projectListFragment;
     private ManagedFragmentHandler<ProjectCreate> projectCreateFragment;
+    private ManagedFragmentHandler<ProjectUpdate> projectUpdateFragment;
 
 
     private void loadFragments() {
         projectListFragment = context.getManagedFragmentHandler(ProjectList.class);
         projectCreateFragment = context.getManagedFragmentHandler(ProjectCreate.class);
+        projectUpdateFragment = context.getManagedFragmentHandler(ProjectUpdate.class);
     }
 
     private void assignChildren() {
@@ -69,6 +72,11 @@ public class MainPane implements FXComponent {
                 registerNewFragment(PimPagination.class)});
 
         projectCreateFragment.getController().addAllChildren(new Pair[]{
+                registerNewFragment(MainLabel.class),
+                registerNewFragment(ProjectEditForm.class),
+                registerNewFragment(ConfirmBox.class)});
+
+        projectUpdateFragment.getController().addAllChildren(new Pair[]{
                 registerNewFragment(MainLabel.class),
                 registerNewFragment(ProjectEditForm.class),
                 registerNewFragment(ConfirmBox.class)});

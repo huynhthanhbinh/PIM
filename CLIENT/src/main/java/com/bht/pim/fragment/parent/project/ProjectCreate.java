@@ -64,5 +64,13 @@ public class ProjectCreate implements Initializable, ChildrenContaining {
     @Override
     public void onSwitchParentFragment() {
         log.info("Switching fragment, new fragment: " + getClass().getSimpleName());
+
+        // Create Project : false
+        // Update Project : true
+        projectEditForm.setIsUpdateState(false);
+
+        mainLabel.onSwitchParentFragment();
+        projectEditForm.onSwitchParentFragment();
+        confirmBox.onSwitchParentFragment();
     }
 }

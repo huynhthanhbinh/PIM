@@ -63,5 +63,10 @@ public class ProjectList implements Initializable, ChildrenContaining {
     @Override
     public void onSwitchParentFragment() {
         log.info("Switching fragment, new fragment: " + getClass().getSimpleName());
+
+        mainLabel.onSwitchParentFragment();
+        projectUtil.onSwitchParentFragment();
+        projectTable.onSwitchParentFragment();
+        pagination.onSwitchParentFragment();
     }
 }

@@ -12,7 +12,7 @@
 }
 
 .table-view .placeholder {
-    -fx-background-color: gainsboro;
+    -fx-background-color: #f4f4f4;
 }
 
 .table-view .column-header {

@@ -2,6 +2,7 @@ package com.bht.pim.fragment.children.project;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.ProjectDto;
+import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.NotificationUtil;
@@ -37,7 +38,7 @@ import java.util.ResourceBundle;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectTable.fxml")
-public class ProjectTable implements Initializable {
+public class ProjectTable implements Initializable, ParentOwning {
 
     private final Image delete = PimUtil.getImage("delete");
     private final Image edit = PimUtil.getImage("edit");
@@ -75,10 +76,13 @@ public class ProjectTable implements Initializable {
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void onSwitchParentFragment() {
         // Get all necessary data from server
         getNecessaryData();
+    }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         // Init all inputs
         initAllFields();
 
