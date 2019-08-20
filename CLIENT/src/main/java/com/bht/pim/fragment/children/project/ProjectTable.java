@@ -4,6 +4,7 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.notification.NotificationStyle;
+import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.PimUtil;
@@ -46,6 +47,8 @@ public class ProjectTable implements Initializable, ParentOwning {
     private final Image deleteInverse = PimUtil.getImage("delete_inverse");
     private final Image editInverse = PimUtil.getImage("edit_inverse");
 
+    private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
+
     @Setter
     private boolean successGettingProject;
     @Autowired
@@ -56,8 +59,6 @@ public class ProjectTable implements Initializable, ParentOwning {
 
     @Resource
     private Context context;
-    @Resource
-    private ResourceBundle bundle;
     @FXML
     private VBox mainPane;
     @FXML
@@ -101,6 +102,16 @@ public class ProjectTable implements Initializable, ParentOwning {
 
     // Init all table fields
     private void initAllFields() {
+        languageProperty.getLocaleProperty().addListener((observable, oldValue, newValue) -> {
+            ResourceBundle bundle = languageProperty.getResourceBundleProperty().get();
+            cNumber.setText(bundle.getString("label.number"));
+            cName.setText(bundle.getString("label.name"));
+            cCustomer.setText(bundle.getString("label.customer"));
+            cStatus.setText(bundle.getString("label.status"));
+            cStart.setText(bundle.getString("label.start"));
+            cManagement.setText(bundle.getString("label.management"));
+        });
+
         cSelect.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.05));
         cSelect.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         cSelect.setCellFactory(this::select);

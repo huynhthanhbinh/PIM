@@ -113,6 +113,13 @@ public class MainPane implements FXComponent {
 
         mainPane.setMainFragment(target);
         nodes.add(mainPane.getMainFragment().getFragmentNode());
+
+        ((VBox) target.getFragmentNode()).prefWidthProperty().bind(mainPane
+                .getContext()
+                .getComponentLayout()
+                .getGlassPane()
+                .widthProperty()
+                .subtract(227));
     }
 
     @PostConstruct
@@ -125,7 +132,6 @@ public class MainPane implements FXComponent {
         switchFragment(this, ProjectList.class);
 
         mainPane.prefWidthProperty().bind(layout.getGlassPane().widthProperty().subtract(227));
-        mainPane.prefHeightProperty().bind(layout.getGlassPane().heightProperty().subtract(120));
     }
 
     @PreDestroy

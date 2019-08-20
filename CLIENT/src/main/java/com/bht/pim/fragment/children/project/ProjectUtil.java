@@ -34,8 +34,6 @@ public class ProjectUtil implements Initializable, ParentOwning {
 
     @Resource
     private Context context;
-    @Resource
-    private ResourceBundle bundle;
 
     @FXML
     private AnchorPane utilPane;
