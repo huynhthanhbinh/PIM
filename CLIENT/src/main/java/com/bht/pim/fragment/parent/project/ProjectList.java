@@ -2,6 +2,7 @@ package com.bht.pim.fragment.parent.project;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.label.MainLabel;
+import com.bht.pim.fragment.children.pagination.PimPagination;
 import com.bht.pim.fragment.children.project.ProjectTable;
 import com.bht.pim.fragment.children.project.ProjectUtil;
 import com.bht.pim.fragment.parent.ChildrenContaining;
@@ -31,6 +32,7 @@ public class ProjectList implements Initializable, ChildrenContaining {
     private MainLabel mainLabel;
     private ProjectUtil projectUtil;
     private ProjectTable projectTable;
+    private PimPagination pagination;
 
     @Resource
     private Context context;
@@ -53,8 +55,9 @@ public class ProjectList implements Initializable, ChildrenContaining {
         mainLabel = (MainLabel) children[0].getKey();
         projectUtil = (ProjectUtil) children[1].getKey();
         projectTable = (ProjectTable) children[2].getKey();
+        pagination = (PimPagination) children[3].getKey();
 
-        mainLabel.setLabelText("PROJECT LIST");
+        mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_LIST);
     }
 
     @Override

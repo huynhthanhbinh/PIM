@@ -1,14 +1,12 @@
 .button {
     -fx-font-size: 16;
     -fx-font-weight: bold;
+    -fx-background-color: transparent;
 }
 
 .button:hover {
     -fx-cursor: hand;
-}
-
-#bNew {
-    -fx-background-color: transparent;
+    -fx-underline: true;
 }
 
 .combo-box {

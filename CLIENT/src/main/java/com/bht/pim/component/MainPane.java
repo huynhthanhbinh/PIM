@@ -3,6 +3,7 @@ package com.bht.pim.component;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.confirm.ConfirmBox;
 import com.bht.pim.fragment.children.label.MainLabel;
+import com.bht.pim.fragment.children.pagination.PimPagination;
 import com.bht.pim.fragment.children.project.ProjectEditForm;
 import com.bht.pim.fragment.children.project.ProjectTable;
 import com.bht.pim.fragment.children.project.ProjectUtil;
@@ -64,7 +65,8 @@ public class MainPane implements FXComponent {
         projectListFragment.getController().addAllChildren(new Pair[]{
                 registerNewFragment(MainLabel.class),
                 registerNewFragment(ProjectUtil.class),
-                registerNewFragment(ProjectTable.class)});
+                registerNewFragment(ProjectTable.class),
+                registerNewFragment(PimPagination.class)});
 
         projectCreateFragment.getController().addAllChildren(new Pair[]{
                 registerNewFragment(MainLabel.class),
