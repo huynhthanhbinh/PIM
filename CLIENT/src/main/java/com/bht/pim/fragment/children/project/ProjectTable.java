@@ -20,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
@@ -45,6 +46,8 @@ public class ProjectTable implements Initializable, ParentOwning {
     private final Image deleteInverse = PimUtil.getImage("delete_inverse");
     private final Image editInverse = PimUtil.getImage("edit_inverse");
 
+    @Setter
+    private boolean successGettingProject;
     @Autowired
     private ProjectService projectService;
     @Autowired

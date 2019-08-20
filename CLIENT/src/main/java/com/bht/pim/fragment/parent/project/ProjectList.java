@@ -6,6 +6,7 @@ import com.bht.pim.fragment.children.pagination.PimPagination;
 import com.bht.pim.fragment.children.project.ProjectTable;
 import com.bht.pim.fragment.children.project.ProjectUtil;
 import com.bht.pim.fragment.parent.ChildrenContaining;
+import com.bht.pim.fragment.parent.SuccessNeeding;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -27,7 +28,7 @@ import java.util.ResourceBundle;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.SINGLETON,
         viewLocation = "/com/bht/pim/fragment/parent/project/ProjectList.fxml")
-public class ProjectList implements Initializable, ChildrenContaining {
+public class ProjectList implements Initializable, ChildrenContaining, SuccessNeeding {
 
     private MainLabel mainLabel;
     private ProjectUtil projectUtil;
@@ -68,5 +69,10 @@ public class ProjectList implements Initializable, ChildrenContaining {
         projectUtil.onSwitchParentFragment();
         projectTable.onSwitchParentFragment();
         pagination.onSwitchParentFragment();
+    }
+
+    @Override
+    public void setSuccess(boolean successStatus) {
+        projectTable.setSuccessGettingProject(successStatus);
     }
 }

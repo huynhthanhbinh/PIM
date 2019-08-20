@@ -2,6 +2,7 @@ package com.bht.pim.message.impl;
 
 import com.bht.pim.component.MainPane;
 import com.bht.pim.fragment.parent.IdentifierNeeding;
+import com.bht.pim.fragment.parent.SuccessNeeding;
 import com.bht.pim.message.PimMessage;
 import javafx.scene.Node;
 import lombok.AllArgsConstructor;
@@ -21,10 +22,16 @@ public class IdentifierSending implements PimMessage {
     @Override
     @SuppressWarnings("unchecked")
     public Node postHandle(Node node, MainPane mainPane) {
-        ((IdentifierNeeding) mainPane.getContext()
+        if (!((IdentifierNeeding) mainPane.getContext()
                 .getManagedFragmentHandler(fragmentTarget)
                 .getController())
-                .getObjectWithIdentifier(id);
+                .getObjectWithIdentifier(id)) {
+
+            ((SuccessNeeding) mainPane.getContext()
+                    .getManagedFragmentHandler(fragmentSent)
+                    .getController())
+                    .setSuccess(false);
+        }
 
         return null;
     }
