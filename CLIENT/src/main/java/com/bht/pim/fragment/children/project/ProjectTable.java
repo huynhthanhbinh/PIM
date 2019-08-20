@@ -29,7 +29,6 @@ import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 @Log4j
@@ -40,10 +39,10 @@ import java.util.ResourceBundle;
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectTable.fxml")
 public class ProjectTable implements Initializable {
 
-    private final Image delete = getImage("delete");
-    private final Image edit = getImage("edit");
-    private final Image deleteInverse = getImage("delete_inverse");
-    private final Image editInverse = getImage("edit_inverse");
+    private final Image delete = PimUtil.getImage("delete");
+    private final Image edit = PimUtil.getImage("edit");
+    private final Image deleteInverse = PimUtil.getImage("delete_inverse");
+    private final Image editInverse = PimUtil.getImage("edit_inverse");
 
     @Autowired
     private ProjectService projectService;
@@ -247,10 +246,5 @@ public class ProjectTable implements Initializable {
                         });
             }
         };
-    }
-
-    private Image getImage(String path) {
-        return new Image(Objects.requireNonNull(getClass().getClassLoader()
-                .getResourceAsStream("pictures/" + path + ".png")));
     }
 }

@@ -4,6 +4,7 @@ import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.mapper.DateTimeMapper;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.image.Image;
 import javafx.util.StringConverter;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 @Log4j
 @Component
@@ -67,5 +69,10 @@ public class PimUtil {
                 }
             }
         };
+    }
+
+    public static Image getImage(String path) {
+        return new Image(Objects.requireNonNull(PimUtil.class.getClassLoader()
+                .getResourceAsStream("pictures/" + path + ".png")));
     }
 }

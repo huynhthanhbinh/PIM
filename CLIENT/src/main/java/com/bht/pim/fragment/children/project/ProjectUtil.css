@@ -1,0 +1,17 @@
+.button {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-cursor: hand;
+}
+
+#bNew {
+    -fx-background-color: transparent;
+}
+
+.combo-box {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
