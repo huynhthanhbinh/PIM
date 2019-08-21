@@ -12,6 +12,7 @@ import com.bht.pim.fragment.parent.project.ProjectCreate;
 import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.fragment.parent.project.ProjectUpdate;
 import com.bht.pim.message.PimMessage;
+import com.bht.pim.util.PimUtil;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -87,18 +88,7 @@ public class MainPane implements FXComponent {
 
     @Override
     public Node postHandle(Node node, Message<Event, Object> message) {
-        Node xNode = null;
-
-        if (message.isMessageBodyTypeOf(PimMessage.class)) {
-            PimMessage messageBody = (PimMessage) message.getMessageBody();
-
-            log.info("[PIM Message] " + messageBody.getClass().getSimpleName() +
-                    " >>> sent from: " + messageBody.getFragmentSent());
-
-            xNode = messageBody.postHandle(node, this);
-        }
-
-        return xNode;
+        return PimMessage.messageHandler(node, message, this);
     }
 
     @FXML
@@ -123,8 +113,7 @@ public class MainPane implements FXComponent {
         assignChildren();
 
         switchFragment(this, ProjectList.class);
-
-        mainPane.prefWidthProperty().bind(layout.getGlassPane().widthProperty().subtract(227));
+        PimUtil.alignPane(mainPane, context);
     }
 
     @PreDestroy
