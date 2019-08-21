@@ -89,6 +89,9 @@ public class ProjectTable implements Initializable, ParentOwning {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // for multilingual
+        initAllLabels();
+
         // Init all inputs
         initAllFields();
 
@@ -104,16 +107,6 @@ public class ProjectTable implements Initializable, ParentOwning {
 
     // Init all table fields
     private void initAllFields() {
-        languageProperty.getLocaleProperty().addListener((observable, oldValue, newValue) -> {
-            ResourceBundle bundle = languageProperty.getResourceBundleProperty().get();
-            cNumber.setText(bundle.getString("label.number"));
-            cName.setText(bundle.getString("label.name"));
-            cCustomer.setText(bundle.getString("label.customer"));
-            cStatus.setText(bundle.getString("label.status"));
-            cStart.setText(bundle.getString("label.start"));
-            cManagement.setText(bundle.getString("label.management"));
-        });
-
         cSelect.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.05));
         cSelect.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         cSelect.setCellFactory(this::select);
@@ -267,5 +260,25 @@ public class ProjectTable implements Initializable, ParentOwning {
                         });
             }
         };
+    }
+
+    private void initAllLabels() {
+        ResourceBundle bundle = languageProperty.getResourceBundleProperty().get();
+        cNumber.setText(bundle.getString("label.number"));
+        cName.setText(bundle.getString("label.name"));
+        cCustomer.setText(bundle.getString("label.customer"));
+        cStatus.setText(bundle.getString("label.status"));
+        cStart.setText(bundle.getString("label.start"));
+        cManagement.setText(bundle.getString("label.management"));
+
+        languageProperty.getResourceBundleProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    cNumber.setText(newValue.getString("label.number"));
+                    cName.setText(newValue.getString("label.name"));
+                    cCustomer.setText(newValue.getString("label.customer"));
+                    cStatus.setText(newValue.getString("label.status"));
+                    cStart.setText(newValue.getString("label.start"));
+                    cManagement.setText(newValue.getString("label.management"));
+                });
     }
 }
