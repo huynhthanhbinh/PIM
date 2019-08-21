@@ -5,6 +5,7 @@ import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.fragment.parent.project.ProjectCreate;
 import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.message.impl.FragmentSwitching;
+import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.PimUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,12 +47,19 @@ public class ProjectUtil implements Initializable, ParentOwning {
     @FXML
     private Label lNumberOfProjects;
     @FXML
+    private Label lSelected;
+    @FXML
     private Button bDeleteAll;
     @FXML
     private Button bNew;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        LanguageUtil.initLabel(searchBox.promptTextProperty(), "label.project.util.searchbox");
+        LanguageUtil.initLabel(comboBoxStatus.promptTextProperty(), "label.project.util.status");
+        LanguageUtil.initLabel(lSelected.textProperty(), "label.project.util.selected");
+        LanguageUtil.initLabel(bDeleteAll.textProperty(), "label.project.util.deleteall");
+
         ImageView iSearch = new ImageView(PimUtil.getImage("search"));
         ImageView iDelete = new ImageView(PimUtil.getImage("delete"));
         ImageView iNew = new ImageView(PimUtil.getImage("add"));
@@ -62,7 +70,6 @@ public class ProjectUtil implements Initializable, ParentOwning {
         bSearch.setGraphic(iSearch);
         bNew.setGraphic(iNew);
         bDeleteAll.setGraphic(iDelete);
-        bDeleteAll.setText("DELETE ALL");
 
         comboBoxStatus.getItems().addAll(
                 "New", "Planned", "In progress", "Finished");

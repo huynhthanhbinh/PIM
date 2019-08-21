@@ -11,9 +11,11 @@ import com.bht.pim.mapper.DateTimeMapper;
 import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.notification.NotificationStyle;
+import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.service.EmployeeService;
 import com.bht.pim.service.GroupService;
 import com.bht.pim.service.ProjectService;
+import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.PimUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
@@ -66,18 +68,53 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     @Autowired
     private StatusMapper statusMapper;
 
+    @FXML
+    private Label lBasicInfo;
+    @FXML
+    private Label lFillAll;
+    @FXML
+    private Label lProjectMember;
+    @FXML
+    private Label lNumber;
+    @FXML
+    private Label lProjectNumber;
+    @FXML
+    private Label lNumberExist;
+    @FXML
+    private Label lStatus;
+    @FXML
+    private Label lProjectName;
+    @FXML
+    private Label lNameEmpty;
+    @FXML
+    private Label lCustomer;
+    @FXML
+    private Label lCustomerEmpty;
+    @FXML
+    private Label lGroupOption;
+    @FXML
+    private Label lGroupOptionEmpty;
+    @FXML
+    private Label lLeader;
+    @FXML
+    private Label lLeaderChoice;
+    @FXML
+    private Label lStartDate;
+    @FXML
+    private Label lStartEmpty;
+    @FXML
+    private Label lEndDate;
+    @FXML
+    private Label lEndInvalid;
+
     @Resource
     private Context context;
-    @Resource
-    private ResourceBundle bundle;
     @FXML
     private VBox mainPane;
     @FXML
     private GridPane gridPane;
     @FXML
     private TextField textField;
-    @FXML
-    private Label lNumber;
     @FXML
     private Label lSize;
     @FXML
@@ -98,22 +135,6 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     private TextField name;
     @FXML
     private TextField number;
-    @FXML
-    private Label lNumberExist;
-    @FXML
-    private Label lNameEmpty;
-    @FXML
-    private Label lCustomerEmpty;
-    @FXML
-    private Label lLeaderChoice;
-    @FXML
-    private Label lStartEmpty;
-    @FXML
-    private Label lEndInvalid;
-    @FXML
-    private Label lGroupOption;
-    @FXML
-    private Label lFillAll;
     @FXML
     private DatePicker start;
     @FXML
@@ -136,7 +157,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
         if (isUpdate) {
 
         } else {
-            
+
         }
     }
 
@@ -146,6 +167,9 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // for i18n / multilingual
+        initAllLabels();
+
         // Get all necessary data from server
         getNecessaryData();
 
@@ -167,7 +191,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
         lLeaderChoice.setVisible(false);
         lStartEmpty.setVisible(false);
         lEndInvalid.setVisible(false);
-        lGroupOption.setVisible(false);
+        lGroupOptionEmpty.setVisible(false);
         lFillAll.setVisible(false);
     }
 
@@ -229,7 +253,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
         comboBoxOption.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     chose = true;
-                    lGroupOption.setVisible(false);
+                    lGroupOptionEmpty.setVisible(false);
 
                     if (comboBoxLeader.getItems() != null) {
                         comboBoxLeader.getItems().clear();
@@ -478,7 +502,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
         customer.getStyleClass().remove("empty");
         start.getEditor().getStyleClass().remove("empty");
         end.getEditor().getStyleClass().remove("empty");
-        lGroupOption.setVisible(false);
+        lGroupOptionEmpty.setVisible(false);
     }
 
 
@@ -503,7 +527,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
             lStartEmpty.setVisible(true);
         }
         if (!chose) {
-            lGroupOption.setVisible(true);
+            lGroupOptionEmpty.setVisible(true);
         }
     }
 
@@ -618,5 +642,42 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     public boolean getProjectById(long projectId) {
 
         return false;
+    }
+
+    private void initAllLabels() {
+        LanguageUtil.initLabel(lBasicInfo.textProperty(), "label.project.form.basicinfo");
+        LanguageUtil.initLabel(lFillAll.textProperty(), "label.project.form.fillallfields");
+        LanguageUtil.initLabel(lProjectMember.textProperty(), "label.project.form.projectmembers");
+        LanguageUtil.initLabel(textField.promptTextProperty(), "label.project.form.searchmember");
+        LanguageUtil.initLabel(lNumber.textProperty(), "label.project.form.numberofmember");
+        LanguageUtil.initLabel(lProjectNumber.textProperty(), "label.project.form.projectnumber");
+        LanguageUtil.initLabel(number.promptTextProperty(), "label.project.form.numberonly");
+        LanguageUtil.initLabel(lNumberExist.textProperty(), "label.project.form.numberexist");
+        LanguageUtil.initLabel(lStatus.textProperty(), "label.project.form.status");
+        LanguageUtil.initLabel(lProjectName.textProperty(), "label.project.form.projectname");
+        LanguageUtil.initLabel(name.promptTextProperty(), "label.project.form.inputname");
+        LanguageUtil.initLabel(lNameEmpty.textProperty(), "label.project.form.nameempty");
+        LanguageUtil.initLabel(lCustomer.textProperty(), "label.project.form.customer");
+        LanguageUtil.initLabel(customer.promptTextProperty(), "label.project.form.inputcustomer");
+        LanguageUtil.initLabel(lCustomerEmpty.textProperty(), "label.project.form.customerempty");
+        LanguageUtil.initLabel(lGroupOption.textProperty(), "label.project.form.groupoption");
+        LanguageUtil.initLabel(comboBoxOption.promptTextProperty(), "label.project.form.chooseoption");
+        LanguageUtil.initLabel(lGroupOptionEmpty.textProperty(), "label.project.form.pleasechooseoption");
+        LanguageUtil.initLabel(lLeader.textProperty(), "label.project.form.leader");
+        LanguageUtil.initLabel(comboBoxLeader.promptTextProperty(), "label.project.form.chooseleader");
+        LanguageUtil.initLabel(lLeaderChoice.textProperty(), "label.project.form.pleasechooseleader");
+        LanguageUtil.initLabel(lStartDate.textProperty(), "label.project.form.startdate");
+        LanguageUtil.initLabel(lStartEmpty.textProperty(), "label.project.form.specifystart");
+        LanguageUtil.initLabel(lEndDate.textProperty(), "label.project.form.enddate");
+        LanguageUtil.initLabel(lEndInvalid.textProperty(), "label.project.form.endinvalid");
+
+        LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
+
+        cName.setText(languageProperty.getResourceBundleProperty()
+                .get().getString("label.project.form.membername"));
+
+        languageProperty.getResourceBundleProperty()
+                .addListener((observable, oldValue, newValue) ->
+                        cName.setText(newValue.getString("label.project.form.membername")));
     }
 }

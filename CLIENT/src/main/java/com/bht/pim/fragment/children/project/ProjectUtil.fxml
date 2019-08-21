@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 <AnchorPane fx:id="utilPane" maxWidth="1500.0" prefHeight="100.0" prefWidth="1050.0"
             stylesheets="/com/bht/pim/fragment/children/project/ProjectUtil.css"
-            xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+            xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
     <Button fx:id="bNew" layoutX="954.0" layoutY="5.0" mnemonicParsing="false" prefHeight="96.0" prefWidth="96.0"
             AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="18.0">
         <font>
@@ -29,7 +29,7 @@
             <Font name="System Bold" size="25.0"/>
         </font>
     </Label>
-    <Label layoutX="60.0" layoutY="64.0" text="project(s) selected" AnchorPane.bottomAnchor="10.0"
+    <Label fx:id="lSelected" layoutX="60.0" layoutY="64.0" text="project(s) selected" AnchorPane.bottomAnchor="10.0"
            AnchorPane.leftAnchor="70.0">
         <font>
             <Font size="18.0"/>

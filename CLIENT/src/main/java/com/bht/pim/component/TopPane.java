@@ -71,7 +71,12 @@ public class TopPane implements FXComponent {
                 layout.getGlassPane().widthProperty().subtract(20));
 
         logo.setPreserveRatio(true);
-        lEnglish.getStyleClass().add("active");
+
+        if (languageProperty.getLocaleProperty().get().equals(Locale.ENGLISH)) {
+            lEnglish.getStyleClass().add("active");
+        } else {
+            lFrench.getStyleClass().add("active");
+        }
 
         addLabelEnglishEventHandler();
         addLabelFrenchEventHandler();

@@ -61,7 +61,7 @@ public class ProjectUpdate implements Initializable, IdentifierNeeding, Children
         confirmBox = (ConfirmBox) children[2].getKey();
 
         mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_UPDATE);
-        confirmBox.setLabelText("UPDATE");
+        confirmBox.setLabelText(AppConfiguration.LABEL_CONFIRM_UPDATE);
         confirmBox.setOnSubmit(projectEditForm::onSubmit);
         confirmBox.setOnCancel(projectEditForm::onCancel);
     }

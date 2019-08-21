@@ -20,6 +20,9 @@ import java.util.Locale;
 @Configuration
 public class AppConfiguration {
 
+    public static final LanguageProperty LANGUAGE_PROPERTY =
+            new LanguageProperty(Locale.FRENCH);
+
     public AppConfiguration() {
         log.info("[PIM] On init configuration beans !\n");
     }
@@ -75,7 +78,9 @@ public class AppConfiguration {
     public static final String LABEL_PROJECT_INFO = "label.project.info";
     public static final String LABEL_PROJECT_UPDATE = "label.project.update";
 
-    public static final LanguageProperty LANGUAGE_PROPERTY = new LanguageProperty(Locale.ENGLISH);
+    public static final String LABEL_CONFIRM_CREATE = "label.confirm.form.create";
+    public static final String LABEL_CONFIRM_UPDATE = "label.confirm.form.update";
+    public static final String LABEL_CONFIRM_CANCEL = "label.confirm.form.cancel";
 
     @Bean
     public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub() {

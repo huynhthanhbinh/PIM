@@ -58,7 +58,7 @@ public class ProjectCreate implements Initializable, ChildrenContaining {
         confirmBox = (ConfirmBox) children[2].getKey();
 
         mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_CREATE);
-        confirmBox.setLabelText("CREATE");
+        confirmBox.setLabelText(AppConfiguration.LABEL_CONFIRM_CREATE);
         confirmBox.setOnSubmit(projectEditForm::onSubmit);
         confirmBox.setOnCancel(projectEditForm::onCancel);
     }
