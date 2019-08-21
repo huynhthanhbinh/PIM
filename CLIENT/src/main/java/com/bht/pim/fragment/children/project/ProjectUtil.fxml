@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 <AnchorPane fx:id="utilPane" maxWidth="1500.0" prefHeight="100.0" prefWidth="1050.0"
             stylesheets="/com/bht/pim/fragment/children/project/ProjectUtil.css"
-            xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
+            xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
     <Button fx:id="bNew" layoutX="954.0" layoutY="5.0" mnemonicParsing="false" prefHeight="96.0" prefWidth="96.0"
             AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="18.0">
         <font>
@@ -22,7 +22,7 @@
     <Button fx:id="bSearch" layoutX="525.0" layoutY="17.0" maxHeight="36.0" maxWidth="36.0" mnemonicParsing="false"
             prefHeight="36.0" prefWidth="36.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="495.0"/>
     <ComboBox fx:id="comboBoxStatus" layoutX="604.0" layoutY="28.0" prefHeight="36.0" prefWidth="180.0"
-              promptText="STATUS" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="270.0"/>
+              promptText="STATUS" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="250.0"/>
     <Label fx:id="lNumberOfProjects" layoutX="30.0" layoutY="64.0" text="0" AnchorPane.bottomAnchor="5.0"
            AnchorPane.leftAnchor="36.0">
         <font>
@@ -36,11 +36,13 @@
         </font>
     </Label>
     <Button fx:id="bDeleteAll" layoutX="390.0" layoutY="60.0" mnemonicParsing="false" prefHeight="30.0"
-            prefWidth="180.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="270.0">
+            prefWidth="180.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="250.0">
         <font>
             <Font size="14.0"/>
         </font>
     </Button>
     <Separator layoutX="30.0" layoutY="59.0" prefWidth="200.0" AnchorPane.bottomAnchor="45.0"
-               AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="270.0"/>
+               AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="250.0"/>
+    <Button fx:id="bCancel" layoutX="555.0" layoutY="14.0" maxHeight="36.0" maxWidth="36.0" mnemonicParsing="false"
+            prefHeight="36.0" prefWidth="36.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="450.0"/>
 </AnchorPane>

@@ -41,8 +41,6 @@ public class ProjectUtil implements Initializable, ParentOwning {
     @FXML
     private TextField searchBox;
     @FXML
-    private Button bSearch;
-    @FXML
     private ComboBox<String> comboBoxStatus;
     @FXML
     private Label lNumberOfProjects;
@@ -50,6 +48,10 @@ public class ProjectUtil implements Initializable, ParentOwning {
     private Label lSelected;
     @FXML
     private Button bDeleteAll;
+    @FXML
+    private Button bSearch;
+    @FXML
+    private Button bCancel;
     @FXML
     private Button bNew;
 
@@ -61,13 +63,18 @@ public class ProjectUtil implements Initializable, ParentOwning {
         LanguageUtil.initLabel(bDeleteAll.textProperty(), "label.project.util.deleteall");
 
         ImageView iSearch = new ImageView(PimUtil.getImage("search"));
+        ImageView iCancel = new ImageView(PimUtil.getImage("cancel"));
         ImageView iDelete = new ImageView(PimUtil.getImage("delete"));
         ImageView iNew = new ImageView(PimUtil.getImage("add"));
+
+        iCancel.setFitWidth(30);
+        iCancel.setFitHeight(30);
 
         iSearch.setFitWidth(30);
         iSearch.setFitHeight(30);
 
         bSearch.setGraphic(iSearch);
+        bCancel.setGraphic(iCancel);
         bNew.setGraphic(iNew);
         bDeleteAll.setGraphic(iDelete);
 
