@@ -126,25 +126,25 @@ public class ProjectTable implements Initializable, ParentOwning {
 
     // Init all table fields
     private void initAllFields() {
-        cSelect.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.05));
+        cSelect.prefWidthProperty().bind(table.widthProperty().multiply(0.05));
         cSelect.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         cSelect.setCellFactory(this::select);
         cSelect.setResizable(false);
 
-        cNumber.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
+        cNumber.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
         cNumber.setCellValueFactory(new PropertyValueFactory<>("number"));
         cNumber.setResizable(false);
 
-        cName.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.3));
+        cName.prefWidthProperty().bind(table.widthProperty().multiply(0.3));
         cName.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         cName.setCellFactory(this::name);
         cName.setResizable(false);
 
-        cCustomer.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.25));
+        cCustomer.prefWidthProperty().bind(table.widthProperty().multiply(0.25));
         cCustomer.setCellValueFactory(new PropertyValueFactory<>("customer"));
         cCustomer.setResizable(false);
 
-        cStatus.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
+        cStatus.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
         cStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         cStatus.setResizable(false);
 
@@ -218,7 +218,11 @@ public class ProjectTable implements Initializable, ParentOwning {
                                 NotificationStyle.SUCCESS,
                                 Pos.CENTER,
                                 "Successfully delete project !");
+
+
                         table.getItems().remove(projectDto);
+                        getListProject(calculatePageIndexAfterDelete());
+
                     } else {
                         NotificationUtil.showNotification(
                                 NotificationStyle.WARNING,
@@ -299,5 +303,13 @@ public class ProjectTable implements Initializable, ParentOwning {
                     cStart.setText(newValue.getString("label.start"));
                     cManagement.setText(newValue.getString("label.management"));
                 });
+    }
+
+    // if page n has only 1 project
+    // after delete, load page 1
+    private int calculatePageIndexAfterDelete() {
+        return (table.getItems().size() > 0)
+                ? pageIndexProperty.get()
+                : 0;
     }
 }
