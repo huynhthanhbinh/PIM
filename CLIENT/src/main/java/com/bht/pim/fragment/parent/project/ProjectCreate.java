@@ -5,6 +5,7 @@ import com.bht.pim.fragment.children.confirm.ConfirmBox;
 import com.bht.pim.fragment.children.label.MainLabel;
 import com.bht.pim.fragment.children.project.ProjectEditForm;
 import com.bht.pim.fragment.parent.ChildrenContaining;
+import com.bht.pim.util.PimUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -43,6 +44,7 @@ public class ProjectCreate implements Initializable, ChildrenContaining {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         log.info("[Project Create] On init scene ");
+        PimUtil.alignPane(mainPane, context);
     }
 
     @Override

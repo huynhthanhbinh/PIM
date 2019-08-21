@@ -21,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
@@ -60,6 +61,7 @@ public class ProjectTable implements Initializable, ParentOwning {
     @Resource
     private Context context;
     @FXML
+    @Getter
     private VBox mainPane;
     @FXML
     private TableView<ProjectDto> table;
@@ -187,6 +189,7 @@ public class ProjectTable implements Initializable, ParentOwning {
                 HBox hBox = new HBox();
                 hBox.getChildren().addAll(bEdit, bRemove);
                 setGraphic(hBox);
+                hBox.setAlignment(Pos.CENTER_RIGHT);
 
                 bRemove.setOnAction(event -> {
                     if (!projectDto.getStatus().equals("New")) {

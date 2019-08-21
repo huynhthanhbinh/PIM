@@ -55,11 +55,7 @@
 }
 
 #cManagement .label {
-    -fx-alignment: CENTER;
-}
-
-#cManagement {
-    -fx-alignment: CENTER;
+    -fx-alignment: CENTER-RIGHT;
 }
 
 .table-row-cell:odd {

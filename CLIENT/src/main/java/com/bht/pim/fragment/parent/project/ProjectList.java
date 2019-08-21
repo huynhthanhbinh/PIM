@@ -7,6 +7,8 @@ import com.bht.pim.fragment.children.project.ProjectTable;
 import com.bht.pim.fragment.children.project.ProjectUtil;
 import com.bht.pim.fragment.parent.ChildrenContaining;
 import com.bht.pim.fragment.parent.SuccessNeeding;
+import com.bht.pim.util.PimUtil;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -45,6 +47,7 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         log.info("[Project List] On init scene ");
+        PimUtil.alignPane(mainPane, context);
     }
 
     @Override
@@ -59,6 +62,11 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
         pagination = (PimPagination) children[3].getKey();
 
         mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_LIST);
+
+        projectTable.getMainPane().prefWidthProperty().bind(Bindings.
+                when(mainPane.widthProperty().lessThan(1500))
+                .then(mainPane.widthProperty().subtract(10))
+                .otherwise(1500));
     }
 
     @Override
