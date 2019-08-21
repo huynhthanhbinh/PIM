@@ -50,7 +50,7 @@
 }
 
 .table-row-cell:empty {
-    -fx-background-color: gainsboro;
+    -fx-background-color: #f4f4f4;
 }
 
 .table-row-cell:empty.table-cell {

@@ -132,6 +132,8 @@ public class AppConfiguration {
                 Objects.requireNonNull(environment.getProperty("hibernate.connection.pool_size")));
         hibernateProperties.put("hibernate.connection.autocommit",
                 Objects.requireNonNull(environment.getProperty("hibernate.connection.autocommit")));
+        hibernateProperties.put("hibernate.legacy_limit_handler",
+                Objects.requireNonNull(environment.getProperty("hibernate.legacy_limit_handler"))); //pagination
 
 
         // Assign hibernateProperties to SessionFactory Config

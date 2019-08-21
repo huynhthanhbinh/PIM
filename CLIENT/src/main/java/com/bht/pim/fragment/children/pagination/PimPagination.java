@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.HBox;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
@@ -25,6 +26,7 @@ public class PimPagination implements Initializable, ParentOwning {
     @FXML
     private HBox paginationPane;
     @FXML
+    @Getter
     private Pagination pagination;
 
 
@@ -36,5 +38,6 @@ public class PimPagination implements Initializable, ParentOwning {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         log.info("[Pagination] On init view");
+        pagination.setMaxPageIndicatorCount(10);
     }
 }

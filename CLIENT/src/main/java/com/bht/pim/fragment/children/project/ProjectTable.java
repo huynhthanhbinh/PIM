@@ -11,7 +11,9 @@ import com.bht.pim.util.PimUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -50,7 +52,11 @@ public class ProjectTable implements Initializable, ParentOwning {
 
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
     private static final int MAX_TABLE_ROW = 8;
-    private int currentPageIndex;
+
+    @Getter
+    private IntegerProperty pageCountProperty;
+    @Getter
+    private IntegerProperty pageIndexProperty;
 
     @Setter
     private boolean successGettingProject;
@@ -86,12 +92,17 @@ public class ProjectTable implements Initializable, ParentOwning {
     @Override
     public void onSwitchParentFragment() {
         // Get all necessary data from server
-        getListProject(currentPageIndex);
+        getListProject(pageIndexProperty.get());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentPageIndex = 0;
+
+        pageIndexProperty = new SimpleIntegerProperty(0);
+        pageCountProperty = new SimpleIntegerProperty(0);
+
+        pageIndexProperty.addListener((observable, oldValue, newValue) ->
+                getListProject(newValue.intValue()));
 
         // for multilingual
         initAllLabels();
@@ -108,6 +119,9 @@ public class ProjectTable implements Initializable, ParentOwning {
     private void getListProject(int pageIndex) {
         table.setItems(projectService.getProjectList(MAX_TABLE_ROW, pageIndex));
         log.info("Number of projects: " + projectService.getNumberOfProjects());
+
+        double temp = projectService.getNumberOfProjects();
+        pageCountProperty.set((int) Math.ceil(temp / MAX_TABLE_ROW));
     }
 
     // Init all table fields

@@ -63,6 +63,9 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
 
         mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_LIST);
 
+        pagination.getPagination().pageCountProperty().bind(projectTable.getPageCountProperty());
+        projectTable.getPageIndexProperty().bind(pagination.getPagination().currentPageIndexProperty());
+
         projectTable.getMainPane().prefWidthProperty().bind(Bindings.
                 when(mainPane.widthProperty().lessThan(1500))
                 .then(mainPane.widthProperty().subtract(10))
