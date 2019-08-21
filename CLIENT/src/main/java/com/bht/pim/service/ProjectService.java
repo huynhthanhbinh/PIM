@@ -22,6 +22,9 @@ public interface ProjectService {
     // Get all project numbers
     List<Long> getProjectNumbers();
 
-    // Get all of projects
-    ObservableList<ProjectDto> getAllProjects();
+    // Get number of projects / row count(*)
+    long getNumberOfProjects();
+
+    // Get project list - pagination
+    ObservableList<ProjectDto> getProjectList(int maxRow, int pageIndex);
 }

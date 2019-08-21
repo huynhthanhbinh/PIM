@@ -15,6 +15,9 @@ public interface ProjectDao {
     // Get next project Id
     long nextIdValue();
 
+    // Get project row count(*)
+    long getNumberOfProjects();
+
     // Get all projects number
     List<Long> getAllProjectsNumber();
 
@@ -30,6 +33,6 @@ public interface ProjectDao {
     // Get an existing project
     ProjectEntity getProjectById(long id);
 
-    // Get all projects
-    List<ProjectEntity> getAllProjects();
+    // Get all projects - pagination
+    List<ProjectEntity> getProjectList(int maxRow, int pageIndex);
 }

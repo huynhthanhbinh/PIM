@@ -149,28 +149,28 @@ public final class ProjectServiceGrpc {
         return getDeleteProjectMethod;
     }
 
-    private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+    private static volatile io.grpc.MethodDescriptor<ProjectPagination,
             ProjectList> getGetProjectListMethod;
 
     @io.grpc.stub.annotations.RpcMethod(
             fullMethodName = SERVICE_NAME + '/' + "getProjectList",
-            requestType = com.google.protobuf.Empty.class,
+            requestType = ProjectPagination.class,
             responseType = ProjectList.class,
             methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-    public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+    public static io.grpc.MethodDescriptor<ProjectPagination,
             ProjectList> getGetProjectListMethod() {
-        io.grpc.MethodDescriptor<com.google.protobuf.Empty, ProjectList> getGetProjectListMethod;
+        io.grpc.MethodDescriptor<ProjectPagination, ProjectList> getGetProjectListMethod;
         if ((getGetProjectListMethod = ProjectServiceGrpc.getGetProjectListMethod) == null) {
             synchronized (ProjectServiceGrpc.class) {
                 if ((getGetProjectListMethod = ProjectServiceGrpc.getGetProjectListMethod) == null) {
                     ProjectServiceGrpc.getGetProjectListMethod = getGetProjectListMethod =
-                            io.grpc.MethodDescriptor.<com.google.protobuf.Empty, ProjectList>newBuilder()
+                            io.grpc.MethodDescriptor.<ProjectPagination, ProjectList>newBuilder()
                                     .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
                                     .setFullMethodName(generateFullMethodName(
                                             "com.bht.pim.proto.projects.ProjectService", "getProjectList"))
                                     .setSampledToLocalTracing(true)
                                     .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                            com.google.protobuf.Empty.getDefaultInstance()))
+                                            ProjectPagination.getDefaultInstance()))
                                     .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                                             ProjectList.getDefaultInstance()))
                                     .setSchemaDescriptor(new ProjectServiceMethodDescriptorSupplier("getProjectList"))
@@ -211,6 +211,38 @@ public final class ProjectServiceGrpc {
             }
         }
         return getGetProjectNumbersMethod;
+    }
+
+    private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+            com.google.protobuf.Int64Value> getGetNumberOfProjectsMethod;
+
+    @io.grpc.stub.annotations.RpcMethod(
+            fullMethodName = SERVICE_NAME + '/' + "getNumberOfProjects",
+            requestType = com.google.protobuf.Empty.class,
+            responseType = com.google.protobuf.Int64Value.class,
+            methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+    public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+            com.google.protobuf.Int64Value> getGetNumberOfProjectsMethod() {
+        io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Int64Value> getGetNumberOfProjectsMethod;
+        if ((getGetNumberOfProjectsMethod = ProjectServiceGrpc.getGetNumberOfProjectsMethod) == null) {
+            synchronized (ProjectServiceGrpc.class) {
+                if ((getGetNumberOfProjectsMethod = ProjectServiceGrpc.getGetNumberOfProjectsMethod) == null) {
+                    ProjectServiceGrpc.getGetNumberOfProjectsMethod = getGetNumberOfProjectsMethod =
+                            io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.google.protobuf.Int64Value>newBuilder()
+                                    .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                                    .setFullMethodName(generateFullMethodName(
+                                            "com.bht.pim.proto.projects.ProjectService", "getNumberOfProjects"))
+                                    .setSampledToLocalTracing(true)
+                                    .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            com.google.protobuf.Empty.getDefaultInstance()))
+                                    .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            com.google.protobuf.Int64Value.getDefaultInstance()))
+                                    .setSchemaDescriptor(new ProjectServiceMethodDescriptorSupplier("getNumberOfProjects"))
+                                    .build();
+                }
+            }
+        }
+        return getGetNumberOfProjectsMethod;
     }
 
     /**
@@ -276,7 +308,7 @@ public final class ProjectServiceGrpc {
         /**
          *
          */
-        public void getProjectList(com.google.protobuf.Empty request,
+        public void getProjectList(ProjectPagination request,
                                    io.grpc.stub.StreamObserver<ProjectList> responseObserver) {
             asyncUnimplementedUnaryCall(getGetProjectListMethod(), responseObserver);
         }
@@ -287,6 +319,14 @@ public final class ProjectServiceGrpc {
         public void getProjectNumbers(com.google.protobuf.Empty request,
                                       io.grpc.stub.StreamObserver<ProjectNumbers> responseObserver) {
             asyncUnimplementedUnaryCall(getGetProjectNumbersMethod(), responseObserver);
+        }
+
+        /**
+         *
+         */
+        public void getNumberOfProjects(com.google.protobuf.Empty request,
+                                        io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value> responseObserver) {
+            asyncUnimplementedUnaryCall(getGetNumberOfProjectsMethod(), responseObserver);
         }
 
         @Override
@@ -324,7 +364,7 @@ public final class ProjectServiceGrpc {
                             getGetProjectListMethod(),
                             asyncUnaryCall(
                                     new MethodHandlers<
-                                            com.google.protobuf.Empty,
+                                            ProjectPagination,
                                             ProjectList>(
                                             this, METHODID_GET_PROJECT_LIST)))
                     .addMethod(
@@ -334,6 +374,13 @@ public final class ProjectServiceGrpc {
                                             com.google.protobuf.Empty,
                                             ProjectNumbers>(
                                             this, METHODID_GET_PROJECT_NUMBERS)))
+                    .addMethod(
+                            getGetNumberOfProjectsMethod(),
+                            asyncUnaryCall(
+                                    new MethodHandlers<
+                                            com.google.protobuf.Empty,
+                                            com.google.protobuf.Int64Value>(
+                                            this, METHODID_GET_NUMBER_OF_PROJECTS)))
                     .build();
         }
     }
@@ -396,7 +443,7 @@ public final class ProjectServiceGrpc {
         /**
          *
          */
-        public void getProjectList(com.google.protobuf.Empty request,
+        public void getProjectList(ProjectPagination request,
                                    io.grpc.stub.StreamObserver<ProjectList> responseObserver) {
             asyncUnaryCall(
                     getChannel().newCall(getGetProjectListMethod(), getCallOptions()), request, responseObserver);
@@ -409,6 +456,15 @@ public final class ProjectServiceGrpc {
                                       io.grpc.stub.StreamObserver<ProjectNumbers> responseObserver) {
             asyncUnaryCall(
                     getChannel().newCall(getGetProjectNumbersMethod(), getCallOptions()), request, responseObserver);
+        }
+
+        /**
+         *
+         */
+        public void getNumberOfProjects(com.google.protobuf.Empty request,
+                                        io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value> responseObserver) {
+            asyncUnaryCall(
+                    getChannel().newCall(getGetNumberOfProjectsMethod(), getCallOptions()), request, responseObserver);
         }
     }
 
@@ -466,7 +522,7 @@ public final class ProjectServiceGrpc {
         /**
          *
          */
-        public ProjectList getProjectList(com.google.protobuf.Empty request) {
+        public ProjectList getProjectList(ProjectPagination request) {
             return blockingUnaryCall(
                     getChannel(), getGetProjectListMethod(), getCallOptions(), request);
         }
@@ -477,6 +533,14 @@ public final class ProjectServiceGrpc {
         public ProjectNumbers getProjectNumbers(com.google.protobuf.Empty request) {
             return blockingUnaryCall(
                     getChannel(), getGetProjectNumbersMethod(), getCallOptions(), request);
+        }
+
+        /**
+         *
+         */
+        public com.google.protobuf.Int64Value getNumberOfProjects(com.google.protobuf.Empty request) {
+            return blockingUnaryCall(
+                    getChannel(), getGetNumberOfProjectsMethod(), getCallOptions(), request);
         }
     }
 
@@ -539,7 +603,7 @@ public final class ProjectServiceGrpc {
          *
          */
         public com.google.common.util.concurrent.ListenableFuture<ProjectList> getProjectList(
-                com.google.protobuf.Empty request) {
+                ProjectPagination request) {
             return futureUnaryCall(
                     getChannel().newCall(getGetProjectListMethod(), getCallOptions()), request);
         }
@@ -552,6 +616,15 @@ public final class ProjectServiceGrpc {
             return futureUnaryCall(
                     getChannel().newCall(getGetProjectNumbersMethod(), getCallOptions()), request);
         }
+
+        /**
+         *
+         */
+        public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Int64Value> getNumberOfProjects(
+                com.google.protobuf.Empty request) {
+            return futureUnaryCall(
+                    getChannel().newCall(getGetNumberOfProjectsMethod(), getCallOptions()), request);
+        }
     }
 
     private static final int METHODID_GET_PROJECT_BY_ID = 0;
@@ -560,6 +633,7 @@ public final class ProjectServiceGrpc {
     private static final int METHODID_DELETE_PROJECT = 3;
     private static final int METHODID_GET_PROJECT_LIST = 4;
     private static final int METHODID_GET_PROJECT_NUMBERS = 5;
+    private static final int METHODID_GET_NUMBER_OF_PROJECTS = 6;
 
     private static final class MethodHandlers<Req, Resp> implements
             io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -595,12 +669,16 @@ public final class ProjectServiceGrpc {
                             (io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue>) responseObserver);
                     break;
                 case METHODID_GET_PROJECT_LIST:
-                    serviceImpl.getProjectList((com.google.protobuf.Empty) request,
+                    serviceImpl.getProjectList((ProjectPagination) request,
                             (io.grpc.stub.StreamObserver<ProjectList>) responseObserver);
                     break;
                 case METHODID_GET_PROJECT_NUMBERS:
                     serviceImpl.getProjectNumbers((com.google.protobuf.Empty) request,
                             (io.grpc.stub.StreamObserver<ProjectNumbers>) responseObserver);
+                    break;
+                case METHODID_GET_NUMBER_OF_PROJECTS:
+                    serviceImpl.getNumberOfProjects((com.google.protobuf.Empty) request,
+                            (io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value>) responseObserver);
                     break;
                 default:
                     throw new AssertionError();
@@ -671,6 +749,7 @@ public final class ProjectServiceGrpc {
                             .addMethod(getDeleteProjectMethod())
                             .addMethod(getGetProjectListMethod())
                             .addMethod(getGetProjectNumbersMethod())
+                            .addMethod(getGetNumberOfProjectsMethod())
                             .build();
                 }
             }

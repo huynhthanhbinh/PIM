@@ -2,6 +2,7 @@ package com.bht.pim.service.impl;
 
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.mapper.ProjectMapper;
+import com.bht.pim.proto.projects.ProjectPagination;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
 import com.bht.pim.service.ProjectService;
 import com.google.protobuf.Empty;
@@ -61,10 +62,18 @@ public class ProjectServiceImpl implements ProjectService {
 
     // Get all of projects
     @Override
-    public ObservableList<ProjectDto> getAllProjects() {
+    public ObservableList<ProjectDto> getProjectList(int maxRow, int pageIndex) {
         return FXCollections.observableArrayList(
                 projectMapper.toProjectDtoList(stub
-                        .getProjectList(Empty.getDefaultInstance())
+                        .getProjectList(ProjectPagination.newBuilder()
+                                .setMaxRow(maxRow)
+                                .setPageIndex(pageIndex)
+                                .build())
                         .getProjectsList()));
+    }
+
+    @Override
+    public long getNumberOfProjects() {
+        return stub.getNumberOfProjects(Empty.getDefaultInstance()).getValue();
     }
 }

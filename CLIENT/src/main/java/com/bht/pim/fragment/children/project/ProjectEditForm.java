@@ -41,10 +41,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Log4j
@@ -260,11 +257,11 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                     }
 
                     if (newValue.equals("Current group")) { // current group
-                        comboBoxLeader.getItems().addAll(leaders);
+                        Objects.requireNonNull(comboBoxLeader.getItems()).addAll(leaders);
                         current = true;
 
                     } else { // new group (new a non-exist leader)
-                        comboBoxLeader.getItems().addAll(leaderOptions);
+                        Objects.requireNonNull(comboBoxLeader.getItems()).addAll(leaderOptions);
                         current = false;
                     }
 

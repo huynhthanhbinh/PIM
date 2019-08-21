@@ -24,12 +24,18 @@ message ProjectNumbers {
     repeated int64 projectNumbers = 1;
 }
 
+message ProjectPagination {
+    int32 maxRow = 1;
+    int32 pageIndex = 2;
+}
+
 service ProjectService {
     rpc getProjectById (google.protobuf.Int64Value) returns (Project);
     rpc addNewProject (Project) returns (google.protobuf.BoolValue);
     rpc editProject (Project) returns (google.protobuf.BoolValue);
     rpc deleteProject (google.protobuf.Int64Value) returns (google.protobuf.BoolValue);
 
-    rpc getProjectList (google.protobuf.Empty) returns (ProjectList);
+    rpc getProjectList (ProjectPagination) returns (ProjectList);
     rpc getProjectNumbers (google.protobuf.Empty) returns (ProjectNumbers);
+    rpc getNumberOfProjects (google.protobuf.Empty) returns (google.protobuf.Int64Value);
 }

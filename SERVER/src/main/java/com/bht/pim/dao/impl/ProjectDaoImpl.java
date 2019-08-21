@@ -21,6 +21,7 @@ import java.util.List;
 @Log4j
 @Repository
 @Transactional
+@SuppressWarnings("all")
 public class ProjectDaoImpl implements ProjectDao {
 
     @Autowired
@@ -34,6 +35,24 @@ public class ProjectDaoImpl implements ProjectDao {
                     .createSQLQuery(sql).list();
 
             return ((BigDecimal) results.get(0)).longValue();
+
+        } catch (Exception exception) {
+
+            log.info(exception);
+            return -1;
+        }
+    }
+
+    @Override
+    public long getNumberOfProjects() {
+        try {
+            CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+            CriteriaQuery<Long> query = builder.createQuery(Long.class);
+            Root<ProjectEntity> root = query.from(ProjectEntity.class);
+
+            return sessionFactory.getCurrentSession()
+                    .createQuery(query.select(builder.count(root)))
+                    .getSingleResult();
 
         } catch (Exception exception) {
 
@@ -137,14 +156,18 @@ public class ProjectDaoImpl implements ProjectDao {
     }
 
     @Override
-    public List<ProjectEntity> getAllProjects() {
+    public List<ProjectEntity> getProjectList(int maxRow, int pageIndex) {
         try {
             CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
             CriteriaQuery<ProjectEntity> query = builder.createQuery(ProjectEntity.class);
-
             Root<ProjectEntity> root = query.from(ProjectEntity.class);
-            TypedQuery<ProjectEntity> allQuery = sessionFactory.getCurrentSession()
+
+            TypedQuery<ProjectEntity> allQuery = sessionFactory
+                    .getCurrentSession()
                     .createQuery(query.select(root));
+
+            allQuery.setMaxResults(maxRow);
+            allQuery.setFirstResult(maxRow * pageIndex);
 
             return allQuery.getResultList();
 

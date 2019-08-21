@@ -35,6 +35,11 @@ public final class ProjectOuterClass {
     static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internal_static_com_bht_pim_proto_projects_ProjectNumbers_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_com_bht_pim_proto_projects_ProjectPagination_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_com_bht_pim_proto_projects_ProjectPagination_fieldAccessorTable;
 
     public static com.google.protobuf.Descriptors.FileDescriptor
     getDescriptor() {
@@ -56,20 +61,24 @@ public final class ProjectOuterClass {
                         "ployees.EmployeeInfo\"D\n\013ProjectList\0225\n\010p" +
                         "rojects\030\001 \003(\0132#.com.bht.pim.proto.projec" +
                         "ts.Project\"(\n\016ProjectNumbers\022\026\n\016projectN" +
-                        "umbers\030\001 \003(\0032\374\003\n\016ProjectService\022R\n\016getPr" +
-                        "ojectById\022\033.google.protobuf.Int64Value\032#" +
-                        ".com.bht.pim.proto.projects.Project\022P\n\ra" +
-                        "ddNewProject\022#.com.bht.pim.proto.project" +
-                        "s.Project\032\032.google.protobuf.BoolValue\022N\n" +
-                        "\013editProject\022#.com.bht.pim.proto.project" +
-                        "s.Project\032\032.google.protobuf.BoolValue\022H\n" +
-                        "\rdeleteProject\022\033.google.protobuf.Int64Va" +
-                        "lue\032\032.google.protobuf.BoolValue\022Q\n\016getPr" +
-                        "ojectList\022\026.google.protobuf.Empty\032\'.com." +
-                        "bht.pim.proto.projects.ProjectList\022W\n\021ge" +
-                        "tProjectNumbers\022\026.google.protobuf.Empty\032" +
-                        "*.com.bht.pim.proto.projects.ProjectNumb" +
-                        "ersB\005P\001\210\001\001b\006proto3"
+                        "umbers\030\001 \003(\003\"6\n\021ProjectPagination\022\016\n\006max" +
+                        "Row\030\001 \001(\005\022\021\n\tpageIndex\030\002 \001(\0052\337\004\n\016Project" +
+                        "Service\022R\n\016getProjectById\022\033.google.proto" +
+                        "buf.Int64Value\032#.com.bht.pim.proto.proje" +
+                        "cts.Project\022P\n\raddNewProject\022#.com.bht.p" +
+                        "im.proto.projects.Project\032\032.google.proto" +
+                        "buf.BoolValue\022N\n\013editProject\022#.com.bht.p" +
+                        "im.proto.projects.Project\032\032.google.proto" +
+                        "buf.BoolValue\022H\n\rdeleteProject\022\033.google." +
+                        "protobuf.Int64Value\032\032.google.protobuf.Bo" +
+                        "olValue\022h\n\016getProjectList\022-.com.bht.pim." +
+                        "proto.projects.ProjectPagination\032\'.com.b" +
+                        "ht.pim.proto.projects.ProjectList\022W\n\021get" +
+                        "ProjectNumbers\022\026.google.protobuf.Empty\032*" +
+                        ".com.bht.pim.proto.projects.ProjectNumbe" +
+                        "rs\022J\n\023getNumberOfProjects\022\026.google.proto" +
+                        "buf.Empty\032\033.google.protobuf.Int64ValueB\005" +
+                        "P\001\210\001\001b\006proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -107,6 +116,12 @@ public final class ProjectOuterClass {
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_com_bht_pim_proto_projects_ProjectNumbers_descriptor,
                 new String[]{"ProjectNumbers",});
+        internal_static_com_bht_pim_proto_projects_ProjectPagination_descriptor =
+                getDescriptor().getMessageTypes().get(3);
+        internal_static_com_bht_pim_proto_projects_ProjectPagination_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_com_bht_pim_proto_projects_ProjectPagination_descriptor,
+                new String[]{"MaxRow", "PageIndex",});
         com.google.protobuf.WrappersProto.getDescriptor();
         com.google.protobuf.EmptyProto.getDescriptor();
         ProjectInfoOuterClass.getDescriptor();

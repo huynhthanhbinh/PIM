@@ -6,10 +6,7 @@ import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.ProjectEntity;
 import com.bht.pim.mapper.ProjectMapper;
 import com.bht.pim.proto.employees.EmployeeInfo;
-import com.bht.pim.proto.projects.Project;
-import com.bht.pim.proto.projects.ProjectList;
-import com.bht.pim.proto.projects.ProjectNumbers;
-import com.bht.pim.proto.projects.ProjectServiceGrpc;
+import com.bht.pim.proto.projects.*;
 import com.google.protobuf.BoolValue;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
@@ -136,9 +133,9 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
     }
 
     @Override
-    public void getProjectList(Empty request, StreamObserver<ProjectList> responseObserver) {
+    public void getProjectList(ProjectPagination pagination, StreamObserver<ProjectList> responseObserver) {
         try {
-            List<ProjectEntity> projectEntities = projectDao.getAllProjects();
+            List<ProjectEntity> projectEntities = projectDao.getProjectList(pagination.getMaxRow(), pagination.getPageIndex());
             List<Project> projects = projectMapper.toProjectList(projectEntities);
 
             ProjectList projectList = ProjectList.newBuilder()
@@ -181,6 +178,23 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
             // return an empty list not return null value for list
             responseObserver.onNext(ProjectNumbers.newBuilder()
                     .addAllProjectNumbers(Collections.emptyList()).build());
+            responseObserver.onCompleted();
+        }
+    }
+
+    @Override
+    public void getNumberOfProjects(Empty request, StreamObserver<Int64Value> responseObserver) {
+        try {
+            responseObserver.onNext(Int64Value.newBuilder().setValue(projectDao.getNumberOfProjects()).build());
+            responseObserver.onCompleted();
+
+        } catch (Exception exception) {
+
+            // log the exception out
+            log.info(exception);
+
+            // return an empty list not return null value for list
+            responseObserver.onNext(Int64Value.newBuilder().build());
             responseObserver.onCompleted();
         }
     }

@@ -49,6 +49,8 @@ public class ProjectTable implements Initializable, ParentOwning {
     private final Image editInverse = PimUtil.getImage("edit_inverse");
 
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
+    private static final int MAX_TABLE_ROW = 8;
+    private int currentPageIndex;
 
     @Setter
     private boolean successGettingProject;
@@ -84,11 +86,13 @@ public class ProjectTable implements Initializable, ParentOwning {
     @Override
     public void onSwitchParentFragment() {
         // Get all necessary data from server
-        getNecessaryData();
+        getListProject(currentPageIndex);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        currentPageIndex = 0;
+
         // for multilingual
         initAllLabels();
 
@@ -101,8 +105,9 @@ public class ProjectTable implements Initializable, ParentOwning {
 
 
     // Get all necessary data
-    private void getNecessaryData() {
-        table.setItems(projectService.getAllProjects());
+    private void getListProject(int pageIndex) {
+        table.setItems(projectService.getProjectList(MAX_TABLE_ROW, pageIndex));
+        log.info("Number of projects: " + projectService.getNumberOfProjects());
     }
 
     // Init all table fields
