@@ -1,6 +1,7 @@
 package com.bht.pim;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.workbench.PimWorkbench;
 import javafx.application.Application;
 import javafx.scene.image.Image;
@@ -38,8 +39,8 @@ public class Client extends AFXSpringJavaConfigLauncher {
     @Override
     protected void postInit(Stage stage) {
         ClassLoader classLoader = Client.class.getClassLoader();
+        LanguageUtil.initLabel(stage.titleProperty(), AppConfiguration.LABEL_PIM_MAIN);
 
-        stage.setTitle("Project Information Management");
         stage.getIcons().add(
                 new Image(Objects.requireNonNull(classLoader
                         .getResourceAsStream("pictures/icon.png"))));
