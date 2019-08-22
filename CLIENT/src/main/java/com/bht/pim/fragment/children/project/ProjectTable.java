@@ -3,6 +3,9 @@ package com.bht.pim.fragment.children.project;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.fragment.children.ParentOwning;
+import com.bht.pim.fragment.parent.project.ProjectList;
+import com.bht.pim.fragment.parent.project.ProjectUpdate;
+import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.service.ProjectService;
@@ -268,6 +271,12 @@ public class ProjectTable implements Initializable, ParentOwning {
 
                 bEdit.setOnAction(event -> {
                     log.info("Edit project id = " + projectDto.getId());
+
+                    FragmentSwitching switching = new FragmentSwitching(
+                            ProjectList.class,
+                            ProjectUpdate.class);
+
+                    context.send(AppConfiguration.COMPONENT_MAIN, switching);
                 });
             }
         };

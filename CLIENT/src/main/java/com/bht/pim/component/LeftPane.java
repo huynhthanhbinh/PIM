@@ -1,6 +1,8 @@
 package com.bht.pim.component;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.parent.project.ProjectList;
+import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.util.LanguageUtil;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -72,10 +74,11 @@ public class LeftPane implements FXComponent {
 
             log.info("[LeftPane] Clicked Project List");
 
-            if (lProjectList.getStyleClass().contains("active")) {
-                event.consume();
-                return;
-            }
+            FragmentSwitching switching = new FragmentSwitching(
+                    LeftPane.class,
+                    ProjectList.class);
+
+            context.send(AppConfiguration.COMPONENT_MAIN, switching);
 
             lGroupList.getStyleClass().remove("active");
             lEmployeeList.getStyleClass().remove("active");
