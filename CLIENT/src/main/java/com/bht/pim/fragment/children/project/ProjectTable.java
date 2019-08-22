@@ -117,8 +117,8 @@ public class ProjectTable implements Initializable, ParentOwning {
         statusProperty.addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 searchBox.setText("");
-                getListProject(0);
             }
+            getListProject(0);
         });
 
 
