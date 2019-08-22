@@ -82,6 +82,11 @@ public class AppConfiguration {
     public static final String LABEL_CONFIRM_UPDATE = "label.confirm.form.update";
     public static final String LABEL_CONFIRM_CANCEL = "label.confirm.form.cancel";
 
+    public static final String LABEL_STATUS_NEW = "label.project.status.new";
+    public static final String LABEL_STATUS_PLANNED = "label.project.status.planned";
+    public static final String LABEL_STATUS_IN_PROGRESS = "label.project.status.inprogress";
+    public static final String LABEL_STATUS_FINISHED = "label.project.status.finished";
+
     @Bean
     public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub() {
         log.info("[PIM] Creating bean of < EmployeeServiceBlockingStub >");

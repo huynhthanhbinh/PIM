@@ -1,6 +1,7 @@
 package com.bht.pim.dto;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
 import lombok.*;
 import lombok.extern.log4j.Log4j;
 
@@ -23,7 +24,7 @@ public class ProjectDto {
     private long number;
     private String name;
     private String customer;
-    private String status;
+    private StringProperty status;
     private LocalDate start;
     private LocalDate end;
     private GroupDto group;

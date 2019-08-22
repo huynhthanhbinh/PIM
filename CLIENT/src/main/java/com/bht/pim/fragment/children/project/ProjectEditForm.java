@@ -21,6 +21,7 @@ import com.bht.pim.util.PimUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -52,6 +53,7 @@ import java.util.stream.Collectors;
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditForm.fxml")
 public class ProjectEditForm implements Initializable, Confirmable, ParentOwning {
 
+    private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
     @Autowired
     private EmployeeService employeeService;
     @Autowired
@@ -286,8 +288,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     }
 
     private void initAllInput() {
-        comboBoxStatus.getItems().add("New");
-        comboBoxStatus.getSelectionModel().selectFirst();
+        initComboBoxStatus();
 
         String[] options = {"New group", "Current group"};
         comboBoxOption.getItems().addAll(options);
@@ -445,7 +446,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                         .customer(customer.getText())
                         .group(groupDto)
                         .members(members)
-                        .status(comboBoxStatus.getValue())
+                        .status(new SimpleStringProperty(comboBoxStatus.getValue()))
                         .start(start.getValue());
 
                 if (end.getValue() != null) {
@@ -668,13 +669,33 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
         LanguageUtil.initLabel(lEndDate.textProperty(), "label.project.form.enddate");
         LanguageUtil.initLabel(lEndInvalid.textProperty(), "label.project.form.endinvalid");
 
-        LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
-
         cName.setText(languageProperty.getResourceBundleProperty()
                 .get().getString("label.project.form.membername"));
 
         languageProperty.getResourceBundleProperty()
                 .addListener((observable, oldValue, newValue) ->
                         cName.setText(newValue.getString("label.project.form.membername")));
+    }
+
+    private void initComboBoxStatus() {
+        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("NEW").get());
+        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("PLA").get());
+        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("INP").get());
+        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("FIN").get());
+
+        languageProperty.getResourceBundleProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    int index = comboBoxStatus.getSelectionModel().getSelectedIndex();
+                    comboBoxStatus.getItems().clear();
+
+                    comboBoxStatus.getItems().add(statusMapper.toGuiStatus("NEW").get());
+                    comboBoxStatus.getItems().add(statusMapper.toGuiStatus("PLA").get());
+                    comboBoxStatus.getItems().add(statusMapper.toGuiStatus("INP").get());
+                    comboBoxStatus.getItems().add(statusMapper.toGuiStatus("FIN").get());
+
+                    comboBoxStatus.getSelectionModel().select(index);
+                });
+
+        comboBoxStatus.getSelectionModel().selectFirst();
     }
 }

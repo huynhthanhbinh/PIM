@@ -82,7 +82,7 @@ public class ProjectTable implements Initializable, ParentOwning {
     @FXML
     private TableColumn<ProjectDto, String> cCustomer;
     @FXML
-    private TableColumn<ProjectDto, String> cStatus;
+    private TableColumn<ProjectDto, ProjectDto> cStatus;
     @FXML
     private TableColumn<ProjectDto, LocalDate> cStart;
     @FXML
@@ -145,7 +145,8 @@ public class ProjectTable implements Initializable, ParentOwning {
         cCustomer.setResizable(false);
 
         cStatus.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
-        cStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        cStatus.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        cStatus.setCellFactory(this::status);
         cStatus.setResizable(false);
 
         cStart.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
@@ -259,6 +260,25 @@ public class ProjectTable implements Initializable, ParentOwning {
                 });
 
                 setGraphic(lName);
+            }
+        };
+    }
+
+    //Status label
+    private TableCell<ProjectDto, ProjectDto> status(TableColumn<ProjectDto, ProjectDto> param) {
+        return new TableCell<ProjectDto, ProjectDto>() {
+
+            private Label lStatus = new Label();
+
+            @Override
+            protected void updateItem(ProjectDto projectDto, boolean empty) {
+                if (projectDto == null || empty) {
+                    setGraphic(null);
+                    return;
+                }
+
+                lStatus.textProperty().bind(projectDto.getStatus());
+                setGraphic(lStatus);
             }
         };
     }
