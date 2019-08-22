@@ -148,12 +148,12 @@ public class ProjectTable implements Initializable, ParentOwning {
         cStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         cStatus.setResizable(false);
 
-        cStart.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
+        cStart.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
         cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
         cStart.setCellFactory(projectUtil::dateFormat);
         cStart.setResizable(false);
 
-        cManagement.prefWidthProperty().bind(table.widthProperty().subtract(18).multiply(0.1));
+        cManagement.prefWidthProperty().bind(table.widthProperty().subtract(20).multiply(0.1));
         cManagement.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         cManagement.setCellFactory(this::management);
         cManagement.setResizable(false);

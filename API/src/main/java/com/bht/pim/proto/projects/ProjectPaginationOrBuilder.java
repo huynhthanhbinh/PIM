@@ -16,4 +16,26 @@ public interface ProjectPaginationOrBuilder extends
      * <code>int32 pageIndex = 2;</code>
      */
     int getPageIndex();
+
+    /**
+     * <code>string status = 3;</code>
+     */
+    String getStatus();
+
+    /**
+     * <code>string status = 3;</code>
+     */
+    com.google.protobuf.ByteString
+    getStatusBytes();
+
+    /**
+     * <code>string keyword = 4;</code>
+     */
+    String getKeyword();
+
+    /**
+     * <code>string keyword = 4;</code>
+     */
+    com.google.protobuf.ByteString
+    getKeywordBytes();
 }

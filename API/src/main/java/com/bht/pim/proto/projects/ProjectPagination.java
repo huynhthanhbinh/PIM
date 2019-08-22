@@ -20,6 +20,8 @@ public final class ProjectPagination extends
     private ProjectPagination() {
         maxRow_ = 0;
         pageIndex_ = 0;
+        status_ = "";
+        keyword_ = "";
     }
 
     @Override
@@ -62,6 +64,18 @@ public final class ProjectPagination extends
                     case 16: {
 
                         pageIndex_ = input.readInt32();
+                        break;
+                    }
+                    case 26: {
+                        String s = input.readStringRequireUtf8();
+
+                        status_ = s;
+                        break;
+                    }
+                    case 34: {
+                        String s = input.readStringRequireUtf8();
+
+                        keyword_ = s;
                         break;
                     }
                 }
@@ -112,6 +126,82 @@ public final class ProjectPagination extends
         return pageIndex_;
     }
 
+    public static final int STATUS_FIELD_NUMBER = 3;
+    private volatile Object status_;
+
+    /**
+     * <code>string status = 3;</code>
+     */
+    @Override
+    public String getStatus() {
+        Object ref = status_;
+        if (ref instanceof String) {
+            return (String) ref;
+        } else {
+            com.google.protobuf.ByteString bs =
+                    (com.google.protobuf.ByteString) ref;
+            String s = bs.toStringUtf8();
+            status_ = s;
+            return s;
+        }
+    }
+
+    /**
+     * <code>string status = 3;</code>
+     */
+    @Override
+    public com.google.protobuf.ByteString
+    getStatusBytes() {
+        Object ref = status_;
+        if (ref instanceof String) {
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (String) ref);
+            status_ = b;
+            return b;
+        } else {
+            return (com.google.protobuf.ByteString) ref;
+        }
+    }
+
+    public static final int KEYWORD_FIELD_NUMBER = 4;
+    private volatile Object keyword_;
+
+    /**
+     * <code>string keyword = 4;</code>
+     */
+    @Override
+    public String getKeyword() {
+        Object ref = keyword_;
+        if (ref instanceof String) {
+            return (String) ref;
+        } else {
+            com.google.protobuf.ByteString bs =
+                    (com.google.protobuf.ByteString) ref;
+            String s = bs.toStringUtf8();
+            keyword_ = s;
+            return s;
+        }
+    }
+
+    /**
+     * <code>string keyword = 4;</code>
+     */
+    @Override
+    public com.google.protobuf.ByteString
+    getKeywordBytes() {
+        Object ref = keyword_;
+        if (ref instanceof String) {
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (String) ref);
+            keyword_ = b;
+            return b;
+        } else {
+            return (com.google.protobuf.ByteString) ref;
+        }
+    }
+
     private byte memoizedIsInitialized = -1;
 
     @Override
@@ -137,6 +227,12 @@ public final class ProjectPagination extends
         if (pageIndex_ != 0) {
             output.writeInt32(2, pageIndex_);
         }
+        if (!getStatusBytes().isEmpty()) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 3, status_);
+        }
+        if (!getKeywordBytes().isEmpty()) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 4, keyword_);
+        }
         unknownFields.writeTo(output);
     }
 
@@ -155,6 +251,12 @@ public final class ProjectPagination extends
         if (pageIndex_ != 0) {
             size += com.google.protobuf.CodedOutputStream
                     .computeInt32Size(2, pageIndex_);
+        }
+        if (!getStatusBytes().isEmpty()) {
+            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, status_);
+        }
+        if (!getKeywordBytes().isEmpty()) {
+            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, keyword_);
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
@@ -176,6 +278,10 @@ public final class ProjectPagination extends
                 == other.getMaxRow());
         result = result && (getPageIndex()
                 == other.getPageIndex());
+        result = result && getStatus()
+                .equals(other.getStatus());
+        result = result && getKeyword()
+                .equals(other.getKeyword());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
     }
@@ -191,6 +297,10 @@ public final class ProjectPagination extends
         hash = (53 * hash) + getMaxRow();
         hash = (37 * hash) + PAGEINDEX_FIELD_NUMBER;
         hash = (53 * hash) + getPageIndex();
+        hash = (37 * hash) + STATUS_FIELD_NUMBER;
+        hash = (53 * hash) + getStatus().hashCode();
+        hash = (37 * hash) + KEYWORD_FIELD_NUMBER;
+        hash = (53 * hash) + getKeyword().hashCode();
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -347,6 +457,10 @@ public final class ProjectPagination extends
 
             pageIndex_ = 0;
 
+            status_ = "";
+
+            keyword_ = "";
+
             return this;
         }
 
@@ -375,6 +489,8 @@ public final class ProjectPagination extends
             ProjectPagination result = new ProjectPagination(this);
             result.maxRow_ = maxRow_;
             result.pageIndex_ = pageIndex_;
+            result.status_ = status_;
+            result.keyword_ = keyword_;
             onBuilt();
             return result;
         }
@@ -436,6 +552,14 @@ public final class ProjectPagination extends
             }
             if (other.getPageIndex() != 0) {
                 setPageIndex(other.getPageIndex());
+            }
+            if (!other.getStatus().isEmpty()) {
+                status_ = other.status_;
+                onChanged();
+            }
+            if (!other.getKeyword().isEmpty()) {
+                keyword_ = other.keyword_;
+                onChanged();
             }
             mergeUnknownFields(other.unknownFields);
             onChanged();
@@ -522,6 +646,158 @@ public final class ProjectPagination extends
         public Builder clearPageIndex() {
 
             pageIndex_ = 0;
+            onChanged();
+            return this;
+        }
+
+        private Object status_ = "";
+
+        /**
+         * <code>string status = 3;</code>
+         */
+        @Override
+        public String getStatus() {
+            Object ref = status_;
+            if (!(ref instanceof String)) {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                String s = bs.toStringUtf8();
+                status_ = s;
+                return s;
+            } else {
+                return (String) ref;
+            }
+        }
+
+        /**
+         * <code>string status = 3;</code>
+         */
+        @Override
+        public com.google.protobuf.ByteString
+        getStatusBytes() {
+            Object ref = status_;
+            if (ref instanceof String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (String) ref);
+                status_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
+
+        /**
+         * <code>string status = 3;</code>
+         */
+        public Builder setStatus(
+                String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            status_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>string status = 3;</code>
+         */
+        public Builder clearStatus() {
+
+            status_ = getDefaultInstance().getStatus();
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>string status = 3;</code>
+         */
+        public Builder setStatusBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            status_ = value;
+            onChanged();
+            return this;
+        }
+
+        private Object keyword_ = "";
+
+        /**
+         * <code>string keyword = 4;</code>
+         */
+        @Override
+        public String getKeyword() {
+            Object ref = keyword_;
+            if (!(ref instanceof String)) {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                String s = bs.toStringUtf8();
+                keyword_ = s;
+                return s;
+            } else {
+                return (String) ref;
+            }
+        }
+
+        /**
+         * <code>string keyword = 4;</code>
+         */
+        @Override
+        public com.google.protobuf.ByteString
+        getKeywordBytes() {
+            Object ref = keyword_;
+            if (ref instanceof String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (String) ref);
+                keyword_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
+
+        /**
+         * <code>string keyword = 4;</code>
+         */
+        public Builder setKeyword(
+                String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            keyword_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>string keyword = 4;</code>
+         */
+        public Builder clearKeyword() {
+
+            keyword_ = getDefaultInstance().getKeyword();
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>string keyword = 4;</code>
+         */
+        public Builder setKeywordBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            keyword_ = value;
             onChanged();
             return this;
         }

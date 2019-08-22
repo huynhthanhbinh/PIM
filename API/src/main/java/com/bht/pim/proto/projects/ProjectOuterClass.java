@@ -61,24 +61,25 @@ public final class ProjectOuterClass {
                         "ployees.EmployeeInfo\"D\n\013ProjectList\0225\n\010p" +
                         "rojects\030\001 \003(\0132#.com.bht.pim.proto.projec" +
                         "ts.Project\"(\n\016ProjectNumbers\022\026\n\016projectN" +
-                        "umbers\030\001 \003(\003\"6\n\021ProjectPagination\022\016\n\006max" +
-                        "Row\030\001 \001(\005\022\021\n\tpageIndex\030\002 \001(\0052\337\004\n\016Project" +
-                        "Service\022R\n\016getProjectById\022\033.google.proto" +
-                        "buf.Int64Value\032#.com.bht.pim.proto.proje" +
-                        "cts.Project\022P\n\raddNewProject\022#.com.bht.p" +
-                        "im.proto.projects.Project\032\032.google.proto" +
-                        "buf.BoolValue\022N\n\013editProject\022#.com.bht.p" +
-                        "im.proto.projects.Project\032\032.google.proto" +
-                        "buf.BoolValue\022H\n\rdeleteProject\022\033.google." +
-                        "protobuf.Int64Value\032\032.google.protobuf.Bo" +
-                        "olValue\022h\n\016getProjectList\022-.com.bht.pim." +
-                        "proto.projects.ProjectPagination\032\'.com.b" +
-                        "ht.pim.proto.projects.ProjectList\022W\n\021get" +
-                        "ProjectNumbers\022\026.google.protobuf.Empty\032*" +
-                        ".com.bht.pim.proto.projects.ProjectNumbe" +
-                        "rs\022J\n\023getNumberOfProjects\022\026.google.proto" +
-                        "buf.Empty\032\033.google.protobuf.Int64ValueB\005" +
-                        "P\001\210\001\001b\006proto3"
+                        "umbers\030\001 \003(\003\"W\n\021ProjectPagination\022\016\n\006max" +
+                        "Row\030\001 \001(\005\022\021\n\tpageIndex\030\002 \001(\005\022\016\n\006status\030\003" +
+                        " \001(\t\022\017\n\007keyword\030\004 \001(\t2\337\004\n\016ProjectService" +
+                        "\022R\n\016getProjectById\022\033.google.protobuf.Int" +
+                        "64Value\032#.com.bht.pim.proto.projects.Pro" +
+                        "ject\022P\n\raddNewProject\022#.com.bht.pim.prot" +
+                        "o.projects.Project\032\032.google.protobuf.Boo" +
+                        "lValue\022N\n\013editProject\022#.com.bht.pim.prot" +
+                        "o.projects.Project\032\032.google.protobuf.Boo" +
+                        "lValue\022H\n\rdeleteProject\022\033.google.protobu" +
+                        "f.Int64Value\032\032.google.protobuf.BoolValue" +
+                        "\022h\n\016getProjectList\022-.com.bht.pim.proto.p" +
+                        "rojects.ProjectPagination\032\'.com.bht.pim." +
+                        "proto.projects.ProjectList\022W\n\021getProject" +
+                        "Numbers\022\026.google.protobuf.Empty\032*.com.bh" +
+                        "t.pim.proto.projects.ProjectNumbers\022J\n\023g" +
+                        "etNumberOfProjects\022\026.google.protobuf.Emp" +
+                        "ty\032\033.google.protobuf.Int64ValueB\005P\001\210\001\001b\006" +
+                        "proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -121,7 +122,7 @@ public final class ProjectOuterClass {
         internal_static_com_bht_pim_proto_projects_ProjectPagination_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_com_bht_pim_proto_projects_ProjectPagination_descriptor,
-                new String[]{"MaxRow", "PageIndex",});
+                new String[]{"MaxRow", "PageIndex", "Status", "Keyword",});
         com.google.protobuf.WrappersProto.getDescriptor();
         com.google.protobuf.EmptyProto.getDescriptor();
         ProjectInfoOuterClass.getDescriptor();
