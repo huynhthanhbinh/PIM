@@ -18,6 +18,12 @@ public interface ProjectDao {
     // Get project row count(*)
     long getNumberOfProjects();
 
+    // Get project row count where STATUS = status
+    long getNumberOfProjectsByStatus(String status);
+
+    // Get project row count where contains keyword
+    long getNumberOfProjectsByKeyword(String keyword);
+
     // Get all projects number
     List<Long> getAllProjectsNumber();
 

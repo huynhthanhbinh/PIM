@@ -245,6 +245,70 @@ public final class ProjectServiceGrpc {
         return getGetNumberOfProjectsMethod;
     }
 
+    private static volatile io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
+            com.google.protobuf.Int64Value> getGetNumberOfProjectsByStatusMethod;
+
+    @io.grpc.stub.annotations.RpcMethod(
+            fullMethodName = SERVICE_NAME + '/' + "getNumberOfProjectsByStatus",
+            requestType = com.google.protobuf.StringValue.class,
+            responseType = com.google.protobuf.Int64Value.class,
+            methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+    public static io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
+            com.google.protobuf.Int64Value> getGetNumberOfProjectsByStatusMethod() {
+        io.grpc.MethodDescriptor<com.google.protobuf.StringValue, com.google.protobuf.Int64Value> getGetNumberOfProjectsByStatusMethod;
+        if ((getGetNumberOfProjectsByStatusMethod = ProjectServiceGrpc.getGetNumberOfProjectsByStatusMethod) == null) {
+            synchronized (ProjectServiceGrpc.class) {
+                if ((getGetNumberOfProjectsByStatusMethod = ProjectServiceGrpc.getGetNumberOfProjectsByStatusMethod) == null) {
+                    ProjectServiceGrpc.getGetNumberOfProjectsByStatusMethod = getGetNumberOfProjectsByStatusMethod =
+                            io.grpc.MethodDescriptor.<com.google.protobuf.StringValue, com.google.protobuf.Int64Value>newBuilder()
+                                    .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                                    .setFullMethodName(generateFullMethodName(
+                                            "com.bht.pim.proto.projects.ProjectService", "getNumberOfProjectsByStatus"))
+                                    .setSampledToLocalTracing(true)
+                                    .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            com.google.protobuf.StringValue.getDefaultInstance()))
+                                    .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            com.google.protobuf.Int64Value.getDefaultInstance()))
+                                    .setSchemaDescriptor(new ProjectServiceMethodDescriptorSupplier("getNumberOfProjectsByStatus"))
+                                    .build();
+                }
+            }
+        }
+        return getGetNumberOfProjectsByStatusMethod;
+    }
+
+    private static volatile io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
+            com.google.protobuf.Int64Value> getGetNumberOfProjectsByKeywordMethod;
+
+    @io.grpc.stub.annotations.RpcMethod(
+            fullMethodName = SERVICE_NAME + '/' + "getNumberOfProjectsByKeyword",
+            requestType = com.google.protobuf.StringValue.class,
+            responseType = com.google.protobuf.Int64Value.class,
+            methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+    public static io.grpc.MethodDescriptor<com.google.protobuf.StringValue,
+            com.google.protobuf.Int64Value> getGetNumberOfProjectsByKeywordMethod() {
+        io.grpc.MethodDescriptor<com.google.protobuf.StringValue, com.google.protobuf.Int64Value> getGetNumberOfProjectsByKeywordMethod;
+        if ((getGetNumberOfProjectsByKeywordMethod = ProjectServiceGrpc.getGetNumberOfProjectsByKeywordMethod) == null) {
+            synchronized (ProjectServiceGrpc.class) {
+                if ((getGetNumberOfProjectsByKeywordMethod = ProjectServiceGrpc.getGetNumberOfProjectsByKeywordMethod) == null) {
+                    ProjectServiceGrpc.getGetNumberOfProjectsByKeywordMethod = getGetNumberOfProjectsByKeywordMethod =
+                            io.grpc.MethodDescriptor.<com.google.protobuf.StringValue, com.google.protobuf.Int64Value>newBuilder()
+                                    .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                                    .setFullMethodName(generateFullMethodName(
+                                            "com.bht.pim.proto.projects.ProjectService", "getNumberOfProjectsByKeyword"))
+                                    .setSampledToLocalTracing(true)
+                                    .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            com.google.protobuf.StringValue.getDefaultInstance()))
+                                    .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            com.google.protobuf.Int64Value.getDefaultInstance()))
+                                    .setSchemaDescriptor(new ProjectServiceMethodDescriptorSupplier("getNumberOfProjectsByKeyword"))
+                                    .build();
+                }
+            }
+        }
+        return getGetNumberOfProjectsByKeywordMethod;
+    }
+
     /**
      * Creates a new async stub that supports all call types for the service
      */
@@ -329,6 +393,22 @@ public final class ProjectServiceGrpc {
             asyncUnimplementedUnaryCall(getGetNumberOfProjectsMethod(), responseObserver);
         }
 
+        /**
+         *
+         */
+        public void getNumberOfProjectsByStatus(com.google.protobuf.StringValue request,
+                                                io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value> responseObserver) {
+            asyncUnimplementedUnaryCall(getGetNumberOfProjectsByStatusMethod(), responseObserver);
+        }
+
+        /**
+         *
+         */
+        public void getNumberOfProjectsByKeyword(com.google.protobuf.StringValue request,
+                                                 io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value> responseObserver) {
+            asyncUnimplementedUnaryCall(getGetNumberOfProjectsByKeywordMethod(), responseObserver);
+        }
+
         @Override
         public final io.grpc.ServerServiceDefinition bindService() {
             return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
@@ -381,6 +461,20 @@ public final class ProjectServiceGrpc {
                                             com.google.protobuf.Empty,
                                             com.google.protobuf.Int64Value>(
                                             this, METHODID_GET_NUMBER_OF_PROJECTS)))
+                    .addMethod(
+                            getGetNumberOfProjectsByStatusMethod(),
+                            asyncUnaryCall(
+                                    new MethodHandlers<
+                                            com.google.protobuf.StringValue,
+                                            com.google.protobuf.Int64Value>(
+                                            this, METHODID_GET_NUMBER_OF_PROJECTS_BY_STATUS)))
+                    .addMethod(
+                            getGetNumberOfProjectsByKeywordMethod(),
+                            asyncUnaryCall(
+                                    new MethodHandlers<
+                                            com.google.protobuf.StringValue,
+                                            com.google.protobuf.Int64Value>(
+                                            this, METHODID_GET_NUMBER_OF_PROJECTS_BY_KEYWORD)))
                     .build();
         }
     }
@@ -466,6 +560,24 @@ public final class ProjectServiceGrpc {
             asyncUnaryCall(
                     getChannel().newCall(getGetNumberOfProjectsMethod(), getCallOptions()), request, responseObserver);
         }
+
+        /**
+         *
+         */
+        public void getNumberOfProjectsByStatus(com.google.protobuf.StringValue request,
+                                                io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value> responseObserver) {
+            asyncUnaryCall(
+                    getChannel().newCall(getGetNumberOfProjectsByStatusMethod(), getCallOptions()), request, responseObserver);
+        }
+
+        /**
+         *
+         */
+        public void getNumberOfProjectsByKeyword(com.google.protobuf.StringValue request,
+                                                 io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value> responseObserver) {
+            asyncUnaryCall(
+                    getChannel().newCall(getGetNumberOfProjectsByKeywordMethod(), getCallOptions()), request, responseObserver);
+        }
     }
 
     /**
@@ -541,6 +653,22 @@ public final class ProjectServiceGrpc {
         public com.google.protobuf.Int64Value getNumberOfProjects(com.google.protobuf.Empty request) {
             return blockingUnaryCall(
                     getChannel(), getGetNumberOfProjectsMethod(), getCallOptions(), request);
+        }
+
+        /**
+         *
+         */
+        public com.google.protobuf.Int64Value getNumberOfProjectsByStatus(com.google.protobuf.StringValue request) {
+            return blockingUnaryCall(
+                    getChannel(), getGetNumberOfProjectsByStatusMethod(), getCallOptions(), request);
+        }
+
+        /**
+         *
+         */
+        public com.google.protobuf.Int64Value getNumberOfProjectsByKeyword(com.google.protobuf.StringValue request) {
+            return blockingUnaryCall(
+                    getChannel(), getGetNumberOfProjectsByKeywordMethod(), getCallOptions(), request);
         }
     }
 
@@ -625,6 +753,24 @@ public final class ProjectServiceGrpc {
             return futureUnaryCall(
                     getChannel().newCall(getGetNumberOfProjectsMethod(), getCallOptions()), request);
         }
+
+        /**
+         *
+         */
+        public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Int64Value> getNumberOfProjectsByStatus(
+                com.google.protobuf.StringValue request) {
+            return futureUnaryCall(
+                    getChannel().newCall(getGetNumberOfProjectsByStatusMethod(), getCallOptions()), request);
+        }
+
+        /**
+         *
+         */
+        public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Int64Value> getNumberOfProjectsByKeyword(
+                com.google.protobuf.StringValue request) {
+            return futureUnaryCall(
+                    getChannel().newCall(getGetNumberOfProjectsByKeywordMethod(), getCallOptions()), request);
+        }
     }
 
     private static final int METHODID_GET_PROJECT_BY_ID = 0;
@@ -634,6 +780,8 @@ public final class ProjectServiceGrpc {
     private static final int METHODID_GET_PROJECT_LIST = 4;
     private static final int METHODID_GET_PROJECT_NUMBERS = 5;
     private static final int METHODID_GET_NUMBER_OF_PROJECTS = 6;
+    private static final int METHODID_GET_NUMBER_OF_PROJECTS_BY_STATUS = 7;
+    private static final int METHODID_GET_NUMBER_OF_PROJECTS_BY_KEYWORD = 8;
 
     private static final class MethodHandlers<Req, Resp> implements
             io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -678,6 +826,14 @@ public final class ProjectServiceGrpc {
                     break;
                 case METHODID_GET_NUMBER_OF_PROJECTS:
                     serviceImpl.getNumberOfProjects((com.google.protobuf.Empty) request,
+                            (io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value>) responseObserver);
+                    break;
+                case METHODID_GET_NUMBER_OF_PROJECTS_BY_STATUS:
+                    serviceImpl.getNumberOfProjectsByStatus((com.google.protobuf.StringValue) request,
+                            (io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value>) responseObserver);
+                    break;
+                case METHODID_GET_NUMBER_OF_PROJECTS_BY_KEYWORD:
+                    serviceImpl.getNumberOfProjectsByKeyword((com.google.protobuf.StringValue) request,
                             (io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value>) responseObserver);
                     break;
                 default:
@@ -750,6 +906,8 @@ public final class ProjectServiceGrpc {
                             .addMethod(getGetProjectListMethod())
                             .addMethod(getGetProjectNumbersMethod())
                             .addMethod(getGetNumberOfProjectsMethod())
+                            .addMethod(getGetNumberOfProjectsByStatusMethod())
+                            .addMethod(getGetNumberOfProjectsByKeywordMethod())
                             .build();
                 }
             }

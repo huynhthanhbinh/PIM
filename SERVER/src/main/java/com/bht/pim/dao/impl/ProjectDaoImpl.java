@@ -51,7 +51,8 @@ public class ProjectDaoImpl implements ProjectDao {
             Root<ProjectEntity> root = query.from(ProjectEntity.class);
 
             return sessionFactory.getCurrentSession()
-                    .createQuery(query.select(builder.count(root)))
+                    .createQuery(query
+                            .select(builder.count(root)))
                     .getSingleResult();
 
         } catch (Exception exception) {
@@ -59,6 +60,32 @@ public class ProjectDaoImpl implements ProjectDao {
             log.info(exception);
             return -1;
         }
+    }
+
+    @Override
+    public long getNumberOfProjectsByStatus(String status) {
+        try {
+            CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+            CriteriaQuery<Long> query = builder.createQuery(Long.class);
+            Root<ProjectEntity> root = query.from(ProjectEntity.class);
+
+            return sessionFactory
+                    .getCurrentSession()
+                    .createQuery(query
+                            .select(builder.count(root))
+                            .where(builder.equal(root.get("status"), status)))
+                    .getSingleResult();
+
+        } catch (Exception exception) {
+
+            log.info(exception);
+            return -1;
+        }
+    }
+
+    @Override
+    public long getNumberOfProjectsByKeyword(String keyword) {
+        return 0;
     }
 
     @Override

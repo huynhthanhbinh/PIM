@@ -63,7 +63,7 @@ public final class ProjectOuterClass {
                         "ts.Project\"(\n\016ProjectNumbers\022\026\n\016projectN" +
                         "umbers\030\001 \003(\003\"W\n\021ProjectPagination\022\016\n\006max" +
                         "Row\030\001 \001(\005\022\021\n\tpageIndex\030\002 \001(\005\022\016\n\006status\030\003" +
-                        " \001(\t\022\017\n\007keyword\030\004 \001(\t2\337\004\n\016ProjectService" +
+                        " \001(\t\022\017\n\007keyword\030\004 \001(\t2\224\006\n\016ProjectService" +
                         "\022R\n\016getProjectById\022\033.google.protobuf.Int" +
                         "64Value\032#.com.bht.pim.proto.projects.Pro" +
                         "ject\022P\n\raddNewProject\022#.com.bht.pim.prot" +
@@ -78,8 +78,12 @@ public final class ProjectOuterClass {
                         "Numbers\022\026.google.protobuf.Empty\032*.com.bh" +
                         "t.pim.proto.projects.ProjectNumbers\022J\n\023g" +
                         "etNumberOfProjects\022\026.google.protobuf.Emp" +
-                        "ty\032\033.google.protobuf.Int64ValueB\005P\001\210\001\001b\006" +
-                        "proto3"
+                        "ty\032\033.google.protobuf.Int64Value\022X\n\033getNu" +
+                        "mberOfProjectsByStatus\022\034.google.protobuf" +
+                        ".StringValue\032\033.google.protobuf.Int64Valu" +
+                        "e\022Y\n\034getNumberOfProjectsByKeyword\022\034.goog" +
+                        "le.protobuf.StringValue\032\033.google.protobu" +
+                        "f.Int64ValueB\005P\001\210\001\001b\006proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

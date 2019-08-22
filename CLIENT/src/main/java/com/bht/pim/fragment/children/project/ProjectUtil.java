@@ -110,6 +110,7 @@ public class ProjectUtil implements Initializable, ParentOwning {
 
         bReset.setOnMouseClicked(event -> {
             log.info("[RESET] on mouse clicked");
+            comboBoxStatus.getSelectionModel().clearSelection();
         });
     }
 

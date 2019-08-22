@@ -10,6 +10,7 @@ import com.bht.pim.proto.projects.*;
 import com.google.protobuf.BoolValue;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
+import com.google.protobuf.StringValue;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.log4j.Log4j;
 import org.lognet.springboot.grpc.GRpcService;
@@ -136,7 +137,9 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
     public void getProjectList(ProjectPagination pagination, StreamObserver<ProjectList> responseObserver) {
         try {
             if (!pagination.getKeyword().isEmpty()) {
-                log.info("Search all projects with keyword = " + pagination.getKeyword());
+                log.info("Search all projects with keyword = " + pagination.getKeyword() +
+                        ", maxRow = " + pagination.getMaxRow() +
+                        ", pageIndex = " + pagination.getPageIndex());
 
                 responseObserver.onNext(ProjectList.newBuilder()
                         .addAllProjects(Collections.emptyList()).build());
@@ -145,7 +148,9 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
             }
 
             if (!pagination.getStatus().isEmpty()) {
-                log.info("Search all projects with status = " + pagination.getStatus());
+                log.info("Search all projects with status = " + pagination.getStatus() +
+                        ", maxRow = " + pagination.getMaxRow() +
+                        ", pageIndex = " + pagination.getPageIndex());
 
                 List<ProjectEntity> projectEntities = projectDao
                         .getProjectListByStatus(
@@ -163,6 +168,10 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
                 responseObserver.onCompleted();
                 return;
             }
+
+            log.info("Search all projects" +
+                    ", maxRow = " + pagination.getMaxRow() +
+                    ", pageIndex = " + pagination.getPageIndex());
 
             List<ProjectEntity> projectEntities = projectDao.getProjectList(pagination.getMaxRow(), pagination.getPageIndex());
             List<Project> projects = projectMapper.toProjectList(projectEntities);
@@ -214,7 +223,51 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
     @Override
     public void getNumberOfProjects(Empty request, StreamObserver<Int64Value> responseObserver) {
         try {
-            responseObserver.onNext(Int64Value.newBuilder().setValue(projectDao.getNumberOfProjects()).build());
+            responseObserver.onNext(Int64Value.newBuilder()
+                    .setValue(projectDao.getNumberOfProjects())
+                    .build());
+            responseObserver.onCompleted();
+
+        } catch (Exception exception) {
+
+            // log the exception out
+            log.info(exception);
+
+            // return an empty list not return null value for list
+            responseObserver.onNext(Int64Value.newBuilder().build());
+            responseObserver.onCompleted();
+        }
+    }
+
+    @Override
+    public void getNumberOfProjectsByStatus(StringValue request, StreamObserver<Int64Value> responseObserver) {
+        try {
+            responseObserver.onNext(Int64Value.newBuilder()
+                    .setValue(projectDao
+                            .getNumberOfProjectsByStatus(request.getValue()))
+                    .build());
+
+            responseObserver.onCompleted();
+
+        } catch (Exception exception) {
+
+            // log the exception out
+            log.info(exception);
+
+            // return an empty list not return null value for list
+            responseObserver.onNext(Int64Value.newBuilder().build());
+            responseObserver.onCompleted();
+        }
+    }
+
+    @Override
+    public void getNumberOfProjectsByKeyword(StringValue request, StreamObserver<Int64Value> responseObserver) {
+        try {
+            responseObserver.onNext(Int64Value.newBuilder()
+                    .setValue(projectDao
+                            .getNumberOfProjectsByKeyword(request.getValue()))
+                    .build());
+
             responseObserver.onCompleted();
 
         } catch (Exception exception) {

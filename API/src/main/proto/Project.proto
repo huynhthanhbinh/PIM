@@ -39,5 +39,8 @@ service ProjectService {
 
     rpc getProjectList (ProjectPagination) returns (ProjectList);
     rpc getProjectNumbers (google.protobuf.Empty) returns (ProjectNumbers);
+
     rpc getNumberOfProjects (google.protobuf.Empty) returns (google.protobuf.Int64Value);
+    rpc getNumberOfProjectsByStatus (google.protobuf.StringValue) returns (google.protobuf.Int64Value);
+    rpc getNumberOfProjectsByKeyword (google.protobuf.StringValue) returns (google.protobuf.Int64Value);
 }

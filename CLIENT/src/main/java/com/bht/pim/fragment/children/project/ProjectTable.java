@@ -138,7 +138,16 @@ public class ProjectTable implements Initializable, ParentOwning {
 
         log.info("Number of projects: " + projectService.getNumberOfProjects());
 
-        double temp = projectService.getNumberOfProjects();
+        double temp;
+
+        if (statusProperty.get() != null && !statusProperty.get().isEmpty()) {
+            temp = projectService.getNumberOfProjectsByStatus(statusProperty);
+        } else if (!searchBox.textProperty().get().isEmpty()) {
+            temp = projectService.getNumberOfProjectsByKeyword(searchBox.textProperty());
+        } else {
+            temp = projectService.getNumberOfProjects();
+        }
+
         pageCountProperty.set((int) Math.ceil(temp / MAX_TABLE_ROW));
     }
 

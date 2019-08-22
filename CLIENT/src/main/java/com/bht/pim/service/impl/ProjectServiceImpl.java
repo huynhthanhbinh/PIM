@@ -8,6 +8,7 @@ import com.bht.pim.proto.projects.ProjectServiceGrpc;
 import com.bht.pim.service.ProjectService;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
+import com.google.protobuf.StringValue;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -103,6 +104,24 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public long getNumberOfProjects() {
-        return stub.getNumberOfProjects(Empty.getDefaultInstance()).getValue();
+        return stub.getNumberOfProjects(Empty
+                .getDefaultInstance())
+                .getValue();
+    }
+
+    @Override
+    public long getNumberOfProjectsByStatus(StringProperty statusProperty) {
+        return stub.getNumberOfProjectsByStatus(StringValue.newBuilder()
+                .setValue(statusMapper.toSqlStatus(statusProperty))
+                .build())
+                .getValue();
+    }
+
+    @Override
+    public long getNumberOfProjectsByKeyword(StringProperty keywordProperty) {
+        return stub.getNumberOfProjectsByKeyword(StringValue.newBuilder()
+                .setValue(keywordProperty.get())
+                .build())
+                .getValue();
     }
 }

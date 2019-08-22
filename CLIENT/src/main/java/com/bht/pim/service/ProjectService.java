@@ -26,6 +26,12 @@ public interface ProjectService {
     // Get number of projects / row count(*)
     long getNumberOfProjects();
 
+    // Get project row count where STATUS = status
+    long getNumberOfProjectsByStatus(StringProperty statusProperty);
+
+    // Get project row count where contains keyword
+    long getNumberOfProjectsByKeyword(StringProperty keywordProperty);
+
     // Get project list - pagination
     ObservableList<ProjectDto> getProjectList(int maxRow, int pageIndex,
                                               StringProperty keywordProperty,
