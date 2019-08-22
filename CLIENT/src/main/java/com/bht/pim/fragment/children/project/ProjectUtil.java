@@ -51,7 +51,7 @@ public class ProjectUtil implements Initializable, ParentOwning {
     @FXML
     private Button bSearch;
     @FXML
-    private Button bCancel;
+    private Button bReset;
     @FXML
     private Button bNew;
 
@@ -63,18 +63,19 @@ public class ProjectUtil implements Initializable, ParentOwning {
         LanguageUtil.initLabel(bDeleteAll.textProperty(), "label.project.util.deleteall");
 
         ImageView iSearch = new ImageView(PimUtil.getImage("search"));
-        ImageView iCancel = new ImageView(PimUtil.getImage("cancel"));
+        ImageView iReset = new ImageView(PimUtil.getImage("reset"));
         ImageView iDelete = new ImageView(PimUtil.getImage("delete"));
         ImageView iNew = new ImageView(PimUtil.getImage("add"));
 
-        iCancel.setFitWidth(30);
-        iCancel.setFitHeight(30);
+        iReset.setFitWidth(110);
+        iReset.setFitHeight(110);
+        iReset.setPreserveRatio(true);
 
         iSearch.setFitWidth(30);
         iSearch.setFitHeight(30);
 
         bSearch.setGraphic(iSearch);
-        bCancel.setGraphic(iCancel);
+        bReset.setGraphic(iReset);
         bNew.setGraphic(iNew);
         bDeleteAll.setGraphic(iDelete);
 
@@ -89,6 +90,18 @@ public class ProjectUtil implements Initializable, ParentOwning {
                     ProjectCreate.class);
 
             context.send(AppConfiguration.COMPONENT_MAIN, switching);
+        });
+
+        bSearch.setOnMouseClicked(event -> {
+            log.info("[SEARCH] on mouse clicked");
+        });
+
+        bDeleteAll.setOnMouseClicked(event -> {
+            log.info("[DELETE ALL] on mouse clicked");
+        });
+
+        bReset.setOnMouseClicked(event -> {
+            log.info("[RESET] on mouse clicked");
         });
     }
 
