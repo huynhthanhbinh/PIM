@@ -61,6 +61,7 @@ public class ProjectUtil implements Initializable, ParentOwning {
     @Getter
     private Button bSearch;
     @FXML
+    @Getter
     private Button bReset;
     @FXML
     private Button bNew;
@@ -101,18 +102,8 @@ public class ProjectUtil implements Initializable, ParentOwning {
             context.send(AppConfiguration.COMPONENT_MAIN, switching);
         });
 
-        bSearch.setOnMouseClicked(event -> {
-            log.info("[SEARCH] on mouse clicked");
-        });
-
         bDeleteAll.setOnMouseClicked(event -> {
             log.info("[DELETE ALL] on mouse clicked");
-        });
-
-        bReset.setOnMouseClicked(event -> {
-            log.info("[RESET] on mouse clicked");
-            comboBoxStatus.getSelectionModel().clearSelection();
-            searchBox.clear();
         });
     }
 

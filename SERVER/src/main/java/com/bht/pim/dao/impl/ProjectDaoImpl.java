@@ -90,14 +90,16 @@ public class ProjectDaoImpl implements ProjectDao {
             CriteriaQuery<Long> query = builder.createQuery(Long.class);
             Root<ProjectEntity> root = query.from(ProjectEntity.class);
 
+            log.info("\n\n" + keyword + "\n\n");
+
             return sessionFactory
                     .getCurrentSession()
                     .createQuery(query
                             .select(builder.count(root))
                             .where(builder.or(
-                                    builder.like(root.get("number"), keyword),
-                                    builder.like(root.get("name"), keyword),
-                                    builder.like(root.get("customer"), keyword))))
+                                    builder.like(root.get("number").as(String.class), convertKeyword(keyword)),
+                                    builder.like(root.get("name"), convertKeyword(keyword)),
+                                    builder.like(root.get("customer"), convertKeyword(keyword)))))
                     .getSingleResult();
 
         } catch (Exception exception) {
@@ -259,14 +261,16 @@ public class ProjectDaoImpl implements ProjectDao {
             CriteriaQuery<ProjectEntity> query = builder.createQuery(ProjectEntity.class);
             Root<ProjectEntity> root = query.from(ProjectEntity.class);
 
+            log.info("\n\n" + keyword + "\n\n");
+
             TypedQuery<ProjectEntity> queryByStatus = sessionFactory
                     .getCurrentSession()
                     .createQuery(query
                             .select(root)
                             .where(builder.or(
-                                    builder.like(root.get("number"), keyword),
-                                    builder.like(root.get("name"), keyword),
-                                    builder.like(root.get("customer"), keyword)))
+                                    builder.like(root.get("number").as(String.class), convertKeyword(keyword)),
+                                    builder.like(root.get("name"), convertKeyword(keyword)),
+                                    builder.like(root.get("customer"), convertKeyword(keyword))))
                             .orderBy(builder.desc(root)));
 
             queryByStatus.setMaxResults(maxRow);
@@ -279,5 +283,10 @@ public class ProjectDaoImpl implements ProjectDao {
             log.info(exception);
             return Collections.emptyList();
         }
+    }
+
+    // for using like to search for containings
+    private String convertKeyword(String keyword) {
+        return "%" + keyword + "%";
     }
 }

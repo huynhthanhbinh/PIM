@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
@@ -370,6 +371,13 @@ public class ProjectTable implements Initializable, ParentOwning {
         if (!searchBox.getText().isEmpty()) {
             statusSelection.get().clearSelection();
             log.info("Searching for project with keyword = " + searchBox.getText());
+            getListProject(0);
         }
+    }
+
+    public void onReset(MouseEvent mouseEvent) {
+        statusSelection.get().clearSelection();
+        searchBox.clear();
+        getListProject(0);
     }
 }
