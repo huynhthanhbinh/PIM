@@ -135,8 +135,8 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
     @Override
     public void getProjectList(ProjectPagination pagination, StreamObserver<ProjectList> responseObserver) {
         try {
-            if (!pagination.getStatus().isEmpty()) {
-                log.info("Search all projects with status = " + pagination.getStatus());
+            if (!pagination.getKeyword().isEmpty()) {
+                log.info("Search all projects with keyword = " + pagination.getKeyword());
 
                 responseObserver.onNext(ProjectList.newBuilder()
                         .addAllProjects(Collections.emptyList()).build());
@@ -144,11 +144,22 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
                 return;
             }
 
-            if (!pagination.getKeyword().isEmpty()) {
-                log.info("Search all projects with keyword = " + pagination.getKeyword());
+            if (!pagination.getStatus().isEmpty()) {
+                log.info("Search all projects with status = " + pagination.getStatus());
 
-                responseObserver.onNext(ProjectList.newBuilder()
-                        .addAllProjects(Collections.emptyList()).build());
+                List<ProjectEntity> projectEntities = projectDao
+                        .getProjectListByStatus(
+                                pagination.getMaxRow(),
+                                pagination.getPageIndex(),
+                                pagination.getStatus());
+
+                List<Project> projects = projectMapper.toProjectList(projectEntities);
+
+                ProjectList projectList = ProjectList.newBuilder()
+                        .addAllProjects(projects)
+                        .build();
+
+                responseObserver.onNext(projectList);
                 responseObserver.onCompleted();
                 return;
             }

@@ -35,4 +35,10 @@ public interface ProjectDao {
 
     // Get all projects - pagination
     List<ProjectEntity> getProjectList(int maxRow, int pageIndex);
+
+    // Get all projects - pagination - by status
+    List<ProjectEntity> getProjectListByStatus(int maxRow, int pageIndex, String status);
+
+    // Get all projects - pagination - by keyword
+    List<ProjectEntity> getProjectListByKeyword(int maxRow, int pageIndex, String keyword);
 }

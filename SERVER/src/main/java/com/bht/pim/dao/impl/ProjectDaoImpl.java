@@ -177,4 +177,34 @@ public class ProjectDaoImpl implements ProjectDao {
             return Collections.emptyList();
         }
     }
+
+    @Override
+    public List<ProjectEntity> getProjectListByStatus(int maxRow, int pageIndex, String status) {
+        try {
+            CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+            CriteriaQuery<ProjectEntity> query = builder.createQuery(ProjectEntity.class);
+            Root<ProjectEntity> root = query.from(ProjectEntity.class);
+
+            TypedQuery<ProjectEntity> queryByStatus = sessionFactory
+                    .getCurrentSession()
+                    .createQuery(query
+                            .select(root)
+                            .where(builder.equal(root.get("status"), status)));
+
+            queryByStatus.setMaxResults(maxRow);
+            queryByStatus.setFirstResult(maxRow * pageIndex);
+
+            return queryByStatus.getResultList();
+
+        } catch (Exception exception) {
+
+            log.info(exception);
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public List<ProjectEntity> getProjectListByKeyword(int maxRow, int pageIndex, String keyword) {
+        return null;
+    }
 }
