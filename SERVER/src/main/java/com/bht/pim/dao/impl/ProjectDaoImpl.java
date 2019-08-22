@@ -164,7 +164,9 @@ public class ProjectDaoImpl implements ProjectDao {
 
             TypedQuery<ProjectEntity> allQuery = sessionFactory
                     .getCurrentSession()
-                    .createQuery(query.select(root));
+                    .createQuery(query
+                            .select(root)
+                            .orderBy(builder.desc(root)));
 
             allQuery.setMaxResults(maxRow);
             allQuery.setFirstResult(maxRow * pageIndex);
@@ -189,7 +191,8 @@ public class ProjectDaoImpl implements ProjectDao {
                     .getCurrentSession()
                     .createQuery(query
                             .select(root)
-                            .where(builder.equal(root.get("status"), status)));
+                            .where(builder.equal(root.get("status"), status))
+                            .orderBy(builder.desc(root)));
 
             queryByStatus.setMaxResults(maxRow);
             queryByStatus.setFirstResult(maxRow * pageIndex);
