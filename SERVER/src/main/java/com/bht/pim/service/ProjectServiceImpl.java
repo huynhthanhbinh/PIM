@@ -141,8 +141,19 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
                         ", maxRow = " + pagination.getMaxRow() +
                         ", pageIndex = " + pagination.getPageIndex());
 
-                responseObserver.onNext(ProjectList.newBuilder()
-                        .addAllProjects(Collections.emptyList()).build());
+                List<ProjectEntity> projectEntities = projectDao
+                        .getProjectListByKeyword(
+                                pagination.getMaxRow(),
+                                pagination.getPageIndex(),
+                                pagination.getKeyword());
+
+                List<Project> projects = projectMapper.toProjectList(projectEntities);
+
+                ProjectList projectList = ProjectList.newBuilder()
+                        .addAllProjects(projects)
+                        .build();
+
+                responseObserver.onNext(projectList);
                 responseObserver.onCompleted();
                 return;
             }
@@ -173,7 +184,11 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
                     ", maxRow = " + pagination.getMaxRow() +
                     ", pageIndex = " + pagination.getPageIndex());
 
-            List<ProjectEntity> projectEntities = projectDao.getProjectList(pagination.getMaxRow(), pagination.getPageIndex());
+            List<ProjectEntity> projectEntities = projectDao
+                    .getProjectList(
+                            pagination.getMaxRow(),
+                            pagination.getPageIndex());
+
             List<Project> projects = projectMapper.toProjectList(projectEntities);
 
             ProjectList projectList = ProjectList.newBuilder()

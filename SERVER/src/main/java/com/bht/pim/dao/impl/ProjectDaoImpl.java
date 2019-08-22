@@ -85,7 +85,26 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public long getNumberOfProjectsByKeyword(String keyword) {
-        return 0;
+        try {
+            CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+            CriteriaQuery<Long> query = builder.createQuery(Long.class);
+            Root<ProjectEntity> root = query.from(ProjectEntity.class);
+
+            return sessionFactory
+                    .getCurrentSession()
+                    .createQuery(query
+                            .select(builder.count(root))
+                            .where(builder.or(
+                                    builder.like(root.get("number"), keyword),
+                                    builder.like(root.get("name"), keyword),
+                                    builder.like(root.get("customer"), keyword))))
+                    .getSingleResult();
+
+        } catch (Exception exception) {
+
+            log.info(exception);
+            return -1;
+        }
     }
 
     @Override
@@ -235,6 +254,30 @@ public class ProjectDaoImpl implements ProjectDao {
 
     @Override
     public List<ProjectEntity> getProjectListByKeyword(int maxRow, int pageIndex, String keyword) {
-        return null;
+        try {
+            CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+            CriteriaQuery<ProjectEntity> query = builder.createQuery(ProjectEntity.class);
+            Root<ProjectEntity> root = query.from(ProjectEntity.class);
+
+            TypedQuery<ProjectEntity> queryByStatus = sessionFactory
+                    .getCurrentSession()
+                    .createQuery(query
+                            .select(root)
+                            .where(builder.or(
+                                    builder.like(root.get("number"), keyword),
+                                    builder.like(root.get("name"), keyword),
+                                    builder.like(root.get("customer"), keyword)))
+                            .orderBy(builder.desc(root)));
+
+            queryByStatus.setMaxResults(maxRow);
+            queryByStatus.setFirstResult(maxRow * pageIndex);
+
+            return queryByStatus.getResultList();
+
+        } catch (Exception exception) {
+
+            log.info(exception);
+            return Collections.emptyList();
+        }
     }
 }
