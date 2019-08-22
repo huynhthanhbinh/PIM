@@ -11,9 +11,7 @@ import com.bht.pim.util.PimUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -53,10 +51,15 @@ public class ProjectTable implements Initializable, ParentOwning {
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
     private static final int MAX_TABLE_ROW = 8;
 
+
+    // pagination
     @Getter
     private IntegerProperty pageCountProperty;
     @Getter
     private IntegerProperty pageIndexProperty;
+    @Getter
+    private StringProperty statusProperty;
+
 
     @Setter
     private boolean successGettingProject;
@@ -98,11 +101,16 @@ public class ProjectTable implements Initializable, ParentOwning {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        pageIndexProperty = new SimpleIntegerProperty(0);
-        pageCountProperty = new SimpleIntegerProperty(0);
+        pageIndexProperty = new SimpleIntegerProperty();
+        pageCountProperty = new SimpleIntegerProperty();
+        statusProperty = new SimpleStringProperty();
 
         pageIndexProperty.addListener((observable, oldValue, newValue) ->
                 getListProject(newValue.intValue()));
+
+        statusProperty.addListener((observable, oldValue, newValue) -> {
+            log.info("Status = " + newValue);
+        });
 
         // for multilingual
         initAllLabels();

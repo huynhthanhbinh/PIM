@@ -65,6 +65,7 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
 
         pagination.getPagination().pageCountProperty().bind(projectTable.getPageCountProperty());
         projectTable.getPageIndexProperty().bind(pagination.getPagination().currentPageIndexProperty());
+        projectTable.getStatusProperty().bind(projectUtil.getComboBoxStatus().valueProperty());
 
         projectTable.getMainPane().prefWidthProperty().bind(Bindings.
                 when(mainPane.widthProperty().lessThan(1500))

@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
@@ -47,6 +48,7 @@ public class ProjectUtil implements Initializable, ParentOwning {
     @FXML
     private TextField searchBox;
     @FXML
+    @Getter
     private ComboBox<String> comboBoxStatus;
     @FXML
     private Label lNumberOfProjects;
@@ -133,7 +135,5 @@ public class ProjectUtil implements Initializable, ParentOwning {
 
                     comboBoxStatus.getSelectionModel().select(index);
                 });
-
-        comboBoxStatus.getSelectionModel().selectFirst();
     }
 }
