@@ -53,6 +53,8 @@ import java.util.stream.Collectors;
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditForm.fxml")
 public class ProjectEditForm implements Initializable, Confirmable, ParentOwning {
 
+    private ProjectDto.Builder projectBuilder;
+
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
     @Autowired
     private EmployeeService employeeService;
@@ -166,6 +168,9 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // init an instance for storing a project
+        projectBuilder = ProjectDto.newBuilder();
+
         // for i18n / multilingual
         initAllLabels();
 
