@@ -61,11 +61,8 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
         projectTable = (ProjectTable) children[2].getKey();
         pagination = (PimPagination) children[3].getKey();
 
+        bindingChildrenFragments();
         mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_LIST);
-
-        pagination.getPagination().pageCountProperty().bind(projectTable.getPageCountProperty());
-        projectTable.getPageIndexProperty().bind(pagination.getPagination().currentPageIndexProperty());
-        projectTable.getStatusProperty().bind(projectUtil.getComboBoxStatus().valueProperty());
 
         projectTable.getMainPane().prefWidthProperty().bind(Bindings.
                 when(mainPane.widthProperty().lessThan(1500))
@@ -86,5 +83,13 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
     @Override
     public void setSuccess(boolean successStatus) {
         projectTable.setSuccessGettingProject(successStatus);
+    }
+
+    private void bindingChildrenFragments() {
+        pagination.getPagination().pageCountProperty().bind(projectTable.getPageCountProperty());
+        projectTable.getPageIndexProperty().bind(pagination.getPagination().currentPageIndexProperty());
+        projectTable.getStatusProperty().bind(projectUtil.getComboBoxStatus().valueProperty());
+        projectTable.getSearchBox().onKeyReleasedProperty().bind(projectUtil.getSearchBox().onKeyPressedProperty());
+        projectTable.getSearchBox().textProperty().bindBidirectional(projectUtil.getSearchBox().textProperty());
     }
 }

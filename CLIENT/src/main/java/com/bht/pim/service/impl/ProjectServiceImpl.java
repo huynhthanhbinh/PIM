@@ -2,11 +2,13 @@ package com.bht.pim.service.impl;
 
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.mapper.ProjectMapper;
+import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.proto.projects.ProjectPagination;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
 import com.bht.pim.service.ProjectService;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import java.util.List;
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
+    @Autowired
+    private StatusMapper statusMapper;
     @Autowired
     private ProjectMapper projectMapper;
     @Autowired
@@ -62,7 +66,32 @@ public class ProjectServiceImpl implements ProjectService {
 
     // Get all of projects
     @Override
-    public ObservableList<ProjectDto> getProjectList(int maxRow, int pageIndex) {
+    public ObservableList<ProjectDto> getProjectList(int maxRow, int pageIndex,
+                                                     StringProperty keywordProperty,
+                                                     StringProperty statusProperty) {
+
+        if (statusProperty.get() != null) {
+            return FXCollections.observableArrayList(
+                    projectMapper.toProjectDtoList(stub
+                            .getProjectList(ProjectPagination.newBuilder()
+                                    .setMaxRow(maxRow)
+                                    .setPageIndex(pageIndex)
+                                    .setStatus(statusMapper.toSqlStatus(statusProperty))
+                                    .build())
+                            .getProjectsList()));
+        }
+
+        if (keywordProperty.get() != null) {
+            return FXCollections.observableArrayList(
+                    projectMapper.toProjectDtoList(stub
+                            .getProjectList(ProjectPagination.newBuilder()
+                                    .setMaxRow(maxRow)
+                                    .setPageIndex(pageIndex)
+                                    .setKeyword(keywordProperty.get())
+                                    .build())
+                            .getProjectsList()));
+        }
+
         return FXCollections.observableArrayList(
                 projectMapper.toProjectDtoList(stub
                         .getProjectList(ProjectPagination.newBuilder()

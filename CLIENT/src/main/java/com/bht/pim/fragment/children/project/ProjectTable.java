@@ -59,6 +59,8 @@ public class ProjectTable implements Initializable, ParentOwning {
     private IntegerProperty pageIndexProperty;
     @Getter
     private StringProperty statusProperty;
+    @Getter
+    private TextField searchBox;
 
 
     @Setter
@@ -100,7 +102,7 @@ public class ProjectTable implements Initializable, ParentOwning {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        searchBox = new TextField();
         pageIndexProperty = new SimpleIntegerProperty();
         pageCountProperty = new SimpleIntegerProperty();
         statusProperty = new SimpleStringProperty();
@@ -109,8 +111,10 @@ public class ProjectTable implements Initializable, ParentOwning {
                 getListProject(newValue.intValue()));
 
         statusProperty.addListener((observable, oldValue, newValue) -> {
-            log.info("Status = " + newValue);
+            searchBox.setText("");
+            getListProject(0);
         });
+
 
         // for multilingual
         initAllLabels();
@@ -125,7 +129,13 @@ public class ProjectTable implements Initializable, ParentOwning {
 
     // Get all necessary data
     private void getListProject(int pageIndex) {
-        table.setItems(projectService.getProjectList(MAX_TABLE_ROW, pageIndex));
+        table.setItems(projectService
+                .getProjectList(
+                        MAX_TABLE_ROW,
+                        pageIndex,
+                        searchBox.textProperty(),
+                        statusProperty));
+
         log.info("Number of projects: " + projectService.getNumberOfProjects());
 
         double temp = projectService.getNumberOfProjects();

@@ -46,6 +46,7 @@ public class ProjectUtil implements Initializable, ParentOwning {
     @FXML
     private AnchorPane utilPane;
     @FXML
+    @Getter
     private TextField searchBox;
     @FXML
     @Getter

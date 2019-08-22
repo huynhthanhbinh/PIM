@@ -1,6 +1,7 @@
 package com.bht.pim.service;
 
 import com.bht.pim.dto.ProjectDto;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
 import java.util.List;
@@ -26,5 +27,7 @@ public interface ProjectService {
     long getNumberOfProjects();
 
     // Get project list - pagination
-    ObservableList<ProjectDto> getProjectList(int maxRow, int pageIndex);
+    ObservableList<ProjectDto> getProjectList(int maxRow, int pageIndex,
+                                              StringProperty keywordProperty,
+                                              StringProperty statusProperty);
 }
