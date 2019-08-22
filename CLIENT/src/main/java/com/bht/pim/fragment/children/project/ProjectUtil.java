@@ -4,7 +4,9 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.fragment.parent.project.ProjectCreate;
 import com.bht.pim.fragment.parent.project.ProjectList;
+import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
+import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.PimUtil;
 import javafx.fxml.FXML;
@@ -20,6 +22,7 @@ import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -33,8 +36,11 @@ import java.util.ResourceBundle;
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectUtil.fxml")
 public class ProjectUtil implements Initializable, ParentOwning {
 
+    private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
     @Resource
     private Context context;
+    @Autowired
+    private StatusMapper statusMapper;
 
     @FXML
     private AnchorPane utilPane;
@@ -57,6 +63,8 @@ public class ProjectUtil implements Initializable, ParentOwning {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initComboBoxStatus();
+
         LanguageUtil.initLabel(searchBox.promptTextProperty(), "label.project.util.searchbox");
         LanguageUtil.initLabel(comboBoxStatus.promptTextProperty(), "label.project.util.status");
         LanguageUtil.initLabel(lSelected.textProperty(), "label.project.util.selected");
@@ -78,9 +86,6 @@ public class ProjectUtil implements Initializable, ParentOwning {
         bReset.setGraphic(iReset);
         bNew.setGraphic(iNew);
         bDeleteAll.setGraphic(iDelete);
-
-        comboBoxStatus.getItems().addAll(
-                "New", "Planned", "In progress", "Finished");
 
         bNew.setOnMouseClicked(event -> {
             log.info("[NEW] on mouse clicked");
@@ -108,5 +113,27 @@ public class ProjectUtil implements Initializable, ParentOwning {
     @Override
     public void onSwitchParentFragment() {
 
+    }
+
+    private void initComboBoxStatus() {
+        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("NEW").get());
+        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("PLA").get());
+        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("INP").get());
+        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("FIN").get());
+
+        languageProperty.getResourceBundleProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    int index = comboBoxStatus.getSelectionModel().getSelectedIndex();
+                    comboBoxStatus.getItems().clear();
+
+                    comboBoxStatus.getItems().add(statusMapper.toGuiStatus("NEW").get());
+                    comboBoxStatus.getItems().add(statusMapper.toGuiStatus("PLA").get());
+                    comboBoxStatus.getItems().add(statusMapper.toGuiStatus("INP").get());
+                    comboBoxStatus.getItems().add(statusMapper.toGuiStatus("FIN").get());
+
+                    comboBoxStatus.getSelectionModel().select(index);
+                });
+
+        comboBoxStatus.getSelectionModel().selectFirst();
     }
 }

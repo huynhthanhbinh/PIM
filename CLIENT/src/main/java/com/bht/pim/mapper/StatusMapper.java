@@ -38,7 +38,7 @@ public abstract class StatusMapper {
     @Named("toSqlStatus")
     public String toSqlStatus(StringProperty guiStatus) {
         for (Map.Entry<String, StringProperty> entry : availableStatus.entrySet()) {
-            if (entry.getValue().equals(guiStatus)) {
+            if (entry.getValue().get().equals(guiStatus.get())) {
                 return entry.getKey();
             }
         }
