@@ -12,6 +12,7 @@ import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -60,6 +61,8 @@ public class ProjectTable implements Initializable, ParentOwning {
     @Getter
     private StringProperty statusProperty;
     @Getter
+    private ObjectProperty<SingleSelectionModel<String>> statusSelection;
+    @Getter
     private TextField searchBox;
 
 
@@ -106,13 +109,16 @@ public class ProjectTable implements Initializable, ParentOwning {
         pageIndexProperty = new SimpleIntegerProperty();
         pageCountProperty = new SimpleIntegerProperty();
         statusProperty = new SimpleStringProperty();
+        statusSelection = new SimpleObjectProperty<>();
 
         pageIndexProperty.addListener((observable, oldValue, newValue) ->
                 getListProject(newValue.intValue()));
 
         statusProperty.addListener((observable, oldValue, newValue) -> {
-            searchBox.setText("");
-            getListProject(0);
+            if (newValue != null) {
+                searchBox.setText("");
+                getListProject(0);
+            }
         });
 
 
@@ -358,5 +364,12 @@ public class ProjectTable implements Initializable, ParentOwning {
         return (table.getItems().size() > 0)
                 ? pageIndexProperty.get()
                 : 0;
+    }
+
+    public void onSearchForProject(Event event) {
+        if (!searchBox.getText().isEmpty()) {
+            statusSelection.get().clearSelection();
+            log.info("Searching for project with keyword = " + searchBox.getText());
+        }
     }
 }

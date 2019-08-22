@@ -64,6 +64,8 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
         bindingChildrenFragments();
         mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_LIST);
 
+        projectUtil.getBSearch().setOnMouseClicked(projectTable::onSearchForProject);
+
         projectTable.getMainPane().prefWidthProperty().bind(Bindings.
                 when(mainPane.widthProperty().lessThan(1500))
                 .then(mainPane.widthProperty().subtract(10))
@@ -91,5 +93,6 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
         projectTable.getStatusProperty().bind(projectUtil.getComboBoxStatus().valueProperty());
         projectTable.getSearchBox().onKeyReleasedProperty().bind(projectUtil.getSearchBox().onKeyPressedProperty());
         projectTable.getSearchBox().textProperty().bindBidirectional(projectUtil.getSearchBox().textProperty());
+        projectTable.getStatusSelection().bindBidirectional(projectUtil.getComboBoxStatus().selectionModelProperty());
     }
 }
