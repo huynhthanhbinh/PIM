@@ -24,3 +24,9 @@
     -fx-border-color: black;
     -fx-border-radius: 30;
 }
+
+#lIncorrect {
+    -fx-text-fill: #d9390d;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
