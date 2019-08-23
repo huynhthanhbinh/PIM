@@ -9,37 +9,42 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.extern.log4j.Log4j;
 import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
+import javax.annotation.PostConstruct;
 import java.util.Locale;
 
 @Log4j
-@ComponentScan("com.bht.pim")
 @Configuration
+@ComponentScan("com.bht.pim")
+@PropertySource("classpath:/pim.properties")
 public class AppConfiguration {
 
     public static final LanguageProperty LANGUAGE_PROPERTY =
             new LanguageProperty(Locale.FRENCH);
 
-    public AppConfiguration() {
-        log.info("[PIM] On init configuration beans !\n");
+    @PostConstruct
+    public void init() {
+        channel = ManagedChannelBuilder
+                .forAddress(host, port)
+                .usePlaintext()
+                .maxInboundMessageSize(10 * 1024 * 1024)
+                .build();
     }
 
-    private static final int PORT = 9999;
-    private static final String HOST = "localhost";
+    @Value("${pim.server.host}")
+    private String host;
+
+    @Value("${pim.server.port}")
+    private int port;
 
     // Channel is the abstraction to connect to a service endpoint
     // Let's use plaintext communication because we don't have certs
-    private final ManagedChannel channel = ManagedChannelBuilder
-            .forAddress(HOST, PORT)
-            .usePlaintext()
-            .maxInboundMessageSize(10 * 1024 * 1024)
-            .build();
-
-    public static final String USERNAME = "bht";
-    public static final String PASSWORD = "";
+    private ManagedChannel channel;
 
     public static final String PERSPECTIVE = "idPIMPerspective";
     public static final String PERSPECTIVE_LOGIN = "idPIMLogin";

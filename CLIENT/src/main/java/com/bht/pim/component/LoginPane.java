@@ -23,6 +23,7 @@ import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.ResourceBundle;
 
@@ -34,6 +35,11 @@ import java.util.ResourceBundle;
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_BOTTOM,
         viewLocation = "/com/bht/pim/component/LoginPane.fxml")
 public class LoginPane implements FXComponent {
+
+    @Value("${pim.client.username}")
+    private String defaultUsername;
+    @Value("${pim.client.password}")
+    private String defaultPassword;
 
     @Resource
     private Context context;
@@ -69,8 +75,8 @@ public class LoginPane implements FXComponent {
         lIncorrect.setVisible(false);
 
         bLogin.setOnMouseClicked(event -> {
-            if (username.getText().equals(AppConfiguration.USERNAME)
-                    && password.getText().equals(AppConfiguration.PASSWORD)) {
+            if (username.getText().equals(defaultUsername)
+                    && password.getText().equals(defaultPassword)) {
 
                 context.send(AppConfiguration.PERSPECTIVE, "show");
                 username.clear();
