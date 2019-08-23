@@ -1,7 +1,6 @@
 package com.bht.pim.util;
 
 import com.bht.pim.dto.ProjectDto;
-import com.bht.pim.mapper.DateTimeMapper;
 import javafx.geometry.Pos;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -10,7 +9,6 @@ import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -23,9 +21,6 @@ public class PimUtil {
 
     public final StringConverter<LocalDate> dateStringConverter = dateStringConverter();
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-    @Autowired
-    private DateTimeMapper dateTimeMapper;
 
     // Format Date : convert from Timestamp to LocalDate
     public TableCell<ProjectDto, LocalDate> dateFormat(TableColumn<ProjectDto, LocalDate> column) {

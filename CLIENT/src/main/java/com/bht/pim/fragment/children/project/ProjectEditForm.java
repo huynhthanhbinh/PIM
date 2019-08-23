@@ -155,15 +155,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     @Override
     public void onSwitchParentFragment() {
-        // reset all back
-        // to receive new record
-        emptyAllFields();
-        hideAllValidation();
-        hideAllCheckLabel();
-
-        // Get all necessary data from server
-        getNecessaryData();
-        fillAllFieldsIfUpdate();
+        loadProjectEditForm();
     }
 
     public void setIsUpdateState(boolean isUpdateState) {
@@ -466,34 +458,9 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                 }
 
                 NotificationUtil.showNotification(NotificationStyle.INFO, Pos.CENTER,
-                        "[PIM] On saving new project !");
+                        "[PIM] On saving project !");
 
-                if (projectService.addNewProject(projectDtoBuilder.build())) {
-                    NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
-                            "[PIM] Successfully create project !");
-
-                    FragmentSwitching switching = new FragmentSwitching(
-                            ProjectEditForm.class,
-                            ProjectList.class);
-
-                    context.send(AppConfiguration.COMPONENT_MAIN, switching);
-
-                } else {
-                    NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
-                            "[PIM] Failed to create new project !");
-
-                    // Get all necessary data from server
-                    getNecessaryData();
-
-                    // Init all inputs
-                    initAllInput();
-
-                    // Add all event-listener
-                    addAllEventListener();
-
-                    // Hide all check-label
-                    hideAllCheckLabel();
-                }
+                saveOrUpdateProject(projectDtoBuilder);
 
             } catch (Exception exception) {
                 log.info(exception);
@@ -770,6 +737,68 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
             start.setValue(projectDto.getStart());
             end.setValue(projectDto.getEnd());
             members = projectDto.getMembers();
+        }
+    }
+
+    private void loadProjectEditForm() {
+        // reset all back
+        // to receive new record
+        emptyAllFields();
+        hideAllValidation();
+        hideAllCheckLabel();
+
+        // Get all necessary data from server
+        getNecessaryData();
+        fillAllFieldsIfUpdate();
+    }
+
+    private void saveOrUpdateProject(ProjectDto.Builder projectDtoBuilder) {
+        projectDto = projectDtoBuilder.build();
+
+        log.info(isUpdate);
+
+        if (isUpdate) {
+            updateProject(projectDto);
+        } else {
+            saveProject(projectDto);
+        }
+    }
+
+    private void saveProject(ProjectDto projectDto) {
+        if (projectService.addNewProject(projectDto)) {
+            NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
+                    "[PIM] Successfully create project !");
+
+            FragmentSwitching switching = new FragmentSwitching(
+                    ProjectEditForm.class,
+                    ProjectList.class);
+
+            context.send(AppConfiguration.COMPONENT_MAIN, switching);
+
+        } else {
+            NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
+                    "[PIM] Failed to create new project !");
+
+            loadProjectEditForm();
+        }
+    }
+
+    private void updateProject(ProjectDto projectDto) {
+        if (projectService.updateProject(projectDto)) {
+            NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
+                    "[PIM] Successfully update project !");
+
+            FragmentSwitching switching = new FragmentSwitching(
+                    ProjectEditForm.class,
+                    ProjectList.class);
+
+            context.send(AppConfiguration.COMPONENT_MAIN, switching);
+
+        } else {
+            NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
+                    "[PIM] Failed to update project !");
+
+            loadProjectEditForm();
         }
     }
 }
