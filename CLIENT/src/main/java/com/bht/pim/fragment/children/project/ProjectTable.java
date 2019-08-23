@@ -399,6 +399,9 @@ public class ProjectTable implements Initializable, ParentOwning {
     public void onReset(MouseEvent mouseEvent) {
         statusSelection.get().clearSelection();
         searchBox.clear();
+
+        log.info(pageIndexProperty.get());
+        pageIndexProperty.set(0);
         getListProject(0);
     }
 }

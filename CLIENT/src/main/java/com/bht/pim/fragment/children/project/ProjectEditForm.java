@@ -169,6 +169,16 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
             name.setText(projectDto.getName());
             customer.setText(projectDto.getCustomer());
             comboBoxStatus.getSelectionModel().select(projectDto.getStatus().get());
+            table.getItems().addAll(projectDto.getMembers());
+            comboBoxOption.getSelectionModel().select(1);
+            leader = groupService.getGroupById(projectDto.getGroup().getId()).getLeader();
+            table.getItems().remove(leader);
+            comboBoxLeader.getSelectionModel().select(leader);
+            start.setValue(projectDto.getStart());
+            end.setValue(projectDto.getEnd());
+            members = projectDto.getMembers();
+
+            log.info(members);
         }
     }
 

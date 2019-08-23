@@ -88,8 +88,8 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
     }
 
     private void bindingChildrenFragments() {
+        pagination.getPagination().currentPageIndexProperty().bindBidirectional(projectTable.getPageIndexProperty());
         pagination.getPagination().pageCountProperty().bind(projectTable.getPageCountProperty());
-        projectTable.getPageIndexProperty().bind(pagination.getPagination().currentPageIndexProperty());
         projectTable.getStatusProperty().bind(projectUtil.getComboBoxStatus().valueProperty());
         projectTable.getSearchBox().onKeyReleasedProperty().bind(projectUtil.getSearchBox().onKeyPressedProperty());
         projectTable.getSearchBox().textProperty().bindBidirectional(projectUtil.getSearchBox().textProperty());
