@@ -14,7 +14,9 @@ import org.jacpfx.rcp.workbench.FXWorkbench;
 
 @Log4j
 @Workbench(id = "workbench", name = "workbench",
-        perspectives = {AppConfiguration.PERSPECTIVE})
+        perspectives = {
+                AppConfiguration.PERSPECTIVE,
+                AppConfiguration.PERSPECTIVE_LOGIN})
 public class PimWorkbench implements FXWorkbench {
 
     @Override
@@ -23,7 +25,7 @@ public class PimWorkbench implements FXWorkbench {
             WorkbenchLayout<Node> layout, Stage stage) {
 
         log.info("<<< PIM Client - On handleInitialLayout >>>");
-        layout.setWorkbenchXYSize(1280, 690);
+        layout.setWorkbenchXYSize(1280, 700);
         layout.setStyle(StageStyle.DECORATED);
         layout.setMenuEnabled(false);
         /*layout.registerToolBar(ToolbarPosition.NORTH);*/

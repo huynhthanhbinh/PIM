@@ -38,14 +38,20 @@ public class AppConfiguration {
             .maxInboundMessageSize(10 * 1024 * 1024)
             .build();
 
+    public static final String USERNAME = "bht";
+    public static final String PASSWORD = "bht@elca.vn";
+
     public static final String PERSPECTIVE = "idPIMPerspective";
+    public static final String PERSPECTIVE_LOGIN = "idPIMLogin";
     public static final String LANGUAGE_BUNDLES = "bundles.languageBundle";
 
     public static final String TARGET_CONTAINER_TOP = "PTop";
+    public static final String TARGET_CONTAINER_BOTTOM = "PBottom";
     public static final String TARGET_CONTAINER_LEFT = "PLeft";
     public static final String TARGET_CONTAINER_MAIN = "PMain";
 
     public static final String COMPONENT_TOP = "idcTop";
+    public static final String COMPONENT_BOTTOM = "idcBottom";
     public static final String COMPONENT_LEFT = "idcLeft";
     public static final String COMPONENT_MAIN = "idcMain";
 
