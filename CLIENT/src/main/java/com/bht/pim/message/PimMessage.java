@@ -20,7 +20,7 @@ public interface PimMessage {
             PimMessage messageBody = (PimMessage) message.getMessageBody();
 
             logger.info("[PIM Message] " + messageBody.getClass().getSimpleName() +
-                    " >>> sent from: " + messageBody.getFragmentSent());
+                    " >>> sent from: " + messageBody.getFragmentSent().getSimpleName());
 
             return messageBody.postHandle(node, mainPane);
         }

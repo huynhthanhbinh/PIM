@@ -53,7 +53,7 @@ import java.util.stream.Collectors;
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditForm.fxml")
 public class ProjectEditForm implements Initializable, Confirmable, ParentOwning {
 
-    private ProjectDto.Builder projectBuilder;
+    private ProjectDto projectDto;
 
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
     @Autowired
@@ -156,9 +156,9 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     @Override
     public void onSwitchParentFragment() {
         if (isUpdate) {
-
-        } else {
-
+            number.setText(String.valueOf(projectDto.getNumber()));
+            name.setText(projectDto.getName());
+            customer.setText(projectDto.getCustomer());
         }
     }
 
@@ -169,7 +169,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // init an instance for storing a project
-        projectBuilder = ProjectDto.newBuilder();
+        projectDto = ProjectDto.newBuilder().build();
 
         // for i18n / multilingual
         initAllLabels();
@@ -294,9 +294,6 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     private void initAllInput() {
         initComboBoxStatus();
-
-        String[] options = {"New group", "Current group"};
-        comboBoxOption.getItems().addAll(options);
         comboBoxLeader.setDisable(true);
         textField.setDisable(true);
 
@@ -490,7 +487,6 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
             } catch (Exception exception) {
                 log.info(exception);
-                exception.printStackTrace();
             }
         } else {
             warnOnInvalid(emptyNumber, emptyName, emptyCustomer, emptyStart);
@@ -643,8 +639,11 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     }
 
     public boolean getProjectById(long projectId) {
+        projectDto = projectService.getProjectById(projectId);
 
-        return false;
+        log.info(projectDto);
+
+        return projectDto.getId() != 0;
     }
 
     private void initAllLabels() {

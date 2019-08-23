@@ -1,6 +1,8 @@
 package com.bht.pim.fragment.parent;
 
+import javafx.beans.property.BooleanProperty;
+
 public interface SuccessNeeding {
 
-    void setSuccess(boolean successStatus);
+    BooleanProperty getSuccessProperty();
 }

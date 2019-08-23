@@ -9,6 +9,8 @@ import com.bht.pim.fragment.parent.ChildrenContaining;
 import com.bht.pim.fragment.parent.SuccessNeeding;
 import com.bht.pim.util.PimUtil;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -36,6 +38,7 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
     private ProjectUtil projectUtil;
     private ProjectTable projectTable;
     private PimPagination pagination;
+    private BooleanProperty successProperty;
 
     @Resource
     private Context context;
@@ -48,6 +51,7 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
     public void initialize(URL location, ResourceBundle resources) {
         log.info("[Project List] On init scene ");
         PimUtil.alignPane(mainPane, context);
+        successProperty = new SimpleBooleanProperty();
     }
 
     @Override
@@ -83,11 +87,6 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
         pagination.onSwitchParentFragment();
     }
 
-    @Override
-    public void setSuccess(boolean successStatus) {
-        projectTable.setSuccessGettingProject(successStatus);
-    }
-
     private void bindingChildrenFragments() {
         pagination.getPagination().pageCountProperty().bind(projectTable.getPageCountProperty());
         projectTable.getPageIndexProperty().bind(pagination.getPagination().currentPageIndexProperty());
@@ -95,5 +94,11 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
         projectTable.getSearchBox().onKeyReleasedProperty().bind(projectUtil.getSearchBox().onKeyPressedProperty());
         projectTable.getSearchBox().textProperty().bindBidirectional(projectUtil.getSearchBox().textProperty());
         projectTable.getStatusSelection().bindBidirectional(projectUtil.getComboBoxStatus().selectionModelProperty());
+        projectTable.getSuccessProperty().bind(successProperty);
+    }
+
+    @Override
+    public BooleanProperty getSuccessProperty() {
+        return successProperty;
     }
 }

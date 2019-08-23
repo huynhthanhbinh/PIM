@@ -6,6 +6,7 @@ import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.fragment.parent.project.ProjectUpdate;
 import com.bht.pim.message.impl.FragmentSwitching;
+import com.bht.pim.message.impl.IdentifierSending;
 import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.service.ProjectService;
@@ -27,7 +28,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
@@ -70,8 +70,8 @@ public class ProjectTable implements Initializable, ParentOwning {
     private TextField searchBox;
 
 
-    @Setter
-    private boolean successGettingProject;
+    @Getter
+    private BooleanProperty successProperty;
     @Autowired
     private ProjectService projectService;
     @Autowired
@@ -114,6 +114,7 @@ public class ProjectTable implements Initializable, ParentOwning {
         pageCountProperty = new SimpleIntegerProperty();
         statusProperty = new SimpleStringProperty();
         statusSelection = new SimpleObjectProperty<>();
+        successProperty = new SimpleBooleanProperty();
 
         pageIndexProperty.addListener((observable, oldValue, newValue) ->
                 getListProject(newValue.intValue()));
@@ -271,6 +272,17 @@ public class ProjectTable implements Initializable, ParentOwning {
 
                 bEdit.setOnAction(event -> {
                     log.info("Edit project id = " + projectDto.getId());
+
+                    log.info(successProperty.get());
+
+                    IdentifierSending sending = new IdentifierSending(
+                            ProjectList.class,
+                            ProjectUpdate.class,
+                            projectDto.getId());
+
+                    context.send(AppConfiguration.COMPONENT_MAIN, sending);
+
+                    log.info(successProperty.get());
 
                     FragmentSwitching switching = new FragmentSwitching(
                             ProjectList.class,

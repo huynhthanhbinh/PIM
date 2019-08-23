@@ -261,8 +261,6 @@ public class ProjectDaoImpl implements ProjectDao {
             CriteriaQuery<ProjectEntity> query = builder.createQuery(ProjectEntity.class);
             Root<ProjectEntity> root = query.from(ProjectEntity.class);
 
-            log.info("\n\n" + keyword + "\n\n");
-
             TypedQuery<ProjectEntity> queryByStatus = sessionFactory
                     .getCurrentSession()
                     .createQuery(query

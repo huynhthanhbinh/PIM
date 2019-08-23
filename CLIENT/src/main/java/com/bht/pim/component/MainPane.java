@@ -8,6 +8,8 @@ import com.bht.pim.fragment.children.project.ProjectEditForm;
 import com.bht.pim.fragment.children.project.ProjectTable;
 import com.bht.pim.fragment.children.project.ProjectUtil;
 import com.bht.pim.fragment.parent.ChildrenContaining;
+import com.bht.pim.fragment.parent.IdentifierNeeding;
+import com.bht.pim.fragment.parent.SuccessNeeding;
 import com.bht.pim.fragment.parent.project.ProjectCreate;
 import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.fragment.parent.project.ProjectUpdate;
@@ -91,7 +93,6 @@ public class MainPane implements FXComponent {
         return PimMessage.messageHandler(node, message, this);
     }
 
-    @FXML
     public static void switchFragment(MainPane mainPane, Class fragmentClazz) {
         ObservableList<Node> nodes = mainPane.getMainPane().getChildren();
         nodes.clear();
@@ -103,6 +104,25 @@ public class MainPane implements FXComponent {
 
         mainPane.setMainFragment(target);
         nodes.add(mainPane.getMainFragment().getFragmentNode());
+    }
+
+    public static void sendIdentifier(long id, MainPane mainPane,
+                                      Class sender, Class receiver) {
+
+        boolean success = ((IdentifierNeeding) mainPane
+                .getContext()
+                .getManagedFragmentHandler(receiver)
+                .getController())
+                .getObjectWithIdentifier(id);
+
+        log.info("\n\n" + success + "\n\n");
+
+        ((SuccessNeeding) mainPane
+                .getContext()
+                .getManagedFragmentHandler(sender)
+                .getController())
+                .getSuccessProperty()
+                .set(success);
     }
 
     @PostConstruct
