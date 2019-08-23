@@ -158,28 +158,12 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
         // reset all back
         // to receive new record
         emptyAllFields();
+        hideAllValidation();
+        hideAllCheckLabel();
 
         // Get all necessary data from server
         getNecessaryData();
-
-        if (isUpdate) {
-            number.setDisable(true);
-            number.setText(String.valueOf(projectDto.getNumber()));
-            lNumberExist.setVisible(false);
-            name.setText(projectDto.getName());
-            customer.setText(projectDto.getCustomer());
-            comboBoxStatus.getSelectionModel().select(projectDto.getStatus().get());
-            table.getItems().addAll(projectDto.getMembers());
-            comboBoxOption.getSelectionModel().select(1);
-            leader = groupService.getGroupById(projectDto.getGroup().getId()).getLeader();
-            table.getItems().remove(leader);
-            comboBoxLeader.getSelectionModel().select(leader);
-            start.setValue(projectDto.getStart());
-            end.setValue(projectDto.getEnd());
-            members = projectDto.getMembers();
-
-            log.info(members);
-        }
+        fillAllFieldsIfUpdate();
     }
 
     public void setIsUpdateState(boolean isUpdateState) {
@@ -468,7 +452,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                     }
                 }
 
-                ProjectDto.Builder projectDtoBuilder = ProjectDto.newBuilder()
+                ProjectDto.Builder projectDtoBuilder = projectDto.toBuilder()
                         .number(Long.parseLong(number.getText()))
                         .name(name.getText())
                         .customer(customer.getText())
@@ -729,6 +713,10 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                 });
 
         comboBoxStatus.getSelectionModel().selectFirst();
+        comboBoxStatus.valueProperty().addListener((observable, oldValue, newValue) ->
+                end.setDisable(!statusMapper
+                        .toGuiStatus("FIN").get()
+                        .equals(newValue)));
     }
 
     private void initComboBoxGroupOption() {
@@ -764,5 +752,24 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
         members.clear();
         leaders.clear();
         leaderOptions.clear();
+    }
+
+    private void fillAllFieldsIfUpdate() {
+        if (isUpdate) {
+            number.setDisable(true);
+            number.setText(String.valueOf(projectDto.getNumber()));
+            lNumberExist.setVisible(false);
+            name.setText(projectDto.getName());
+            customer.setText(projectDto.getCustomer());
+            comboBoxStatus.getSelectionModel().select(projectDto.getStatus().get());
+            table.getItems().addAll(projectDto.getMembers());
+            comboBoxOption.getSelectionModel().select(1);
+            leader = groupService.getGroupById(projectDto.getGroup().getId()).getLeader();
+            table.getItems().remove(leader);
+            comboBoxLeader.getSelectionModel().select(leader);
+            start.setValue(projectDto.getStart());
+            end.setValue(projectDto.getEnd());
+            members = projectDto.getMembers();
+        }
     }
 }
