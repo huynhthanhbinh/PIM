@@ -35,8 +35,6 @@ public class ProjectCreate implements Initializable, ChildrenContaining {
 
     @Resource
     private Context context;
-    @Resource
-    private ResourceBundle bundle;
     @FXML
     private VBox mainPane;
 

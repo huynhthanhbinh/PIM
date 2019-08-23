@@ -35,8 +35,6 @@ public class ProjectUpdate implements Initializable, IdentifierNeeding, Children
 
     @Resource
     private Context context;
-    @Resource
-    private ResourceBundle bundle;
     @FXML
     private VBox mainPane;
 

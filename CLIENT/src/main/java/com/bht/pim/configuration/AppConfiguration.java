@@ -57,7 +57,7 @@ public class AppConfiguration {
 
     public static final String FRAGMENT_MAIN_LABEL = "idfMLabel"; // label of main-pane
     public static final String FRAGMENT_CONFIRM = "idfConfirm"; // ok_cancel box
-    public static final String FRAGMENT_PAGINATION = "idFPagination"; // pagination-pane
+    public static final String FRAGMENT_PAGINATION = "idfPagination"; // pagination-pane
 
     public static final String FRAGMENT_PROJECT_LIST = "idfPList";
     public static final String FRAGMENT_PROJECT_INFO = "idfPInfo";
@@ -66,7 +66,8 @@ public class AppConfiguration {
 
     public static final String FRAGMENT_PROJECT_UTIL = "idfPUtil";
     public static final String FRAGMENT_PROJECT_TABLE = "idfPTable";
-    public static final String FRAGMENT_PROJECT_EDIT_FORM = "iffPEditForm";
+    public static final String FRAGMENT_PROJECT_EDIT_FORM = "idfPEditForm";
+    public static final String FRAGMENT_PROJECT_DETAIL = "idfPDetail";
 
     public static final String FRAGMENT_GROUP_LIST = "idfGList";
     public static final String FRAGMENT_GROUP_INFO = "idfGInfo";

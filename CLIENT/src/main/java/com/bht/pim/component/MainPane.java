@@ -4,6 +4,7 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.confirm.ConfirmBox;
 import com.bht.pim.fragment.children.label.MainLabel;
 import com.bht.pim.fragment.children.pagination.PimPagination;
+import com.bht.pim.fragment.children.project.ProjectDetail;
 import com.bht.pim.fragment.children.project.ProjectEditForm;
 import com.bht.pim.fragment.children.project.ProjectTable;
 import com.bht.pim.fragment.children.project.ProjectUtil;
@@ -11,6 +12,7 @@ import com.bht.pim.fragment.parent.ChildrenContaining;
 import com.bht.pim.fragment.parent.IdentifierNeeding;
 import com.bht.pim.fragment.parent.SuccessNeeding;
 import com.bht.pim.fragment.parent.project.ProjectCreate;
+import com.bht.pim.fragment.parent.project.ProjectInfo;
 import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.fragment.parent.project.ProjectUpdate;
 import com.bht.pim.message.PimMessage;
@@ -57,12 +59,14 @@ public class MainPane implements FXComponent {
     private ManagedFragmentHandler<ProjectList> projectListFragment;
     private ManagedFragmentHandler<ProjectCreate> projectCreateFragment;
     private ManagedFragmentHandler<ProjectUpdate> projectUpdateFragment;
+    private ManagedFragmentHandler<ProjectInfo> projectInfoFragment;
 
 
     private void loadFragments() {
         projectListFragment = context.getManagedFragmentHandler(ProjectList.class);
         projectCreateFragment = context.getManagedFragmentHandler(ProjectCreate.class);
         projectUpdateFragment = context.getManagedFragmentHandler(ProjectUpdate.class);
+        projectInfoFragment = context.getManagedFragmentHandler(ProjectInfo.class);
     }
 
     private void assignChildren() {
@@ -81,6 +85,10 @@ public class MainPane implements FXComponent {
                 registerNewFragment(MainLabel.class),
                 registerNewFragment(ProjectEditForm.class),
                 registerNewFragment(ConfirmBox.class)});
+
+        projectInfoFragment.getController().addAllChildren(new Pair[]{
+                registerNewFragment(MainLabel.class),
+                registerNewFragment(ProjectDetail.class)});
     }
 
     @Override
