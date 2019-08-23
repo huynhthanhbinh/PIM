@@ -5,6 +5,7 @@ import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.fragment.parent.project.ProjectUpdate;
+import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.IdentifierSending;
 import com.bht.pim.notification.NotificationStyle;
@@ -76,6 +77,8 @@ public class ProjectTable implements Initializable, ParentOwning {
     private ProjectService projectService;
     @Autowired
     private PimUtil projectUtil;
+    @Autowired
+    private StatusMapper statusMapper;
 
 
     @Resource
@@ -243,7 +246,7 @@ public class ProjectTable implements Initializable, ParentOwning {
                 hBox.setAlignment(Pos.CENTER_RIGHT);
 
                 bRemove.setOnAction(event -> {
-                    if (!projectDto.getStatus().equals("New")) {
+                    if (!projectDto.getStatus().equals(statusMapper.toGuiStatus("NEW"))) {
                         NotificationUtil.showNotification(
                                 NotificationStyle.ERROR,
                                 Pos.CENTER,
