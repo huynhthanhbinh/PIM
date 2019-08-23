@@ -1,12 +1,15 @@
 package com.bht.pim;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.handler.PimErrorHandler;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.workbench.PimWorkbench;
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import lombok.extern.log4j.Log4j;
+import org.jacpfx.api.handler.ErrorDialogHandler;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 import org.jacpfx.spring.launcher.AFXSpringJavaConfigLauncher;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -48,5 +51,10 @@ public class Client extends AFXSpringJavaConfigLauncher {
         stage.sizeToScene();
         stage.setMinWidth(1280);
         stage.setMinHeight(720);
+    }
+
+    @Override
+    protected ErrorDialogHandler<Node> getErrorHandler() {
+        return new PimErrorHandler();
     }
 }
