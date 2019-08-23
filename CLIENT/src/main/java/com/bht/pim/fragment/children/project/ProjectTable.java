@@ -3,6 +3,7 @@ package com.bht.pim.fragment.children.project;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.fragment.children.ParentOwning;
+import com.bht.pim.fragment.parent.project.ProjectInfo;
 import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.fragment.parent.project.ProjectUpdate;
 import com.bht.pim.mapper.StatusMapper;
@@ -304,17 +305,34 @@ public class ProjectTable implements Initializable, ParentOwning {
             private Label lName = new Label();
 
             @Override
-            protected void updateItem(ProjectDto project, boolean empty) {
-                if (project == null || empty) {
+            protected void updateItem(ProjectDto projectDto, boolean empty) {
+                if (projectDto == null || empty) {
                     setGraphic(null);
                     return;
                 }
 
-                lName.setText(project.getName());
+                lName.setText(projectDto.getName());
                 lName.getStyleClass().add("clickable");
                 lName.setPickOnBounds(false);
                 lName.setOnMouseClicked(event -> {
-                    log.info("view info of project id = " + project.getId());
+                    log.info("view info of project id = " + projectDto.getId());
+
+                    log.info(successProperty.get());
+
+                    IdentifierSending sending = new IdentifierSending(
+                            ProjectList.class,
+                            ProjectInfo.class,
+                            projectDto.getId());
+
+                    context.send(AppConfiguration.COMPONENT_MAIN, sending);
+
+                    log.info(successProperty.get());
+
+                    FragmentSwitching switching = new FragmentSwitching(
+                            ProjectList.class,
+                            ProjectInfo.class);
+
+                    context.send(AppConfiguration.COMPONENT_MAIN, switching);
                 });
 
                 setGraphic(lName);
