@@ -155,10 +155,20 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     @Override
     public void onSwitchParentFragment() {
+        // reset all back
+        // to receive new record
+        emptyAllFields();
+
+        // Get all necessary data from server
+        getNecessaryData();
+
         if (isUpdate) {
+            number.setDisable(true);
             number.setText(String.valueOf(projectDto.getNumber()));
+            lNumberExist.setVisible(false);
             name.setText(projectDto.getName());
             customer.setText(projectDto.getCustomer());
+            comboBoxStatus.getSelectionModel().select(projectDto.getStatus().get());
         }
     }
 
@@ -263,7 +273,10 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                         comboBoxLeader.getItems().clear();
                     }
 
-                    if (newValue.equals("Current group")) { // current group
+                    if (!LanguageUtil
+                            .getCurrentLabelOfKey("label.project.form.newgroup")
+                            .equals(newValue)) { // current group
+
                         Objects.requireNonNull(comboBoxLeader.getItems()).addAll(leaders);
                         current = true;
 
@@ -277,7 +290,6 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                     textField.setDisable(false);
                 }
         );
-
         comboBoxLeader.getSelectionModel().selectedItemProperty().addListener(
                 this::leaderChoice);
 
@@ -294,6 +306,8 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     private void initAllInput() {
         initComboBoxStatus();
+        initComboBoxGroupOption();
+
         comboBoxLeader.setDisable(true);
         textField.setDisable(true);
 
@@ -431,7 +445,9 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                     .build();
 
             try {
-                if (comboBoxOption.getValue().equals("New group")) {
+                if (comboBoxOption.getValue()
+                        .equals(LanguageUtil.getCurrentLabelOfKey("label.project.form.newgroup"))) {
+
                     if (saveNewGroup(groupDto)) {
                         NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
                                 "[PIM] Successfully create new group !");
@@ -532,7 +548,9 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
 
     private boolean saveNewGroup(GroupDto groupDto) {
-        if (comboBoxOption.getSelectionModel().getSelectedItem().equals("New group")) {
+        if (comboBoxOption.getSelectionModel().getSelectedItem()
+                .equals(LanguageUtil.getCurrentLabelOfKey("label.project.form.newgroup"))) {
+
             // send group info to server to save
             log.info("<<< PIM - On creating new group >>>");
             return groupService.addNewGroup(groupDto);
@@ -701,5 +719,40 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                 });
 
         comboBoxStatus.getSelectionModel().selectFirst();
+    }
+
+    private void initComboBoxGroupOption() {
+        ResourceBundle resourceBundle = languageProperty.getResourceBundleProperty().get();
+        comboBoxOption.getItems().add(resourceBundle.getString("label.project.form.newgroup"));
+        comboBoxOption.getItems().add(resourceBundle.getString("label.project.form.currentgroup"));
+
+        languageProperty.getResourceBundleProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    int index = comboBoxOption.getSelectionModel().getSelectedIndex();
+                    comboBoxOption.getItems().clear();
+
+                    comboBoxOption.getItems().add(newValue.getString("label.project.form.newgroup"));
+                    comboBoxOption.getItems().add(newValue.getString("label.project.form.currentgroup"));
+
+                    comboBoxOption.getSelectionModel().select(index);
+                });
+    }
+
+    private void emptyAllFields() {
+        number.clear();
+        name.clear();
+        lNameEmpty.setVisible(false);
+        customer.clear();
+        lCustomerEmpty.setVisible(false);
+        comboBoxStatus.getSelectionModel().selectFirst();
+        comboBoxOption.getSelectionModel().clearSelection();
+        comboBoxLeader.getSelectionModel().clearSelection();
+        comboBoxLeader.setDisable(true);
+        start.setValue(null);
+        end.setValue(null);
+        table.getItems().clear();
+        members.clear();
+        leaders.clear();
+        leaderOptions.clear();
     }
 }

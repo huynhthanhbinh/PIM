@@ -13,7 +13,7 @@ public class NotificationUtil {
                 JFXNotifications.create()
                         .title("INFORMATION")
                         .text(message)
-                        .hideAfter(Duration.seconds(8))
+                        .hideAfter(Duration.seconds(5))
                         .position(position)
                         .showInfo();
                 break;
@@ -22,7 +22,7 @@ public class NotificationUtil {
                 JFXNotifications.create()
                         .title("SUCCESS")
                         .text(message)
-                        .hideAfter(Duration.seconds(8))
+                        .hideAfter(Duration.seconds(5))
                         .position(position)
                         .showSuccess();
                 break;
@@ -31,7 +31,7 @@ public class NotificationUtil {
                 JFXNotifications.create()
                         .title("WARNING")
                         .text(message)
-                        .hideAfter(Duration.seconds(8))
+                        .hideAfter(Duration.seconds(5))
                         .position(position)
                         .showWarning();
                 break;
@@ -40,7 +40,7 @@ public class NotificationUtil {
                 JFXNotifications.create()
                         .title("ERROR")
                         .text(message)
-                        .hideAfter(Duration.seconds(8))
+                        .hideAfter(Duration.seconds(5))
                         .position(position)
                         .showError();
                 break;

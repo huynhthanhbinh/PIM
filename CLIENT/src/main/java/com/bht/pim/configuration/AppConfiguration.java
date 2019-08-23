@@ -39,7 +39,7 @@ public class AppConfiguration {
             .build();
 
     public static final String USERNAME = "bht";
-    public static final String PASSWORD = "123456789";
+    public static final String PASSWORD = "";
 
     public static final String PERSPECTIVE = "idPIMPerspective";
     public static final String PERSPECTIVE_LOGIN = "idPIMLogin";
