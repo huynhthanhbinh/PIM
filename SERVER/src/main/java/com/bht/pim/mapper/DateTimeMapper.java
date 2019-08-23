@@ -34,7 +34,7 @@ public interface DateTimeMapper {
     }
 
     default Date toSqlDate(final Timestamp timestamp) {
-        return (timestamp != Timestamp.getDefaultInstance())
+        return (!timestamp.equals(Timestamp.getDefaultInstance()))
                 ? Date.valueOf(toLocalDate(timestamp))
                 : null;
     }
