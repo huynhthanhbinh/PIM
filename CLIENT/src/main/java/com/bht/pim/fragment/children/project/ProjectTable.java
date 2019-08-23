@@ -26,10 +26,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
@@ -68,7 +71,7 @@ public class ProjectTable implements Initializable, ParentOwning {
     private StringProperty statusProperty;
     @Getter
     private ObjectProperty<SingleSelectionModel<String>> statusSelection;
-    @Getter
+    @Setter
     private TextField searchBox;
 
 
@@ -109,11 +112,11 @@ public class ProjectTable implements Initializable, ParentOwning {
     public void onSwitchParentFragment() {
         // Get all necessary data from server
         getListProject(pageIndexProperty.get());
+        searchBox.setOnKeyPressed(this::onKeyPressedSearchBox);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        searchBox = new TextField();
         pageIndexProperty = new SimpleIntegerProperty();
         pageCountProperty = new SimpleIntegerProperty();
         statusProperty = new SimpleStringProperty();
@@ -424,5 +427,11 @@ public class ProjectTable implements Initializable, ParentOwning {
         log.info(pageIndexProperty.get());
         pageIndexProperty.set(0);
         getListProject(0);
+    }
+
+    private void onKeyPressedSearchBox(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            onSearchForProject(keyEvent);
+        }
     }
 }

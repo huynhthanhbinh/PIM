@@ -59,9 +59,6 @@ public class ProjectUtil implements Initializable, ParentOwning {
     private Button bDeleteAll;
     @FXML
     @Getter
-    private Button bSearch;
-    @FXML
-    @Getter
     private Button bReset;
     @FXML
     private Button bNew;
@@ -75,7 +72,7 @@ public class ProjectUtil implements Initializable, ParentOwning {
         LanguageUtil.initLabel(lSelected.textProperty(), "label.project.util.selected");
         LanguageUtil.initLabel(bDeleteAll.textProperty(), "label.project.util.deleteall");
 
-        ImageView iSearch = new ImageView(PimUtil.getImage("search"));
+
         ImageView iReset = new ImageView(PimUtil.getImage("reset"));
         ImageView iDelete = new ImageView(PimUtil.getImage("delete"));
         ImageView iNew = new ImageView(PimUtil.getImage("add"));
@@ -84,10 +81,6 @@ public class ProjectUtil implements Initializable, ParentOwning {
         iReset.setFitHeight(110);
         iReset.setPreserveRatio(true);
 
-        iSearch.setFitWidth(30);
-        iSearch.setFitHeight(30);
-
-        bSearch.setGraphic(iSearch);
         bReset.setGraphic(iReset);
         bNew.setGraphic(iNew);
         bDeleteAll.setGraphic(iDelete);
