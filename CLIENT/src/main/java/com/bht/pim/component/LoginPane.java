@@ -73,6 +73,9 @@ public class LoginPane implements FXComponent {
                     && password.getText().equals(AppConfiguration.PASSWORD)) {
 
                 context.send(AppConfiguration.PERSPECTIVE, "show");
+                username.clear();
+                password.clear();
+                lIncorrect.setVisible(false);
 
             } else if (!username.getText().isEmpty() && !password.getText().isEmpty()) {
 
@@ -89,9 +92,6 @@ public class LoginPane implements FXComponent {
     @OnShow
     public void onShowComponent(final FXComponentLayout componentLayout) {
         log.info("[SHOW] FXComponentLayout: " + context.getId());
-        username.clear();
-        password.clear();
-        lIncorrect.setVisible(false);
     }
 
     @OnHide
