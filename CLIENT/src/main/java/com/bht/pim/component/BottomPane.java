@@ -41,15 +41,28 @@ public class BottomPane implements FXComponent {
     private Context context;
     @FXML
     private VBox mainPane;
+    @FXML
+    private VBox loginPane;
+    @FXML
+    private VBox errorPane;
 
     @Override
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
 
-        if (message.getMessageBody() instanceof Exception) {
+        if (message.getMessageBody() instanceof Throwable) {
+
             log.info("[PIM] show error page");
             log.info(message.getMessageBody());
+            mainPane.getChildren().clear();
+            mainPane.getChildren().add(errorPane);
+            errorHandlingFragment.getController()
+                    .setDetail((Throwable) message.getMessageBody());
+
         } else {
+
             log.info("[PIM] show login page");
+            mainPane.getChildren().clear();
+            mainPane.getChildren().add(loginPane);
         }
 
         return null;
@@ -64,18 +77,13 @@ public class BottomPane implements FXComponent {
     public void onStartComponent(final FXComponentLayout arg0,
                                  final ResourceBundle resourceBundle) {
 
-        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         loginFragment = context.getManagedFragmentHandler(Login.class);
         errorHandlingFragment = context.getManagedFragmentHandler(ErrorHandling.class);
-        mainPane.getChildren().add(loginFragment.getFragmentNode());
+
+        loginPane = (VBox) loginFragment.getFragmentNode();
+        errorPane = (VBox) errorHandlingFragment.getFragmentNode();
+
+        mainPane.getChildren().add(errorPane);
     }
 
     @PreDestroy

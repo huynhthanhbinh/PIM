@@ -1,0 +1,8 @@
+.text-area .text {
+    -fx-line-spacing: 20px;
+}
+
+.text-area {
+    -fx-focus-color: -fx-control-inner-background;
+    -fx-faint-focus-color: -fx-control-inner-background;
+}

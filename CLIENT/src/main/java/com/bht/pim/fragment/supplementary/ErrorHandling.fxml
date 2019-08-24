@@ -1,8 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+      xmlns:fx="http://javafx.com/fxml/1" fx:id="errorPane"
+      stylesheets="/com/bht/pim/fragment/supplementary/ErrorHandling.css">
+    <children>
+        <GridPane hgap="40.0" maxHeight="300.0" maxWidth="700.0" prefHeight="300.0" prefWidth="700.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="20.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="20.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="20.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="20.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="80.0" minHeight="20.0" prefHeight="80.0" valignment="TOP" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"
+                           GridPane.rowSpan="4">
+                    <image>
+                        <Image url="/pictures/error.png"/>
+                    </image>
+                </ImageView>
+                <Label fx:id="lUnexpected" text="Unexpected error occurred." GridPane.columnIndex="1">
+                    <font>
+                        <Font name="System Bold" size="25.0"/>
+                    </font>
+                </Label>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
+                      GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <Label fx:id="lPlease" text="Please">
+                            <font>
+                                <Font name="Segoe UI Bold" size="25.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="lContact" text="contact your administrator" textFill="#f24517">
+                            <font>
+                                <Font name="Segoe UI Bold Italic" size="25.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
+                      GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <Label fx:id="lOr" text="Or">
+                            <font>
+                                <Font name="Segoe UI Bold" size="25.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="lReload" text="try to reload application" textFill="DODGERBLUE">
+                            <font>
+                                <Font name="Segoe UI Bold Italic" size="25.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4"/>
+                <Label fx:id="lError" contentDisplay="RIGHT" text="Error detail:" GridPane.rowIndex="5">
+                    <font>
+                        <Font name="Segoe UI Bold" size="25.0"/>
+                    </font>
+                </Label>
+                <TextArea fx:id="detailField" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"
+                          GridPane.rowIndex="5">
+                    <font>
+                        <Font name="Segoe UI" size="20.0"/>
+                    </font>
+                </TextArea>
+            </children>
+        </GridPane>
+    </children>
+</VBox>
