@@ -7,6 +7,8 @@ import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import lombok.extern.log4j.Log4j;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,16 +26,23 @@ import java.util.Locale;
 @PropertySource("classpath:/pim.properties")
 public class AppConfiguration {
 
-    public static final LanguageProperty LANGUAGE_PROPERTY =
-            new LanguageProperty(Locale.FRENCH);
+    public static final LanguageProperty LANGUAGE_PROPERTY = new LanguageProperty(Locale.FRENCH);
 
     @PostConstruct
     public void init() {
-        channel = ManagedChannelBuilder
+        CHANNEL_PROPERTY.addListener((observable, oldValue, newValue) -> {
+            EMPLOYEE_SERVICE_STUB_PROPERTY.set(EmployeeServiceGrpc.newBlockingStub(newValue));
+            GROUP_SERVICE_STUB_PROPERTY.set(GroupServiceGrpc.newBlockingStub(newValue));
+            PROJECT_SERVICE_STUB_PROPERTY.set(ProjectServiceGrpc.newBlockingStub(newValue));
+        });
+
+        // Channel is the abstraction to connect to a service endpoint
+        // Let's use plaintext communication because we don't have certs
+        CHANNEL_PROPERTY.set(ManagedChannelBuilder
                 .forAddress(host, port)
                 .usePlaintext()
                 .maxInboundMessageSize(10 * 1024 * 1024)
-                .build();
+                .build());
     }
 
     @Value("${pim.server.host}")
@@ -42,9 +51,14 @@ public class AppConfiguration {
     @Value("${pim.server.port}")
     private int port;
 
-    // Channel is the abstraction to connect to a service endpoint
-    // Let's use plaintext communication because we don't have certs
-    private ManagedChannel channel;
+    public static final ObjectProperty<ManagedChannel> CHANNEL_PROPERTY = new SimpleObjectProperty<>();
+
+    public static final ObjectProperty<EmployeeServiceGrpc.EmployeeServiceBlockingStub>
+            EMPLOYEE_SERVICE_STUB_PROPERTY = new SimpleObjectProperty<>();
+    public static final ObjectProperty<GroupServiceGrpc.GroupServiceBlockingStub>
+            GROUP_SERVICE_STUB_PROPERTY = new SimpleObjectProperty<>();
+    public static final ObjectProperty<ProjectServiceGrpc.ProjectServiceBlockingStub>
+            PROJECT_SERVICE_STUB_PROPERTY = new SimpleObjectProperty<>();
 
     public static final String PERSPECTIVE_PIM = "idPIMPerspective";
     public static final String PERSPECTIVE_DEFAULT = "idPIMDefault";
@@ -101,24 +115,6 @@ public class AppConfiguration {
     public static final String LABEL_STATUS_PLANNED = "label.project.status.planned";
     public static final String LABEL_STATUS_IN_PROGRESS = "label.project.status.inprogress";
     public static final String LABEL_STATUS_FINISHED = "label.project.status.finished";
-
-    @Bean
-    public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub() {
-        log.info("[PIM] Creating bean of < EmployeeServiceBlockingStub >");
-        return EmployeeServiceGrpc.newBlockingStub(channel);
-    }
-
-    @Bean
-    public GroupServiceGrpc.GroupServiceBlockingStub groupServiceBlockingStub() {
-        log.info("[PIM] Creating bean of < GroupServiceBlockingStub >");
-        return GroupServiceGrpc.newBlockingStub(channel);
-    }
-
-    @Bean
-    public ProjectServiceGrpc.ProjectServiceBlockingStub projectServiceBlockingStub() {
-        log.info("[PIM] Creating bean of < ProjectServiceBlockingStub >");
-        return ProjectServiceGrpc.newBlockingStub(channel);
-    }
 
     @Bean
     public StatusMapper statusMapper() {

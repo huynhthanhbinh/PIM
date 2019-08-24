@@ -156,12 +156,7 @@ public class ProjectTable implements Initializable, ParentOwning {
                         searchBox.textProperty(),
                         statusProperty);
 
-        for (int i = 0; i < 50; i++) {
-            log.info(projectDtoList);
-        }
-
         table.setItems(projectDtoList);
-
         log.info("Number of projects: " + projectService.getNumberOfProjects());
 
         double temp;

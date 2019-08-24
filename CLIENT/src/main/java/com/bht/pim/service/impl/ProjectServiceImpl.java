@@ -1,5 +1,6 @@
 package com.bht.pim.service.impl;
 
+import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.mapper.ProjectMapper;
 import com.bht.pim.mapper.StatusMapper;
@@ -9,6 +10,7 @@ import com.bht.pim.service.ProjectService;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
 import com.google.protobuf.StringValue;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,14 +26,16 @@ public class ProjectServiceImpl implements ProjectService {
     private StatusMapper statusMapper;
     @Autowired
     private ProjectMapper projectMapper;
-    @Autowired
-    private ProjectServiceGrpc.ProjectServiceBlockingStub stub;
+
+    private ObjectProperty<ProjectServiceGrpc.ProjectServiceBlockingStub> stubProperty
+            = AppConfiguration.PROJECT_SERVICE_STUB_PROPERTY;
 
     // Add new project
     @Override
     public boolean addNewProject(ProjectDto project) {
-        return stub.addNewProject(projectMapper
-                .toProject(project))
+        return stubProperty.get()
+                .addNewProject(projectMapper
+                        .toProject(project))
                 .getValue();
     }
 
@@ -39,15 +43,16 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public ProjectDto getProjectById(long id) {
         Int64Value projectId = Int64Value.newBuilder().setValue(id).build();
-        return projectMapper.toProjectDto(stub
+        return projectMapper.toProjectDto(stubProperty.get()
                 .getProjectById(projectId));
     }
 
     // Update a specific project
     @Override
     public boolean updateProject(ProjectDto project) {
-        return stub.editProject(projectMapper
-                .toProject(project))
+        return stubProperty.get()
+                .editProject(projectMapper
+                        .toProject(project))
                 .getValue();
     }
 
@@ -55,13 +60,15 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public boolean deleteProject(long id) {
         Int64Value projectId = Int64Value.newBuilder().setValue(id).build();
-        return stub.deleteProject(projectId).getValue();
+        return stubProperty.get()
+                .deleteProject(projectId).getValue();
     }
 
     // Get all project numbers
     @Override
     public List<Long> getProjectNumbers() {
-        return stub.getProjectNumbers(Empty.getDefaultInstance())
+        return stubProperty.get()
+                .getProjectNumbers(Empty.getDefaultInstance())
                 .getProjectNumbersList();
     }
 
@@ -73,7 +80,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         if (statusProperty.get() != null) {
             return FXCollections.observableArrayList(
-                    projectMapper.toProjectDtoList(stub
+                    projectMapper.toProjectDtoList(stubProperty.get()
                             .getProjectList(ProjectPagination.newBuilder()
                                     .setMaxRow(maxRow)
                                     .setPageIndex(pageIndex)
@@ -84,7 +91,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         if (keywordProperty.get() != null) {
             return FXCollections.observableArrayList(
-                    projectMapper.toProjectDtoList(stub
+                    projectMapper.toProjectDtoList(stubProperty.get()
                             .getProjectList(ProjectPagination.newBuilder()
                                     .setMaxRow(maxRow)
                                     .setPageIndex(pageIndex)
@@ -94,7 +101,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
 
         return FXCollections.observableArrayList(
-                projectMapper.toProjectDtoList(stub
+                projectMapper.toProjectDtoList(stubProperty.get()
                         .getProjectList(ProjectPagination.newBuilder()
                                 .setMaxRow(maxRow)
                                 .setPageIndex(pageIndex)
@@ -104,24 +111,27 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public long getNumberOfProjects() {
-        return stub.getNumberOfProjects(Empty
-                .getDefaultInstance())
+        return stubProperty.get()
+                .getNumberOfProjects(Empty
+                        .getDefaultInstance())
                 .getValue();
     }
 
     @Override
     public long getNumberOfProjectsByStatus(StringProperty statusProperty) {
-        return stub.getNumberOfProjectsByStatus(StringValue.newBuilder()
-                .setValue(statusMapper.toSqlStatus(statusProperty))
-                .build())
+        return stubProperty.get()
+                .getNumberOfProjectsByStatus(StringValue.newBuilder()
+                        .setValue(statusMapper.toSqlStatus(statusProperty))
+                        .build())
                 .getValue();
     }
 
     @Override
     public long getNumberOfProjectsByKeyword(StringProperty keywordProperty) {
-        return stub.getNumberOfProjectsByKeyword(StringValue.newBuilder()
-                .setValue(keywordProperty.get())
-                .build())
+        return stubProperty.get()
+                .getNumberOfProjectsByKeyword(StringValue.newBuilder()
+                        .setValue(keywordProperty.get())
+                        .build())
                 .getValue();
     }
 }

@@ -13,6 +13,7 @@ import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -25,6 +26,12 @@ import java.util.ResourceBundle;
         scope = Scope.SINGLETON,
         viewLocation = "/com/bht/pim/fragment/supplementary/ErrorHandling.fxml")
 public class ErrorHandling implements Initializable {
+
+    @Value("${pim.server.host}")
+    private String host;
+
+    @Value("${pim.server.port}")
+    private int port;
 
     @Resource
     private Context context;
@@ -70,5 +77,9 @@ public class ErrorHandling implements Initializable {
 
     private void onReloadApp(MouseEvent mouseEvent) {
         log.info("[PIM] Clicked reload application");
+        log.info(AppConfiguration.CHANNEL_PROPERTY.get());
+        AppConfiguration.CHANNEL_PROPERTY.get().resetConnectBackoff();
+        log.info(AppConfiguration.CHANNEL_PROPERTY.get());
+        context.send(AppConfiguration.PERSPECTIVE_PIM, "show");
     }
 }
