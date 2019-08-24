@@ -78,7 +78,7 @@ public class LoginPane implements FXComponent {
             if (username.getText().equals(defaultUsername)
                     && password.getText().equals(defaultPassword)) {
 
-                context.send(AppConfiguration.PERSPECTIVE, "show");
+                context.send(AppConfiguration.PERSPECTIVE_PIM, "show");
                 username.clear();
                 password.clear();
                 lIncorrect.setVisible(false);

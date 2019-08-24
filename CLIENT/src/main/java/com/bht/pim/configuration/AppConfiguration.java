@@ -46,8 +46,8 @@ public class AppConfiguration {
     // Let's use plaintext communication because we don't have certs
     private ManagedChannel channel;
 
-    public static final String PERSPECTIVE = "idPIMPerspective";
-    public static final String PERSPECTIVE_LOGIN = "idPIMLogin";
+    public static final String PERSPECTIVE_PIM = "idPIMPerspective";
+    public static final String PERSPECTIVE_DEFAULT = "idPIMDefault";
     public static final String LANGUAGE_BUNDLES = "bundles.languageBundle";
 
     public static final String TARGET_CONTAINER_TOP = "PTop";

@@ -20,13 +20,13 @@ import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
 
 @Log4j
-@Perspective(id = AppConfiguration.PERSPECTIVE_LOGIN, name = "PerspectiveLogin",
+@Perspective(id = AppConfiguration.PERSPECTIVE_DEFAULT, name = "PerspectiveDefault",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        viewLocation = "/com/bht/pim/perspective/Login.fxml",
+        viewLocation = "/com/bht/pim/perspective/Default.fxml",
         components = {
                 AppConfiguration.COMPONENT_TOP,
                 AppConfiguration.COMPONENT_BOTTOM,})
-public class Login implements FXPerspective {
+public class Default implements FXPerspective {
 
     @FXML
     private SplitPane splitPane;

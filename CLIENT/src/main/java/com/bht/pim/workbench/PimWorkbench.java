@@ -15,8 +15,8 @@ import org.jacpfx.rcp.workbench.FXWorkbench;
 @Log4j
 @Workbench(id = "workbench", name = "workbench",
         perspectives = {
-                AppConfiguration.PERSPECTIVE,
-                AppConfiguration.PERSPECTIVE_LOGIN})
+                AppConfiguration.PERSPECTIVE_PIM,
+                AppConfiguration.PERSPECTIVE_DEFAULT})
 public class PimWorkbench implements FXWorkbench {
 
     @Override

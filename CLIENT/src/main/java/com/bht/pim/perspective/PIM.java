@@ -19,7 +19,7 @@ import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
 
 @Log4j
-@Perspective(id = AppConfiguration.PERSPECTIVE, name = "Perspective",
+@Perspective(id = AppConfiguration.PERSPECTIVE_PIM, name = "Perspective",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/perspective/PIM.fxml",
         components = {

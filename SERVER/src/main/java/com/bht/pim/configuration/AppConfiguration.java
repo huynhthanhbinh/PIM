@@ -28,7 +28,7 @@ import java.util.Properties;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan("com.bht.pim")
-@PropertySource("classpath:db.properties")
+@PropertySource("classpath:/pim.properties")
 public class AppConfiguration {
 
     // In Spring, we can use annotation @PropertySource
@@ -54,7 +54,7 @@ public class AppConfiguration {
 
     // DataSource / Database Configuration
     // Using properties file in src/main/resources
-    // @PropertySource("classpath:db.properties")
+    // @PropertySource("classpath:pim.properties")
     @Bean
     public DataSource dataSource() {
         log.info("");
