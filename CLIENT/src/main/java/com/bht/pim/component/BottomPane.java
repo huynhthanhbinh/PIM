@@ -56,6 +56,12 @@ public class BottomPane implements FXComponent {
 
     @Override
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
+        log.info(message.getMessageBody());
+
+        if (message.getMessageBody() instanceof Exception) {
+            ((Exception) message.getMessageBody()).printStackTrace();
+        }
+
         return null;
     }
 

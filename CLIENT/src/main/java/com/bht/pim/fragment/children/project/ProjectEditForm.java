@@ -164,23 +164,22 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        members = new ArrayList<>();
+        employees = new ArrayList<>();
+        leaders = new ArrayList<>();
+        leaderOptions = new ArrayList<>();
+
         // init an instance for storing a project
         projectDto = ProjectDto.newBuilder().build();
 
         // for i18n / multilingual
         initAllLabels();
 
-        // Get all necessary data from server
-        getNecessaryData();
-
         // Init all inputs
         initAllInput();
 
         // Add all event-listener
         addAllEventListener();
-
-        // Hide all check-label
-        hideAllCheckLabel();
     }
 
     // Hide all check-label
@@ -211,12 +210,12 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
         // Init leader leaderOptions for option new groups
         employees.removeAll(leaders);
-        leaderOptions = new ArrayList<>(employees);
 
         chose = false;
         current = false;
         leader = null;
         members = new ArrayList<>();
+        leaderOptions = new ArrayList<>(employees);
     }
 
 
@@ -295,12 +294,8 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
         comboBoxLeader.setDisable(true);
         textField.setDisable(true);
 
-        configureAutoCompletion();
-        employeeAutoCompletion.setMinWidth(300);
-        employeeAutoCompletion.setHideOnEscape(true);
-
-        configureTableMember(table);
         table.getItems().addAll(Collections.emptyList());
+        configureTableMember(table);
 
         start.setPromptText("dd/MM/yyyy");
         end.setPromptText("dd/MM/yyyy");
@@ -316,6 +311,9 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     private void configureAutoCompletion() {
         employeeAutoCompletion = TextFields
                 .bindAutoCompletion(textField, employees);
+
+        employeeAutoCompletion.setMinWidth(300);
+        employeeAutoCompletion.setHideOnEscape(true);
         employeeAutoCompletion.setOnAutoCompleted(event -> {
 
             EmployeeDto employeeDTO = event.getCompletion();
@@ -727,14 +725,16 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
             name.setText(projectDto.getName());
             customer.setText(projectDto.getCustomer());
             comboBoxStatus.getSelectionModel().select(projectDto.getStatus().get());
-            table.getItems().addAll(projectDto.getMembers());
+            members = projectDto.getMembers();
+            table.getItems().addAll(members);
             comboBoxOption.getSelectionModel().select(1);
-            leader = groupService.getGroupById(projectDto.getGroup().getId()).getLeader();
-            table.getItems().remove(leader);
-            comboBoxLeader.getSelectionModel().select(leader);
             start.setValue(projectDto.getStart());
             end.setValue(projectDto.getEnd());
-            members = projectDto.getMembers();
+            if (!leader.equals(groupService.getGroupById(projectDto.getGroup().getId()).getLeader())) {
+                table.getItems().remove(leader);
+                leader = groupService.getGroupById(projectDto.getGroup().getId()).getLeader();
+                comboBoxLeader.getSelectionModel().select(leader);
+            }
         }
     }
 
@@ -747,6 +747,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
         // Get all necessary data from server
         getNecessaryData();
+        configureAutoCompletion();
         fillAllFieldsIfUpdate();
     }
 
