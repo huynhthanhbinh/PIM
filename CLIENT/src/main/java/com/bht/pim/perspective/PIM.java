@@ -1,6 +1,7 @@
 package com.bht.pim.perspective;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.handler.PimErrorHandler;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.SplitPane;
@@ -19,7 +20,7 @@ import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
 
 @Log4j
-@Perspective(id = AppConfiguration.PERSPECTIVE_PIM, name = "Perspective",
+@Perspective(id = AppConfiguration.PERSPECTIVE_PIM, name = "PerspectivePIM",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/perspective/PIM.fxml",
         components = {
@@ -66,6 +67,11 @@ public class PIM implements FXPerspective {
     @PostConstruct
     public void onStartPerspective(final PerspectiveLayout perspectiveLayout,
                                    final FXComponentLayout layout) {
+
+        // using for handling error / exception
+        // to send message to perspective default
+        PimErrorHandler.CONTEXT_PROPERTY.set(context);
+
         // Register root component
         perspectiveLayout.registerRootComponent(rootPane);
         // Register other components
