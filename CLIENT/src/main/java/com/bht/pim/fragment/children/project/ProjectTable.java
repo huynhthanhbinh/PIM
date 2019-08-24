@@ -18,6 +18,7 @@ import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -147,12 +148,19 @@ public class ProjectTable implements Initializable, ParentOwning {
 
     // Get all necessary data
     private void getListProject(int pageIndex) {
-        table.setItems(projectService
+
+        ObservableList<ProjectDto> projectDtoList = projectService
                 .getProjectList(
                         MAX_TABLE_ROW,
                         pageIndex,
                         searchBox.textProperty(),
-                        statusProperty));
+                        statusProperty);
+
+        for (int i = 0; i < 50; i++) {
+            log.info(projectDtoList);
+        }
+
+        table.setItems(projectDtoList);
 
         log.info("Number of projects: " + projectService.getNumberOfProjects());
 

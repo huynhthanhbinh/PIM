@@ -165,7 +165,9 @@ public class MainPane implements FXComponent {
     }
 
     public static void onShowPerspective(MainPane mainPane) {
-        ((ChildrenContaining) mainPane.getCurrentFragment().getController())
-                .onSwitchParentFragment();
+        if (mainPane.getCurrentFragment() != null) {
+            ((ChildrenContaining) mainPane.getCurrentFragment().getController())
+                    .onSwitchParentFragment();
+        }
     }
 }

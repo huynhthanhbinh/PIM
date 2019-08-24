@@ -15,7 +15,6 @@ public class PimErrorHandler implements ErrorDialogHandler<Node> {
 
     @Override
     public void handleExceptionInDialog(Throwable throwable) {
-        throwable.printStackTrace();
         CONTEXT_PROPERTY.get().send(AppConfiguration.PERSPECTIVE_DEFAULT, throwable);
     }
 

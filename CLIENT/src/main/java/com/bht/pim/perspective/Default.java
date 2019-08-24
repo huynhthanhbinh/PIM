@@ -44,7 +44,7 @@ public class Default implements FXPerspective {
     public void handlePerspective(Message<Event, Object> message, PerspectiveLayout perspectiveLayout) {
         log.info("On handle perspective: " + perspectiveLayout.getClass().getSimpleName() +
                 " >>> in: " + context.getId());
-        context.send(AppConfiguration.COMPONENT_BOTTOM, message);
+        context.send(AppConfiguration.COMPONENT_BOTTOM, message.getMessageBody());
     }
 
     @PreDestroy
