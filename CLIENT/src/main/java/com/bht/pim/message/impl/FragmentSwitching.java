@@ -12,7 +12,7 @@ public class FragmentSwitching implements PimMessage {
     private Class fragmentTarget;
 
     @Override
-    public Class getFragmentSent() {
+    public Class getSender() {
         return fragmentSent;
     }
 

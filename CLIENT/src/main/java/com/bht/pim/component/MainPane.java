@@ -55,7 +55,7 @@ public class MainPane implements FXComponent {
     @Resource
     private Context context;
 
-    private ManagedFragmentHandler mainFragment;
+    private ManagedFragmentHandler currentFragment;
     private ManagedFragmentHandler<ProjectList> projectListFragment;
     private ManagedFragmentHandler<ProjectCreate> projectCreateFragment;
     private ManagedFragmentHandler<ProjectUpdate> projectUpdateFragment;
@@ -101,38 +101,6 @@ public class MainPane implements FXComponent {
         return PimMessage.messageHandler(node, message, this);
     }
 
-    public static void switchFragment(MainPane mainPane, Class fragmentClazz) {
-        ObservableList<Node> nodes = mainPane.getMainPane().getChildren();
-        nodes.clear();
-
-        ManagedFragmentHandler target = mainPane.getContext()
-                .getManagedFragmentHandler(fragmentClazz);
-
-        ((ChildrenContaining) target.getController()).onSwitchParentFragment();
-
-        mainPane.setMainFragment(target);
-        nodes.add(mainPane.getMainFragment().getFragmentNode());
-    }
-
-    public static void sendIdentifier(long id, MainPane mainPane,
-                                      Class sender, Class receiver) {
-
-        boolean success = ((IdentifierNeeding) mainPane
-                .getContext()
-                .getManagedFragmentHandler(receiver)
-                .getController())
-                .getObjectWithIdentifier(id);
-
-        log.info("\n\n" + success + "\n\n");
-
-        ((SuccessNeeding) mainPane
-                .getContext()
-                .getManagedFragmentHandler(sender)
-                .getController())
-                .getSuccessProperty()
-                .set(success);
-    }
-
     @PostConstruct
     public void onStartComponent(final FXComponentLayout layout,
                                  final ResourceBundle resourceBundle) {
@@ -162,5 +130,42 @@ public class MainPane implements FXComponent {
     private <T> Pair<T, Node> registerNewFragment(Class<T> fragmentClass) {
         ManagedFragmentHandler<T> fragment = context.getManagedFragmentHandler(fragmentClass);
         return new Pair<>(fragment.getController(), fragment.getFragmentNode());
+    }
+
+    public static void switchFragment(MainPane mainPane, Class fragmentClazz) {
+        ObservableList<Node> nodes = mainPane.getMainPane().getChildren();
+        nodes.clear();
+
+        ManagedFragmentHandler target = mainPane.getContext()
+                .getManagedFragmentHandler(fragmentClazz);
+
+        ((ChildrenContaining) target.getController()).onSwitchParentFragment();
+
+        mainPane.setCurrentFragment(target);
+        nodes.add(mainPane.getCurrentFragment().getFragmentNode());
+    }
+
+    public static void sendIdentifier(long id, MainPane mainPane,
+                                      Class sender, Class receiver) {
+
+        boolean success = ((IdentifierNeeding) mainPane
+                .getContext()
+                .getManagedFragmentHandler(receiver)
+                .getController())
+                .getObjectWithIdentifier(id);
+
+        log.info("\n\n" + success + "\n\n");
+
+        ((SuccessNeeding) mainPane
+                .getContext()
+                .getManagedFragmentHandler(sender)
+                .getController())
+                .getSuccessProperty()
+                .set(success);
+    }
+
+    public static void onShowPerspective(MainPane mainPane) {
+        ((ChildrenContaining) mainPane.getCurrentFragment().getController())
+                .onSwitchParentFragment();
     }
 }

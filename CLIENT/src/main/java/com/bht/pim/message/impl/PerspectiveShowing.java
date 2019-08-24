@@ -6,20 +6,18 @@ import javafx.scene.Node;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class IdentifierSending implements PimMessage {
+public class PerspectiveShowing implements PimMessage {
 
-    private Class fragmentSent;
-    private Class fragmentTarget;
-    private long id;
+    private Class sender;
 
     @Override
     public Class getSender() {
-        return fragmentSent;
+        return sender;
     }
 
     @Override
     public Node postHandle(Node node, MainPane mainPane) {
-        MainPane.sendIdentifier(id, mainPane, fragmentSent, fragmentTarget);
+        MainPane.onShowPerspective(mainPane);
         return null;
     }
 }

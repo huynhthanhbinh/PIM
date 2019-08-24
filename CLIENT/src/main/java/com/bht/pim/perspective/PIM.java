@@ -2,6 +2,7 @@ package com.bht.pim.perspective;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.handler.PimErrorHandler;
+import com.bht.pim.message.impl.PerspectiveShowing;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.SplitPane;
@@ -57,6 +58,8 @@ public class PIM implements FXPerspective {
     @OnShow
     public void onShowComponent(final FXComponentLayout componentLayout) {
         log.info("[SHOW] FXPerspective: " + context.getId());
+        PerspectiveShowing perspectiveShowing = new PerspectiveShowing(PIM.class);
+        context.send(AppConfiguration.COMPONENT_MAIN, perspectiveShowing);
     }
 
     @OnHide

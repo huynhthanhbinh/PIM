@@ -8,7 +8,7 @@ import org.jacpfx.api.message.Message;
 
 public interface PimMessage {
 
-    Class getFragmentSent();
+    Class getSender();
 
     // post handle Pim messages for MainPane
     Node postHandle(Node node, MainPane mainPane);
@@ -20,7 +20,7 @@ public interface PimMessage {
             PimMessage messageBody = (PimMessage) message.getMessageBody();
 
             logger.info("[PIM Message] " + messageBody.getClass().getSimpleName() +
-                    " >>> sent from: " + messageBody.getFragmentSent().getSimpleName());
+                    " >>> sent from: " + messageBody.getSender().getSimpleName());
 
             return messageBody.postHandle(node, mainPane);
         }
