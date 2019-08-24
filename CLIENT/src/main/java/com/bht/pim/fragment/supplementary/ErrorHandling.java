@@ -1,10 +1,12 @@
 package com.bht.pim.fragment.supplementary;
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.util.LanguageUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
@@ -46,10 +48,27 @@ public class ErrorHandling implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         detailField.setEditable(false);
+        LanguageUtil.initLabel(lUnexpected.textProperty(), "label.error.unexpectederror");
+        LanguageUtil.initLabel(lPlease.textProperty(), "label.error.please");
+        LanguageUtil.initLabel(lContact.textProperty(), "label.error.contactadmin");
+        LanguageUtil.initLabel(lOr.textProperty(), "label.error.or");
+        LanguageUtil.initLabel(lReload.textProperty(), "label.error.reload");
+        LanguageUtil.initLabel(lError.textProperty(), "label.error.detail");
+
+        lContact.setOnMouseClicked(this::onContactAdmin);
+        lReload.setOnMouseClicked(this::onReloadApp);
     }
 
     public void setDetail(Throwable detail) {
         detailField.setText(detail.getClass().getName()
                 + "\n" + detail.getMessage());
+    }
+
+    private void onContactAdmin(MouseEvent mouseEvent) {
+        log.info("[PIM] Clicked contact administrator");
+    }
+
+    private void onReloadApp(MouseEvent mouseEvent) {
+        log.info("[PIM] Clicked reload application");
     }
 }

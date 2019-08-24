@@ -5,14 +5,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
-      xmlns:fx="http://javafx.com/fxml/1" fx:id="errorPane"
-      stylesheets="/com/bht/pim/fragment/supplementary/ErrorHandling.css">
+<VBox fx:id="errorPane" alignment="CENTER" minWidth="1000.0" prefHeight="400.0" prefWidth="1000.0"
+      stylesheets="/com/bht/pim/fragment/supplementary/ErrorHandling.css" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <GridPane hgap="40.0" maxHeight="300.0" maxWidth="700.0" prefHeight="300.0" prefWidth="700.0">
+        <GridPane hgap="40.0" maxHeight="300.0" maxWidth="800.0" prefHeight="300.0" prefWidth="800.0">
             <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="600.0"/>
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="20.0" prefHeight="50.0" vgrow="SOMETIMES"/>
@@ -31,7 +31,7 @@
                 </ImageView>
                 <Label fx:id="lUnexpected" text="Unexpected error occurred." GridPane.columnIndex="1">
                     <font>
-                        <Font name="System Bold" size="25.0"/>
+                        <Font name="System Bold" size="22.0"/>
                     </font>
                 </Label>
                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
@@ -39,12 +39,12 @@
                     <children>
                         <Label fx:id="lPlease" text="Please">
                             <font>
-                                <Font name="Segoe UI Bold" size="25.0"/>
+                                <Font name="Segoe UI Bold" size="22.0"/>
                             </font>
                         </Label>
                         <Label fx:id="lContact" text="contact your administrator" textFill="#f24517">
                             <font>
-                                <Font name="Segoe UI Bold Italic" size="25.0"/>
+                                <Font name="Segoe UI Bold Italic" size="22.0"/>
                             </font>
                         </Label>
                     </children>
@@ -54,12 +54,12 @@
                     <children>
                         <Label fx:id="lOr" text="Or">
                             <font>
-                                <Font name="Segoe UI Bold" size="25.0"/>
+                                <Font name="Segoe UI Bold" size="22.0"/>
                             </font>
                         </Label>
                         <Label fx:id="lReload" text="try to reload application" textFill="DODGERBLUE">
                             <font>
-                                <Font name="Segoe UI Bold Italic" size="25.0"/>
+                                <Font name="Segoe UI Bold Italic" size="22.0"/>
                             </font>
                         </Label>
                     </children>
@@ -67,7 +67,7 @@
                 <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4"/>
                 <Label fx:id="lError" contentDisplay="RIGHT" text="Error detail:" GridPane.rowIndex="5">
                     <font>
-                        <Font name="Segoe UI Bold" size="25.0"/>
+                        <Font name="Segoe UI Bold" size="22.0"/>
                     </font>
                 </Label>
                 <TextArea fx:id="detailField" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1"

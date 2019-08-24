@@ -6,3 +6,21 @@
     -fx-focus-color: -fx-control-inner-background;
     -fx-faint-focus-color: -fx-control-inner-background;
 }
+
+#lContact:hover {
+    -fx-cursor: hand;
+    -fx-underline: true;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+#lReload:hover {
+    -fx-cursor: hand;
+    -fx-underline: true;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 22;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
