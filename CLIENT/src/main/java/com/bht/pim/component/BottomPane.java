@@ -30,11 +30,11 @@ import java.util.ResourceBundle;
 @Log4j
 @Getter
 @Setter
-@DeclarativeView(id = AppConfiguration.COMPONENT_BOTTOM, name = "LoginPane",
+@DeclarativeView(id = AppConfiguration.COMPONENT_BOTTOM, name = "BottomPane",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_BOTTOM,
-        viewLocation = "/com/bht/pim/component/LoginPane.fxml")
-public class LoginPane implements FXComponent {
+        viewLocation = "/com/bht/pim/component/BottomPane.fxml")
+public class BottomPane implements FXComponent {
 
     @Value("${pim.client.username}")
     private String defaultUsername;

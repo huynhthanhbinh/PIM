@@ -58,6 +58,8 @@ public class PIM implements FXPerspective {
     @OnShow
     public void onShowComponent(final FXComponentLayout componentLayout) {
         log.info("[SHOW] FXPerspective: " + context.getId());
+
+        // check if connection is lost ? show error : continue
         PerspectiveShowing perspectiveShowing = new PerspectiveShowing(PIM.class);
         context.send(AppConfiguration.COMPONENT_MAIN, perspectiveShowing);
     }

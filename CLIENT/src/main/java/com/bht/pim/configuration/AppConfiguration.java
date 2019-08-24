@@ -80,6 +80,9 @@ public class AppConfiguration {
     public static final String FRAGMENT_EMPLOYEE_LIST = "idfEList";
     public static final String FRAGMENT_EMPLOYEE_INFO = "idfEInfo";
 
+    public static final String FRAGMENT_SUPPLEMENTARY_LOGIN = "idfSLogin";
+    public static final String FRAGMENT_SUPPLEMENTARY_ERROR = "idfSError";
+
     public static final String LABEL_PIM_MAIN = "label.pim.main";
     public static final String LABEL_LEFT_LIST_PROJECT = "label.pim.left.list.project";
     public static final String LABEL_LEFT_LIST_GROUP = "label.pim.left.list.group";
