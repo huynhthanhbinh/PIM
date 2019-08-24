@@ -2,6 +2,8 @@ package com.bht.pim.component;
 
 
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.supplementary.ErrorHandling;
+import com.bht.pim.fragment.supplementary.Login;
 import com.bht.pim.util.LanguageUtil;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -22,6 +24,7 @@ import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
+import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -35,6 +38,9 @@ import java.util.ResourceBundle;
         initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_BOTTOM,
         viewLocation = "/com/bht/pim/component/BottomPane.fxml")
 public class BottomPane implements FXComponent {
+
+    private ManagedFragmentHandler<Login> loginFragment;
+    private ManagedFragmentHandler<ErrorHandling> errorHandlingFragment;
 
     @Value("${pim.client.username}")
     private String defaultUsername;
@@ -58,8 +64,8 @@ public class BottomPane implements FXComponent {
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
 
         if (message.getMessageBody() instanceof Exception) {
+            log.info("[PIM] show error page");
             log.info(message.getMessageBody());
-            ((Exception) message.getMessageBody()).printStackTrace();
         } else {
             log.info("[PIM] show login page");
         }
@@ -75,6 +81,9 @@ public class BottomPane implements FXComponent {
     @PostConstruct
     public void onStartComponent(final FXComponentLayout arg0,
                                  final ResourceBundle resourceBundle) {
+
+        loginFragment = context.getManagedFragmentHandler(Login.class);
+        errorHandlingFragment = context.getManagedFragmentHandler(ErrorHandling.class);
 
         LanguageUtil.initLabel(bLogin.textProperty(), "label.login.login");
         LanguageUtil.initLabel(bForgot.textProperty(), "label.login.forgot");
