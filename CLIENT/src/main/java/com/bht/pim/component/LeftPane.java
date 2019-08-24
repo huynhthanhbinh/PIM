@@ -80,8 +80,9 @@ public class LeftPane implements FXComponent {
 
             context.send(AppConfiguration.COMPONENT_MAIN, switching);
 
-            lGroupList.getStyleClass().remove("active");
             lEmployeeList.getStyleClass().remove("active");
+            lProjectList.getStyleClass().remove("active");
+            lGroupList.getStyleClass().remove("active");
             lProjectList.getStyleClass().add("active");
         });
 
@@ -94,8 +95,9 @@ public class LeftPane implements FXComponent {
                 return;
             }
 
-            lProjectList.getStyleClass().remove("active");
             lEmployeeList.getStyleClass().remove("active");
+            lProjectList.getStyleClass().remove("active");
+            lGroupList.getStyleClass().remove("active");
             lGroupList.getStyleClass().add("active");
         });
 
@@ -108,8 +110,9 @@ public class LeftPane implements FXComponent {
                 return;
             }
 
-            lGroupList.getStyleClass().remove("active");
+            lEmployeeList.getStyleClass().remove("active");
             lProjectList.getStyleClass().remove("active");
+            lGroupList.getStyleClass().remove("active");
             lEmployeeList.getStyleClass().add("active");
         });
     }

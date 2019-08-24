@@ -77,9 +77,7 @@ public class ErrorHandling implements Initializable {
 
     private void onReloadApp(MouseEvent mouseEvent) {
         log.info("[PIM] Clicked reload application");
-        log.info(AppConfiguration.CHANNEL_PROPERTY.get());
         AppConfiguration.CHANNEL_PROPERTY.get().resetConnectBackoff();
-        log.info(AppConfiguration.CHANNEL_PROPERTY.get());
         context.send(AppConfiguration.PERSPECTIVE_PIM, "show");
     }
 }
