@@ -42,8 +42,6 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
 
     @Resource
     private Context context;
-    @Resource
-    private ResourceBundle bundle;
     @FXML
     private VBox mainPane;
 

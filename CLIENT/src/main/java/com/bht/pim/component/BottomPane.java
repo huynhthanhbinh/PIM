@@ -4,14 +4,10 @@ package com.bht.pim.component;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.supplementary.ErrorHandling;
 import com.bht.pim.fragment.supplementary.Login;
-import com.bht.pim.util.LanguageUtil;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -26,7 +22,6 @@ import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.ResourceBundle;
 
@@ -42,23 +37,10 @@ public class BottomPane implements FXComponent {
     private ManagedFragmentHandler<Login> loginFragment;
     private ManagedFragmentHandler<ErrorHandling> errorHandlingFragment;
 
-    @Value("${pim.client.username}")
-    private String defaultUsername;
-    @Value("${pim.client.password}")
-    private String defaultPassword;
-
     @Resource
     private Context context;
     @FXML
-    private Label lIncorrect;
-    @FXML
-    private Button bLogin;
-    @FXML
-    private Button bForgot;
-    @FXML
-    private TextField username;
-    @FXML
-    private PasswordField password;
+    private VBox mainPane;
 
     @Override
     public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
@@ -82,29 +64,18 @@ public class BottomPane implements FXComponent {
     public void onStartComponent(final FXComponentLayout arg0,
                                  final ResourceBundle resourceBundle) {
 
+        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        log.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         loginFragment = context.getManagedFragmentHandler(Login.class);
         errorHandlingFragment = context.getManagedFragmentHandler(ErrorHandling.class);
-
-        LanguageUtil.initLabel(bLogin.textProperty(), "label.login.login");
-        LanguageUtil.initLabel(bForgot.textProperty(), "label.login.forgot");
-        LanguageUtil.initLabel(lIncorrect.textProperty(), "label.login.incorrect");
-
-        lIncorrect.setVisible(false);
-
-        bLogin.setOnMouseClicked(event -> {
-            if (username.getText().equals(defaultUsername)
-                    && password.getText().equals(defaultPassword)) {
-
-                context.send(AppConfiguration.PERSPECTIVE_PIM, "show");
-                username.clear();
-                password.clear();
-                lIncorrect.setVisible(false);
-
-            } else if (!username.getText().isEmpty() && !password.getText().isEmpty()) {
-
-                lIncorrect.setVisible(true);
-            }
-        });
+        mainPane.getChildren().add(loginFragment.getFragmentNode());
     }
 
     @PreDestroy
