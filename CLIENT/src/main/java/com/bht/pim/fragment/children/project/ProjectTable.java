@@ -64,6 +64,8 @@ public class ProjectTable implements Initializable, ParentOwning {
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
     private static final int MAX_TABLE_ROW = 8;
 
+    private int countSuccess = 0; // for delete all selected projects
+    private int countFail = 0; // for delete all selected projects
 
     // binding
     @Getter
@@ -456,5 +458,43 @@ public class ProjectTable implements Initializable, ParentOwning {
             }
             getListProject(0);
         });
+    }
+
+    public void onDeleteAllSelected(MouseEvent mouseEvent) {
+        countSuccess = 0;
+        countFail = 0;
+
+        try {
+            aboutToDeleteProjects.forEach(projectDto -> {
+
+                if (projectDto.getStatus().equals(statusMapper.toGuiStatus("NEW"))) {
+                    projectService.deleteProject(projectDto.getId());
+                    table.getItems().remove(projectDto);
+                    countSuccess++;
+
+                } else {
+                    countFail++;
+                }
+            });
+
+        } catch (Exception exception) {
+            log.info(exception);
+
+        } finally {
+            getListProject(calculatePageIndexAfterDelete());
+
+            if (countFail > 0) {
+                NotificationUtil.showNotification(
+                        NotificationStyle.WARNING,
+                        Pos.CENTER,
+                        "Failed to delete " + countFail + " non-new project(s) !");
+            }
+            if (countSuccess > 0) {
+                NotificationUtil.showNotification(
+                        NotificationStyle.SUCCESS,
+                        Pos.CENTER,
+                        "Successfully delete " + countSuccess + " project(s) !");
+            }
+        }
     }
 }

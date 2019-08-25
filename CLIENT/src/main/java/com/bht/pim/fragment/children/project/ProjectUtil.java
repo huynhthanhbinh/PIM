@@ -57,6 +57,7 @@ public class ProjectUtil implements Initializable, ParentOwning {
     @FXML
     private Label lSelected;
     @FXML
+    @Getter
     private Button bDeleteAll;
     @FXML
     @Getter

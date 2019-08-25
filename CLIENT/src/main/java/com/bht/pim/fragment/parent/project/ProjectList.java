@@ -67,6 +67,7 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
         bindingChildrenFragments();
         mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_LIST);
         projectUtil.getBReset().setOnMouseClicked(projectTable::onReset);
+        projectUtil.getBDeleteAll().setOnMouseClicked(projectTable::onDeleteAllSelected);
 
         projectTable.getMainPane().prefWidthProperty().bind(Bindings.
                 when(mainPane.widthProperty().lessThan(1500))
