@@ -7,6 +7,7 @@ import com.bht.pim.entity.GroupEntity;
 import com.bht.pim.mapper.GroupMapper;
 import com.bht.pim.proto.groups.Group;
 import com.bht.pim.proto.groups.GroupList;
+import com.bht.pim.proto.groups.GroupPagination;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.google.protobuf.BoolValue;
 import com.google.protobuf.Empty;
@@ -103,9 +104,12 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
     }
 
     @Override
-    public void getGroupList(Empty request, StreamObserver<GroupList> responseObserver) {
+    public void getGroupList(GroupPagination pagination, StreamObserver<GroupList> responseObserver) {
         try {
-            List<GroupEntity> groupEntities = groupDao.getAllGroups();
+            List<GroupEntity> groupEntities = groupDao.getGroupList(
+                    pagination.getMaxRow(),
+                    pagination.getPageIndex());
+
             List<Group> groups = groupMapper.toGroupList(groupEntities);
 
             GroupList groupList = GroupList.newBuilder()
@@ -123,6 +127,25 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
             // return an empty list not return null value for list
             responseObserver.onNext(GroupList.newBuilder()
                     .addAllGroups(Collections.emptyList()).build());
+            responseObserver.onCompleted();
+        }
+    }
+
+    @Override
+    public void getNumberOfGroups(Empty request, StreamObserver<Int64Value> responseObserver) {
+        try {
+            responseObserver.onNext(Int64Value.newBuilder()
+                    .setValue(groupDao.getNumberOfGroups())
+                    .build());
+            responseObserver.onCompleted();
+
+        } catch (Exception exception) {
+
+            // log the exception out
+            log.info(exception);
+
+            // return an empty list not return null value for list
+            responseObserver.onNext(Int64Value.newBuilder().build());
             responseObserver.onCompleted();
         }
     }

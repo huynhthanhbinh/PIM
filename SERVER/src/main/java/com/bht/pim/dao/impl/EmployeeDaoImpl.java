@@ -25,14 +25,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
     SessionFactory sessionFactory;
 
     @Override
-    public List<EmployeeEntity> getAllEmployees() {
+    public List<EmployeeEntity> getEmployeeList(int maxRow, int pageIndex) {
         try {
             CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
             CriteriaQuery<EmployeeEntity> query = builder.createQuery(EmployeeEntity.class);
 
             Root<EmployeeEntity> root = query.from(EmployeeEntity.class);
             TypedQuery<EmployeeEntity> allQuery = sessionFactory.getCurrentSession()
-                    .createQuery(query.select(root));
+                    .createQuery(query
+                            .select(root)
+                            .orderBy(builder.desc(root)));
+
+            allQuery.setMaxResults(maxRow);
+            allQuery.setFirstResult(maxRow * pageIndex);
 
             return allQuery.getResultList();
 
@@ -59,6 +64,25 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
             log.info(exception);
             return null;
+        }
+    }
+
+    @Override
+    public long getNumberOfEmployees() {
+        try {
+            CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+            CriteriaQuery<Long> query = builder.createQuery(Long.class);
+            Root<EmployeeEntity> root = query.from(EmployeeEntity.class);
+
+            return sessionFactory.getCurrentSession()
+                    .createQuery(query
+                            .select(builder.count(root)))
+                    .getSingleResult();
+
+        } catch (Exception exception) {
+
+            log.info(exception);
+            return -1;
         }
     }
 }

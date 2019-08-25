@@ -11,6 +11,9 @@ public interface GroupService {
     // get a specific employee
     GroupDto getGroupById(long id);
 
+    // Get project row count(*)
+    long getNumberOfGroups();
+
     // Get all groups
-    ObservableList<GroupDto> getAllGroups();
+    ObservableList<GroupDto> getGroupList(int maxRow, int pageIndex);
 }

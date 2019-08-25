@@ -16,5 +16,8 @@ public interface GroupDao {
     GroupEntity getGroupById(long id);
 
     // Get all groups
-    List<GroupEntity> getAllGroups();
+    List<GroupEntity> getGroupList(int maxRow, int pageIndex);
+
+    // Get project row count(*)
+    long getNumberOfGroups();
 }

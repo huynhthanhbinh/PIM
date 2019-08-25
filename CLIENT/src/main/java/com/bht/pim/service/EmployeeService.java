@@ -8,6 +8,9 @@ public interface EmployeeService {
     // get a specific employee
     EmployeeDto getEmployeeById(long id);
 
+    // Get project row count(*)
+    long getNumberOfEmployees();
+
     // Employee List get response from server
-    ObservableList<EmployeeDto> getAllEmployees();
+    ObservableList<EmployeeDto> getEmployeeList(int maxRow, int pageIndex);
 }

@@ -2,6 +2,7 @@ package com.bht.pim.service.impl;
 
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.mapper.EmployeeMapper;
+import com.bht.pim.proto.employees.EmployeePagination;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.service.EmployeeService;
 import com.google.protobuf.Empty;
@@ -28,12 +29,22 @@ public class EmployeeServiceImpl implements EmployeeService {
                         .build()));
     }
 
+    @Override
+    public long getNumberOfEmployees() {
+        return stub
+                .getNumberOfEmployees(Empty.getDefaultInstance())
+                .getValue();
+    }
+
     // Employee List get response from server
     @Override
-    public ObservableList<EmployeeDto> getAllEmployees() {
+    public ObservableList<EmployeeDto> getEmployeeList(int maxRow, int pageIndex) {
         return FXCollections.observableArrayList(
                 employeeMapper.toEmployeeDtoList(stub
-                        .getEmployeeList(Empty.getDefaultInstance())
+                        .getEmployeeList(EmployeePagination.newBuilder()
+                                .setMaxRow(maxRow)
+                                .setPageIndex(pageIndex)
+                                .build())
                         .getEmployeesList()));
     }
 }

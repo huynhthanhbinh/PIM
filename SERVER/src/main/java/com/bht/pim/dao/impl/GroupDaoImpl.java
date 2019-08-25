@@ -76,14 +76,19 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     @Override
-    public List<GroupEntity> getAllGroups() {
+    public List<GroupEntity> getGroupList(int maxRow, int pageIndex) {
         try {
             CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
             CriteriaQuery<GroupEntity> query = builder.createQuery(GroupEntity.class);
 
             Root<GroupEntity> root = query.from(GroupEntity.class);
             TypedQuery<GroupEntity> allQuery = sessionFactory.getCurrentSession()
-                    .createQuery(query.select(root));
+                    .createQuery(query
+                            .select(root)
+                            .orderBy(builder.desc(root)));
+
+            allQuery.setMaxResults(maxRow);
+            allQuery.setFirstResult(maxRow * pageIndex);
 
             return allQuery.getResultList();
 
@@ -91,6 +96,25 @@ public class GroupDaoImpl implements GroupDao {
 
             log.info(exception);
             return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public long getNumberOfGroups() {
+        try {
+            CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+            CriteriaQuery<Long> query = builder.createQuery(Long.class);
+            Root<GroupEntity> root = query.from(GroupEntity.class);
+
+            return sessionFactory.getCurrentSession()
+                    .createQuery(query
+                            .select(builder.count(root)))
+                    .getSingleResult();
+
+        } catch (Exception exception) {
+
+            log.info(exception);
+            return -1;
         }
     }
 }

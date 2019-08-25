@@ -2,6 +2,7 @@ package com.bht.pim.service.impl;
 
 import com.bht.pim.dto.GroupDto;
 import com.bht.pim.mapper.GroupMapper;
+import com.bht.pim.proto.groups.GroupPagination;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.service.GroupService;
 import com.google.protobuf.Empty;
@@ -36,12 +37,22 @@ public class GroupServiceImpl implements GroupService {
                         .build()));
     }
 
+    @Override
+    public long getNumberOfGroups() {
+        return stub
+                .getNumberOfGroups(Empty.getDefaultInstance())
+                .getValue();
+    }
+
     // Get all groups
     @Override
-    public ObservableList<GroupDto> getAllGroups() {
+    public ObservableList<GroupDto> getGroupList(int maxRow, int pageIndex) {
         return FXCollections.observableList(
                 groupMapper.toGroupDtoList(stub
-                        .getGroupList(Empty.getDefaultInstance())
+                        .getGroupList(GroupPagination.newBuilder()
+                                .setMaxRow(maxRow)
+                                .setPageIndex(pageIndex)
+                                .build())
                         .getGroupsList()));
     }
 }
