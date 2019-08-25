@@ -53,28 +53,28 @@ public final class EmployeeServiceGrpc {
         return getGetEmployeeByIdMethod;
     }
 
-    private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+    private static volatile io.grpc.MethodDescriptor<EmployeePagination,
             EmployeeList> getGetEmployeeListMethod;
 
     @io.grpc.stub.annotations.RpcMethod(
             fullMethodName = SERVICE_NAME + '/' + "getEmployeeList",
-            requestType = com.google.protobuf.Empty.class,
+            requestType = EmployeePagination.class,
             responseType = EmployeeList.class,
             methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-    public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+    public static io.grpc.MethodDescriptor<EmployeePagination,
             EmployeeList> getGetEmployeeListMethod() {
-        io.grpc.MethodDescriptor<com.google.protobuf.Empty, EmployeeList> getGetEmployeeListMethod;
+        io.grpc.MethodDescriptor<EmployeePagination, EmployeeList> getGetEmployeeListMethod;
         if ((getGetEmployeeListMethod = EmployeeServiceGrpc.getGetEmployeeListMethod) == null) {
             synchronized (EmployeeServiceGrpc.class) {
                 if ((getGetEmployeeListMethod = EmployeeServiceGrpc.getGetEmployeeListMethod) == null) {
                     EmployeeServiceGrpc.getGetEmployeeListMethod = getGetEmployeeListMethod =
-                            io.grpc.MethodDescriptor.<com.google.protobuf.Empty, EmployeeList>newBuilder()
+                            io.grpc.MethodDescriptor.<EmployeePagination, EmployeeList>newBuilder()
                                     .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
                                     .setFullMethodName(generateFullMethodName(
                                             "com.bht.pim.proto.employees.EmployeeService", "getEmployeeList"))
                                     .setSampledToLocalTracing(true)
                                     .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                            com.google.protobuf.Empty.getDefaultInstance()))
+                                            EmployeePagination.getDefaultInstance()))
                                     .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                                             EmployeeList.getDefaultInstance()))
                                     .setSchemaDescriptor(new EmployeeServiceMethodDescriptorSupplier("getEmployeeList"))
@@ -124,7 +124,7 @@ public final class EmployeeServiceGrpc {
         /**
          *
          */
-        public void getEmployeeList(com.google.protobuf.Empty request,
+        public void getEmployeeList(EmployeePagination request,
                                     io.grpc.stub.StreamObserver<EmployeeList> responseObserver) {
             asyncUnimplementedUnaryCall(getGetEmployeeListMethod(), responseObserver);
         }
@@ -143,7 +143,7 @@ public final class EmployeeServiceGrpc {
                             getGetEmployeeListMethod(),
                             asyncUnaryCall(
                                     new MethodHandlers<
-                                            com.google.protobuf.Empty,
+                                            EmployeePagination,
                                             EmployeeList>(
                                             this, METHODID_GET_EMPLOYEE_LIST)))
                     .build();
@@ -181,7 +181,7 @@ public final class EmployeeServiceGrpc {
         /**
          *
          */
-        public void getEmployeeList(com.google.protobuf.Empty request,
+        public void getEmployeeList(EmployeePagination request,
                                     io.grpc.stub.StreamObserver<EmployeeList> responseObserver) {
             asyncUnaryCall(
                     getChannel().newCall(getGetEmployeeListMethod(), getCallOptions()), request, responseObserver);
@@ -218,7 +218,7 @@ public final class EmployeeServiceGrpc {
         /**
          *
          */
-        public EmployeeList getEmployeeList(com.google.protobuf.Empty request) {
+        public EmployeeList getEmployeeList(EmployeePagination request) {
             return blockingUnaryCall(
                     getChannel(), getGetEmployeeListMethod(), getCallOptions(), request);
         }
@@ -256,7 +256,7 @@ public final class EmployeeServiceGrpc {
          *
          */
         public com.google.common.util.concurrent.ListenableFuture<EmployeeList> getEmployeeList(
-                com.google.protobuf.Empty request) {
+                EmployeePagination request) {
             return futureUnaryCall(
                     getChannel().newCall(getGetEmployeeListMethod(), getCallOptions()), request);
         }
@@ -287,7 +287,7 @@ public final class EmployeeServiceGrpc {
                             (io.grpc.stub.StreamObserver<Employee>) responseObserver);
                     break;
                 case METHODID_GET_EMPLOYEE_LIST:
-                    serviceImpl.getEmployeeList((com.google.protobuf.Empty) request,
+                    serviceImpl.getEmployeeList((EmployeePagination) request,
                             (io.grpc.stub.StreamObserver<EmployeeList>) responseObserver);
                     break;
                 default:

@@ -21,11 +21,11 @@ public abstract class EmployeeService
                 com.google.protobuf.RpcCallback<Employee> done);
 
         /**
-         * <code>rpc getEmployeeList(.google.protobuf.Empty) returns (.com.bht.pim.proto.employees.EmployeeList);</code>
+         * <code>rpc getEmployeeList(.com.bht.pim.proto.employees.EmployeePagination) returns (.com.bht.pim.proto.employees.EmployeeList);</code>
          */
         public abstract void getEmployeeList(
                 com.google.protobuf.RpcController controller,
-                com.google.protobuf.Empty request,
+                EmployeePagination request,
                 com.google.protobuf.RpcCallback<EmployeeList> done);
 
     }
@@ -44,7 +44,7 @@ public abstract class EmployeeService
             @Override
             public void getEmployeeList(
                     com.google.protobuf.RpcController controller,
-                    com.google.protobuf.Empty request,
+                    EmployeePagination request,
                     com.google.protobuf.RpcCallback<EmployeeList> done) {
                 impl.getEmployeeList(controller, request, done);
             }
@@ -76,7 +76,7 @@ public abstract class EmployeeService
                     case 0:
                         return impl.getEmployeeById(controller, (com.google.protobuf.Int64Value) request);
                     case 1:
-                        return impl.getEmployeeList(controller, (com.google.protobuf.Empty) request);
+                        return impl.getEmployeeList(controller, (EmployeePagination) request);
                     default:
                         throw new AssertionError("Can't get here.");
                 }
@@ -95,7 +95,7 @@ public abstract class EmployeeService
                     case 0:
                         return com.google.protobuf.Int64Value.getDefaultInstance();
                     case 1:
-                        return com.google.protobuf.Empty.getDefaultInstance();
+                        return EmployeePagination.getDefaultInstance();
                     default:
                         throw new AssertionError("Can't get here.");
                 }
@@ -132,11 +132,11 @@ public abstract class EmployeeService
             com.google.protobuf.RpcCallback<Employee> done);
 
     /**
-     * <code>rpc getEmployeeList(.google.protobuf.Empty) returns (.com.bht.pim.proto.employees.EmployeeList);</code>
+     * <code>rpc getEmployeeList(.com.bht.pim.proto.employees.EmployeePagination) returns (.com.bht.pim.proto.employees.EmployeeList);</code>
      */
     public abstract void getEmployeeList(
             com.google.protobuf.RpcController controller,
-            com.google.protobuf.Empty request,
+            EmployeePagination request,
             com.google.protobuf.RpcCallback<EmployeeList> done);
 
     public static final com.google.protobuf.Descriptors.ServiceDescriptor
@@ -169,7 +169,7 @@ public abstract class EmployeeService
                                 done));
                 return;
             case 1:
-                getEmployeeList(controller, (com.google.protobuf.Empty) request,
+                getEmployeeList(controller, (EmployeePagination) request,
                         com.google.protobuf.RpcUtil.<EmployeeList>specializeCallback(
                                 done));
                 return;
@@ -191,7 +191,7 @@ public abstract class EmployeeService
             case 0:
                 return com.google.protobuf.Int64Value.getDefaultInstance();
             case 1:
-                return com.google.protobuf.Empty.getDefaultInstance();
+                return EmployeePagination.getDefaultInstance();
             default:
                 throw new AssertionError("Can't get here.");
         }
@@ -251,7 +251,7 @@ public abstract class EmployeeService
         @Override
         public void getEmployeeList(
                 com.google.protobuf.RpcController controller,
-                com.google.protobuf.Empty request,
+                EmployeePagination request,
                 com.google.protobuf.RpcCallback<EmployeeList> done) {
             channel.callMethod(
                     getDescriptor().getMethods().get(1),
@@ -278,7 +278,7 @@ public abstract class EmployeeService
 
         public EmployeeList getEmployeeList(
                 com.google.protobuf.RpcController controller,
-                com.google.protobuf.Empty request)
+                EmployeePagination request)
                 throws com.google.protobuf.ServiceException;
     }
 
@@ -305,7 +305,7 @@ public abstract class EmployeeService
         @Override
         public EmployeeList getEmployeeList(
                 com.google.protobuf.RpcController controller,
-                com.google.protobuf.Empty request)
+                EmployeePagination request)
                 throws com.google.protobuf.ServiceException {
             return (EmployeeList) channel.callBlockingMethod(
                     getDescriptor().getMethods().get(1),

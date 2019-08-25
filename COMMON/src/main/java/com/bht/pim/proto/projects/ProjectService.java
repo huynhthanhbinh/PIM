@@ -21,6 +21,14 @@ public abstract class ProjectService
                 com.google.protobuf.RpcCallback<Project> done);
 
         /**
+         * <code>rpc getProjectByNumber(.google.protobuf.Int64Value) returns (.com.bht.pim.proto.projects.Project);</code>
+         */
+        public abstract void getProjectByNumber(
+                com.google.protobuf.RpcController controller,
+                com.google.protobuf.Int64Value request,
+                com.google.protobuf.RpcCallback<Project> done);
+
+        /**
          * <code>rpc addNewProject(.com.bht.pim.proto.projects.Project) returns (.google.protobuf.BoolValue);</code>
          */
         public abstract void addNewProject(
@@ -95,6 +103,14 @@ public abstract class ProjectService
                     com.google.protobuf.Int64Value request,
                     com.google.protobuf.RpcCallback<Project> done) {
                 impl.getProjectById(controller, request, done);
+            }
+
+            @Override
+            public void getProjectByNumber(
+                    com.google.protobuf.RpcController controller,
+                    com.google.protobuf.Int64Value request,
+                    com.google.protobuf.RpcCallback<Project> done) {
+                impl.getProjectByNumber(controller, request, done);
             }
 
             @Override
@@ -188,20 +204,22 @@ public abstract class ProjectService
                     case 0:
                         return impl.getProjectById(controller, (com.google.protobuf.Int64Value) request);
                     case 1:
-                        return impl.addNewProject(controller, (Project) request);
+                        return impl.getProjectByNumber(controller, (com.google.protobuf.Int64Value) request);
                     case 2:
-                        return impl.editProject(controller, (Project) request);
+                        return impl.addNewProject(controller, (Project) request);
                     case 3:
-                        return impl.deleteProject(controller, (com.google.protobuf.Int64Value) request);
+                        return impl.editProject(controller, (Project) request);
                     case 4:
-                        return impl.getProjectList(controller, (ProjectPagination) request);
+                        return impl.deleteProject(controller, (com.google.protobuf.Int64Value) request);
                     case 5:
-                        return impl.getProjectNumbers(controller, (com.google.protobuf.Empty) request);
+                        return impl.getProjectList(controller, (ProjectPagination) request);
                     case 6:
-                        return impl.getNumberOfProjects(controller, (com.google.protobuf.Empty) request);
+                        return impl.getProjectNumbers(controller, (com.google.protobuf.Empty) request);
                     case 7:
-                        return impl.getNumberOfProjectsByStatus(controller, (com.google.protobuf.StringValue) request);
+                        return impl.getNumberOfProjects(controller, (com.google.protobuf.Empty) request);
                     case 8:
+                        return impl.getNumberOfProjectsByStatus(controller, (com.google.protobuf.StringValue) request);
+                    case 9:
                         return impl.getNumberOfProjectsByKeyword(controller, (com.google.protobuf.StringValue) request);
                     default:
                         throw new AssertionError("Can't get here.");
@@ -221,20 +239,22 @@ public abstract class ProjectService
                     case 0:
                         return com.google.protobuf.Int64Value.getDefaultInstance();
                     case 1:
-                        return Project.getDefaultInstance();
+                        return com.google.protobuf.Int64Value.getDefaultInstance();
                     case 2:
                         return Project.getDefaultInstance();
                     case 3:
-                        return com.google.protobuf.Int64Value.getDefaultInstance();
+                        return Project.getDefaultInstance();
                     case 4:
-                        return ProjectPagination.getDefaultInstance();
+                        return com.google.protobuf.Int64Value.getDefaultInstance();
                     case 5:
-                        return com.google.protobuf.Empty.getDefaultInstance();
+                        return ProjectPagination.getDefaultInstance();
                     case 6:
                         return com.google.protobuf.Empty.getDefaultInstance();
                     case 7:
-                        return com.google.protobuf.StringValue.getDefaultInstance();
+                        return com.google.protobuf.Empty.getDefaultInstance();
                     case 8:
+                        return com.google.protobuf.StringValue.getDefaultInstance();
+                    case 9:
                         return com.google.protobuf.StringValue.getDefaultInstance();
                     default:
                         throw new AssertionError("Can't get here.");
@@ -254,20 +274,22 @@ public abstract class ProjectService
                     case 0:
                         return Project.getDefaultInstance();
                     case 1:
-                        return com.google.protobuf.BoolValue.getDefaultInstance();
+                        return Project.getDefaultInstance();
                     case 2:
                         return com.google.protobuf.BoolValue.getDefaultInstance();
                     case 3:
                         return com.google.protobuf.BoolValue.getDefaultInstance();
                     case 4:
-                        return ProjectList.getDefaultInstance();
+                        return com.google.protobuf.BoolValue.getDefaultInstance();
                     case 5:
-                        return ProjectNumbers.getDefaultInstance();
+                        return ProjectList.getDefaultInstance();
                     case 6:
-                        return com.google.protobuf.Int64Value.getDefaultInstance();
+                        return ProjectNumbers.getDefaultInstance();
                     case 7:
                         return com.google.protobuf.Int64Value.getDefaultInstance();
                     case 8:
+                        return com.google.protobuf.Int64Value.getDefaultInstance();
+                    case 9:
                         return com.google.protobuf.Int64Value.getDefaultInstance();
                     default:
                         throw new AssertionError("Can't get here.");
@@ -281,6 +303,14 @@ public abstract class ProjectService
      * <code>rpc getProjectById(.google.protobuf.Int64Value) returns (.com.bht.pim.proto.projects.Project);</code>
      */
     public abstract void getProjectById(
+            com.google.protobuf.RpcController controller,
+            com.google.protobuf.Int64Value request,
+            com.google.protobuf.RpcCallback<Project> done);
+
+    /**
+     * <code>rpc getProjectByNumber(.google.protobuf.Int64Value) returns (.com.bht.pim.proto.projects.Project);</code>
+     */
+    public abstract void getProjectByNumber(
             com.google.protobuf.RpcController controller,
             com.google.protobuf.Int64Value request,
             com.google.protobuf.RpcCallback<Project> done);
@@ -379,41 +409,46 @@ public abstract class ProjectService
                                 done));
                 return;
             case 1:
+                getProjectByNumber(controller, (com.google.protobuf.Int64Value) request,
+                        com.google.protobuf.RpcUtil.<Project>specializeCallback(
+                                done));
+                return;
+            case 2:
                 addNewProject(controller, (Project) request,
                         com.google.protobuf.RpcUtil.<com.google.protobuf.BoolValue>specializeCallback(
                                 done));
                 return;
-            case 2:
+            case 3:
                 editProject(controller, (Project) request,
                         com.google.protobuf.RpcUtil.<com.google.protobuf.BoolValue>specializeCallback(
                                 done));
                 return;
-            case 3:
+            case 4:
                 deleteProject(controller, (com.google.protobuf.Int64Value) request,
                         com.google.protobuf.RpcUtil.<com.google.protobuf.BoolValue>specializeCallback(
                                 done));
                 return;
-            case 4:
+            case 5:
                 getProjectList(controller, (ProjectPagination) request,
                         com.google.protobuf.RpcUtil.<ProjectList>specializeCallback(
                                 done));
                 return;
-            case 5:
+            case 6:
                 getProjectNumbers(controller, (com.google.protobuf.Empty) request,
                         com.google.protobuf.RpcUtil.<ProjectNumbers>specializeCallback(
                                 done));
                 return;
-            case 6:
+            case 7:
                 getNumberOfProjects(controller, (com.google.protobuf.Empty) request,
                         com.google.protobuf.RpcUtil.<com.google.protobuf.Int64Value>specializeCallback(
                                 done));
                 return;
-            case 7:
+            case 8:
                 getNumberOfProjectsByStatus(controller, (com.google.protobuf.StringValue) request,
                         com.google.protobuf.RpcUtil.<com.google.protobuf.Int64Value>specializeCallback(
                                 done));
                 return;
-            case 8:
+            case 9:
                 getNumberOfProjectsByKeyword(controller, (com.google.protobuf.StringValue) request,
                         com.google.protobuf.RpcUtil.<com.google.protobuf.Int64Value>specializeCallback(
                                 done));
@@ -436,20 +471,22 @@ public abstract class ProjectService
             case 0:
                 return com.google.protobuf.Int64Value.getDefaultInstance();
             case 1:
-                return Project.getDefaultInstance();
+                return com.google.protobuf.Int64Value.getDefaultInstance();
             case 2:
                 return Project.getDefaultInstance();
             case 3:
-                return com.google.protobuf.Int64Value.getDefaultInstance();
+                return Project.getDefaultInstance();
             case 4:
-                return ProjectPagination.getDefaultInstance();
+                return com.google.protobuf.Int64Value.getDefaultInstance();
             case 5:
-                return com.google.protobuf.Empty.getDefaultInstance();
+                return ProjectPagination.getDefaultInstance();
             case 6:
                 return com.google.protobuf.Empty.getDefaultInstance();
             case 7:
-                return com.google.protobuf.StringValue.getDefaultInstance();
+                return com.google.protobuf.Empty.getDefaultInstance();
             case 8:
+                return com.google.protobuf.StringValue.getDefaultInstance();
+            case 9:
                 return com.google.protobuf.StringValue.getDefaultInstance();
             default:
                 throw new AssertionError("Can't get here.");
@@ -469,20 +506,22 @@ public abstract class ProjectService
             case 0:
                 return Project.getDefaultInstance();
             case 1:
-                return com.google.protobuf.BoolValue.getDefaultInstance();
+                return Project.getDefaultInstance();
             case 2:
                 return com.google.protobuf.BoolValue.getDefaultInstance();
             case 3:
                 return com.google.protobuf.BoolValue.getDefaultInstance();
             case 4:
-                return ProjectList.getDefaultInstance();
+                return com.google.protobuf.BoolValue.getDefaultInstance();
             case 5:
-                return ProjectNumbers.getDefaultInstance();
+                return ProjectList.getDefaultInstance();
             case 6:
-                return com.google.protobuf.Int64Value.getDefaultInstance();
+                return ProjectNumbers.getDefaultInstance();
             case 7:
                 return com.google.protobuf.Int64Value.getDefaultInstance();
             case 8:
+                return com.google.protobuf.Int64Value.getDefaultInstance();
+            case 9:
                 return com.google.protobuf.Int64Value.getDefaultInstance();
             default:
                 throw new AssertionError("Can't get here.");
@@ -522,23 +561,23 @@ public abstract class ProjectService
         }
 
         @Override
-        public void addNewProject(
+        public void getProjectByNumber(
                 com.google.protobuf.RpcController controller,
-                Project request,
-                com.google.protobuf.RpcCallback<com.google.protobuf.BoolValue> done) {
+                com.google.protobuf.Int64Value request,
+                com.google.protobuf.RpcCallback<Project> done) {
             channel.callMethod(
                     getDescriptor().getMethods().get(1),
                     controller,
                     request,
-                    com.google.protobuf.BoolValue.getDefaultInstance(),
+                    Project.getDefaultInstance(),
                     com.google.protobuf.RpcUtil.generalizeCallback(
                             done,
-                            com.google.protobuf.BoolValue.class,
-                            com.google.protobuf.BoolValue.getDefaultInstance()));
+                            Project.class,
+                            Project.getDefaultInstance()));
         }
 
         @Override
-        public void editProject(
+        public void addNewProject(
                 com.google.protobuf.RpcController controller,
                 Project request,
                 com.google.protobuf.RpcCallback<com.google.protobuf.BoolValue> done) {
@@ -554,12 +593,28 @@ public abstract class ProjectService
         }
 
         @Override
+        public void editProject(
+                com.google.protobuf.RpcController controller,
+                Project request,
+                com.google.protobuf.RpcCallback<com.google.protobuf.BoolValue> done) {
+            channel.callMethod(
+                    getDescriptor().getMethods().get(3),
+                    controller,
+                    request,
+                    com.google.protobuf.BoolValue.getDefaultInstance(),
+                    com.google.protobuf.RpcUtil.generalizeCallback(
+                            done,
+                            com.google.protobuf.BoolValue.class,
+                            com.google.protobuf.BoolValue.getDefaultInstance()));
+        }
+
+        @Override
         public void deleteProject(
                 com.google.protobuf.RpcController controller,
                 com.google.protobuf.Int64Value request,
                 com.google.protobuf.RpcCallback<com.google.protobuf.BoolValue> done) {
             channel.callMethod(
-                    getDescriptor().getMethods().get(3),
+                    getDescriptor().getMethods().get(4),
                     controller,
                     request,
                     com.google.protobuf.BoolValue.getDefaultInstance(),
@@ -575,7 +630,7 @@ public abstract class ProjectService
                 ProjectPagination request,
                 com.google.protobuf.RpcCallback<ProjectList> done) {
             channel.callMethod(
-                    getDescriptor().getMethods().get(4),
+                    getDescriptor().getMethods().get(5),
                     controller,
                     request,
                     ProjectList.getDefaultInstance(),
@@ -591,7 +646,7 @@ public abstract class ProjectService
                 com.google.protobuf.Empty request,
                 com.google.protobuf.RpcCallback<ProjectNumbers> done) {
             channel.callMethod(
-                    getDescriptor().getMethods().get(5),
+                    getDescriptor().getMethods().get(6),
                     controller,
                     request,
                     ProjectNumbers.getDefaultInstance(),
@@ -607,7 +662,7 @@ public abstract class ProjectService
                 com.google.protobuf.Empty request,
                 com.google.protobuf.RpcCallback<com.google.protobuf.Int64Value> done) {
             channel.callMethod(
-                    getDescriptor().getMethods().get(6),
+                    getDescriptor().getMethods().get(7),
                     controller,
                     request,
                     com.google.protobuf.Int64Value.getDefaultInstance(),
@@ -623,7 +678,7 @@ public abstract class ProjectService
                 com.google.protobuf.StringValue request,
                 com.google.protobuf.RpcCallback<com.google.protobuf.Int64Value> done) {
             channel.callMethod(
-                    getDescriptor().getMethods().get(7),
+                    getDescriptor().getMethods().get(8),
                     controller,
                     request,
                     com.google.protobuf.Int64Value.getDefaultInstance(),
@@ -639,7 +694,7 @@ public abstract class ProjectService
                 com.google.protobuf.StringValue request,
                 com.google.protobuf.RpcCallback<com.google.protobuf.Int64Value> done) {
             channel.callMethod(
-                    getDescriptor().getMethods().get(8),
+                    getDescriptor().getMethods().get(9),
                     controller,
                     request,
                     com.google.protobuf.Int64Value.getDefaultInstance(),
@@ -657,6 +712,11 @@ public abstract class ProjectService
 
     public interface BlockingInterface {
         public Project getProjectById(
+                com.google.protobuf.RpcController controller,
+                com.google.protobuf.Int64Value request)
+                throws com.google.protobuf.ServiceException;
+
+        public Project getProjectByNumber(
                 com.google.protobuf.RpcController controller,
                 com.google.protobuf.Int64Value request)
                 throws com.google.protobuf.ServiceException;
@@ -723,20 +783,20 @@ public abstract class ProjectService
 
 
         @Override
-        public com.google.protobuf.BoolValue addNewProject(
+        public Project getProjectByNumber(
                 com.google.protobuf.RpcController controller,
-                Project request)
+                com.google.protobuf.Int64Value request)
                 throws com.google.protobuf.ServiceException {
-            return (com.google.protobuf.BoolValue) channel.callBlockingMethod(
+            return (Project) channel.callBlockingMethod(
                     getDescriptor().getMethods().get(1),
                     controller,
                     request,
-                    com.google.protobuf.BoolValue.getDefaultInstance());
+                    Project.getDefaultInstance());
         }
 
 
         @Override
-        public com.google.protobuf.BoolValue editProject(
+        public com.google.protobuf.BoolValue addNewProject(
                 com.google.protobuf.RpcController controller,
                 Project request)
                 throws com.google.protobuf.ServiceException {
@@ -749,12 +809,25 @@ public abstract class ProjectService
 
 
         @Override
+        public com.google.protobuf.BoolValue editProject(
+                com.google.protobuf.RpcController controller,
+                Project request)
+                throws com.google.protobuf.ServiceException {
+            return (com.google.protobuf.BoolValue) channel.callBlockingMethod(
+                    getDescriptor().getMethods().get(3),
+                    controller,
+                    request,
+                    com.google.protobuf.BoolValue.getDefaultInstance());
+        }
+
+
+        @Override
         public com.google.protobuf.BoolValue deleteProject(
                 com.google.protobuf.RpcController controller,
                 com.google.protobuf.Int64Value request)
                 throws com.google.protobuf.ServiceException {
             return (com.google.protobuf.BoolValue) channel.callBlockingMethod(
-                    getDescriptor().getMethods().get(3),
+                    getDescriptor().getMethods().get(4),
                     controller,
                     request,
                     com.google.protobuf.BoolValue.getDefaultInstance());
@@ -767,7 +840,7 @@ public abstract class ProjectService
                 ProjectPagination request)
                 throws com.google.protobuf.ServiceException {
             return (ProjectList) channel.callBlockingMethod(
-                    getDescriptor().getMethods().get(4),
+                    getDescriptor().getMethods().get(5),
                     controller,
                     request,
                     ProjectList.getDefaultInstance());
@@ -780,7 +853,7 @@ public abstract class ProjectService
                 com.google.protobuf.Empty request)
                 throws com.google.protobuf.ServiceException {
             return (ProjectNumbers) channel.callBlockingMethod(
-                    getDescriptor().getMethods().get(5),
+                    getDescriptor().getMethods().get(6),
                     controller,
                     request,
                     ProjectNumbers.getDefaultInstance());
@@ -793,7 +866,7 @@ public abstract class ProjectService
                 com.google.protobuf.Empty request)
                 throws com.google.protobuf.ServiceException {
             return (com.google.protobuf.Int64Value) channel.callBlockingMethod(
-                    getDescriptor().getMethods().get(6),
+                    getDescriptor().getMethods().get(7),
                     controller,
                     request,
                     com.google.protobuf.Int64Value.getDefaultInstance());
@@ -806,7 +879,7 @@ public abstract class ProjectService
                 com.google.protobuf.StringValue request)
                 throws com.google.protobuf.ServiceException {
             return (com.google.protobuf.Int64Value) channel.callBlockingMethod(
-                    getDescriptor().getMethods().get(7),
+                    getDescriptor().getMethods().get(8),
                     controller,
                     request,
                     com.google.protobuf.Int64Value.getDefaultInstance());
@@ -819,7 +892,7 @@ public abstract class ProjectService
                 com.google.protobuf.StringValue request)
                 throws com.google.protobuf.ServiceException {
             return (com.google.protobuf.Int64Value) channel.callBlockingMethod(
-                    getDescriptor().getMethods().get(8),
+                    getDescriptor().getMethods().get(9),
                     controller,
                     request,
                     com.google.protobuf.Int64Value.getDefaultInstance());

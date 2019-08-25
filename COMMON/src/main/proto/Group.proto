@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 import "google/protobuf/wrappers.proto";
-import "google/protobuf/empty.proto";
 
 import "info/GroupInfo.proto";
 import "info/ProjectInfo.proto";
@@ -19,8 +18,13 @@ message GroupList {
     repeated Group groups = 1;
 }
 
+message GroupPagination {
+    int32 maxRow = 1;
+    int32 pageIndex = 2;
+}
+
 service GroupService {
     rpc getGroupById (google.protobuf.Int64Value) returns (Group);
     rpc addNewGroup (Group) returns (google.protobuf.BoolValue);
-    rpc getGroupList (google.protobuf.Empty) returns (GroupList);
+    rpc getGroupList (GroupPagination) returns (GroupList);
 }

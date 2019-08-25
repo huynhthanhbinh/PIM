@@ -85,28 +85,28 @@ public final class GroupServiceGrpc {
         return getAddNewGroupMethod;
     }
 
-    private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+    private static volatile io.grpc.MethodDescriptor<GroupPagination,
             GroupList> getGetGroupListMethod;
 
     @io.grpc.stub.annotations.RpcMethod(
             fullMethodName = SERVICE_NAME + '/' + "getGroupList",
-            requestType = com.google.protobuf.Empty.class,
+            requestType = GroupPagination.class,
             responseType = GroupList.class,
             methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-    public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+    public static io.grpc.MethodDescriptor<GroupPagination,
             GroupList> getGetGroupListMethod() {
-        io.grpc.MethodDescriptor<com.google.protobuf.Empty, GroupList> getGetGroupListMethod;
+        io.grpc.MethodDescriptor<GroupPagination, GroupList> getGetGroupListMethod;
         if ((getGetGroupListMethod = GroupServiceGrpc.getGetGroupListMethod) == null) {
             synchronized (GroupServiceGrpc.class) {
                 if ((getGetGroupListMethod = GroupServiceGrpc.getGetGroupListMethod) == null) {
                     GroupServiceGrpc.getGetGroupListMethod = getGetGroupListMethod =
-                            io.grpc.MethodDescriptor.<com.google.protobuf.Empty, GroupList>newBuilder()
+                            io.grpc.MethodDescriptor.<GroupPagination, GroupList>newBuilder()
                                     .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
                                     .setFullMethodName(generateFullMethodName(
                                             "com.bht.pim.proto.groups.GroupService", "getGroupList"))
                                     .setSampledToLocalTracing(true)
                                     .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                            com.google.protobuf.Empty.getDefaultInstance()))
+                                            GroupPagination.getDefaultInstance()))
                                     .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                                             GroupList.getDefaultInstance()))
                                     .setSchemaDescriptor(new GroupServiceMethodDescriptorSupplier("getGroupList"))
@@ -164,7 +164,7 @@ public final class GroupServiceGrpc {
         /**
          *
          */
-        public void getGroupList(com.google.protobuf.Empty request,
+        public void getGroupList(GroupPagination request,
                                  io.grpc.stub.StreamObserver<GroupList> responseObserver) {
             asyncUnimplementedUnaryCall(getGetGroupListMethod(), responseObserver);
         }
@@ -190,7 +190,7 @@ public final class GroupServiceGrpc {
                             getGetGroupListMethod(),
                             asyncUnaryCall(
                                     new MethodHandlers<
-                                            com.google.protobuf.Empty,
+                                            GroupPagination,
                                             GroupList>(
                                             this, METHODID_GET_GROUP_LIST)))
                     .build();
@@ -237,7 +237,7 @@ public final class GroupServiceGrpc {
         /**
          *
          */
-        public void getGroupList(com.google.protobuf.Empty request,
+        public void getGroupList(GroupPagination request,
                                  io.grpc.stub.StreamObserver<GroupList> responseObserver) {
             asyncUnaryCall(
                     getChannel().newCall(getGetGroupListMethod(), getCallOptions()), request, responseObserver);
@@ -282,7 +282,7 @@ public final class GroupServiceGrpc {
         /**
          *
          */
-        public GroupList getGroupList(com.google.protobuf.Empty request) {
+        public GroupList getGroupList(GroupPagination request) {
             return blockingUnaryCall(
                     getChannel(), getGetGroupListMethod(), getCallOptions(), request);
         }
@@ -329,7 +329,7 @@ public final class GroupServiceGrpc {
          *
          */
         public com.google.common.util.concurrent.ListenableFuture<GroupList> getGroupList(
-                com.google.protobuf.Empty request) {
+                GroupPagination request) {
             return futureUnaryCall(
                     getChannel().newCall(getGetGroupListMethod(), getCallOptions()), request);
         }
@@ -365,7 +365,7 @@ public final class GroupServiceGrpc {
                             (io.grpc.stub.StreamObserver<com.google.protobuf.BoolValue>) responseObserver);
                     break;
                 case METHODID_GET_GROUP_LIST:
-                    serviceImpl.getGroupList((com.google.protobuf.Empty) request,
+                    serviceImpl.getGroupList((GroupPagination) request,
                             (io.grpc.stub.StreamObserver<GroupList>) responseObserver);
                     break;
                 default:

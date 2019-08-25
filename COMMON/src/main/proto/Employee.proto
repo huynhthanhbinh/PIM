@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 import "google/protobuf/wrappers.proto";
-import "google/protobuf/empty.proto";
 
 import "info/EmployeeInfo.proto";
 import "info/ProjectInfo.proto";
@@ -19,7 +18,12 @@ message EmployeeList {
     repeated Employee employees = 1;
 }
 
+message EmployeePagination {
+    int32 maxRow = 1;
+    int32 pageIndex = 2;
+}
+
 service EmployeeService {
     rpc getEmployeeById (google.protobuf.Int64Value) returns (Employee);
-    rpc getEmployeeList (google.protobuf.Empty) returns (EmployeeList);
+    rpc getEmployeeList (EmployeePagination) returns (EmployeeList);
 }

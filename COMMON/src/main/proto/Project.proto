@@ -33,6 +33,8 @@ message ProjectPagination {
 
 service ProjectService {
     rpc getProjectById (google.protobuf.Int64Value) returns (Project);
+    rpc getProjectByNumber (google.protobuf.Int64Value) returns (Project);
+
     rpc addNewProject (Project) returns (google.protobuf.BoolValue);
     rpc editProject (Project) returns (google.protobuf.BoolValue);
     rpc deleteProject (google.protobuf.Int64Value) returns (google.protobuf.BoolValue);
