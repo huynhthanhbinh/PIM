@@ -108,7 +108,6 @@ public class MainPane implements FXComponent {
         loadFragments();
         assignChildren();
 
-        switchFragment(this, ProjectList.class);
         PimUtil.alignPane(mainPane, context);
     }
 
@@ -165,9 +164,10 @@ public class MainPane implements FXComponent {
     }
 
     public static void onShowPerspective(MainPane mainPane) {
-        if (mainPane.getCurrentFragment() != null) {
-            ((ChildrenContaining) mainPane.getCurrentFragment().getController())
-                    .onSwitchParentFragment();
+        switchFragment(mainPane, ProjectList.class);
+
+        if (!AppConfiguration.LOGGED_IN_PROPERTY.get()) { // not logged-in or recently logout
+            mainPane.getContext().send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");
         }
     }
 }

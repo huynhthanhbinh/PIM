@@ -58,6 +58,8 @@ public class Login implements Initializable {
                     && password.getText().equals(defaultPassword)) {
 
                 context.send(AppConfiguration.PERSPECTIVE_PIM, "show");
+                AppConfiguration.LOGGED_IN_PROPERTY.set(true);
+
                 username.clear();
                 password.clear();
                 lIncorrect.setVisible(false);

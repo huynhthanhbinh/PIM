@@ -139,6 +139,7 @@ public class TopPane implements FXComponent {
         bLogout.setOnMouseClicked(event -> {
             log.info("[PIM} Clicked Logout button");
             context.send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");
+            AppConfiguration.LOGGED_IN_PROPERTY.set(false);
         });
     }
 }

@@ -7,7 +7,9 @@ import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import lombok.extern.log4j.Log4j;
 import org.mapstruct.factory.Mappers;
@@ -41,12 +43,13 @@ public class AppConfiguration {
     }
 
     @Value("${pim.server.host}")
-    private String host;
+    private String host; // host of gRPC
 
     @Value("${pim.server.port}")
-    private int port;
+    private int port; // port of gRPC
 
-    public static final ObjectProperty<ManagedChannel> CHANNEL_PROPERTY = new SimpleObjectProperty<>();
+    public static final ObjectProperty<ManagedChannel> CHANNEL_PROPERTY = new SimpleObjectProperty<>(); // connect to gRPC server
+    public static final BooleanProperty LOGGED_IN_PROPERTY = new SimpleBooleanProperty(false); // check if logged-in yet
 
     public static final String PERSPECTIVE_PIM = "idPIMPerspective";
     public static final String PERSPECTIVE_DEFAULT = "idPIMDefault";
