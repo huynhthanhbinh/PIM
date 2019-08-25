@@ -64,8 +64,8 @@ public class ProjectTable implements Initializable, ParentOwning {
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
     private static final int MAX_TABLE_ROW = 8;
 
-    private int countSuccess = 0; // for delete all selected projects
-    private int countFail = 0; // for delete all selected projects
+    private int countSuccess; // for delete all selected projects
+    private int countFail; // for delete all selected projects
 
     // binding
     @Getter

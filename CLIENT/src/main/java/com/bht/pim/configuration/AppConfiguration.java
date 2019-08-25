@@ -79,7 +79,10 @@ public class AppConfiguration {
     public static final String FRAGMENT_PROJECT_DETAIL = "idfPDetail";
 
     public static final String FRAGMENT_GROUP_LIST = "idfGList";
+    public static final String FRAGMENT_GROUP_TABLE = "idfGTable";
+
     public static final String FRAGMENT_EMPLOYEE_LIST = "idfEList";
+    public static final String FRAGMENT_EMPLOYEE_TABLE = "idfETable";
 
     public static final String FRAGMENT_SUPPLEMENTARY_LOGIN = "idfSLogin";
     public static final String FRAGMENT_SUPPLEMENTARY_ERROR = "idfSError";

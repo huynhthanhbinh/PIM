@@ -8,6 +8,7 @@ import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.service.GroupService;
 import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.LanguageUtil;
+import com.bht.pim.util.PimUtil;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -36,6 +37,8 @@ public class ProjectDetail implements Initializable, ParentOwning {
 
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
 
+    @Autowired
+    private PimUtil pimUtil;
     @Autowired
     private ProjectService projectService;
     @Autowired
@@ -100,6 +103,9 @@ public class ProjectDetail implements Initializable, ParentOwning {
 
         // init table
         configureTableMember();
+
+        // set format for date
+        setDateStringFormat();
     }
 
     @Override
@@ -161,5 +167,11 @@ public class ProjectDetail implements Initializable, ParentOwning {
 
         table.getItems().addListener((ListChangeListener<EmployeeDto>) change ->
                 lSize.setText(String.valueOf(table.getItems().size())));
+    }
+
+    // set converter for date-format
+    private void setDateStringFormat() {
+        start.setConverter(pimUtil.dateStringConverter);
+        end.setConverter(pimUtil.dateStringConverter);
     }
 }

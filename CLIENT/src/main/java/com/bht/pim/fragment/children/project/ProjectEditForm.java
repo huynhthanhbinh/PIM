@@ -63,7 +63,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     @Autowired
     private ProjectService projectService;
     @Autowired
-    private PimUtil projectUtil;
+    private PimUtil pimUtil;
     @Autowired
     private DateTimeMapper dateTimeMapper;
     @Autowired
@@ -302,8 +302,8 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
         start.setPromptText("dd/MM/yyyy");
         end.setPromptText("dd/MM/yyyy");
 
-        start.setConverter(projectUtil.dateStringConverter);
-        end.setConverter(projectUtil.dateStringConverter);
+        start.setConverter(pimUtil.dateStringConverter);
+        end.setConverter(pimUtil.dateStringConverter);
 
         end.setDisable(true);
     }
