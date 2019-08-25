@@ -283,6 +283,26 @@ public class ProjectDaoImpl implements ProjectDao {
         }
     }
 
+    @Override
+    public ProjectEntity getProjectByNumber(long number) {
+        try {
+            CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+            CriteriaQuery<ProjectEntity> query = builder.createQuery(ProjectEntity.class);
+            Root<ProjectEntity> root = query.from(ProjectEntity.class);
+
+            return sessionFactory.getCurrentSession()
+                    .createQuery(query
+                            .select(root)
+                            .where(builder.equal(root.get("number"), number)))
+                    .getSingleResult();
+
+        } catch (Exception exception) {
+
+            log.info(exception);
+            return null;
+        }
+    }
+
     // for using like to search for containings
     private String convertKeyword(String keyword) {
         return "%" + keyword + "%";

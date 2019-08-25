@@ -203,10 +203,11 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
         projectNumbers = projectService.getProjectNumbers();
 
         // Get all employees
-        employees = employeeService.getAllEmployees();
+        employees = employeeService.getEmployeeList(0, 0);
 
         // Get all current-group leaders
-        leaders = groupService.getAllGroups().stream()
+        leaders = groupService.getGroupList(0, 0)
+                .stream()
                 .map(GroupDto::getLeader)
                 .collect(Collectors.toList());
 

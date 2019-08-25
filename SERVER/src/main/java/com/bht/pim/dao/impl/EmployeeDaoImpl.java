@@ -36,8 +36,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
                             .select(root)
                             .orderBy(builder.desc(root)));
 
-            allQuery.setMaxResults(maxRow);
-            allQuery.setFirstResult(maxRow * pageIndex);
+            if (maxRow != 0 && pageIndex != 0) { // not get all
+                allQuery.setMaxResults(maxRow);
+                allQuery.setFirstResult(maxRow * pageIndex);
+            }
 
             return allQuery.getResultList();
 

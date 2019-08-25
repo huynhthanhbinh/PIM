@@ -39,6 +39,9 @@ public interface ProjectDao {
     // Get an existing project
     ProjectEntity getProjectById(long id);
 
+    // Get an existing project but by number instead of id
+    ProjectEntity getProjectByNumber(long number);
+
     // Get all projects - pagination
     List<ProjectEntity> getProjectList(int maxRow, int pageIndex);
 

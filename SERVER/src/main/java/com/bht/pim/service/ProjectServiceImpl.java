@@ -298,4 +298,21 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
             responseObserver.onCompleted();
         }
     }
+
+    @Override
+    public void getProjectByNumber(Int64Value request, StreamObserver<Project> responseObserver) {
+        try {
+            ProjectEntity projectEntity = projectDao.getProjectByNumber(request.getValue());
+            Project project = projectMapper.toProject(projectEntity);
+
+            responseObserver.onNext(project);
+            responseObserver.onCompleted();
+
+        } catch (Exception exception) {
+
+            log.info(exception);
+            responseObserver.onNext(null);
+            responseObserver.onCompleted();
+        }
+    }
 }
