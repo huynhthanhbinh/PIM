@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
 
 import "info/GroupInfo.proto";
 import "info/ProjectInfo.proto";
@@ -27,4 +28,5 @@ service GroupService {
     rpc getGroupById (google.protobuf.Int64Value) returns (Group);
     rpc addNewGroup (Group) returns (google.protobuf.BoolValue);
     rpc getGroupList (GroupPagination) returns (GroupList);
+    rpc getNumberOfGroups (google.protobuf.Empty) returns (google.protobuf.Int64Value);
 }

@@ -46,21 +46,24 @@ public final class EmployeeOuterClass {
     static {
         String[] descriptorData = {
                 "\n\016Employee.proto\022\033com.bht.pim.proto.empl" +
-                        "oyees\032\036google/protobuf/wrappers.proto\032\027i" +
-                        "nfo/EmployeeInfo.proto\032\026info/ProjectInfo" +
-                        ".proto\"\216\001\n\010Employee\022?\n\014employeeInfo\030\001 \001(" +
-                        "\0132).com.bht.pim.proto.employees.Employee" +
-                        "Info\022A\n\020enrolledProjects\030\002 \003(\0132\'.com.bht" +
-                        ".pim.proto.projects.ProjectInfo\"H\n\014Emplo" +
-                        "yeeList\0228\n\temployees\030\001 \003(\0132%.com.bht.pim" +
-                        ".proto.employees.Employee\"7\n\022EmployeePag" +
-                        "ination\022\016\n\006maxRow\030\001 \001(\005\022\021\n\tpageIndex\030\002 \001" +
-                        "(\0052\327\001\n\017EmployeeService\022U\n\017getEmployeeByI" +
-                        "d\022\033.google.protobuf.Int64Value\032%.com.bht" +
-                        ".pim.proto.employees.Employee\022m\n\017getEmpl" +
-                        "oyeeList\022/.com.bht.pim.proto.employees.E" +
-                        "mployeePagination\032).com.bht.pim.proto.em" +
-                        "ployees.EmployeeListB\005P\001\210\001\001b\006proto3"
+                        "oyees\032\036google/protobuf/wrappers.proto\032\033g" +
+                        "oogle/protobuf/empty.proto\032\027info/Employe" +
+                        "eInfo.proto\032\026info/ProjectInfo.proto\"\216\001\n\010" +
+                        "Employee\022?\n\014employeeInfo\030\001 \001(\0132).com.bht" +
+                        ".pim.proto.employees.EmployeeInfo\022A\n\020enr" +
+                        "olledProjects\030\002 \003(\0132\'.com.bht.pim.proto." +
+                        "projects.ProjectInfo\"H\n\014EmployeeList\0228\n\t" +
+                        "employees\030\001 \003(\0132%.com.bht.pim.proto.empl" +
+                        "oyees.Employee\"7\n\022EmployeePagination\022\016\n\006" +
+                        "maxRow\030\001 \001(\005\022\021\n\tpageIndex\030\002 \001(\0052\244\002\n\017Empl" +
+                        "oyeeService\022U\n\017getEmployeeById\022\033.google." +
+                        "protobuf.Int64Value\032%.com.bht.pim.proto." +
+                        "employees.Employee\022m\n\017getEmployeeList\022/." +
+                        "com.bht.pim.proto.employees.EmployeePagi" +
+                        "nation\032).com.bht.pim.proto.employees.Emp" +
+                        "loyeeList\022K\n\024getNumberOfEmployees\022\026.goog" +
+                        "le.protobuf.Empty\032\033.google.protobuf.Int6" +
+                        "4ValueB\005P\001\210\001\001b\006proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -75,6 +78,7 @@ public final class EmployeeOuterClass {
                 .internalBuildGeneratedFileFrom(descriptorData,
                         new com.google.protobuf.Descriptors.FileDescriptor[]{
                                 com.google.protobuf.WrappersProto.getDescriptor(),
+                                com.google.protobuf.EmptyProto.getDescriptor(),
                                 EmployeeInfoOuterClass.getDescriptor(),
                                 ProjectInfoOuterClass.getDescriptor(),
                         }, assigner);
@@ -97,6 +101,7 @@ public final class EmployeeOuterClass {
                 internal_static_com_bht_pim_proto_employees_EmployeePagination_descriptor,
                 new String[]{"MaxRow", "PageIndex",});
         com.google.protobuf.WrappersProto.getDescriptor();
+        com.google.protobuf.EmptyProto.getDescriptor();
         EmployeeInfoOuterClass.getDescriptor();
         ProjectInfoOuterClass.getDescriptor();
     }

@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
 
 import "info/EmployeeInfo.proto";
 import "info/ProjectInfo.proto";
@@ -26,4 +27,5 @@ message EmployeePagination {
 service EmployeeService {
     rpc getEmployeeById (google.protobuf.Int64Value) returns (Employee);
     rpc getEmployeeList (EmployeePagination) returns (EmployeeList);
+    rpc getNumberOfEmployees (google.protobuf.Empty) returns (google.protobuf.Int64Value);
 }

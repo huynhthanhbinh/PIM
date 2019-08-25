@@ -142,10 +142,10 @@ public final class GroupList extends
     public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
         if (isInitialized == 1) {
-            return true;
+          return true;
         }
         if (isInitialized == 0) {
-            return false;
+          return false;
         }
 
         memoizedIsInitialized = 1;
@@ -165,7 +165,7 @@ public final class GroupList extends
     public int getSerializedSize() {
         int size = memoizedSize;
         if (size != -1) {
-            return size;
+          return size;
         }
 
         size = 0;
@@ -455,7 +455,7 @@ public final class GroupList extends
 
         public Builder mergeFrom(GroupList other) {
             if (other == GroupList.getDefaultInstance()) {
-                return this;
+              return this;
             }
             if (groupsBuilder_ == null) {
                 if (!other.groups_.isEmpty()) {
@@ -483,7 +483,7 @@ public final class GroupList extends
                     }
                 }
             }
-            mergeUnknownFields(other.unknownFields);
+          mergeUnknownFields(other.unknownFields);
             onChanged();
             return this;
         }

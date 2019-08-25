@@ -36,6 +36,14 @@ public abstract class GroupService
                 GroupPagination request,
                 com.google.protobuf.RpcCallback<GroupList> done);
 
+        /**
+         * <code>rpc getNumberOfGroups(.google.protobuf.Empty) returns (.google.protobuf.Int64Value);</code>
+         */
+        public abstract void getNumberOfGroups(
+                com.google.protobuf.RpcController controller,
+                com.google.protobuf.Empty request,
+                com.google.protobuf.RpcCallback<com.google.protobuf.Int64Value> done);
+
     }
 
     public static com.google.protobuf.Service newReflectiveService(
@@ -63,6 +71,14 @@ public abstract class GroupService
                     GroupPagination request,
                     com.google.protobuf.RpcCallback<GroupList> done) {
                 impl.getGroupList(controller, request, done);
+            }
+
+            @Override
+            public void getNumberOfGroups(
+                    com.google.protobuf.RpcController controller,
+                    com.google.protobuf.Empty request,
+                    com.google.protobuf.RpcCallback<com.google.protobuf.Int64Value> done) {
+                impl.getNumberOfGroups(controller, request, done);
             }
 
         };
@@ -95,6 +111,8 @@ public abstract class GroupService
                         return impl.addNewGroup(controller, (Group) request);
                     case 2:
                         return impl.getGroupList(controller, (GroupPagination) request);
+                    case 3:
+                        return impl.getNumberOfGroups(controller, (com.google.protobuf.Empty) request);
                     default:
                         throw new AssertionError("Can't get here.");
                 }
@@ -116,6 +134,8 @@ public abstract class GroupService
                         return Group.getDefaultInstance();
                     case 2:
                         return GroupPagination.getDefaultInstance();
+                    case 3:
+                        return com.google.protobuf.Empty.getDefaultInstance();
                     default:
                         throw new AssertionError("Can't get here.");
                 }
@@ -137,6 +157,8 @@ public abstract class GroupService
                         return com.google.protobuf.BoolValue.getDefaultInstance();
                     case 2:
                         return GroupList.getDefaultInstance();
+                    case 3:
+                        return com.google.protobuf.Int64Value.getDefaultInstance();
                     default:
                         throw new AssertionError("Can't get here.");
                 }
@@ -168,6 +190,14 @@ public abstract class GroupService
             com.google.protobuf.RpcController controller,
             GroupPagination request,
             com.google.protobuf.RpcCallback<GroupList> done);
+
+    /**
+     * <code>rpc getNumberOfGroups(.google.protobuf.Empty) returns (.google.protobuf.Int64Value);</code>
+     */
+    public abstract void getNumberOfGroups(
+            com.google.protobuf.RpcController controller,
+            com.google.protobuf.Empty request,
+            com.google.protobuf.RpcCallback<com.google.protobuf.Int64Value> done);
 
     public static final com.google.protobuf.Descriptors.ServiceDescriptor
     getDescriptor() {
@@ -208,6 +238,11 @@ public abstract class GroupService
                         com.google.protobuf.RpcUtil.<GroupList>specializeCallback(
                                 done));
                 return;
+            case 3:
+                getNumberOfGroups(controller, (com.google.protobuf.Empty) request,
+                        com.google.protobuf.RpcUtil.<com.google.protobuf.Int64Value>specializeCallback(
+                                done));
+                return;
             default:
                 throw new AssertionError("Can't get here.");
         }
@@ -229,6 +264,8 @@ public abstract class GroupService
                 return Group.getDefaultInstance();
             case 2:
                 return GroupPagination.getDefaultInstance();
+            case 3:
+                return com.google.protobuf.Empty.getDefaultInstance();
             default:
                 throw new AssertionError("Can't get here.");
         }
@@ -250,6 +287,8 @@ public abstract class GroupService
                 return com.google.protobuf.BoolValue.getDefaultInstance();
             case 2:
                 return GroupList.getDefaultInstance();
+            case 3:
+                return com.google.protobuf.Int64Value.getDefaultInstance();
             default:
                 throw new AssertionError("Can't get here.");
         }
@@ -318,6 +357,22 @@ public abstract class GroupService
                             GroupList.class,
                             GroupList.getDefaultInstance()));
         }
+
+        @Override
+        public void getNumberOfGroups(
+                com.google.protobuf.RpcController controller,
+                com.google.protobuf.Empty request,
+                com.google.protobuf.RpcCallback<com.google.protobuf.Int64Value> done) {
+            channel.callMethod(
+                    getDescriptor().getMethods().get(3),
+                    controller,
+                    request,
+                    com.google.protobuf.Int64Value.getDefaultInstance(),
+                    com.google.protobuf.RpcUtil.generalizeCallback(
+                            done,
+                            com.google.protobuf.Int64Value.class,
+                            com.google.protobuf.Int64Value.getDefaultInstance()));
+        }
     }
 
     public static BlockingInterface newBlockingStub(
@@ -339,6 +394,11 @@ public abstract class GroupService
         public GroupList getGroupList(
                 com.google.protobuf.RpcController controller,
                 GroupPagination request)
+                throws com.google.protobuf.ServiceException;
+
+        public com.google.protobuf.Int64Value getNumberOfGroups(
+                com.google.protobuf.RpcController controller,
+                com.google.protobuf.Empty request)
                 throws com.google.protobuf.ServiceException;
     }
 
@@ -385,6 +445,19 @@ public abstract class GroupService
                     controller,
                     request,
                     GroupList.getDefaultInstance());
+        }
+
+
+        @Override
+        public com.google.protobuf.Int64Value getNumberOfGroups(
+                com.google.protobuf.RpcController controller,
+                com.google.protobuf.Empty request)
+                throws com.google.protobuf.ServiceException {
+            return (com.google.protobuf.Int64Value) channel.callBlockingMethod(
+                    getDescriptor().getMethods().get(3),
+                    controller,
+                    request,
+                    com.google.protobuf.Int64Value.getDefaultInstance());
         }
 
     }

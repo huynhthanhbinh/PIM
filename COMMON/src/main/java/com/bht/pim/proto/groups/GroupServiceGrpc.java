@@ -117,6 +117,38 @@ public final class GroupServiceGrpc {
         return getGetGroupListMethod;
     }
 
+    private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+            com.google.protobuf.Int64Value> getGetNumberOfGroupsMethod;
+
+    @io.grpc.stub.annotations.RpcMethod(
+            fullMethodName = SERVICE_NAME + '/' + "getNumberOfGroups",
+            requestType = com.google.protobuf.Empty.class,
+            responseType = com.google.protobuf.Int64Value.class,
+            methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+    public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+            com.google.protobuf.Int64Value> getGetNumberOfGroupsMethod() {
+        io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Int64Value> getGetNumberOfGroupsMethod;
+        if ((getGetNumberOfGroupsMethod = GroupServiceGrpc.getGetNumberOfGroupsMethod) == null) {
+            synchronized (GroupServiceGrpc.class) {
+                if ((getGetNumberOfGroupsMethod = GroupServiceGrpc.getGetNumberOfGroupsMethod) == null) {
+                    GroupServiceGrpc.getGetNumberOfGroupsMethod = getGetNumberOfGroupsMethod =
+                            io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.google.protobuf.Int64Value>newBuilder()
+                                    .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                                    .setFullMethodName(generateFullMethodName(
+                                            "com.bht.pim.proto.groups.GroupService", "getNumberOfGroups"))
+                                    .setSampledToLocalTracing(true)
+                                    .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            com.google.protobuf.Empty.getDefaultInstance()))
+                                    .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            com.google.protobuf.Int64Value.getDefaultInstance()))
+                                    .setSchemaDescriptor(new GroupServiceMethodDescriptorSupplier("getNumberOfGroups"))
+                                    .build();
+                }
+            }
+        }
+        return getGetNumberOfGroupsMethod;
+    }
+
     /**
      * Creates a new async stub that supports all call types for the service
      */
@@ -169,6 +201,14 @@ public final class GroupServiceGrpc {
             asyncUnimplementedUnaryCall(getGetGroupListMethod(), responseObserver);
         }
 
+        /**
+         *
+         */
+        public void getNumberOfGroups(com.google.protobuf.Empty request,
+                                      io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value> responseObserver) {
+            asyncUnimplementedUnaryCall(getGetNumberOfGroupsMethod(), responseObserver);
+        }
+
         @Override
         public final io.grpc.ServerServiceDefinition bindService() {
             return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
@@ -193,6 +233,13 @@ public final class GroupServiceGrpc {
                                             GroupPagination,
                                             GroupList>(
                                             this, METHODID_GET_GROUP_LIST)))
+                    .addMethod(
+                            getGetNumberOfGroupsMethod(),
+                            asyncUnaryCall(
+                                    new MethodHandlers<
+                                            com.google.protobuf.Empty,
+                                            com.google.protobuf.Int64Value>(
+                                            this, METHODID_GET_NUMBER_OF_GROUPS)))
                     .build();
         }
     }
@@ -242,6 +289,15 @@ public final class GroupServiceGrpc {
             asyncUnaryCall(
                     getChannel().newCall(getGetGroupListMethod(), getCallOptions()), request, responseObserver);
         }
+
+        /**
+         *
+         */
+        public void getNumberOfGroups(com.google.protobuf.Empty request,
+                                      io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value> responseObserver) {
+            asyncUnaryCall(
+                    getChannel().newCall(getGetNumberOfGroupsMethod(), getCallOptions()), request, responseObserver);
+        }
     }
 
     /**
@@ -285,6 +341,14 @@ public final class GroupServiceGrpc {
         public GroupList getGroupList(GroupPagination request) {
             return blockingUnaryCall(
                     getChannel(), getGetGroupListMethod(), getCallOptions(), request);
+        }
+
+        /**
+         *
+         */
+        public com.google.protobuf.Int64Value getNumberOfGroups(com.google.protobuf.Empty request) {
+            return blockingUnaryCall(
+                    getChannel(), getGetNumberOfGroupsMethod(), getCallOptions(), request);
         }
     }
 
@@ -333,11 +397,21 @@ public final class GroupServiceGrpc {
             return futureUnaryCall(
                     getChannel().newCall(getGetGroupListMethod(), getCallOptions()), request);
         }
+
+        /**
+         *
+         */
+        public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Int64Value> getNumberOfGroups(
+                com.google.protobuf.Empty request) {
+            return futureUnaryCall(
+                    getChannel().newCall(getGetNumberOfGroupsMethod(), getCallOptions()), request);
+        }
     }
 
     private static final int METHODID_GET_GROUP_BY_ID = 0;
     private static final int METHODID_ADD_NEW_GROUP = 1;
     private static final int METHODID_GET_GROUP_LIST = 2;
+    private static final int METHODID_GET_NUMBER_OF_GROUPS = 3;
 
     private static final class MethodHandlers<Req, Resp> implements
             io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -367,6 +441,10 @@ public final class GroupServiceGrpc {
                 case METHODID_GET_GROUP_LIST:
                     serviceImpl.getGroupList((GroupPagination) request,
                             (io.grpc.stub.StreamObserver<GroupList>) responseObserver);
+                    break;
+                case METHODID_GET_NUMBER_OF_GROUPS:
+                    serviceImpl.getNumberOfGroups((com.google.protobuf.Empty) request,
+                            (io.grpc.stub.StreamObserver<com.google.protobuf.Int64Value>) responseObserver);
                     break;
                 default:
                     throw new AssertionError();
@@ -434,6 +512,7 @@ public final class GroupServiceGrpc {
                             .addMethod(getGetGroupByIdMethod())
                             .addMethod(getAddNewGroupMethod())
                             .addMethod(getGetGroupListMethod())
+                            .addMethod(getGetNumberOfGroupsMethod())
                             .build();
                 }
             }
