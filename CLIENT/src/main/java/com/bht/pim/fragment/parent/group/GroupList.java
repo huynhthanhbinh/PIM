@@ -57,6 +57,9 @@ public class GroupList implements Initializable, ChildrenContaining {
 
         mainLabel.setLabelText(AppConfiguration.LABEL_GROUP_LIST);
 
+        pagination.getPagination().currentPageIndexProperty().bindBidirectional(groupTable.getPageIndexProperty());
+        pagination.getPagination().pageCountProperty().bind(groupTable.getPageCountProperty());
+
         groupTable.getMainPane().prefWidthProperty().bind(Bindings.
                 when(mainPane.widthProperty().lessThan(1500))
                 .then(mainPane.widthProperty().subtract(10))

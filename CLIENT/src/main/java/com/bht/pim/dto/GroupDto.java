@@ -17,4 +17,16 @@ public class GroupDto {
     private long id;
     private EmployeeDto leader;
     private List<ProjectDto> enrolledProjects;
+
+    public String getLeaderVisa() {
+        return leader.getVisa();
+    }
+
+    public String getLeaderFirstName() {
+        return leader.getFirstName();
+    }
+
+    public String getLeaderLastName() {
+        return leader.getLastName();
+    }
 }
