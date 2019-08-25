@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
+import javafx.util.StringConverter;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
@@ -90,6 +91,18 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
         projectTable.getStatusProperty().bind(projectUtil.getComboBoxStatus().valueProperty());
         projectTable.getStatusSelection().bindBidirectional(projectUtil.getComboBoxStatus().selectionModelProperty());
         projectTable.getSuccessProperty().bind(successProperty);
+        Bindings.bindBidirectional(projectUtil.getLNumberOfProjects().textProperty(), projectTable.getSelectedProperty(),
+                new StringConverter<Number>() {
+                    @Override
+                    public String toString(Number number) {
+                        return String.valueOf(number);
+                    }
+
+                    @Override
+                    public Number fromString(String string) {
+                        return Integer.valueOf(string);
+                    }
+                });
     }
 
     @Override

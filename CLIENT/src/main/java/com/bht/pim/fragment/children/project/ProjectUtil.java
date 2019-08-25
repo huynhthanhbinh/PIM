@@ -52,6 +52,7 @@ public class ProjectUtil implements Initializable, ParentOwning {
     @Getter
     private ComboBox<String> comboBoxStatus;
     @FXML
+    @Getter
     private Label lNumberOfProjects;
     @FXML
     private Label lSelected;
@@ -84,6 +85,7 @@ public class ProjectUtil implements Initializable, ParentOwning {
         bReset.setGraphic(iReset);
         bNew.setGraphic(iNew);
         bDeleteAll.setGraphic(iDelete);
+        bDeleteAll.setVisible(false);
 
         bNew.setOnMouseClicked(event -> {
             log.info("[NEW] on mouse clicked");
@@ -97,6 +99,14 @@ public class ProjectUtil implements Initializable, ParentOwning {
 
         bDeleteAll.setOnMouseClicked(event -> {
             log.info("[DELETE ALL] on mouse clicked");
+        });
+
+        lNumberOfProjects.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (Integer.valueOf(newValue) > 0) {
+                bDeleteAll.setVisible(true);
+                return;
+            }
+            bDeleteAll.setVisible(false);
         });
     }
 

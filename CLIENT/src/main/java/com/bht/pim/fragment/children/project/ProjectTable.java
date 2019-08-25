@@ -44,6 +44,8 @@ import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Log4j
@@ -63,7 +65,7 @@ public class ProjectTable implements Initializable, ParentOwning {
     private static final int MAX_TABLE_ROW = 8;
 
 
-    // pagination
+    // binding
     @Getter
     private IntegerProperty pageCountProperty;
     @Getter
@@ -72,12 +74,14 @@ public class ProjectTable implements Initializable, ParentOwning {
     private StringProperty statusProperty;
     @Getter
     private ObjectProperty<SingleSelectionModel<String>> statusSelection;
+    @Getter
+    private IntegerProperty selectedProperty;
     @Setter
     private TextField searchBox;
-
-
     @Getter
     private BooleanProperty successProperty;
+
+
     @Autowired
     private ProjectService projectService;
     @Autowired
@@ -108,6 +112,8 @@ public class ProjectTable implements Initializable, ParentOwning {
     @FXML
     private TableColumn<ProjectDto, ProjectDto> cManagement;
 
+    private List<ProjectDto> aboutToDeleteProjects;
+
 
     @Override
     public void onSwitchParentFragment() {
@@ -118,22 +124,8 @@ public class ProjectTable implements Initializable, ParentOwning {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        pageIndexProperty = new SimpleIntegerProperty();
-        pageCountProperty = new SimpleIntegerProperty();
-        statusProperty = new SimpleStringProperty();
-        statusSelection = new SimpleObjectProperty<>();
-        successProperty = new SimpleBooleanProperty();
-
-        pageIndexProperty.addListener((observable, oldValue, newValue) ->
-                getListProject(newValue.intValue()));
-
-        statusProperty.addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                searchBox.setText("");
-            }
-            getListProject(0);
-        });
-
+        // init property for binding purposes
+        initAllProperties();
 
         // for multilingual
         initAllLabels();
@@ -157,8 +149,6 @@ public class ProjectTable implements Initializable, ParentOwning {
                         statusProperty);
 
         table.setItems(projectDtoList);
-        log.info("Number of projects: " + projectService.getNumberOfProjects());
-
         double temp;
 
         if (statusProperty.get() != null && !statusProperty.get().isEmpty()) {
@@ -169,7 +159,10 @@ public class ProjectTable implements Initializable, ParentOwning {
             temp = projectService.getNumberOfProjects();
         }
 
+        log.info("Number of projects: " + (long) temp);
         pageCountProperty.set((int) Math.ceil(temp / MAX_TABLE_ROW));
+        selectedProperty.set(0); // reset number of selected projects
+        aboutToDeleteProjects.clear(); // remove old list of last page
     }
 
     // Init all table fields
@@ -381,7 +374,16 @@ public class ProjectTable implements Initializable, ParentOwning {
 
                 checkBox.selectedProperty().addListener(
                         (observable, oldValue, newValue) -> {
-
+                            log.info(project.getId() + " : " + newValue);
+                            if (newValue) {
+                                aboutToDeleteProjects.add(project);
+                                selectedProperty.set(selectedProperty.get() + 1);
+                            } else {
+                                selectedProperty.set(selectedProperty.get() - 1);
+                                aboutToDeleteProjects.remove(project);
+                            }
+                            log.info("List project to be deleted !");
+                            aboutToDeleteProjects.forEach(log::info);
                         });
             }
         };
@@ -415,7 +417,7 @@ public class ProjectTable implements Initializable, ParentOwning {
                 : 0;
     }
 
-    public void onSearchForProject(Event event) {
+    private void onSearchForProject(Event event) {
         if (!searchBox.getText().isEmpty()) {
             statusSelection.get().clearSelection();
             log.info("Searching for project with keyword = " + searchBox.getText());
@@ -426,8 +428,6 @@ public class ProjectTable implements Initializable, ParentOwning {
     public void onReset(MouseEvent mouseEvent) {
         statusSelection.get().clearSelection();
         searchBox.clear();
-
-        log.info(pageIndexProperty.get());
         pageIndexProperty.set(0);
         getListProject(0);
     }
@@ -436,5 +436,25 @@ public class ProjectTable implements Initializable, ParentOwning {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             onSearchForProject(keyEvent);
         }
+    }
+
+    private void initAllProperties() {
+        aboutToDeleteProjects = new ArrayList<>();
+        pageIndexProperty = new SimpleIntegerProperty();
+        pageCountProperty = new SimpleIntegerProperty();
+        statusProperty = new SimpleStringProperty();
+        statusSelection = new SimpleObjectProperty<>();
+        successProperty = new SimpleBooleanProperty();
+        selectedProperty = new SimpleIntegerProperty();
+
+        pageIndexProperty.addListener((observable, oldValue, newValue) ->
+                getListProject(newValue.intValue()));
+
+        statusProperty.addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                searchBox.setText("");
+            }
+            getListProject(0);
+        });
     }
 }

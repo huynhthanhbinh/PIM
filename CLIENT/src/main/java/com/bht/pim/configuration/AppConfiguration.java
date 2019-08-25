@@ -28,8 +28,7 @@ import java.util.Locale;
 @PropertySource("classpath:/pim.properties")
 public class AppConfiguration {
 
-    public static final LanguageProperty LANGUAGE_PROPERTY =
-            new LanguageProperty(Locale.FRENCH);
+    public static final LanguageProperty LANGUAGE_PROPERTY = new LanguageProperty(Locale.FRENCH);
 
     @PostConstruct
     public void init() {
