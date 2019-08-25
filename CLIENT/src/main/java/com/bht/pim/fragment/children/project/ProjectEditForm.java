@@ -145,7 +145,6 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     private boolean current;
     private boolean isUpdate;
     private EmployeeDto leader;
-    private List<Long> projectNumbers;
     private List<EmployeeDto> members; // member-of-this-projects
     private List<EmployeeDto> employees; // all-current-employees
     private List<EmployeeDto> leaders; // all-current-group-leaders
@@ -199,9 +198,6 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     // Get all necessary data
     private void getNecessaryData() {
-        // Get all exist project numbers
-        projectNumbers = projectService.getProjectNumbers();
-
         // Get all employees
         employees = employeeService.getEmployeeList(0, 0);
 
@@ -233,8 +229,6 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
             } else if (!newValue.isEmpty()) { // input in correct format
                 number.getStyleClass().remove("empty");
-                lNumberExist.setVisible(projectNumbers
-                        .contains(Long.valueOf(newValue)));
             }
         });
 
@@ -412,6 +406,15 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
         boolean valid = chose && !(emptyNumber || emptyName || emptyCustomer || emptyStart);
 
         if (valid) {
+            // check if project number already exist ??
+            if (!isUpdate && projectService.getProjectByNumber(Long.valueOf(number.getText())).getId() != 0) {
+                number.getStyleClass().add("empty");
+                lNumberExist.setVisible(true);
+                return;
+            }
+            number.getStyleClass().remove("empty");
+            lNumberExist.setVisible(false);
+
             if (!emptyEnd && end.getValue().isBefore(start.getValue())) {
 
                 end.getEditor().getStyleClass().add("empty");

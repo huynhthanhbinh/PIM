@@ -14,6 +14,9 @@ public interface ProjectService {
     // Get a specific project
     ProjectDto getProjectById(long id);
 
+    // Get a specific project by number instead of id
+    ProjectDto getProjectByNumber(long number);
+
     // Update a specific project
     boolean updateProject(ProjectDto project);
 

@@ -290,11 +290,16 @@ public class ProjectDaoImpl implements ProjectDao {
             CriteriaQuery<ProjectEntity> query = builder.createQuery(ProjectEntity.class);
             Root<ProjectEntity> root = query.from(ProjectEntity.class);
 
-            return sessionFactory.getCurrentSession()
+            ProjectEntity projectEntity = sessionFactory.getCurrentSession()
                     .createQuery(query
                             .select(root)
                             .where(builder.equal(root.get("number"), number)))
                     .getSingleResult();
+
+            // As Hibernate is lazy-initialization !
+            Hibernate.initialize(projectEntity.getEnrolledEmployees());
+
+            return projectEntity;
 
         } catch (Exception exception) {
 

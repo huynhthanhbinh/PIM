@@ -12,11 +12,13 @@ import com.google.protobuf.StringValue;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Log4j
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
@@ -42,6 +44,13 @@ public class ProjectServiceImpl implements ProjectService {
         Int64Value projectId = Int64Value.newBuilder().setValue(id).build();
         return projectMapper.toProjectDto(stub
                 .getProjectById(projectId));
+    }
+
+    @Override
+    public ProjectDto getProjectByNumber(long number) {
+        Int64Value projectNumber = Int64Value.newBuilder().setValue(number).build();
+        return projectMapper.toProjectDto(stub
+                .getProjectByNumber(projectNumber));
     }
 
     // Update a specific project
