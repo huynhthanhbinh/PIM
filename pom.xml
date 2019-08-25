@@ -12,7 +12,7 @@
     <modules>
         <module>CLIENT</module>
         <module>SERVER</module>
-        <module>API</module>
+        <module>COMMON</module>
     </modules>
 
     <properties>
