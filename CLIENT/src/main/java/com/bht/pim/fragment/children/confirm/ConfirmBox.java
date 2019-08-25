@@ -33,14 +33,18 @@ public class ConfirmBox implements Initializable, ParentOwning {
     private Button bCancel;
 
     @FXML
-    public void setLabelText(String label) {
+    public void setLabelConfirm(String label) {
         LanguageUtil.initLabel(bSubmit.textProperty(), label);
+    }
+
+    @FXML
+    public void setLabelCancel(String label) {
+        LanguageUtil.initLabel(bCancel.textProperty(), label);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         log.info("[Confirm Box] Initialization");
-        LanguageUtil.initLabel(bCancel.textProperty(), AppConfiguration.LABEL_CONFIRM_CANCEL);
     }
 
     public void setOnSubmit(EventHandler<MouseEvent> onSubmit) {

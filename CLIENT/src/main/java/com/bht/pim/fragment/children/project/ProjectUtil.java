@@ -67,6 +67,7 @@ public class ProjectUtil implements Initializable, ParentOwning {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        log.info("[Project Util] Initialization");
         initComboBoxStatus();
 
         LanguageUtil.initLabel(searchBox.promptTextProperty(), "label.project.util.searchbox");

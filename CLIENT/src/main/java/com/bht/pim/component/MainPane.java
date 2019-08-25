@@ -88,7 +88,8 @@ public class MainPane implements FXComponent {
 
         projectInfoFragment.getController().addAllChildren(new Pair[]{
                 registerNewFragment(MainLabel.class),
-                registerNewFragment(ProjectDetail.class)});
+                registerNewFragment(ProjectDetail.class),
+                registerNewFragment(ConfirmBox.class)});
     }
 
     @Override
@@ -153,7 +154,7 @@ public class MainPane implements FXComponent {
                 .getController())
                 .getObjectWithIdentifier(id);
 
-        log.info("\n\n" + success + "\n\n");
+        log.info(success);
 
         ((SuccessNeeding) mainPane
                 .getContext()

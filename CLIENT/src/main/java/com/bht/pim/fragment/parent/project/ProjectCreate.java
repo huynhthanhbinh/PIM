@@ -41,7 +41,7 @@ public class ProjectCreate implements Initializable, ChildrenContaining {
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        log.info("[Project Create] On init scene ");
+        log.info("[Project Create] On init scene\n");
         PimUtil.alignPane(mainPane, context);
     }
 
@@ -56,7 +56,8 @@ public class ProjectCreate implements Initializable, ChildrenContaining {
         confirmBox = (ConfirmBox) children[2].getKey();
 
         mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_CREATE);
-        confirmBox.setLabelText(AppConfiguration.LABEL_CONFIRM_CREATE);
+        confirmBox.setLabelConfirm(AppConfiguration.LABEL_CONFIRM_CREATE);
+        confirmBox.setLabelCancel(AppConfiguration.LABEL_CONFIRM_CANCEL);
         confirmBox.setOnSubmit(projectEditForm::onSubmit);
         confirmBox.setOnCancel(projectEditForm::onCancel);
     }

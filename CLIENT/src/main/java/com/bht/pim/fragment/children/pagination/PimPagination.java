@@ -37,7 +37,7 @@ public class PimPagination implements Initializable, ParentOwning {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        log.info("[Pagination] On init view");
+        log.info("[Pagination] Initialization");
         pagination.setMaxPageIndicatorCount(10);
     }
 }

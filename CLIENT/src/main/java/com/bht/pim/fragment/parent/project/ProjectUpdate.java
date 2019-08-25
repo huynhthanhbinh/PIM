@@ -45,7 +45,7 @@ public class ProjectUpdate implements Initializable, IdentifierNeeding, Children
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        log.info("[Project Update] On init scene ");
+        log.info("[Project Update] On init scene\n");
     }
 
     @Override
@@ -59,7 +59,8 @@ public class ProjectUpdate implements Initializable, IdentifierNeeding, Children
         confirmBox = (ConfirmBox) children[2].getKey();
 
         mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_UPDATE);
-        confirmBox.setLabelText(AppConfiguration.LABEL_CONFIRM_UPDATE);
+        confirmBox.setLabelConfirm(AppConfiguration.LABEL_CONFIRM_UPDATE);
+        confirmBox.setLabelCancel(AppConfiguration.LABEL_CONFIRM_CANCEL);
         confirmBox.setOnSubmit(projectEditForm::onSubmit);
         confirmBox.setOnCancel(projectEditForm::onCancel);
     }

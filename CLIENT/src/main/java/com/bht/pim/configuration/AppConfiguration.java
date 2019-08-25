@@ -100,6 +100,8 @@ public class AppConfiguration {
     public static final String LABEL_CONFIRM_CREATE = "label.confirm.form.create";
     public static final String LABEL_CONFIRM_UPDATE = "label.confirm.form.update";
     public static final String LABEL_CONFIRM_CANCEL = "label.confirm.form.cancel";
+    public static final String LABEL_CONFIRM_MODIFY = "label.confirm.form.modify";
+    public static final String LABEL_CONFIRM_RETURN = "label.confirm.form.return";
 
     public static final String LABEL_STATUS_NEW = "label.project.status.new";
     public static final String LABEL_STATUS_PLANNED = "label.project.status.planned";

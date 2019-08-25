@@ -164,6 +164,8 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        log.info("[Project Edit Form] Initialization");
+
         members = new ArrayList<>();
         employees = new ArrayList<>();
         leaders = new ArrayList<>();

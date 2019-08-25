@@ -48,7 +48,7 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        log.info("[Project List] On init scene ");
+        log.info("[Project List] On init scene\n");
         PimUtil.alignPane(mainPane, context);
         successProperty = new SimpleBooleanProperty();
     }

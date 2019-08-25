@@ -126,6 +126,7 @@ public class ProjectTable implements Initializable, ParentOwning {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        log.info("[Project Table] Initialization");
         // init property for binding purposes
         initAllProperties();
 
@@ -138,7 +139,6 @@ public class ProjectTable implements Initializable, ParentOwning {
         // Add all event-listener
         addAllEventListener();
     }
-
 
     // Get all necessary data
     private void getListProject(int pageIndex) {
