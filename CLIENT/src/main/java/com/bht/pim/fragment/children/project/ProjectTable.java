@@ -87,7 +87,7 @@ public class ProjectTable implements Initializable, ParentOwning {
     @Autowired
     private ProjectService projectService;
     @Autowired
-    private PimUtil projectUtil;
+    private PimUtil pimUtil;
     @Autowired
     private StatusMapper statusMapper;
 
@@ -194,7 +194,7 @@ public class ProjectTable implements Initializable, ParentOwning {
 
         cStart.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
         cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
-        cStart.setCellFactory(projectUtil::dateFormat);
+        cStart.setCellFactory(pimUtil::dateFormat);
         cStart.setResizable(false);
 
         cManagement.prefWidthProperty().bind(table.widthProperty().subtract(20).multiply(0.1));

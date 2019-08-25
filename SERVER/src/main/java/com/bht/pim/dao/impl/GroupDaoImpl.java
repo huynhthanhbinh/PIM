@@ -87,7 +87,7 @@ public class GroupDaoImpl implements GroupDao {
                             .select(root)
                             .orderBy(builder.desc(root)));
 
-            if (maxRow != 0 && pageIndex != 0) { // not get all
+            if (maxRow != 0) { // not get all
                 allQuery.setMaxResults(maxRow);
                 allQuery.setFirstResult(maxRow * pageIndex);
             }

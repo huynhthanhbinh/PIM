@@ -1,6 +1,5 @@
 package com.bht.pim.util;
 
-import com.bht.pim.dto.ProjectDto;
 import javafx.geometry.Pos;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -23,8 +22,8 @@ public class PimUtil {
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     // Format Date : convert from Timestamp to LocalDate
-    public TableCell<ProjectDto, LocalDate> dateFormat(TableColumn<ProjectDto, LocalDate> column) {
-        return new TableCell<ProjectDto, LocalDate>() {
+    public <T> TableCell<T, LocalDate> dateFormat(TableColumn<T, LocalDate> column) {
+        return new TableCell<T, LocalDate>() {
             @Override
             protected void updateItem(LocalDate localDate, boolean empty) {
                 if (localDate == null || empty) {

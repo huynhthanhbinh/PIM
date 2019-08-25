@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.*?>
 <VBox fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       prefHeight="480.0" prefWidth="1050.0" spacing="5.0"
-      stylesheets="/com/bht/pim/fragment/children/group/GroupTable.css"
-      xmlns="http://javafx.com/javafx/8.0.999-ea"
+      stylesheets="/com/bht/pim/fragment/children/group/GroupTable.css" xmlns="http://javafx.com/javafx/8.0.172-ea"
       xmlns:fx="http://javafx.com/fxml/1">
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
@@ -16,13 +15,10 @@
                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"
                    AnchorPane.topAnchor="0.0">
             <columns>
-                <TableColumn id="cSelect" fx:id="cSelect" prefWidth="75.0"/>
-                <TableColumn id="cNumber" fx:id="cNumber" prefWidth="75.0" text="Number"/>
-                <TableColumn id="cName" fx:id="cName" prefWidth="75.0" text="Name"/>
-                <TableColumn id="cCustomer" fx:id="cCustomer" prefWidth="75.0" text="Customer"/>
-                <TableColumn id="cStatus" fx:id="cStatus" prefWidth="75.0" text="Status"/>
-                <TableColumn id="cStart" fx:id="cStart" prefWidth="75.0" text="Start"/>
-                <TableColumn id="cManagement" fx:id="cManagement" prefWidth="75.0" text="Management"/>
+                <TableColumn id="cNumber" fx:id="cId" prefWidth="75.0" text="ID"/>
+                <TableColumn id="cName" fx:id="cVisa" prefWidth="75.0" text="Leader VISA"/>
+                <TableColumn id="cCustomer" fx:id="cFirstName" prefWidth="75.0" text="Leader First Name"/>
+                <TableColumn id="cStatus" fx:id="cLastName" prefWidth="75.0" text="Leader Last Name"/>
             </columns>
         </TableView>
     </AnchorPane>

@@ -57,6 +57,9 @@ public class EmployeeList implements Initializable, ChildrenContaining {
 
         mainLabel.setLabelText(AppConfiguration.LABEL_EMPLOYEE_LIST);
 
+        pagination.getPagination().currentPageIndexProperty().bindBidirectional(employeeTable.getPageIndexProperty());
+        pagination.getPagination().pageCountProperty().bind(employeeTable.getPageCountProperty());
+
         employeeTable.getMainPane().prefWidthProperty().bind(Bindings.
                 when(mainPane.widthProperty().lessThan(1500))
                 .then(mainPane.widthProperty().subtract(10))
