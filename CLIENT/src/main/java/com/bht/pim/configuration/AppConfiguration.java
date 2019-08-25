@@ -79,10 +79,7 @@ public class AppConfiguration {
     public static final String FRAGMENT_PROJECT_DETAIL = "idfPDetail";
 
     public static final String FRAGMENT_GROUP_LIST = "idfGList";
-    public static final String FRAGMENT_GROUP_INFO = "idfGInfo";
-
     public static final String FRAGMENT_EMPLOYEE_LIST = "idfEList";
-    public static final String FRAGMENT_EMPLOYEE_INFO = "idfEInfo";
 
     public static final String FRAGMENT_SUPPLEMENTARY_LOGIN = "idfSLogin";
     public static final String FRAGMENT_SUPPLEMENTARY_ERROR = "idfSError";
@@ -96,6 +93,9 @@ public class AppConfiguration {
     public static final String LABEL_PROJECT_CREATE = "label.project.create";
     public static final String LABEL_PROJECT_INFO = "label.project.info";
     public static final String LABEL_PROJECT_UPDATE = "label.project.update";
+
+    public static final String LABEL_GROUP_LIST = "label.group.list";
+    public static final String LABEL_EMPLOYEE_LIST = "label.employee.list";
 
     public static final String LABEL_CONFIRM_CREATE = "label.confirm.form.create";
     public static final String LABEL_CONFIRM_UPDATE = "label.confirm.form.update";

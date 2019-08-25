@@ -2,12 +2,15 @@ package com.bht.pim.fragment.supplementary;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.util.LanguageUtil;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
@@ -53,21 +56,31 @@ public class Login implements Initializable {
 
         lIncorrect.setVisible(false);
 
-        bLogin.setOnMouseClicked(event -> {
-            if (username.getText().equals(defaultUsername)
-                    && password.getText().equals(defaultPassword)) {
+        bLogin.setOnMouseClicked(this::onSubmit);
+        username.setOnKeyPressed(this::onKeyPressed);
+        password.setOnKeyPressed(this::onKeyPressed);
+    }
 
-                context.send(AppConfiguration.PERSPECTIVE_PIM, "show");
-                AppConfiguration.LOGGED_IN_PROPERTY.set(true);
+    private void onSubmit(Event event) {
+        if (username.getText().equals(defaultUsername)
+                && password.getText().equals(defaultPassword)) {
 
-                username.clear();
-                password.clear();
-                lIncorrect.setVisible(false);
+            context.send(AppConfiguration.PERSPECTIVE_PIM, "show");
+            AppConfiguration.LOGGED_IN_PROPERTY.set(true);
 
-            } else if (!username.getText().isEmpty() && !password.getText().isEmpty()) {
+            username.clear();
+            password.clear();
+            lIncorrect.setVisible(false);
 
-                lIncorrect.setVisible(true);
-            }
-        });
+        } else if (!username.getText().isEmpty() && !password.getText().isEmpty()) {
+
+            lIncorrect.setVisible(true);
+        }
+    }
+
+    private void onKeyPressed(KeyEvent keyEvent) {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            onSubmit(keyEvent);
+        }
     }
 }
