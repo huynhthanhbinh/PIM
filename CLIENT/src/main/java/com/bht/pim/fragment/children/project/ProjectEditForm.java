@@ -76,6 +76,8 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     @FXML
     private Label lProjectMember;
     @FXML
+    private Label lSize;
+    @FXML
     private Label lNumber;
     @FXML
     private Label lProjectNumber;
@@ -116,8 +118,6 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     private GridPane gridPane;
     @FXML
     private TextField textField;
-    @FXML
-    private Label lSize;
     @FXML
     private TableView<EmployeeDto> table;
     @FXML
@@ -348,7 +348,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
         cRemove.setCellFactory(this::remove);
         cRemove.setStyle("-fx-alignment: CENTER-RIGHT; -fx-border-insets: 5px;");
 
-        tableView.getItems().addListener((ListChangeListener) change ->
+        tableView.getItems().addListener((ListChangeListener<EmployeeDto>) change ->
                 lSize.setText(String.valueOf(tableView.getItems().size())));
     }
 
