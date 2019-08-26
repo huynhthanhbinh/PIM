@@ -6,13 +6,10 @@ import com.bht.pim.fragment.children.label.MainLabel;
 import com.bht.pim.fragment.children.project.ProjectDetail;
 import com.bht.pim.fragment.parent.ChildrenContaining;
 import com.bht.pim.fragment.parent.IdentifierNeeding;
-import com.bht.pim.message.impl.FragmentSwitching;
-import com.bht.pim.message.impl.IdentifierSending;
 import com.bht.pim.util.PimUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import lombok.extern.log4j.Log4j;
@@ -62,8 +59,8 @@ public class ProjectInfo implements Initializable, ChildrenContaining, Identifie
         mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_INFO);
         confirmBox.setLabelConfirm(AppConfiguration.LABEL_CONFIRM_MODIFY);
         confirmBox.setLabelCancel(AppConfiguration.LABEL_CONFIRM_RETURN);
-        confirmBox.setOnSubmit(this::onModify);
-        confirmBox.setOnCancel(this::onReturn);
+        confirmBox.setOnSubmit(projectDetail::onModify);
+        confirmBox.setOnCancel(projectDetail::onReturn);
     }
 
     @Override
@@ -78,32 +75,5 @@ public class ProjectInfo implements Initializable, ChildrenContaining, Identifie
     public boolean getObjectWithIdentifier(long id) {
         currentProjectId = id;
         return projectDetail.getProjectById(id);
-    }
-
-    private void onModify(MouseEvent mouseEvent) {
-        log.info("[PIM] on modify project");
-
-        IdentifierSending sending = new IdentifierSending(
-                ProjectList.class,
-                ProjectUpdate.class,
-                currentProjectId);
-
-        context.send(AppConfiguration.COMPONENT_MAIN, sending);
-
-        FragmentSwitching switching = new FragmentSwitching(
-                ProjectInfo.class,
-                ProjectUpdate.class);
-
-        context.send(AppConfiguration.COMPONENT_MAIN, switching);
-    }
-
-    private void onReturn(MouseEvent mouseEvent) {
-        log.info("[PIM] on return back to project list");
-
-        FragmentSwitching fragmentSwitching = new FragmentSwitching(
-                ProjectInfo.class,
-                ProjectList.class);
-
-        context.send(AppConfiguration.COMPONENT_MAIN, fragmentSwitching);
     }
 }

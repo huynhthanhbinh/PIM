@@ -58,6 +58,9 @@ public class ProjectUpdate implements Initializable, IdentifierNeeding, Children
         projectEditForm = (ProjectEditForm) children[1].getKey();
         confirmBox = (ConfirmBox) children[2].getKey();
 
+        // Create Project : false
+        // Update Project : true
+        projectEditForm.setIsUpdateState(true);
         mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_UPDATE);
         confirmBox.setLabelConfirm(AppConfiguration.LABEL_CONFIRM_UPDATE);
         confirmBox.setLabelCancel(AppConfiguration.LABEL_CONFIRM_CANCEL);
@@ -68,11 +71,6 @@ public class ProjectUpdate implements Initializable, IdentifierNeeding, Children
     @Override
     public void onSwitchParentFragment() {
         log.info("Switching fragment, new fragment: " + getClass().getSimpleName());
-
-        // Create Project : false
-        // Update Project : true
-        projectEditForm.setIsUpdateState(true);
-
         mainLabel.onSwitchParentFragment();
         projectEditForm.onSwitchParentFragment();
         confirmBox.onSwitchParentFragment();

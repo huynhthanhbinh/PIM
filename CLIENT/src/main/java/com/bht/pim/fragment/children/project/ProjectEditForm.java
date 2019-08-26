@@ -159,6 +159,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     public void setIsUpdateState(boolean isUpdateState) {
         isUpdate = isUpdateState;
+        initComboBoxStatus();
     }
 
     @Override
@@ -285,7 +286,6 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     }
 
     private void initAllInput() {
-        initComboBoxStatus();
         initComboBoxGroupOption();
 
         comboBoxLeader.setDisable(true);
@@ -663,21 +663,12 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     }
 
     private void initComboBoxStatus() {
-        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("NEW").get());
-        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("PLA").get());
-        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("INP").get());
-        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("FIN").get());
+        addAvailableStatus();
 
         languageProperty.getResourceBundleProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     int index = comboBoxStatus.getSelectionModel().getSelectedIndex();
-                    comboBoxStatus.getItems().clear();
-
-                    comboBoxStatus.getItems().add(statusMapper.toGuiStatus("NEW").get());
-                    comboBoxStatus.getItems().add(statusMapper.toGuiStatus("PLA").get());
-                    comboBoxStatus.getItems().add(statusMapper.toGuiStatus("INP").get());
-                    comboBoxStatus.getItems().add(statusMapper.toGuiStatus("FIN").get());
-
+                    addAvailableStatus();
                     comboBoxStatus.getSelectionModel().select(index);
                 });
 
@@ -686,6 +677,17 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                 end.setDisable(!statusMapper
                         .toGuiStatus("FIN").get()
                         .equals(newValue)));
+    }
+
+    private void addAvailableStatus() {
+        comboBoxStatus.getItems().clear();
+        comboBoxStatus.getItems().add(statusMapper.toGuiStatus("NEW").get());
+
+        if (isUpdate) {
+            comboBoxStatus.getItems().add(statusMapper.toGuiStatus("PLA").get());
+            comboBoxStatus.getItems().add(statusMapper.toGuiStatus("INP").get());
+            comboBoxStatus.getItems().add(statusMapper.toGuiStatus("FIN").get());
+        }
     }
 
     private void initComboBoxGroupOption() {

@@ -4,16 +4,26 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.fragment.children.ParentOwning;
+import com.bht.pim.fragment.parent.project.ProjectInfo;
+import com.bht.pim.fragment.parent.project.ProjectList;
+import com.bht.pim.fragment.parent.project.ProjectUpdate;
+import com.bht.pim.mapper.StatusMapper;
+import com.bht.pim.message.impl.FragmentSwitching;
+import com.bht.pim.message.impl.IdentifierSending;
+import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.service.GroupService;
 import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.LanguageUtil;
+import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.PimUtil;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
@@ -37,6 +47,8 @@ public class ProjectDetail implements Initializable, ParentOwning {
 
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
 
+    @Autowired
+    private StatusMapper statusMapper;
     @Autowired
     private PimUtil pimUtil;
     @Autowired
@@ -173,5 +185,41 @@ public class ProjectDetail implements Initializable, ParentOwning {
     private void setDateStringFormat() {
         start.setConverter(pimUtil.dateStringConverter);
         end.setConverter(pimUtil.dateStringConverter);
+    }
+
+
+    public void onModify(MouseEvent mouseEvent) {
+        if (projectDto.getStatus().equals(statusMapper.toGuiStatus("FIN"))) {
+            NotificationUtil.showNotification(
+                    NotificationStyle.ERROR,
+                    Pos.CENTER,
+                    "Cannot edit project which has already been\"Finished\"!");
+            return;
+        }
+
+        log.info("[PIM] on modify project");
+
+        IdentifierSending sending = new IdentifierSending(
+                ProjectList.class,
+                ProjectUpdate.class,
+                projectDto.getId());
+
+        context.send(AppConfiguration.COMPONENT_MAIN, sending);
+
+        FragmentSwitching switching = new FragmentSwitching(
+                ProjectInfo.class,
+                ProjectUpdate.class);
+
+        context.send(AppConfiguration.COMPONENT_MAIN, switching);
+    }
+
+    public void onReturn(MouseEvent mouseEvent) {
+        log.info("[PIM] on return back to project list");
+
+        FragmentSwitching fragmentSwitching = new FragmentSwitching(
+                ProjectInfo.class,
+                ProjectList.class);
+
+        context.send(AppConfiguration.COMPONENT_MAIN, fragmentSwitching);
     }
 }

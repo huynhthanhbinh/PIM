@@ -55,6 +55,9 @@ public class ProjectCreate implements Initializable, ChildrenContaining {
         projectEditForm = (ProjectEditForm) children[1].getKey();
         confirmBox = (ConfirmBox) children[2].getKey();
 
+        // Create Project : false
+        // Update Project : true
+        projectEditForm.setIsUpdateState(false);
         mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_CREATE);
         confirmBox.setLabelConfirm(AppConfiguration.LABEL_CONFIRM_CREATE);
         confirmBox.setLabelCancel(AppConfiguration.LABEL_CONFIRM_CANCEL);
@@ -65,11 +68,6 @@ public class ProjectCreate implements Initializable, ChildrenContaining {
     @Override
     public void onSwitchParentFragment() {
         log.info("Switching fragment, new fragment: " + getClass().getSimpleName());
-
-        // Create Project : false
-        // Update Project : true
-        projectEditForm.setIsUpdateState(false);
-
         mainLabel.onSwitchParentFragment();
         projectEditForm.onSwitchParentFragment();
         confirmBox.onSwitchParentFragment();
