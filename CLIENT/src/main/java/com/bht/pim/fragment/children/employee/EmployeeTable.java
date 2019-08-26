@@ -4,6 +4,7 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.service.EmployeeService;
+import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.PimUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
@@ -89,7 +90,11 @@ public class EmployeeTable implements Initializable, ParentOwning {
 
     // for multilingual
     private void initAllLabels() {
-
+        LanguageUtil.initLabel(cId.textProperty(), "label.table.id");
+        LanguageUtil.initLabel(cVisa.textProperty(), "label.table.visa");
+        LanguageUtil.initLabel(cFirstName.textProperty(), "label.table.name.first");
+        LanguageUtil.initLabel(cLastName.textProperty(), "label.table.name.last");
+        LanguageUtil.initLabel(cBirthday.textProperty(), "label.table.birthday");
     }
 
     private void initAllProperties() {

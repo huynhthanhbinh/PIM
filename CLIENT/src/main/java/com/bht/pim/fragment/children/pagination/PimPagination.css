@@ -1,7 +1,7 @@
 /* Remove spacing */
 .pagination > .pagination-control > .control-box {
     -fx-spacing: 0;
-    -fx-font-size: 14;
+    -fx-font-size: 16;
 }
 
 /* You can control the actual button sizes here */

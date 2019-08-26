@@ -1,17 +1,22 @@
 package com.bht.pim.util;
 
+import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.notification.JFXNotifications;
 import com.bht.pim.notification.NotificationStyle;
 import javafx.geometry.Pos;
 import javafx.util.Duration;
 
 public class NotificationUtil {
+    private NotificationUtil() {
+
+    }
+
     public static void showNotification(NotificationStyle style, Pos position, String message) {
         switch (style) {
 
             case INFO:
                 JFXNotifications.create()
-                        .title("INFORMATION")
+                        .title(AppConfiguration.INFORMATION_TITLE.get())
                         .text(message)
                         .hideAfter(Duration.seconds(5))
                         .position(position)
@@ -20,7 +25,7 @@ public class NotificationUtil {
 
             case SUCCESS:
                 JFXNotifications.create()
-                        .title("SUCCESS")
+                        .title(AppConfiguration.SUCCESS_TITLE.get())
                         .text(message)
                         .hideAfter(Duration.seconds(5))
                         .position(position)
@@ -29,7 +34,7 @@ public class NotificationUtil {
 
             case WARNING:
                 JFXNotifications.create()
-                        .title("WARNING")
+                        .title(AppConfiguration.WARNING_TITLE.get())
                         .text(message)
                         .hideAfter(Duration.seconds(5))
                         .position(position)
@@ -38,7 +43,7 @@ public class NotificationUtil {
 
             case ERROR:
                 JFXNotifications.create()
-                        .title("ERROR")
+                        .title(AppConfiguration.ERROR_TITLE.get())
                         .text(message)
                         .hideAfter(Duration.seconds(5))
                         .position(position)

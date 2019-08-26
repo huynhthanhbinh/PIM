@@ -5,12 +5,10 @@ import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
+import com.bht.pim.util.LanguageUtil;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 import lombok.extern.log4j.Log4j;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,6 +37,11 @@ public class AppConfiguration {
                 .usePlaintext()
                 .maxInboundMessageSize(10 * 1024 * 1024)
                 .build());
+
+        LanguageUtil.initLabel(INFORMATION_TITLE, "label.notification.information");
+        LanguageUtil.initLabel(SUCCESS_TITLE, "label.notification.success");
+        LanguageUtil.initLabel(WARNING_TITLE, "label.notification.warning");
+        LanguageUtil.initLabel(ERROR_TITLE, "label.notification.error");
     }
 
     @Value("${pim.server.host}")
@@ -110,6 +113,11 @@ public class AppConfiguration {
     public static final String LABEL_STATUS_PLANNED = "label.project.status.planned";
     public static final String LABEL_STATUS_IN_PROGRESS = "label.project.status.inprogress";
     public static final String LABEL_STATUS_FINISHED = "label.project.status.finished";
+
+    public static final StringProperty INFORMATION_TITLE = new SimpleStringProperty();
+    public static final StringProperty SUCCESS_TITLE = new SimpleStringProperty();
+    public static final StringProperty WARNING_TITLE = new SimpleStringProperty();
+    public static final StringProperty ERROR_TITLE = new SimpleStringProperty();
 
     @Bean
     public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub() {

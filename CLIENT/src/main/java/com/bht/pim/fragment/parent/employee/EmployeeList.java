@@ -61,9 +61,9 @@ public class EmployeeList implements Initializable, ChildrenContaining {
         pagination.getPagination().pageCountProperty().bind(employeeTable.getPageCountProperty());
 
         employeeTable.getMainPane().prefWidthProperty().bind(Bindings.
-                when(mainPane.widthProperty().lessThan(1500))
+                when(mainPane.widthProperty().lessThan(1000))
                 .then(mainPane.widthProperty().subtract(10))
-                .otherwise(1500));
+                .otherwise(1000));
     }
 
     @Override

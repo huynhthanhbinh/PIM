@@ -51,3 +51,14 @@
 .table-row-cell:empty.table-cell {
     -fx-border-width: 0px;
 }
+
+.table-row-cell:selected {
+    -fx-table-cell-border-color: transparent;
+    -fx-background-color: #F24517;
+    -fx-text-fill: white !important;
+}
+
+.table-row-cell:selected .text {
+    /*-fx-fill: white;*/
+    -fx-font-weight: bold;
+}

@@ -10,8 +10,8 @@ import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.IdentifierSending;
 import com.bht.pim.notification.NotificationStyle;
-import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.service.ProjectService;
+import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.PimUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
@@ -61,7 +61,6 @@ public class ProjectTable implements Initializable, ParentOwning {
     private final Image deleteInverse = PimUtil.getImage("delete_inverse");
     private final Image editInverse = PimUtil.getImage("edit_inverse");
 
-    private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
     private static final int MAX_TABLE_ROW = 8;
 
     private int countSuccess; // for delete all selected projects
@@ -276,6 +275,14 @@ public class ProjectTable implements Initializable, ParentOwning {
                 });
 
                 bEdit.setOnAction(event -> {
+                    if (projectDto.getStatus().equals(statusMapper.toGuiStatus("FIN"))) {
+                        NotificationUtil.showNotification(
+                                NotificationStyle.ERROR,
+                                Pos.CENTER,
+                                "Cannot edit project which has already been\"Finished\"!");
+                        return;
+                    }
+
                     log.info("Edit project id = " + projectDto.getId());
 
                     log.info(successProperty.get());
@@ -376,7 +383,6 @@ public class ProjectTable implements Initializable, ParentOwning {
 
                 checkBox.selectedProperty().addListener(
                         (observable, oldValue, newValue) -> {
-                            log.info(project.getId() + " : " + newValue);
                             if (newValue) {
                                 aboutToDeleteProjects.add(project);
                                 selectedProperty.set(selectedProperty.get() + 1);
@@ -384,31 +390,18 @@ public class ProjectTable implements Initializable, ParentOwning {
                                 selectedProperty.set(selectedProperty.get() - 1);
                                 aboutToDeleteProjects.remove(project);
                             }
-                            log.info("List project to be deleted !");
-                            aboutToDeleteProjects.forEach(log::info);
                         });
             }
         };
     }
 
     private void initAllLabels() {
-        ResourceBundle bundle = languageProperty.getResourceBundleProperty().get();
-        cNumber.setText(bundle.getString("label.number"));
-        cName.setText(bundle.getString("label.name"));
-        cCustomer.setText(bundle.getString("label.customer"));
-        cStatus.setText(bundle.getString("label.status"));
-        cStart.setText(bundle.getString("label.start"));
-        cManagement.setText(bundle.getString("label.management"));
-
-        languageProperty.getResourceBundleProperty()
-                .addListener((observable, oldValue, newValue) -> {
-                    cNumber.setText(newValue.getString("label.number"));
-                    cName.setText(newValue.getString("label.name"));
-                    cCustomer.setText(newValue.getString("label.customer"));
-                    cStatus.setText(newValue.getString("label.status"));
-                    cStart.setText(newValue.getString("label.start"));
-                    cManagement.setText(newValue.getString("label.management"));
-                });
+        LanguageUtil.initLabel(cNumber.textProperty(), "label.number");
+        LanguageUtil.initLabel(cName.textProperty(), "label.name");
+        LanguageUtil.initLabel(cCustomer.textProperty(), "label.customer");
+        LanguageUtil.initLabel(cStatus.textProperty(), "label.status");
+        LanguageUtil.initLabel(cStart.textProperty(), "label.start");
+        LanguageUtil.initLabel(cManagement.textProperty(), "label.management");
     }
 
     // if page n has only 1 project

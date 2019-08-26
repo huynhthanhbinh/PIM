@@ -4,6 +4,7 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.GroupDto;
 import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.service.GroupService;
+import com.bht.pim.util.LanguageUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 import javafx.beans.property.IntegerProperty;
@@ -88,7 +89,10 @@ public class GroupTable implements Initializable, ParentOwning {
 
     // for multilingual
     private void initAllLabels() {
-
+        LanguageUtil.initLabel(cId.textProperty(), "label.table.id");
+        LanguageUtil.initLabel(cVisa.textProperty(), "label.table.visa.leader");
+        LanguageUtil.initLabel(cFirstName.textProperty(), "label.table.name.first.leader");
+        LanguageUtil.initLabel(cLastName.textProperty(), "label.table.name.last.leader");
     }
 
     // Init all table fields
