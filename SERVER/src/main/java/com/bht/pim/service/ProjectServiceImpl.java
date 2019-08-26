@@ -278,9 +278,6 @@ public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBas
     @Override
     public void getNumberOfProjectsByKeyword(StringValue request, StreamObserver<Int64Value> responseObserver) {
         try {
-            log.info(request.getValue());
-            log.info(projectDao.getNumberOfProjectsByKeyword(request.getValue()));
-
             responseObserver.onNext(Int64Value.newBuilder()
                     .setValue(projectDao
                             .getNumberOfProjectsByKeyword(request.getValue()))

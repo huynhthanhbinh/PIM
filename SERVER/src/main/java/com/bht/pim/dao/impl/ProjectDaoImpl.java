@@ -90,8 +90,6 @@ public class ProjectDaoImpl implements ProjectDao {
             CriteriaQuery<Long> query = builder.createQuery(Long.class);
             Root<ProjectEntity> root = query.from(ProjectEntity.class);
 
-            log.info("\n\n" + keyword + "\n\n");
-
             return sessionFactory
                     .getCurrentSession()
                     .createQuery(query
