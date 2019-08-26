@@ -33,7 +33,6 @@ public class ProjectInfo implements Initializable, ChildrenContaining, Identifie
     private MainLabel mainLabel;
     private ProjectDetail projectDetail;
     private ConfirmBox confirmBox;
-    private long currentProjectId;
 
     @Resource
     private Context context;
@@ -73,7 +72,6 @@ public class ProjectInfo implements Initializable, ChildrenContaining, Identifie
 
     @Override
     public boolean getObjectWithIdentifier(long id) {
-        currentProjectId = id;
         return projectDetail.getProjectById(id);
     }
 }

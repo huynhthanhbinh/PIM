@@ -26,6 +26,7 @@ import java.util.Properties;
 @Log4j
 @Configuration
 @EnableWebMvc
+@SuppressWarnings("all")
 @EnableTransactionManagement
 @ComponentScan("com.bht.pim")
 @PropertySource("classpath:/pim.properties")

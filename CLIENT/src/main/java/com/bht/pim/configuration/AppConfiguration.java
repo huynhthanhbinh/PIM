@@ -22,6 +22,7 @@ import java.util.Locale;
 
 @Log4j
 @Configuration
+@SuppressWarnings("all")
 @ComponentScan("com.bht.pim")
 @PropertySource("classpath:/pim.properties")
 public class AppConfiguration {
