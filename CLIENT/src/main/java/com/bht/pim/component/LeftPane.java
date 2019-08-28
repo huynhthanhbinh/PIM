@@ -1,17 +1,7 @@
 package com.bht.pim.component;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.parent.employee.EmployeeList;
-import com.bht.pim.fragment.parent.group.GroupList;
-import com.bht.pim.fragment.parent.project.ProjectList;
-import com.bht.pim.message.impl.FragmentSwitching;
-import com.bht.pim.util.LanguageUtil;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import lombok.extern.log4j.Log4j;
+import java.util.ResourceBundle;
+
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
@@ -24,7 +14,19 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
-import java.util.ResourceBundle;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.parent.employee.EmployeeList;
+import com.bht.pim.fragment.parent.group.GroupList;
+import com.bht.pim.fragment.parent.project.ProjectList;
+import com.bht.pim.message.impl.FragmentSwitching;
+import com.bht.pim.util.LanguageUtil;
+
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Controller

@@ -1,5 +1,19 @@
 package com.bht.pim.component;
 
+import java.util.ResourceBundle;
+
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.component.DeclarativeView;
+import org.jacpfx.api.annotations.lifecycle.OnHide;
+import org.jacpfx.api.annotations.lifecycle.OnShow;
+import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.annotations.lifecycle.PreDestroy;
+import org.jacpfx.api.message.Message;
+import org.jacpfx.rcp.component.FXComponent;
+import org.jacpfx.rcp.componentLayout.FXComponentLayout;
+import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
+import org.jacpfx.rcp.context.Context;
+
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.confirm.ConfirmBox;
 import com.bht.pim.fragment.children.employee.EmployeeTable;
@@ -21,6 +35,7 @@ import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.fragment.parent.project.ProjectUpdate;
 import com.bht.pim.message.PimMessage;
 import com.bht.pim.util.PimUtil;
+
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -30,19 +45,6 @@ import javafx.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.component.DeclarativeView;
-import org.jacpfx.api.annotations.lifecycle.OnHide;
-import org.jacpfx.api.annotations.lifecycle.OnShow;
-import org.jacpfx.api.annotations.lifecycle.PostConstruct;
-import org.jacpfx.api.annotations.lifecycle.PreDestroy;
-import org.jacpfx.api.message.Message;
-import org.jacpfx.rcp.component.FXComponent;
-import org.jacpfx.rcp.componentLayout.FXComponentLayout;
-import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
-import org.jacpfx.rcp.context.Context;
-
-import java.util.ResourceBundle;
 
 @Log4j
 @Getter

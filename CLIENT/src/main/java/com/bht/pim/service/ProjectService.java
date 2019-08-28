@@ -1,10 +1,11 @@
 package com.bht.pim.service;
 
+import java.util.List;
+
 import com.bht.pim.dto.ProjectDto;
+
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
-
-import java.util.List;
 
 public interface ProjectService {
 

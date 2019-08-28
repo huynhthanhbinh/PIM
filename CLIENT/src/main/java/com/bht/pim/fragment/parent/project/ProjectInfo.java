@@ -1,5 +1,14 @@
 package com.bht.pim.fragment.parent.project;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
+import org.springframework.stereotype.Controller;
+
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.confirm.ConfirmBox;
 import com.bht.pim.fragment.children.label.MainLabel;
@@ -7,20 +16,13 @@ import com.bht.pim.fragment.children.project.ProjectDetail;
 import com.bht.pim.fragment.parent.ChildrenContaining;
 import com.bht.pim.fragment.parent.IdentifierNeeding;
 import com.bht.pim.util.PimUtil;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import lombok.extern.log4j.Log4j;
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.context.Context;
-import org.springframework.stereotype.Controller;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @Log4j
 @Controller

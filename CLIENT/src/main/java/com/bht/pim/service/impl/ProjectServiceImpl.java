@@ -1,5 +1,10 @@
 package com.bht.pim.service.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.mapper.ProjectMapper;
 import com.bht.pim.mapper.StatusMapper;
@@ -9,14 +14,11 @@ import com.bht.pim.service.ProjectService;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
 import com.google.protobuf.StringValue;
+
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.extern.log4j.Log4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Log4j
 @Service

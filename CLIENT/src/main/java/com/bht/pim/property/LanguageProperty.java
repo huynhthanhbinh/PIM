@@ -1,13 +1,15 @@
 package com.bht.pim.property;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import org.springframework.context.annotation.Scope;
+
 import com.bht.pim.configuration.AppConfiguration;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import lombok.Getter;
-import org.springframework.context.annotation.Scope;
-
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 @Scope("singleton")
 public class LanguageProperty {

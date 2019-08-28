@@ -1,14 +1,15 @@
 package com.bht.pim.mapper;
 
-import com.bht.pim.dto.ProjectDto;
-import com.bht.pim.proto.projects.Project;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.mapstruct.CollectionMappingStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import com.bht.pim.dto.ProjectDto;
+import com.bht.pim.proto.projects.Project;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,
         collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED,

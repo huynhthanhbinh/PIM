@@ -3,6 +3,7 @@ package com.bht.pim.util;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.notification.JFXNotifications;
 import com.bht.pim.notification.NotificationStyle;
+
 import javafx.geometry.Pos;
 import javafx.util.Duration;
 

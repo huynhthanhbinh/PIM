@@ -1,11 +1,16 @@
 package com.bht.pim.mapper;
 
-import com.bht.pim.entity.GroupEntity;
-import com.bht.pim.proto.groups.Group;
-import org.mapstruct.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.mapstruct.CollectionMappingStrategy;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+import org.mapstruct.ReportingPolicy;
+
+import com.bht.pim.entity.GroupEntity;
+import com.bht.pim.proto.groups.Group;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,
         collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED,

@@ -1,8 +1,8 @@
 package com.bht.pim.dao;
 
-import com.bht.pim.entity.EmployeeEntity;
-
 import java.util.List;
+
+import com.bht.pim.entity.EmployeeEntity;
 
 
 public interface EmployeeDao {

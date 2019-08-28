@@ -1,12 +1,13 @@
 package com.bht.pim.property;
 
+import java.util.ResourceBundle;
+
 import com.bht.pim.configuration.AppConfiguration;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.Getter;
-
-import java.util.ResourceBundle;
 
 public class LabelProperty {
 

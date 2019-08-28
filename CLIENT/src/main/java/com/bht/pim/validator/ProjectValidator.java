@@ -1,8 +1,9 @@
 package com.bht.pim.validator;
 
-import com.bht.pim.proto.projects.Project;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+
+import com.bht.pim.proto.projects.Project;
 
 public class ProjectValidator implements Validator {
 

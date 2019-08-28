@@ -5,9 +5,9 @@ package com.bht.pim.dao;
 //  + User Model  : for presentation layer (view)
 //  + User Entity : for data access layer (repo)
 
-import com.bht.pim.entity.ProjectEntity;
-
 import java.util.List;
+
+import com.bht.pim.entity.ProjectEntity;
 
 // For accessing database
 public interface ProjectDao {

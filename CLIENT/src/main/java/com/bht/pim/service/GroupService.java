@@ -1,6 +1,7 @@
 package com.bht.pim.service;
 
 import com.bht.pim.dto.GroupDto;
+
 import javafx.collections.ObservableList;
 
 public interface GroupService {

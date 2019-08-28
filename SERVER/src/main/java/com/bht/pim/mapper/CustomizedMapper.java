@@ -1,5 +1,12 @@
 package com.bht.pim.mapper;
 
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+import org.mapstruct.NullValueMappingStrategy;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.bht.pim.dao.EmployeeDao;
 import com.bht.pim.entity.EmployeeEntity;
 import com.bht.pim.entity.GroupEntity;
@@ -7,13 +14,8 @@ import com.bht.pim.entity.ProjectEntity;
 import com.bht.pim.proto.employees.EmployeeInfo;
 import com.bht.pim.proto.groups.GroupInfo;
 import com.bht.pim.proto.projects.ProjectInfo;
+
 import lombok.extern.log4j.Log4j;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
-import org.mapstruct.NullValueMappingStrategy;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Log4j
 @Component

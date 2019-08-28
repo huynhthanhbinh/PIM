@@ -1,15 +1,8 @@
 package com.bht.pim.component;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.property.LanguageProperty;
-import com.bht.pim.util.LanguageUtil;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import lombok.extern.log4j.Log4j;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
@@ -22,8 +15,17 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
-import java.util.Locale;
-import java.util.ResourceBundle;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.property.LanguageProperty;
+import com.bht.pim.util.LanguageUtil;
+
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Controller

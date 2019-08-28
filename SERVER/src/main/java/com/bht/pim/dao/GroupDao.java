@@ -1,8 +1,8 @@
 package com.bht.pim.dao;
 
-import com.bht.pim.entity.GroupEntity;
-
 import java.util.List;
+
+import com.bht.pim.entity.GroupEntity;
 
 public interface GroupDao {
 

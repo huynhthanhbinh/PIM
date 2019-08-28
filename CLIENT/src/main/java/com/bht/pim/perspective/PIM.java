@@ -1,13 +1,5 @@
 package com.bht.pim.perspective;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.handler.PimErrorHandler;
-import com.bht.pim.message.impl.PerspectiveShowing;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
-import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
 import org.jacpfx.api.annotations.lifecycle.OnShow;
@@ -19,6 +11,16 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
+
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.handler.PimErrorHandler;
+import com.bht.pim.message.impl.PerspectiveShowing;
+
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
+import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Perspective(id = AppConfiguration.PERSPECTIVE_PIM, name = "PerspectivePIM",

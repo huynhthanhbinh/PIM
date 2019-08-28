@@ -1,10 +1,12 @@
 package com.bht.pim.message;
 
-import com.bht.pim.component.MainPane;
-import javafx.event.Event;
-import javafx.scene.Node;
 import org.apache.log4j.Logger;
 import org.jacpfx.api.message.Message;
+
+import com.bht.pim.component.MainPane;
+
+import javafx.event.Event;
+import javafx.scene.Node;
 
 public interface PimMessage {
 

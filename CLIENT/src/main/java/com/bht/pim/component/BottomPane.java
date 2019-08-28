@@ -1,16 +1,8 @@
 package com.bht.pim.component;
 
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.supplementary.ErrorHandling;
-import com.bht.pim.fragment.supplementary.Login;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.layout.VBox;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.log4j.Log4j;
+import java.util.ResourceBundle;
+
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
@@ -23,7 +15,17 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
-import java.util.ResourceBundle;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.supplementary.ErrorHandling;
+import com.bht.pim.fragment.supplementary.Login;
+
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.layout.VBox;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Getter

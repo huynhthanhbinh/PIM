@@ -87,7 +87,9 @@
                     <include>**/*.css</include>
                     <include>**/*.png</include>
                 </includes>
-                <targetPath>/</targetPath>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
             </resource>
         </resources>
         <plugins>

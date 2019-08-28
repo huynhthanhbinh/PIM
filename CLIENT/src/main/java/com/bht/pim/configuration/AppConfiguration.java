@@ -1,15 +1,9 @@
 package com.bht.pim.configuration;
 
-import com.bht.pim.mapper.*;
-import com.bht.pim.property.LanguageProperty;
-import com.bht.pim.proto.employees.EmployeeServiceGrpc;
-import com.bht.pim.proto.groups.GroupServiceGrpc;
-import com.bht.pim.proto.projects.ProjectServiceGrpc;
-import com.bht.pim.util.LanguageUtil;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-import javafx.beans.property.*;
-import lombok.extern.log4j.Log4j;
+import java.util.Locale;
+
+import javax.annotation.PostConstruct;
+
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -17,8 +11,26 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import javax.annotation.PostConstruct;
-import java.util.Locale;
+import com.bht.pim.mapper.DateTimeMapper;
+import com.bht.pim.mapper.EmployeeMapper;
+import com.bht.pim.mapper.GroupMapper;
+import com.bht.pim.mapper.ProjectMapper;
+import com.bht.pim.mapper.StatusMapper;
+import com.bht.pim.property.LanguageProperty;
+import com.bht.pim.proto.employees.EmployeeServiceGrpc;
+import com.bht.pim.proto.groups.GroupServiceGrpc;
+import com.bht.pim.proto.projects.ProjectServiceGrpc;
+import com.bht.pim.util.LanguageUtil;
+
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Configuration

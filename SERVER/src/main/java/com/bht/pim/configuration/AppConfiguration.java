@@ -1,7 +1,10 @@
 package com.bht.pim.configuration;
 
-import com.bht.pim.mapper.*;
-import lombok.extern.log4j.Log4j;
+import java.util.Objects;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
 import org.hibernate.SessionFactory;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +22,13 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import javax.sql.DataSource;
-import java.util.Objects;
-import java.util.Properties;
+import com.bht.pim.mapper.CustomizedMapper;
+import com.bht.pim.mapper.DateTimeMapper;
+import com.bht.pim.mapper.EmployeeMapper;
+import com.bht.pim.mapper.GroupMapper;
+import com.bht.pim.mapper.ProjectMapper;
+
+import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Configuration
