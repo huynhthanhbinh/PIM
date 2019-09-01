@@ -1,19 +1,21 @@
 package com.bht.pim.mapper;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.bht.pim.util.LanguageUtil;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.util.LanguageUtil;
-
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import java.util.HashMap;
+import java.util.Map;
 
 @Mapper
 public abstract class StatusMapper {
+
+    private static final String LABEL_STATUS_NEW = "label.project.status.new";
+    private static final String LABEL_STATUS_PLANNED = "label.project.status.planned";
+    private static final String LABEL_STATUS_IN_PROGRESS = "label.project.status.inprogress";
+    private static final String LABEL_STATUS_FINISHED = "label.project.status.finished";
 
     private Map<String, StringProperty> availableStatus = availableStatus();
 
@@ -25,10 +27,10 @@ public abstract class StatusMapper {
 
     private Map<String, StringProperty> availableStatus() {
         Map<String, StringProperty> availableStatuses = new HashMap<>();
-        availableStatuses.put("NEW", getLabelProperty(AppConfiguration.LABEL_STATUS_NEW));
-        availableStatuses.put("PLA", getLabelProperty(AppConfiguration.LABEL_STATUS_PLANNED));
-        availableStatuses.put("INP", getLabelProperty(AppConfiguration.LABEL_STATUS_IN_PROGRESS));
-        availableStatuses.put("FIN", getLabelProperty(AppConfiguration.LABEL_STATUS_FINISHED));
+        availableStatuses.put("NEW", getLabelProperty(LABEL_STATUS_NEW));
+        availableStatuses.put("PLA", getLabelProperty(LABEL_STATUS_PLANNED));
+        availableStatuses.put("INP", getLabelProperty(LABEL_STATUS_IN_PROGRESS));
+        availableStatuses.put("FIN", getLabelProperty(LABEL_STATUS_FINISHED));
         return availableStatuses;
     }
 

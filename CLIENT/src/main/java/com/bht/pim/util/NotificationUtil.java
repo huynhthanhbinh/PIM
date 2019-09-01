@@ -3,11 +3,13 @@ package com.bht.pim.util;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.notification.JFXNotifications;
 import com.bht.pim.notification.NotificationStyle;
-
 import javafx.geometry.Pos;
 import javafx.util.Duration;
 
 public class NotificationUtil {
+
+    private static final int PERIOD = 5;
+
     private NotificationUtil() {
 
     }
@@ -19,7 +21,7 @@ public class NotificationUtil {
                 JFXNotifications.create()
                         .title(AppConfiguration.INFORMATION_TITLE.get())
                         .text(message)
-                        .hideAfter(Duration.seconds(5))
+                        .hideAfter(Duration.seconds(PERIOD))
                         .position(position)
                         .showInfo();
                 break;
@@ -28,7 +30,7 @@ public class NotificationUtil {
                 JFXNotifications.create()
                         .title(AppConfiguration.SUCCESS_TITLE.get())
                         .text(message)
-                        .hideAfter(Duration.seconds(5))
+                        .hideAfter(Duration.seconds(PERIOD))
                         .position(position)
                         .showSuccess();
                 break;
@@ -37,7 +39,7 @@ public class NotificationUtil {
                 JFXNotifications.create()
                         .title(AppConfiguration.WARNING_TITLE.get())
                         .text(message)
-                        .hideAfter(Duration.seconds(5))
+                        .hideAfter(Duration.seconds(PERIOD))
                         .position(position)
                         .showWarning();
                 break;
@@ -46,7 +48,7 @@ public class NotificationUtil {
                 JFXNotifications.create()
                         .title(AppConfiguration.ERROR_TITLE.get())
                         .text(message)
-                        .hideAfter(Duration.seconds(5))
+                        .hideAfter(Duration.seconds(PERIOD))
                         .position(position)
                         .showError();
                 break;

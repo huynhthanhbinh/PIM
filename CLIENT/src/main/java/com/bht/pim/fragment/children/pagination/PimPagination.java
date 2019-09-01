@@ -1,29 +1,23 @@
 package com.bht.pim.fragment.children.pagination;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import com.bht.pim.base.ChildFragment;
+import com.bht.pim.configuration.AppConfiguration;
+import javafx.fxml.FXML;
+import javafx.scene.control.Pagination;
+import javafx.scene.layout.HBox;
+import lombok.Getter;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.children.ParentOwning;
-
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Pagination;
-import javafx.scene.layout.HBox;
-import lombok.Getter;
-import lombok.extern.log4j.Log4j;
-
-@Log4j
 @Controller
-@Fragment(id = AppConfiguration.FRAGMENT_PAGINATION,
+@Fragment(id = PimPagination.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/pagination/PimPagination.fxml")
-public class PimPagination implements Initializable, ParentOwning {
+public class PimPagination extends ChildFragment {
+
+    static final String ID = "idfPagination"; // pagination-pane
 
     @FXML
     private HBox paginationPane;
@@ -33,13 +27,13 @@ public class PimPagination implements Initializable, ParentOwning {
 
 
     @Override
-    public void onSwitchParentFragment() {
-
+    public void onCreated() {
+        LOGGER.info("[Pagination] Initialization");
+        pagination.setMaxPageIndicatorCount(10);
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        log.info("[Pagination] Initialization");
-        pagination.setMaxPageIndicatorCount(10);
+    public void onSwitchParentFragment() {
+        // ...
     }
 }

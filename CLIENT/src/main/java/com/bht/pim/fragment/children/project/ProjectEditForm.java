@@ -1,10 +1,11 @@
 package com.bht.pim.fragment.children.project;
 
+import com.bht.pim.base.ChildFragment;
+import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.dto.GroupDto;
 import com.bht.pim.dto.ProjectDto;
-import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.fragment.children.confirm.Confirmable;
 import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.mapper.DateTimeMapper;
@@ -25,13 +26,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import lombok.extern.log4j.Log4j;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import org.jacpfx.api.annotations.Resource;
@@ -41,17 +40,17 @@ import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Log4j
 @Controller
-@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_EDIT_FORM,
+@Fragment(id = ProjectEditForm.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditForm.fxml")
-public class ProjectEditForm implements Initializable, Confirmable, ParentOwning {
+public class ProjectEditForm extends ChildFragment implements Confirmable {
+
+    static final String ID = "idfPEditForm";
 
     private ProjectDto projectDto;
 
@@ -153,18 +152,8 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
 
     @Override
-    public void onSwitchParentFragment() {
-        loadProjectEditForm();
-    }
-
-    public void setIsUpdateState(boolean isUpdateState) {
-        isUpdate = isUpdateState;
-        initComboBoxStatus();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        log.info("[Project Edit Form] Initialization");
+    public void onCreated() {
+        LOGGER.info("[Project Edit Form] Initialization");
 
         members = new ArrayList<>();
         employees = new ArrayList<>();
@@ -182,6 +171,16 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
         // Add all event-listener
         addAllEventListener();
+    }
+
+    @Override
+    public void onSwitchParentFragment() {
+        loadProjectEditForm();
+    }
+
+    public void setIsUpdateState(boolean isUpdateState) {
+        isUpdate = isUpdateState;
+        initComboBoxStatus();
     }
 
     // Hide all check-label
@@ -319,7 +318,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
             table.getItems().add(employeeDTO);
 
             members.add(employeeDTO);
-            log.info(members);
+            LOGGER.info(members);
 
             // Update autocompletion list
             // remove the selected one
@@ -384,8 +383,8 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                     // remove this id from the employeeDTO id list
                     members.remove(employeeDTO);
 
-                    // log current list employeeDTO id
-                    log.info(members);
+                    // LOGGER current list employeeDTO id
+                    LOGGER.info(members);
                 });
             }
         };
@@ -394,7 +393,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     @Override
     public void onSubmit(MouseEvent event) {
-        log.info("[bCreate] onClick");
+        LOGGER.info("[bCreate] onClick");
 
         hideAllValidation();
 
@@ -422,7 +421,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                 return;
             }
 
-            log.info("<<< PIM - On saving new project >>>");
+            LOGGER.info("<<< PIM - On saving new project >>>");
 
             EmployeeDto groupLeader = EmployeeDto.newBuilder()
                     .id(leader.getId())
@@ -465,7 +464,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                 saveOrUpdateProject(projectDtoBuilder);
 
             } catch (Exception exception) {
-                log.info(exception);
+                LOGGER.info(exception);
             }
         } else {
             warnOnInvalid(emptyNumber, emptyName, emptyCustomer, emptyStart);
@@ -515,7 +514,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                 .equals(LanguageUtil.getCurrentLabelOfKey("label.project.form.newgroup"))) {
 
             // send group info to server to save
-            log.info("<<< PIM - On creating new group >>>");
+            LOGGER.info("<<< PIM - On creating new group >>>");
             return groupService.addNewGroup(groupDto);
         }
         return false;
@@ -524,13 +523,13 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
 
     @Override
     public void onCancel(MouseEvent event) {
-        log.info("[bCancel] onClick");
+        LOGGER.info("[bCancel] onClick");
 
         FragmentSwitching switching = new FragmentSwitching(
                 ProjectEditForm.class,
                 ProjectList.class);
 
-        context.send(AppConfiguration.COMPONENT_MAIN, switching);
+        context.send(MainPane.ID, switching);
     }
 
 
@@ -583,7 +582,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
             }
         }
 
-        log.info(members);
+        LOGGER.info(members);
 
         // load auto-completion again
         employeeAutoCompletion.dispose();
@@ -622,7 +621,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     public boolean getProjectById(long projectId) {
         projectDto = projectService.getProjectById(projectId);
 
-        log.info(projectDto);
+        LOGGER.info(projectDto);
 
         return projectDto.getId() != 0;
     }
@@ -761,7 +760,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
     private void saveOrUpdateProject(ProjectDto.Builder projectDtoBuilder) {
         projectDto = projectDtoBuilder.build();
 
-        log.info(isUpdate);
+        LOGGER.info(isUpdate);
 
         if (isUpdate) {
             updateProject(projectDto);
@@ -779,7 +778,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                     ProjectEditForm.class,
                     ProjectList.class);
 
-            context.send(AppConfiguration.COMPONENT_MAIN, switching);
+            context.send(MainPane.ID, switching);
 
         } else {
             NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
@@ -798,7 +797,7 @@ public class ProjectEditForm implements Initializable, Confirmable, ParentOwning
                     ProjectEditForm.class,
                     ProjectList.class);
 
-            context.send(AppConfiguration.COMPONENT_MAIN, switching);
+            context.send(MainPane.ID, switching);
 
         } else {
             NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,

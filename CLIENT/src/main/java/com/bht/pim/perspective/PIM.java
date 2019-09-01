@@ -1,5 +1,16 @@
 package com.bht.pim.perspective;
 
+import com.bht.pim.component.LeftPane;
+import com.bht.pim.component.MainPane;
+import com.bht.pim.component.TopPane;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.handler.PimErrorHandler;
+import com.bht.pim.message.impl.PerspectiveShowing;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
+import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
 import org.jacpfx.api.annotations.lifecycle.OnShow;
@@ -12,24 +23,11 @@ import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.handler.PimErrorHandler;
-import com.bht.pim.message.impl.PerspectiveShowing;
-
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
-import lombok.extern.log4j.Log4j;
-
 @Log4j
 @Perspective(id = AppConfiguration.PERSPECTIVE_PIM, name = "PerspectivePIM",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/perspective/PIM.fxml",
-        components = {
-                AppConfiguration.COMPONENT_TOP,
-                AppConfiguration.COMPONENT_LEFT,
-                AppConfiguration.COMPONENT_MAIN,})
+        components = {TopPane.ID, LeftPane.ID, MainPane.ID})
 public class PIM implements FXPerspective {
 
     @FXML
@@ -63,7 +61,7 @@ public class PIM implements FXPerspective {
 
         // check if connection is lost ? show error : continue
         PerspectiveShowing perspectiveShowing = new PerspectiveShowing(PIM.class);
-        context.send(AppConfiguration.COMPONENT_MAIN, perspectiveShowing);
+        context.send(MainPane.ID, perspectiveShowing);
     }
 
     @OnHide
@@ -83,11 +81,11 @@ public class PIM implements FXPerspective {
         perspectiveLayout.registerRootComponent(rootPane);
         // Register other components
         perspectiveLayout.registerTargetLayoutComponent(
-                AppConfiguration.TARGET_CONTAINER_TOP, topPane);
+                TopPane.CONTAINER, topPane);
         perspectiveLayout.registerTargetLayoutComponent(
-                AppConfiguration.TARGET_CONTAINER_LEFT, leftPane);
+                LeftPane.CONTAINER, leftPane);
         perspectiveLayout.registerTargetLayoutComponent(
-                AppConfiguration.TARGET_CONTAINER_MAIN, mainPane);
+                MainPane.CONTAINER, mainPane);
 
         layout.getGlassPane().setMinWidth(1280);
         layout.getGlassPane().setMinHeight(720);

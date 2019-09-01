@@ -1,5 +1,14 @@
 package com.bht.pim.perspective;
 
+import com.bht.pim.component.BottomPane;
+import com.bht.pim.component.TopPane;
+import com.bht.pim.configuration.AppConfiguration;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
 import org.jacpfx.api.annotations.lifecycle.OnShow;
@@ -12,22 +21,11 @@ import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
 
-import com.bht.pim.configuration.AppConfiguration;
-
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import lombok.extern.log4j.Log4j;
-
 @Log4j
 @Perspective(id = AppConfiguration.PERSPECTIVE_DEFAULT, name = "PerspectiveDefault",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/perspective/Default.fxml",
-        components = {
-                AppConfiguration.COMPONENT_TOP,
-                AppConfiguration.COMPONENT_BOTTOM,})
+        components = {TopPane.ID, BottomPane.ID})
 public class Default implements FXPerspective {
 
     @FXML
@@ -46,7 +44,7 @@ public class Default implements FXPerspective {
     public void handlePerspective(Message<Event, Object> message, PerspectiveLayout perspectiveLayout) {
         log.info("On handle perspective: " + perspectiveLayout.getClass().getSimpleName() +
                 " >>> in: " + context.getId());
-        context.send(AppConfiguration.COMPONENT_BOTTOM, message.getMessageBody());
+        context.send(BottomPane.ID, message.getMessageBody());
     }
 
     @PreDestroy
@@ -71,9 +69,9 @@ public class Default implements FXPerspective {
         perspectiveLayout.registerRootComponent(rootPane);
         // Register other components
         perspectiveLayout.registerTargetLayoutComponent(
-                AppConfiguration.TARGET_CONTAINER_TOP, topPane);
+                TopPane.CONTAINER, topPane);
         perspectiveLayout.registerTargetLayoutComponent(
-                AppConfiguration.TARGET_CONTAINER_BOTTOM, bottomPane);
+                BottomPane.CONTAINER, bottomPane);
 
         layout.getGlassPane().setMinWidth(1280);
         layout.getGlassPane().setMinHeight(720);

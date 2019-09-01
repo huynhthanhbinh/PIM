@@ -1,21 +1,9 @@
 package com.bht.pim.fragment.children.project;
 
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
+import com.bht.pim.base.ChildFragment;
+import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.ProjectDto;
-import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.fragment.parent.project.ProjectInfo;
 import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.fragment.parent.project.ProjectUpdate;
@@ -29,30 +17,13 @@ import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.PimUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
-
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.SingleSelectionModel;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -63,22 +34,32 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
-@Log4j
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
-@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_TABLE,
+@Fragment(id = ProjectTable.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectTable.fxml")
-public class ProjectTable implements Initializable, ParentOwning {
+public class ProjectTable extends ChildFragment {
+
+    static final String ID = "idfPTable";
+    private static final int MAX_TABLE_ROW = 8;
 
     private final Image delete = PimUtil.getImage("delete");
     private final Image edit = PimUtil.getImage("edit");
     private final Image deleteInverse = PimUtil.getImage("delete_inverse");
     private final Image editInverse = PimUtil.getImage("edit_inverse");
 
-    private static final int MAX_TABLE_ROW = 8;
 
     private int countSuccess; // for delete all selected projects
     private int countFail; // for delete all selected projects
@@ -132,17 +113,9 @@ public class ProjectTable implements Initializable, ParentOwning {
 
     private List<ProjectDto> aboutToDeleteProjects;
 
-
     @Override
-    public void onSwitchParentFragment() {
-        // Get all necessary data from server
-        getListProject(pageIndexProperty.get());
-        searchBox.setOnKeyPressed(this::onKeyPressedSearchBox);
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        log.info("[Project Table] Initialization");
+    public void onCreated() {
+        LOGGER.info("[Project Table] Initialization");
         // init property for binding purposes
         initAllProperties();
 
@@ -154,6 +127,13 @@ public class ProjectTable implements Initializable, ParentOwning {
 
         // Add all event-listener
         addAllEventListener();
+    }
+
+    @Override
+    public void onSwitchParentFragment() {
+        // Get all necessary data from server
+        getListProject(pageIndexProperty.get());
+        searchBox.setOnKeyPressed(this::onKeyPressedSearchBox);
     }
 
     // Get all necessary data
@@ -177,7 +157,7 @@ public class ProjectTable implements Initializable, ParentOwning {
             temp = projectService.getNumberOfProjects();
         }
 
-        log.info("Number of projects: " + (long) temp);
+        LOGGER.info("Number of projects: " + (long) temp);
         pageCountProperty.set((int) Math.ceil(temp / MAX_TABLE_ROW));
         selectedProperty.set(0); // reset number of selected projects
         aboutToDeleteProjects.clear(); // remove old list of last page
@@ -271,7 +251,7 @@ public class ProjectTable implements Initializable, ParentOwning {
                                 "Cannot delete project which status is not \"New\"!");
                         return;
                     }
-                    log.info("Delete project id = " + projectDto.getId());
+                    LOGGER.info("Delete project id = " + projectDto.getId());
 
                     if (projectService.deleteProject(projectDto.getId())) {
                         NotificationUtil.showNotification(
@@ -300,24 +280,24 @@ public class ProjectTable implements Initializable, ParentOwning {
                         return;
                     }
 
-                    log.info("Edit project id = " + projectDto.getId());
+                    LOGGER.info("Edit project id = " + projectDto.getId());
 
-                    log.info(successProperty.get());
+                    LOGGER.info(successProperty.get());
 
                     IdentifierSending sending = new IdentifierSending(
                             ProjectList.class,
                             ProjectUpdate.class,
                             projectDto.getId());
 
-                    context.send(AppConfiguration.COMPONENT_MAIN, sending);
+                    context.send(MainPane.ID, sending);
 
-                    log.info(successProperty.get());
+                    LOGGER.info(successProperty.get());
 
                     FragmentSwitching switching = new FragmentSwitching(
                             ProjectList.class,
                             ProjectUpdate.class);
 
-                    context.send(AppConfiguration.COMPONENT_MAIN, switching);
+                    context.send(MainPane.ID, switching);
                 });
             }
         };
@@ -340,24 +320,24 @@ public class ProjectTable implements Initializable, ParentOwning {
                 lName.getStyleClass().add("clickable");
                 lName.setPickOnBounds(false);
                 lName.setOnMouseClicked(event -> {
-                    log.info("view info of project id = " + projectDto.getId());
+                    LOGGER.info("view info of project id = " + projectDto.getId());
 
-                    log.info(successProperty.get());
+                    LOGGER.info(successProperty.get());
 
                     IdentifierSending sending = new IdentifierSending(
                             ProjectList.class,
                             ProjectInfo.class,
                             projectDto.getId());
 
-                    context.send(AppConfiguration.COMPONENT_MAIN, sending);
+                    context.send(MainPane.ID, sending);
 
-                    log.info(successProperty.get());
+                    LOGGER.info(successProperty.get());
 
                     FragmentSwitching switching = new FragmentSwitching(
                             ProjectList.class,
                             ProjectInfo.class);
 
-                    context.send(AppConfiguration.COMPONENT_MAIN, switching);
+                    context.send(MainPane.ID, switching);
                 });
 
                 setGraphic(lName);
@@ -432,7 +412,7 @@ public class ProjectTable implements Initializable, ParentOwning {
     private void onSearchForProject(Event event) {
         if (!searchBox.getText().isEmpty()) {
             statusSelection.get().clearSelection();
-            log.info("Searching for project with keyword = " + searchBox.getText());
+            LOGGER.info("Searching for project with keyword = " + searchBox.getText());
             getListProject(0);
         }
     }
@@ -488,7 +468,7 @@ public class ProjectTable implements Initializable, ParentOwning {
             });
 
         } catch (Exception exception) {
-            log.info(exception);
+            LOGGER.info(exception);
 
         } finally {
             getListProject(calculatePageIndexAfterDelete());

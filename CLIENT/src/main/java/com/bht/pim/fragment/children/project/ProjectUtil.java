@@ -1,17 +1,8 @@
 package com.bht.pim.fragment.children.project;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
+import com.bht.pim.base.ChildFragment;
+import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.fragment.parent.project.ProjectCreate;
 import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.mapper.StatusMapper;
@@ -19,9 +10,7 @@ import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.PimUtil;
-
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -29,15 +18,21 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
-import lombok.extern.log4j.Log4j;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
-@Log4j
 @Controller
-@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_UTIL,
+@Fragment(id = ProjectUtil.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectUtil.fxml")
-public class ProjectUtil implements Initializable, ParentOwning {
+public class ProjectUtil extends ChildFragment {
+
+    static final String ID = "idfPUtil";
 
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
     @Resource
@@ -68,8 +63,8 @@ public class ProjectUtil implements Initializable, ParentOwning {
     private Button bNew;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        log.info("[Project Util] Initialization");
+    public void onCreated() {
+        LOGGER.info("[Project Util] Initialization");
         initComboBoxStatus();
 
         LanguageUtil.initLabel(searchBox.promptTextProperty(), "label.project.util.searchbox");
@@ -92,18 +87,16 @@ public class ProjectUtil implements Initializable, ParentOwning {
         bDeleteAll.setVisible(false);
 
         bNew.setOnMouseClicked(event -> {
-            log.info("[NEW] on mouse clicked");
+            LOGGER.info("[NEW] on mouse clicked");
 
             FragmentSwitching switching = new FragmentSwitching(
                     ProjectList.class,
                     ProjectCreate.class);
 
-            context.send(AppConfiguration.COMPONENT_MAIN, switching);
+            context.send(MainPane.ID, switching);
         });
 
-        bDeleteAll.setOnMouseClicked(event -> {
-            log.info("[DELETE ALL] on mouse clicked");
-        });
+        bDeleteAll.setOnMouseClicked(event -> LOGGER.info("[DELETE ALL] on mouse clicked"));
 
         lNumberOfProjects.textProperty().addListener((observable, oldValue, newValue) -> {
             if (Integer.valueOf(newValue) > 0) {
@@ -116,7 +109,7 @@ public class ProjectUtil implements Initializable, ParentOwning {
 
     @Override
     public void onSwitchParentFragment() {
-
+        // ...
     }
 
     private void initComboBoxStatus() {

@@ -1,41 +1,37 @@
 package com.bht.pim.fragment.parent.project;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.context.Context;
-import org.springframework.stereotype.Controller;
-
+import com.bht.pim.base.ChildFragment;
+import com.bht.pim.base.ParentFragment;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.label.MainLabel;
 import com.bht.pim.fragment.children.pagination.PimPagination;
 import com.bht.pim.fragment.children.project.ProjectTable;
 import com.bht.pim.fragment.children.project.ProjectUtil;
-import com.bht.pim.fragment.parent.ChildrenContaining;
 import com.bht.pim.fragment.parent.SuccessNeeding;
 import com.bht.pim.util.PimUtil;
-
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.layout.VBox;
-import javafx.util.Pair;
 import javafx.util.StringConverter;
-import lombok.extern.log4j.Log4j;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
+import org.springframework.stereotype.Controller;
 
-@Log4j
+import java.util.List;
+
+/**
+ * @author bht
+ */
 @Controller
-@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_LIST,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        scope = Scope.SINGLETON,
-        viewLocation = "/com/bht/pim/fragment/parent/project/ProjectList.fxml")
-public class ProjectList implements Initializable, ChildrenContaining, SuccessNeeding {
+@Fragment(id = ProjectList.ID, scope = Scope.SINGLETON,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
+public class ProjectList extends ParentFragment implements SuccessNeeding {
+
+    static final String ID = "idfPList";
+    static final String LABEL = "label.project.list";
 
     private MainLabel mainLabel;
     private ProjectUtil projectUtil;
@@ -45,49 +41,36 @@ public class ProjectList implements Initializable, ChildrenContaining, SuccessNe
 
     @Resource
     private Context context;
-    @FXML
-    private VBox mainPane;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        log.info("[Project List] On init scene\n");
-        PimUtil.alignPane(mainPane, context);
+    @PostConstruct
+    public void init() {
+        LOGGER.info("[Project List] On init scene\n");
+        PimUtil.alignPane(this, context);
         successProperty = new SimpleBooleanProperty();
     }
 
     @Override
-    public final <T> void addAllChildren(Pair<T, Node>[] children) {
-        for (Pair<T, Node> child : children) {
-            mainPane.getChildren().add(child.getValue());
-        }
+    protected void getChildrenFragments(List<ChildFragment> children) {
+        mainLabel = (MainLabel) children.get(0);
+        projectUtil = (ProjectUtil) children.get(1);
+        projectTable = (ProjectTable) children.get(2);
+        pagination = (PimPagination) children.get(3);
+    }
 
-        mainLabel = (MainLabel) children[0].getKey();
-        projectUtil = (ProjectUtil) children[1].getKey();
-        projectTable = (ProjectTable) children[2].getKey();
-        pagination = (PimPagination) children[3].getKey();
-
-        bindingChildrenFragments();
-        mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_LIST);
+    @Override
+    protected void configureEachChildFragment() {
+        mainLabel.setLabelText(LABEL);
         projectUtil.getBReset().setOnMouseClicked(projectTable::onReset);
         projectUtil.getBDeleteAll().setOnMouseClicked(projectTable::onDeleteAllSelected);
 
         projectTable.getMainPane().prefWidthProperty().bind(Bindings.
-                when(mainPane.widthProperty().lessThan(1500))
-                .then(mainPane.widthProperty().subtract(10))
+                when(widthProperty().lessThan(1500))
+                .then(widthProperty().subtract(10))
                 .otherwise(1500));
     }
 
     @Override
-    public void onSwitchParentFragment() {
-        log.info("Switching fragment, new fragment: " + getClass().getSimpleName());
-
-        mainLabel.onSwitchParentFragment();
-        projectUtil.onSwitchParentFragment();
-        projectTable.onSwitchParentFragment();
-        pagination.onSwitchParentFragment();
-    }
-
-    private void bindingChildrenFragments() {
+    protected void bindChildrenFragments() {
         projectTable.setSearchBox(projectUtil.getSearchBox());
         pagination.getPagination().currentPageIndexProperty().bindBidirectional(projectTable.getPageIndexProperty());
         pagination.getPagination().pageCountProperty().bind(projectTable.getPageCountProperty());

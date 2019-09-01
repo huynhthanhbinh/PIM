@@ -1,19 +1,10 @@
 package com.bht.pim.fragment.children.project;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
+import com.bht.pim.base.ChildFragment;
+import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.dto.ProjectDto;
-import com.bht.pim.fragment.children.ParentOwning;
 import com.bht.pim.fragment.parent.project.ProjectInfo;
 import com.bht.pim.fragment.parent.project.ProjectList;
 import com.bht.pim.fragment.parent.project.ProjectUpdate;
@@ -27,27 +18,27 @@ import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.PimUtil;
-
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import lombok.extern.log4j.Log4j;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
-@Log4j
 @Controller
-@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_DETAIL,
+@Fragment(id = ProjectDetail.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectDetail.fxml")
-public class ProjectDetail implements Initializable, ParentOwning {
+public class ProjectDetail extends ChildFragment {
+
+    static final String ID = "idfPDetail";
 
     private ProjectDto projectDto;
 
@@ -110,8 +101,8 @@ public class ProjectDetail implements Initializable, ParentOwning {
     private TableColumn<EmployeeDto, EmployeeDto> cName;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        log.info("[Project Detail] Initialization");
+    public void onCreated() {
+        LOGGER.info("[Project Detail] Initialization");
 
         // for i18n / multilingual
         initAllLabels();
@@ -203,29 +194,29 @@ public class ProjectDetail implements Initializable, ParentOwning {
             return;
         }
 
-        log.info("[PIM] on modify project");
+        LOGGER.info("[PIM] on modify project");
 
         IdentifierSending sending = new IdentifierSending(
                 ProjectList.class,
                 ProjectUpdate.class,
                 projectDto.getId());
 
-        context.send(AppConfiguration.COMPONENT_MAIN, sending);
+        context.send(MainPane.ID, sending);
 
         FragmentSwitching switching = new FragmentSwitching(
                 ProjectInfo.class,
                 ProjectUpdate.class);
 
-        context.send(AppConfiguration.COMPONENT_MAIN, switching);
+        context.send(MainPane.ID, switching);
     }
 
     public void onReturn(MouseEvent mouseEvent) {
-        log.info("[PIM] on return back to project list");
+        LOGGER.info("[PIM] on return back to project list");
 
         FragmentSwitching fragmentSwitching = new FragmentSwitching(
                 ProjectInfo.class,
                 ProjectList.class);
 
-        context.send(AppConfiguration.COMPONENT_MAIN, fragmentSwitching);
+        context.send(MainPane.ID, fragmentSwitching);
     }
 }

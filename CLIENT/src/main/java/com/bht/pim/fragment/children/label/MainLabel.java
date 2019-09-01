@@ -1,32 +1,29 @@
 package com.bht.pim.fragment.children.label;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import com.bht.pim.base.ChildFragment;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.util.LanguageUtil;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.children.ParentOwning;
-import com.bht.pim.util.LanguageUtil;
-
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import lombok.extern.log4j.Log4j;
-
-
-@Log4j
 @Controller
-@Fragment(id = AppConfiguration.FRAGMENT_MAIN_LABEL,
+@Fragment(id = MainLabel.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/label/MainLabel.fxml")
-public class MainLabel implements ParentOwning, Initializable {
+public class MainLabel extends ChildFragment {
+
+    static final String ID = "idfMLabel"; // label of main-pane
 
     @FXML
     private Label label;
+
+    @Override
+    public void onCreated() {
+        LOGGER.info("[Main Label] Initialization");
+    }
 
     @FXML
     public void setLabelText(String newLabel) {
@@ -35,11 +32,6 @@ public class MainLabel implements ParentOwning, Initializable {
 
     @Override
     public void onSwitchParentFragment() {
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        log.info("[Main Label] Initialization");
+        // ...
     }
 }

@@ -1,36 +1,32 @@
 package com.bht.pim.fragment.parent.project;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.context.Context;
-import org.springframework.stereotype.Controller;
-
+import com.bht.pim.base.ChildFragment;
+import com.bht.pim.base.ParentFragment;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.confirm.ConfirmBox;
 import com.bht.pim.fragment.children.label.MainLabel;
 import com.bht.pim.fragment.children.project.ProjectDetail;
-import com.bht.pim.fragment.parent.ChildrenContaining;
 import com.bht.pim.fragment.parent.IdentifierNeeding;
 import com.bht.pim.util.PimUtil;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.annotations.lifecycle.PostConstruct;
+import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
+import org.springframework.stereotype.Controller;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.layout.VBox;
-import javafx.util.Pair;
-import lombok.extern.log4j.Log4j;
+import java.util.List;
 
-@Log4j
+/**
+ * @author bht
+ */
 @Controller
-@Fragment(id = AppConfiguration.FRAGMENT_PROJECT_INFO,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        scope = Scope.SINGLETON,
-        viewLocation = "/com/bht/pim/fragment/parent/project/ProjectInfo.fxml")
-public class ProjectInfo implements Initializable, ChildrenContaining, IdentifierNeeding {
+@Fragment(id = ProjectInfo.ID, scope = Scope.SINGLETON,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
+public class ProjectInfo extends ParentFragment implements IdentifierNeeding {
+
+    static final String ID = "idfPInfo";
+    static final String LABEL = "label.project.info";
 
     private MainLabel mainLabel;
     private ProjectDetail projectDetail;
@@ -38,38 +34,31 @@ public class ProjectInfo implements Initializable, ChildrenContaining, Identifie
 
     @Resource
     private Context context;
-    @FXML
-    private VBox mainPane;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        log.info("[Project Info] On init scene\n");
-        PimUtil.alignPane(mainPane, context);
+    @PostConstruct
+    public void init() {
+        LOGGER.info("[Project Info] On init scene\n");
+        PimUtil.alignPane(this, context);
     }
 
     @Override
-    public <T> void addAllChildren(Pair<T, Node>[] children) {
-        for (Pair<T, Node> child : children) {
-            mainPane.getChildren().add(child.getValue());
-        }
+    protected void getChildrenFragments(List<ChildFragment> children) {
+        mainLabel = (MainLabel) children.get(0);
+        projectDetail = (ProjectDetail) children.get(1);
+        confirmBox = (ConfirmBox) children.get(2);
+    }
 
-        mainLabel = (MainLabel) children[0].getKey();
-        projectDetail = (ProjectDetail) children[1].getKey();
-        confirmBox = (ConfirmBox) children[2].getKey();
+    @Override
+    protected void configureEachChildFragment() {
+        mainLabel.setLabelText(LABEL);
+        confirmBox.setLabelConfirm(ConfirmBox.LABEL_CONFIRM_MODIFY);
+        confirmBox.setLabelCancel(ConfirmBox.LABEL_CONFIRM_RETURN);
+    }
 
-        mainLabel.setLabelText(AppConfiguration.LABEL_PROJECT_INFO);
-        confirmBox.setLabelConfirm(AppConfiguration.LABEL_CONFIRM_MODIFY);
-        confirmBox.setLabelCancel(AppConfiguration.LABEL_CONFIRM_RETURN);
+    @Override
+    protected void bindChildrenFragments() {
         confirmBox.setOnSubmit(projectDetail::onModify);
         confirmBox.setOnCancel(projectDetail::onReturn);
-    }
-
-    @Override
-    public void onSwitchParentFragment() {
-        log.info("Switching fragment, new fragment: " + getClass().getSimpleName());
-        mainLabel.onSwitchParentFragment();
-        projectDetail.onSwitchParentFragment();
-        confirmBox.onSwitchParentFragment();
     }
 
     @Override

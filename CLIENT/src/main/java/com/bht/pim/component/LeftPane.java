@@ -1,7 +1,15 @@
 package com.bht.pim.component;
 
-import java.util.ResourceBundle;
-
+import com.bht.pim.base.BaseComponent;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.parent.project.ProjectList;
+import com.bht.pim.message.impl.FragmentSwitching;
+import com.bht.pim.util.LanguageUtil;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
@@ -14,27 +22,17 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.parent.employee.EmployeeList;
-import com.bht.pim.fragment.parent.group.GroupList;
-import com.bht.pim.fragment.parent.project.ProjectList;
-import com.bht.pim.message.impl.FragmentSwitching;
-import com.bht.pim.util.LanguageUtil;
+import java.util.ResourceBundle;
 
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import lombok.extern.log4j.Log4j;
-
-@Log4j
 @Controller
-@DeclarativeView(id = AppConfiguration.COMPONENT_LEFT, name = "LeftPane",
+@DeclarativeView(id = LeftPane.ID, name = "LeftPane",
+        initialTargetLayoutId = LeftPane.CONTAINER,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_LEFT,
         viewLocation = "/com/bht/pim/component/LeftPane.fxml")
-public class LeftPane implements FXComponent {
+public class LeftPane extends BaseComponent implements FXComponent {
+
+    public static final String ID = "idcLeft";
+    public static final String CONTAINER = "PLeft";
 
     @FXML
     private Label lProjectList;
@@ -59,9 +57,9 @@ public class LeftPane implements FXComponent {
     public void onStartComponent(final FXComponentLayout arg0,
                                  final ResourceBundle resourceBundle) {
 
-        LanguageUtil.initLabel(lProjectList.textProperty(), AppConfiguration.LABEL_LEFT_LIST_PROJECT);
-        LanguageUtil.initLabel(lGroupList.textProperty(), AppConfiguration.LABEL_LEFT_LIST_GROUP);
-        LanguageUtil.initLabel(lEmployeeList.textProperty(), AppConfiguration.LABEL_LEFT_LIST_EMPLOYEE);
+        LanguageUtil.initLabel(lProjectList.textProperty(), AppConfiguration.LABEL_LEFT_PROJECT_LIST);
+        LanguageUtil.initLabel(lGroupList.textProperty(), AppConfiguration.LABEL_LEFT_PROJECT_LIST);
+        LanguageUtil.initLabel(lEmployeeList.textProperty(), AppConfiguration.LABEL_LEFT_PROJECT_LIST);
 
         lProjectList.getStyleClass().add("clickable");
         lGroupList.getStyleClass().add("clickable");
@@ -75,21 +73,21 @@ public class LeftPane implements FXComponent {
 
     @PreDestroy
     public void onTearDownComponent(final FXComponentLayout componentLayout) {
-        log.info("[DESTROY] FXComponentLayout: " + context.getId());
+        LOGGER.info("[DESTROY] FXComponentLayout: " + context.getId());
     }
 
     @OnShow
     public void onShowComponent(final FXComponentLayout componentLayout) {
-        log.info("[SHOW] FXComponentLayout: " + context.getId());
+        LOGGER.info("[SHOW] FXComponentLayout: " + context.getId());
     }
 
     @OnHide
     public void onHide(final FXComponentLayout componentLayout) {
-        log.info("[HIDE] FXComponentLayout: " + context.getId());
+        LOGGER.info("[HIDE] FXComponentLayout: " + context.getId());
     }
 
     private void onMouseClickedProjectList(MouseEvent mouseEvent) {
-        log.info("[LeftPane] Clicked Project List");
+        LOGGER.info("[LeftPane] Clicked Project List");
 
         if (lProjectList.getStyleClass().contains("active")) {
             mouseEvent.consume();
@@ -100,7 +98,7 @@ public class LeftPane implements FXComponent {
                 LeftPane.class,
                 ProjectList.class);
 
-        context.send(AppConfiguration.COMPONENT_MAIN, switching);
+        context.send(MainPane.ID, switching);
 
         lEmployeeList.getStyleClass().remove("active");
         lProjectList.getStyleClass().remove("active");
@@ -109,7 +107,7 @@ public class LeftPane implements FXComponent {
     }
 
     private void onMouseClickedGroupList(MouseEvent mouseEvent) {
-        log.info("[LeftPane] Clicked Group List");
+        LOGGER.info("[LeftPane] Clicked Group List");
 
         if (lGroupList.getStyleClass().contains("active")) {
             mouseEvent.consume();
@@ -118,9 +116,9 @@ public class LeftPane implements FXComponent {
 
         FragmentSwitching switching = new FragmentSwitching(
                 LeftPane.class,
-                GroupList.class);
+                ProjectList.class);
 
-        context.send(AppConfiguration.COMPONENT_MAIN, switching);
+        context.send(MainPane.ID, switching);
 
         lEmployeeList.getStyleClass().remove("active");
         lProjectList.getStyleClass().remove("active");
@@ -129,7 +127,7 @@ public class LeftPane implements FXComponent {
     }
 
     private void onMouseClickedEmployeeList(MouseEvent mouseEvent) {
-        log.info("[LeftPane] Clicked Employee List");
+        LOGGER.info("[LeftPane] Clicked Employee List");
 
         if (lEmployeeList.getStyleClass().contains("active")) {
             mouseEvent.consume();
@@ -138,9 +136,9 @@ public class LeftPane implements FXComponent {
 
         FragmentSwitching switching = new FragmentSwitching(
                 LeftPane.class,
-                EmployeeList.class);
+                ProjectList.class);
 
-        context.send(AppConfiguration.COMPONENT_MAIN, switching);
+        context.send(MainPane.ID, switching);
 
         lEmployeeList.getStyleClass().remove("active");
         lProjectList.getStyleClass().remove("active");

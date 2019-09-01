@@ -1,8 +1,15 @@
 package com.bht.pim.component;
 
-import java.util.Locale;
-import java.util.ResourceBundle;
-
+import com.bht.pim.base.BaseComponent;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.property.LanguageProperty;
+import com.bht.pim.util.LanguageUtil;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
@@ -15,25 +22,18 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.property.LanguageProperty;
-import com.bht.pim.util.LanguageUtil;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import lombok.extern.log4j.Log4j;
-
-@Log4j
 @Controller
-@DeclarativeView(id = AppConfiguration.COMPONENT_TOP, name = "TopPane",
+@DeclarativeView(id = TopPane.ID, name = "TopPane",
+        initialTargetLayoutId = TopPane.CONTAINER,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_TOP,
         viewLocation = "/com/bht/pim/component/TopPane.fxml")
-public class TopPane implements FXComponent {
+public class TopPane extends BaseComponent implements FXComponent {
+
+    public static final String ID = "idcTop";
+    public static final String CONTAINER = "PTop";
 
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
     @FXML
@@ -88,17 +88,17 @@ public class TopPane implements FXComponent {
 
     @PreDestroy
     public void onTearDownComponent(final FXComponentLayout componentLayout) {
-        log.info("[DESTROY] FXComponentLayout: " + context.getId());
+        LOGGER.info("[DESTROY] FXComponentLayout: " + context.getId());
     }
 
     @OnShow
     public void onShowComponent(final FXComponentLayout componentLayout) {
-        log.info("[SHOW] FXComponentLayout: " + context.getId());
+        LOGGER.info("[SHOW] FXComponentLayout: " + context.getId());
     }
 
     @OnHide
     public void onHide(final FXComponentLayout componentLayout) {
-        log.info("[HIDE] FXComponentLayout: " + context.getId());
+        LOGGER.info("[HIDE] FXComponentLayout: " + context.getId());
     }
 
     private void addLabelEnglishEventHandler() {
@@ -134,12 +134,12 @@ public class TopPane implements FXComponent {
     }
 
     private void addButtonHelpEventHandler() {
-        bHelp.setOnMouseClicked(event -> log.info("[PIM] Clicked help button"));
+        bHelp.setOnMouseClicked(event -> LOGGER.info("[PIM] Clicked help button"));
     }
 
     private void addButtonLogoutEventHandler() {
         bLogout.setOnMouseClicked(event -> {
-            log.info("[PIM} Clicked Logout button");
+            LOGGER.info("[PIM} Clicked Logout button");
             context.send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");
             AppConfiguration.LOGGED_IN_PROPERTY.set(false);
         });

@@ -1,8 +1,16 @@
 package com.bht.pim.component;
 
 
-import java.util.ResourceBundle;
-
+import com.bht.pim.base.BaseComponent;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.supplementary.ErrorHandling;
+import com.bht.pim.fragment.supplementary.Login;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.layout.VBox;
+import lombok.Getter;
+import lombok.Setter;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
@@ -15,26 +23,18 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.supplementary.ErrorHandling;
-import com.bht.pim.fragment.supplementary.Login;
+import java.util.ResourceBundle;
 
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.layout.VBox;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.log4j.Log4j;
-
-@Log4j
 @Getter
 @Setter
-@DeclarativeView(id = AppConfiguration.COMPONENT_BOTTOM, name = "BottomPane",
+@DeclarativeView(id = BottomPane.ID, name = "BottomPane",
+        initialTargetLayoutId = BottomPane.CONTAINER,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        initialTargetLayoutId = AppConfiguration.TARGET_CONTAINER_BOTTOM,
         viewLocation = "/com/bht/pim/component/BottomPane.fxml")
-public class BottomPane implements FXComponent {
+public class BottomPane extends BaseComponent implements FXComponent {
+
+    public static final String ID = "idcBottom";
+    public static final String CONTAINER = "PBottom";
 
     private ManagedFragmentHandler<Login> loginFragment;
     private ManagedFragmentHandler<ErrorHandling> errorHandlingFragment;
@@ -53,8 +53,8 @@ public class BottomPane implements FXComponent {
 
         if (message.getMessageBody() instanceof Throwable) {
 
-            log.info("[PIM] show error page");
-            log.info(message.getMessageBody());
+            LOGGER.info("[PIM] show error page");
+            LOGGER.info(message.getMessageBody());
             mainPane.getChildren().clear();
             mainPane.getChildren().add(errorPane);
             errorHandlingFragment.getController()
@@ -62,7 +62,7 @@ public class BottomPane implements FXComponent {
 
         } else {
 
-            log.info("[PIM] show login page");
+            LOGGER.info("[PIM] show login page");
             mainPane.getChildren().clear();
             mainPane.getChildren().add(loginPane);
         }
@@ -90,16 +90,16 @@ public class BottomPane implements FXComponent {
 
     @PreDestroy
     public void onTearDownComponent(final FXComponentLayout componentLayout) {
-        log.info("[DESTROY] FXComponentLayout: " + context.getId());
+        LOGGER.info("[DESTROY] FXComponentLayout: " + context.getId());
     }
 
     @OnShow
     public void onShowComponent(final FXComponentLayout componentLayout) {
-        log.info("[SHOW] FXComponentLayout: " + context.getId());
+        LOGGER.info("[SHOW] FXComponentLayout: " + context.getId());
     }
 
     @OnHide
     public void onHide(final FXComponentLayout componentLayout) {
-        log.info("[HIDE] FXComponentLayout: " + context.getId());
+        LOGGER.info("[HIDE] FXComponentLayout: " + context.getId());
     }
 }

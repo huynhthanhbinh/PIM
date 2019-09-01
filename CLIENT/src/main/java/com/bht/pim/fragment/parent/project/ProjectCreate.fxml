@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="1800.0"
-      minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1050.0"
-      spacing="5.0" stylesheets="/com/bht/pim/fragment/parent/project/ProjectCreate.css"
-      xmlns="http://javafx.com/javafx/8.0.999-ea">
-
-</VBox>

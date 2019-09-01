@@ -1,9 +1,15 @@
 package com.bht.pim.configuration;
 
-import java.util.Locale;
-
-import javax.annotation.PostConstruct;
-
+import com.bht.pim.mapper.*;
+import com.bht.pim.property.LanguageProperty;
+import com.bht.pim.proto.employees.EmployeeServiceGrpc;
+import com.bht.pim.proto.groups.GroupServiceGrpc;
+import com.bht.pim.proto.projects.ProjectServiceGrpc;
+import com.bht.pim.util.LanguageUtil;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import javafx.beans.property.*;
+import lombok.extern.log4j.Log4j;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -11,26 +17,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import com.bht.pim.mapper.DateTimeMapper;
-import com.bht.pim.mapper.EmployeeMapper;
-import com.bht.pim.mapper.GroupMapper;
-import com.bht.pim.mapper.ProjectMapper;
-import com.bht.pim.mapper.StatusMapper;
-import com.bht.pim.property.LanguageProperty;
-import com.bht.pim.proto.employees.EmployeeServiceGrpc;
-import com.bht.pim.proto.groups.GroupServiceGrpc;
-import com.bht.pim.proto.projects.ProjectServiceGrpc;
-import com.bht.pim.util.LanguageUtil;
-
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import lombok.extern.log4j.Log4j;
+import javax.annotation.PostConstruct;
+import java.util.Locale;
 
 @Log4j
 @Configuration
@@ -70,62 +58,11 @@ public class AppConfiguration {
     public static final String PERSPECTIVE_DEFAULT = "idPIMDefault";
     public static final String LANGUAGE_BUNDLES = "bundles.languageBundle";
 
-    public static final String TARGET_CONTAINER_TOP = "PTop";
-    public static final String TARGET_CONTAINER_BOTTOM = "PBottom";
-    public static final String TARGET_CONTAINER_LEFT = "PLeft";
-    public static final String TARGET_CONTAINER_MAIN = "PMain";
-
-    public static final String COMPONENT_TOP = "idcTop";
-    public static final String COMPONENT_BOTTOM = "idcBottom";
-    public static final String COMPONENT_LEFT = "idcLeft";
-    public static final String COMPONENT_MAIN = "idcMain";
-
-    public static final String FRAGMENT_MAIN_LABEL = "idfMLabel"; // label of main-pane
-    public static final String FRAGMENT_CONFIRM = "idfConfirm"; // ok_cancel box
-    public static final String FRAGMENT_PAGINATION = "idfPagination"; // pagination-pane
-
-    public static final String FRAGMENT_PROJECT_LIST = "idfPList";
-    public static final String FRAGMENT_PROJECT_INFO = "idfPInfo";
-    public static final String FRAGMENT_PROJECT_CREATE = "idfPCreate";
-    public static final String FRAGMENT_PROJECT_UPDATE = "idfPUpdate";
-
-    public static final String FRAGMENT_PROJECT_UTIL = "idfPUtil";
-    public static final String FRAGMENT_PROJECT_TABLE = "idfPTable";
-    public static final String FRAGMENT_PROJECT_EDIT_FORM = "idfPEditForm";
-    public static final String FRAGMENT_PROJECT_DETAIL = "idfPDetail";
-
-    public static final String FRAGMENT_GROUP_LIST = "idfGList";
-    public static final String FRAGMENT_GROUP_TABLE = "idfGTable";
-
-    public static final String FRAGMENT_EMPLOYEE_LIST = "idfEList";
-    public static final String FRAGMENT_EMPLOYEE_TABLE = "idfETable";
-
     public static final String FRAGMENT_SUPPLEMENTARY_LOGIN = "idfSLogin";
     public static final String FRAGMENT_SUPPLEMENTARY_ERROR = "idfSError";
 
     public static final String LABEL_PIM_MAIN = "label.pim.main";
-    public static final String LABEL_LEFT_LIST_PROJECT = "label.pim.left.list.project";
-    public static final String LABEL_LEFT_LIST_GROUP = "label.pim.left.list.group";
-    public static final String LABEL_LEFT_LIST_EMPLOYEE = "label.pim.left.list.employee";
-
-    public static final String LABEL_PROJECT_LIST = "label.project.list";
-    public static final String LABEL_PROJECT_CREATE = "label.project.create";
-    public static final String LABEL_PROJECT_INFO = "label.project.info";
-    public static final String LABEL_PROJECT_UPDATE = "label.project.update";
-
-    public static final String LABEL_GROUP_LIST = "label.group.list";
-    public static final String LABEL_EMPLOYEE_LIST = "label.employee.list";
-
-    public static final String LABEL_CONFIRM_CREATE = "label.confirm.form.create";
-    public static final String LABEL_CONFIRM_UPDATE = "label.confirm.form.update";
-    public static final String LABEL_CONFIRM_CANCEL = "label.confirm.form.cancel";
-    public static final String LABEL_CONFIRM_MODIFY = "label.confirm.form.modify";
-    public static final String LABEL_CONFIRM_RETURN = "label.confirm.form.return";
-
-    public static final String LABEL_STATUS_NEW = "label.project.status.new";
-    public static final String LABEL_STATUS_PLANNED = "label.project.status.planned";
-    public static final String LABEL_STATUS_IN_PROGRESS = "label.project.status.inprogress";
-    public static final String LABEL_STATUS_FINISHED = "label.project.status.finished";
+    public static final String LABEL_LEFT_PROJECT_LIST = "label.pim.left.list.project";
 
     public static final StringProperty INFORMATION_TITLE = new SimpleStringProperty();
     public static final StringProperty SUCCESS_TITLE = new SimpleStringProperty();
