@@ -15,7 +15,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.util.StringConverter;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
@@ -42,8 +41,8 @@ public class ProjectList extends ParentFragment implements SuccessNeeding {
     @Resource
     private Context context;
 
-    @PostConstruct
-    public void init() {
+    @Override
+    public void onCreated() {
         LOGGER.info("[Project List] On init scene\n");
         PimUtil.alignPane(this, context);
         successProperty = new SimpleBooleanProperty();

@@ -10,7 +10,6 @@ import com.bht.pim.fragment.parent.IdentifierNeeding;
 import com.bht.pim.util.PimUtil;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
@@ -35,8 +34,8 @@ public class ProjectInfo extends ParentFragment implements IdentifierNeeding {
     @Resource
     private Context context;
 
-    @PostConstruct
-    public void init() {
+    @Override
+    public void onCreated() {
         LOGGER.info("[Project Info] On init scene\n");
         PimUtil.alignPane(this, context);
     }

@@ -12,30 +12,26 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
-import org.jacpfx.api.annotations.lifecycle.OnHide;
-import org.jacpfx.api.annotations.lifecycle.OnShow;
-import org.jacpfx.api.annotations.lifecycle.PostConstruct;
-import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
-import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 @Controller
 @DeclarativeView(id = TopPane.ID, name = "TopPane",
         initialTargetLayoutId = TopPane.CONTAINER,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/component/TopPane.fxml")
-public class TopPane extends BaseComponent implements FXComponent {
+public class TopPane extends BaseComponent {
 
     public static final String ID = "idcTop";
     public static final String CONTAINER = "PTop";
 
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
+    @Resource
+    private Context context;
     @FXML
     private Label lApp;
     @FXML
@@ -50,23 +46,10 @@ public class TopPane extends BaseComponent implements FXComponent {
     private ImageView bHelp;
     @FXML
     private ImageView bLogout;
-    @Resource
-    private Context context;
 
     @Override
-    public Node handle(Message<Event, Object> message) {
-        return null;
-    }
-
-    @Override
-    public Node postHandle(Node node, Message<Event, Object> message) {
-        return null;
-    }
-
-    @PostConstruct
-    public void onStartComponent(final FXComponentLayout layout,
-                                 final ResourceBundle resourceBundle) {
-
+    protected void initComponent(FXComponentLayout layout) {
+        componentContext = context;
         LanguageUtil.initLabel(lApp.textProperty(), AppConfiguration.LABEL_PIM_MAIN);
 
         topPane.prefWidthProperty().bind(
@@ -86,19 +69,24 @@ public class TopPane extends BaseComponent implements FXComponent {
         addButtonLogoutEventHandler();
     }
 
-    @PreDestroy
-    public void onTearDownComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[DESTROY] FXComponentLayout: " + context.getId());
+    @Override
+    protected void loadFragments() {
+        // ...
     }
 
-    @OnShow
-    public void onShowComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[SHOW] FXComponentLayout: " + context.getId());
+    @Override
+    protected void initFragmentList() {
+        // ...
     }
 
-    @OnHide
-    public void onHide(final FXComponentLayout componentLayout) {
-        LOGGER.info("[HIDE] FXComponentLayout: " + context.getId());
+    @Override
+    protected void assignChildren() {
+        // ...
+    }
+
+    @Override
+    protected Node handleMessage(Message<Event, Object> message) {
+        return null;
     }
 
     private void addLabelEnglishEventHandler() {
@@ -140,7 +128,7 @@ public class TopPane extends BaseComponent implements FXComponent {
     private void addButtonLogoutEventHandler() {
         bLogout.setOnMouseClicked(event -> {
             LOGGER.info("[PIM} Clicked Logout button");
-            context.send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");
+            componentContext.send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");
             AppConfiguration.LOGGED_IN_PROPERTY.set(false);
         });
     }

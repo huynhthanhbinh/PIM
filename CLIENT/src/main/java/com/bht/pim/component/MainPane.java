@@ -28,18 +28,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
-import org.jacpfx.api.annotations.lifecycle.OnHide;
-import org.jacpfx.api.annotations.lifecycle.OnShow;
-import org.jacpfx.api.annotations.lifecycle.PostConstruct;
-import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
-import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
 import java.util.Arrays;
-import java.util.ResourceBundle;
 
 @Getter
 @Setter
@@ -48,15 +42,15 @@ import java.util.ResourceBundle;
         initialTargetLayoutId = MainPane.CONTAINER,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/component/MainPane.fxml")
-public class MainPane extends BaseComponent implements FXComponent {
+public class MainPane extends BaseComponent {
 
     public static final String ID = "idcMain";
     public static final String CONTAINER = "PMain";
 
-    @FXML
-    private VBox mainPane;
     @Resource
     private Context context;
+    @FXML
+    private VBox mainPane;
 
     private ManagedFragmentHandler currentFragment;
     private ManagedFragmentHandler<ProjectList> projectListFragment;
@@ -64,15 +58,30 @@ public class MainPane extends BaseComponent implements FXComponent {
     private ManagedFragmentHandler<ProjectUpdate> projectUpdateFragment;
     private ManagedFragmentHandler<ProjectInfo> projectInfoFragment;
 
+    @Override
+    protected void initComponent(FXComponentLayout layout) {
+        componentContext = context;
+        PimUtil.alignPane(mainPane, context);
+    }
 
-    private void loadFragments() {
+    @Override
+    protected void loadFragments() {
         projectListFragment = context.getManagedFragmentHandler(ProjectList.class);
         projectCreateFragment = context.getManagedFragmentHandler(ProjectCreate.class);
         projectUpdateFragment = context.getManagedFragmentHandler(ProjectUpdate.class);
         projectInfoFragment = context.getManagedFragmentHandler(ProjectInfo.class);
     }
 
-    private void assignChildren() {
+    @Override
+    protected void initFragmentList() {
+        fragments.add(projectListFragment.getController());
+        fragments.add(projectCreateFragment.getController());
+        fragments.add(projectUpdateFragment.getController());
+        fragments.add(projectInfoFragment.getController());
+    }
+
+    @Override
+    protected void assignChildren() {
         projectListFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
                 registerNewFragment(MainLabel.class),
                 registerNewFragment(ProjectUtil.class),
@@ -96,38 +105,8 @@ public class MainPane extends BaseComponent implements FXComponent {
     }
 
     @Override
-    public Node handle(Message<Event, Object> message) {
-        return null;
-    }
-
-    @Override
-    public Node postHandle(Node node, Message<Event, Object> message) {
-        return PimMessage.messageHandler(node, message, this);
-    }
-
-    @PostConstruct
-    public void onStartComponent(final FXComponentLayout layout,
-                                 final ResourceBundle resourceBundle) {
-
-        loadFragments();
-        assignChildren();
-
-        PimUtil.alignPane(mainPane, context);
-    }
-
-    @PreDestroy
-    public void onTearDownComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[DESTROY] FXComponentLayout: " + context.getId());
-    }
-
-    @OnShow
-    public void onShowComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[SHOW] FXComponentLayout: " + context.getId());
-    }
-
-    @OnHide
-    public void onHide(final FXComponentLayout componentLayout) {
-        LOGGER.info("[HIDE] FXComponentLayout: " + context.getId());
+    protected Node handleMessage(Message<Event, Object> message) {
+        return PimMessage.messageHandler(message, this);
     }
 
     private <T> Pair<T, Node> registerNewFragment(Class<T> fragmentClass) {

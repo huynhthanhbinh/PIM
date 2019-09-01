@@ -2,7 +2,6 @@ package com.bht.pim.message.impl;
 
 import com.bht.pim.component.MainPane;
 import com.bht.pim.message.PimMessage;
-
 import javafx.scene.Node;
 import lombok.AllArgsConstructor;
 
@@ -19,7 +18,7 @@ public class IdentifierSending implements PimMessage {
     }
 
     @Override
-    public Node postHandle(Node node, MainPane mainPane) {
+    public Node postHandle(MainPane mainPane) {
         MainPane.sendIdentifier(id, mainPane, fragmentSent, fragmentTarget);
         return null;
     }

@@ -12,50 +12,33 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
-import org.jacpfx.api.annotations.lifecycle.OnHide;
-import org.jacpfx.api.annotations.lifecycle.OnShow;
-import org.jacpfx.api.annotations.lifecycle.PostConstruct;
-import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
-import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
-
-import java.util.ResourceBundle;
 
 @Controller
 @DeclarativeView(id = LeftPane.ID, name = "LeftPane",
         initialTargetLayoutId = LeftPane.CONTAINER,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/component/LeftPane.fxml")
-public class LeftPane extends BaseComponent implements FXComponent {
+public class LeftPane extends BaseComponent {
 
     public static final String ID = "idcLeft";
     public static final String CONTAINER = "PLeft";
 
+    @Resource
+    private Context context;
     @FXML
     private Label lProjectList;
     @FXML
     private Label lGroupList;
     @FXML
     private Label lEmployeeList;
-    @Resource
-    private Context context;
 
     @Override
-    public Node handle(Message<Event, Object> message) {
-        return null;
-    }
-
-    @Override
-    public Node postHandle(Node node, Message<Event, Object> message) {
-        return null;
-    }
-
-    @PostConstruct
-    public void onStartComponent(final FXComponentLayout arg0,
-                                 final ResourceBundle resourceBundle) {
+    protected void initComponent(FXComponentLayout layout) {
+        componentContext = context;
 
         LanguageUtil.initLabel(lProjectList.textProperty(), AppConfiguration.LABEL_LEFT_PROJECT_LIST);
         LanguageUtil.initLabel(lGroupList.textProperty(), AppConfiguration.LABEL_LEFT_PROJECT_LIST);
@@ -71,19 +54,24 @@ public class LeftPane extends BaseComponent implements FXComponent {
         lEmployeeList.setOnMouseClicked(this::onMouseClickedEmployeeList);
     }
 
-    @PreDestroy
-    public void onTearDownComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[DESTROY] FXComponentLayout: " + context.getId());
+    @Override
+    protected void loadFragments() {
+        // ...
     }
 
-    @OnShow
-    public void onShowComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[SHOW] FXComponentLayout: " + context.getId());
+    @Override
+    protected void initFragmentList() {
+        // ...
     }
 
-    @OnHide
-    public void onHide(final FXComponentLayout componentLayout) {
-        LOGGER.info("[HIDE] FXComponentLayout: " + context.getId());
+    @Override
+    protected void assignChildren() {
+        // ...
+    }
+
+    @Override
+    protected Node handleMessage(Message<Event, Object> message) {
+        return null;
     }
 
     private void onMouseClickedProjectList(MouseEvent mouseEvent) {
@@ -98,7 +86,7 @@ public class LeftPane extends BaseComponent implements FXComponent {
                 LeftPane.class,
                 ProjectList.class);
 
-        context.send(MainPane.ID, switching);
+        componentContext.send(MainPane.ID, switching);
 
         lEmployeeList.getStyleClass().remove("active");
         lProjectList.getStyleClass().remove("active");
@@ -118,7 +106,7 @@ public class LeftPane extends BaseComponent implements FXComponent {
                 LeftPane.class,
                 ProjectList.class);
 
-        context.send(MainPane.ID, switching);
+        componentContext.send(MainPane.ID, switching);
 
         lEmployeeList.getStyleClass().remove("active");
         lProjectList.getStyleClass().remove("active");
@@ -138,7 +126,7 @@ public class LeftPane extends BaseComponent implements FXComponent {
                 LeftPane.class,
                 ProjectList.class);
 
-        context.send(MainPane.ID, switching);
+        componentContext.send(MainPane.ID, switching);
 
         lEmployeeList.getStyleClass().remove("active");
         lProjectList.getStyleClass().remove("active");

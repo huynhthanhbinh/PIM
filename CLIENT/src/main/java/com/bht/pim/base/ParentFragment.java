@@ -12,10 +12,15 @@ import java.util.stream.Collectors;
  * @author bht
  */
 public abstract class ParentFragment extends VBox { // is-parent-fragment, scope SINGLETON !!!
+
     // logger using for logging purposes
     protected static final Logger LOGGER = Logger.getLogger(ParentFragment.class);
+
     // list of children fragment of this parent fragment
     private List<ChildFragment> childFragments;
+
+    // initialize parent fragment
+    public abstract void onCreated();
 
     // this method will be invoked when switching main fragment
     public final void onSwitchParentFragment() {

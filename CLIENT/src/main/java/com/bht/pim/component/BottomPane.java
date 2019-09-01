@@ -13,17 +13,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.DeclarativeView;
-import org.jacpfx.api.annotations.lifecycle.OnHide;
-import org.jacpfx.api.annotations.lifecycle.OnShow;
-import org.jacpfx.api.annotations.lifecycle.PostConstruct;
-import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
-import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
-
-import java.util.ResourceBundle;
 
 @Getter
 @Setter
@@ -31,7 +24,7 @@ import java.util.ResourceBundle;
         initialTargetLayoutId = BottomPane.CONTAINER,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/component/BottomPane.fxml")
-public class BottomPane extends BaseComponent implements FXComponent {
+public class BottomPane extends BaseComponent {
 
     public static final String ID = "idcBottom";
     public static final String CONTAINER = "PBottom";
@@ -49,8 +42,35 @@ public class BottomPane extends BaseComponent implements FXComponent {
     private VBox errorPane;
 
     @Override
-    public Node postHandle(Node node, Message<Event, Object> message) throws Exception {
+    protected void initComponent(FXComponentLayout layout) {
+        componentContext = context;
 
+        loginFragment = componentContext.getManagedFragmentHandler(Login.class);
+        errorHandlingFragment = componentContext.getManagedFragmentHandler(ErrorHandling.class);
+
+        loginPane = (VBox) loginFragment.getFragmentNode();
+        errorPane = (VBox) errorHandlingFragment.getFragmentNode();
+
+        mainPane.getChildren().add(errorPane);
+    }
+
+    @Override
+    protected void loadFragments() {
+        // ...
+    }
+
+    @Override
+    protected void initFragmentList() {
+        // ...
+    }
+
+    @Override
+    protected void assignChildren() {
+        // ...
+    }
+
+    @Override
+    protected Node handleMessage(Message<Event, Object> message) {
         if (message.getMessageBody() instanceof Throwable) {
 
             LOGGER.info("[PIM] show error page");
@@ -66,40 +86,6 @@ public class BottomPane extends BaseComponent implements FXComponent {
             mainPane.getChildren().clear();
             mainPane.getChildren().add(loginPane);
         }
-
         return null;
-    }
-
-    @Override
-    public Node handle(Message<Event, Object> message) throws Exception {
-        return null;
-    }
-
-    @PostConstruct
-    public void onStartComponent(final FXComponentLayout arg0,
-                                 final ResourceBundle resourceBundle) {
-
-        loginFragment = context.getManagedFragmentHandler(Login.class);
-        errorHandlingFragment = context.getManagedFragmentHandler(ErrorHandling.class);
-
-        loginPane = (VBox) loginFragment.getFragmentNode();
-        errorPane = (VBox) errorHandlingFragment.getFragmentNode();
-
-        mainPane.getChildren().add(errorPane);
-    }
-
-    @PreDestroy
-    public void onTearDownComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[DESTROY] FXComponentLayout: " + context.getId());
-    }
-
-    @OnShow
-    public void onShowComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[SHOW] FXComponentLayout: " + context.getId());
-    }
-
-    @OnHide
-    public void onHide(final FXComponentLayout componentLayout) {
-        LOGGER.info("[HIDE] FXComponentLayout: " + context.getId());
     }
 }
