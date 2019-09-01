@@ -1,8 +1,13 @@
 package com.bht.pim.fragment.supplementary;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.util.LanguageUtil;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
@@ -10,24 +15,16 @@ import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.util.LanguageUtil;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import lombok.extern.log4j.Log4j;
-
-@Log4j
 @Controller
-@Fragment(id = AppConfiguration.FRAGMENT_SUPPLEMENTARY_ERROR,
+@Fragment(id = ErrorHandling.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        scope = Scope.SINGLETON,
         viewLocation = "/com/bht/pim/fragment/supplementary/ErrorHandling.fxml")
 public class ErrorHandling implements Initializable {
+
+    static final String ID = "idfSError";
 
     @Value("${pim.server.host}")
     private String host;
@@ -74,11 +71,10 @@ public class ErrorHandling implements Initializable {
     }
 
     private void onContactAdmin(MouseEvent mouseEvent) {
-        log.info("[PIM] Clicked contact administrator");
+        // ...
     }
 
     private void onReloadApp(MouseEvent mouseEvent) {
-        log.info("[PIM] Clicked reload application");
         AppConfiguration.CHANNEL_PROPERTY.get().resetConnectBackoff();
         context.send(AppConfiguration.PERSPECTIVE_PIM, "show");
     }

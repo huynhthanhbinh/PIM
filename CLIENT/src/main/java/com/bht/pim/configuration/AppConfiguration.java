@@ -51,15 +51,12 @@ public class AppConfiguration {
     @Value("${pim.server.port}")
     private int port; // port of gRPC
 
+    public static final String LANGUAGE_BUNDLES = "bundles.languageBundle";
     public static final ObjectProperty<ManagedChannel> CHANNEL_PROPERTY = new SimpleObjectProperty<>(); // connect to gRPC server
     public static final BooleanProperty LOGGED_IN_PROPERTY = new SimpleBooleanProperty(false); // check if logged-in yet
 
     public static final String PERSPECTIVE_PIM = "idPIMPerspective";
     public static final String PERSPECTIVE_DEFAULT = "idPIMDefault";
-    public static final String LANGUAGE_BUNDLES = "bundles.languageBundle";
-
-    public static final String FRAGMENT_SUPPLEMENTARY_LOGIN = "idfSLogin";
-    public static final String FRAGMENT_SUPPLEMENTARY_ERROR = "idfSError";
 
     public static final String LABEL_PIM_MAIN = "label.pim.main";
     public static final String LABEL_LEFT_PROJECT_LIST = "label.pim.left.list.project";
