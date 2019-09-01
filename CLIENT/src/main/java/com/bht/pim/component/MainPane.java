@@ -73,7 +73,7 @@ public class MainPane extends BaseComponent {
     }
 
     @Override
-    protected void initFragmentList() {
+    protected void createFragmentList() {
         fragments.add(projectListFragment.getController());
         fragments.add(projectCreateFragment.getController());
         fragments.add(projectUpdateFragment.getController());
@@ -83,35 +83,30 @@ public class MainPane extends BaseComponent {
     @Override
     protected void assignChildren() {
         projectListFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerNewFragment(MainLabel.class),
-                registerNewFragment(ProjectUtil.class),
-                registerNewFragment(ProjectTable.class),
-                registerNewFragment(PimPagination.class)}));
+                registerChildFragment(MainLabel.class),
+                registerChildFragment(ProjectUtil.class),
+                registerChildFragment(ProjectTable.class),
+                registerChildFragment(PimPagination.class)}));
 
         projectCreateFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerNewFragment(MainLabel.class),
-                registerNewFragment(ProjectEditForm.class),
-                registerNewFragment(ConfirmBox.class)}));
+                registerChildFragment(MainLabel.class),
+                registerChildFragment(ProjectEditForm.class),
+                registerChildFragment(ConfirmBox.class)}));
 
         projectUpdateFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerNewFragment(MainLabel.class),
-                registerNewFragment(ProjectEditForm.class),
-                registerNewFragment(ConfirmBox.class)}));
+                registerChildFragment(MainLabel.class),
+                registerChildFragment(ProjectEditForm.class),
+                registerChildFragment(ConfirmBox.class)}));
 
         projectInfoFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerNewFragment(MainLabel.class),
-                registerNewFragment(ProjectDetail.class),
-                registerNewFragment(ConfirmBox.class)}));
+                registerChildFragment(MainLabel.class),
+                registerChildFragment(ProjectDetail.class),
+                registerChildFragment(ConfirmBox.class)}));
     }
 
     @Override
     protected Node handleMessage(Message<Event, Object> message) {
         return PimMessage.messageHandler(message, this);
-    }
-
-    private <T> Pair<T, Node> registerNewFragment(Class<T> fragmentClass) {
-        ManagedFragmentHandler<T> fragment = context.getManagedFragmentHandler(fragmentClass);
-        return new Pair<>(fragment.getController(), fragment.getFragmentNode());
     }
 
     public static void switchFragment(MainPane mainPane, Class fragmentClazz) {

@@ -40,7 +40,7 @@ public class ProjectUpdate extends ParentFragment implements IdentifierNeeding {
     }
 
     @Override
-    public void onCreated() {
+    protected void onCreated() {
         LOGGER.info("[Project Update] On init scene\n");
         PimUtil.alignPane(this, context);
     }

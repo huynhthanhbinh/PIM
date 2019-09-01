@@ -35,7 +35,7 @@ public class ProjectInfo extends ParentFragment implements IdentifierNeeding {
     private Context context;
 
     @Override
-    public void onCreated() {
+    protected void onCreated() {
         LOGGER.info("[Project Info] On init scene\n");
         PimUtil.alignPane(this, context);
     }

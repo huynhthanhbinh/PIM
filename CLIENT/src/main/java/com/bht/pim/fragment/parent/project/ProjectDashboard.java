@@ -12,22 +12,22 @@ public class ProjectDashboard extends ParentFragment {
 
 
     @Override
-    public void onCreated() {
-
+    protected void onCreated() {
+        // ...
     }
 
     @Override
     protected void getChildrenFragments(List<ChildFragment> children) {
-
+        // ...
     }
 
     @Override
     protected void configureEachChildFragment() {
-
+        // ...
     }
 
     @Override
     protected void bindChildrenFragments() {
-
+        // ...
     }
 }

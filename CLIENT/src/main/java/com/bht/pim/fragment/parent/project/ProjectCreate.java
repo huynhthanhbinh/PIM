@@ -34,7 +34,7 @@ public class ProjectCreate extends ParentFragment {
     private Context context;
 
     @Override
-    public void onCreated() {
+    protected void onCreated() {
         LOGGER.info("[Project Create] On init scene\n");
         PimUtil.alignPane(this, context);
     }

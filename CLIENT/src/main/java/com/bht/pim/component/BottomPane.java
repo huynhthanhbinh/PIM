@@ -60,7 +60,7 @@ public class BottomPane extends BaseComponent {
     }
 
     @Override
-    protected void initFragmentList() {
+    protected void createFragmentList() {
         // ...
     }
 

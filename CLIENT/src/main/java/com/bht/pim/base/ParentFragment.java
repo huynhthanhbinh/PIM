@@ -20,16 +20,22 @@ public abstract class ParentFragment extends VBox { // is-parent-fragment, scope
     private List<ChildFragment> childFragments;
 
     // initialize parent fragment
-    public abstract void onCreated();
+    protected abstract void onCreated();
 
     // this method will be invoked when switching main fragment
     public final void onSwitchParentFragment() {
         childFragments.forEach(ChildFragment::onSwitchParentFragment);
     }
 
+    // init parent fragment
+    // after created in component
+    final void initialize() {
+        configureLayout();
+        onCreated();
+    }
+
     // add all Children fragments of the parent fragments
     public final <T extends ChildFragment> void addAllChildren(List<Pair<T, Node>> children) {
-        configureLayout();
         determineChildren(children);
         getChildrenFragments(childFragments);
         initializeEachChildFragment();

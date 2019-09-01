@@ -42,7 +42,7 @@ public class ProjectList extends ParentFragment implements SuccessNeeding {
     private Context context;
 
     @Override
-    public void onCreated() {
+    protected void onCreated() {
         LOGGER.info("[Project List] On init scene\n");
         PimUtil.alignPane(this, context);
         successProperty = new SimpleBooleanProperty();

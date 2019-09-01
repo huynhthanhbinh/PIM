@@ -2,6 +2,7 @@ package com.bht.pim.base;
 
 import javafx.event.Event;
 import javafx.scene.Node;
+import javafx.util.Pair;
 import org.apache.log4j.Logger;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
 import org.jacpfx.api.annotations.lifecycle.OnShow;
@@ -10,6 +11,7 @@ import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
+import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
 import java.util.ArrayList;
@@ -31,15 +33,20 @@ public abstract class BaseComponent implements FXComponent {
     private void onStarted(FXComponentLayout layout) {
         initComponent(layout);
         loadFragments();
-        initFragmentList();
+        createFragmentList();
+        initAllFragments();
         assignChildren();
+    }
+
+    private void initAllFragments() {
+        fragments.forEach(ParentFragment::initialize);
     }
 
     protected abstract void initComponent(FXComponentLayout layout);
 
     protected abstract void loadFragments();
 
-    protected abstract void initFragmentList();
+    protected abstract void createFragmentList();
 
     protected abstract void assignChildren();
 
@@ -74,5 +81,11 @@ public abstract class BaseComponent implements FXComponent {
     @Override
     public final Node postHandle(Node node, Message<Event, Object> message) {
         return handleMessage(message);
+    }
+
+    // for adding new child fragment to parent
+    protected final <T extends ChildFragment> Pair<T, Node> registerChildFragment(Class<T> fragmentClass) {
+        ManagedFragmentHandler<T> fragment = componentContext.getManagedFragmentHandler(fragmentClass);
+        return new Pair<>(fragment.getController(), fragment.getFragmentNode());
     }
 }

@@ -75,7 +75,7 @@ public class TopPane extends BaseComponent {
     }
 
     @Override
-    protected void initFragmentList() {
+    protected void createFragmentList() {
         // ...
     }
 
