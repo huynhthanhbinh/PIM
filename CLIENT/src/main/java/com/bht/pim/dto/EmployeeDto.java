@@ -1,16 +1,14 @@
 package com.bht.pim.dto;
 
+import lombok.*;
+import lombok.extern.log4j.Log4j;
+
 import java.time.LocalDate;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.extern.log4j.Log4j;
-
+/**
+ * @author bht
+ */
 @Log4j
 @Getter
 @Setter

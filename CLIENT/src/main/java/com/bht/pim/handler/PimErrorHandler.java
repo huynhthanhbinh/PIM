@@ -1,15 +1,15 @@
 package com.bht.pim.handler;
 
-import org.jacpfx.api.handler.ErrorDialogHandler;
-import org.jacpfx.rcp.context.Context;
-
 import com.bht.pim.configuration.AppConfiguration;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Node;
+import org.jacpfx.api.handler.ErrorDialogHandler;
+import org.jacpfx.rcp.context.Context;
 
-
+/**
+ * @author bht
+ */
 public class PimErrorHandler implements ErrorDialogHandler<Node> {
 
     public static final ObjectProperty<Context> CONTEXT_PROPERTY

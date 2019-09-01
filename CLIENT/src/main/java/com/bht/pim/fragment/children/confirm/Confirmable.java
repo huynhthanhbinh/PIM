@@ -2,6 +2,9 @@ package com.bht.pim.fragment.children.confirm;
 
 import javafx.scene.input.MouseEvent;
 
+/**
+ * @author bht
+ */
 public interface Confirmable {
 
     // handle action when user clicking submit button

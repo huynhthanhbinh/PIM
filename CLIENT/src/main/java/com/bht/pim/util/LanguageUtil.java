@@ -3,9 +3,11 @@ package com.bht.pim.util;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.property.LabelProperty;
 import com.bht.pim.property.LanguageProperty;
-
 import javafx.beans.property.StringProperty;
 
+/**
+ * @author bht
+ */
 public class LanguageUtil {
 
     private static LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;

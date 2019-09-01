@@ -19,6 +19,9 @@ import org.springframework.stereotype.Controller;
 
 import java.util.Locale;
 
+/**
+ * @author bht
+ */
 @Controller
 @DeclarativeView(id = TopPane.ID, name = "TopPane",
         initialTargetLayoutId = TopPane.CONTAINER,

@@ -21,6 +21,9 @@ import org.springframework.stereotype.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author bht
+ */
 @Controller
 @Fragment(id = Login.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,

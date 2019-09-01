@@ -6,6 +6,9 @@ import com.bht.pim.notification.NotificationStyle;
 import javafx.geometry.Pos;
 import javafx.util.Duration;
 
+/**
+ * @author bht
+ */
 public class NotificationUtil {
 
     private static final int PERIOD = 5;

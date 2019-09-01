@@ -20,6 +20,9 @@ import org.springframework.context.annotation.PropertySource;
 import javax.annotation.PostConstruct;
 import java.util.Locale;
 
+/**
+ * @author bht
+ */
 @Log4j
 @Configuration
 @SuppressWarnings("all")

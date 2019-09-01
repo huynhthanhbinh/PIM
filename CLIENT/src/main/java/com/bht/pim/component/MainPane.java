@@ -35,6 +35,9 @@ import org.jacpfx.rcp.context.Context;
 
 import java.util.Arrays;
 
+/**
+ * @author bht
+ */
 @Getter
 @Setter
 @SuppressWarnings("unchecked")

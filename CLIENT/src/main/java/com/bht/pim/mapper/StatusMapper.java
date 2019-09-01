@@ -9,6 +9,9 @@ import org.mapstruct.Named;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author bht
+ */
 @Mapper
 public abstract class StatusMapper {
 

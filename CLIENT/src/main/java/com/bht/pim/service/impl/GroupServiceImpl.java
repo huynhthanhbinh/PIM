@@ -1,8 +1,5 @@
 package com.bht.pim.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.bht.pim.dto.GroupDto;
 import com.bht.pim.mapper.GroupMapper;
 import com.bht.pim.proto.groups.GroupPagination;
@@ -10,10 +7,14 @@ import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.service.GroupService;
 import com.google.protobuf.Empty;
 import com.google.protobuf.Int64Value;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+/**
+ * @author bht
+ */
 @Service
 public class GroupServiceImpl implements GroupService {
 

@@ -45,6 +45,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author bht
+ */
 @Controller
 @Fragment(id = ProjectTable.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,

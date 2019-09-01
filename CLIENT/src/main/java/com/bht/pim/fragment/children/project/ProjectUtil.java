@@ -25,6 +25,9 @@ import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+/**
+ * @author bht
+ */
 @Controller
 @Fragment(id = ProjectUtil.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,

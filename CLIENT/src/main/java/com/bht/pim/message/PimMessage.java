@@ -6,6 +6,9 @@ import javafx.scene.Node;
 import org.apache.log4j.Logger;
 import org.jacpfx.api.message.Message;
 
+/**
+ * @author bht
+ */
 public interface PimMessage {
 
     Class getSender();

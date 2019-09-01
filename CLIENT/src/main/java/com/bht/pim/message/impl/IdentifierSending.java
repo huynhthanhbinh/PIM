@@ -5,6 +5,9 @@ import com.bht.pim.message.PimMessage;
 import javafx.scene.Node;
 import lombok.AllArgsConstructor;
 
+/**
+ * @author bht
+ */
 @AllArgsConstructor
 public class IdentifierSending implements PimMessage {
 

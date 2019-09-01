@@ -12,6 +12,9 @@ import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.springframework.stereotype.Controller;
 
+/**
+ * @author bht
+ */
 @Controller
 @Fragment(id = ConfirmBox.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,

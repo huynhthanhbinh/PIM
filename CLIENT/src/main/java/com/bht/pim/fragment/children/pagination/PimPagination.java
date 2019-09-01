@@ -10,6 +10,9 @@ import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.springframework.stereotype.Controller;
 
+/**
+ * @author bht
+ */
 @Controller
 @Fragment(id = PimPagination.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,

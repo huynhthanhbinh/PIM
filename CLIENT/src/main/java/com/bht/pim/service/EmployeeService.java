@@ -1,9 +1,11 @@
 package com.bht.pim.service;
 
 import com.bht.pim.dto.EmployeeDto;
-
 import javafx.collections.ObservableList;
 
+/**
+ * @author bht
+ */
 public interface EmployeeService {
 
     // get a specific employee

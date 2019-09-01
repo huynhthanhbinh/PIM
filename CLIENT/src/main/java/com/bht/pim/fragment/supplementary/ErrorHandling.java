@@ -18,6 +18,9 @@ import org.springframework.stereotype.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author bht
+ */
 @Controller
 @Fragment(id = ErrorHandling.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,

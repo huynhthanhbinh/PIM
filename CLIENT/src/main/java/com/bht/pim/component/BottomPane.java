@@ -18,6 +18,9 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
+/**
+ * @author bht
+ */
 @Getter
 @Setter
 @DeclarativeView(id = BottomPane.ID, name = "BottomPane",

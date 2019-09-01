@@ -16,6 +16,9 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.context.Context;
 
+/**
+ * @author bht
+ */
 @Perspective(id = AppConfiguration.PERSPECTIVE_DEFAULT, name = "PerspectiveDefault",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/perspective/Default.fxml",

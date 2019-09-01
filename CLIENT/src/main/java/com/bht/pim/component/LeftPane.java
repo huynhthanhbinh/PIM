@@ -17,6 +17,9 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
+/**
+ * @author bht
+ */
 @Controller
 @DeclarativeView(id = LeftPane.ID, name = "LeftPane",
         initialTargetLayoutId = LeftPane.CONTAINER,

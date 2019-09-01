@@ -1,19 +1,20 @@
 package com.bht.pim.workbench;
 
+import com.bht.pim.configuration.AppConfiguration;
+import javafx.event.Event;
+import javafx.scene.Node;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.workbench.Workbench;
 import org.jacpfx.api.componentLayout.WorkbenchLayout;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 
-import com.bht.pim.configuration.AppConfiguration;
-
-import javafx.event.Event;
-import javafx.scene.Node;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import lombok.extern.log4j.Log4j;
-
+/**
+ * @author bht
+ */
 @Log4j
 @Workbench(id = "workbench", name = "workbench",
         perspectives = {
