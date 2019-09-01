@@ -14,11 +14,11 @@ import org.springframework.stereotype.Controller;
  * @author bht
  */
 @Controller
-@Fragment(id = PimPagination.ID,
+@Fragment(id = PaginationFragment.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/children/pagination/PimPagination.fxml")
-public class PimPagination extends ChildFragment {
+        viewLocation = "/com/bht/pim/fragment/children/pagination/PaginationFragment.fxml")
+public class PaginationFragment extends ChildFragment {
 
     static final String ID = "idfPagination"; // pagination-pane
 

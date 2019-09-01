@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author bht
  */
-public class ProjectDashboard extends ParentFragment {
+public class ProjectDashboardFragment extends ParentFragment {
 
 
     @Override

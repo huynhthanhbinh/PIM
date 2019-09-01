@@ -7,7 +7,7 @@ import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.dto.GroupDto;
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.fragment.children.confirm.Confirmable;
-import com.bht.pim.fragment.parent.project.ProjectList;
+import com.bht.pim.fragment.parent.project.ProjectListFragment;
 import com.bht.pim.mapper.DateTimeMapper;
 import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
@@ -47,11 +47,11 @@ import java.util.stream.Collectors;
  * @author bht
  */
 @Controller
-@Fragment(id = ProjectEditForm.ID,
+@Fragment(id = ProjectEditFormFragment.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditForm.fxml")
-public class ProjectEditForm extends ChildFragment implements Confirmable {
+        viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditFormFragment.fxml")
+public class ProjectEditFormFragment extends ChildFragment implements Confirmable {
 
     static final String ID = "idfPEditForm";
 
@@ -424,7 +424,7 @@ public class ProjectEditForm extends ChildFragment implements Confirmable {
                 return;
             }
 
-            LOGGER.info("<<< PIM - On saving new project >>>");
+            LOGGER.info("<<< PimPerspective - On saving new project >>>");
 
             EmployeeDto groupLeader = EmployeeDto.newBuilder()
                     .id(leader.getId())
@@ -440,10 +440,10 @@ public class ProjectEditForm extends ChildFragment implements Confirmable {
 
                     if (saveNewGroup(groupDto)) {
                         NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
-                                "[PIM] Successfully create new group !");
+                                "[PimPerspective] Successfully create new group !");
                     } else {
                         NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
-                                "[PIM] Failed to create new group !");
+                                "[PimPerspective] Failed to create new group !");
                         return;
                     }
                 }
@@ -462,7 +462,7 @@ public class ProjectEditForm extends ChildFragment implements Confirmable {
                 }
 
                 NotificationUtil.showNotification(NotificationStyle.INFO, Pos.CENTER,
-                        "[PIM] On saving project !");
+                        "[PimPerspective] On saving project !");
 
                 saveOrUpdateProject(projectDtoBuilder);
 
@@ -517,7 +517,7 @@ public class ProjectEditForm extends ChildFragment implements Confirmable {
                 .equals(LanguageUtil.getCurrentLabelOfKey("label.project.form.newgroup"))) {
 
             // send group info to server to save
-            LOGGER.info("<<< PIM - On creating new group >>>");
+            LOGGER.info("<<< PimPerspective - On creating new group >>>");
             return groupService.addNewGroup(groupDto);
         }
         return false;
@@ -529,8 +529,8 @@ public class ProjectEditForm extends ChildFragment implements Confirmable {
         LOGGER.info("[bCancel] onClick");
 
         FragmentSwitching switching = new FragmentSwitching(
-                ProjectEditForm.class,
-                ProjectList.class);
+                ProjectEditFormFragment.class,
+                ProjectListFragment.class);
 
         context.send(MainPane.ID, switching);
     }
@@ -775,17 +775,17 @@ public class ProjectEditForm extends ChildFragment implements Confirmable {
     private void saveProject(ProjectDto projectDto) {
         if (projectService.addNewProject(projectDto)) {
             NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
-                    "[PIM] Successfully create project !");
+                    "[PimPerspective] Successfully create project !");
 
             FragmentSwitching switching = new FragmentSwitching(
-                    ProjectEditForm.class,
-                    ProjectList.class);
+                    ProjectEditFormFragment.class,
+                    ProjectListFragment.class);
 
             context.send(MainPane.ID, switching);
 
         } else {
             NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
-                    "[PIM] Failed to create new project !");
+                    "[PimPerspective] Failed to create new project !");
 
             loadProjectEditForm();
         }
@@ -794,17 +794,17 @@ public class ProjectEditForm extends ChildFragment implements Confirmable {
     private void updateProject(ProjectDto projectDto) {
         if (projectService.updateProject(projectDto)) {
             NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
-                    "[PIM] Successfully update project !");
+                    "[PimPerspective] Successfully update project !");
 
             FragmentSwitching switching = new FragmentSwitching(
-                    ProjectEditForm.class,
-                    ProjectList.class);
+                    ProjectEditFormFragment.class,
+                    ProjectListFragment.class);
 
             context.send(MainPane.ID, switching);
 
         } else {
             NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
-                    "[PIM] Failed to update project !");
+                    "[PimPerspective] Failed to update project !");
 
             loadProjectEditForm();
         }

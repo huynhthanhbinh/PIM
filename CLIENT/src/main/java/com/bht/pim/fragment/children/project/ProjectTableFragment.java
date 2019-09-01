@@ -4,9 +4,9 @@ import com.bht.pim.base.ChildFragment;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.ProjectDto;
-import com.bht.pim.fragment.parent.project.ProjectInfo;
-import com.bht.pim.fragment.parent.project.ProjectList;
-import com.bht.pim.fragment.parent.project.ProjectUpdate;
+import com.bht.pim.fragment.parent.project.ProjectInfoFragment;
+import com.bht.pim.fragment.parent.project.ProjectListFragment;
+import com.bht.pim.fragment.parent.project.ProjectUpdateFragment;
 import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.IdentifierSending;
@@ -49,11 +49,11 @@ import java.util.List;
  * @author bht
  */
 @Controller
-@Fragment(id = ProjectTable.ID,
+@Fragment(id = ProjectTableFragment.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/children/project/ProjectTable.fxml")
-public class ProjectTable extends ChildFragment {
+        viewLocation = "/com/bht/pim/fragment/children/project/ProjectTableFragment.fxml")
+public class ProjectTableFragment extends ChildFragment {
 
     static final String ID = "idfPTable";
     private static final int MAX_TABLE_ROW = 8;
@@ -288,8 +288,8 @@ public class ProjectTable extends ChildFragment {
                     LOGGER.info(successProperty.get());
 
                     IdentifierSending sending = new IdentifierSending(
-                            ProjectList.class,
-                            ProjectUpdate.class,
+                            ProjectListFragment.class,
+                            ProjectUpdateFragment.class,
                             projectDto.getId());
 
                     context.send(MainPane.ID, sending);
@@ -297,8 +297,8 @@ public class ProjectTable extends ChildFragment {
                     LOGGER.info(successProperty.get());
 
                     FragmentSwitching switching = new FragmentSwitching(
-                            ProjectList.class,
-                            ProjectUpdate.class);
+                            ProjectListFragment.class,
+                            ProjectUpdateFragment.class);
 
                     context.send(MainPane.ID, switching);
                 });
@@ -328,8 +328,8 @@ public class ProjectTable extends ChildFragment {
                     LOGGER.info(successProperty.get());
 
                     IdentifierSending sending = new IdentifierSending(
-                            ProjectList.class,
-                            ProjectInfo.class,
+                            ProjectListFragment.class,
+                            ProjectInfoFragment.class,
                             projectDto.getId());
 
                     context.send(MainPane.ID, sending);
@@ -337,8 +337,8 @@ public class ProjectTable extends ChildFragment {
                     LOGGER.info(successProperty.get());
 
                     FragmentSwitching switching = new FragmentSwitching(
-                            ProjectList.class,
-                            ProjectInfo.class);
+                            ProjectListFragment.class,
+                            ProjectInfoFragment.class);
 
                     context.send(MainPane.ID, switching);
                 });

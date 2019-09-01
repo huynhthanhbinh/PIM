@@ -16,10 +16,10 @@ import org.springframework.stereotype.Controller;
  * @author bht
  */
 @Controller
-@Fragment(id = ConfirmBox.ID, scope = Scope.PROTOTYPE,
+@Fragment(id = ConfirmFragment.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        viewLocation = "/com/bht/pim/fragment/children/confirm/ConfirmBox.fxml")
-public class ConfirmBox extends ChildFragment {
+        viewLocation = "/com/bht/pim/fragment/children/confirm/ConfirmFragment.fxml")
+public class ConfirmFragment extends ChildFragment {
 
     static final String ID = "idfConfirm"; // ok_cancel box
 

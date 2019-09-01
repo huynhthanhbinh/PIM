@@ -2,7 +2,7 @@ package com.bht.pim.component;
 
 import com.bht.pim.base.BaseComponent;
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.parent.project.ProjectList;
+import com.bht.pim.fragment.parent.project.ProjectListFragment;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.util.LanguageUtil;
 import javafx.event.Event;
@@ -87,7 +87,7 @@ public class LeftPane extends BaseComponent {
 
         FragmentSwitching switching = new FragmentSwitching(
                 LeftPane.class,
-                ProjectList.class);
+                ProjectListFragment.class);
 
         componentContext.send(MainPane.ID, switching);
 
@@ -107,7 +107,7 @@ public class LeftPane extends BaseComponent {
 
         FragmentSwitching switching = new FragmentSwitching(
                 LeftPane.class,
-                ProjectList.class);
+                ProjectListFragment.class);
 
         componentContext.send(MainPane.ID, switching);
 
@@ -127,7 +127,7 @@ public class LeftPane extends BaseComponent {
 
         FragmentSwitching switching = new FragmentSwitching(
                 LeftPane.class,
-                ProjectList.class);
+                ProjectListFragment.class);
 
         componentContext.send(MainPane.ID, switching);
 

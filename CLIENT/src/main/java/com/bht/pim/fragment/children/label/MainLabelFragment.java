@@ -13,10 +13,10 @@ import org.springframework.stereotype.Controller;
  * @author bht
  */
 @Controller
-@Fragment(id = MainLabel.ID, scope = Scope.PROTOTYPE,
+@Fragment(id = MainLabelFragment.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        viewLocation = "/com/bht/pim/fragment/children/label/MainLabel.fxml")
-public class MainLabel extends ChildFragment {
+        viewLocation = "/com/bht/pim/fragment/children/label/MainLabelFragment.fxml")
+public class MainLabelFragment extends ChildFragment {
 
     static final String ID = "idfMLabel"; // label of main-pane
 

@@ -3,8 +3,8 @@ package com.bht.pim.fragment.children.project;
 import com.bht.pim.base.ChildFragment;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.parent.project.ProjectCreate;
-import com.bht.pim.fragment.parent.project.ProjectList;
+import com.bht.pim.fragment.parent.project.ProjectCreateFragment;
+import com.bht.pim.fragment.parent.project.ProjectListFragment;
 import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.property.LanguageProperty;
@@ -29,11 +29,11 @@ import org.springframework.stereotype.Controller;
  * @author bht
  */
 @Controller
-@Fragment(id = ProjectUtil.ID,
+@Fragment(id = ProjectUtilFragment.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/children/project/ProjectUtil.fxml")
-public class ProjectUtil extends ChildFragment {
+        viewLocation = "/com/bht/pim/fragment/children/project/ProjectUtilFragment.fxml")
+public class ProjectUtilFragment extends ChildFragment {
 
     static final String ID = "idfPUtil";
 
@@ -93,8 +93,8 @@ public class ProjectUtil extends ChildFragment {
             LOGGER.info("[NEW] on mouse clicked");
 
             FragmentSwitching switching = new FragmentSwitching(
-                    ProjectList.class,
-                    ProjectCreate.class);
+                    ProjectListFragment.class,
+                    ProjectCreateFragment.class);
 
             context.send(MainPane.ID, switching);
         });

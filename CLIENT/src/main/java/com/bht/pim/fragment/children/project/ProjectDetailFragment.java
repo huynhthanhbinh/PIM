@@ -5,9 +5,9 @@ import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.dto.ProjectDto;
-import com.bht.pim.fragment.parent.project.ProjectInfo;
-import com.bht.pim.fragment.parent.project.ProjectList;
-import com.bht.pim.fragment.parent.project.ProjectUpdate;
+import com.bht.pim.fragment.parent.project.ProjectInfoFragment;
+import com.bht.pim.fragment.parent.project.ProjectListFragment;
+import com.bht.pim.fragment.parent.project.ProjectUpdateFragment;
 import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.IdentifierSending;
@@ -35,11 +35,11 @@ import org.springframework.stereotype.Controller;
  * @author bht
  */
 @Controller
-@Fragment(id = ProjectDetail.ID,
+@Fragment(id = ProjectDetailFragment.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
-        viewLocation = "/com/bht/pim/fragment/children/project/ProjectDetail.fxml")
-public class ProjectDetail extends ChildFragment {
+        viewLocation = "/com/bht/pim/fragment/children/project/ProjectDetailFragment.fxml")
+public class ProjectDetailFragment extends ChildFragment {
 
     static final String ID = "idfPDetail";
 
@@ -197,28 +197,28 @@ public class ProjectDetail extends ChildFragment {
             return;
         }
 
-        LOGGER.info("[PIM] on modify project");
+        LOGGER.info("[PimPerspective] on modify project");
 
         IdentifierSending sending = new IdentifierSending(
-                ProjectList.class,
-                ProjectUpdate.class,
+                ProjectListFragment.class,
+                ProjectUpdateFragment.class,
                 projectDto.getId());
 
         context.send(MainPane.ID, sending);
 
         FragmentSwitching switching = new FragmentSwitching(
-                ProjectInfo.class,
-                ProjectUpdate.class);
+                ProjectInfoFragment.class,
+                ProjectUpdateFragment.class);
 
         context.send(MainPane.ID, switching);
     }
 
     public void onReturn(MouseEvent mouseEvent) {
-        LOGGER.info("[PIM] on return back to project list");
+        LOGGER.info("[PimPerspective] on return back to project list");
 
         FragmentSwitching fragmentSwitching = new FragmentSwitching(
-                ProjectInfo.class,
-                ProjectList.class);
+                ProjectInfoFragment.class,
+                ProjectListFragment.class);
 
         context.send(MainPane.ID, fragmentSwitching);
     }

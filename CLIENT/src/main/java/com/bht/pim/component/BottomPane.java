@@ -3,8 +3,8 @@ package com.bht.pim.component;
 
 import com.bht.pim.base.BaseComponent;
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.supplementary.ErrorHandling;
-import com.bht.pim.fragment.supplementary.Login;
+import com.bht.pim.fragment.supplementary.ErrorHandlingFragment;
+import com.bht.pim.fragment.supplementary.LoginFragment;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -32,8 +32,8 @@ public class BottomPane extends BaseComponent {
     public static final String ID = "idcBottom";
     public static final String CONTAINER = "PBottom";
 
-    private ManagedFragmentHandler<Login> loginFragment;
-    private ManagedFragmentHandler<ErrorHandling> errorHandlingFragment;
+    private ManagedFragmentHandler<LoginFragment> loginFragment;
+    private ManagedFragmentHandler<ErrorHandlingFragment> errorHandlingFragment;
 
     @Resource
     private Context context;
@@ -48,8 +48,8 @@ public class BottomPane extends BaseComponent {
     protected void initComponent(FXComponentLayout layout) {
         componentContext = context;
 
-        loginFragment = componentContext.getManagedFragmentHandler(Login.class);
-        errorHandlingFragment = componentContext.getManagedFragmentHandler(ErrorHandling.class);
+        loginFragment = componentContext.getManagedFragmentHandler(LoginFragment.class);
+        errorHandlingFragment = componentContext.getManagedFragmentHandler(ErrorHandlingFragment.class);
 
         loginPane = (VBox) loginFragment.getFragmentNode();
         errorPane = (VBox) errorHandlingFragment.getFragmentNode();
@@ -76,7 +76,7 @@ public class BottomPane extends BaseComponent {
     protected Node handleMessage(Message<Event, Object> message) {
         if (message.getMessageBody() instanceof Throwable) {
 
-            LOGGER.info("[PIM] show error page");
+            LOGGER.info("[PimPerspective] show error page");
             LOGGER.info(message.getMessageBody());
             mainPane.getChildren().clear();
             mainPane.getChildren().add(errorPane);
@@ -85,7 +85,7 @@ public class BottomPane extends BaseComponent {
 
         } else {
 
-            LOGGER.info("[PIM] show login page");
+            LOGGER.info("[PimPerspective] show login page");
             mainPane.getChildren().clear();
             mainPane.getChildren().add(loginPane);
         }

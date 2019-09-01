@@ -3,9 +3,9 @@ package com.bht.pim.fragment.parent.project;
 import com.bht.pim.base.ChildFragment;
 import com.bht.pim.base.ParentFragment;
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.children.confirm.ConfirmBox;
-import com.bht.pim.fragment.children.label.MainLabel;
-import com.bht.pim.fragment.children.project.ProjectDetail;
+import com.bht.pim.fragment.children.confirm.ConfirmFragment;
+import com.bht.pim.fragment.children.label.MainLabelFragment;
+import com.bht.pim.fragment.children.project.ProjectDetailFragment;
 import com.bht.pim.fragment.parent.IdentifierNeeding;
 import com.bht.pim.util.PimUtil;
 import org.jacpfx.api.annotations.Resource;
@@ -20,16 +20,16 @@ import java.util.List;
  * @author bht
  */
 @Controller
-@Fragment(id = ProjectInfo.ID, scope = Scope.SINGLETON,
+@Fragment(id = ProjectInfoFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
-public class ProjectInfo extends ParentFragment implements IdentifierNeeding {
+public class ProjectInfoFragment extends ParentFragment implements IdentifierNeeding {
 
     static final String ID = "idfPInfo";
     static final String LABEL = "label.project.info";
 
-    private MainLabel mainLabel;
-    private ProjectDetail projectDetail;
-    private ConfirmBox confirmBox;
+    private MainLabelFragment mainLabelFragment;
+    private ProjectDetailFragment projectDetailFragment;
+    private ConfirmFragment confirmFragment;
 
     @Resource
     private Context context;
@@ -42,26 +42,26 @@ public class ProjectInfo extends ParentFragment implements IdentifierNeeding {
 
     @Override
     protected void getChildrenFragments(List<ChildFragment> children) {
-        mainLabel = (MainLabel) children.get(0);
-        projectDetail = (ProjectDetail) children.get(1);
-        confirmBox = (ConfirmBox) children.get(2);
+        mainLabelFragment = (MainLabelFragment) children.get(0);
+        projectDetailFragment = (ProjectDetailFragment) children.get(1);
+        confirmFragment = (ConfirmFragment) children.get(2);
     }
 
     @Override
     protected void configureEachChildFragment() {
-        mainLabel.setLabelText(LABEL);
-        confirmBox.setLabelConfirm(ConfirmBox.LABEL_CONFIRM_MODIFY);
-        confirmBox.setLabelCancel(ConfirmBox.LABEL_CONFIRM_RETURN);
+        mainLabelFragment.setLabelText(LABEL);
+        confirmFragment.setLabelConfirm(ConfirmFragment.LABEL_CONFIRM_MODIFY);
+        confirmFragment.setLabelCancel(ConfirmFragment.LABEL_CONFIRM_RETURN);
     }
 
     @Override
     protected void bindChildrenFragments() {
-        confirmBox.setOnSubmit(projectDetail::onModify);
-        confirmBox.setOnCancel(projectDetail::onReturn);
+        confirmFragment.setOnSubmit(projectDetailFragment::onModify);
+        confirmFragment.setOnCancel(projectDetailFragment::onReturn);
     }
 
     @Override
     public boolean getObjectWithIdentifier(long id) {
-        return projectDetail.getProjectById(id);
+        return projectDetailFragment.getProjectById(id);
     }
 }

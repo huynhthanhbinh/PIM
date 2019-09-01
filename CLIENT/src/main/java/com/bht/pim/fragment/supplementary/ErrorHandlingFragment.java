@@ -22,10 +22,10 @@ import java.util.ResourceBundle;
  * @author bht
  */
 @Controller
-@Fragment(id = ErrorHandling.ID, scope = Scope.SINGLETON,
+@Fragment(id = ErrorHandlingFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        viewLocation = "/com/bht/pim/fragment/supplementary/ErrorHandling.fxml")
-public class ErrorHandling implements Initializable {
+        viewLocation = "/com/bht/pim/fragment/supplementary/ErrorHandlingFragment.fxml")
+public class ErrorHandlingFragment implements Initializable {
 
     static final String ID = "idfSError";
 

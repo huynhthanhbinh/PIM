@@ -1,16 +1,14 @@
 package com.bht.pim.perspective;
 
 import com.bht.pim.base.BasePerspective;
-import com.bht.pim.component.LeftPane;
-import com.bht.pim.component.MainPane;
+import com.bht.pim.component.BottomPane;
 import com.bht.pim.component.TopPane;
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.handler.PimErrorHandler;
-import com.bht.pim.message.impl.PerspectiveShowing;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.perspective.Perspective;
 import org.jacpfx.api.message.Message;
@@ -21,11 +19,11 @@ import org.jacpfx.rcp.context.Context;
 /**
  * @author bht
  */
-@Perspective(id = AppConfiguration.PERSPECTIVE_PIM, name = "PerspectivePIM",
+@Perspective(id = AppConfiguration.PERSPECTIVE_DEFAULT, name = "PerspectiveDefault",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        viewLocation = "/com/bht/pim/perspective/PIM.fxml",
-        components = {TopPane.ID, LeftPane.ID, MainPane.ID})
-public class PIM extends BasePerspective {
+        viewLocation = "/com/bht/pim/perspective/DefaultPerspective.fxml",
+        components = {TopPane.ID, BottomPane.ID})
+public class DefaultPerspective extends BasePerspective {
 
     @FXML
     private SplitPane splitPane;
@@ -34,9 +32,7 @@ public class PIM extends BasePerspective {
     @FXML
     private AnchorPane topPane;
     @FXML
-    private AnchorPane leftPane;
-    @FXML
-    private AnchorPane mainPane;
+    private HBox bottomPane;
     @Resource
     private Context context;
 
@@ -47,26 +43,18 @@ public class PIM extends BasePerspective {
 
     @Override
     protected void onShowed() {
-        // check if connection is lost ? show error : continue
-        PerspectiveShowing perspectiveShowing = new PerspectiveShowing(PIM.class);
-        context.send(MainPane.ID, perspectiveShowing);
+        // ...
     }
 
     @Override
-    protected void onCreated(final PerspectiveLayout perspectiveLayout, final FXComponentLayout layout) {
-        // using for handling error / exception
-        // to send message to perspective default
-        PimErrorHandler.CONTEXT_PROPERTY.set(context);
-
+    protected void onCreated(PerspectiveLayout perspectiveLayout, FXComponentLayout layout) {
         // Register root component
         perspectiveLayout.registerRootComponent(rootPane);
         // Register other components
         perspectiveLayout.registerTargetLayoutComponent(
                 TopPane.CONTAINER, topPane);
         perspectiveLayout.registerTargetLayoutComponent(
-                LeftPane.CONTAINER, leftPane);
-        perspectiveLayout.registerTargetLayoutComponent(
-                MainPane.CONTAINER, mainPane);
+                BottomPane.CONTAINER, bottomPane);
 
         layout.getGlassPane().setMinWidth(1280);
         layout.getGlassPane().setMinHeight(720);
@@ -74,6 +62,6 @@ public class PIM extends BasePerspective {
 
     @Override
     protected void handleMessage(Message<Event, Object> message) {
-        // ...
+        context.send(BottomPane.ID, message.getMessageBody());
     }
 }

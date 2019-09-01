@@ -25,10 +25,10 @@ import java.util.ResourceBundle;
  * @author bht
  */
 @Controller
-@Fragment(id = Login.ID, scope = Scope.SINGLETON,
+@Fragment(id = LoginFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        viewLocation = "/com/bht/pim/fragment/supplementary/Login.fxml")
-public class Login implements Initializable {
+        viewLocation = "/com/bht/pim/fragment/supplementary/LoginFragment.fxml")
+public class LoginFragment implements Initializable {
 
     static final String ID = "idfSLogin";
 

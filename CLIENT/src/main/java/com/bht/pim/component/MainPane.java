@@ -3,19 +3,19 @@ package com.bht.pim.component;
 import com.bht.pim.base.BaseComponent;
 import com.bht.pim.base.ParentFragment;
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.children.confirm.ConfirmBox;
-import com.bht.pim.fragment.children.label.MainLabel;
-import com.bht.pim.fragment.children.pagination.PimPagination;
-import com.bht.pim.fragment.children.project.ProjectDetail;
-import com.bht.pim.fragment.children.project.ProjectEditForm;
-import com.bht.pim.fragment.children.project.ProjectTable;
-import com.bht.pim.fragment.children.project.ProjectUtil;
+import com.bht.pim.fragment.children.confirm.ConfirmFragment;
+import com.bht.pim.fragment.children.label.MainLabelFragment;
+import com.bht.pim.fragment.children.pagination.PaginationFragment;
+import com.bht.pim.fragment.children.project.ProjectDetailFragment;
+import com.bht.pim.fragment.children.project.ProjectEditFormFragment;
+import com.bht.pim.fragment.children.project.ProjectTableFragment;
+import com.bht.pim.fragment.children.project.ProjectUtilFragment;
 import com.bht.pim.fragment.parent.IdentifierNeeding;
 import com.bht.pim.fragment.parent.SuccessNeeding;
-import com.bht.pim.fragment.parent.project.ProjectCreate;
-import com.bht.pim.fragment.parent.project.ProjectInfo;
-import com.bht.pim.fragment.parent.project.ProjectList;
-import com.bht.pim.fragment.parent.project.ProjectUpdate;
+import com.bht.pim.fragment.parent.project.ProjectCreateFragment;
+import com.bht.pim.fragment.parent.project.ProjectInfoFragment;
+import com.bht.pim.fragment.parent.project.ProjectListFragment;
+import com.bht.pim.fragment.parent.project.ProjectUpdateFragment;
 import com.bht.pim.message.PimMessage;
 import com.bht.pim.util.PimUtil;
 import javafx.collections.ObservableList;
@@ -56,10 +56,10 @@ public class MainPane extends BaseComponent {
     private VBox mainPane;
 
     private ManagedFragmentHandler currentFragment;
-    private ManagedFragmentHandler<ProjectList> projectListFragment;
-    private ManagedFragmentHandler<ProjectCreate> projectCreateFragment;
-    private ManagedFragmentHandler<ProjectUpdate> projectUpdateFragment;
-    private ManagedFragmentHandler<ProjectInfo> projectInfoFragment;
+    private ManagedFragmentHandler<ProjectListFragment> projectListFragment;
+    private ManagedFragmentHandler<ProjectCreateFragment> projectCreateFragment;
+    private ManagedFragmentHandler<ProjectUpdateFragment> projectUpdateFragment;
+    private ManagedFragmentHandler<ProjectInfoFragment> projectInfoFragment;
 
     @Override
     protected void initComponent(FXComponentLayout layout) {
@@ -69,10 +69,10 @@ public class MainPane extends BaseComponent {
 
     @Override
     protected void loadFragments() {
-        projectListFragment = context.getManagedFragmentHandler(ProjectList.class);
-        projectCreateFragment = context.getManagedFragmentHandler(ProjectCreate.class);
-        projectUpdateFragment = context.getManagedFragmentHandler(ProjectUpdate.class);
-        projectInfoFragment = context.getManagedFragmentHandler(ProjectInfo.class);
+        projectListFragment = context.getManagedFragmentHandler(ProjectListFragment.class);
+        projectCreateFragment = context.getManagedFragmentHandler(ProjectCreateFragment.class);
+        projectUpdateFragment = context.getManagedFragmentHandler(ProjectUpdateFragment.class);
+        projectInfoFragment = context.getManagedFragmentHandler(ProjectInfoFragment.class);
     }
 
     @Override
@@ -86,25 +86,25 @@ public class MainPane extends BaseComponent {
     @Override
     protected void assignChildren() {
         projectListFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerChildFragment(MainLabel.class),
-                registerChildFragment(ProjectUtil.class),
-                registerChildFragment(ProjectTable.class),
-                registerChildFragment(PimPagination.class)}));
+                registerChildFragment(MainLabelFragment.class),
+                registerChildFragment(ProjectUtilFragment.class),
+                registerChildFragment(ProjectTableFragment.class),
+                registerChildFragment(PaginationFragment.class)}));
 
         projectCreateFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerChildFragment(MainLabel.class),
-                registerChildFragment(ProjectEditForm.class),
-                registerChildFragment(ConfirmBox.class)}));
+                registerChildFragment(MainLabelFragment.class),
+                registerChildFragment(ProjectEditFormFragment.class),
+                registerChildFragment(ConfirmFragment.class)}));
 
         projectUpdateFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerChildFragment(MainLabel.class),
-                registerChildFragment(ProjectEditForm.class),
-                registerChildFragment(ConfirmBox.class)}));
+                registerChildFragment(MainLabelFragment.class),
+                registerChildFragment(ProjectEditFormFragment.class),
+                registerChildFragment(ConfirmFragment.class)}));
 
         projectInfoFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerChildFragment(MainLabel.class),
-                registerChildFragment(ProjectDetail.class),
-                registerChildFragment(ConfirmBox.class)}));
+                registerChildFragment(MainLabelFragment.class),
+                registerChildFragment(ProjectDetailFragment.class),
+                registerChildFragment(ConfirmFragment.class)}));
     }
 
     @Override
@@ -145,7 +145,7 @@ public class MainPane extends BaseComponent {
     }
 
     public static void onShowPerspective(MainPane mainPane) {
-        switchFragment(mainPane, ProjectList.class);
+        switchFragment(mainPane, ProjectListFragment.class);
 
         if (!AppConfiguration.LOGGED_IN_PROPERTY.get()) { // not logged-in or recently logout
             mainPane.getContext().send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");
