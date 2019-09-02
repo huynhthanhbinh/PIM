@@ -1,0 +1,34 @@
+02/09/2019 23:02:45.559  INFO  AppConfiguration.java            82 --- [CONFIG] Creating bean of < SessionFactory >
+02/09/2019 23:02:45.563  INFO  AppConfiguration.java            58 --- [CONFIG] Creating bean of < DataSource >
+02/09/2019 23:02:48.892  INFO  AppConfiguration.java           175 --- [CONFIG] Creating bean of < DateTimeMapper >
+02/09/2019 23:02:48.905  INFO  AppConfiguration.java           169 --- [CONFIG] Creating bean of < CustomizedMapper >
+02/09/2019 23:02:48.930  INFO  AppConfiguration.java           151 --- [CONFIG] Creating bean of < EmployeeMapper >
+02/09/2019 23:02:48.943  INFO  AppConfiguration.java           163 --- [CONFIG] Creating bean of < GroupMapper >
+02/09/2019 23:02:48.958  INFO  AppConfiguration.java           157 --- [CONFIG] Creating bean of < ProjectMapper >
+02/09/2019 23:02:50.201  INFO  AppConfiguration.java           136 --- [CONFIG] Creating bean of < TransactionManager >
+02/09/2019 23:03:54.840  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 0
+02/09/2019 23:04:08.005  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 1
+02/09/2019 23:04:09.035  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 2
+02/09/2019 23:04:09.917  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 3
+02/09/2019 23:04:10.624  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 4
+02/09/2019 23:04:11.233  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 5
+02/09/2019 23:04:12.360  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 6
+02/09/2019 23:04:15.825  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 0
+02/09/2019 23:04:15.939  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 0
+02/09/2019 23:04:19.320  INFO  ProjectServiceImpl.java         168 --- Search all projects with status = NEW, maxRow = 8, pageIndex = 0
+02/09/2019 23:04:21.481  INFO  ProjectServiceImpl.java         168 --- Search all projects with status = PLA, maxRow = 8, pageIndex = 0
+02/09/2019 23:04:22.879  INFO  ProjectServiceImpl.java         168 --- Search all projects with status = INP, maxRow = 8, pageIndex = 0
+02/09/2019 23:04:24.446  INFO  ProjectServiceImpl.java         168 --- Search all projects with status = FIN, maxRow = 8, pageIndex = 0
+02/09/2019 23:04:32.468  INFO  ProjectServiceImpl.java         146 --- Search all projects with keyword = elca, maxRow = 8, pageIndex = 0
+02/09/2019 23:04:32.585  INFO  ProjectServiceImpl.java         146 --- Search all projects with keyword = elca, maxRow = 8, pageIndex = 0
+02/09/2019 23:04:37.196  INFO  ProjectServiceImpl.java         146 --- Search all projects with keyword = pim, maxRow = 8, pageIndex = 0
+02/09/2019 23:20:26.908  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 0
+02/09/2019 23:20:43.624  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 1
+02/09/2019 23:20:51.521  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 2
+02/09/2019 23:20:52.330  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 3
+02/09/2019 23:20:52.979  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 4
+02/09/2019 23:20:53.788  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 5
+02/09/2019 23:20:54.573  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 6
+02/09/2019 23:22:03.833  INFO  ProjectServiceImpl.java         168 --- Search all projects with status = NEW, maxRow = 8, pageIndex = 0
+02/09/2019 23:22:04.012  INFO  ProjectServiceImpl.java         168 --- Search all projects with status = NEW, maxRow = 8, pageIndex = 0
+02/09/2019 23:22:14.515  INFO  ProjectServiceImpl.java         168 --- Search all projects with status = INP, maxRow = 8, pageIndex = 0

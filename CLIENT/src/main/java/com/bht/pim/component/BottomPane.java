@@ -79,7 +79,7 @@ public final class BottomPane extends BaseComponent {
         if (message.getMessageBody() instanceof Throwable) {
 
             LOGGER.info("[SHOW] FXSupplementaryFragment: " + ErrorHandlingFragment.ID);
-            LOGGER.info(message.getMessageBody());
+            LOGGER.error("[ERROR] " + message.getMessageBody());
             getChildren().clear();
             getChildren().add(errorPane);
             errorHandlingFragment.getController()

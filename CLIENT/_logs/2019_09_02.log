@@ -1,0 +1,289 @@
+02/09/2019 22:44:50.918  INFO  AppConfiguration.java            92 --- [CONFIG] Creating bean of < StatusMapper >
+02/09/2019 22:44:50.932  INFO  AppConfiguration.java           116 --- [CONFIG] Creating bean of < ProjectMapper >
+02/09/2019 22:44:50.950  INFO  AppConfiguration.java            98 --- [CONFIG] Creating bean of < DateTimeMapper >
+02/09/2019 22:44:50.954  INFO  AppConfiguration.java            86 --- [CONFIG] Creating bean of < ProjectServiceBlockingStub >
+02/09/2019 22:44:50.972  INFO  AppConfiguration.java           110 --- [CONFIG] Creating bean of < GroupMapper >
+02/09/2019 22:44:50.978  INFO  AppConfiguration.java            80 --- [CONFIG] Creating bean of < GroupServiceBlockingStub >
+02/09/2019 22:44:50.995  INFO  AppConfiguration.java           104 --- [CONFIG] Creating bean of < EmployeeMapper >
+02/09/2019 22:44:51.000  INFO  AppConfiguration.java            74 --- [CONFIG] Creating bean of < EmployeeServiceBlockingStub >
+02/09/2019 22:44:52.245  INFO  PimWorkbench.java                30 --- [INIT] FXWorkbench
+02/09/2019 22:44:52.364  INFO  PimWorkbench.java                39 --- [HANDLE] FXWorkbench
+02/09/2019 22:44:52.573  INFO  BasePerspective.java             51 --- [INIT] FXPerspective: idPIMPerspective
+02/09/2019 22:44:52.613  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMPerspective
+02/09/2019 22:44:52.641  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMPerspective
+02/09/2019 22:44:52.654  INFO  BasePerspective.java             51 --- [INIT] FXPerspective: idPIMDefault
+02/09/2019 22:44:52.668  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMDefault
+02/09/2019 22:44:52.669  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMDefault
+02/09/2019 22:44:52.938  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcTop
+02/09/2019 22:44:52.997  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcBottom
+02/09/2019 22:44:53.106  INFO  BottomPane.java                  90 --- [SHOW] FXSupplementaryFragment: idfSLogin
+02/09/2019 22:44:53.130  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcLeft
+02/09/2019 22:44:53.139  INFO  LeftMenuFragment.java            46 --- [INIT] FXMenuFragment: idfMenuLeft
+02/09/2019 22:44:53.318  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcTop
+02/09/2019 22:44:53.357  INFO  BottomPane.java                  90 --- [SHOW] FXSupplementaryFragment: idfSLogin
+02/09/2019 22:44:53.398  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcMain
+02/09/2019 22:44:53.420  INFO  ProjectListFragment.java         45 --- [INIT] FXParentFragment : idfPList
+02/09/2019 22:44:53.420  INFO  ProjectCreateFragment.java       37 --- [INIT] FXParentFragment : idfPCreate
+02/09/2019 22:44:53.420  INFO  ProjectUpdateFragment.java       43 --- [INIT] FXParentFragment : idfPUpdate
+02/09/2019 22:44:53.421  INFO  ProjectInfoFragment.java         38 --- [INIT] FXParentFragment : idfPInfo
+02/09/2019 22:44:53.496  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 22:44:53.497  INFO  ProjectUtilFragment.java         71 --- [INIT] FXChildFragment  : idfPUtil
+02/09/2019 22:44:53.501  INFO  ProjectTableFragment.java       122 --- [INIT] FXChildFragment  : idfPTable
+02/09/2019 22:44:53.505  INFO  PaginationFragment.java          35 --- [INIT] FXChildFragment  : idfPagination
+02/09/2019 22:44:53.595  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 22:44:53.596  INFO  ProjectEditFormFragment.java    160 --- [INIT] FXChildFragment  : idfPEditForm
+02/09/2019 22:44:53.601  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 22:44:53.669  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 22:44:53.670  INFO  ProjectEditFormFragment.java    160 --- [INIT] FXChildFragment  : idfPEditForm
+02/09/2019 22:44:53.670  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 22:44:53.737  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 22:44:53.738  INFO  ProjectDetailFragment.java      112 --- [INIT] FXChildFragment  : idfPDetail
+02/09/2019 22:44:53.739  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 22:44:59.647  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMDefault
+02/09/2019 22:44:59.648  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMPerspective
+02/09/2019 22:44:59.648  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMPerspective
+02/09/2019 22:44:59.681  INFO  PimMessage.java                  25 --- [MESSAGE] PerspectiveShowing >>> sent from: PimPerspective
+02/09/2019 22:45:04.378  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMPerspective
+02/09/2019 22:45:04.379  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMDefault
+02/09/2019 22:45:04.379  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMDefault
+02/09/2019 22:45:04.399  INFO  BottomPane.java                  81 --- [SHOW] FXSupplementaryFragment: idfSError
+02/09/2019 22:45:04.400  ERROR BottomPane.java                  82 --- [ERROR] io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+02/09/2019 22:50:08.339  INFO  AppConfiguration.java            92 --- [CONFIG] Creating bean of < StatusMapper >
+02/09/2019 22:50:08.349  INFO  AppConfiguration.java           116 --- [CONFIG] Creating bean of < ProjectMapper >
+02/09/2019 22:50:08.364  INFO  AppConfiguration.java            98 --- [CONFIG] Creating bean of < DateTimeMapper >
+02/09/2019 22:50:08.367  INFO  AppConfiguration.java            86 --- [CONFIG] Creating bean of < ProjectServiceBlockingStub >
+02/09/2019 22:50:08.383  INFO  AppConfiguration.java           110 --- [CONFIG] Creating bean of < GroupMapper >
+02/09/2019 22:50:08.387  INFO  AppConfiguration.java            80 --- [CONFIG] Creating bean of < GroupServiceBlockingStub >
+02/09/2019 22:50:08.401  INFO  AppConfiguration.java           104 --- [CONFIG] Creating bean of < EmployeeMapper >
+02/09/2019 22:50:08.406  INFO  AppConfiguration.java            74 --- [CONFIG] Creating bean of < EmployeeServiceBlockingStub >
+02/09/2019 22:50:09.594  INFO  PimWorkbench.java                30 --- [INIT] FXWorkbench
+02/09/2019 22:50:09.724  INFO  PimWorkbench.java                39 --- [HANDLE] FXWorkbench
+02/09/2019 22:50:09.905  INFO  BasePerspective.java             51 --- [INIT] FXPerspective: idPIMPerspective
+02/09/2019 22:50:09.930  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMPerspective
+02/09/2019 22:50:09.947  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMPerspective
+02/09/2019 22:50:09.954  INFO  BasePerspective.java             51 --- [INIT] FXPerspective: idPIMDefault
+02/09/2019 22:50:09.963  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMDefault
+02/09/2019 22:50:09.963  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMDefault
+02/09/2019 22:50:10.214  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcLeft
+02/09/2019 22:50:10.261  INFO  LeftMenuFragment.java            46 --- [INIT] FXMenuFragment: idfMenuLeft
+02/09/2019 22:50:10.266  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcBottom
+02/09/2019 22:50:10.395  INFO  BottomPane.java                  90 --- [SHOW] FXSupplementaryFragment: idfSLogin
+02/09/2019 22:50:10.421  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcTop
+02/09/2019 22:50:10.663  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcTop
+02/09/2019 22:50:10.700  INFO  BottomPane.java                  90 --- [SHOW] FXSupplementaryFragment: idfSLogin
+02/09/2019 22:50:10.762  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcMain
+02/09/2019 22:50:10.784  INFO  ProjectListFragment.java         45 --- [INIT] FXParentFragment : idfPList
+02/09/2019 22:50:10.785  INFO  ProjectCreateFragment.java       37 --- [INIT] FXParentFragment : idfPCreate
+02/09/2019 22:50:10.785  INFO  ProjectUpdateFragment.java       43 --- [INIT] FXParentFragment : idfPUpdate
+02/09/2019 22:50:10.786  INFO  ProjectInfoFragment.java         38 --- [INIT] FXParentFragment : idfPInfo
+02/09/2019 22:50:10.859  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 22:50:10.859  INFO  ProjectUtilFragment.java         71 --- [INIT] FXChildFragment  : idfPUtil
+02/09/2019 22:50:10.863  INFO  ProjectTableFragment.java       122 --- [INIT] FXChildFragment  : idfPTable
+02/09/2019 22:50:10.869  INFO  PaginationFragment.java          35 --- [INIT] FXChildFragment  : idfPagination
+02/09/2019 22:50:10.996  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 22:50:10.996  INFO  ProjectEditFormFragment.java    160 --- [INIT] FXChildFragment  : idfPEditForm
+02/09/2019 22:50:11.004  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 22:50:11.088  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 22:50:11.090  INFO  ProjectEditFormFragment.java    160 --- [INIT] FXChildFragment  : idfPEditForm
+02/09/2019 22:50:11.091  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 22:50:11.150  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 22:50:11.150  INFO  ProjectDetailFragment.java      112 --- [INIT] FXChildFragment  : idfPDetail
+02/09/2019 22:50:11.152  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 23:01:45.709  INFO  AppConfiguration.java            92 --- [CONFIG] Creating bean of < StatusMapper >
+02/09/2019 23:01:45.720  INFO  AppConfiguration.java           116 --- [CONFIG] Creating bean of < ProjectMapper >
+02/09/2019 23:01:45.736  INFO  AppConfiguration.java            98 --- [CONFIG] Creating bean of < DateTimeMapper >
+02/09/2019 23:01:45.739  INFO  AppConfiguration.java            86 --- [CONFIG] Creating bean of < ProjectServiceBlockingStub >
+02/09/2019 23:01:45.755  INFO  AppConfiguration.java           110 --- [CONFIG] Creating bean of < GroupMapper >
+02/09/2019 23:01:45.761  INFO  AppConfiguration.java            80 --- [CONFIG] Creating bean of < GroupServiceBlockingStub >
+02/09/2019 23:01:45.777  INFO  AppConfiguration.java           104 --- [CONFIG] Creating bean of < EmployeeMapper >
+02/09/2019 23:01:45.782  INFO  AppConfiguration.java            74 --- [CONFIG] Creating bean of < EmployeeServiceBlockingStub >
+02/09/2019 23:01:47.094  INFO  PimWorkbench.java                30 --- [INIT] FXWorkbench
+02/09/2019 23:01:47.265  INFO  PimWorkbench.java                39 --- [HANDLE] FXWorkbench
+02/09/2019 23:01:47.453  INFO  BasePerspective.java             51 --- [INIT] FXPerspective: idPIMPerspective
+02/09/2019 23:01:47.488  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMPerspective
+02/09/2019 23:01:47.519  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMPerspective
+02/09/2019 23:01:47.532  INFO  BasePerspective.java             51 --- [INIT] FXPerspective: idPIMDefault
+02/09/2019 23:01:47.549  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMDefault
+02/09/2019 23:01:47.550  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMDefault
+02/09/2019 23:01:47.855  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcLeft
+02/09/2019 23:01:47.898  INFO  LeftMenuFragment.java            46 --- [INIT] FXMenuFragment: idfMenuLeft
+02/09/2019 23:01:47.903  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcBottom
+02/09/2019 23:01:48.050  INFO  BottomPane.java                  90 --- [SHOW] FXSupplementaryFragment: idfSLogin
+02/09/2019 23:01:48.079  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcMain
+02/09/2019 23:01:48.118  INFO  ProjectListFragment.java         45 --- [INIT] FXParentFragment : idfPList
+02/09/2019 23:01:48.119  INFO  ProjectCreateFragment.java       37 --- [INIT] FXParentFragment : idfPCreate
+02/09/2019 23:01:48.120  INFO  ProjectUpdateFragment.java       43 --- [INIT] FXParentFragment : idfPUpdate
+02/09/2019 23:01:48.120  INFO  ProjectInfoFragment.java         38 --- [INIT] FXParentFragment : idfPInfo
+02/09/2019 23:01:48.231  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 23:01:48.231  INFO  ProjectUtilFragment.java         71 --- [INIT] FXChildFragment  : idfPUtil
+02/09/2019 23:01:48.238  INFO  ProjectTableFragment.java       122 --- [INIT] FXChildFragment  : idfPTable
+02/09/2019 23:01:48.248  INFO  PaginationFragment.java          35 --- [INIT] FXChildFragment  : idfPagination
+02/09/2019 23:01:48.406  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 23:01:48.407  INFO  ProjectEditFormFragment.java    160 --- [INIT] FXChildFragment  : idfPEditForm
+02/09/2019 23:01:48.412  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 23:01:48.477  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 23:01:48.477  INFO  ProjectEditFormFragment.java    160 --- [INIT] FXChildFragment  : idfPEditForm
+02/09/2019 23:01:48.478  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 23:01:48.544  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 23:01:48.545  INFO  ProjectDetailFragment.java      112 --- [INIT] FXChildFragment  : idfPDetail
+02/09/2019 23:01:48.546  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 23:01:48.677  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcTop
+02/09/2019 23:01:48.710  INFO  BottomPane.java                  90 --- [SHOW] FXSupplementaryFragment: idfSLogin
+02/09/2019 23:01:48.748  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcTop
+02/09/2019 23:02:17.721  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMDefault
+02/09/2019 23:02:17.721  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMPerspective
+02/09/2019 23:02:17.722  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMPerspective
+02/09/2019 23:02:17.729  INFO  PimMessage.java                  25 --- [MESSAGE] PerspectiveShowing >>> sent from: PimPerspective
+02/09/2019 23:02:22.524  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMPerspective
+02/09/2019 23:02:22.525  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMDefault
+02/09/2019 23:02:22.525  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMDefault
+02/09/2019 23:02:22.538  INFO  BottomPane.java                  81 --- [SHOW] FXSupplementaryFragment: idfSError
+02/09/2019 23:02:22.538  ERROR BottomPane.java                  82 --- [ERROR] io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+02/09/2019 23:03:54.418  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMDefault
+02/09/2019 23:03:54.418  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMPerspective
+02/09/2019 23:03:54.418  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMPerspective
+02/09/2019 23:03:54.425  INFO  PimMessage.java                  25 --- [MESSAGE] PerspectiveShowing >>> sent from: PimPerspective
+02/09/2019 23:07:19.940  INFO  TopMenuFragment.java            102 --- [PIM] Clicked help button
+02/09/2019 23:07:23.090  INFO  TopMenuFragment.java            107 --- [PIM} Clicked Logout button
+02/09/2019 23:07:23.091  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMPerspective
+02/09/2019 23:07:23.091  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMDefault
+02/09/2019 23:07:23.091  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMDefault
+02/09/2019 23:07:23.102  INFO  BottomPane.java                  90 --- [SHOW] FXSupplementaryFragment: idfSLogin
+02/09/2019 23:07:24.305  INFO  BaseComponent.java               69 --- [DESTROY] FXComponentLayout: idcTop
+02/09/2019 23:07:24.306  INFO  BaseComponent.java               69 --- [DESTROY] FXComponentLayout: idcLeft
+02/09/2019 23:07:24.306  INFO  BaseComponent.java               69 --- [DESTROY] FXComponentLayout: idcMain
+02/09/2019 23:07:24.306  INFO  BasePerspective.java             33 --- [DESTROY] FXPerspective: idPIMPerspective
+02/09/2019 23:07:24.307  INFO  BaseComponent.java               69 --- [DESTROY] FXComponentLayout: idcTop
+02/09/2019 23:07:24.307  INFO  BaseComponent.java               69 --- [DESTROY] FXComponentLayout: idcBottom
+02/09/2019 23:07:24.307  INFO  BasePerspective.java             33 --- [DESTROY] FXPerspective: idPIMDefault
+02/09/2019 23:20:18.070  INFO  AppConfiguration.java            92 --- [CONFIG] Creating bean of < StatusMapper >
+02/09/2019 23:20:18.082  INFO  AppConfiguration.java           116 --- [CONFIG] Creating bean of < ProjectMapper >
+02/09/2019 23:20:18.098  INFO  AppConfiguration.java            98 --- [CONFIG] Creating bean of < DateTimeMapper >
+02/09/2019 23:20:18.100  INFO  AppConfiguration.java            86 --- [CONFIG] Creating bean of < ProjectServiceBlockingStub >
+02/09/2019 23:20:18.116  INFO  AppConfiguration.java           110 --- [CONFIG] Creating bean of < GroupMapper >
+02/09/2019 23:20:18.120  INFO  AppConfiguration.java            80 --- [CONFIG] Creating bean of < GroupServiceBlockingStub >
+02/09/2019 23:20:18.133  INFO  AppConfiguration.java           104 --- [CONFIG] Creating bean of < EmployeeMapper >
+02/09/2019 23:20:18.138  INFO  AppConfiguration.java            74 --- [CONFIG] Creating bean of < EmployeeServiceBlockingStub >
+02/09/2019 23:20:19.513  INFO  PimWorkbench.java                30 --- [INIT] FXWorkbench
+02/09/2019 23:20:19.698  INFO  PimWorkbench.java                39 --- [HANDLE] FXWorkbench
+02/09/2019 23:20:19.957  INFO  BasePerspective.java             51 --- [INIT] FXPerspective: idPIMPerspective
+02/09/2019 23:20:20.001  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMPerspective
+02/09/2019 23:20:20.024  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMPerspective
+02/09/2019 23:20:20.036  INFO  BasePerspective.java             51 --- [INIT] FXPerspective: idPIMDefault
+02/09/2019 23:20:20.052  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMDefault
+02/09/2019 23:20:20.053  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMDefault
+02/09/2019 23:20:20.361  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcLeft
+02/09/2019 23:20:20.408  INFO  LeftMenuFragment.java            46 --- [INIT] FXMenuFragment: idfMenuLeft
+02/09/2019 23:20:20.413  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcBottom
+02/09/2019 23:20:20.575  INFO  BottomPane.java                  90 --- [SHOW] FXSupplementaryFragment: idfSLogin
+02/09/2019 23:20:20.605  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcMain
+02/09/2019 23:20:20.643  INFO  ProjectListFragment.java         45 --- [INIT] FXParentFragment : idfPList
+02/09/2019 23:20:20.643  INFO  ProjectCreateFragment.java       37 --- [INIT] FXParentFragment : idfPCreate
+02/09/2019 23:20:20.644  INFO  ProjectUpdateFragment.java       43 --- [INIT] FXParentFragment : idfPUpdate
+02/09/2019 23:20:20.644  INFO  ProjectInfoFragment.java         38 --- [INIT] FXParentFragment : idfPInfo
+02/09/2019 23:20:20.748  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 23:20:20.748  INFO  ProjectUtilFragment.java         71 --- [INIT] FXChildFragment  : idfPUtil
+02/09/2019 23:20:20.753  INFO  ProjectTableFragment.java       120 --- [INIT] FXChildFragment  : idfPTable
+02/09/2019 23:20:20.759  INFO  PaginationFragment.java          35 --- [INIT] FXChildFragment  : idfPagination
+02/09/2019 23:20:20.859  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 23:20:20.860  INFO  ProjectEditFormFragment.java    160 --- [INIT] FXChildFragment  : idfPEditForm
+02/09/2019 23:20:20.866  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 23:20:20.961  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 23:20:20.961  INFO  ProjectEditFormFragment.java    160 --- [INIT] FXChildFragment  : idfPEditForm
+02/09/2019 23:20:20.962  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 23:20:21.047  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 23:20:21.047  INFO  ProjectDetailFragment.java      112 --- [INIT] FXChildFragment  : idfPDetail
+02/09/2019 23:20:21.049  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 23:20:21.191  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcTop
+02/09/2019 23:20:21.224  INFO  BottomPane.java                  90 --- [SHOW] FXSupplementaryFragment: idfSLogin
+02/09/2019 23:20:21.273  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcTop
+02/09/2019 23:20:26.128  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMDefault
+02/09/2019 23:20:26.128  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMPerspective
+02/09/2019 23:20:26.129  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMPerspective
+02/09/2019 23:20:26.137  INFO  PimMessage.java                  25 --- [MESSAGE] PerspectiveShowing >>> sent from: PimPerspective
+02/09/2019 23:20:27.028  INFO  ProjectTableFragment.java       167 --- [REQUEST] Get all projects
+02/09/2019 23:20:27.069  INFO  ProjectTableFragment.java       171 --- [RESPONSE] Number of projects: 53
+02/09/2019 23:20:43.687  INFO  ProjectTableFragment.java       167 --- [REQUEST] Get all projects
+02/09/2019 23:20:43.724  INFO  ProjectTableFragment.java       171 --- [RESPONSE] Number of projects: 53
+02/09/2019 23:20:51.570  INFO  ProjectTableFragment.java       167 --- [REQUEST] Get all projects
+02/09/2019 23:20:51.602  INFO  ProjectTableFragment.java       171 --- [RESPONSE] Number of projects: 53
+02/09/2019 23:20:52.383  INFO  ProjectTableFragment.java       167 --- [REQUEST] Get all projects
+02/09/2019 23:20:52.414  INFO  ProjectTableFragment.java       171 --- [RESPONSE] Number of projects: 53
+02/09/2019 23:20:53.032  INFO  ProjectTableFragment.java       167 --- [REQUEST] Get all projects
+02/09/2019 23:20:53.064  INFO  ProjectTableFragment.java       171 --- [RESPONSE] Number of projects: 53
+02/09/2019 23:20:53.836  INFO  ProjectTableFragment.java       167 --- [REQUEST] Get all projects
+02/09/2019 23:20:53.867  INFO  ProjectTableFragment.java       171 --- [RESPONSE] Number of projects: 53
+02/09/2019 23:20:54.618  INFO  ProjectTableFragment.java       167 --- [REQUEST] Get all projects
+02/09/2019 23:20:54.649  INFO  ProjectTableFragment.java       171 --- [RESPONSE] Number of projects: 53
+02/09/2019 23:22:03.968  INFO  ProjectTableFragment.java       161 --- [REQUEST] Get all projects with status = Nouvelle
+02/09/2019 23:22:04.006  INFO  ProjectTableFragment.java       171 --- [RESPONSE] Number of projects: 6
+02/09/2019 23:22:04.059  INFO  ProjectTableFragment.java       161 --- [REQUEST] Get all projects with status = Nouvelle
+02/09/2019 23:22:04.090  INFO  ProjectTableFragment.java       171 --- [RESPONSE] Number of projects: 6
+02/09/2019 23:22:14.571  INFO  ProjectTableFragment.java       161 --- [REQUEST] Get all projects with status = En cours
+02/09/2019 23:22:14.611  INFO  ProjectTableFragment.java       171 --- [RESPONSE] Number of projects: 16
+02/09/2019 23:23:09.761  INFO  AppConfiguration.java            92 --- [CONFIG] Creating bean of < StatusMapper >
+02/09/2019 23:23:09.776  INFO  AppConfiguration.java           116 --- [CONFIG] Creating bean of < ProjectMapper >
+02/09/2019 23:23:09.794  INFO  AppConfiguration.java            98 --- [CONFIG] Creating bean of < DateTimeMapper >
+02/09/2019 23:23:09.797  INFO  AppConfiguration.java            86 --- [CONFIG] Creating bean of < ProjectServiceBlockingStub >
+02/09/2019 23:23:09.815  INFO  AppConfiguration.java           110 --- [CONFIG] Creating bean of < GroupMapper >
+02/09/2019 23:23:09.819  INFO  AppConfiguration.java            80 --- [CONFIG] Creating bean of < GroupServiceBlockingStub >
+02/09/2019 23:23:09.833  INFO  AppConfiguration.java           104 --- [CONFIG] Creating bean of < EmployeeMapper >
+02/09/2019 23:23:09.837  INFO  AppConfiguration.java            74 --- [CONFIG] Creating bean of < EmployeeServiceBlockingStub >
+02/09/2019 23:23:11.176  INFO  PimWorkbench.java                30 --- [INIT] FXWorkbench
+02/09/2019 23:23:11.311  INFO  PimWorkbench.java                39 --- [HANDLE] FXWorkbench
+02/09/2019 23:23:11.504  INFO  BasePerspective.java             51 --- [INIT] FXPerspective: idPIMPerspective
+02/09/2019 23:23:11.534  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMPerspective
+02/09/2019 23:23:11.551  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMPerspective
+02/09/2019 23:23:11.561  INFO  BasePerspective.java             51 --- [INIT] FXPerspective: idPIMDefault
+02/09/2019 23:23:11.574  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMDefault
+02/09/2019 23:23:11.574  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMDefault
+02/09/2019 23:23:11.818  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcTop
+02/09/2019 23:23:11.880  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcBottom
+02/09/2019 23:23:11.987  INFO  BottomPane.java                  90 --- [SHOW] FXSupplementaryFragment: idfSLogin
+02/09/2019 23:23:12.009  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcLeft
+02/09/2019 23:23:12.020  INFO  LeftMenuFragment.java            46 --- [INIT] FXMenuFragment: idfMenuLeft
+02/09/2019 23:23:12.202  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcTop
+02/09/2019 23:23:12.244  INFO  BottomPane.java                  90 --- [SHOW] FXSupplementaryFragment: idfSLogin
+02/09/2019 23:23:12.319  INFO  BaseComponent.java               63 --- [INIT] FXComponentLayout: idcMain
+02/09/2019 23:23:12.335  INFO  ProjectListFragment.java         45 --- [INIT] FXParentFragment : idfPList
+02/09/2019 23:23:12.336  INFO  ProjectCreateFragment.java       37 --- [INIT] FXParentFragment : idfPCreate
+02/09/2019 23:23:12.336  INFO  ProjectUpdateFragment.java       43 --- [INIT] FXParentFragment : idfPUpdate
+02/09/2019 23:23:12.336  INFO  ProjectInfoFragment.java         38 --- [INIT] FXParentFragment : idfPInfo
+02/09/2019 23:23:12.421  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 23:23:12.422  INFO  ProjectUtilFragment.java         71 --- [INIT] FXChildFragment  : idfPUtil
+02/09/2019 23:23:12.427  INFO  ProjectTableFragment.java       120 --- [INIT] FXChildFragment  : idfPTable
+02/09/2019 23:23:12.432  INFO  PaginationFragment.java          35 --- [INIT] FXChildFragment  : idfPagination
+02/09/2019 23:23:12.540  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 23:23:12.541  INFO  ProjectEditFormFragment.java    160 --- [INIT] FXChildFragment  : idfPEditForm
+02/09/2019 23:23:12.547  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 23:23:12.624  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 23:23:12.625  INFO  ProjectEditFormFragment.java    160 --- [INIT] FXChildFragment  : idfPEditForm
+02/09/2019 23:23:12.626  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 23:23:12.678  INFO  MainLabelFragment.java           32 --- [INIT] FXChildFragment  : idfMLabel
+02/09/2019 23:23:12.678  INFO  ProjectDetailFragment.java      112 --- [INIT] FXChildFragment  : idfPDetail
+02/09/2019 23:23:12.680  INFO  ConfirmFragment.java             42 --- [INIT] FXChildFragment  : idfConfirm
+02/09/2019 23:23:22.044  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMDefault
+02/09/2019 23:23:22.044  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMPerspective
+02/09/2019 23:23:22.044  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMPerspective
+02/09/2019 23:23:22.051  INFO  PimMessage.java                  25 --- [MESSAGE] PerspectiveShowing >>> sent from: PimPerspective
+02/09/2019 23:23:26.826  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMPerspective
+02/09/2019 23:23:26.827  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMDefault
+02/09/2019 23:23:26.827  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMDefault
+02/09/2019 23:23:26.844  INFO  BottomPane.java                  81 --- [SHOW] FXSupplementaryFragment: idfSError
+02/09/2019 23:23:26.844  ERROR BottomPane.java                  82 --- [ERROR] io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+02/09/2019 23:23:43.283  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMDefault
+02/09/2019 23:23:43.283  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMPerspective
+02/09/2019 23:23:43.284  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMPerspective
+02/09/2019 23:23:43.291  INFO  PimMessage.java                  25 --- [MESSAGE] PerspectiveShowing >>> sent from: PimPerspective
+02/09/2019 23:23:43.419  INFO  BasePerspective.java             44 --- [HIDE] FXPerspective: idPIMPerspective
+02/09/2019 23:23:43.420  INFO  BasePerspective.java             38 --- [SHOW] FXPerspective: idPIMDefault
+02/09/2019 23:23:43.421  INFO  BasePerspective.java             27 --- [HANDLE] FXPerspective: idPIMDefault
+02/09/2019 23:23:43.447  INFO  BottomPane.java                  81 --- [SHOW] FXSupplementaryFragment: idfSError
+02/09/2019 23:23:43.447  ERROR BottomPane.java                  82 --- [ERROR] io.grpc.StatusRuntimeException: UNAVAILABLE: io exception
+02/09/2019 23:23:50.039  INFO  BaseComponent.java               69 --- [DESTROY] FXComponentLayout: idcTop
+02/09/2019 23:23:50.039  INFO  BaseComponent.java               69 --- [DESTROY] FXComponentLayout: idcLeft
+02/09/2019 23:23:50.040  INFO  BaseComponent.java               69 --- [DESTROY] FXComponentLayout: idcMain
+02/09/2019 23:23:50.040  INFO  BasePerspective.java             33 --- [DESTROY] FXPerspective: idPIMPerspective
+02/09/2019 23:23:50.041  INFO  BaseComponent.java               69 --- [DESTROY] FXComponentLayout: idcTop
+02/09/2019 23:23:50.041  INFO  BaseComponent.java               69 --- [DESTROY] FXComponentLayout: idcBottom
+02/09/2019 23:23:50.041  INFO  BasePerspective.java             33 --- [DESTROY] FXPerspective: idPIMDefault

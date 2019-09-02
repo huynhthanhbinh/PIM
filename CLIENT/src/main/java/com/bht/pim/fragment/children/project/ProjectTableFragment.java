@@ -84,14 +84,12 @@ public class ProjectTableFragment extends ChildFragment {
     @Getter
     private BooleanProperty successProperty;
 
-
     @Autowired
     private ProjectService projectService;
     @Autowired
     private PimUtil pimUtil;
     @Autowired
     private StatusMapper statusMapper;
-
 
     @Resource
     private Context context;
@@ -160,14 +158,17 @@ public class ProjectTableFragment extends ChildFragment {
         double temp;
 
         if (statusProperty.get() != null && !statusProperty.get().isEmpty()) {
+            LOGGER.info("[REQUEST] Get all projects with status = " + statusProperty.get());
             temp = projectService.getNumberOfProjectsByStatus(statusProperty);
         } else if (!searchBox.textProperty().get().isEmpty()) {
+            LOGGER.info("[REQUEST] Get all projects with keyword = " + searchBox.getText());
             temp = projectService.getNumberOfProjectsByKeyword(searchBox.textProperty());
         } else {
+            LOGGER.info("[REQUEST] Get all projects");
             temp = projectService.getNumberOfProjects();
         }
 
-        LOGGER.info("Number of projects: " + (long) temp);
+        LOGGER.info("[RESPONSE] Number of projects: " + (long) temp);
         pageCountProperty.set((int) Math.ceil(temp / MAX_TABLE_ROW));
         selectedProperty.set(0); // reset number of selected projects
         aboutToDeleteProjects.clear(); // remove old list of last page
@@ -422,7 +423,6 @@ public class ProjectTableFragment extends ChildFragment {
     private void onSearchForProject(Event event) {
         if (!searchBox.getText().isEmpty()) {
             statusSelection.get().clearSelection();
-            LOGGER.info("Searching for project with keyword = " + searchBox.getText());
             getListProject(0);
         }
     }

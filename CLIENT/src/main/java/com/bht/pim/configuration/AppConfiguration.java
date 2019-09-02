@@ -71,49 +71,49 @@ public class AppConfiguration {
 
     @Bean
     public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub() {
-        log.info("[PIM] Creating bean of < EmployeeServiceBlockingStub >");
+        log.info("[CONFIG] Creating bean of < EmployeeServiceBlockingStub >");
         return EmployeeServiceGrpc.newBlockingStub(CHANNEL_PROPERTY.get());
     }
 
     @Bean
     public GroupServiceGrpc.GroupServiceBlockingStub groupServiceBlockingStub() {
-        log.info("[PIM] Creating bean of < GroupServiceBlockingStub >");
+        log.info("[CONFIG] Creating bean of < GroupServiceBlockingStub >");
         return GroupServiceGrpc.newBlockingStub(CHANNEL_PROPERTY.get());
     }
 
     @Bean
     public ProjectServiceGrpc.ProjectServiceBlockingStub projectServiceBlockingStub() {
-        log.info("[PIM] Creating bean of < ProjectServiceBlockingStub >");
+        log.info("[CONFIG] Creating bean of < ProjectServiceBlockingStub >");
         return ProjectServiceGrpc.newBlockingStub(CHANNEL_PROPERTY.get());
     }
 
     @Bean
     public StatusMapper statusMapper() {
-        log.info("[PIM] Creating bean of < StatusMapper >");
+        log.info("[CONFIG] Creating bean of < StatusMapper >");
         return Mappers.getMapper(StatusMapper.class);
     }
 
     @Bean
     public DateTimeMapper dateTimeMapper() {
-        log.info("[PIM] Creating bean of < DateTimeMapper >");
+        log.info("[CONFIG] Creating bean of < DateTimeMapper >");
         return Mappers.getMapper(DateTimeMapper.class);
     }
 
     @Bean
     public EmployeeMapper employeeMapper() {
-        log.info("[PIM] Creating bean of < EmployeeMapper >");
+        log.info("[CONFIG] Creating bean of < EmployeeMapper >");
         return Mappers.getMapper(EmployeeMapper.class);
     }
 
     @Bean
     public GroupMapper groupMapper() {
-        log.info("[PIM] Creating bean of < GroupMapper >");
+        log.info("[CONFIG] Creating bean of < GroupMapper >");
         return Mappers.getMapper(GroupMapper.class);
     }
 
     @Bean
     public ProjectMapper projectMapper() {
-        log.info("[PIM] Creating bean of < ProjectMapper >");
+        log.info("[CONFIG] Creating bean of < ProjectMapper >");
         return Mappers.getMapper(ProjectMapper.class);
     }
 }
