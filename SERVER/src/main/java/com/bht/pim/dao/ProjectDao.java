@@ -5,9 +5,10 @@ package com.bht.pim.dao;
 //  + User Model  : for presentation layer (view)
 //  + User Entity : for data access layer (repo)
 
-import java.util.List;
-
 import com.bht.pim.entity.ProjectEntity;
+import com.bht.pim.entity.group.ProjectEntityGroup;
+
+import java.util.List;
 
 // For accessing database
 public interface ProjectDao {
@@ -41,6 +42,9 @@ public interface ProjectDao {
 
     // Get an existing project but by number instead of id
     ProjectEntity getProjectByNumber(long number);
+
+    // Get count projects group_by status
+    List<ProjectEntityGroup> getProjectGroupByStatus();
 
     // Get all projects - pagination
     List<ProjectEntity> getProjectList(int maxRow, int pageIndex);

@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
@@ -16,11 +17,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /**
  * @author bht
  */
+@Log4j
 @Controller
 @Fragment(id = ErrorHandlingFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
@@ -69,6 +72,8 @@ public class ErrorHandlingFragment implements Initializable {
     }
 
     public void setDetail(Throwable detail) {
+        log.error("[ERROR] " + detail);
+        Arrays.asList(detail.getStackTrace()).forEach(log::warn);
         detailField.setText(detail.getClass().getName()
                 + "\n" + detail.getMessage());
     }

@@ -3,6 +3,7 @@ package com.bht.pim.service.impl;
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.mapper.ProjectMapper;
 import com.bht.pim.mapper.StatusMapper;
+import com.bht.pim.proto.projects.ProjectGroup;
 import com.bht.pim.proto.projects.ProjectPagination;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
 import com.bht.pim.service.ProjectService;
@@ -17,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author bht
@@ -78,6 +81,15 @@ public final class ProjectServiceImpl implements ProjectService {
         return stub
                 .getProjectNumbers(Empty.getDefaultInstance())
                 .getProjectNumbersList();
+    }
+
+    // Get count project group-by status
+    @Override
+    public Map<String, Long> getProjectsGroupByStatus() {
+        return stub
+                .getProjectGroups(Empty.getDefaultInstance())
+                .getProjectGroupsList().stream()
+                .collect(Collectors.toMap(ProjectGroup::getStatus, ProjectGroup::getCount));
     }
 
     // Get all of projects

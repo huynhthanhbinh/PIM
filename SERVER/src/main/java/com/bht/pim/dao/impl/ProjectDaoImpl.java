@@ -1,25 +1,24 @@
 package com.bht.pim.dao.impl;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
+import com.bht.pim.dao.ProjectDao;
+import com.bht.pim.entity.ProjectEntity;
+import com.bht.pim.entity.group.ProjectEntityGroup;
+import lombok.extern.log4j.Log4j;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bht.pim.dao.ProjectDao;
-import com.bht.pim.entity.ProjectEntity;
-
-import lombok.extern.log4j.Log4j;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Root;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Log4j
 @Repository
@@ -301,6 +300,31 @@ public class ProjectDaoImpl implements ProjectDao {
             Hibernate.initialize(projectEntity.getEnrolledEmployees());
 
             return projectEntity;
+
+        } catch (Exception exception) {
+
+            log.info(exception);
+            return null;
+        }
+    }
+
+    @Override
+    public List<ProjectEntityGroup> getProjectGroupByStatus() {
+        try {
+            CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+            CriteriaQuery<ProjectEntityGroup> query = builder.createQuery(ProjectEntityGroup.class);
+            Root<ProjectEntity> root = query.from(ProjectEntity.class);
+
+            Expression<String> groupByStatusExp = root.get("status").as(String.class);
+            Expression<Long> countGroupByStatus = builder.count(groupByStatusExp);
+
+            TypedQuery<ProjectEntityGroup> queryByStatus = sessionFactory
+                    .getCurrentSession()
+                    .createQuery(query
+                            .multiselect(groupByStatusExp, countGroupByStatus)
+                            .groupBy(groupByStatusExp));
+
+            return queryByStatus.getResultList();
 
         } catch (Exception exception) {
 

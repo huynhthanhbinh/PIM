@@ -208,10 +208,10 @@ public final class ProjectPagination extends
     public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
         if (isInitialized == 1) {
-          return true;
+            return true;
         }
         if (isInitialized == 0) {
-          return false;
+            return false;
         }
 
         memoizedIsInitialized = 1;
@@ -240,7 +240,7 @@ public final class ProjectPagination extends
     public int getSerializedSize() {
         int size = memoizedSize;
         if (size != -1) {
-          return size;
+            return size;
         }
 
         size = 0;
@@ -545,7 +545,7 @@ public final class ProjectPagination extends
 
         public Builder mergeFrom(ProjectPagination other) {
             if (other == ProjectPagination.getDefaultInstance()) {
-              return this;
+                return this;
             }
             if (other.getMaxRow() != 0) {
                 setMaxRow(other.getMaxRow());
@@ -561,7 +561,7 @@ public final class ProjectPagination extends
                 keyword_ = other.keyword_;
                 onChanged();
             }
-          mergeUnknownFields(other.unknownFields);
+            mergeUnknownFields(other.unknownFields);
             onChanged();
             return this;
         }

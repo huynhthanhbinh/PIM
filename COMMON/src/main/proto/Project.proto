@@ -31,6 +31,15 @@ message ProjectPagination {
     string keyword = 4;
 }
 
+message ProjectGroup {
+    string status = 1;
+    int64 count = 2;
+}
+
+message ProjectGroups {
+    repeated ProjectGroup projectGroups = 1;
+}
+
 service ProjectService {
     rpc getProjectById (google.protobuf.Int64Value) returns (Project);
     rpc getProjectByNumber (google.protobuf.Int64Value) returns (Project);
@@ -41,6 +50,7 @@ service ProjectService {
 
     rpc getProjectList (ProjectPagination) returns (ProjectList);
     rpc getProjectNumbers (google.protobuf.Empty) returns (ProjectNumbers);
+    rpc getProjectGroups (google.protobuf.Empty) returns (ProjectGroups);
 
     rpc getNumberOfProjects (google.protobuf.Empty) returns (google.protobuf.Int64Value);
     rpc getNumberOfProjectsByStatus (google.protobuf.StringValue) returns (google.protobuf.Int64Value);

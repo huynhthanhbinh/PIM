@@ -40,6 +40,16 @@ public final class ProjectOuterClass {
     static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internal_static_com_bht_pim_proto_projects_ProjectPagination_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_com_bht_pim_proto_projects_ProjectGroup_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_com_bht_pim_proto_projects_ProjectGroup_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_com_bht_pim_proto_projects_ProjectGroups_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_com_bht_pim_proto_projects_ProjectGroups_fieldAccessorTable;
 
     public static com.google.protobuf.Descriptors.FileDescriptor
     getDescriptor() {
@@ -63,29 +73,35 @@ public final class ProjectOuterClass {
                         "ts.Project\"(\n\016ProjectNumbers\022\026\n\016projectN" +
                         "umbers\030\001 \003(\003\"W\n\021ProjectPagination\022\016\n\006max" +
                         "Row\030\001 \001(\005\022\021\n\tpageIndex\030\002 \001(\005\022\016\n\006status\030\003" +
-                        " \001(\t\022\017\n\007keyword\030\004 \001(\t2\354\006\n\016ProjectService" +
-                        "\022R\n\016getProjectById\022\033.google.protobuf.Int" +
-                        "64Value\032#.com.bht.pim.proto.projects.Pro" +
-                        "ject\022V\n\022getProjectByNumber\022\033.google.prot" +
-                        "obuf.Int64Value\032#.com.bht.pim.proto.proj" +
-                        "ects.Project\022P\n\raddNewProject\022#.com.bht." +
-                        "pim.proto.projects.Project\032\032.google.prot" +
-                        "obuf.BoolValue\022N\n\013editProject\022#.com.bht." +
-                        "pim.proto.projects.Project\032\032.google.prot" +
-                        "obuf.BoolValue\022H\n\rdeleteProject\022\033.google" +
-                        ".protobuf.Int64Value\032\032.google.protobuf.B" +
-                        "oolValue\022h\n\016getProjectList\022-.com.bht.pim" +
-                        ".proto.projects.ProjectPagination\032\'.com." +
-                        "bht.pim.proto.projects.ProjectList\022W\n\021ge" +
-                        "tProjectNumbers\022\026.google.protobuf.Empty\032" +
-                        "*.com.bht.pim.proto.projects.ProjectNumb" +
-                        "ers\022J\n\023getNumberOfProjects\022\026.google.prot" +
-                        "obuf.Empty\032\033.google.protobuf.Int64Value\022" +
-                        "X\n\033getNumberOfProjectsByStatus\022\034.google." +
-                        "protobuf.StringValue\032\033.google.protobuf.I" +
-                        "nt64Value\022Y\n\034getNumberOfProjectsByKeywor" +
-                        "d\022\034.google.protobuf.StringValue\032\033.google" +
-                        ".protobuf.Int64ValueB\005P\001\210\001\001b\006proto3"
+                        " \001(\t\022\017\n\007keyword\030\004 \001(\t\"-\n\014ProjectGroup\022\016\n" +
+                        "\006status\030\001 \001(\t\022\r\n\005count\030\002 \001(\003\"P\n\rProjectG" +
+                        "roups\022?\n\rprojectGroups\030\001 \003(\0132(.com.bht.p" +
+                        "im.proto.projects.ProjectGroup2\303\007\n\016Proje" +
+                        "ctService\022R\n\016getProjectById\022\033.google.pro" +
+                        "tobuf.Int64Value\032#.com.bht.pim.proto.pro" +
+                        "jects.Project\022V\n\022getProjectByNumber\022\033.go" +
+                        "ogle.protobuf.Int64Value\032#.com.bht.pim.p" +
+                        "roto.projects.Project\022P\n\raddNewProject\022#" +
+                        ".com.bht.pim.proto.projects.Project\032\032.go" +
+                        "ogle.protobuf.BoolValue\022N\n\013editProject\022#" +
+                        ".com.bht.pim.proto.projects.Project\032\032.go" +
+                        "ogle.protobuf.BoolValue\022H\n\rdeleteProject" +
+                        "\022\033.google.protobuf.Int64Value\032\032.google.p" +
+                        "rotobuf.BoolValue\022h\n\016getProjectList\022-.co" +
+                        "m.bht.pim.proto.projects.ProjectPaginati" +
+                        "on\032\'.com.bht.pim.proto.projects.ProjectL" +
+                        "ist\022W\n\021getProjectNumbers\022\026.google.protob" +
+                        "uf.Empty\032*.com.bht.pim.proto.projects.Pr" +
+                        "ojectNumbers\022U\n\020getProjectGroups\022\026.googl" +
+                        "e.protobuf.Empty\032).com.bht.pim.proto.pro" +
+                        "jects.ProjectGroups\022J\n\023getNumberOfProjec" +
+                        "ts\022\026.google.protobuf.Empty\032\033.google.prot" +
+                        "obuf.Int64Value\022X\n\033getNumberOfProjectsBy" +
+                        "Status\022\034.google.protobuf.StringValue\032\033.g" +
+                        "oogle.protobuf.Int64Value\022Y\n\034getNumberOf" +
+                        "ProjectsByKeyword\022\034.google.protobuf.Stri" +
+                        "ngValue\032\033.google.protobuf.Int64ValueB\005P\001" +
+                        "\210\001\001b\006proto3"
         };
         com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
                 new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -129,6 +145,18 @@ public final class ProjectOuterClass {
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_com_bht_pim_proto_projects_ProjectPagination_descriptor,
                 new String[]{"MaxRow", "PageIndex", "Status", "Keyword",});
+        internal_static_com_bht_pim_proto_projects_ProjectGroup_descriptor =
+                getDescriptor().getMessageTypes().get(4);
+        internal_static_com_bht_pim_proto_projects_ProjectGroup_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_com_bht_pim_proto_projects_ProjectGroup_descriptor,
+                new String[]{"Status", "Count",});
+        internal_static_com_bht_pim_proto_projects_ProjectGroups_descriptor =
+                getDescriptor().getMessageTypes().get(5);
+        internal_static_com_bht_pim_proto_projects_ProjectGroups_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_com_bht_pim_proto_projects_ProjectGroups_descriptor,
+                new String[]{"ProjectGroups",});
         com.google.protobuf.WrappersProto.getDescriptor();
         com.google.protobuf.EmptyProto.getDescriptor();
         ProjectInfoOuterClass.getDescriptor();

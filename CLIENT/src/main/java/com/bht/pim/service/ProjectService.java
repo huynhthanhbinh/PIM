@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author bht
@@ -28,6 +29,9 @@ public interface ProjectService {
 
     // Get all project numbers
     List<Long> getProjectNumbers();
+
+    // Get count project group-by status
+    Map<String, Long> getProjectsGroupByStatus();
 
     // Get number of projects / row count(*)
     long getNumberOfProjects();
