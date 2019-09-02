@@ -105,7 +105,7 @@ public class ProjectDetailFragment extends ChildFragment {
 
     @Override
     public void onCreated() {
-        LOGGER.info("[Project Detail] Initialization");
+        LOGGER.info("[INIT] FXChildFragment  : " + ID);
 
         // for i18n / multilingual
         initAllLabels();

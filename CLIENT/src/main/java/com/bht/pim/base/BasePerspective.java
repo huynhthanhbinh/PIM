@@ -24,8 +24,7 @@ public abstract class BasePerspective implements FXPerspective {
     public void handlePerspective(Message<Event, Object> message,
                                   PerspectiveLayout perspectiveLayout) {
 
-        LOGGER.info("On handle perspective: " + perspectiveLayout.getClass().getSimpleName() +
-                " >>> in: " + perspectiveContext.getId());
+        LOGGER.info("[HANDLE] FXPerspective: " + perspectiveContext.getId());
         handleMessage(message);
     }
 

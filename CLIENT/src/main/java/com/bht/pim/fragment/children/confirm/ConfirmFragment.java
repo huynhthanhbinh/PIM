@@ -38,7 +38,7 @@ public class ConfirmFragment extends ChildFragment {
 
     @Override
     public void onCreated() {
-        LOGGER.info("[Confirm Box] Initialization");
+        LOGGER.info("[INIT] FXChildFragment  : " + ID);
     }
 
     @FXML

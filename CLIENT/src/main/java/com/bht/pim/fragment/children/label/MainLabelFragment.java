@@ -25,7 +25,7 @@ public class MainLabelFragment extends ChildFragment {
 
     @Override
     public void onCreated() {
-        LOGGER.info("[Main Label] Initialization");
+        LOGGER.info("[INIT] FXChildFragment  : " + ID);
     }
 
     @FXML

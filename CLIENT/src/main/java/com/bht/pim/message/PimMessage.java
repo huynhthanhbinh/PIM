@@ -22,7 +22,7 @@ public interface PimMessage {
             Logger logger = Logger.getLogger(PimMessage.class);
             PimMessage messageBody = (PimMessage) message.getMessageBody();
 
-            logger.info("[PimPerspective Message] " + messageBody.getClass().getSimpleName() +
+            logger.info("[PIM Message] " + messageBody.getClass().getSimpleName() +
                     " >>> sent from: " + messageBody.getSender().getSimpleName());
 
             return messageBody.postHandle(mainPane);

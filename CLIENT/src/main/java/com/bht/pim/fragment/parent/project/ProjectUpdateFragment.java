@@ -41,7 +41,7 @@ public class ProjectUpdateFragment extends ParentFragment implements IdentifierN
 
     @Override
     protected void onCreated() {
-        LOGGER.info("[Project Update] On init scene\n");
+        LOGGER.info("[INIT] FXParentFragment : " + ProjectUpdateFragment.ID);
         PimUtil.alignPane(this, context);
     }
 

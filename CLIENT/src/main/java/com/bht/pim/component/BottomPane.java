@@ -76,7 +76,7 @@ public class BottomPane extends BaseComponent {
     protected Node handleMessage(Message<Event, Object> message) {
         if (message.getMessageBody() instanceof Throwable) {
 
-            LOGGER.info("[PimPerspective] show error page");
+            LOGGER.info("[SHOW] FXSupplementaryFragment: " + ErrorHandlingFragment.ID);
             LOGGER.info(message.getMessageBody());
             mainPane.getChildren().clear();
             mainPane.getChildren().add(errorPane);
@@ -85,7 +85,7 @@ public class BottomPane extends BaseComponent {
 
         } else {
 
-            LOGGER.info("[PimPerspective] show login page");
+            LOGGER.info("[SHOW] FXSupplementaryFragment: " + LoginFragment.ID);
             mainPane.getChildren().clear();
             mainPane.getChildren().add(loginPane);
         }

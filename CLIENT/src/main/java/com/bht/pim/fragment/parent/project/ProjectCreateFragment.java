@@ -35,7 +35,7 @@ public class ProjectCreateFragment extends ParentFragment {
 
     @Override
     protected void onCreated() {
-        LOGGER.info("[Project Create] On init scene\n");
+        LOGGER.info("[INIT] FXParentFragment : " + ProjectCreateFragment.ID);
         PimUtil.alignPane(this, context);
     }
 

@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
         viewLocation = "/com/bht/pim/fragment/supplementary/LoginFragment.fxml")
 public class LoginFragment implements Initializable {
 
-    static final String ID = "idfSLogin";
+    public static final String ID = "idfSLogin";
 
     @Value("${pim.client.username}")
     private String defaultUsername;

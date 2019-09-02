@@ -118,7 +118,8 @@ public class ProjectTableFragment extends ChildFragment {
 
     @Override
     public void onCreated() {
-        LOGGER.info("[Project Table] Initialization");
+        LOGGER.info("[INIT] FXChildFragment  : " + ID);
+
         // init property for binding purposes
         initAllProperties();
 

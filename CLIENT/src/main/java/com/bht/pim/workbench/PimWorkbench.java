@@ -27,7 +27,7 @@ public class PimWorkbench implements FXWorkbench {
             Message<Event, Object> message,
             WorkbenchLayout<Node> layout, Stage stage) {
 
-        log.info("<<< PimPerspective Client - On handleInitialLayout >>>");
+        log.info("[INIT] FXWorkbench");
         layout.setWorkbenchXYSize(1280, 700);
         layout.setStyle(StageStyle.DECORATED);
         layout.setMenuEnabled(false);
@@ -36,6 +36,6 @@ public class PimWorkbench implements FXWorkbench {
 
     @Override
     public void postHandle(FXComponentLayout fxComponentLayout) {
-        log.info("<<< PimPerspective Client - On postHandle >>>");
+        log.info("[HANDLE] FXWorkbench");
     }
 }

@@ -67,7 +67,8 @@ public class ProjectUtilFragment extends ChildFragment {
 
     @Override
     public void onCreated() {
-        LOGGER.info("[Project Util] Initialization");
+        LOGGER.info("[INIT] FXChildFragment  : " + ID);
+
         initComboBoxStatus();
 
         LanguageUtil.initLabel(searchBox.promptTextProperty(), "label.project.util.searchbox");

@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
         viewLocation = "/com/bht/pim/fragment/supplementary/ErrorHandlingFragment.fxml")
 public class ErrorHandlingFragment implements Initializable {
 
-    static final String ID = "idfSError";
+    public static final String ID = "idfSError";
 
     @Value("${pim.server.host}")
     private String host;

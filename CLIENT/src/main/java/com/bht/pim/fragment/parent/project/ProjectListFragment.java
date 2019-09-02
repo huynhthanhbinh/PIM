@@ -43,7 +43,7 @@ public class ProjectListFragment extends ParentFragment implements SuccessNeedin
 
     @Override
     protected void onCreated() {
-        LOGGER.info("[Project List] On init scene\n");
+        LOGGER.info("[INIT] FXParentFragment : " + ProjectListFragment.ID);
         PimUtil.alignPane(this, context);
         successProperty = new SimpleBooleanProperty();
     }

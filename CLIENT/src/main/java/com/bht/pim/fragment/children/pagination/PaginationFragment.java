@@ -31,7 +31,7 @@ public class PaginationFragment extends ChildFragment {
 
     @Override
     public void onCreated() {
-        LOGGER.info("[Pagination] Initialization");
+        LOGGER.info("[INIT] FXChildFragment  : " + ID);
         pagination.setMaxPageIndicatorCount(10);
     }
 

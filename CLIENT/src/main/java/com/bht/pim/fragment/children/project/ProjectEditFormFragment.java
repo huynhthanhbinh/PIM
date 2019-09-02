@@ -156,7 +156,7 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
 
     @Override
     public void onCreated() {
-        LOGGER.info("[Project Edit Form] Initialization");
+        LOGGER.info("[INIT] FXChildFragment  : " + ID);
 
         members = new ArrayList<>();
         employees = new ArrayList<>();
@@ -321,7 +321,7 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
             table.getItems().add(employeeDTO);
 
             members.add(employeeDTO);
-            LOGGER.info(members);
+            //LOGGER.info(members);
 
             // Update autocompletion list
             // remove the selected one
@@ -387,7 +387,7 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
                     members.remove(employeeDTO);
 
                     // LOGGER current list employeeDTO id
-                    LOGGER.info(members);
+                    //LOGGER.info(members);
                 });
             }
         };
@@ -585,7 +585,7 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
             }
         }
 
-        LOGGER.info(members);
+        //LOGGER.info(members);
 
         // load auto-completion again
         employeeAutoCompletion.dispose();
@@ -623,9 +623,7 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
 
     public boolean getProjectById(long projectId) {
         projectDto = projectService.getProjectById(projectId);
-
-        LOGGER.info(projectDto);
-
+        //LOGGER.info(projectDto);
         return projectDto.getId() != 0;
     }
 
