@@ -1,5 +1,6 @@
 package com.bht.pim.base;
 
+import javafx.scene.layout.Pane;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.log4j.Logger;
@@ -16,6 +17,8 @@ public abstract class ChildFragment { // is-children-fragment, scope PROTOTYPE
     private ParentFragment parentFragment;
 
     public abstract void onCreated();
+
+    public abstract Pane getLayout();
 
     public abstract void onSwitchParentFragment();
 }

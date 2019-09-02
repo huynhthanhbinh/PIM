@@ -8,7 +8,6 @@ import com.bht.pim.fragment.children.pagination.PaginationFragment;
 import com.bht.pim.fragment.children.project.ProjectTableFragment;
 import com.bht.pim.fragment.children.project.ProjectUtilFragment;
 import com.bht.pim.fragment.parent.SuccessNeeding;
-import com.bht.pim.util.PimUtil;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -44,7 +43,6 @@ public class ProjectListFragment extends ParentFragment implements SuccessNeedin
     @Override
     protected void onCreated() {
         LOGGER.info("[INIT] FXParentFragment : " + ProjectListFragment.ID);
-        PimUtil.alignPane(this, context);
         successProperty = new SimpleBooleanProperty();
     }
 
@@ -61,11 +59,6 @@ public class ProjectListFragment extends ParentFragment implements SuccessNeedin
         mainLabelFragment.setLabelText(LABEL);
         projectUtilFragment.getBReset().setOnMouseClicked(projectTableFragment::onReset);
         projectUtilFragment.getBDeleteAll().setOnMouseClicked(projectTableFragment::onDeleteAllSelected);
-
-        projectTableFragment.getMainPane().prefWidthProperty().bind(Bindings.
-                when(widthProperty().lessThan(1500))
-                .then(widthProperty().subtract(10))
-                .otherwise(1500));
     }
 
     @Override

@@ -1,9 +1,12 @@
 package com.bht.pim.base;
 
+import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import org.apache.log4j.Logger;
+import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +22,9 @@ public abstract class ParentFragment extends VBox { // is-parent-fragment, scope
     // list of children fragment of this parent fragment
     private List<ChildFragment> childFragments;
 
+    // main window width
+    private ReadOnlyDoubleProperty windowWidthProperty;
+
     // initialize parent fragment
     protected abstract void onCreated();
 
@@ -29,8 +35,8 @@ public abstract class ParentFragment extends VBox { // is-parent-fragment, scope
 
     // init parent fragment
     // after created in component
-    final void initialize() {
-        configureLayout();
+    final void initialize(FXComponentLayout layout) {
+        configureLayout(layout);
         onCreated();
     }
 
@@ -43,10 +49,12 @@ public abstract class ParentFragment extends VBox { // is-parent-fragment, scope
         bindChildrenFragments();
     }
 
-    private void configureLayout() {
-        setPrefWidth(1050.0);
-        setPrefHeight(600.0);
+    private void configureLayout(FXComponentLayout layout) {
         setSpacing(5.0);
+        setAlignment(Pos.TOP_CENTER);
+        setPrefHeight(600.0);
+        windowWidthProperty = layout.getGlassPane().widthProperty();
+        prefWidthProperty().bind(windowWidthProperty.subtract(220));
     }
 
     private <T extends ChildFragment> void determineChildren(List<Pair<T, Node>> children) {
@@ -63,6 +71,8 @@ public abstract class ParentFragment extends VBox { // is-parent-fragment, scope
         childFragments.forEach(childFragment -> {
             childFragment.setParentFragment(this);
             childFragment.onCreated();
+            childFragment.getLayout().prefWidthProperty()
+                    .bind(windowWidthProperty.subtract(220));
         });
     }
 

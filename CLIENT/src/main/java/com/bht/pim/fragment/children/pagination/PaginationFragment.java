@@ -5,6 +5,7 @@ import com.bht.pim.configuration.AppConfiguration;
 import javafx.fxml.FXML;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import lombok.Getter;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
@@ -33,6 +34,11 @@ public class PaginationFragment extends ChildFragment {
     public void onCreated() {
         LOGGER.info("[INIT] FXChildFragment  : " + ID);
         pagination.setMaxPageIndicatorCount(10);
+    }
+
+    @Override
+    public Pane getLayout() {
+        return paginationPane;
     }
 
     @Override

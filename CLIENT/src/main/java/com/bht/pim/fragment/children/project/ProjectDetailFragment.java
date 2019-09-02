@@ -24,6 +24,8 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
@@ -58,6 +60,8 @@ public class ProjectDetailFragment extends ChildFragment {
     @Resource
     private Context context;
 
+    @FXML
+    private VBox mainPane;
     @FXML
     private Label lProjectMember;
     @FXML
@@ -118,6 +122,11 @@ public class ProjectDetailFragment extends ChildFragment {
 
         // set format for date
         setDateStringFormat();
+    }
+
+    @Override
+    public Pane getLayout() {
+        return mainPane;
     }
 
     @Override
@@ -197,7 +206,7 @@ public class ProjectDetailFragment extends ChildFragment {
             return;
         }
 
-        LOGGER.info("[PimPerspective] on modify project");
+        LOGGER.info("[INFO] on modify project");
 
         IdentifierSending sending = new IdentifierSending(
                 ProjectListFragment.class,
@@ -214,7 +223,7 @@ public class ProjectDetailFragment extends ChildFragment {
     }
 
     public void onReturn(MouseEvent mouseEvent) {
-        LOGGER.info("[PimPerspective] on return back to project list");
+        LOGGER.info("[INFO] on return back to project list");
 
         FragmentSwitching fragmentSwitching = new FragmentSwitching(
                 ProjectInfoFragment.class,

@@ -6,7 +6,6 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.confirm.ConfirmFragment;
 import com.bht.pim.fragment.children.label.MainLabelFragment;
 import com.bht.pim.fragment.children.project.ProjectEditFormFragment;
-import com.bht.pim.util.PimUtil;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
@@ -36,7 +35,6 @@ public class ProjectCreateFragment extends ParentFragment {
     @Override
     protected void onCreated() {
         LOGGER.info("[INIT] FXParentFragment : " + ProjectCreateFragment.ID);
-        PimUtil.alignPane(this, context);
     }
 
     @Override

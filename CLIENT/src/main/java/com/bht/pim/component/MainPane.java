@@ -1,7 +1,6 @@
 package com.bht.pim.component;
 
 import com.bht.pim.base.BaseComponent;
-import com.bht.pim.base.ParentFragment;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.confirm.ConfirmFragment;
 import com.bht.pim.fragment.children.label.MainLabelFragment;
@@ -18,18 +17,14 @@ import com.bht.pim.fragment.parent.project.ProjectListFragment;
 import com.bht.pim.fragment.parent.project.ProjectUpdateFragment;
 import com.bht.pim.message.PimMessage;
 import com.bht.pim.util.PimUtil;
-import javafx.collections.ObservableList;
 import javafx.event.Event;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
 import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.component.DeclarativeView;
+import org.jacpfx.api.annotations.component.View;
 import org.jacpfx.api.message.Message;
-import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
@@ -41,30 +36,32 @@ import java.util.Arrays;
 @Getter
 @Setter
 @SuppressWarnings("unchecked")
-@DeclarativeView(id = MainPane.ID, name = "MainPane",
+@View(id = MainPane.ID, name = "MainPane",
         initialTargetLayoutId = MainPane.CONTAINER,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
-        viewLocation = "/com/bht/pim/component/MainPane.fxml")
-public class MainPane extends BaseComponent {
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
+public final class MainPane extends BaseComponent {
 
     public static final String ID = "idcMain";
     public static final String CONTAINER = "PMain";
 
     @Resource
     private Context context;
-    @FXML
-    private VBox mainPane;
 
-    private ManagedFragmentHandler currentFragment;
     private ManagedFragmentHandler<ProjectListFragment> projectListFragment;
     private ManagedFragmentHandler<ProjectCreateFragment> projectCreateFragment;
     private ManagedFragmentHandler<ProjectUpdateFragment> projectUpdateFragment;
     private ManagedFragmentHandler<ProjectInfoFragment> projectInfoFragment;
 
     @Override
-    protected void initComponent(FXComponentLayout layout) {
+    protected void initComponent() {
         componentContext = context;
-        PimUtil.alignPane(mainPane, context);
+    }
+
+    @Override
+    protected void initLayout() {
+        setMinSize(1024, 600);
+        setPrefSize(1024, 600);
+        PimUtil.alignPane(this, context);
     }
 
     @Override
@@ -112,21 +109,7 @@ public class MainPane extends BaseComponent {
         return PimMessage.messageHandler(message, this);
     }
 
-    public static void switchFragment(MainPane mainPane, Class fragmentClazz) {
-        ObservableList<Node> nodes = mainPane.getMainPane().getChildren();
-        nodes.clear();
-
-        ManagedFragmentHandler target = mainPane.getContext()
-                .getManagedFragmentHandler(fragmentClazz);
-
-        ((ParentFragment) target.getController()).onSwitchParentFragment();
-
-        mainPane.setCurrentFragment(target);
-        nodes.add(mainPane.getCurrentFragment().getFragmentNode());
-    }
-
-    public static void sendIdentifier(long id, MainPane mainPane,
-                                      Class sender, Class receiver) {
+    public static void sendIdentifier(long id, MainPane mainPane, Class sender, Class receiver) {
 
         boolean success = ((IdentifierNeeding) mainPane
                 .getContext()

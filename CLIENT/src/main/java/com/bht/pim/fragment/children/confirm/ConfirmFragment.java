@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
@@ -39,6 +40,11 @@ public class ConfirmFragment extends ChildFragment {
     @Override
     public void onCreated() {
         LOGGER.info("[INIT] FXChildFragment  : " + ID);
+    }
+
+    @Override
+    public Pane getLayout() {
+        return confirmPane;
     }
 
     @FXML

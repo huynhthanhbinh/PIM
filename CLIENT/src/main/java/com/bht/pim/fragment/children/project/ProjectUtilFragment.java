@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import lombok.Getter;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
@@ -109,6 +110,11 @@ public class ProjectUtilFragment extends ChildFragment {
             }
             bDeleteAll.setVisible(false);
         });
+    }
+
+    @Override
+    public Pane getLayout() {
+        return utilPane;
     }
 
     @Override

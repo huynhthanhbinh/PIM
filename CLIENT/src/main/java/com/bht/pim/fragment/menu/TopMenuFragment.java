@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
  */
 @Log4j
 @Controller
-@Fragment(id = TopMenuFragment.ID, scope = Scope.SINGLETON,
+@Fragment(id = TopMenuFragment.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/menu/TopMenuFragment.fxml")
 public class TopMenuFragment implements Initializable {

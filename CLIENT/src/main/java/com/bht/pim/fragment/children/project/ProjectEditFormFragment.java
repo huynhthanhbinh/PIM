@@ -30,6 +30,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -174,6 +175,11 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
 
         // Add all event-listener
         addAllEventListener();
+    }
+
+    @Override
+    public Pane getLayout() {
+        return mainPane;
     }
 
     @Override
@@ -440,10 +446,10 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
 
                     if (saveNewGroup(groupDto)) {
                         NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
-                                "[PimPerspective] Successfully create new group !");
+                                "[INFO] Successfully create new group !");
                     } else {
                         NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
-                                "[PimPerspective] Failed to create new group !");
+                                "[INFO] Failed to create new group !");
                         return;
                     }
                 }
@@ -462,7 +468,7 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
                 }
 
                 NotificationUtil.showNotification(NotificationStyle.INFO, Pos.CENTER,
-                        "[PimPerspective] On saving project !");
+                        "[INFO] On saving project !");
 
                 saveOrUpdateProject(projectDtoBuilder);
 
@@ -773,7 +779,7 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
     private void saveProject(ProjectDto projectDto) {
         if (projectService.addNewProject(projectDto)) {
             NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
-                    "[PimPerspective] Successfully create project !");
+                    "[INFO] Successfully create project !");
 
             FragmentSwitching switching = new FragmentSwitching(
                     ProjectEditFormFragment.class,
@@ -783,7 +789,7 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
 
         } else {
             NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
-                    "[PimPerspective] Failed to create new project !");
+                    "[INFO] Failed to create new project !");
 
             loadProjectEditForm();
         }
@@ -792,7 +798,7 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
     private void updateProject(ProjectDto projectDto) {
         if (projectService.updateProject(projectDto)) {
             NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
-                    "[PimPerspective] Successfully update project !");
+                    "[INFO] Successfully update project !");
 
             FragmentSwitching switching = new FragmentSwitching(
                     ProjectEditFormFragment.class,
@@ -802,7 +808,7 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
 
         } else {
             NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
-                    "[PimPerspective] Failed to update project !");
+                    "[INFO] Failed to update project !");
 
             loadProjectEditForm();
         }

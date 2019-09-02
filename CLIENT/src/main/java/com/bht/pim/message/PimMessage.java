@@ -16,17 +16,17 @@ public interface PimMessage {
     // post handle Pim messages for MainPane
     Node postHandle(MainPane mainPane);
 
-    // Message handler for PimPerspective messages between parant fragments
+    // Message handler for PimPerspective messages between parent fragments
     static Node messageHandler(Message<Event, Object> message, MainPane mainPane) {
         if (message.isMessageBodyTypeOf(PimMessage.class)) {
             Logger logger = Logger.getLogger(PimMessage.class);
             PimMessage messageBody = (PimMessage) message.getMessageBody();
 
-            logger.info("[PIM Message] " + messageBody.getClass().getSimpleName() +
+            logger.info("[MESSAGE] " + messageBody.getClass().getSimpleName() +
                     " >>> sent from: " + messageBody.getSender().getSimpleName());
 
             return messageBody.postHandle(mainPane);
         }
-        return null;
+        return mainPane;
     }
 }

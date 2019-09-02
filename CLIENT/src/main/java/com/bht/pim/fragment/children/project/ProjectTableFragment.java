@@ -31,6 +31,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
 import lombok.Setter;
@@ -131,6 +132,11 @@ public class ProjectTableFragment extends ChildFragment {
 
         // Add all event-listener
         addAllEventListener();
+    }
+
+    @Override
+    public Pane getLayout() {
+        return mainPane;
     }
 
     @Override

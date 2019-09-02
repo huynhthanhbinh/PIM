@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.layout.VBox?>
-<VBox fx:id="leftPane" minHeight="600" minWidth="256" prefHeight="600" prefWidth="256"
-      xmlns="http://javafx.com/javafx/8.0.172-ea"
-      xmlns:fx="http://javafx.com/fxml/1">
-
-</VBox>
