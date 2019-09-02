@@ -3,6 +3,7 @@ package com.bht.pim.mapper;
 import com.bht.pim.util.LanguageUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import lombok.Getter;
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
 
@@ -20,6 +21,7 @@ public abstract class StatusMapper {
     private static final String LABEL_STATUS_IN_PROGRESS = "label.project.status.inprogress";
     private static final String LABEL_STATUS_FINISHED = "label.project.status.finished";
 
+    @Getter
     private Map<String, StringProperty> availableStatus = availableStatus();
 
     private StringProperty getLabelProperty(String labelKey) {

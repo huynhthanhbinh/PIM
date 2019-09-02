@@ -5,16 +5,10 @@ import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.children.confirm.ConfirmFragment;
 import com.bht.pim.fragment.children.label.MainLabelFragment;
 import com.bht.pim.fragment.children.pagination.PaginationFragment;
-import com.bht.pim.fragment.children.project.ProjectDetailFragment;
-import com.bht.pim.fragment.children.project.ProjectEditFormFragment;
-import com.bht.pim.fragment.children.project.ProjectTableFragment;
-import com.bht.pim.fragment.children.project.ProjectUtilFragment;
+import com.bht.pim.fragment.children.project.*;
 import com.bht.pim.fragment.parent.IdentifierNeeding;
 import com.bht.pim.fragment.parent.SuccessNeeding;
-import com.bht.pim.fragment.parent.project.ProjectCreateFragment;
-import com.bht.pim.fragment.parent.project.ProjectInfoFragment;
-import com.bht.pim.fragment.parent.project.ProjectListFragment;
-import com.bht.pim.fragment.parent.project.ProjectUpdateFragment;
+import com.bht.pim.fragment.parent.project.*;
 import com.bht.pim.message.PimMessage;
 import com.bht.pim.util.PimUtil;
 import javafx.event.Event;
@@ -47,6 +41,7 @@ public final class MainPane extends BaseComponent {
     @Resource
     private Context context;
 
+    private ManagedFragmentHandler<ProjectDashboardFragment> projectDashboardFragment;
     private ManagedFragmentHandler<ProjectListFragment> projectListFragment;
     private ManagedFragmentHandler<ProjectCreateFragment> projectCreateFragment;
     private ManagedFragmentHandler<ProjectUpdateFragment> projectUpdateFragment;
@@ -66,6 +61,7 @@ public final class MainPane extends BaseComponent {
 
     @Override
     protected void loadFragments() {
+        projectDashboardFragment = context.getManagedFragmentHandler(ProjectDashboardFragment.class);
         projectListFragment = context.getManagedFragmentHandler(ProjectListFragment.class);
         projectCreateFragment = context.getManagedFragmentHandler(ProjectCreateFragment.class);
         projectUpdateFragment = context.getManagedFragmentHandler(ProjectUpdateFragment.class);
@@ -74,6 +70,7 @@ public final class MainPane extends BaseComponent {
 
     @Override
     protected void createFragmentList() {
+        fragments.add(projectDashboardFragment.getController());
         fragments.add(projectListFragment.getController());
         fragments.add(projectCreateFragment.getController());
         fragments.add(projectUpdateFragment.getController());
@@ -82,6 +79,10 @@ public final class MainPane extends BaseComponent {
 
     @Override
     protected void assignChildren() {
+        projectDashboardFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
+                registerChildFragment(MainLabelFragment.class),
+                registerChildFragment(ProjectPanelFragment.class)}));
+
         projectListFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
                 registerChildFragment(MainLabelFragment.class),
                 registerChildFragment(ProjectUtilFragment.class),

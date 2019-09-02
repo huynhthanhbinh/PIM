@@ -58,11 +58,9 @@ public class AppConfiguration {
     public static final ObjectProperty<ManagedChannel> CHANNEL_PROPERTY = new SimpleObjectProperty<>(); // connect to gRPC server
     public static final BooleanProperty LOGGED_IN_PROPERTY = new SimpleBooleanProperty(false); // check if logged-in yet
 
+    public static final String LABEL_PIM_MAIN = "label.pim.main";
     public static final String PERSPECTIVE_PIM = "idPIMPerspective";
     public static final String PERSPECTIVE_DEFAULT = "idPIMDefault";
-
-    public static final String LABEL_PIM_MAIN = "label.pim.main";
-    public static final String LABEL_LEFT_PROJECT_LIST = "label.pim.left.project.list";
 
     public static final StringProperty INFORMATION_TITLE = new SimpleStringProperty();
     public static final StringProperty SUCCESS_TITLE = new SimpleStringProperty();
