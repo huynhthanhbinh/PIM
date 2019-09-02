@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
  * @author bht
  */
 @Scope("singleton")
-public class LanguageProperty {
+public final class LanguageProperty {
     @Getter
     private ObjectProperty<Locale> localeProperty;
     @Getter

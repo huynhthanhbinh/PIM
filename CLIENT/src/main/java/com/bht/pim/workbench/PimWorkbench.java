@@ -20,7 +20,7 @@ import org.jacpfx.rcp.workbench.FXWorkbench;
         perspectives = {
                 AppConfiguration.PERSPECTIVE_PIM,
                 AppConfiguration.PERSPECTIVE_DEFAULT})
-public class PimWorkbench implements FXWorkbench {
+public final class PimWorkbench implements FXWorkbench {
 
     @Override
     public void handleInitialLayout(

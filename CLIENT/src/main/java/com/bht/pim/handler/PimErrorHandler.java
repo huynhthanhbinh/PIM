@@ -10,7 +10,7 @@ import org.jacpfx.rcp.context.Context;
 /**
  * @author bht
  */
-public class PimErrorHandler implements ErrorDialogHandler<Node> {
+public final class PimErrorHandler implements ErrorDialogHandler<Node> {
 
     public static final ObjectProperty<Context> CONTEXT_PROPERTY
             = new SimpleObjectProperty<>();

@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 /**
  * @author bht
  */
-public class LabelProperty {
+public final class LabelProperty {
 
     @Getter
     private StringProperty stringProperty;

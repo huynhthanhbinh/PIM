@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @author bht
  */
 @Service
-public class GroupServiceImpl implements GroupService {
+public final class GroupServiceImpl implements GroupService {
 
     @Autowired
     private GroupMapper groupMapper;

@@ -34,9 +34,11 @@ public final class TopPane extends BaseComponent {
 
     @Override
     protected void initLayout() {
-        setPrefSize(1260, 100);
         setMinHeight(100);
         setMaxHeight(100);
+        setPrefSize(1260, 100);
+        prefWidthProperty().bind(context.getComponentLayout()
+                .getGlassPane().widthProperty().subtract(20));
     }
 
     @Override

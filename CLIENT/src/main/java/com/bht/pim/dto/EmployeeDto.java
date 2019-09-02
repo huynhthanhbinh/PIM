@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder(toBuilder = true, builderClassName = "Builder", builderMethodName = "newBuilder")
-public class EmployeeDto {
+public final class EmployeeDto {
 
     @NonNull
     private long id;

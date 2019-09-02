@@ -9,7 +9,7 @@ import javafx.util.Duration;
 /**
  * @author bht
  */
-public class NotificationUtil {
+public final class NotificationUtil {
 
     private static final int PERIOD = 5;
 

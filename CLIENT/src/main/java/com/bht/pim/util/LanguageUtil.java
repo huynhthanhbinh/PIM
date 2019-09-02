@@ -8,7 +8,7 @@ import javafx.beans.property.StringProperty;
 /**
  * @author bht
  */
-public class LanguageUtil {
+public final class LanguageUtil {
 
     private static LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
 

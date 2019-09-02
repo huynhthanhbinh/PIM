@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 @Fragment(id = ProjectInfoFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
-public class ProjectInfoFragment extends ParentFragment implements IdentifierNeeding {
+public final class ProjectInfoFragment extends ParentFragment implements IdentifierNeeding {
 
     static final String ID = "idfPInfo";
     static final String LABEL = "label.project.info";

@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder(toBuilder = true, builderClassName = "Builder", builderMethodName = "newBuilder")
-public class GroupDto {
+public final class GroupDto {
 
     @NonNull
     private long id;

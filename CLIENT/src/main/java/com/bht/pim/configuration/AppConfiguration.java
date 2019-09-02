@@ -62,7 +62,7 @@ public class AppConfiguration {
     public static final String PERSPECTIVE_DEFAULT = "idPIMDefault";
 
     public static final String LABEL_PIM_MAIN = "label.pim.main";
-    public static final String LABEL_LEFT_PROJECT_LIST = "label.pim.left.list.project";
+    public static final String LABEL_LEFT_PROJECT_LIST = "label.pim.left.project.list";
 
     public static final StringProperty INFORMATION_TITLE = new SimpleStringProperty();
     public static final StringProperty SUCCESS_TITLE = new SimpleStringProperty();

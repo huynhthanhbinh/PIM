@@ -26,7 +26,7 @@ import java.util.List;
 @Controller
 @Fragment(id = ProjectListFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
-public class ProjectListFragment extends ParentFragment implements SuccessNeeding {
+public final class ProjectListFragment extends ParentFragment implements SuccessNeeding {
 
     static final String ID = "idfPList";
     static final String LABEL = "label.project.list";

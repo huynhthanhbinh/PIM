@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Log4j
 @Service
-public class ProjectServiceImpl implements ProjectService {
+public final class ProjectServiceImpl implements ProjectService {
 
     @Autowired
     private StatusMapper statusMapper;

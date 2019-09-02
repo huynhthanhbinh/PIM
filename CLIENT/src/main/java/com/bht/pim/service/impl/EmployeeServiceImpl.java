@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @author bht
  */
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public final class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeMapper employeeMapper;

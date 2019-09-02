@@ -7,6 +7,7 @@ import com.bht.pim.fragment.supplementary.ErrorHandlingFragment;
 import com.bht.pim.fragment.supplementary.LoginFragment;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
@@ -47,6 +48,7 @@ public final class BottomPane extends BaseComponent {
 
     @Override
     protected void initLayout() {
+        setAlignment(Pos.CENTER);
         setMinSize(1024, 600);
         setPrefSize(1280, 600);
     }

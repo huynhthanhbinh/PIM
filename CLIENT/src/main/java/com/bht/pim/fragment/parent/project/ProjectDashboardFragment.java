@@ -17,7 +17,7 @@ import java.util.List;
 @Controller
 @Fragment(id = ProjectDashboardFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
-public class ProjectDashboardFragment extends ParentFragment {
+public final class ProjectDashboardFragment extends ParentFragment {
 
     static final String ID = "idfPDashboard";
     static final String LABEL = "label.project.dashboard";

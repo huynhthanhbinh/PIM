@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder(toBuilder = true, builderClassName = "Builder", builderMethodName = "newBuilder")
-public class ProjectDto {
+public final class ProjectDto {
 
     private BooleanProperty isSelected;
 

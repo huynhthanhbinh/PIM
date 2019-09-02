@@ -20,7 +20,7 @@ import java.util.List;
 @Controller
 @Fragment(id = ProjectCreateFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
-public class ProjectCreateFragment extends ParentFragment {
+public final class ProjectCreateFragment extends ParentFragment {
 
     static final String ID = "idfPCreate";
     static final String LABEL = "label.project.create";
