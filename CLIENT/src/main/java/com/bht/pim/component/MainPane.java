@@ -1,28 +1,38 @@
 package com.bht.pim.component;
 
-import com.bht.pim.base.BaseComponent;
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.children.confirm.ConfirmFragment;
-import com.bht.pim.fragment.children.label.MainLabelFragment;
-import com.bht.pim.fragment.children.pagination.PaginationFragment;
-import com.bht.pim.fragment.children.project.*;
-import com.bht.pim.fragment.parent.IdentifierNeeding;
-import com.bht.pim.fragment.parent.SuccessNeeding;
-import com.bht.pim.fragment.parent.project.*;
-import com.bht.pim.message.PimMessage;
-import com.bht.pim.util.PimUtil;
-import javafx.event.Event;
-import javafx.scene.Node;
-import javafx.util.Pair;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Arrays;
+
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.View;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
-import java.util.Arrays;
+import com.bht.pim.base.BaseComponent;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.children.confirm.ConfirmFragment;
+import com.bht.pim.fragment.children.label.MainLabelFragment;
+import com.bht.pim.fragment.children.pagination.PaginationFragment;
+import com.bht.pim.fragment.children.project.ProjectDetailFragment;
+import com.bht.pim.fragment.children.project.ProjectEditFormFragment;
+import com.bht.pim.fragment.children.project.ProjectPanelFragment;
+import com.bht.pim.fragment.children.project.ProjectTableFragment;
+import com.bht.pim.fragment.children.project.ProjectUtilFragment;
+import com.bht.pim.fragment.parent.IdentifierNeeding;
+import com.bht.pim.fragment.parent.SuccessNeeding;
+import com.bht.pim.fragment.parent.project.ProjectCreateFragment;
+import com.bht.pim.fragment.parent.project.ProjectDashboardFragment;
+import com.bht.pim.fragment.parent.project.ProjectInfoFragment;
+import com.bht.pim.fragment.parent.project.ProjectListFragment;
+import com.bht.pim.fragment.parent.project.ProjectUpdateFragment;
+import com.bht.pim.message.PimMessage;
+import com.bht.pim.util.PimUtil;
+
+import javafx.event.Event;
+import javafx.scene.Node;
+import javafx.util.Pair;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author bht
@@ -129,7 +139,7 @@ public final class MainPane extends BaseComponent {
     }
 
     public static void onShowPerspective(MainPane mainPane) {
-        switchFragment(mainPane, ProjectListFragment.class);
+        switchFragment(mainPane, ProjectDashboardFragment.class);
 
         if (!AppConfiguration.LOGGED_IN_PROPERTY.get()) { // not logged-in or recently logout
             mainPane.getContext().send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");

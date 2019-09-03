@@ -1,16 +1,18 @@
 package com.bht.pim.component;
 
-import com.bht.pim.base.BaseComponent;
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.menu.LeftMenuFragment;
-import javafx.event.Event;
-import javafx.scene.Node;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.View;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
+
+import com.bht.pim.base.BaseComponent;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.menu.LeftMenuFragment;
+
+import javafx.event.Event;
+import javafx.scene.Node;
 
 /**
  * @author bht
@@ -23,6 +25,8 @@ public final class LeftPane extends BaseComponent {
 
     public static final String ID = "idcLeft";
     public static final String CONTAINER = "PLeft";
+
+    ManagedFragmentHandler<LeftMenuFragment> leftMenuFragment;
 
     @Resource
     private Context context;
@@ -40,8 +44,7 @@ public final class LeftPane extends BaseComponent {
 
     @Override
     protected void loadFragments() {
-        ManagedFragmentHandler<LeftMenuFragment> leftMenuFragment =
-                context.getManagedFragmentHandler(LeftMenuFragment.class);
+        leftMenuFragment = context.getManagedFragmentHandler(LeftMenuFragment.class);
         getChildren().add(leftMenuFragment.getFragmentNode());
     }
 
@@ -57,6 +60,9 @@ public final class LeftPane extends BaseComponent {
 
     @Override
     protected Node handleMessage(Message<Event, Object> message) {
+        if (message.messageBodyEquals("selectDefault")) {
+            leftMenuFragment.getController().onShowed();
+        }
         return this;
     }
 }

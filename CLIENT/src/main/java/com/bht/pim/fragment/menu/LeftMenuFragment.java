@@ -53,7 +53,7 @@ public class LeftMenuFragment implements Initializable {
 
         lDashboard.getStyleClass().add("clickable");
         lProjectList.getStyleClass().add("clickable");
-        lProjectList.getStyleClass().add("active");
+        lDashboard.getStyleClass().add("active");
 
         lDashboard.setOnMouseClicked(this::onMouseClickedDashboard);
         lProjectList.setOnMouseClicked(this::onMouseClickedProjectList);
@@ -93,6 +93,12 @@ public class LeftMenuFragment implements Initializable {
 
         context.send(MainPane.ID, switching);
 
+        lProjectList.getStyleClass().remove("active");
+        lDashboard.getStyleClass().remove("active");
+        lDashboard.getStyleClass().add("active");
+    }
+
+    public void onShowed() {
         lProjectList.getStyleClass().remove("active");
         lDashboard.getStyleClass().remove("active");
         lDashboard.getStyleClass().add("active");
