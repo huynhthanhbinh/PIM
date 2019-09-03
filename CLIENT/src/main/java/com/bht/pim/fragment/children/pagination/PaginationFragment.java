@@ -1,17 +1,15 @@
 package com.bht.pim.fragment.children.pagination;
 
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.springframework.stereotype.Controller;
-
 import com.bht.pim.base.ChildFragment;
 import com.bht.pim.configuration.AppConfiguration;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Pagination;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
+import org.springframework.stereotype.Controller;
 
 /**
  * @author bht
@@ -44,7 +42,12 @@ public class PaginationFragment extends ChildFragment {
     }
 
     @Override
-    public void onSwitchParentFragment() {
+    public void onSwitchToThisFragment() {
+        // ...
+    }
+
+    @Override
+    public void preSwitchToAnotherFragment() {
         // ...
     }
 }

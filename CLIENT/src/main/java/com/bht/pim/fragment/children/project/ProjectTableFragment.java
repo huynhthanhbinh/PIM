@@ -138,10 +138,15 @@ public class ProjectTableFragment extends ChildFragment {
     }
 
     @Override
-    public void onSwitchParentFragment() {
+    public void onSwitchToThisFragment() {
         // Get all necessary data from server
         getListProject(pageIndexProperty.get());
         searchBox.setOnKeyPressed(this::onKeyPressedSearchBox);
+    }
+
+    @Override
+    public void preSwitchToAnotherFragment() {
+        searchBox.clear();
     }
 
     // Get all necessary data
@@ -154,6 +159,7 @@ public class ProjectTableFragment extends ChildFragment {
                         searchBox.textProperty(),
                         statusProperty);
 
+        table.getItems().clear();
         table.setItems(projectDtoList);
         double temp;
 

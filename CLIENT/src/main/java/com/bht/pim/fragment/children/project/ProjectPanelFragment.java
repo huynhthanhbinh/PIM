@@ -1,16 +1,5 @@
 package com.bht.pim.fragment.children.project;
 
-import java.util.Collections;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
 import com.bht.pim.base.ChildFragment;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.mapper.StatusMapper;
@@ -19,7 +8,6 @@ import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.LanguageUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
-
 import javafx.beans.property.SimpleLongProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +19,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import java.util.Collections;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author bht
@@ -79,7 +77,7 @@ public class ProjectPanelFragment extends ChildFragment {
     }
 
     @Override
-    public void onSwitchParentFragment() {
+    public void onSwitchToThisFragment() {
         Map<String, Long> groups = projectService.getProjectsGroupByStatus();
         items = FXCollections.observableArrayList(groups.entrySet());
         loadBarChart();
@@ -90,6 +88,13 @@ public class ProjectPanelFragment extends ChildFragment {
         itemsWithTotal.add(4, totalEntry());
         table.setItems(itemsWithTotal);
         table.getSelectionModel().clearSelection();
+    }
+
+    @Override
+    public void preSwitchToAnotherFragment() {
+        barChart.getData().clear();
+        pieChart.getData().clear();
+        table.getItems().clear();
     }
 
     private void loadPieChart() {

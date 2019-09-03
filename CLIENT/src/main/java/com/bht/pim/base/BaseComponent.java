@@ -99,8 +99,11 @@ public abstract class BaseComponent extends VBox implements FXComponent {
     public static <T extends BaseComponent, F extends ParentFragment> void switchFragment(T t, Class<F> fragmentClazz) {
         ObservableList<Node> nodes = t.getChildren();
         nodes.clear();
+        if (t.currentFragment != null) {
+            t.currentFragment.getController().preSwitchToAnotherFragment();
+        }
         ManagedFragmentHandler<F> target = t.componentContext.getManagedFragmentHandler(fragmentClazz);
-        target.getController().onSwitchParentFragment();
+        target.getController().onSwitchToThisFragment();
         t.currentFragment = target;
         nodes.add(t.currentFragment.getFragmentNode());
     }

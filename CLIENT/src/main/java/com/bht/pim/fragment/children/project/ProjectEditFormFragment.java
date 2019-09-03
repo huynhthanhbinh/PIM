@@ -183,8 +183,13 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
     }
 
     @Override
-    public void onSwitchParentFragment() {
+    public void onSwitchToThisFragment() {
         loadProjectEditForm();
+    }
+
+    @Override
+    public void preSwitchToAnotherFragment() {
+        emptyAllFields();
     }
 
     public void setIsUpdateState(boolean isUpdateState) {
@@ -752,9 +757,6 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
     }
 
     private void loadProjectEditForm() {
-        // reset all back
-        // to receive new record
-        emptyAllFields();
         hideAllValidation();
         hideAllCheckLabel();
 

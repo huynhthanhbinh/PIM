@@ -1,12 +1,5 @@
 package com.bht.pim.fragment.children.project;
 
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
 import com.bht.pim.base.ChildFragment;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
@@ -25,19 +18,20 @@ import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.PimUtil;
-
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 /**
  * @author bht
@@ -136,7 +130,7 @@ public class ProjectDetailFragment extends ChildFragment {
     }
 
     @Override
-    public void onSwitchParentFragment() {
+    public void onSwitchToThisFragment() {
         number.setText(String.valueOf(projectDto.getNumber()));
         status.textProperty().bind(projectDto.getStatus());
         name.setText(projectDto.getName());
@@ -145,8 +139,21 @@ public class ProjectDetailFragment extends ChildFragment {
         leader.setText(groupService.getGroupById(projectDto.getGroup().getId()).getLeader().getVisa());
         start.setValue(projectDto.getStart());
         end.setValue(projectDto.getEnd());
-        table.getItems().clear();
         table.getItems().addAll(projectDto.getMembers());
+    }
+
+    @Override
+    public void preSwitchToAnotherFragment() {
+        number.clear();
+        status.clear();
+        name.clear();
+        customer.clear();
+        group.clear();
+        leader.clear();
+        start.setValue(null);
+        end.setValue(null);
+        table.getItems().clear();
+        projectDto = null;
     }
 
     public boolean getProjectById(long projectId) {

@@ -28,9 +28,16 @@ public abstract class ParentFragment extends VBox { // is-parent-fragment, scope
     // initialize parent fragment
     protected abstract void onCreated();
 
-    // this method will be invoked when switching main fragment
-    public final void onSwitchParentFragment() {
-        childFragments.forEach(ChildFragment::onSwitchParentFragment);
+    // this method will be invoked when switching
+    // from previous fragment to this fragment
+    final void onSwitchToThisFragment() {
+        childFragments.forEach(ChildFragment::onSwitchToThisFragment);
+    }
+
+    // this method will be invoked when switching
+    // from this fragment to new fragment
+    final void preSwitchToAnotherFragment() {
+        childFragments.forEach(ChildFragment::preSwitchToAnotherFragment);
     }
 
     // init parent fragment

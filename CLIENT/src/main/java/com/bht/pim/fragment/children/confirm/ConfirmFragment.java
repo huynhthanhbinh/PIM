@@ -68,7 +68,12 @@ public class ConfirmFragment extends ChildFragment {
     }
 
     @Override
-    public void onSwitchParentFragment() {
+    public void onSwitchToThisFragment() {
+        // ...
+    }
+
+    @Override
+    public void preSwitchToAnotherFragment() {
         // ...
     }
 }

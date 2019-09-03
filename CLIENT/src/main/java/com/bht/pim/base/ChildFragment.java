@@ -20,5 +20,7 @@ public abstract class ChildFragment { // is-children-fragment, scope PROTOTYPE
 
     public abstract Pane getLayout();
 
-    public abstract void onSwitchParentFragment();
+    public abstract void onSwitchToThisFragment();
+
+    public abstract void preSwitchToAnotherFragment();
 }
