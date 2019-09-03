@@ -1,5 +1,14 @@
 package com.bht.pim.fragment.menu;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
+import org.springframework.stereotype.Controller;
+
 import com.bht.pim.component.LeftPane;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
@@ -7,19 +16,12 @@ import com.bht.pim.fragment.parent.project.ProjectDashboardFragment;
 import com.bht.pim.fragment.parent.project.ProjectListFragment;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.util.LanguageUtil;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.log4j.Log4j;
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.context.Context;
-import org.springframework.stereotype.Controller;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * @author bht
@@ -59,7 +61,7 @@ public class LeftMenuFragment implements Initializable {
 
 
     private void onMouseClickedProjectList(MouseEvent mouseEvent) {
-        log.info("[LeftPane] Clicked Project List");
+        log.info("[MENU] Clicked Project List");
 
         if (lProjectList.getStyleClass().contains("active")) {
             mouseEvent.consume();
@@ -78,7 +80,7 @@ public class LeftMenuFragment implements Initializable {
     }
 
     private void onMouseClickedDashboard(MouseEvent mouseEvent) {
-        log.info("[LeftPane] Clicked Group List");
+        log.info("[MENU] Clicked Group List");
 
         if (lDashboard.getStyleClass().contains("active")) {
             mouseEvent.consume();

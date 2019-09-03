@@ -8,26 +8,26 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
-<HBox fx:id="mainPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="1800.0" minHeight="550.0" minWidth="-Infinity"
-      prefHeight="550.0" prefWidth="1060.0" spacing="50.0"
+<HBox fx:id="mainPane" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="1800.0" minHeight="550.0"
+      minWidth="-Infinity" prefHeight="550.0" prefWidth="1060.0" spacing="10.0"
       stylesheets="/com/bht/pim/fragment/children/project/ProjectPanelFragment.css"
-      xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+      xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
     <padding>
-        <Insets bottom="5.0" top="5.0"/>
+        <Insets bottom="5.0" top="100.0"/>
     </padding>
-    <BarChart fx:id="barChart" maxHeight="400.0" maxWidth="300.0" minHeight="400.0" minWidth="300.0" prefHeight="400.0"
-              prefWidth="300.0">
+    <BarChart fx:id="barChart" maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0"
+              prefWidth="400.0">
         <xAxis>
-            <CategoryAxis side="BOTTOM"/>
+            <CategoryAxis fx:id="statusAxis" side="BOTTOM"/>
         </xAxis>
         <yAxis>
-            <NumberAxis side="LEFT"/>
+            <NumberAxis fx:id="quantityAxis" side="LEFT"/>
         </yAxis>
     </BarChart>
     <TableView fx:id="table" maxHeight="200.0" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0">
         <columns>
-            <TableColumn fx:id="cStatus" prefWidth="98.0" text="Status"/>
-            <TableColumn fx:id="cCount" prefWidth="98.0" text="Count"/>
+            <TableColumn fx:id="cStatus" maxWidth="100.0" minWidth="100.0" prefWidth="100" text="Status"/>
+            <TableColumn fx:id="cCount" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Count"/>
         </columns>
     </TableView>
     <PieChart fx:id="pieChart" maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0"

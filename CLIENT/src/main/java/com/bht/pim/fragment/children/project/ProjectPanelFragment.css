@@ -1,5 +1,5 @@
 .table-view {
-    -fx-font-size: 18;
+    -fx-font-size: 16;
     -fx-table-cell-border-color: transparent;
     -fx-border-insets: 0;
     -fx-background-insets: 0;
@@ -49,7 +49,6 @@
 }
 
 .table-row-cell:selected .text {
-    /*-fx-fill: white;*/
     -fx-font-weight: bold;
 }
 
@@ -67,4 +66,56 @@
 
 #cCount {
     -fx-alignment: CENTER;
+}
+
+.chart {
+    -fx-font-size: 16;
+}
+
+.data0.chart-bar {
+    -fx-background-color: #58D68D;
+}
+
+.data1.chart-bar {
+    -fx-background-color: #F4D03F;
+}
+
+.data2.chart-bar {
+    -fx-background-color: #F1948A;
+}
+
+.data3.chart-bar {
+    -fx-background-color: #85C1E9;
+}
+
+.default-color0.chart-pie {
+    -fx-pie-color: #58D68D;
+}
+
+.default-color1.chart-pie {
+    -fx-pie-color: #F4D03F;
+}
+
+.default-color2.chart-pie {
+    -fx-pie-color: #F1948A;
+}
+
+.default-color3.chart-pie {
+    -fx-pie-color: #85C1E9;
+}
+
+.default-color4.chart-pie {
+    -fx-pie-color: #58D68D;
+}
+
+.default-color5.chart-pie {
+    -fx-pie-color: #F4D03F;
+}
+
+.default-color6.chart-pie {
+    -fx-pie-color: #F1948A;
+}
+
+.default-color7.chart-pie {
+    -fx-pie-color: #85C1E9;
 }
