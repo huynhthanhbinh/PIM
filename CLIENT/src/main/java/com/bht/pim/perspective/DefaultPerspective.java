@@ -62,6 +62,11 @@ public class DefaultPerspective extends BasePerspective {
 
     @Override
     protected void handleMessage(Message<Event, Object> message) {
+        if (message.getMessageBody().equals("init")) {
+            context.send(TopPane.ID, this);
+            context.send(BottomPane.ID, this);
+            return;
+        }
         context.send(BottomPane.ID, message.getMessageBody());
     }
 }

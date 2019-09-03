@@ -1,5 +1,6 @@
 package com.bht.pim.configuration;
 
+import com.bht.pim.base.BasePerspective;
 import com.bht.pim.mapper.*;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
@@ -55,6 +56,7 @@ public class AppConfiguration {
     private int port; // port of gRPC
 
     public static final String LANGUAGE_BUNDLES = "bundles.languageBundle";
+    public static final ObjectProperty<BasePerspective> PERSPECTIVE_PROPERTY = new SimpleObjectProperty<>(); // current perspective
     public static final ObjectProperty<ManagedChannel> CHANNEL_PROPERTY = new SimpleObjectProperty<>(); // connect to gRPC server
     public static final BooleanProperty LOGGED_IN_PROPERTY = new SimpleBooleanProperty(false); // check if logged-in yet
 

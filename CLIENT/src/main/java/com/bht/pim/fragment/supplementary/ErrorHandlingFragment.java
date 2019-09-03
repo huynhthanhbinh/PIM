@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /**
@@ -73,7 +72,7 @@ public class ErrorHandlingFragment implements Initializable {
 
     public void setDetail(Throwable detail) {
         log.error("[ERROR] " + detail);
-        Arrays.asList(detail.getStackTrace()).forEach(log::warn);
+        //Arrays.asList(detail.getStackTrace()).forEach(log::warn);
         detailField.setText(detail.getClass().getName()
                 + "\n" + detail.getMessage());
     }

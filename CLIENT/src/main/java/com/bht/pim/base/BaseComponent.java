@@ -6,8 +6,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import org.apache.log4j.Logger;
-import org.jacpfx.api.annotations.lifecycle.OnHide;
-import org.jacpfx.api.annotations.lifecycle.OnShow;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
 import org.jacpfx.api.message.Message;
@@ -69,16 +67,6 @@ public abstract class BaseComponent extends VBox implements FXComponent {
         LOGGER.info("[DESTROY] FXComponentLayout: " + componentContext.getId());
     }
 
-    @OnShow
-    public final void onShowComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[SHOW] FXComponentLayout: " + componentContext.getId());
-    }
-
-    @OnHide
-    public final void onHide(final FXComponentLayout componentLayout) {
-        LOGGER.info("[HIDE] FXComponentLayout: " + componentContext.getId());
-    }
-
     @Override
     public final Node handle(Message<Event, Object> message) {
         return null;
@@ -86,6 +74,9 @@ public abstract class BaseComponent extends VBox implements FXComponent {
 
     @Override
     public final Node postHandle(Node node, Message<Event, Object> message) {
+        if (message.getMessageBody() instanceof BasePerspective) {
+            ((BasePerspective) message.getMessageBody()).addChildComponent(this);
+        }
         return handleMessage(message);
     }
 

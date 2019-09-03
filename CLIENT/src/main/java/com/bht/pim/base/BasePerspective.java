@@ -1,6 +1,8 @@
 package com.bht.pim.base;
 
+import com.bht.pim.configuration.AppConfiguration;
 import javafx.event.Event;
+import lombok.Getter;
 import org.apache.log4j.Logger;
 import org.jacpfx.api.annotations.lifecycle.OnHide;
 import org.jacpfx.api.annotations.lifecycle.OnShow;
@@ -12,6 +14,9 @@ import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author bht
  */
@@ -19,6 +24,9 @@ public abstract class BasePerspective implements FXPerspective {
 
     protected static final Logger LOGGER = Logger.getLogger(BasePerspective.class);
     protected Context perspectiveContext;
+
+    @Getter
+    private List<BaseComponent> childComponents;
 
     @Override
     public void handlePerspective(Message<Event, Object> message,
@@ -37,6 +45,7 @@ public abstract class BasePerspective implements FXPerspective {
     public void onShow(final FXComponentLayout componentLayout) {
         LOGGER.info("[SHOW] FXPerspective: " + perspectiveContext.getId());
         onShowed();
+        AppConfiguration.PERSPECTIVE_PROPERTY.set(this);
     }
 
     @OnHide
@@ -49,7 +58,12 @@ public abstract class BasePerspective implements FXPerspective {
                               final FXComponentLayout layout) {
         getContext();
         LOGGER.info("[INIT] FXPerspective: " + perspectiveContext.getId());
+        childComponents = new ArrayList<>();
         onCreated(perspectiveLayout, layout);
+    }
+
+    final <T extends BaseComponent> void addChildComponent(T t) {
+        childComponents.add(t);
     }
 
     protected abstract void getContext();
