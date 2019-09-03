@@ -15,7 +15,8 @@
     <padding>
         <Insets bottom="5.0" top="5.0"/>
     </padding>
-    <BarChart fx:id="barChart" maxHeight="400.0" maxWidth="300.0" prefHeight="400.0" prefWidth="300.0">
+    <BarChart fx:id="barChart" maxHeight="400.0" maxWidth="300.0" minHeight="400.0" minWidth="300.0" prefHeight="400.0"
+              prefWidth="300.0">
         <xAxis>
             <CategoryAxis side="BOTTOM"/>
         </xAxis>
@@ -29,6 +30,6 @@
             <TableColumn fx:id="cCount" prefWidth="98.0" text="Count"/>
         </columns>
     </TableView>
-    <PieChart fx:id="pieChart" maxHeight="300.0" maxWidth="300.0" minHeight="300.0" minWidth="300.0" prefHeight="300.0"
-              prefWidth="300.0" startAngle="-90.0"/>
+    <PieChart fx:id="pieChart" maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0"
+              prefWidth="400.0" startAngle="90.0"/>
 </HBox>

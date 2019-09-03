@@ -3,6 +3,7 @@ package com.bht.pim.fragment.children.project;
 import com.bht.pim.base.ChildFragment;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.mapper.StatusMapper;
+import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.LanguageUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
@@ -25,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author bht
@@ -37,6 +39,8 @@ import java.util.Map;
 public class ProjectPanelFragment extends ChildFragment {
 
     static final String ID = "idfPPanel";
+    private static final LanguageProperty LANGUAGE_PROPERTY = AppConfiguration.LANGUAGE_PROPERTY;
+    private ObservableList<Map.Entry<String, Long>> items;
 
     @Resource
     private Context context;
@@ -72,6 +76,10 @@ public class ProjectPanelFragment extends ChildFragment {
             header.reorderingProperty().addListener((observable0, oldValue, newValue) ->
                     header.setReordering(false));
         });
+
+        pieChart.setLegendVisible(true);
+        items = FXCollections.emptyObservableList();
+        LANGUAGE_PROPERTY.getLocaleProperty().addListener((observable, oldValue, newValue) -> loadPieChart());
     }
 
     @Override
@@ -81,8 +89,15 @@ public class ProjectPanelFragment extends ChildFragment {
 
     @Override
     public void onSwitchParentFragment() {
-        ObservableList<Map.Entry<String, Long>> items = FXCollections
-                .observableArrayList(projectService.getProjectsGroupByStatus().entrySet());
+        items = FXCollections.observableArrayList(projectService.getProjectsGroupByStatus().entrySet());
         table.setItems(items);
+        table.getSelectionModel().clearSelection();
+        loadPieChart();
+    }
+
+    private void loadPieChart() {
+        pieChart.setData(items.stream()
+                .map(item -> new PieChart.Data(statusMapper.toGuiStatus(item.getKey()).get(), item.getValue()))
+                .collect(Collectors.toCollection(FXCollections::observableArrayList)));
     }
 }
