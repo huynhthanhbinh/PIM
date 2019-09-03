@@ -1,16 +1,18 @@
 package com.bht.pim.component;
 
-import com.bht.pim.base.BaseComponent;
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.menu.TopMenuFragment;
-import javafx.event.Event;
-import javafx.scene.Node;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.View;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
+
+import com.bht.pim.base.BaseComponent;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.menu.TopMenuFragment;
+
+import javafx.event.Event;
+import javafx.scene.Node;
 
 /**
  * @author bht
@@ -60,6 +62,6 @@ public final class TopPane extends BaseComponent {
 
     @Override
     protected Node handleMessage(Message<Event, Object> message) {
-        return this;
+        return this; // otherwise, it won't show UI
     }
 }

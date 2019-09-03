@@ -1,5 +1,12 @@
 package com.bht.pim.fragment.children.project;
 
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import com.bht.pim.base.ChildFragment;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
@@ -18,20 +25,19 @@ import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.PimUtil;
+
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 /**
  * @author bht
@@ -136,7 +142,7 @@ public class ProjectDetailFragment extends ChildFragment {
         name.setText(projectDto.getName());
         customer.setText(projectDto.getCustomer());
         group.setText(String.valueOf(projectDto.getGroup().getId()));
-        leader.setText(groupService.getGroupById(projectDto.getGroup().getId()).getLeader().toString());
+        leader.setText(groupService.getGroupById(projectDto.getGroup().getId()).getLeader().getVisa());
         start.setValue(projectDto.getStart());
         end.setValue(projectDto.getEnd());
         table.getItems().clear();

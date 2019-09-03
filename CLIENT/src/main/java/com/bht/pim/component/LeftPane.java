@@ -63,6 +63,6 @@ public final class LeftPane extends BaseComponent {
         if (message.messageBodyEquals("selectDefault")) {
             leftMenuFragment.getController().onShowed();
         }
-        return this;
+        return this; // otherwise, it won't show UI
     }
 }

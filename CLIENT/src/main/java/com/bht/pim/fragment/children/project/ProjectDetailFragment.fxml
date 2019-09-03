@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <VBox fx:id="mainPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="1800.0" minHeight="-Infinity"
       minWidth="-Infinity" prefHeight="480.0" prefWidth="1060.0" spacing="5.0"
       stylesheets="/com/bht/pim/fragment/children/project/ProjectDetailFragment.css"
-      xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+      xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
     <padding>
         <Insets bottom="5.0" top="5.0"/>
     </padding>
-    <GridPane fx:id="gridPane" alignment="CENTER" hgap="15.0" maxWidth="1800.0" prefHeight="480.0"
-              prefWidth="1100.0" VBox.vgrow="ALWAYS">
+    <GridPane fx:id="gridPane" alignment="CENTER" hgap="15.0" maxWidth="1800.0" prefHeight="480.0" prefWidth="1100.0"
+              VBox.vgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="NEVER" maxWidth="180.0" minWidth="10.0" prefWidth="150.0"/>
-            <ColumnConstraints hgrow="NEVER" maxWidth="400.0" minWidth="10.0" prefWidth="220.0"/>
+            <ColumnConstraints hgrow="NEVER" maxWidth="400.0" minWidth="10.0" prefWidth="190.0"/>
             <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="0.0" prefWidth="90.0"/>
-            <ColumnConstraints hgrow="NEVER" maxWidth="400.0" minWidth="10.0" prefWidth="220.0"/>
+            <ColumnConstraints hgrow="NEVER" maxWidth="400.0" minWidth="10.0" prefWidth="190.0"/>
             <ColumnConstraints hgrow="NEVER" maxWidth="20.0" minWidth="10.0" prefWidth="10.0"/>
-            <ColumnConstraints hgrow="NEVER" maxWidth="400.0" minWidth="10.0" prefWidth="250.0"/>
+            <ColumnConstraints hgrow="NEVER" maxWidth="400.0" minWidth="10.0" prefWidth="210.0"/>
+            <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="80.0"/>
             <ColumnConstraints/>
         </columnConstraints>
         <rowConstraints>
@@ -51,17 +61,17 @@
         </Pane>
         <Label fx:id="lEndDate" text="End-date" GridPane.columnIndex="2" GridPane.rowIndex="9">
             <font>
-                <Font name="System Bold" size="16.0"/>
+                <Font size="16.0"/>
             </font>
         </Label>
         <TextField fx:id="number" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1"
                    GridPane.hgrow="NEVER" GridPane.rowIndex="1"/>
         <TextField fx:id="name" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1"
-                   GridPane.columnSpan="3" GridPane.hgrow="NEVER" GridPane.rowIndex="3"
-                   GridPane.valignment="CENTER" GridPane.vgrow="NEVER"/>
+                   GridPane.columnSpan="3" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER"
+                   GridPane.vgrow="NEVER"/>
         <TextField fx:id="customer" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="1"
-                   GridPane.columnSpan="3" GridPane.hgrow="NEVER" GridPane.rowIndex="5"
-                   GridPane.valignment="CENTER" GridPane.vgrow="NEVER"/>
+                   GridPane.columnSpan="3" GridPane.hgrow="NEVER" GridPane.rowIndex="5" GridPane.valignment="CENTER"
+                   GridPane.vgrow="NEVER"/>
         <DatePicker fx:id="start" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="220.0"
                     GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="9"/>
         <DatePicker fx:id="end" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" prefWidth="220.0"
@@ -69,14 +79,14 @@
         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
             <Label fx:id="lProjectNumber" text="Project-number">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font size="16.0"/>
                 </font>
             </Label>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
             <Label fx:id="lProjectName" text="Project-name">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font size="16.0"/>
                 </font>
             </Label>
         </HBox>
@@ -84,21 +94,21 @@
               GridPane.rowIndex="1">
             <Label fx:id="lStatus" text="Status">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font size="16.0"/>
                 </font>
             </Label>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
             <Label fx:id="lCustomer" text="Customer">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font size="16.0"/>
                 </font>
             </Label>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
             <Label fx:id="lGroup" text="Group">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font size="16.0"/>
                 </font>
             </Label>
         </HBox>
@@ -106,25 +116,24 @@
               GridPane.rowIndex="7">
             <Label fx:id="lLeader" text="Leader">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font size="16.0"/>
                 </font>
             </Label>
         </HBox>
         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="9">
             <Label fx:id="lStartDate" text="Start-date">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font size="16.0"/>
                 </font>
             </Label>
         </HBox>
-        <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5"
-                   GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="8">
+        <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.columnSpan="2"
+                   GridPane.rowIndex="2" GridPane.rowSpan="8">
             <columns>
                 <TableColumn fx:id="cName" prefWidth="250.0" text="NAME"/>
             </columns>
         </TableView>
-        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0"
-              GridPane.columnSpan="4">
+        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnSpan="4">
             <Label fx:id="lBasicInfo" alignment="TOP_LEFT" text="BASIC INFORMATION">
                 <font>
                     <Font name="System Bold" size="24.0"/>
@@ -138,14 +147,14 @@
                    GridPane.rowIndex="7"/>
         <TextField fx:id="leader" maxHeight="40.0" minHeight="30.0" prefHeight="30.0" GridPane.columnIndex="3"
                    GridPane.rowIndex="7"/>
-        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="15.0"
-              GridPane.columnIndex="5" GridPane.rowIndex="1">
+        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="5"
+              GridPane.columnSpan="2" GridPane.rowIndex="1">
             <Label fx:id="lNumber" alignment="CENTER" text="Number of members : ">
                 <font>
                     <Font name="System Bold" size="18.0"/>
                 </font>
             </Label>
-            <Label fx:id="lSize" text="0">
+            <Label fx:id="lSize" text="0" textFill="#f24517">
                 <font>
                     <Font name="System Bold" size="22.0"/>
                 </font>

@@ -1,10 +1,17 @@
 package com.bht.pim.component;
 
 
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.component.View;
+import org.jacpfx.api.message.Message;
+import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
+import org.jacpfx.rcp.context.Context;
+
 import com.bht.pim.base.BaseComponent;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.supplementary.ErrorHandlingFragment;
 import com.bht.pim.fragment.supplementary.LoginFragment;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -12,11 +19,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
 import lombok.Setter;
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.component.View;
-import org.jacpfx.api.message.Message;
-import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
-import org.jacpfx.rcp.context.Context;
 
 /**
  * @author bht
@@ -90,6 +92,6 @@ public final class BottomPane extends BaseComponent {
             getChildren().clear();
             getChildren().add(loginPane);
         }
-        return this;
+        return this; // otherwise, it won't show UI
     }
 }
