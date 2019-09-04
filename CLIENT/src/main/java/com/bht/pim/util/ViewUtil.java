@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 import com.bht.pim.base.BasePerspective;
 import com.bht.pim.base.ParentFragment;
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.notification.NotificationStyle;
 
+import javafx.geometry.Pos;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -40,19 +42,22 @@ public final class ViewUtil {
      * + log all fragments on screen
      */
     public static void viewGraphics() {
+        StringBuilder graphic = new StringBuilder();
         BasePerspective currentPerspective = AppConfiguration.PERSPECTIVE_PROPERTY.get();
-        System.out.println("\n" + currentPerspective.getClass().getSimpleName());
+        graphic.append("\n").append(currentPerspective.getClass().getSimpleName()).append("\n");
         currentPerspective.getChildComponents().forEach(component -> {
-            System.out.println("\t" + component.getClass().getSimpleName());
+            graphic.append("\t").append(component.getClass().getSimpleName()).append("\n");
             Object currentFragment = component.getCurrentFragment().getController();
-            System.out.println("\t\t" + currentFragment.getClass().getSimpleName());
+            graphic.append("\t\t").append(currentFragment.getClass().getSimpleName()).append("\n");
             if (currentFragment instanceof ParentFragment) {
                 ((ParentFragment) currentFragment).getChildFragments().stream()
                         .map(childFragment -> childFragment.getClass().getSimpleName())
                         .forEach(childFragmentClass ->
-                                System.out.println("\t\t\t" + childFragmentClass));
+                                graphic.append("\t\t\t").append(childFragmentClass).append("\n"));
             }
         });
-        System.out.println();
+        graphic.append("\n");
+        System.out.println(graphic.toString());
+        NotificationUtil.showNotification(NotificationStyle.INFO, Pos.CENTER, graphic.toString());
     }
 }
