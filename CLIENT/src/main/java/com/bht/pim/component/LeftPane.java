@@ -38,8 +38,8 @@ public final class LeftPane extends BaseComponent {
 
     @Override
     protected void initLayout() {
-        setMinSize(256, 600);
-        setPrefSize(256, 600);
+        setMinSize(200, 600);
+        setPrefSize(200, 600);
     }
 
     @Override
