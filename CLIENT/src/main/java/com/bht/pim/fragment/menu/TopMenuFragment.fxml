@@ -1,44 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane fx:id="topMenu" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1260"
-            stylesheets="/com/bht/pim/fragment/menu/TopMenuFragment.css" xmlns="http://javafx.com/javafx/8.0.172-ea"
-            xmlns:fx="http://javafx.com/fxml/1">
-    <ImageView fx:id="logo" fitHeight="70.0" fitWidth="70.0" layoutX="14.0" layoutY="25.0" preserveRatio="true"
-               AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
-        <Image url="/pictures/logo.png"/>
-    </ImageView>
-    <Label fx:id="lApp" layoutX="90.0" layoutY="22.0" text="Project Information Management" textFill="#606060"
-           AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="120.0">
-        <font>
-            <Font name="System Bold" size="32.0"/>
-        </font>
-    </Label>
-    <Label fx:id="lEnglish" layoutX="823.0" layoutY="32.0" text="EN" textFill="#707070" AnchorPane.bottomAnchor="30.0"
-           AnchorPane.rightAnchor="330.0">
-        <font>
-            <Font name="System Bold" size="18.0"/>
-        </font>
-    </Label>
-    <Separator layoutX="856.0" layoutY="20.0" maxHeight="40.0" minHeight="40.0" orientation="VERTICAL" prefHeight="40.0"
-               style="-fx-progress-color: #F24517" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="320.0"/>
-    <Label fx:id="lFrench" layoutX="869.0" layoutY="32.0" text="FR" textFill="#707070" AnchorPane.bottomAnchor="30.0"
-           AnchorPane.rightAnchor="295.0">
-        <font>
-            <Font name="System Bold" size="18.0"/>
-        </font>
-    </Label>
-    <Separator layoutX="341.0" layoutY="85.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0"
-               AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"/>
-    <ImageView fx:id="bHelp" fitHeight="40.0" fitWidth="40.0" layoutX="1120.0" layoutY="25.0" pickOnBounds="true"
-               preserveRatio="true" styleClass="icon" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="75.0">
-        <Image url="/pictures/help.png"/>
-    </ImageView>
-    <ImageView fx:id="bLogout" fitHeight="38.0" fitWidth="38.0" layoutX="1185.0" layoutY="27.0" pickOnBounds="true"
-               preserveRatio="true" styleClass="icon" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="25.0">
-        <Image url="/pictures/logout.png"/>
-    </ImageView>
-</AnchorPane>
+<VBox alignment="TOP_CENTER" stylesheets="/com/bht/pim/fragment/menu/TopMenuFragment.css"
+      xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane fx:id="topMenu" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1260">
+        <ImageView fx:id="logo" fitHeight="70.0" fitWidth="70.0" layoutX="14.0" layoutY="25.0" preserveRatio="true"
+                   AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+            <Image url="/pictures/logo.png"/>
+        </ImageView>
+        <Label fx:id="lApp" layoutX="90.0" layoutY="22.0" text="Project Information Management" textFill="#606060"
+               AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="120.0">
+            <font>
+                <Font name="System Bold" size="32.0"/>
+            </font>
+        </Label>
+        <Label fx:id="lEnglish" layoutX="823.0" layoutY="32.0" text="EN" textFill="#707070"
+               AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="330.0">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Label>
+        <Separator layoutX="856.0" layoutY="20.0" maxHeight="40.0" minHeight="40.0" orientation="VERTICAL"
+                   prefHeight="40.0" style="-fx-progress-color: #F24517" AnchorPane.bottomAnchor="25.0"
+                   AnchorPane.rightAnchor="320.0"/>
+        <Label fx:id="lFrench" layoutX="869.0" layoutY="32.0" text="FR" textFill="#707070"
+               AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="295.0">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Label>
+        <Separator layoutX="341.0" layoutY="85.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0"
+                   AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"/>
+        <ImageView fx:id="bHelp" fitHeight="40.0" fitWidth="40.0" layoutX="1120.0" layoutY="25.0" pickOnBounds="true"
+                   preserveRatio="true" styleClass="icon" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="75.0">
+            <Image url="/pictures/help.png"/>
+        </ImageView>
+        <ImageView fx:id="bLogout" fitHeight="38.0" fitWidth="38.0" layoutX="1185.0" layoutY="27.0" pickOnBounds="true"
+                   preserveRatio="true" styleClass="icon" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="25.0">
+            <Image url="/pictures/logout.png"/>
+        </ImageView>
+    </AnchorPane>
+    <padding>
+        <Insets left="10.0" right="10.0"/>
+    </padding>
+</VBox>
