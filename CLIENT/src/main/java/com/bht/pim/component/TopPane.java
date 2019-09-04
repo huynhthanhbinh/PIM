@@ -48,6 +48,7 @@ public final class TopPane extends BaseComponent {
         ManagedFragmentHandler<TopMenuFragment> topMenuFragment =
                 context.getManagedFragmentHandler(TopMenuFragment.class);
         getChildren().add(topMenuFragment.getFragmentNode());
+        currentFragment = topMenuFragment;
     }
 
     @Override

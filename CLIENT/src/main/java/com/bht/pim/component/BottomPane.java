@@ -80,6 +80,7 @@ public final class BottomPane extends BaseComponent {
     protected Node handleMessage(Message<Event, Object> message) {
         if (message.getMessageBody() instanceof Throwable) {
 
+            currentFragment = errorHandlingFragment;
             LOGGER.info("[SHOW] FXSupplementaryFragment: " + ErrorHandlingFragment.ID);
             getChildren().clear();
             getChildren().add(errorPane);
@@ -88,6 +89,7 @@ public final class BottomPane extends BaseComponent {
 
         } else {
 
+            currentFragment = loginFragment;
             LOGGER.info("[SHOW] FXSupplementaryFragment: " + LoginFragment.ID);
             getChildren().clear();
             getChildren().add(loginPane);

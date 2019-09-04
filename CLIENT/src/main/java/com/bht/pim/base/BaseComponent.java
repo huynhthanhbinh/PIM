@@ -1,10 +1,8 @@
 package com.bht.pim.base;
 
-import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.scene.Node;
-import javafx.scene.layout.VBox;
-import javafx.util.Pair;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
@@ -14,8 +12,12 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
-import java.util.ArrayList;
-import java.util.List;
+import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.scene.Node;
+import javafx.scene.layout.VBox;
+import javafx.util.Pair;
+import lombok.Getter;
 
 /**
  * @author bht
@@ -25,7 +27,9 @@ public abstract class BaseComponent extends VBox implements FXComponent {
     protected static final Logger LOGGER = Logger.getLogger(BaseComponent.class);
     protected Context componentContext;
     protected List<ParentFragment> fragments;
-    ManagedFragmentHandler<? extends ParentFragment> currentFragment;
+
+    @Getter
+    protected ManagedFragmentHandler currentFragment;
 
     public BaseComponent() {
         fragments = new ArrayList<>();
@@ -90,8 +94,8 @@ public abstract class BaseComponent extends VBox implements FXComponent {
     public static <T extends BaseComponent, F extends ParentFragment> void switchFragment(T t, Class<F> fragmentClazz) {
         ObservableList<Node> nodes = t.getChildren();
         nodes.clear();
-        if (t.currentFragment != null) {
-            t.currentFragment.getController().preSwitchToAnotherFragment();
+        if (t.currentFragment != null && t.currentFragment.getController() instanceof ParentFragment) {
+            ((ParentFragment) t.currentFragment.getController()).preSwitchToAnotherFragment();
         }
         ManagedFragmentHandler<F> target = t.componentContext.getManagedFragmentHandler(fragmentClazz);
         target.getController().onSwitchToThisFragment();

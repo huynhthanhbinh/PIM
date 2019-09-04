@@ -26,7 +26,7 @@ public final class LeftPane extends BaseComponent {
     public static final String ID = "idcLeft";
     public static final String CONTAINER = "PLeft";
 
-    ManagedFragmentHandler<LeftMenuFragment> leftMenuFragment;
+    private ManagedFragmentHandler<LeftMenuFragment> leftMenuFragment;
 
     @Resource
     private Context context;
@@ -46,6 +46,7 @@ public final class LeftPane extends BaseComponent {
     protected void loadFragments() {
         leftMenuFragment = context.getManagedFragmentHandler(LeftMenuFragment.class);
         getChildren().add(leftMenuFragment.getFragmentNode());
+        currentFragment = leftMenuFragment;
     }
 
     @Override

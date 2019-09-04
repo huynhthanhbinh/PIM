@@ -1,15 +1,17 @@
 package com.bht.pim.base;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.log4j.Logger;
+import org.jacpfx.rcp.componentLayout.FXComponentLayout;
+
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
-import org.apache.log4j.Logger;
-import org.jacpfx.rcp.componentLayout.FXComponentLayout;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import lombok.Getter;
 
 /**
  * @author bht
@@ -20,6 +22,7 @@ public abstract class ParentFragment extends VBox { // is-parent-fragment, scope
     protected static final Logger LOGGER = Logger.getLogger(ParentFragment.class);
 
     // list of children fragment of this parent fragment
+    @Getter
     private List<ChildFragment> childFragments;
 
     // main window width
