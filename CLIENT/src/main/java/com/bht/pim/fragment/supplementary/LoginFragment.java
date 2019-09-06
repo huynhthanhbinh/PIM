@@ -1,16 +1,5 @@
 package com.bht.pim.fragment.supplementary;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.util.LanguageUtil;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
@@ -18,8 +7,19 @@ import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import com.bht.pim.base.BaseComponentFragment;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.util.LanguageUtil;
+
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 
 /**
  * @author bht
@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
 @Fragment(id = LoginFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/supplementary/LoginFragment.fxml")
-public class LoginFragment implements Initializable {
+public class LoginFragment extends BaseComponentFragment {
 
     public static final String ID = "idfSLogin";
 
@@ -39,6 +39,8 @@ public class LoginFragment implements Initializable {
 
     @Resource
     private Context context;
+    @FXML
+    private VBox loginPane;
     @FXML
     private Label lIncorrect;
     @FXML
@@ -51,7 +53,7 @@ public class LoginFragment implements Initializable {
     private PasswordField password;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    protected void onCreated() {
         LanguageUtil.initLabel(bLogin.textProperty(), "label.login.login");
         LanguageUtil.initLabel(bForgot.textProperty(), "label.login.forgot");
         LanguageUtil.initLabel(lIncorrect.textProperty(), "label.login.incorrect");
@@ -61,6 +63,26 @@ public class LoginFragment implements Initializable {
         bLogin.setOnMouseClicked(this::onSubmit);
         username.setOnKeyPressed(this::onKeyPressed);
         password.setOnKeyPressed(this::onKeyPressed);
+    }
+
+    @Override
+    protected void configLayout() {
+        layout = loginPane;
+    }
+
+    @Override
+    protected void onSwitch() {
+
+    }
+
+    @Override
+    protected void preLeft() {
+
+    }
+
+    @Override
+    protected void bindChildren() {
+
     }
 
     private void onSubmit(Event event) {

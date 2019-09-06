@@ -1,23 +1,23 @@
 package com.bht.pim.fragment.menu;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.property.LanguageProperty;
-import com.bht.pim.util.LanguageUtil;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import lombok.extern.log4j.Log4j;
+import java.util.Locale;
+
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
-import java.net.URL;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import com.bht.pim.base.BaseFragment;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.property.LanguageProperty;
+import com.bht.pim.util.LanguageUtil;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import lombok.extern.log4j.Log4j;
 
 /**
  * @author bht
@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 @Fragment(id = TopMenuFragment.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/menu/TopMenuFragment.fxml")
-public class TopMenuFragment implements Initializable {
+public class TopMenuFragment extends BaseFragment {
 
     static final String ID = "idfMenuTop";
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
@@ -50,7 +50,7 @@ public class TopMenuFragment implements Initializable {
     private ImageView bLogout;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    protected void onCreated() {
         LanguageUtil.initLabel(lApp.textProperty(), AppConfiguration.LABEL_PIM_MAIN);
         logo.setPreserveRatio(true);
 
@@ -64,6 +64,26 @@ public class TopMenuFragment implements Initializable {
         addLabelFrenchEventHandler();
         addButtonHelpEventHandler();
         addButtonLogoutEventHandler();
+    }
+
+    @Override
+    protected void configLayout() {
+
+    }
+
+    @Override
+    protected void onSwitch() {
+
+    }
+
+    @Override
+    protected void preLeft() {
+
+    }
+
+    @Override
+    protected void bindChildren() {
+
     }
 
     private void addLabelEnglishEventHandler() {

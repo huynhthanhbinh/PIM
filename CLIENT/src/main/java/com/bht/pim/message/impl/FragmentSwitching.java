@@ -1,9 +1,10 @@
 package com.bht.pim.message.impl;
 
 import com.bht.pim.base.BaseComponent;
-import com.bht.pim.base.ParentFragment;
+import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.message.PimMessage;
+
 import javafx.scene.Node;
 import lombok.AllArgsConstructor;
 
@@ -14,7 +15,7 @@ import lombok.AllArgsConstructor;
 public class FragmentSwitching implements PimMessage {
 
     private Class fragmentSent;
-    private Class<? extends ParentFragment> fragmentTarget;
+    private Class<? extends BaseComponentFragment> fragmentTarget;
 
     @Override
     public Class getSender() {
@@ -23,7 +24,7 @@ public class FragmentSwitching implements PimMessage {
 
     @Override
     public Node postHandle(MainPane mainPane) {
-        BaseComponent.switchFragment(mainPane, fragmentTarget);
+        BaseComponent.switchMainFragment(mainPane, fragmentTarget);
         return null;
     }
 }

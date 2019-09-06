@@ -52,16 +52,6 @@ public final class TopPane extends BaseComponent {
     }
 
     @Override
-    protected void createFragmentList() {
-        // ...
-    }
-
-    @Override
-    protected void assignChildren() {
-        // ...
-    }
-
-    @Override
     protected Node handleMessage(Message<Event, Object> message) {
         return this; // otherwise, it won't show UI
     }

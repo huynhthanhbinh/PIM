@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
-import javafx.util.Pair;
 import lombok.Getter;
 
 /**
@@ -26,10 +25,10 @@ public abstract class BaseComponent extends VBox implements FXComponent {
 
     protected static final Logger LOGGER = Logger.getLogger(BaseComponent.class);
     protected Context componentContext;
-    protected List<ParentFragment> fragments;
-
     @Getter
-    protected ManagedFragmentHandler currentFragment;
+    private List<BaseComponentFragment> fragments;
+    @Getter
+    protected ManagedFragmentHandler<? extends BaseComponentFragment> currentFragment;
 
     public BaseComponent() {
         fragments = new ArrayList<>();
@@ -38,13 +37,11 @@ public abstract class BaseComponent extends VBox implements FXComponent {
     private void onStarted(FXComponentLayout layout) {
         initLayout();
         loadFragments();
-        createFragmentList();
         initAllFragments(layout);
-        assignChildren();
     }
 
     private void initAllFragments(FXComponentLayout layout) {
-        fragments.forEach(parentFragment -> parentFragment.initialize(layout));
+        fragments.forEach(fragment -> fragment.initialize(this));
     }
 
     protected abstract void initComponent();
@@ -52,10 +49,6 @@ public abstract class BaseComponent extends VBox implements FXComponent {
     protected abstract void initLayout();
 
     protected abstract void loadFragments();
-
-    protected abstract void createFragmentList();
-
-    protected abstract void assignChildren();
 
     protected abstract Node handleMessage(Message<Event, Object> message);
 
@@ -84,22 +77,30 @@ public abstract class BaseComponent extends VBox implements FXComponent {
         return handleMessage(message);
     }
 
-    // for adding new child fragment to parent
-    protected final <T extends ChildFragment> Pair<T, Node> registerChildFragment(Class<T> fragmentClass) {
-        ManagedFragmentHandler<T> fragment = componentContext.getManagedFragmentHandler(fragmentClass);
-        return new Pair<>(fragment.getController(), fragment.getFragmentNode());
+    final <F extends BaseFragment> ManagedFragmentHandler<F> registerNewFragment(Class<F> fClass) {
+        return componentContext.getManagedFragmentHandler(fClass);
+    }
+
+    // for adding new main fragment to parent
+    protected final <F extends BaseComponentFragment> ManagedFragmentHandler<F> registerMainFragment(Class<F> fClass) {
+        ManagedFragmentHandler<F> fragmentHandler = componentContext.getManagedFragmentHandler(fClass);
+        fragments.add(fragmentHandler.getController());
+        return fragmentHandler;
     }
 
     // switch current-(parent)-fragment
-    public static <T extends BaseComponent, F extends ParentFragment> void switchFragment(T t, Class<F> fragmentClazz) {
-        ObservableList<Node> nodes = t.getChildren();
+    public static <C extends BaseComponent, F extends BaseComponentFragment> void switchMainFragment(C c, Class<F> fragmentClazz) {
+        ObservableList<Node> nodes = c.getChildren();
         nodes.clear();
-        if (t.currentFragment != null && t.currentFragment.getController() instanceof ParentFragment) {
-            ((ParentFragment) t.currentFragment.getController()).preSwitchToAnotherFragment();
+
+        if (c.currentFragment != null && c.currentFragment.getController() != null) {
+            c.currentFragment.getController().preLeftToAnotherFragment();
         }
-        ManagedFragmentHandler<F> target = t.componentContext.getManagedFragmentHandler(fragmentClazz);
+
+        ManagedFragmentHandler<F> target = c.componentContext.getManagedFragmentHandler(fragmentClazz);
         target.getController().onSwitchToThisFragment();
-        t.currentFragment = target;
-        nodes.add(t.currentFragment.getFragmentNode());
+
+        c.currentFragment = target;
+        nodes.add(c.currentFragment.getFragmentNode());
     }
 }

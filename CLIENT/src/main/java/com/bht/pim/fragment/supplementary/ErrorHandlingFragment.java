@@ -1,14 +1,5 @@
 package com.bht.pim.fragment.supplementary;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.util.LanguageUtil;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
@@ -16,8 +7,16 @@ import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import com.bht.pim.base.BaseComponentFragment;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.util.LanguageUtil;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import lombok.extern.log4j.Log4j;
 
 /**
  * @author bht
@@ -27,7 +26,7 @@ import java.util.ResourceBundle;
 @Fragment(id = ErrorHandlingFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/supplementary/ErrorHandlingFragment.fxml")
-public class ErrorHandlingFragment implements Initializable {
+public class ErrorHandlingFragment extends BaseComponentFragment {
 
     public static final String ID = "idfSError";
 
@@ -57,7 +56,7 @@ public class ErrorHandlingFragment implements Initializable {
     private TextArea detailField;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    protected void onCreated() {
         detailField.setEditable(false);
         LanguageUtil.initLabel(lUnexpected.textProperty(), "label.error.unexpectederror");
         LanguageUtil.initLabel(lPlease.textProperty(), "label.error.please");
@@ -68,6 +67,26 @@ public class ErrorHandlingFragment implements Initializable {
 
         lContact.setOnMouseClicked(this::onContactAdmin);
         lReload.setOnMouseClicked(this::onReloadApp);
+    }
+
+    @Override
+    protected void configLayout() {
+        layout = errorPane;
+    }
+
+    @Override
+    protected void onSwitch() {
+
+    }
+
+    @Override
+    protected void preLeft() {
+
+    }
+
+    @Override
+    protected void bindChildren() {
+
     }
 
     public void setDetail(Throwable detail) {

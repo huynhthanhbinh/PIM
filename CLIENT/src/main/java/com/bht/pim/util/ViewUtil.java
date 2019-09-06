@@ -3,7 +3,6 @@ package com.bht.pim.util;
 import org.springframework.stereotype.Component;
 
 import com.bht.pim.base.BasePerspective;
-import com.bht.pim.base.ParentFragment;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.notification.NotificationStyle;
 

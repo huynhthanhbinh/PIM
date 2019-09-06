@@ -1,6 +1,13 @@
 package com.bht.pim.fragment.children.project;
 
-import com.bht.pim.base.ChildFragment;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import com.bht.pim.base.BaseFragment;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.fragment.parent.project.ProjectCreateFragment;
@@ -10,6 +17,7 @@ import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.PimUtil;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -17,14 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import lombok.Getter;
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 /**
  * @author bht
@@ -34,7 +35,7 @@ import org.springframework.stereotype.Controller;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectUtilFragment.fxml")
-public class ProjectUtilFragment extends ChildFragment {
+public class ProjectUtilFragment extends BaseFragment {
 
     static final String ID = "idfPUtil";
 
@@ -113,18 +114,23 @@ public class ProjectUtilFragment extends ChildFragment {
     }
 
     @Override
-    public Pane getLayout() {
-        return utilPane;
+    protected void configLayout() {
+        layout = utilPane;
     }
 
     @Override
-    public void onSwitchToThisFragment() {
-        // ...
+    protected void onSwitch() {
+
     }
 
     @Override
-    public void preSwitchToAnotherFragment() {
-        // ...
+    protected void preLeft() {
+
+    }
+
+    @Override
+    protected void bindChildren() {
+
     }
 
     private void initComboBoxStatus() {

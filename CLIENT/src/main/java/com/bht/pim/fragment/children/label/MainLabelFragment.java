@@ -1,15 +1,16 @@
 package com.bht.pim.fragment.children.label;
 
-import com.bht.pim.base.ChildFragment;
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.util.LanguageUtil;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.springframework.stereotype.Controller;
+
+import com.bht.pim.base.BaseFragment;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.util.LanguageUtil;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 /**
  * @author bht
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Controller;
 @Fragment(id = MainLabelFragment.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/children/label/MainLabelFragment.fxml")
-public class MainLabelFragment extends ChildFragment {
+public class MainLabelFragment extends BaseFragment {
 
     static final String ID = "idfMLabel"; // label of main-pane
 
@@ -33,22 +34,27 @@ public class MainLabelFragment extends ChildFragment {
     }
 
     @Override
-    public Pane getLayout() {
-        return mainLabel;
+    protected void configLayout() {
+        layout = mainLabel;
+    }
+
+    @Override
+    protected void onSwitch() {
+
+    }
+
+    @Override
+    protected void preLeft() {
+
+    }
+
+    @Override
+    protected void bindChildren() {
+
     }
 
     @FXML
     public void setLabelText(String newLabel) {
         LanguageUtil.initLabel(label.textProperty(), newLabel);
-    }
-
-    @Override
-    public void onSwitchToThisFragment() {
-        // ...
-    }
-
-    @Override
-    public void preSwitchToAnotherFragment() {
-        // ...
     }
 }

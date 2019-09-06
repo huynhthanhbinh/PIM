@@ -1,6 +1,22 @@
 package com.bht.pim.fragment.children.project;
 
-import com.bht.pim.base.ChildFragment;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
+import org.jacpfx.api.annotations.Resource;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
+import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import com.bht.pim.base.BaseFragment;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.dto.EmployeeDto;
@@ -21,28 +37,24 @@ import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.PimUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
+
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.TextFields;
-import org.jacpfx.api.annotations.Resource;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author bht
@@ -52,7 +64,7 @@ import java.util.stream.Collectors;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditFormFragment.fxml")
-public class ProjectEditFormFragment extends ChildFragment implements Confirmable {
+public class ProjectEditFormFragment extends BaseFragment implements Confirmable {
 
     static final String ID = "idfPEditForm";
 
@@ -178,18 +190,23 @@ public class ProjectEditFormFragment extends ChildFragment implements Confirmabl
     }
 
     @Override
-    public Pane getLayout() {
-        return mainPane;
+    protected void configLayout() {
+        layout = mainPane;
     }
 
     @Override
-    public void onSwitchToThisFragment() {
+    protected void onSwitch() {
         loadProjectEditForm();
     }
 
     @Override
-    public void preSwitchToAnotherFragment() {
+    protected void preLeft() {
         emptyAllFields();
+    }
+
+    @Override
+    protected void bindChildren() {
+
     }
 
     public void setIsUpdateState(boolean isUpdateState) {

@@ -1,24 +1,25 @@
 package com.bht.pim.fragment.parent.project;
 
-import com.bht.pim.base.ChildFragment;
-import com.bht.pim.base.ParentFragment;
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.children.label.MainLabelFragment;
-import com.bht.pim.fragment.children.pagination.PaginationFragment;
-import com.bht.pim.fragment.children.project.ProjectTableFragment;
-import com.bht.pim.fragment.children.project.ProjectUtilFragment;
-import com.bht.pim.fragment.parent.SuccessNeeding;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.util.StringConverter;
+import java.util.List;
+
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
-import java.util.List;
+import com.bht.pim.base.BaseComponentFragment;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.children.label.MainLabelFragment;
+import com.bht.pim.fragment.children.pagination.PaginationFragment;
+import com.bht.pim.fragment.children.project.ProjectTableFragment;
+import com.bht.pim.fragment.children.project.ProjectUtilFragment;
+import com.bht.pim.fragment.parent.SuccessNeeding;
+
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.util.StringConverter;
 
 /**
  * @author bht
@@ -26,7 +27,7 @@ import java.util.List;
 @Controller
 @Fragment(id = ProjectListFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
-public final class ProjectListFragment extends ParentFragment implements SuccessNeeding {
+public final class ProjectListFragment extends BaseComponentFragment implements SuccessNeeding {
 
     static final String ID = "idfPList";
     static final String LABEL = "label.project.list";
@@ -44,6 +45,26 @@ public final class ProjectListFragment extends ParentFragment implements Success
     protected void onCreated() {
         LOGGER.info("[INIT] FXParentFragment : " + ProjectListFragment.ID);
         successProperty = new SimpleBooleanProperty();
+    }
+
+    @Override
+    protected void configLayout() {
+
+    }
+
+    @Override
+    protected void onSwitch() {
+
+    }
+
+    @Override
+    protected void preLeft() {
+
+    }
+
+    @Override
+    protected void bindChildren() {
+
     }
 
     @Override

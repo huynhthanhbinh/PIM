@@ -50,16 +50,6 @@ public final class LeftPane extends BaseComponent {
     }
 
     @Override
-    protected void createFragmentList() {
-        // ...
-    }
-
-    @Override
-    protected void assignChildren() {
-        // ...
-    }
-
-    @Override
     protected Node handleMessage(Message<Event, Object> message) {
         if (message.messageBodyEquals("selectDefault")) {
             leftMenuFragment.getController().onShowed();

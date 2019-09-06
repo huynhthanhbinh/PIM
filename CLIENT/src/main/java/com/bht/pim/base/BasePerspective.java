@@ -21,6 +21,7 @@ import javafx.event.Event;
 import lombok.Getter;
 
 /**
+ *
  * @author bht
  */
 public abstract class BasePerspective implements FXPerspective {
@@ -30,6 +31,7 @@ public abstract class BasePerspective implements FXPerspective {
 
     @Getter
     private List<BaseComponent> childComponents;
+
 
     @Override
     public void handlePerspective(Message<Event, Object> message,

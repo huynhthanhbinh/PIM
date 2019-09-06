@@ -1,19 +1,19 @@
 package com.bht.pim.fragment.parent.project;
 
-import com.bht.pim.base.ChildFragment;
-import com.bht.pim.base.ParentFragment;
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.children.confirm.ConfirmFragment;
-import com.bht.pim.fragment.children.label.MainLabelFragment;
-import com.bht.pim.fragment.children.project.ProjectDetailFragment;
-import com.bht.pim.fragment.parent.IdentifierNeeding;
+import java.util.List;
+
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
-import java.util.List;
+import com.bht.pim.base.BaseComponentFragment;
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.fragment.children.confirm.ConfirmFragment;
+import com.bht.pim.fragment.children.label.MainLabelFragment;
+import com.bht.pim.fragment.children.project.ProjectDetailFragment;
+import com.bht.pim.fragment.parent.IdentifierNeeding;
 
 /**
  * @author bht
@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 @Fragment(id = ProjectInfoFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
-public final class ProjectInfoFragment extends ParentFragment implements IdentifierNeeding {
+public final class ProjectInfoFragment extends BaseComponentFragment implements IdentifierNeeding {
 
     static final String ID = "idfPInfo";
     static final String LABEL = "label.project.info";
@@ -36,6 +36,26 @@ public final class ProjectInfoFragment extends ParentFragment implements Identif
     @Override
     protected void onCreated() {
         LOGGER.info("[INIT] FXParentFragment : " + ProjectInfoFragment.ID);
+    }
+
+    @Override
+    protected void configLayout() {
+
+    }
+
+    @Override
+    protected void onSwitch() {
+
+    }
+
+    @Override
+    protected void preLeft() {
+
+    }
+
+    @Override
+    protected void bindChildren() {
+
     }
 
     @Override

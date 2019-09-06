@@ -1,7 +1,5 @@
 package com.bht.pim.component;
 
-import java.util.Arrays;
-
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.View;
 import org.jacpfx.api.message.Message;
@@ -10,14 +8,6 @@ import org.jacpfx.rcp.context.Context;
 
 import com.bht.pim.base.BaseComponent;
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.fragment.children.confirm.ConfirmFragment;
-import com.bht.pim.fragment.children.label.MainLabelFragment;
-import com.bht.pim.fragment.children.pagination.PaginationFragment;
-import com.bht.pim.fragment.children.project.ProjectDetailFragment;
-import com.bht.pim.fragment.children.project.ProjectEditFormFragment;
-import com.bht.pim.fragment.children.project.ProjectPanelFragment;
-import com.bht.pim.fragment.children.project.ProjectTableFragment;
-import com.bht.pim.fragment.children.project.ProjectUtilFragment;
 import com.bht.pim.fragment.parent.IdentifierNeeding;
 import com.bht.pim.fragment.parent.SuccessNeeding;
 import com.bht.pim.fragment.parent.project.ProjectCreateFragment;
@@ -30,7 +20,6 @@ import com.bht.pim.util.PimUtil;
 
 import javafx.event.Event;
 import javafx.scene.Node;
-import javafx.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -71,48 +60,11 @@ public final class MainPane extends BaseComponent {
 
     @Override
     protected void loadFragments() {
-        projectDashboardFragment = context.getManagedFragmentHandler(ProjectDashboardFragment.class);
-        projectListFragment = context.getManagedFragmentHandler(ProjectListFragment.class);
-        projectCreateFragment = context.getManagedFragmentHandler(ProjectCreateFragment.class);
-        projectUpdateFragment = context.getManagedFragmentHandler(ProjectUpdateFragment.class);
-        projectInfoFragment = context.getManagedFragmentHandler(ProjectInfoFragment.class);
-    }
-
-    @Override
-    protected void createFragmentList() {
-        fragments.add(projectDashboardFragment.getController());
-        fragments.add(projectListFragment.getController());
-        fragments.add(projectCreateFragment.getController());
-        fragments.add(projectUpdateFragment.getController());
-        fragments.add(projectInfoFragment.getController());
-    }
-
-    @Override
-    protected void assignChildren() {
-        projectDashboardFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerChildFragment(MainLabelFragment.class),
-                registerChildFragment(ProjectPanelFragment.class)}));
-
-        projectListFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerChildFragment(MainLabelFragment.class),
-                registerChildFragment(ProjectUtilFragment.class),
-                registerChildFragment(ProjectTableFragment.class),
-                registerChildFragment(PaginationFragment.class)}));
-
-        projectCreateFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerChildFragment(MainLabelFragment.class),
-                registerChildFragment(ProjectEditFormFragment.class),
-                registerChildFragment(ConfirmFragment.class)}));
-
-        projectUpdateFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerChildFragment(MainLabelFragment.class),
-                registerChildFragment(ProjectEditFormFragment.class),
-                registerChildFragment(ConfirmFragment.class)}));
-
-        projectInfoFragment.getController().addAllChildren(Arrays.asList(new Pair[]{
-                registerChildFragment(MainLabelFragment.class),
-                registerChildFragment(ProjectDetailFragment.class),
-                registerChildFragment(ConfirmFragment.class)}));
+        projectDashboardFragment = registerNewFragment(ProjectDashboardFragment.class);
+        projectListFragment = registerNewFragment(ProjectListFragment.class);
+        projectCreateFragment = registerNewFragment(ProjectCreateFragment.class);
+        projectUpdateFragment = registerNewFragment(ProjectUpdateFragment.class);
+        projectInfoFragment = registerNewFragment(ProjectInfoFragment.class);
     }
 
     @Override
@@ -139,7 +91,7 @@ public final class MainPane extends BaseComponent {
     }
 
     public static void onShowPerspective(MainPane mainPane) {
-        switchFragment(mainPane, ProjectDashboardFragment.class);
+        switchMainFragment(mainPane, ProjectDashboardFragment.class);
 
         if (!AppConfiguration.LOGGED_IN_PROPERTY.get()) { // not logged-in or recently logout
             mainPane.getContext().send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");

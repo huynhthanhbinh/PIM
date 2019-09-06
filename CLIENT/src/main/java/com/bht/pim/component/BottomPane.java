@@ -67,16 +67,6 @@ public final class BottomPane extends BaseComponent {
     }
 
     @Override
-    protected void createFragmentList() {
-        // ...
-    }
-
-    @Override
-    protected void assignChildren() {
-        // ...
-    }
-
-    @Override
     protected Node handleMessage(Message<Event, Object> message) {
         if (message.getMessageBody() instanceof Throwable) {
 

@@ -1,14 +1,12 @@
 package com.bht.pim.fragment.menu;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
+import com.bht.pim.base.BaseFragment;
 import com.bht.pim.component.LeftPane;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
@@ -18,7 +16,6 @@ import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.util.LanguageUtil;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.log4j.Log4j;
@@ -31,7 +28,7 @@ import lombok.extern.log4j.Log4j;
 @Fragment(id = LeftMenuFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/menu/LeftMenuFragment.fxml")
-public class LeftMenuFragment implements Initializable {
+public class LeftMenuFragment extends BaseFragment {
 
     static final String ID = "idfMenuLeft";
 
@@ -46,7 +43,7 @@ public class LeftMenuFragment implements Initializable {
     private Label lProjectList;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    protected void onCreated() {
         log.info("[INIT] FXMenuFragment: " + ID);
         LanguageUtil.initLabel(lDashboard.textProperty(), LABEL_LEFT_PROJECT_DASHBOARD);
         LanguageUtil.initLabel(lProjectList.textProperty(), LABEL_LEFT_PROJECT_LIST);
@@ -59,6 +56,25 @@ public class LeftMenuFragment implements Initializable {
         lProjectList.setOnMouseClicked(this::onMouseClickedProjectList);
     }
 
+    @Override
+    protected void configLayout() {
+
+    }
+
+    @Override
+    protected void onSwitch() {
+
+    }
+
+    @Override
+    protected void preLeft() {
+
+    }
+
+    @Override
+    protected void bindChildren() {
+
+    }
 
     private void onMouseClickedProjectList(MouseEvent mouseEvent) {
         log.info("[MENU] Clicked Project List");

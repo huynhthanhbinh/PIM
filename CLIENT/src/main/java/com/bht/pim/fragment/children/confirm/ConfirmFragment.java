@@ -1,17 +1,18 @@
 package com.bht.pim.fragment.children.confirm;
 
-import com.bht.pim.base.ChildFragment;
+import org.jacpfx.api.annotations.fragment.Fragment;
+import org.jacpfx.api.fragment.Scope;
+import org.springframework.stereotype.Controller;
+
+import com.bht.pim.base.BaseFragment;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.util.LanguageUtil;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import org.jacpfx.api.annotations.fragment.Fragment;
-import org.jacpfx.api.fragment.Scope;
-import org.springframework.stereotype.Controller;
 
 /**
  * @author bht
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Controller;
 @Fragment(id = ConfirmFragment.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/children/confirm/ConfirmFragment.fxml")
-public class ConfirmFragment extends ChildFragment {
+public class ConfirmFragment extends BaseFragment {
 
     static final String ID = "idfConfirm"; // ok_cancel box
 
@@ -43,8 +44,23 @@ public class ConfirmFragment extends ChildFragment {
     }
 
     @Override
-    public Pane getLayout() {
-        return confirmPane;
+    protected void configLayout() {
+        layout = confirmPane;
+    }
+
+    @Override
+    protected void onSwitch() {
+
+    }
+
+    @Override
+    protected void preLeft() {
+
+    }
+
+    @Override
+    protected void bindChildren() {
+
     }
 
     @FXML
@@ -65,15 +81,5 @@ public class ConfirmFragment extends ChildFragment {
     // if user click cancel
     public void setOnCancel(EventHandler<MouseEvent> onCancel) {
         bCancel.setOnMouseClicked(onCancel);
-    }
-
-    @Override
-    public void onSwitchToThisFragment() {
-        // ...
-    }
-
-    @Override
-    public void preSwitchToAnotherFragment() {
-        // ...
     }
 }

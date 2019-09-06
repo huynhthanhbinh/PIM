@@ -1,15 +1,16 @@
 package com.bht.pim.fragment.children.pagination;
 
-import com.bht.pim.base.ChildFragment;
-import com.bht.pim.configuration.AppConfiguration;
-import javafx.fxml.FXML;
-import javafx.scene.control.Pagination;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import lombok.Getter;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.springframework.stereotype.Controller;
+
+import com.bht.pim.base.BaseFragment;
+import com.bht.pim.configuration.AppConfiguration;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Pagination;
+import javafx.scene.layout.VBox;
+import lombok.Getter;
 
 /**
  * @author bht
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Controller;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/pagination/PaginationFragment.fxml")
-public class PaginationFragment extends ChildFragment {
+public class PaginationFragment extends BaseFragment {
 
     static final String ID = "idfPagination"; // pagination-pane
 
@@ -37,17 +38,22 @@ public class PaginationFragment extends ChildFragment {
     }
 
     @Override
-    public Pane getLayout() {
-        return paginationPane;
+    protected void configLayout() {
+        layout = paginationPane;
     }
 
     @Override
-    public void onSwitchToThisFragment() {
-        // ...
+    protected void onSwitch() {
+
     }
 
     @Override
-    public void preSwitchToAnotherFragment() {
-        // ...
+    protected void preLeft() {
+
+    }
+
+    @Override
+    protected void bindChildren() {
+
     }
 }
