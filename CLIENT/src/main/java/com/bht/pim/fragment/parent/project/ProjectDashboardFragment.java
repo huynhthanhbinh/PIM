@@ -21,7 +21,7 @@ import com.bht.pim.fragment.children.project.ProjectPanelFragment;
 public final class ProjectDashboardFragment extends BaseComponentFragment {
 
     static final String ID = "idfPDashboard";
-    static final String LABEL = "label.project.dashboard";
+    private static final String LABEL = "label.project.dashboard";
 
     private ManagedFragmentHandler<MainLabelFragment> mainLabelFragment;
     private ManagedFragmentHandler<ProjectPanelFragment> projectPanelFragment;
@@ -30,12 +30,14 @@ public final class ProjectDashboardFragment extends BaseComponentFragment {
     private Context context;
 
     @Override
-    protected void onCreated() {
-        LOGGER.info("[INIT] FXParentFragment : " + ProjectDashboardFragment.ID);
-
+    protected void registerChildren() {
         mainLabelFragment = registerNewFragment(MainLabelFragment.class);
         projectPanelFragment = registerNewFragment(ProjectPanelFragment.class);
+    }
 
+    @Override
+    protected void onCreated() {
+        LOGGER.info("[INIT] FXParentFragment : " + ProjectDashboardFragment.ID);
         mainLabelFragment.getController().setLabelText(LABEL);
     }
 

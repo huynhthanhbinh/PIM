@@ -1,7 +1,5 @@
 package com.bht.pim.fragment.parent.project;
 
-import java.util.List;
-
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
@@ -30,7 +28,7 @@ import javafx.util.StringConverter;
 public final class ProjectListFragment extends BaseComponentFragment implements SuccessNeeding {
 
     static final String ID = "idfPList";
-    static final String LABEL = "label.project.list";
+    private static final String LABEL = "label.project.list";
 
     private MainLabelFragment mainLabelFragment;
     private ProjectUtilFragment projectUtilFragment;
@@ -42,9 +40,21 @@ public final class ProjectListFragment extends BaseComponentFragment implements 
     private Context context;
 
     @Override
+    protected void registerChildren() {
+        mainLabelFragment = registerNewFragment(MainLabelFragment.class).getController();
+        projectUtilFragment = registerNewFragment(ProjectUtilFragment.class).getController();
+        projectTableFragment = registerNewFragment(ProjectTableFragment.class).getController();
+        pagination = registerNewFragment(PaginationFragment.class).getController();
+    }
+
+    @Override
     protected void onCreated() {
         LOGGER.info("[INIT] FXParentFragment : " + ProjectListFragment.ID);
         successProperty = new SimpleBooleanProperty();
+
+        mainLabelFragment.setLabelText(LABEL);
+        projectUtilFragment.getBReset().setOnMouseClicked(projectTableFragment::onReset);
+        projectUtilFragment.getBDeleteAll().setOnMouseClicked(projectTableFragment::onDeleteAllSelected);
     }
 
     @Override
@@ -64,33 +74,15 @@ public final class ProjectListFragment extends BaseComponentFragment implements 
 
     @Override
     protected void bindChildren() {
-
-    }
-
-    @Override
-    protected void getChildrenFragments(List<ChildFragment> children) {
-        mainLabelFragment = (MainLabelFragment) children.get(0);
-        projectUtilFragment = (ProjectUtilFragment) children.get(1);
-        projectTableFragment = (ProjectTableFragment) children.get(2);
-        pagination = (PaginationFragment) children.get(3);
-    }
-
-    @Override
-    protected void configureEachChildFragment() {
-        mainLabelFragment.setLabelText(LABEL);
-        projectUtilFragment.getBReset().setOnMouseClicked(projectTableFragment::onReset);
-        projectUtilFragment.getBDeleteAll().setOnMouseClicked(projectTableFragment::onDeleteAllSelected);
-    }
-
-    @Override
-    protected void bindChildrenFragments() {
         projectTableFragment.setSearchBox(projectUtilFragment.getSearchBox());
         pagination.getPagination().currentPageIndexProperty().bindBidirectional(projectTableFragment.getPageIndexProperty());
         pagination.getPagination().pageCountProperty().bind(projectTableFragment.getPageCountProperty());
         projectTableFragment.getStatusProperty().bind(projectUtilFragment.getComboBoxStatus().valueProperty());
         projectTableFragment.getStatusSelection().bindBidirectional(projectUtilFragment.getComboBoxStatus().selectionModelProperty());
         projectTableFragment.getSuccessProperty().bind(successProperty);
-        Bindings.bindBidirectional(projectUtilFragment.getLNumberOfProjects().textProperty(), projectTableFragment.getSelectedProperty(),
+        Bindings.bindBidirectional(
+                projectUtilFragment.getLNumberOfProjects().textProperty(),
+                projectTableFragment.getSelectedProperty(),
                 new StringConverter<Number>() {
                     @Override
                     public String toString(Number number) {

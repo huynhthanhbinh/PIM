@@ -5,7 +5,6 @@ import java.util.List;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
-import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
@@ -27,24 +26,29 @@ public final class ProjectUpdateFragment extends BaseComponentFragment implement
     static final String ID = "idfPUpdate";
     static final String LABEL = "label.project.update";
 
-    private ManagedFragmentHandler<MainLabelFragment> mainLabelFragment;
-    private ManagedFragmentHandler<ProjectEditFormFragment> projectEditFormFragment;
-    private ManagedFragmentHandler<ConfirmFragment> confirmFragment;
+    private MainLabelFragment mainLabelFragment;
+    private ProjectEditFormFragment projectEditFormFragment;
+    private ConfirmFragment confirmFragment;
 
     @Resource
     private Context context;
 
     @Override
+    protected void registerChildren() {
+
+    }
+
+    @Override
     public boolean getObjectWithIdentifier(long id) {
-        return projectEditFormFragment.getController().getProjectById(id);
+        return projectEditFormFragment.getProjectById(id);
     }
 
     @Override
     protected void onCreated() {
         LOGGER.info("[INIT] FXParentFragment : " + ProjectUpdateFragment.ID);
-        mainLabelFragment = registerNewFragment(MainLabelFragment.class);
-        projectEditFormFragment = registerNewFragment(ProjectEditFormFragment.class);
-        confirmFragment = registerNewFragment(ConfirmFragment.class);
+        mainLabelFragment = registerNewFragment(MainLabelFragment.class).getController();
+        projectEditFormFragment = registerNewFragment(ProjectEditFormFragment.class).getController();
+        confirmFragment = registerNewFragment(ConfirmFragment.class).getController();
     }
 
     @Override

@@ -53,18 +53,10 @@ public abstract class BaseFragment {
         component = baseComponent;
         childFragment = new ArrayList<>();
 
-        registerChildren();
         onCreated();
         bindChildren();
         configLayout();
     }
-
-
-    /**
-     * register all children fragments
-     * by using registerNewFragment() method
-     */
-    protected abstract void registerChildren();
 
 
     /**

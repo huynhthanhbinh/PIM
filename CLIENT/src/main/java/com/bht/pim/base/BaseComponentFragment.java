@@ -19,6 +19,14 @@ public abstract class BaseComponentFragment extends BaseFragment {
      */
     final void initialize(BaseComponent baseComponent) {
         parentFragment = null;
+        registerChildren();
         onInit(baseComponent);
     }
+
+
+    /**
+     * register all children fragments
+     * by using registerNewFragment() method
+     */
+    protected abstract void registerChildren();
 }
