@@ -3,6 +3,8 @@ package com.bht.pim.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.log4j.Logger;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 
@@ -26,6 +28,12 @@ public abstract class BaseFragment {
     protected List<BaseFragment> childrenFragments;
 
 
+    @PostConstruct
+    private void onBeanCreation() {
+        LOGGER.info("[SPRING] BeanCreation: " + getClass().getSimpleName());
+    }
+
+
     /**
      * this is what initialize do for any fragment
      *      + new list of child fragments
@@ -34,7 +42,7 @@ public abstract class BaseFragment {
      *      + config the layout such as size (pref/min/max),...
      */
     void onInit() {
-        LOGGER.info("[INIT] FXChildFragment  : " + getClass().getSimpleName());
+        LOGGER.info("[INIT] FXFragment  : " + getClass().getSimpleName());
         onCreated();
         bindChildren();
         configLayout();

@@ -30,6 +30,13 @@ public abstract class BaseComponent extends VBox implements FXComponent {
     @Getter
     protected ManagedFragmentHandler<? extends BaseComponentFragment> currentFragment;
 
+
+    @javax.annotation.PostConstruct
+    private void onBeanCreation() {
+        LOGGER.info("[SPRING] BeanCreation: " + getClass().getSimpleName());
+    }
+
+
     public BaseComponent() {
         fragments = new ArrayList<>();
     }
@@ -50,13 +57,13 @@ public abstract class BaseComponent extends VBox implements FXComponent {
     @PostConstruct
     public final void onStartComponent(final FXComponentLayout componentLayout) {
         initComponent();
-        LOGGER.info("[INIT] FXComponentLayout: " + getClass().getSimpleName());
+        LOGGER.info("[INIT] FXComponent: " + getClass().getSimpleName());
         onStarted(componentLayout);
     }
 
     @PreDestroy
     public final void onTearDownComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[DESTROY] FXComponentLayout: " + getClass().getSimpleName());
+        LOGGER.info("[DESTROY] FXComponent " + getClass().getSimpleName());
     }
 
     @Override

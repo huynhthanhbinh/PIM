@@ -1,7 +1,10 @@
 package com.bht.pim.configuration;
 
-import com.bht.pim.mapper.*;
-import lombok.extern.log4j.Log4j;
+import java.util.Objects;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
 import org.hibernate.SessionFactory;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +20,13 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import javax.sql.DataSource;
-import java.util.Objects;
-import java.util.Properties;
+import com.bht.pim.mapper.CustomizedMapper;
+import com.bht.pim.mapper.DateTimeMapper;
+import com.bht.pim.mapper.EmployeeMapper;
+import com.bht.pim.mapper.GroupMapper;
+import com.bht.pim.mapper.ProjectMapper;
+
+import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Configuration
@@ -55,7 +62,7 @@ public class AppConfiguration {
     // @PropertySource("classpath:pim.properties")
     @Bean
     public DataSource dataSource() {
-        log.info("[CONFIG] Creating bean of < DataSource >");
+        log.info("[SPRING] Creating bean of < DataSource >");
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(Objects
@@ -79,7 +86,7 @@ public class AppConfiguration {
     // Config Session Factory / Hibernate
     @Bean
     public LocalSessionFactoryBean sessionFactoryBean() {
-        log.info("[CONFIG] Creating bean of < SessionFactory >");
+        log.info("[SPRING] Creating bean of < SessionFactory >");
 
         // Session Factory Configure
         LocalSessionFactoryBean bean =
@@ -133,7 +140,7 @@ public class AppConfiguration {
     public HibernateTransactionManager hibernateTransactionManager(
             @Autowired SessionFactory sessionFactory) {
 
-        log.info("[CONFIG] Creating bean of < TransactionManager >");
+        log.info("[SPRING] Creating bean of < TransactionManager >");
 
         HibernateTransactionManager hibernateTransactionManager =
                 new HibernateTransactionManager();
@@ -148,31 +155,31 @@ public class AppConfiguration {
 
     @Bean
     public EmployeeMapper employeeMapper() {
-        log.info("[CONFIG] Creating bean of < EmployeeMapper >");
+        log.info("[SPRING] Creating bean of < EmployeeMapper >");
         return Mappers.getMapper(EmployeeMapper.class);
     }
 
     @Bean
     public ProjectMapper projectMapper() {
-        log.info("[CONFIG] Creating bean of < ProjectMapper >");
+        log.info("[SPRING] Creating bean of < ProjectMapper >");
         return Mappers.getMapper(ProjectMapper.class);
     }
 
     @Bean
     public GroupMapper groupMapper() {
-        log.info("[CONFIG] Creating bean of < GroupMapper >");
+        log.info("[SPRING] Creating bean of < GroupMapper >");
         return Mappers.getMapper(GroupMapper.class);
     }
 
     @Bean
     public CustomizedMapper customizedMapper() {
-        log.info("[CONFIG] Creating bean of < CustomizedMapper >");
+        log.info("[SPRING] Creating bean of < CustomizedMapper >");
         return Mappers.getMapper(CustomizedMapper.class);
     }
 
     @Bean
     public DateTimeMapper dateTimeMapper() {
-        log.info("[CONFIG] Creating bean of < DateTimeMapper >");
+        log.info("[SPRING] Creating bean of < DateTimeMapper >");
         return Mappers.getMapper(DateTimeMapper.class);
     }
 }

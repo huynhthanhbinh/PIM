@@ -4,7 +4,6 @@ import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
-import org.springframework.stereotype.Controller;
 
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.configuration.AppConfiguration;
@@ -16,7 +15,6 @@ import com.bht.pim.fragment.children.project.ProjectEditFormFragment;
  *
  * @author bht
  */
-@Controller
 @Fragment(id = ProjectCreateFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/parent/common/MainFragment.fxml")
@@ -41,7 +39,6 @@ public final class ProjectCreateFragment extends BaseComponentFragment {
 
     @Override
     protected void onCreated() {
-        LOGGER.info("[INIT] FXComponentFragment : " + ProjectCreateFragment.ID);
         projectEditFormFragment.setIsUpdateState(false);
         mainLabelFragment.setLabelText(LABEL);
         confirmFragment.setLabelConfirm(ConfirmFragment.LABEL_CONFIRM_CREATE);

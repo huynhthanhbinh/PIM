@@ -2,7 +2,6 @@ package com.bht.pim.fragment.children.label;
 
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
-import org.springframework.stereotype.Controller;
 
 import com.bht.pim.base.BaseFragment;
 import com.bht.pim.configuration.AppConfiguration;
@@ -15,7 +14,6 @@ import javafx.scene.layout.VBox;
 /**
  * @author bht
  */
-@Controller
 @Fragment(id = MainLabelFragment.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/children/label/MainLabelFragment.fxml")
@@ -30,7 +28,7 @@ public final class MainLabelFragment extends BaseFragment {
 
     @Override
     public void onCreated() {
-        LOGGER.info("[INIT] FXChildFragment  : " + ID);
+        //
     }
 
     @Override

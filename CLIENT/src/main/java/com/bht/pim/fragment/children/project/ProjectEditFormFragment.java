@@ -14,7 +14,6 @@ import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 import com.bht.pim.base.BaseFragment;
 import com.bht.pim.component.MainPane;
@@ -59,7 +58,7 @@ import javafx.scene.layout.VBox;
 /**
  * @author bht
  */
-@Controller
+@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = ProjectEditFormFragment.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
@@ -169,8 +168,6 @@ public final class ProjectEditFormFragment extends BaseFragment implements Confi
 
     @Override
     public void onCreated() {
-        LOGGER.info("[INIT] FXChildFragment  : " + ID);
-
         members = new ArrayList<>();
         employees = new ArrayList<>();
         leaders = new ArrayList<>();

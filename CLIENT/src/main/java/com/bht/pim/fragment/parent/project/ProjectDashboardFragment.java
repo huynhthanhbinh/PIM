@@ -4,7 +4,6 @@ import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
-import org.springframework.stereotype.Controller;
 
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.configuration.AppConfiguration;
@@ -15,7 +14,6 @@ import com.bht.pim.fragment.children.project.ProjectPanelFragment;
  *
  * @author bht
  */
-@Controller
 @Fragment(id = ProjectDashboardFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/parent/common/MainFragment.fxml")
@@ -38,7 +36,6 @@ public final class ProjectDashboardFragment extends BaseComponentFragment {
 
     @Override
     protected void onCreated() {
-        LOGGER.info("[INIT] FXComponentFragment : " + ProjectDashboardFragment.ID);
         mainLabelFragment.setLabelText(LABEL);
     }
 

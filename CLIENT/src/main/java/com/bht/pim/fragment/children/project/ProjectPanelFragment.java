@@ -9,7 +9,6 @@ import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 import com.bht.pim.base.BaseFragment;
 import com.bht.pim.configuration.AppConfiguration;
@@ -34,7 +33,7 @@ import javafx.scene.layout.HBox;
 /**
  * @author bht
  */
-@Controller
+@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = ProjectPanelFragment.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
@@ -67,7 +66,6 @@ public final class ProjectPanelFragment extends BaseFragment {
 
     @Override
     public void onCreated() {
-        LOGGER.info("[INIT] FXChildFragment  : " + ID);
         initAllLabels();
         addAllEventListeners();
     }

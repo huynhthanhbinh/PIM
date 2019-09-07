@@ -5,7 +5,6 @@ import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 import com.bht.pim.base.BaseFragment;
 import com.bht.pim.component.MainPane;
@@ -30,7 +29,7 @@ import lombok.Getter;
 /**
  * @author bht
  */
-@Controller
+@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = ProjectUtilFragment.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
@@ -69,8 +68,6 @@ public final class ProjectUtilFragment extends BaseFragment {
 
     @Override
     public void onCreated() {
-        LOGGER.info("[INIT] FXChildFragment  : " + ID);
-
         initComboBoxStatus();
 
         LanguageUtil.initLabel(searchBox.promptTextProperty(), "label.project.util.searchbox");

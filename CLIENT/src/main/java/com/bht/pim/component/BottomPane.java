@@ -71,7 +71,7 @@ public final class BottomPane extends BaseComponent {
         if (message.getMessageBody() instanceof Throwable) {
 
             currentFragment = errorHandlingFragment;
-            LOGGER.info("[SHOW] FXSupplementaryFragment: " + ErrorHandlingFragment.ID);
+            LOGGER.info("[SHOW] FXSupplementaryFragment: " + ErrorHandlingFragment.class.getSimpleName());
             getChildren().clear();
             getChildren().add(errorPane);
             errorHandlingFragment.getController()
@@ -80,7 +80,7 @@ public final class BottomPane extends BaseComponent {
         } else {
 
             currentFragment = loginFragment;
-            LOGGER.info("[SHOW] FXSupplementaryFragment: " + LoginFragment.ID);
+            LOGGER.info("[SHOW] FXSupplementaryFragment: " + LoginFragment.class.getSimpleName());
             getChildren().clear();
             getChildren().add(loginPane);
         }

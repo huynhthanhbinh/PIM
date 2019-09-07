@@ -36,4 +36,18 @@ public abstract class BaseComponentFragment extends BaseFragment {
      * by using registerNewFragment() method
      */
     protected abstract void registerChildren();
+
+
+    @Override
+    protected final void onSwitch() {
+        LOGGER.info("[SHOW] FXComponentFragment: " + getClass().getSimpleName());
+        super.onSwitch();
+    }
+
+
+    @Override
+    protected final void preLeft() {
+        LOGGER.info("[HIDE] FXComponentFragment: " + getClass().getSimpleName());
+        super.preLeft();
+    }
 }

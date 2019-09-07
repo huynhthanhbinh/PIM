@@ -80,7 +80,7 @@ public final class MainPane extends BaseComponent {
                 .getController())
                 .getObjectWithIdentifier(id);
 
-        LOGGER.info(success);
+        //LOGGER.info(success);
 
         ((SuccessNeeding) mainPane
                 .getContext()

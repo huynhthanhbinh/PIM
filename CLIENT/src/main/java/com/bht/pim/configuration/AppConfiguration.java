@@ -88,49 +88,49 @@ public class AppConfiguration {
 
     @Bean
     public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub() {
-        log.info("[CONFIG] Creating bean of < EmployeeServiceBlockingStub >");
+        log.info("[SPRING] BeanCreation: EmployeeServiceBlockingStub");
         return EmployeeServiceGrpc.newBlockingStub(CHANNEL_PROPERTY.get());
     }
 
     @Bean
     public GroupServiceGrpc.GroupServiceBlockingStub groupServiceBlockingStub() {
-        log.info("[CONFIG] Creating bean of < GroupServiceBlockingStub >");
+        log.info("[SPRING] BeanCreation: GroupServiceBlockingStub");
         return GroupServiceGrpc.newBlockingStub(CHANNEL_PROPERTY.get());
     }
 
     @Bean
     public ProjectServiceGrpc.ProjectServiceBlockingStub projectServiceBlockingStub() {
-        log.info("[CONFIG] Creating bean of < ProjectServiceBlockingStub >");
+        log.info("[SPRING] BeanCreation: ProjectServiceBlockingStub");
         return ProjectServiceGrpc.newBlockingStub(CHANNEL_PROPERTY.get());
     }
 
     @Bean
     public StatusMapper statusMapper() {
-        log.info("[CONFIG] Creating bean of < StatusMapper >");
+        log.info("[SPRING] BeanCreation: StatusMapper");
         return Mappers.getMapper(StatusMapper.class);
     }
 
     @Bean
     public DateTimeMapper dateTimeMapper() {
-        log.info("[CONFIG] Creating bean of < DateTimeMapper >");
+        log.info("[SPRING] BeanCreation: DateTimeMapper");
         return Mappers.getMapper(DateTimeMapper.class);
     }
 
     @Bean
     public EmployeeMapper employeeMapper() {
-        log.info("[CONFIG] Creating bean of < EmployeeMapper >");
+        log.info("[SPRING] BeanCreation: EmployeeMapper");
         return Mappers.getMapper(EmployeeMapper.class);
     }
 
     @Bean
     public GroupMapper groupMapper() {
-        log.info("[CONFIG] Creating bean of < GroupMapper >");
+        log.info("[SPRING] BeanCreation: GroupMapper");
         return Mappers.getMapper(GroupMapper.class);
     }
 
     @Bean
     public ProjectMapper projectMapper() {
-        log.info("[CONFIG] Creating bean of < ProjectMapper >");
+        log.info("[SPRING] BeanCreation: ProjectMapper");
         return Mappers.getMapper(ProjectMapper.class);
     }
 }

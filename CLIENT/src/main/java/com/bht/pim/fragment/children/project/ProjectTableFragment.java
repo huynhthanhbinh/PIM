@@ -9,7 +9,6 @@ import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 import com.bht.pim.base.BaseFragment;
 import com.bht.pim.component.MainPane;
@@ -65,7 +64,7 @@ import lombok.Setter;
 /**
  * @author bht
  */
-@Controller
+@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = ProjectTableFragment.ID,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
@@ -133,8 +132,6 @@ public final class ProjectTableFragment extends BaseFragment {
 
     @Override
     public void onCreated() {
-        LOGGER.info("[INIT] FXChildFragment  : " + ID);
-
         // init property for binding purposes
         initAllProperties();
 
@@ -288,7 +285,7 @@ public final class ProjectTableFragment extends BaseFragment {
                                 "Cannot delete project which status is not \"New\"!");
                         return;
                     }
-                    LOGGER.info("Delete project id = " + projectDto.getId());
+                    LOGGER.info("[INFO] Delete project id = " + projectDto.getId());
 
                     if (projectService.deleteProject(projectDto.getId())) {
                         NotificationUtil.showNotification(
@@ -317,7 +314,7 @@ public final class ProjectTableFragment extends BaseFragment {
                         return;
                     }
 
-                    LOGGER.info("Edit project id = " + projectDto.getId());
+                    LOGGER.info("[INFO] Edit project id = " + projectDto.getId());
 
                     LOGGER.info(successProperty.get());
 
@@ -357,9 +354,9 @@ public final class ProjectTableFragment extends BaseFragment {
                 lName.getStyleClass().add("clickable");
                 lName.setPickOnBounds(false);
                 lName.setOnMouseClicked(event -> {
-                    LOGGER.info("view info of project id = " + projectDto.getId());
+                    LOGGER.info("[INFO] view info of project id = " + projectDto.getId());
 
-                    LOGGER.info(successProperty.get());
+                    //LOGGER.info(successProperty.get());
 
                     IdentifierSending sending = new IdentifierSending(
                             ProjectListFragment.class,
@@ -368,7 +365,7 @@ public final class ProjectTableFragment extends BaseFragment {
 
                     context.send(MainPane.ID, sending);
 
-                    LOGGER.info(successProperty.get());
+                    //LOGGER.info(successProperty.get());
 
                     FragmentSwitching switching = new FragmentSwitching(
                             ProjectListFragment.class,

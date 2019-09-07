@@ -4,7 +4,6 @@ import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
-import org.springframework.stereotype.Controller;
 
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.component.LeftPane;
@@ -24,7 +23,6 @@ import lombok.extern.log4j.Log4j;
  * @author bht
  */
 @Log4j
-@Controller
 @Fragment(id = LeftMenuFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/menu/LeftMenuFragment.fxml")
@@ -50,7 +48,7 @@ public final class LeftMenuFragment extends BaseComponentFragment {
 
     @Override
     protected void onCreated() {
-        log.info("[INIT] FXMenuFragment: " + ID);
+        log.info("[INIT] FXMenuFragment: " + getClass().getSimpleName());
         LanguageUtil.initLabel(lDashboard.textProperty(), LABEL_LEFT_PROJECT_DASHBOARD);
         LanguageUtil.initLabel(lProjectList.textProperty(), LABEL_LEFT_PROJECT_LIST);
 
