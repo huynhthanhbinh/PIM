@@ -35,7 +35,7 @@ import lombok.Getter;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectUtilFragment.fxml")
-public class ProjectUtilFragment extends BaseFragment {
+public final class ProjectUtilFragment extends BaseFragment {
 
     static final String ID = "idfPUtil";
 
@@ -119,18 +119,8 @@ public class ProjectUtilFragment extends BaseFragment {
     }
 
     @Override
-    protected void onSwitch() {
-
-    }
-
-    @Override
-    protected void preLeft() {
-
-    }
-
-    @Override
     protected void bindChildren() {
-
+        //
     }
 
     private void initComboBoxStatus() {

@@ -1,7 +1,5 @@
 package com.bht.pim.fragment.parent.project;
 
-import java.util.List;
-
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
@@ -16,15 +14,17 @@ import com.bht.pim.fragment.children.project.ProjectEditFormFragment;
 import com.bht.pim.fragment.parent.IdentifierNeeding;
 
 /**
+ *
  * @author bht
  */
 @Controller
 @Fragment(id = ProjectUpdateFragment.ID, scope = Scope.SINGLETON,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        viewLocation = "/com/bht/pim/fragment/parent/common/MainFragment.fxml")
 public final class ProjectUpdateFragment extends BaseComponentFragment implements IdentifierNeeding {
 
     static final String ID = "idfPUpdate";
-    static final String LABEL = "label.project.update";
+    private static final String LABEL = "label.project.update";
 
     private MainLabelFragment mainLabelFragment;
     private ProjectEditFormFragment projectEditFormFragment;
@@ -35,7 +35,9 @@ public final class ProjectUpdateFragment extends BaseComponentFragment implement
 
     @Override
     protected void registerChildren() {
-
+        mainLabelFragment = registerNewFragment(MainLabelFragment.class);
+        projectEditFormFragment = registerNewFragment(ProjectEditFormFragment.class);
+        confirmFragment = registerNewFragment(ConfirmFragment.class);
     }
 
     @Override
@@ -45,43 +47,7 @@ public final class ProjectUpdateFragment extends BaseComponentFragment implement
 
     @Override
     protected void onCreated() {
-        LOGGER.info("[INIT] FXParentFragment : " + ProjectUpdateFragment.ID);
-        mainLabelFragment = registerNewFragment(MainLabelFragment.class).getController();
-        projectEditFormFragment = registerNewFragment(ProjectEditFormFragment.class).getController();
-        confirmFragment = registerNewFragment(ConfirmFragment.class).getController();
-    }
-
-    @Override
-    protected void configLayout() {
-
-    }
-
-    @Override
-    protected void onSwitch() {
-
-    }
-
-    @Override
-    protected void preLeft() {
-
-    }
-
-    @Override
-    protected void bindChildren() {
-
-    }
-
-    @Override
-    protected void getChildrenFragments(List<ChildFragment> children) {
-        mainLabelFragment = (MainLabelFragment) children.get(0);
-        projectEditFormFragment = (ProjectEditFormFragment) children.get(1);
-        confirmFragment = (ConfirmFragment) children.get(2);
-    }
-
-    @Override
-    protected void configureEachChildFragment() {
-        // Create Project : false
-        // Update Project : true
+        LOGGER.info("[INIT] FXComponentFragment : " + ProjectUpdateFragment.ID);
         projectEditFormFragment.setIsUpdateState(true);
         mainLabelFragment.setLabelText(LABEL);
         confirmFragment.setLabelConfirm(ConfirmFragment.LABEL_CONFIRM_UPDATE);
@@ -89,7 +55,12 @@ public final class ProjectUpdateFragment extends BaseComponentFragment implement
     }
 
     @Override
-    protected void bindChildrenFragments() {
+    protected void configLayout() {
+        // layout.doSomething
+    }
+
+    @Override
+    protected void bindChildren() {
         confirmFragment.setOnSubmit(projectEditFormFragment::onSubmit);
         confirmFragment.setOnCancel(projectEditFormFragment::onCancel);
     }

@@ -57,8 +57,8 @@ public final class BottomPane extends BaseComponent {
 
     @Override
     protected void loadFragments() {
-        loginFragment = context.getManagedFragmentHandler(LoginFragment.class);
-        errorHandlingFragment = context.getManagedFragmentHandler(ErrorHandlingFragment.class);
+        loginFragment = registerMainFragment(LoginFragment.class);
+        errorHandlingFragment = registerMainFragment(ErrorHandlingFragment.class);
 
         loginPane = (VBox) loginFragment.getFragmentNode();
         errorPane = (VBox) errorHandlingFragment.getFragmentNode();

@@ -1,20 +1,22 @@
 package com.bht.pim.perspective;
 
-import com.bht.pim.base.BasePerspective;
-import com.bht.pim.component.BottomPane;
-import com.bht.pim.component.TopPane;
-import com.bht.pim.configuration.AppConfiguration;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.perspective.Perspective;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.context.Context;
+
+import com.bht.pim.base.BasePerspective;
+import com.bht.pim.component.BottomPane;
+import com.bht.pim.component.TopPane;
+import com.bht.pim.configuration.AppConfiguration;
+
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 /**
  * @author bht
@@ -23,7 +25,7 @@ import org.jacpfx.rcp.context.Context;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/perspective/DefaultPerspective.fxml",
         components = {TopPane.ID, BottomPane.ID})
-public class DefaultPerspective extends BasePerspective {
+public final class DefaultPerspective extends BasePerspective {
 
     @FXML
     private SplitPane splitPane;

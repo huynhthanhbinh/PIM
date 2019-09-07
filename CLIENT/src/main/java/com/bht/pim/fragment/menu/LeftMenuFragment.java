@@ -6,7 +6,7 @@ import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
-import com.bht.pim.base.BaseFragment;
+import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.component.LeftPane;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.configuration.AppConfiguration;
@@ -28,7 +28,7 @@ import lombok.extern.log4j.Log4j;
 @Fragment(id = LeftMenuFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/menu/LeftMenuFragment.fxml")
-public class LeftMenuFragment extends BaseFragment {
+public final class LeftMenuFragment extends BaseComponentFragment {
 
     static final String ID = "idfMenuLeft";
 
@@ -41,6 +41,12 @@ public class LeftMenuFragment extends BaseFragment {
     private Label lDashboard;
     @FXML
     private Label lProjectList;
+
+
+    @Override
+    protected void registerChildren() {
+        //
+    }
 
     @Override
     protected void onCreated() {
@@ -58,22 +64,12 @@ public class LeftMenuFragment extends BaseFragment {
 
     @Override
     protected void configLayout() {
-
-    }
-
-    @Override
-    protected void onSwitch() {
-
-    }
-
-    @Override
-    protected void preLeft() {
-
+        //
     }
 
     @Override
     protected void bindChildren() {
-
+        //
     }
 
     private void onMouseClickedProjectList(MouseEvent mouseEvent) {

@@ -23,36 +23,18 @@ public abstract class BaseFragment {
     @Getter
     protected BaseFragment parentFragment;
     @Getter
-    private List<BaseFragment> childFragment;
-
-    /**
-     * init method use for other fragments except MainPaneFragment
-     *
-     * @param parent parent of current fragment
-     * @return current fragment after init
-     */
-    final BaseFragment initialize(BaseFragment parent) {
-        parentFragment = parent;
-        onInit(parentFragment.component);
-        return this;
-    }
+    protected List<BaseFragment> childrenFragments;
 
 
     /**
      * this is what initialize do for any fragment
-     *      + get the component contains this
      *      + new list of child fragments
      *      + init this fragment
      *      + binding all children fragments or controls inside
      *      + config the layout such as size (pref/min/max),...
-     *
-     * @param baseComponent component contains this fragment
      */
-    void onInit(BaseComponent baseComponent) {
-        LOGGER.info("[INIT] On init fragment: " + getClass().getSimpleName());
-        component = baseComponent;
-        childFragment = new ArrayList<>();
-
+    void onInit() {
+        LOGGER.info("[INIT] FXChildFragment  : " + getClass().getSimpleName());
         onCreated();
         bindChildren();
         configLayout();
@@ -74,17 +56,27 @@ public abstract class BaseFragment {
 
 
     /**
-     * on switching to another main fragment
-     * left it empty if nothing needs to consider
+     * on switching to this fragment
+     * Override this method if this fragment
+     * is final child fragment (not have children anymore)
+     * and something need to be done on switch
+     * otherwise, do not override it
      */
-    protected abstract void onSwitch();
+    protected void onSwitch() {
+        childrenFragments.forEach(BaseFragment::onSwitch);
+    }
 
 
     /**
-     * on switching to another main fragment
-     * left it empty if nothing needs to consider
+     * on switching to another fragment
+     * Override this method if this fragment
+     * is final child fragment (not have children anymore)
+     * and something need to be done before left
+     * otherwise, do not override it
      */
-    protected abstract void preLeft();
+    protected void preLeft() {
+        childrenFragments.forEach(BaseFragment::preLeft);
+    }
 
 
     /**
@@ -96,35 +88,33 @@ public abstract class BaseFragment {
 
 
     /**
-     * on switch to this main fragment
-     * this method will be invoked in component
-     * it will then recursive call to all children
-     */
-    final void onSwitchToThisFragment() {
-        childFragment.forEach(BaseFragment::onSwitchToThisFragment);
-        onSwitch();
-    }
-
-
-    /**
-     * on left this main fragment
-     * this method will be invoked in component
-     * it will then recursive call to all children
-     */
-    final void preLeftToAnotherFragment() {
-        childFragment.forEach(BaseFragment::preLeftToAnotherFragment);
-        preLeft();
-    }
-
-
-    /**
+     * register new child fragment method
+     *
      * @param fClass fragment class
-     * @return fragmentHandler of fClass
+     * @return fragment controller of fClass
      */
-    protected final <F extends BaseFragment> ManagedFragmentHandler<F> registerNewFragment(Class<F> fClass) {
-        LOGGER.info("[REGISTER] register new child fragment: " + getClass().getSimpleName());
+    protected final <F extends BaseFragment> F registerNewFragment(Class<F> fClass) {
         ManagedFragmentHandler<F> fragmentHandler = component.registerNewFragment(fClass);
-        childFragment.add(fragmentHandler.getController().initialize(this));
-        return fragmentHandler;
+        layout.getChildren().add(fragmentHandler.getFragmentNode());
+        return fragmentHandler.getController().initialize(component, this);
+    }
+
+
+    /**
+     * initialize a child fragment
+     *
+     * @param component parent component of this
+     * @param parentFragment parent fragment of this
+     * @param <F> fragment class which extends BaseFragment
+     * @return itself cast to its class
+     */
+    @SuppressWarnings("unchecked")
+    <F extends BaseFragment> F initialize(BaseComponent component, BaseFragment parentFragment) {
+        childrenFragments = new ArrayList<>();
+        parentFragment.childrenFragments.add(this);
+        this.component = component;
+        this.parentFragment = parentFragment;
+        onInit();
+        return (F) this;
     }
 }

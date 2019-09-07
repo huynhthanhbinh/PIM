@@ -60,11 +60,11 @@ public final class MainPane extends BaseComponent {
 
     @Override
     protected void loadFragments() {
-        projectDashboardFragment = registerNewFragment(ProjectDashboardFragment.class);
-        projectListFragment = registerNewFragment(ProjectListFragment.class);
-        projectCreateFragment = registerNewFragment(ProjectCreateFragment.class);
-        projectUpdateFragment = registerNewFragment(ProjectUpdateFragment.class);
-        projectInfoFragment = registerNewFragment(ProjectInfoFragment.class);
+        projectDashboardFragment = registerMainFragment(ProjectDashboardFragment.class);
+        projectListFragment = registerMainFragment(ProjectListFragment.class);
+        projectCreateFragment = registerMainFragment(ProjectCreateFragment.class);
+        projectUpdateFragment = registerMainFragment(ProjectUpdateFragment.class);
+        projectInfoFragment = registerMainFragment(ProjectInfoFragment.class);
     }
 
     @Override

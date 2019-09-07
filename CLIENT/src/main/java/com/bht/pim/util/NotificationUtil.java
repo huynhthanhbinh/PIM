@@ -3,6 +3,7 @@ package com.bht.pim.util;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.notification.JFXNotifications;
 import com.bht.pim.notification.NotificationStyle;
+
 import javafx.geometry.Pos;
 import javafx.util.Duration;
 
@@ -11,7 +12,7 @@ import javafx.util.Duration;
  */
 public final class NotificationUtil {
 
-    private static final int PERIOD = 5;
+    private static final int PERIOD = 8;
 
     private NotificationUtil() {
 

@@ -20,7 +20,7 @@ import lombok.Getter;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/pagination/PaginationFragment.fxml")
-public class PaginationFragment extends BaseFragment {
+public final class PaginationFragment extends BaseFragment {
 
     static final String ID = "idfPagination"; // pagination-pane
 

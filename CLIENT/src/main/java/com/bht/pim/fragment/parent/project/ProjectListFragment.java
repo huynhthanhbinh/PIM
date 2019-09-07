@@ -20,11 +20,13 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.util.StringConverter;
 
 /**
+ *
  * @author bht
  */
 @Controller
 @Fragment(id = ProjectListFragment.ID, scope = Scope.SINGLETON,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        viewLocation = "/com/bht/pim/fragment/parent/common/MainFragment.fxml")
 public final class ProjectListFragment extends BaseComponentFragment implements SuccessNeeding {
 
     static final String ID = "idfPList";
@@ -41,15 +43,15 @@ public final class ProjectListFragment extends BaseComponentFragment implements 
 
     @Override
     protected void registerChildren() {
-        mainLabelFragment = registerNewFragment(MainLabelFragment.class).getController();
-        projectUtilFragment = registerNewFragment(ProjectUtilFragment.class).getController();
-        projectTableFragment = registerNewFragment(ProjectTableFragment.class).getController();
-        pagination = registerNewFragment(PaginationFragment.class).getController();
+        mainLabelFragment = registerNewFragment(MainLabelFragment.class);
+        projectUtilFragment = registerNewFragment(ProjectUtilFragment.class);
+        projectTableFragment = registerNewFragment(ProjectTableFragment.class);
+        pagination = registerNewFragment(PaginationFragment.class);
     }
 
     @Override
     protected void onCreated() {
-        LOGGER.info("[INIT] FXParentFragment : " + ProjectListFragment.ID);
+        LOGGER.info("[INIT] FXComponentFragment : " + ProjectListFragment.ID);
         successProperty = new SimpleBooleanProperty();
 
         mainLabelFragment.setLabelText(LABEL);
@@ -59,17 +61,7 @@ public final class ProjectListFragment extends BaseComponentFragment implements 
 
     @Override
     protected void configLayout() {
-
-    }
-
-    @Override
-    protected void onSwitch() {
-
-    }
-
-    @Override
-    protected void preLeft() {
-
+        // layout.doSomething
     }
 
     @Override

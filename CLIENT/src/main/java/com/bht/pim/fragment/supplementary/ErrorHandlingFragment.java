@@ -26,7 +26,7 @@ import lombok.extern.log4j.Log4j;
 @Fragment(id = ErrorHandlingFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/supplementary/ErrorHandlingFragment.fxml")
-public class ErrorHandlingFragment extends BaseComponentFragment {
+public final class ErrorHandlingFragment extends BaseComponentFragment {
 
     public static final String ID = "idfSError";
 
@@ -75,23 +75,12 @@ public class ErrorHandlingFragment extends BaseComponentFragment {
     }
 
     @Override
-    protected void onSwitch() {
-
-    }
-
-    @Override
-    protected void preLeft() {
-
-    }
-
-    @Override
     protected void bindChildren() {
-
+        //
     }
 
     public void setDetail(Throwable detail) {
         log.error("[ERROR] " + detail);
-        //Arrays.asList(detail.getStackTrace()).forEach(log::warn);
         detailField.setText(detail.getClass().getName()
                 + "\n" + detail.getMessage());
     }
@@ -103,5 +92,10 @@ public class ErrorHandlingFragment extends BaseComponentFragment {
     private void onReloadApp(MouseEvent mouseEvent) {
         AppConfiguration.CHANNEL_PROPERTY.get().resetConnectBackoff();
         context.send(AppConfiguration.PERSPECTIVE_PIM, "show");
+    }
+
+    @Override
+    protected void registerChildren() {
+        //
     }
 }

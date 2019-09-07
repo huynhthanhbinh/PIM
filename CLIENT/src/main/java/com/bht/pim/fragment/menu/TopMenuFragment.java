@@ -8,7 +8,7 @@ import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.stereotype.Controller;
 
-import com.bht.pim.base.BaseFragment;
+import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.util.LanguageUtil;
@@ -27,7 +27,7 @@ import lombok.extern.log4j.Log4j;
 @Fragment(id = TopMenuFragment.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/menu/TopMenuFragment.fxml")
-public class TopMenuFragment extends BaseFragment {
+public final class TopMenuFragment extends BaseComponentFragment {
 
     static final String ID = "idfMenuTop";
     private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
@@ -50,6 +50,11 @@ public class TopMenuFragment extends BaseFragment {
     private ImageView bLogout;
 
     @Override
+    protected void registerChildren() {
+        //
+    }
+
+    @Override
     protected void onCreated() {
         LanguageUtil.initLabel(lApp.textProperty(), AppConfiguration.LABEL_PIM_MAIN);
         logo.setPreserveRatio(true);
@@ -68,22 +73,12 @@ public class TopMenuFragment extends BaseFragment {
 
     @Override
     protected void configLayout() {
-
-    }
-
-    @Override
-    protected void onSwitch() {
-
-    }
-
-    @Override
-    protected void preLeft() {
-
+        //
     }
 
     @Override
     protected void bindChildren() {
-
+        //
     }
 
     private void addLabelEnglishEventHandler() {

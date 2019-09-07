@@ -64,7 +64,7 @@ import javafx.scene.layout.VBox;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditFormFragment.fxml")
-public class ProjectEditFormFragment extends BaseFragment implements Confirmable {
+public final class ProjectEditFormFragment extends BaseFragment implements Confirmable {
 
     static final String ID = "idfPEditForm";
 
@@ -206,7 +206,7 @@ public class ProjectEditFormFragment extends BaseFragment implements Confirmable
 
     @Override
     protected void bindChildren() {
-
+        //
     }
 
     public void setIsUpdateState(boolean isUpdateState) {

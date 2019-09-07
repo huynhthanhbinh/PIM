@@ -1,16 +1,9 @@
 package com.bht.pim.configuration;
 
-import com.bht.pim.base.BasePerspective;
-import com.bht.pim.mapper.*;
-import com.bht.pim.property.LanguageProperty;
-import com.bht.pim.proto.employees.EmployeeServiceGrpc;
-import com.bht.pim.proto.groups.GroupServiceGrpc;
-import com.bht.pim.proto.projects.ProjectServiceGrpc;
-import com.bht.pim.util.LanguageUtil;
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-import javafx.beans.property.*;
-import lombok.extern.log4j.Log4j;
+import java.util.Locale;
+
+import javax.annotation.PostConstruct;
+
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -18,8 +11,27 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import javax.annotation.PostConstruct;
-import java.util.Locale;
+import com.bht.pim.base.BasePerspective;
+import com.bht.pim.mapper.DateTimeMapper;
+import com.bht.pim.mapper.EmployeeMapper;
+import com.bht.pim.mapper.GroupMapper;
+import com.bht.pim.mapper.ProjectMapper;
+import com.bht.pim.mapper.StatusMapper;
+import com.bht.pim.property.LanguageProperty;
+import com.bht.pim.proto.employees.EmployeeServiceGrpc;
+import com.bht.pim.proto.groups.GroupServiceGrpc;
+import com.bht.pim.proto.projects.ProjectServiceGrpc;
+import com.bht.pim.util.LanguageUtil;
+
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import lombok.extern.log4j.Log4j;
 
 /**
  * @author bht
@@ -31,7 +43,10 @@ import java.util.Locale;
 @PropertySource("classpath:/pim.properties")
 public class AppConfiguration {
 
-    public static final LanguageProperty LANGUAGE_PROPERTY = new LanguageProperty(Locale.FRENCH);
+    // 2 locale are available at the moment: Locale.English & Locale.French
+    // This property is set default locale when turn on the application
+    // We can change this locale later on application run time
+    public static final LanguageProperty LANGUAGE_PROPERTY = new LanguageProperty(Locale.ENGLISH);
 
     @PostConstruct
     public void init() {
@@ -43,6 +58,8 @@ public class AppConfiguration {
                 .maxInboundMessageSize(10 * 1024 * 1024)
                 .build());
 
+        // Init label for notification util
+        // This will use to show notification of application
         LanguageUtil.initLabel(INFORMATION_TITLE, "label.notification.information");
         LanguageUtil.initLabel(SUCCESS_TITLE, "label.notification.success");
         LanguageUtil.initLabel(WARNING_TITLE, "label.notification.warning");
@@ -62,7 +79,7 @@ public class AppConfiguration {
 
     public static final String LABEL_PIM_MAIN = "label.pim.main";
     public static final String PERSPECTIVE_PIM = "idPIMPerspective";
-    public static final String PERSPECTIVE_DEFAULT = "idPIMDefault";
+    public static final String PERSPECTIVE_DEFAULT = "idDefaultPerspective";
 
     public static final StringProperty INFORMATION_TITLE = new SimpleStringProperty();
     public static final StringProperty SUCCESS_TITLE = new SimpleStringProperty();

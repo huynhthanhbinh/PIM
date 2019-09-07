@@ -70,7 +70,7 @@ import lombok.Setter;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectTableFragment.fxml")
-public class ProjectTableFragment extends BaseFragment {
+public final class ProjectTableFragment extends BaseFragment {
 
     static final String ID = "idfPTable";
     private static final int MAX_TABLE_ROW = 8;
@@ -166,7 +166,7 @@ public class ProjectTableFragment extends BaseFragment {
 
     @Override
     protected void bindChildren() {
-
+        //
     }
 
     // Get all necessary data

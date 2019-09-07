@@ -28,7 +28,7 @@ import javafx.scene.layout.VBox;
 @Fragment(id = LoginFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/supplementary/LoginFragment.fxml")
-public class LoginFragment extends BaseComponentFragment {
+public final class LoginFragment extends BaseComponentFragment {
 
     public static final String ID = "idfSLogin";
 
@@ -71,18 +71,8 @@ public class LoginFragment extends BaseComponentFragment {
     }
 
     @Override
-    protected void onSwitch() {
-
-    }
-
-    @Override
-    protected void preLeft() {
-
-    }
-
-    @Override
     protected void bindChildren() {
-
+        //
     }
 
     private void onSubmit(Event event) {
@@ -106,5 +96,10 @@ public class LoginFragment extends BaseComponentFragment {
         if (keyEvent.getCode().equals(KeyCode.ENTER)) {
             onSubmit(keyEvent);
         }
+    }
+
+    @Override
+    protected void registerChildren() {
+        //
     }
 }

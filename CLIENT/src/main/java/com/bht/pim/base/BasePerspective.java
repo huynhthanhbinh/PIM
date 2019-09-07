@@ -37,32 +37,32 @@ public abstract class BasePerspective implements FXPerspective {
     public void handlePerspective(Message<Event, Object> message,
                                   PerspectiveLayout perspectiveLayout) {
 
-        LOGGER.info("[HANDLE] FXPerspective: " + perspectiveContext.getId());
+        LOGGER.info("[HANDLE] FXPerspective: " + getClass().getSimpleName());
         handleMessage(message);
     }
 
     @PreDestroy
     public void onTearDownComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[DESTROY] FXPerspective: " + perspectiveContext.getId());
+        LOGGER.info("[DESTROY] FXPerspective: " + getClass().getSimpleName());
     }
 
     @OnShow
     public void onShow(final FXComponentLayout componentLayout) {
-        LOGGER.info("[SHOW] FXPerspective: " + perspectiveContext.getId());
+        LOGGER.info("[SHOW] FXPerspective: " + getClass().getSimpleName());
         onShowed();
         AppConfiguration.PERSPECTIVE_PROPERTY.set(this);
     }
 
     @OnHide
     public final void onHide(final FXComponentLayout componentLayout) {
-        LOGGER.info("[HIDE] FXPerspective: " + perspectiveContext.getId());
+        LOGGER.info("[HIDE] FXPerspective: " + getClass().getSimpleName());
     }
 
     @PostConstruct
     public final void onStart(final PerspectiveLayout perspectiveLayout,
                               final FXComponentLayout layout) {
         getContext();
-        LOGGER.info("[INIT] FXPerspective: " + perspectiveContext.getId());
+        LOGGER.info("[INIT] FXPerspective: " + getClass().getSimpleName());
         childComponents = new ArrayList<>();
         onCreated(perspectiveLayout, layout);
 

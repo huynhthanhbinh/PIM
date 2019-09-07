@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
  * @author bht
  */
 @AllArgsConstructor
-public class FragmentSwitching implements PimMessage {
+public final class FragmentSwitching implements PimMessage {
 
     private Class fragmentSent;
     private Class<? extends BaseComponentFragment> fragmentTarget;

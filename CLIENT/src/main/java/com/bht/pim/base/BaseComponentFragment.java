@@ -1,5 +1,7 @@
 package com.bht.pim.base;
 
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
@@ -17,10 +19,15 @@ public abstract class BaseComponentFragment extends BaseFragment {
      *
      * @param baseComponent parent component of this fragment
      */
-    final void initialize(BaseComponent baseComponent) {
+    final BaseComponentFragment initialize(BaseComponent baseComponent) {
         parentFragment = null;
+        layout = mainPane;
+        component = baseComponent;
+        childrenFragments = new ArrayList<>();
+
         registerChildren();
-        onInit(baseComponent);
+        onInit();
+        return this;
     }
 
 

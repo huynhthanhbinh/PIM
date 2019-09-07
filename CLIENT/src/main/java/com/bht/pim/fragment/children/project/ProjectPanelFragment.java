@@ -39,7 +39,7 @@ import javafx.scene.layout.HBox;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectPanelFragment.fxml")
-public class ProjectPanelFragment extends BaseFragment {
+public final class ProjectPanelFragment extends BaseFragment {
 
     static final String ID = "idfPPanel";
     private static final LanguageProperty LANGUAGE_PROPERTY = AppConfiguration.LANGUAGE_PROPERTY;
@@ -100,7 +100,7 @@ public class ProjectPanelFragment extends BaseFragment {
 
     @Override
     protected void bindChildren() {
-
+        //
     }
 
     private void loadPieChart() {

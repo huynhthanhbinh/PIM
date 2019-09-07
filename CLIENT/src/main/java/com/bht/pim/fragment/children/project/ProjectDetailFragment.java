@@ -46,7 +46,7 @@ import javafx.scene.layout.VBox;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectDetailFragment.fxml")
-public class ProjectDetailFragment extends BaseFragment {
+public final class ProjectDetailFragment extends BaseFragment {
 
     static final String ID = "idfPDetail";
 
@@ -163,7 +163,7 @@ public class ProjectDetailFragment extends BaseFragment {
 
     @Override
     protected void bindChildren() {
-
+        //
     }
 
     public boolean getProjectById(long projectId) {

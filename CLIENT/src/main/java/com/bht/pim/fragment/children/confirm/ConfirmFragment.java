@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 @Fragment(id = ConfirmFragment.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/children/confirm/ConfirmFragment.fxml")
-public class ConfirmFragment extends BaseFragment {
+public final class ConfirmFragment extends BaseFragment {
 
     static final String ID = "idfConfirm"; // ok_cancel box
 
@@ -49,18 +49,8 @@ public class ConfirmFragment extends BaseFragment {
     }
 
     @Override
-    protected void onSwitch() {
-
-    }
-
-    @Override
-    protected void preLeft() {
-
-    }
-
-    @Override
     protected void bindChildren() {
-
+        //
     }
 
     @FXML

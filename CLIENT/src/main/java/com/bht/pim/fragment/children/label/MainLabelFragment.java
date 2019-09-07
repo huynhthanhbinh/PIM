@@ -19,7 +19,7 @@ import javafx.scene.layout.VBox;
 @Fragment(id = MainLabelFragment.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/children/label/MainLabelFragment.fxml")
-public class MainLabelFragment extends BaseFragment {
+public final class MainLabelFragment extends BaseFragment {
 
     static final String ID = "idfMLabel"; // label of main-pane
 
@@ -39,18 +39,8 @@ public class MainLabelFragment extends BaseFragment {
     }
 
     @Override
-    protected void onSwitch() {
-
-    }
-
-    @Override
-    protected void preLeft() {
-
-    }
-
-    @Override
     protected void bindChildren() {
-
+        //
     }
 
     @FXML

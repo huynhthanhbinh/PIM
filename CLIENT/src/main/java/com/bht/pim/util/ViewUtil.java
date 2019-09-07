@@ -2,6 +2,7 @@ package com.bht.pim.util;
 
 import org.springframework.stereotype.Component;
 
+import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.base.BasePerspective;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.notification.NotificationStyle;
@@ -25,6 +26,10 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Component
 public final class ViewUtil {
+
+    private ViewUtil() {
+    }
+
     /**
      * Keycode combination: Ctrl + Alt + Shift + G
      */
@@ -46,14 +51,12 @@ public final class ViewUtil {
         graphic.append("\n").append(currentPerspective.getClass().getSimpleName()).append("\n");
         currentPerspective.getChildComponents().forEach(component -> {
             graphic.append("\t").append(component.getClass().getSimpleName()).append("\n");
-            Object currentFragment = component.getCurrentFragment().getController();
+            BaseComponentFragment currentFragment = component.getCurrentFragment().getController();
             graphic.append("\t\t").append(currentFragment.getClass().getSimpleName()).append("\n");
-            if (currentFragment instanceof ParentFragment) {
-                ((ParentFragment) currentFragment).getChildFragments().stream()
-                        .map(childFragment -> childFragment.getClass().getSimpleName())
-                        .forEach(childFragmentClass ->
-                                graphic.append("\t\t\t").append(childFragmentClass).append("\n"));
-            }
+            currentFragment.getChildrenFragments().stream()
+                    .map(childFragment -> childFragment.getClass().getSimpleName())
+                    .forEach(childFragmentClass ->
+                            graphic.append("\t\t\t").append(childFragmentClass).append("\n"));
         });
         graphic.append("\n");
         System.out.println(graphic.toString());
