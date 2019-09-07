@@ -28,7 +28,7 @@ import lombok.Getter;
  */
 public abstract class BaseComponent extends VBox implements FXComponent {
 
-    protected static final Logger LOGGER = Logger.getLogger(BaseComponent.class);
+    private static final Logger LOGGER = Logger.getLogger(BaseComponent.class);
     protected Context componentContext;
     @Getter
     private List<BaseComponentFragment> fragments;
@@ -106,6 +106,8 @@ public abstract class BaseComponent extends VBox implements FXComponent {
     }
 
     // switch current-(parent)-fragment
+    // this method is use only for SINGLETON fragment
+    // not for PROTOTYPE fragment !!! eg. TopMenuFragment
     public static <C extends BaseComponent, F extends BaseComponentFragment> void switchComponentFragment(
             C component, Class<F> fragmentClazz) {
 
