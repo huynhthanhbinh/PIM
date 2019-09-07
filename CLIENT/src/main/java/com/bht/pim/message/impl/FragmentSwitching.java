@@ -24,7 +24,7 @@ public final class FragmentSwitching implements PimMessage {
 
     @Override
     public Node postHandle(MainPane mainPane) {
-        BaseComponent.switchMainFragment(mainPane, fragmentTarget);
+        BaseComponent.switchComponentFragment(mainPane, fragmentTarget);
         return null;
     }
 }

@@ -42,7 +42,7 @@ public final class LeftPane extends BaseComponent {
 
     @Override
     protected void loadFragments() {
-        leftMenuFragment = registerMainFragment(LeftMenuFragment.class);
+        leftMenuFragment = registerComponentFragment(LeftMenuFragment.class);
         getChildren().add(leftMenuFragment.getFragmentNode());
         currentFragment = leftMenuFragment;
     }

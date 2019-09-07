@@ -60,11 +60,11 @@ public final class MainPane extends BaseComponent {
 
     @Override
     protected void loadFragments() {
-        projectDashboardFragment = registerMainFragment(ProjectDashboardFragment.class);
-        projectListFragment = registerMainFragment(ProjectListFragment.class);
-        projectCreateFragment = registerMainFragment(ProjectCreateFragment.class);
-        projectUpdateFragment = registerMainFragment(ProjectUpdateFragment.class);
-        projectInfoFragment = registerMainFragment(ProjectInfoFragment.class);
+        projectDashboardFragment = registerComponentFragment(ProjectDashboardFragment.class);
+        projectListFragment = registerComponentFragment(ProjectListFragment.class);
+        projectCreateFragment = registerComponentFragment(ProjectCreateFragment.class);
+        projectUpdateFragment = registerComponentFragment(ProjectUpdateFragment.class);
+        projectInfoFragment = registerComponentFragment(ProjectInfoFragment.class);
     }
 
     @Override
@@ -91,7 +91,7 @@ public final class MainPane extends BaseComponent {
     }
 
     public static void onShowPerspective(MainPane mainPane) {
-        switchMainFragment(mainPane, ProjectDashboardFragment.class);
+        switchComponentFragment(mainPane, ProjectDashboardFragment.class);
 
         if (!AppConfiguration.LOGGED_IN_PROPERTY.get()) { // not logged-in or recently logout
             mainPane.getContext().send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");

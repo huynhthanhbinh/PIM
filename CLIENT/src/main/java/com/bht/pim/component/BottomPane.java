@@ -13,10 +13,8 @@ import com.bht.pim.fragment.supplementary.ErrorHandlingFragment;
 import com.bht.pim.fragment.supplementary.LoginFragment;
 
 import javafx.event.Event;
-import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.layout.VBox;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,10 +36,6 @@ public final class BottomPane extends BaseComponent {
 
     @Resource
     private Context context;
-    @FXML
-    private VBox loginPane;
-    @FXML
-    private VBox errorPane;
 
     @Override
     protected void initComponent() {
@@ -57,32 +51,19 @@ public final class BottomPane extends BaseComponent {
 
     @Override
     protected void loadFragments() {
-        loginFragment = registerMainFragment(LoginFragment.class);
-        errorHandlingFragment = registerMainFragment(ErrorHandlingFragment.class);
-
-        loginPane = (VBox) loginFragment.getFragmentNode();
-        errorPane = (VBox) errorHandlingFragment.getFragmentNode();
-
-        getChildren().add(errorPane);
+        loginFragment = registerComponentFragment(LoginFragment.class);
+        errorHandlingFragment = registerComponentFragment(ErrorHandlingFragment.class);
     }
 
     @Override
     protected Node handleMessage(Message<Event, Object> message) {
         if (message.getMessageBody() instanceof Throwable) {
-
-            currentFragment = errorHandlingFragment;
-            LOGGER.info("[SHOW] FXSupplementaryFragment: " + ErrorHandlingFragment.class.getSimpleName());
-            getChildren().clear();
-            getChildren().add(errorPane);
+            switchComponentFragment(this, ErrorHandlingFragment.class);
             errorHandlingFragment.getController()
                     .setDetail((Throwable) message.getMessageBody());
 
         } else {
-
-            currentFragment = loginFragment;
-            LOGGER.info("[SHOW] FXSupplementaryFragment: " + LoginFragment.class.getSimpleName());
-            getChildren().clear();
-            getChildren().add(loginPane);
+            switchComponentFragment(this, LoginFragment.class);
         }
         return this; // otherwise, it won't show UI
     }

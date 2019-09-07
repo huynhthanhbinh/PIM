@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.annotations.lifecycle.PostConstruct;
 import org.jacpfx.api.annotations.lifecycle.PreDestroy;
+import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.component.FXComponent;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
+import org.thymeleaf.util.Validate;
+
+import com.bht.pim.fragment.menu.TopMenuFragment;
 
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -84,26 +89,38 @@ public abstract class BaseComponent extends VBox implements FXComponent {
         return componentContext.getManagedFragmentHandler(fClass);
     }
 
-    // for adding new main fragment to parent
-    protected final <F extends BaseComponentFragment> ManagedFragmentHandler<F> registerMainFragment(Class<F> fClass) {
+    // for adding new ComponentFragment to parent
+    protected final <F extends BaseComponentFragment> ManagedFragmentHandler<F> registerComponentFragment(Class<F> fClass) {
+
+        // Except TopMenuFragment's scope is PROTOTYPE using on both perspectives
+        // All other ComponentFragment's scope must be SINGLETON !!!
+        if (!fClass.isAssignableFrom(TopMenuFragment.class)) {
+            Fragment fragmentAnnotation = fClass.getAnnotation(Fragment.class);
+            Validate.isTrue(fragmentAnnotation.scope() == Scope.SINGLETON,
+                    "ComponentFragment must be in SINGLETON scope");
+        }
+
         ManagedFragmentHandler<F> fragmentHandler = registerNewFragment(fClass);
         fragments.add(fragmentHandler.getController().initialize(this));
         return fragmentHandler;
     }
 
     // switch current-(parent)-fragment
-    public static <C extends BaseComponent, F extends BaseComponentFragment> void switchMainFragment(C c, Class<F> fragmentClazz) {
-        ObservableList<Node> nodes = c.getChildren();
+    public static <C extends BaseComponent, F extends BaseComponentFragment> void switchComponentFragment(
+            C component, Class<F> fragmentClazz) {
+
+        ObservableList<Node> nodes = component.getChildren();
         nodes.clear();
 
-        if (c.currentFragment != null && c.currentFragment.getController() != null) {
-            c.currentFragment.getController().preLeft();
+        if (component.currentFragment != null && component.currentFragment.getController() != null) {
+            component.currentFragment.getController().preLeft();
         }
 
-        ManagedFragmentHandler<F> target = c.componentContext.getManagedFragmentHandler(fragmentClazz);
+        // as BaseComponentFragment's scope is SINGLETON
+        ManagedFragmentHandler<F> target = component.componentContext.getManagedFragmentHandler(fragmentClazz);
         target.getController().onSwitch();
 
-        c.currentFragment = target;
-        nodes.add(c.currentFragment.getFragmentNode());
+        component.currentFragment = target;
+        nodes.add(component.currentFragment.getFragmentNode());
     }
 }
