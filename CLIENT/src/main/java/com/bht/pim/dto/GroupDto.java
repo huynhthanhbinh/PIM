@@ -1,35 +1,28 @@
 package com.bht.pim.dto;
 
-import lombok.*;
-import lombok.extern.log4j.Log4j;
-
 import java.util.List;
+
+import com.bht.pim.base.BaseDto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author bht
  */
-@Log4j
 @Getter
 @Setter
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Builder(toBuilder = true, builderClassName = "Builder", builderMethodName = "newBuilder")
-public final class GroupDto {
+public final class GroupDto extends BaseDto {
 
-    @NonNull
-    private long id;
+    @lombok.Builder(toBuilder = true, builderClassName = "Builder", builderMethodName = "newBuilder")
+    public GroupDto(Long id, Long version) {
+        super(id, version);
+    }
+
     private EmployeeDto leader;
     private List<ProjectDto> enrolledProjects;
-
-    public String getLeaderVisa() {
-        return leader.getVisa();
-    }
-
-    public String getLeaderFirstName() {
-        return leader.getFirstName();
-    }
-
-    public String getLeaderLastName() {
-        return leader.getLastName();
-    }
 }

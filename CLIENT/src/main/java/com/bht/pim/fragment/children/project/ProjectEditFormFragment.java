@@ -31,6 +31,7 @@ import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.service.EmployeeService;
 import com.bht.pim.service.GroupService;
 import com.bht.pim.service.ProjectService;
+import com.bht.pim.util.FormatUtil;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.PimUtil;
@@ -324,8 +325,8 @@ public final class ProjectEditFormFragment extends BaseFragment implements Confi
         start.setPromptText("dd/MM/yyyy");
         end.setPromptText("dd/MM/yyyy");
 
-        start.setConverter(pimUtil.dateStringConverter);
-        end.setConverter(pimUtil.dateStringConverter);
+        start.converterProperty().bind(FormatUtil.DATE_STRING_CONVERTER);
+        end.converterProperty().bind(FormatUtil.DATE_STRING_CONVERTER);
 
         end.setDisable(true);
     }

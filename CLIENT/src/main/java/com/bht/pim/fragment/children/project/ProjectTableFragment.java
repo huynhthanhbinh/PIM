@@ -22,6 +22,7 @@ import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.IdentifierSending;
 import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.service.ProjectService;
+import com.bht.pim.util.FormatUtil;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.PimUtil;
@@ -102,7 +103,7 @@ public final class ProjectTableFragment extends BaseFragment {
     @Autowired
     private ProjectService projectService;
     @Autowired
-    private PimUtil pimUtil;
+    private FormatUtil<ProjectDto> formatUtil;
     @Autowired
     private StatusMapper statusMapper;
 
@@ -224,7 +225,7 @@ public final class ProjectTableFragment extends BaseFragment {
 
         cStart.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
         cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
-        cStart.setCellFactory(pimUtil::dateFormat);
+        cStart.cellFactoryProperty().bind(formatUtil.dateCellFormatProperty);
         cStart.setResizable(false);
 
         cManagement.prefWidthProperty().bind(table.widthProperty().subtract(20).multiply(0.1));

@@ -17,6 +17,7 @@ import com.bht.pim.mapper.EmployeeMapper;
 import com.bht.pim.mapper.GroupMapper;
 import com.bht.pim.mapper.ProjectMapper;
 import com.bht.pim.mapper.StatusMapper;
+import com.bht.pim.property.FormatProperty;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
@@ -47,6 +48,11 @@ public class AppConfiguration {
     // This property is set default locale when turn on the application
     // We can change this locale later on application run time
     public static final LanguageProperty LANGUAGE_PROPERTY = new LanguageProperty(Locale.ENGLISH);
+
+    // DateFormat at this moment, can expand more in the future
+    // Depends on current locale, format will be change correspondently
+    // Eg. for dateFormat: FR - dd/MM/yyyy , US - MM/dd/yyyy
+    public static final FormatProperty FORMAT_PROPERTY = new FormatProperty();
 
     @PostConstruct
     public void init() {

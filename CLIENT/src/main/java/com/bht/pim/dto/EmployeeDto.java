@@ -1,30 +1,34 @@
 package com.bht.pim.dto;
 
-import lombok.*;
-import lombok.extern.log4j.Log4j;
-
 import java.time.LocalDate;
 import java.util.List;
+
+import com.bht.pim.base.BaseDto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author bht
  */
-@Log4j
 @Getter
 @Setter
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Builder(toBuilder = true, builderClassName = "Builder", builderMethodName = "newBuilder")
-public final class EmployeeDto {
+public final class EmployeeDto extends BaseDto {
 
-    @NonNull
-    private long id;
+    @lombok.Builder(toBuilder = true, builderClassName = "Builder", builderMethodName = "newBuilder")
+    public EmployeeDto(Long id, Long version) {
+        super(id, version);
+    }
+
     private String visa;
     private String lastName;
     private String firstName;
     private LocalDate birthday;
     private List<ProjectDto> enrolledProjects;
-
 
     @Override
     public String toString() {
@@ -41,11 +45,11 @@ public final class EmployeeDto {
         }
 
         EmployeeDto employeeDTO = (EmployeeDto) obj;
-        return id == employeeDTO.id;
+        return id.equals(employeeDTO.id);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return id.hashCode();
     }
 }

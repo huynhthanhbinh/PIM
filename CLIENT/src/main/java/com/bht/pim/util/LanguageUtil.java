@@ -16,6 +16,9 @@ import javafx.beans.property.StringProperty;
  */
 public final class LanguageUtil {
 
+    private LanguageUtil() {
+    }
+
     private static LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
 
     // init a label for multilingual purpose

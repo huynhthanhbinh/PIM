@@ -21,6 +21,7 @@ import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.service.GroupService;
 import com.bht.pim.service.ProjectService;
+import com.bht.pim.util.FormatUtil;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
 import com.bht.pim.util.PimUtil;
@@ -212,8 +213,8 @@ public final class ProjectDetailFragment extends BaseFragment {
 
     // set converter for date-format
     private void setDateStringFormat() {
-        start.setConverter(pimUtil.dateStringConverter);
-        end.setConverter(pimUtil.dateStringConverter);
+        start.converterProperty().bind(FormatUtil.DATE_STRING_CONVERTER);
+        end.converterProperty().bind(FormatUtil.DATE_STRING_CONVERTER);
     }
 
 
