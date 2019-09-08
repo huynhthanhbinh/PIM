@@ -1,11 +1,11 @@
-02/09/2019 23:02:45.559  INFO  AppConfiguration.java            82 --- [CONFIG] Creating bean of < SessionFactory >
-02/09/2019 23:02:45.563  INFO  AppConfiguration.java            58 --- [CONFIG] Creating bean of < DataSource >
-02/09/2019 23:02:48.892  INFO  AppConfiguration.java           175 --- [CONFIG] Creating bean of < DateTimeMapper >
-02/09/2019 23:02:48.905  INFO  AppConfiguration.java           169 --- [CONFIG] Creating bean of < CustomizedMapper >
-02/09/2019 23:02:48.930  INFO  AppConfiguration.java           151 --- [CONFIG] Creating bean of < EmployeeMapper >
-02/09/2019 23:02:48.943  INFO  AppConfiguration.java           163 --- [CONFIG] Creating bean of < GroupMapper >
-02/09/2019 23:02:48.958  INFO  AppConfiguration.java           157 --- [CONFIG] Creating bean of < ProjectMapper >
-02/09/2019 23:02:50.201  INFO  AppConfiguration.java           136 --- [CONFIG] Creating bean of < TransactionManager >
+02/09/2019 23:02:45.559  INFO  AppConfiguration.java            82 --- [SPRING] Creating bean of < SessionFactory >
+02/09/2019 23:02:45.563  INFO  AppConfiguration.java            58 --- [SPRING] Creating bean of < DataSource >
+02/09/2019 23:02:48.892  INFO  AppConfiguration.java           175 --- [SPRING] Creating bean of < DateTimeMapper >
+02/09/2019 23:02:48.905  INFO  AppConfiguration.java           169 --- [SPRING] Creating bean of < CustomizedMapper >
+02/09/2019 23:02:48.930  INFO  AppConfiguration.java           151 --- [SPRING] Creating bean of < EmployeeMapper >
+02/09/2019 23:02:48.943  INFO  AppConfiguration.java           163 --- [SPRING] Creating bean of < GroupMapper >
+02/09/2019 23:02:48.958  INFO  AppConfiguration.java           157 --- [SPRING] Creating bean of < ProjectMapper >
+02/09/2019 23:02:50.201  INFO  AppConfiguration.java           136 --- [SPRING] Creating bean of < TransactionManager >
 02/09/2019 23:03:54.840  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 0
 02/09/2019 23:04:08.005  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 1
 02/09/2019 23:04:09.035  INFO  ProjectServiceImpl.java         189 --- Search all projects, maxRow = 8, pageIndex = 2

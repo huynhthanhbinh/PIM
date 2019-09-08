@@ -24,7 +24,6 @@ import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.FormatUtil;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
-import com.bht.pim.util.PimUtil;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ListChangeListener;
@@ -56,8 +55,6 @@ public final class ProjectDetailFragment extends BaseFragment {
 
     @Autowired
     private StatusMapper statusMapper;
-    @Autowired
-    private PimUtil pimUtil;
     @Autowired
     private ProjectService projectService;
     @Autowired

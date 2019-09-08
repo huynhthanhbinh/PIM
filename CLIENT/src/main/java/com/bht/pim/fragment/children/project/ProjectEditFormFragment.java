@@ -34,7 +34,6 @@ import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.FormatUtil;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
-import com.bht.pim.util.PimUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 
@@ -77,8 +76,6 @@ public final class ProjectEditFormFragment extends BaseFragment implements Confi
     private GroupService groupService;
     @Autowired
     private ProjectService projectService;
-    @Autowired
-    private PimUtil pimUtil;
     @Autowired
     private DateTimeMapper dateTimeMapper;
     @Autowired
@@ -322,9 +319,6 @@ public final class ProjectEditFormFragment extends BaseFragment implements Confi
         table.getItems().addAll(Collections.emptyList());
         configureTableMember(table);
 
-        start.setPromptText("dd/MM/yyyy");
-        end.setPromptText("dd/MM/yyyy");
-
         start.converterProperty().bind(FormatUtil.DATE_STRING_CONVERTER);
         end.converterProperty().bind(FormatUtil.DATE_STRING_CONVERTER);
 
@@ -421,6 +415,7 @@ public final class ProjectEditFormFragment extends BaseFragment implements Confi
 
 
     @Override
+    @SuppressWarnings("all")
     public void onSubmit(MouseEvent event) {
         LOGGER.info("[bCreate] onClick");
 
@@ -453,11 +448,11 @@ public final class ProjectEditFormFragment extends BaseFragment implements Confi
             LOGGER.info("<<< PimPerspective - On saving new project >>>");
 
             EmployeeDto groupLeader = EmployeeDto.newBuilder()
-                    .id(leader.getId())
+                    .setId(leader.getId())
                     .build();
 
             GroupDto groupDto = GroupDto.newBuilder()
-                    .leader(groupLeader)
+                    .setLeader(groupLeader)
                     .build();
 
             try {
@@ -475,16 +470,16 @@ public final class ProjectEditFormFragment extends BaseFragment implements Confi
                 }
 
                 ProjectDto.Builder projectDtoBuilder = projectDto.toBuilder()
-                        .number(Long.parseLong(number.getText()))
-                        .name(name.getText())
-                        .customer(customer.getText())
-                        .group(groupDto)
-                        .members(members)
-                        .status(new SimpleStringProperty(comboBoxStatus.getValue()))
-                        .start(start.getValue());
+                        .setNumber(Long.parseLong(number.getText()))
+                        .setName(name.getText())
+                        .setCustomer(customer.getText())
+                        .setGroup(groupDto)
+                        .setMembers(members)
+                        .setStatus(new SimpleStringProperty(comboBoxStatus.getValue()))
+                        .setStart(start.getValue());
 
                 if (end.getValue() != null) {
-                    projectDtoBuilder.end(end.getValue());
+                    projectDtoBuilder.setEnd(end.getValue());
                 }
 
                 NotificationUtil.showNotification(NotificationStyle.INFO, Pos.CENTER,
@@ -676,8 +671,10 @@ public final class ProjectEditFormFragment extends BaseFragment implements Confi
         LanguageUtil.initLabel(comboBoxLeader.promptTextProperty(), "label.project.form.chooseleader");
         LanguageUtil.initLabel(lLeaderChoice.textProperty(), "label.project.form.pleasechooseleader");
         LanguageUtil.initLabel(lStartDate.textProperty(), "label.project.form.startdate");
+        LanguageUtil.initLabel(start.promptTextProperty(), "pattern.date");
         LanguageUtil.initLabel(lStartEmpty.textProperty(), "label.project.form.specifystart");
         LanguageUtil.initLabel(lEndDate.textProperty(), "label.project.form.enddate");
+        LanguageUtil.initLabel(end.promptTextProperty(), "pattern.date");
         LanguageUtil.initLabel(lEndInvalid.textProperty(), "label.project.form.endinvalid");
 
         cName.setText(languageProperty.getResourceBundleProperty()

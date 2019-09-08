@@ -28,7 +28,10 @@ public final class FormatUtil<T extends BaseDto> {
 
     @PostConstruct
     public void addAllEventListeners() {
-        DATE_FORMATTER_PROPERTY.addListener(observable -> DATE_STRING_CONVERTER.set(dateStringConverter()));
+        DATE_FORMATTER_PROPERTY.addListener(observable -> {
+            DATE_STRING_CONVERTER.set(dateStringConverter());
+            dateCellFormatProperty.set(this::dateCellFormat);
+        });
         DATE_FORMATTER_PROPERTY.set(DateTimeFormatter.ofPattern(FormatProperty.DATE_PATTERN_PROPERTY.get()));
 
         FormatProperty.DATE_PATTERN_PROPERTY.addListener((observable, oldValue, newValue) ->
@@ -40,7 +43,7 @@ public final class FormatUtil<T extends BaseDto> {
     public final ObjectProperty<Callback<TableColumn<T, LocalDate>, TableCell<T, LocalDate>>> dateCellFormatProperty = new SimpleObjectProperty<>();
 
     // Format Date : convert from Timestamp to LocalDate
-    public TableCell<T, LocalDate> dateFormat(TableColumn<T, LocalDate> column) {
+    private TableCell<T, LocalDate> dateCellFormat(TableColumn<T, LocalDate> column) {
         return new TableCell<T, LocalDate>() {
             @Override
             protected void updateItem(LocalDate localDate, boolean empty) {
@@ -49,7 +52,7 @@ public final class FormatUtil<T extends BaseDto> {
                     setStyle("");
 
                 } else {
-                    setText(dateFormatter.format(localDate));
+                    setText(DATE_FORMATTER_PROPERTY.get().format(localDate));
                     setStyle("");
                 }
             }
