@@ -48,16 +48,9 @@ public final class LeftMenuFragment extends BaseComponentFragment {
 
     @Override
     protected void onCreated() {
-        log.info("[INIT] FXMenuFragment: " + getClass().getSimpleName());
-        LanguageUtil.initLabel(lDashboard.textProperty(), LABEL_LEFT_PROJECT_DASHBOARD);
-        LanguageUtil.initLabel(lProjectList.textProperty(), LABEL_LEFT_PROJECT_LIST);
-
-        lDashboard.getStyleClass().add("clickable");
-        lProjectList.getStyleClass().add("clickable");
-        lDashboard.getStyleClass().add("active");
-
-        lDashboard.setOnMouseClicked(this::onMouseClickedDashboard);
-        lProjectList.setOnMouseClicked(this::onMouseClickedProjectList);
+        initAllLabels();
+        initAllStyles();
+        addAllEventListeners();
     }
 
     @Override
@@ -68,6 +61,22 @@ public final class LeftMenuFragment extends BaseComponentFragment {
     @Override
     protected void bindChildren() {
         //
+    }
+
+    private void initAllLabels() {
+        LanguageUtil.initLabel(lDashboard.textProperty(), LABEL_LEFT_PROJECT_DASHBOARD);
+        LanguageUtil.initLabel(lProjectList.textProperty(), LABEL_LEFT_PROJECT_LIST);
+    }
+
+    private void initAllStyles() {
+        lDashboard.getStyleClass().add("clickable");
+        lProjectList.getStyleClass().add("clickable");
+        lDashboard.getStyleClass().add("active");
+    }
+
+    private void addAllEventListeners() {
+        lDashboard.setOnMouseClicked(this::onMouseClickedDashboard);
+        lProjectList.setOnMouseClicked(this::onMouseClickedProjectList);
     }
 
     private void onMouseClickedProjectList(MouseEvent mouseEvent) {
@@ -90,7 +99,7 @@ public final class LeftMenuFragment extends BaseComponentFragment {
     }
 
     private void onMouseClickedDashboard(MouseEvent mouseEvent) {
-        log.info("[MENU] Clicked Group List");
+        log.info("[MENU] Clicked Dashboard");
 
         if (lDashboard.getStyleClass().contains("active")) {
             mouseEvent.consume();

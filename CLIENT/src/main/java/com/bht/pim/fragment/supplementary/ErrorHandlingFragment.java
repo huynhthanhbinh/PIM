@@ -55,16 +55,9 @@ public final class ErrorHandlingFragment extends BaseComponentFragment {
 
     @Override
     protected void onCreated() {
-        detailField.setEditable(false);
-        LanguageUtil.initLabel(lUnexpected.textProperty(), "label.error.unexpectederror");
-        LanguageUtil.initLabel(lPlease.textProperty(), "label.error.please");
-        LanguageUtil.initLabel(lContact.textProperty(), "label.error.contactadmin");
-        LanguageUtil.initLabel(lOr.textProperty(), "label.error.or");
-        LanguageUtil.initLabel(lReload.textProperty(), "label.error.reload");
-        LanguageUtil.initLabel(lError.textProperty(), "label.error.detail");
-
-        lContact.setOnMouseClicked(this::onContactAdmin);
-        lReload.setOnMouseClicked(this::onReloadApp);
+        initAllLabels();
+        initAllStyles();
+        addAllEventListeners();
     }
 
     @Override
@@ -75,6 +68,24 @@ public final class ErrorHandlingFragment extends BaseComponentFragment {
     @Override
     protected void bindChildren() {
         //
+    }
+
+    private void initAllLabels() {
+        LanguageUtil.initLabel(lUnexpected.textProperty(), "label.error.unexpectederror");
+        LanguageUtil.initLabel(lPlease.textProperty(), "label.error.please");
+        LanguageUtil.initLabel(lContact.textProperty(), "label.error.contactadmin");
+        LanguageUtil.initLabel(lOr.textProperty(), "label.error.or");
+        LanguageUtil.initLabel(lReload.textProperty(), "label.error.reload");
+        LanguageUtil.initLabel(lError.textProperty(), "label.error.detail");
+    }
+
+    private void initAllStyles() {
+        detailField.setEditable(false);
+    }
+
+    private void addAllEventListeners() {
+        lContact.setOnMouseClicked(this::onContactAdmin);
+        lReload.setOnMouseClicked(this::onReloadApp);
     }
 
     public void setDetail(Throwable detail) {

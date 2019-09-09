@@ -19,7 +19,7 @@ import lombok.experimental.Accessors;
 @Getter
 @ToString
 @AllArgsConstructor
-public class ProjectDto extends BaseDto {
+public final class ProjectDto extends BaseDto {
 
     private Long number;
     private String name;

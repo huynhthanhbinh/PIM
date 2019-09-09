@@ -70,44 +70,11 @@ public final class ProjectUtilFragment extends BaseFragment {
     public void onCreated() {
         initComboBoxStatus();
 
-        LanguageUtil.initLabel(searchBox.promptTextProperty(), "label.project.util.searchbox");
-        LanguageUtil.initLabel(comboBoxStatus.promptTextProperty(), "label.project.util.status");
-        LanguageUtil.initLabel(lSelected.textProperty(), "label.project.util.selected");
-        LanguageUtil.initLabel(bDeleteAll.textProperty(), "label.project.util.deleteall");
+        initAllLabels();
 
+        initAllAttributes();
 
-        ImageView iReset = new ImageView(PimUtil.getImage("reset"));
-        ImageView iDelete = new ImageView(PimUtil.getImage("delete"));
-        ImageView iNew = new ImageView(PimUtil.getImage("add"));
-
-        iReset.setFitWidth(110);
-        iReset.setFitHeight(110);
-        iReset.setPreserveRatio(true);
-
-        bReset.setGraphic(iReset);
-        bNew.setGraphic(iNew);
-        bDeleteAll.setGraphic(iDelete);
-        bDeleteAll.setVisible(false);
-
-        bNew.setOnMouseClicked(event -> {
-            LOGGER.info("[NEW] on mouse clicked");
-
-            FragmentSwitching switching = new FragmentSwitching(
-                    ProjectListFragment.class,
-                    ProjectCreateFragment.class);
-
-            context.send(MainPane.ID, switching);
-        });
-
-        bDeleteAll.setOnMouseClicked(event -> LOGGER.info("[DELETE ALL] on mouse clicked"));
-
-        lNumberOfProjects.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (Integer.valueOf(newValue) > 0) {
-                bDeleteAll.setVisible(true);
-                return;
-            }
-            bDeleteAll.setVisible(false);
-        });
+        addAllEventListeners();
     }
 
     @Override
@@ -138,5 +105,49 @@ public final class ProjectUtilFragment extends BaseFragment {
 
                     comboBoxStatus.getSelectionModel().select(index);
                 });
+    }
+
+    private void initAllLabels() {
+        LanguageUtil.initLabel(searchBox.promptTextProperty(), "label.project.util.searchbox");
+        LanguageUtil.initLabel(comboBoxStatus.promptTextProperty(), "label.project.util.status");
+        LanguageUtil.initLabel(lSelected.textProperty(), "label.project.util.selected");
+        LanguageUtil.initLabel(bDeleteAll.textProperty(), "label.project.util.deleteall");
+    }
+
+    private void initAllAttributes() {
+        ImageView iReset = new ImageView(PimUtil.getImage("reset"));
+        ImageView iDelete = new ImageView(PimUtil.getImage("delete"));
+        ImageView iNew = new ImageView(PimUtil.getImage("add"));
+
+        iReset.setFitWidth(110);
+        iReset.setFitHeight(110);
+        iReset.setPreserveRatio(true);
+
+        bReset.setGraphic(iReset);
+        bNew.setGraphic(iNew);
+        bDeleteAll.setGraphic(iDelete);
+        bDeleteAll.setVisible(false);
+    }
+
+    private void addAllEventListeners() {
+        bNew.setOnMouseClicked(event -> {
+            LOGGER.info("[NEW] on mouse clicked");
+
+            FragmentSwitching switching = new FragmentSwitching(
+                    ProjectListFragment.class,
+                    ProjectCreateFragment.class);
+
+            context.send(MainPane.ID, switching);
+        });
+
+        bDeleteAll.setOnMouseClicked(event -> LOGGER.info("[DELETE ALL] on mouse clicked"));
+
+        lNumberOfProjects.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (Integer.valueOf(newValue) > 0) {
+                bDeleteAll.setVisible(true);
+                return;
+            }
+            bDeleteAll.setVisible(false);
+        });
     }
 }

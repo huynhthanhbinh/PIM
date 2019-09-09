@@ -166,19 +166,11 @@ public final class ProjectEditFormFragment extends BaseFragment implements Confi
 
     @Override
     public void onCreated() {
-        members = new ArrayList<>();
-        employees = new ArrayList<>();
-        leaders = new ArrayList<>();
-        leaderOptions = new ArrayList<>();
-
-        // init an instance for storing a project
-        projectDto = ProjectDto.newBuilder().build();
-
         // for i18n / multilingual
         initAllLabels();
 
-        // Init all inputs
-        initAllInput();
+        // Init all attributes
+        initAllAttributes();
 
         // Add all event-listener
         addAllEventListener();
@@ -310,7 +302,15 @@ public final class ProjectEditFormFragment extends BaseFragment implements Confi
         });
     }
 
-    private void initAllInput() {
+    private void initAllAttributes() {
+        members = new ArrayList<>();
+        employees = new ArrayList<>();
+        leaders = new ArrayList<>();
+        leaderOptions = new ArrayList<>();
+
+        // init an instance for storing a project
+        projectDto = ProjectDto.newBuilder().build();
+
         initComboBoxGroupOption();
 
         comboBoxLeader.setDisable(true);

@@ -36,7 +36,7 @@ public final class PimWorkbench implements FXWorkbench {
             Message<Event, Object> message,
             WorkbenchLayout<Node> layout, Stage stage) {
 
-        log.info("[INIT] FXWorkbench: " + getClass().getSimpleName());
+        log.info("[INIT]   FXWorkbench:  " + getClass().getSimpleName());
         layout.setWorkbenchXYSize(1280, 700);
         layout.setStyle(StageStyle.DECORATED);
         layout.setMenuEnabled(false);
@@ -44,6 +44,6 @@ public final class PimWorkbench implements FXWorkbench {
 
     @Override
     public void postHandle(FXComponentLayout fxComponentLayout) {
-        log.info("[HANDLE] FXWorkbench: " + getClass().getSimpleName());
+        log.info("[HANDLE] FXWorkbench:  " + getClass().getSimpleName());
     }
 }

@@ -54,19 +54,9 @@ public final class TopMenuFragment extends BaseComponentFragment {
 
     @Override
     protected void onCreated() {
-        LanguageUtil.initLabel(lApp.textProperty(), AppConfiguration.LABEL_PIM_MAIN);
-        logo.setPreserveRatio(true);
-
-        if (languageProperty.getLocaleProperty().get().equals(Locale.ENGLISH)) {
-            lEnglish.getStyleClass().add("active");
-        } else {
-            lFrench.getStyleClass().add("active");
-        }
-
-        addLabelEnglishEventHandler();
-        addLabelFrenchEventHandler();
-        addButtonHelpEventHandler();
-        addButtonLogoutEventHandler();
+        initAllLabels();
+        initAllStyles();
+        addAllEventListeners();
     }
 
     @Override
@@ -77,6 +67,26 @@ public final class TopMenuFragment extends BaseComponentFragment {
     @Override
     protected void bindChildren() {
         //
+    }
+
+    private void initAllLabels() {
+        LanguageUtil.initLabel(lApp.textProperty(), AppConfiguration.LABEL_PIM_MAIN);
+    }
+
+    private void initAllStyles() {
+        logo.setPreserveRatio(true);
+        if (languageProperty.getLocaleProperty().get().equals(Locale.ENGLISH)) {
+            lEnglish.getStyleClass().add("active");
+        } else {
+            lFrench.getStyleClass().add("active");
+        }
+    }
+
+    private void addAllEventListeners() {
+        addLabelEnglishEventHandler();
+        addLabelFrenchEventHandler();
+        addButtonHelpEventHandler();
+        addButtonLogoutEventHandler();
     }
 
     private void addLabelEnglishEventHandler() {
@@ -112,12 +122,12 @@ public final class TopMenuFragment extends BaseComponentFragment {
     }
 
     private void addButtonHelpEventHandler() {
-        bHelp.setOnMouseClicked(event -> log.info("[PIM] Clicked help button"));
+        bHelp.setOnMouseClicked(event -> log.info("[INFO] Clicked help button"));
     }
 
     private void addButtonLogoutEventHandler() {
         bLogout.setOnMouseClicked(event -> {
-            log.info("[PIM} Clicked Logout button");
+            log.info("[INFO] Clicked Logout button");
             context.send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");
             AppConfiguration.LOGGED_IN_PROPERTY.set(false);
         });

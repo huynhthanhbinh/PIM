@@ -67,7 +67,7 @@ public final class EmployeeDto extends BaseDto {
     @ToString
     @NoArgsConstructor
     @Accessors(chain = true)
-    public static class Builder {
+    public static final class Builder {
         private Long id;
         private Long version;
         private String visa;

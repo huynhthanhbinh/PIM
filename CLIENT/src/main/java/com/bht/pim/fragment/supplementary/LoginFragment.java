@@ -52,15 +52,9 @@ public final class LoginFragment extends BaseComponentFragment {
 
     @Override
     protected void onCreated() {
-        LanguageUtil.initLabel(bLogin.textProperty(), "label.login.login");
-        LanguageUtil.initLabel(bForgot.textProperty(), "label.login.forgot");
-        LanguageUtil.initLabel(lIncorrect.textProperty(), "label.login.incorrect");
-
-        lIncorrect.setVisible(false);
-
-        bLogin.setOnMouseClicked(this::onSubmit);
-        username.setOnKeyPressed(this::onKeyPressed);
-        password.setOnKeyPressed(this::onKeyPressed);
+        initAllLabels();
+        initAllStyles();
+        addAllEventListeners();
     }
 
     @Override
@@ -71,6 +65,22 @@ public final class LoginFragment extends BaseComponentFragment {
     @Override
     protected void bindChildren() {
         //
+    }
+
+    private void initAllLabels() {
+        LanguageUtil.initLabel(bLogin.textProperty(), "label.login.login");
+        LanguageUtil.initLabel(bForgot.textProperty(), "label.login.forgot");
+        LanguageUtil.initLabel(lIncorrect.textProperty(), "label.login.incorrect");
+    }
+
+    private void initAllStyles() {
+        lIncorrect.setVisible(false);
+    }
+
+    private void addAllEventListeners() {
+        bLogin.setOnMouseClicked(this::onSubmit);
+        username.setOnKeyPressed(this::onKeyPressed);
+        password.setOnKeyPressed(this::onKeyPressed);
     }
 
     private void onSubmit(Event event) {
