@@ -48,7 +48,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
         } catch (Exception exception) {
 
-            log.info(exception);
+            log.warn(exception);
             return Collections.emptyList();
         }
     }
@@ -67,7 +67,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
         } catch (Exception exception) {
 
-            log.info(exception);
+            log.warn(exception);
             return null;
         }
     }
@@ -86,7 +86,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
         } catch (Exception exception) {
 
-            log.info(exception);
+            log.warn(exception);
             return -1;
         }
     }

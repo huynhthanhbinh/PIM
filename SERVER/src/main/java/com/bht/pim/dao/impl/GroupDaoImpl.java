@@ -39,7 +39,7 @@ public class GroupDaoImpl implements GroupDao {
 
         } catch (Exception exception) {
 
-            log.info(exception);
+            log.warn(exception);
             return -1;
         }
     }
@@ -53,7 +53,7 @@ public class GroupDaoImpl implements GroupDao {
             return true;
 
         } catch (Exception exception) {
-            log.info(exception);
+            log.warn(exception);
 
             return false;
         }
@@ -73,7 +73,7 @@ public class GroupDaoImpl implements GroupDao {
 
         } catch (Exception exception) {
 
-            log.info(exception);
+            log.warn(exception);
             return null;
         }
     }
@@ -99,7 +99,7 @@ public class GroupDaoImpl implements GroupDao {
 
         } catch (Exception exception) {
 
-            log.info(exception);
+            log.warn(exception);
             return Collections.emptyList();
         }
     }
@@ -118,7 +118,7 @@ public class GroupDaoImpl implements GroupDao {
 
         } catch (Exception exception) {
 
-            log.info(exception);
+            log.warn(exception);
             return -1;
         }
     }

@@ -46,7 +46,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
 
         } catch (Exception exception) {
 
-            log.info(exception);
+            log.warn(exception);
             responseObserver.onNext(null);
             responseObserver.onCompleted();
         }
@@ -98,7 +98,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
         } catch (Exception exception) {
 
             log.info("<<< Fail to add new group ! >>>");
-            log.info(exception);
+            log.warn(exception);
 
             responseObserver.onNext(BoolValue.newBuilder().setValue(false).build());
             responseObserver.onCompleted();
@@ -124,7 +124,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
         } catch (Exception exception) {
 
             // log the exception out
-            log.info(exception);
+            log.warn(exception);
 
             // return an empty list not return null value for list
             responseObserver.onNext(GroupList.newBuilder()
@@ -144,7 +144,7 @@ public class GroupServiceImpl extends GroupServiceGrpc.GroupServiceImplBase {
         } catch (Exception exception) {
 
             // log the exception out
-            log.info(exception);
+            log.warn(exception);
 
             // return an empty list not return null value for list
             responseObserver.onNext(Int64Value.newBuilder().build());

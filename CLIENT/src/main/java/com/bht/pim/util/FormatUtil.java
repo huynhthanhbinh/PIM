@@ -79,7 +79,7 @@ public final class FormatUtil<T extends BaseDto> {
 
                 } catch (Exception exception) {
 
-                    log.info(exception);
+                    log.warn(exception);
                     return null;
                 }
             }

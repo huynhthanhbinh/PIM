@@ -41,7 +41,7 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
 
         } catch (Exception exception) {
 
-            log.info(exception);
+            log.warn(exception);
             responseObserver.onNext(null);
             responseObserver.onCompleted();
         }
@@ -66,7 +66,7 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
         } catch (Exception exception) {
 
             // log the exception out
-            log.info(exception);
+            log.warn(exception);
 
             // return an empty list not return null value for list
             responseObserver.onNext(EmployeeList.newBuilder()
@@ -86,7 +86,7 @@ public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImpl
         } catch (Exception exception) {
 
             // log the exception out
-            log.info(exception);
+            log.warn(exception);
 
             // return an empty list not return null value for list
             responseObserver.onNext(Int64Value.newBuilder().build());

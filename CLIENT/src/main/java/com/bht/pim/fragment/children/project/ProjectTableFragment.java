@@ -159,7 +159,9 @@ public final class ProjectTableFragment extends BaseFragment {
 
     @Override
     protected void preLeft() {
-        searchBox.clear();
+        // searchBox.clear()
+        // not clear any more
+        // as view or edit project and return back
     }
 
     @Override
