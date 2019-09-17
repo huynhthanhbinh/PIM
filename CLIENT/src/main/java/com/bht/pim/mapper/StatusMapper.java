@@ -3,44 +3,34 @@ package com.bht.pim.mapper;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
 
 import com.bht.pim.util.LanguageUtil;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.Getter;
 
 /**
+ *
  * @author bht
  */
 @Mapper
 public abstract class StatusMapper {
 
-    private static final String LABEL_STATUS_TOTAL = "label.project.status.total";
-    private static final String LABEL_STATUS_NEW = "label.project.status.new";
-    private static final String LABEL_STATUS_PLANNED = "label.project.status.planned";
-    private static final String LABEL_STATUS_IN_PROGRESS = "label.project.status.inprogress";
-    private static final String LABEL_STATUS_FINISHED = "label.project.status.finished";
-
     @Getter
-    private Map<String, StringProperty> availableStatus = availableStatus();
+    private Map<String, StringProperty> availableStatus;
 
-    private StringProperty getLabelProperty(String labelKey) {
-        StringProperty labelProperty = new SimpleStringProperty();
-        LanguageUtil.initLabel(labelProperty, labelKey);
-        return labelProperty;
-    }
-
-    private Map<String, StringProperty> availableStatus() {
-        Map<String, StringProperty> availableStatuses = new HashMap<>();
-        availableStatuses.put("TOT", getLabelProperty(LABEL_STATUS_TOTAL));
-        availableStatuses.put("NEW", getLabelProperty(LABEL_STATUS_NEW));
-        availableStatuses.put("PLA", getLabelProperty(LABEL_STATUS_PLANNED));
-        availableStatuses.put("INP", getLabelProperty(LABEL_STATUS_IN_PROGRESS));
-        availableStatuses.put("FIN", getLabelProperty(LABEL_STATUS_FINISHED));
-        return availableStatuses;
+    @PostConstruct
+    private void initialize() {
+        availableStatus = new HashMap<>();
+        availableStatus.put("TOT", LanguageUtil.getTextPropertyOfKey("label.project.status.total"));
+        availableStatus.put("NEW", LanguageUtil.getTextPropertyOfKey("label.project.status.new"));
+        availableStatus.put("PLA", LanguageUtil.getTextPropertyOfKey("label.project.status.planned"));
+        availableStatus.put("INP", LanguageUtil.getTextPropertyOfKey("label.project.status.inprogress"));
+        availableStatus.put("FIN", LanguageUtil.getTextPropertyOfKey("label.project.status.finished"));
     }
 
     @Named("toGuiStatus")

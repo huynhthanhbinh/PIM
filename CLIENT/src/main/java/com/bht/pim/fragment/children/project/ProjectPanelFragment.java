@@ -31,6 +31,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 
 /**
+ *
  * @author bht
  */
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
@@ -67,13 +68,16 @@ public final class ProjectPanelFragment extends BaseFragment {
     @Override
     public void onCreated() {
         initAllLabels();
+        initAllControls();
         addAllEventListeners();
     }
+
 
     @Override
     protected void configLayout() {
         layout = mainPane;
     }
+
 
     @Override
     protected void onSwitch() {
@@ -89,6 +93,7 @@ public final class ProjectPanelFragment extends BaseFragment {
         table.getSelectionModel().clearSelection();
     }
 
+
     @Override
     protected void preLeft() {
         barChart.getData().clear();
@@ -96,10 +101,12 @@ public final class ProjectPanelFragment extends BaseFragment {
         table.getItems().clear();
     }
 
+
     @Override
     protected void bindChildren() {
         //
     }
+
 
     private void loadPieChart() {
         pieChart.setData(items.stream()
@@ -107,24 +114,30 @@ public final class ProjectPanelFragment extends BaseFragment {
                 .collect(Collectors.toCollection(FXCollections::observableArrayList)));
     }
 
+
     private void loadBarChart() {
         barChart.setData(FXCollections.observableArrayList(Collections.singletonList(new XYChart.Series<>(items.stream()
                 .map(item -> new BarChart.Data<>(statusMapper.toGuiStatus(item.getKey()).get(), item.getValue()))
                 .collect(Collectors.toCollection(FXCollections::observableArrayList))))));
     }
 
-    private void initAllLabels() {
-        cStatus.setCellValueFactory(param -> statusMapper.getAvailableStatus().get(param.getValue().getKey()));
-        cCount.setCellValueFactory(param -> new SimpleLongProperty(param.getValue().getValue()).asObject());
 
+    private void initAllLabels() {
         LanguageUtil.initLabel(cStatus.textProperty(), "label.project.form.status");
         LanguageUtil.initLabel(cCount.textProperty(), "label.project.form.quantity");
         LanguageUtil.initLabel(barChart.getXAxis().labelProperty(), "label.project.form.status");
         LanguageUtil.initLabel(barChart.getYAxis().labelProperty(), "label.project.form.quantity");
+    }
+
+
+    private void initAllControls() {
+        cStatus.setCellValueFactory(param -> statusMapper.getAvailableStatus().get(param.getValue().getKey()));
+        cCount.setCellValueFactory(param -> new SimpleLongProperty(param.getValue().getValue()).asObject());
 
         barChart.setLegendVisible(false);
         pieChart.setLegendVisible(false);
     }
+
 
     private void addAllEventListeners() {
         table.skinProperty().addListener((observable, oldSkin, newSkin) -> {
@@ -139,6 +152,7 @@ public final class ProjectPanelFragment extends BaseFragment {
             loadPieChart();
         });
     }
+
 
     private Map.Entry<String, Long> totalEntry() {
         return new Map.Entry<String, Long>() {
