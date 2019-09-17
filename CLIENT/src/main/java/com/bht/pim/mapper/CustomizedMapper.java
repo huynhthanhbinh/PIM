@@ -1,26 +1,25 @@
 package com.bht.pim.mapper;
 
-import com.bht.pim.dto.EmployeeDto;
-import com.bht.pim.dto.GroupDto;
-import com.bht.pim.dto.ProjectDto;
-import com.bht.pim.proto.employees.EmployeeInfo;
-import com.bht.pim.proto.groups.GroupInfo;
-import com.bht.pim.proto.projects.ProjectInfo;
-import lombok.extern.log4j.Log4j;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.NullValueMappingStrategy;
 import org.springframework.stereotype.Component;
 
+import com.bht.pim.dto.EmployeeDto;
+import com.bht.pim.dto.GroupDto;
+import com.bht.pim.dto.ProjectDto;
+import com.bht.pim.proto.employees.EmployeeInfo;
+import com.bht.pim.proto.groups.GroupInfo;
+import com.bht.pim.proto.projects.ProjectInfo;
+
 /**
  * @author bht
  */
-@Log4j
 @Component
 @Mapper(uses = {DateTimeMapper.class, StatusMapper.class}, componentModel = "spring",
         nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
-public abstract class CustomizedMapper {
+public interface CustomizedMapper {
 
 
     @Named("toEmployeeDto")
@@ -29,7 +28,7 @@ public abstract class CustomizedMapper {
     @Mapping(source = "firstName", target = "firstName")
     @Mapping(source = "lastName", target = "lastName")
     @Mapping(source = "birthday", target = "birthday")
-    abstract EmployeeDto toEmployeeDto(final EmployeeInfo employeeInfo);
+    EmployeeDto toEmployeeDto(final EmployeeInfo employeeInfo);
 
 
     @Named("toEmployeeInfo")
@@ -38,7 +37,7 @@ public abstract class CustomizedMapper {
     @Mapping(source = "firstName", target = "firstName", ignore = true)
     @Mapping(source = "lastName", target = "lastName", ignore = true)
     @Mapping(source = "birthday", target = "birthday", ignore = true)
-    abstract EmployeeInfo toEmployeeInfo(final EmployeeDto employeeDto);
+    EmployeeInfo toEmployeeInfo(final EmployeeDto employeeDto);
 
 
     @Named("toProjectDto")
@@ -50,7 +49,7 @@ public abstract class CustomizedMapper {
     @Mapping(source = "end", target = "end")
     @Mapping(source = "status", target = "status", qualifiedByName = "toGuiStatus")
     @Mapping(source = "group", target = "group", qualifiedByName = "toGroupDto")
-    abstract ProjectDto toProjectDto(final ProjectInfo projectInfo);
+    ProjectDto toProjectDto(final ProjectInfo projectInfo);
 
 
     @Named("toProjectInfo")
@@ -62,17 +61,17 @@ public abstract class CustomizedMapper {
     @Mapping(source = "end", target = "end")
     @Mapping(source = "status", target = "status", qualifiedByName = "toSqlStatus")
     @Mapping(source = "group", target = "group", qualifiedByName = "toGroupInfo")
-    abstract ProjectInfo toProjectInfo(final ProjectDto projectDto);
+    ProjectInfo toProjectInfo(final ProjectDto projectDto);
 
 
     @Named("toGroupDto")
     @Mapping(source = "id", target = "id")
     @Mapping(source = "leader", target = "leader", qualifiedByName = "toEmployeeDto")
-    abstract GroupDto toGroupDto(final GroupInfo groupInfo);
+    GroupDto toGroupDto(final GroupInfo groupInfo);
 
 
     @Named("toGroupInfo")
     @Mapping(source = "id", target = "id")
     @Mapping(source = "leader", target = "leader", qualifiedByName = "toEmployeeInfo")
-    abstract GroupInfo toGroupInfo(final GroupDto groupDto);
+    GroupInfo toGroupInfo(final GroupDto groupDto);
 }
