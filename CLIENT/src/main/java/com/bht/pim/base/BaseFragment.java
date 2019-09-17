@@ -96,6 +96,25 @@ public abstract class BaseFragment {
 
 
     /**
+     * show a modal dialog
+     * @param dialog dialog needs to be showed
+     */
+    protected final void showModalDialog(Pane dialog) {
+        component.showModalDialog(dialog);
+    }
+
+
+    /**
+     * hide a modal dialog
+     * 1 screen contains max 1 modal dialog
+     * so we don't need to specify which dialog to be hide
+     */
+    protected final void hideModalDialog() {
+        component.hideModalDialog();
+    }
+
+
+    /**
      * register new child fragment method
      *
      * @param fClass fragment class

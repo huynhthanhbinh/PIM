@@ -10,12 +10,17 @@ import org.jacpfx.rcp.context.Context;
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.property.LanguageProperty;
+import com.bht.pim.util.ImageUtil;
 import com.bht.pim.util.LanguageUtil;
+import com.bht.pim.workbench.PimWorkbench;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
 
 /**
@@ -122,7 +127,10 @@ public final class TopMenuFragment extends BaseComponentFragment {
     }
 
     private void addButtonHelpEventHandler() {
-        bHelp.setOnMouseClicked(event -> log.info("[INFO] Clicked help button"));
+        bHelp.setOnMouseClicked(event -> {
+            log.info("[INFO] Clicked help button");
+            showModalDialog(getHelpDialog());
+        });
     }
 
     private void addButtonLogoutEventHandler() {
@@ -131,5 +139,58 @@ public final class TopMenuFragment extends BaseComponentFragment {
             context.send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");
             AppConfiguration.LOGGED_IN_PROPERTY.set(false);
         });
+    }
+
+    private VBox getHelpDialog() {
+        PimWorkbench.LAYOUT.getChildren().clear();
+
+
+        VBox dialog = new VBox();
+        dialog.getStylesheets().add("/com/bht/pim/dialog/style/DialogStyle.css");
+        dialog.setId("dialog");
+        dialog.setMaxSize(500, 300);
+        dialog.setPrefSize(500, 300);
+        dialog.setAlignment(Pos.TOP_CENTER);
+        PimWorkbench.LAYOUT.setOnMouseClicked(event -> {
+            if (!dialog.isHover()) {
+                hideModalDialog();
+            }
+        });
+
+        ImageView icon = new ImageView(ImageUtil.getImage("icon_inverse"));
+        icon.setPreserveRatio(true);
+        icon.setFitHeight(20);
+        AnchorPane.setTopAnchor(icon, 5.0);
+        AnchorPane.setLeftAnchor(icon, 3.0);
+
+
+        Label title = new Label();
+        title.setId("title");
+        AnchorPane.setTopAnchor(title, 8.0);
+        AnchorPane.setLeftAnchor(title, 30.0);
+        title.setText("ABOUT");
+
+
+        Button bClose = new Button();
+        bClose.setId("bClose");
+        AnchorPane.setTopAnchor(bClose, 2.0);
+        AnchorPane.setRightAnchor(bClose, 2.0);
+        AnchorPane.setBottomAnchor(bClose, 2.0);
+        bClose.setOnMouseClicked(event -> hideModalDialog());
+        bClose.setText("X");
+
+
+        AnchorPane titleBar = new AnchorPane();
+        titleBar.setId("titleBar");
+        titleBar.setPrefSize(500, 30);
+        titleBar.setMinSize(500, 30);
+        titleBar.getChildren().addAll(icon, title, bClose);
+
+
+        dialog.getChildren().add(titleBar);
+        PimWorkbench.LAYOUT.getChildren().add(dialog);
+        PimWorkbench.LAYOUT.setAlignment(Pos.CENTER);
+
+        return PimWorkbench.LAYOUT;
     }
 }

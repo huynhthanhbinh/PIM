@@ -1,24 +1,17 @@
 package com.bht.pim.util;
 
-import java.util.Objects;
-
 import org.jacpfx.rcp.context.Context;
 
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
 /**
+ *
  * @author bht
  */
-public final class PimUtil {
+public final class LayoutUtil {
 
-    private PimUtil() {
-    }
-
-    public static Image getImage(String path) {
-        return new Image(Objects.requireNonNull(PimUtil.class.getClassLoader()
-                .getResourceAsStream("pictures/" + path + ".png")));
+    private LayoutUtil() {
     }
 
     public static void alignPane(VBox mainPane, Context context) {

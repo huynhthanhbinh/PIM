@@ -23,9 +23,9 @@ import com.bht.pim.message.impl.IdentifierSending;
 import com.bht.pim.notification.NotificationStyle;
 import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.FormatUtil;
+import com.bht.pim.util.ImageUtil;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
-import com.bht.pim.util.PimUtil;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import com.sun.javafx.scene.control.skin.TableViewSkinBase;
 
@@ -75,10 +75,10 @@ public final class ProjectTableFragment extends BaseFragment {
     static final String ID = "idfPTable";
     private static final int MAX_TABLE_ROW = 8;
 
-    private final Image delete = PimUtil.getImage("delete");
-    private final Image edit = PimUtil.getImage("edit");
-    private final Image deleteInverse = PimUtil.getImage("delete_inverse");
-    private final Image editInverse = PimUtil.getImage("edit_inverse");
+    private final Image delete = ImageUtil.getImage("delete");
+    private final Image edit = ImageUtil.getImage("edit");
+    private final Image deleteInverse = ImageUtil.getImage("delete_inverse");
+    private final Image editInverse = ImageUtil.getImage("edit_inverse");
 
 
     private int countSuccess; // for delete all selected projects

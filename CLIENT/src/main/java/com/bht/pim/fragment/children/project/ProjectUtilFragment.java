@@ -14,8 +14,8 @@ import com.bht.pim.fragment.parent.project.ProjectListFragment;
 import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.property.LanguageProperty;
+import com.bht.pim.util.ImageUtil;
 import com.bht.pim.util.LanguageUtil;
-import com.bht.pim.util.PimUtil;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -115,9 +115,9 @@ public final class ProjectUtilFragment extends BaseFragment {
     }
 
     private void initAllAttributes() {
-        ImageView iReset = new ImageView(PimUtil.getImage("reset"));
-        ImageView iDelete = new ImageView(PimUtil.getImage("delete"));
-        ImageView iNew = new ImageView(PimUtil.getImage("add"));
+        ImageView iReset = new ImageView(ImageUtil.getImage("reset"));
+        ImageView iDelete = new ImageView(ImageUtil.getImage("delete"));
+        ImageView iNew = new ImageView(ImageUtil.getImage("add"));
 
         iReset.setFitWidth(110);
         iReset.setFitHeight(110);

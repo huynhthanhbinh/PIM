@@ -12,6 +12,7 @@ import com.bht.pim.configuration.AppConfiguration;
 
 import javafx.event.Event;
 import javafx.scene.Node;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lombok.extern.log4j.Log4j;
@@ -25,6 +26,8 @@ import lombok.extern.log4j.Log4j;
                 AppConfiguration.PERSPECTIVE_PIM,
                 AppConfiguration.PERSPECTIVE_DEFAULT})
 public final class PimWorkbench implements FXWorkbench {
+
+    public static final VBox LAYOUT = new VBox();
 
     @PostConstruct
     private void onBeanCreation() {
@@ -43,7 +46,9 @@ public final class PimWorkbench implements FXWorkbench {
     }
 
     @Override
-    public void postHandle(FXComponentLayout fxComponentLayout) {
+    public void postHandle(FXComponentLayout componentLayout) {
         log.info("[HANDLE] FXWorkbench:  " + getClass().getSimpleName());
+        LAYOUT.prefWidthProperty().bind(componentLayout.getGlassPane().widthProperty());
+        LAYOUT.prefHeightProperty().bind(componentLayout.getGlassPane().heightProperty());
     }
 }

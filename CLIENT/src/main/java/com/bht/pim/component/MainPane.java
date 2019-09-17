@@ -16,7 +16,7 @@ import com.bht.pim.fragment.parent.project.ProjectInfoFragment;
 import com.bht.pim.fragment.parent.project.ProjectListFragment;
 import com.bht.pim.fragment.parent.project.ProjectUpdateFragment;
 import com.bht.pim.message.PimMessage;
-import com.bht.pim.util.PimUtil;
+import com.bht.pim.util.LayoutUtil;
 
 import javafx.event.Event;
 import javafx.scene.Node;
@@ -55,7 +55,7 @@ public final class MainPane extends BaseComponent {
     protected void initLayout() {
         setMinSize(1024, 600);
         setPrefSize(1024, 600);
-        PimUtil.alignPane(this, context);
+        LayoutUtil.alignPane(this, context);
     }
 
     @Override

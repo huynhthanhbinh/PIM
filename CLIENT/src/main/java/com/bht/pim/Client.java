@@ -1,18 +1,20 @@
 package com.bht.pim;
 
-import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.handler.PimErrorHandler;
-import com.bht.pim.util.LanguageUtil;
-import com.bht.pim.util.PimUtil;
-import com.bht.pim.workbench.PimWorkbench;
-import javafx.application.Application;
-import javafx.scene.Node;
-import javafx.stage.Stage;
-import lombok.extern.log4j.Log4j;
 import org.jacpfx.api.handler.ErrorDialogHandler;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 import org.jacpfx.spring.launcher.AFXSpringJavaConfigLauncher;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.handler.PimErrorHandler;
+import com.bht.pim.util.ImageUtil;
+import com.bht.pim.util.LanguageUtil;
+import com.bht.pim.workbench.PimWorkbench;
+
+import javafx.application.Application;
+import javafx.scene.Node;
+import javafx.stage.Stage;
+import lombok.extern.log4j.Log4j;
 
 /**
  * @author bht
@@ -43,7 +45,7 @@ public class Client extends AFXSpringJavaConfigLauncher {
     @Override
     protected void postInit(Stage stage) {
         LanguageUtil.initLabel(stage.titleProperty(), AppConfiguration.LABEL_PIM_MAIN);
-        stage.getIcons().add(PimUtil.getImage("icon"));
+        stage.getIcons().add(ImageUtil.getImage("icon"));
         stage.sizeToScene();
         stage.setMinWidth(1280);
         stage.setMinHeight(720);

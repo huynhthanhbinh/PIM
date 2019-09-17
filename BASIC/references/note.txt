@@ -1,4 +1,4 @@
-@author BHT
+@author bht
 
 3 files always go together in JavaFX
     + Java Class

@@ -15,7 +15,7 @@ import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
 
 import com.bht.pim.configuration.AppConfiguration;
-import com.bht.pim.util.ViewUtil;
+import com.bht.pim.util.GraphicUtil;
 
 import javafx.event.Event;
 import lombok.Getter;
@@ -71,7 +71,7 @@ public abstract class BasePerspective implements FXPerspective {
         onCreated(perspectiveLayout, layout);
 
         perspectiveContext.getComponentLayout().getGlassPane().getScene().getAccelerators()
-                .put(ViewUtil.VIEW_GRAPHICS_KEY_COMBINATION, ViewUtil::viewGraphics);
+                .put(GraphicUtil.VIEW_GRAPHICS_KEY_COMBINATION, GraphicUtil::viewGraphics);
     }
 
     final <T extends BaseComponent> void addChildComponent(T t) {

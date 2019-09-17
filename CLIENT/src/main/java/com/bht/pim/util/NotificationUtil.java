@@ -12,10 +12,12 @@ import javafx.util.Duration;
  */
 public final class NotificationUtil {
 
+    /**
+     * time showing notification in seconds
+     */
     private static final int PERIOD = 8;
 
     private NotificationUtil() {
-
     }
 
     public static void showNotification(NotificationStyle style, Pos position, String message) {

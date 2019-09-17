@@ -26,6 +26,10 @@ import lombok.extern.log4j.Log4j;
 @Component
 public final class FormatUtil<T extends BaseDto> {
 
+    public static final ObjectProperty<StringConverter<LocalDate>> DATE_STRING_CONVERTER = new SimpleObjectProperty<>();
+    private static final ObjectProperty<DateTimeFormatter> DATE_FORMATTER_PROPERTY = new SimpleObjectProperty<>();
+    public final ObjectProperty<Callback<TableColumn<T, LocalDate>, TableCell<T, LocalDate>>> dateCellFormatProperty = new SimpleObjectProperty<>();
+
     @PostConstruct
     public void addAllEventListeners() {
         DATE_FORMATTER_PROPERTY.addListener(observable -> {
@@ -38,9 +42,6 @@ public final class FormatUtil<T extends BaseDto> {
                 DATE_FORMATTER_PROPERTY.set(DateTimeFormatter.ofPattern(newValue)));
     }
 
-    public static final ObjectProperty<StringConverter<LocalDate>> DATE_STRING_CONVERTER = new SimpleObjectProperty<>();
-    private static final ObjectProperty<DateTimeFormatter> DATE_FORMATTER_PROPERTY = new SimpleObjectProperty<>();
-    public final ObjectProperty<Callback<TableColumn<T, LocalDate>, TableCell<T, LocalDate>>> dateCellFormatProperty = new SimpleObjectProperty<>();
 
     // Format Date : convert from Timestamp to LocalDate
     private TableCell<T, LocalDate> dateCellFormat(TableColumn<T, LocalDate> column) {
@@ -58,6 +59,7 @@ public final class FormatUtil<T extends BaseDto> {
             }
         };
     }
+
 
     // Converter for pim date-picker controls
     private StringConverter<LocalDate> dateStringConverter() {
