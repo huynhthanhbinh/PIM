@@ -5,6 +5,7 @@ import org.jacpfx.rcp.workbench.FXWorkbench;
 import org.jacpfx.spring.launcher.AFXSpringJavaConfigLauncher;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.bht.pim.base.BaseBean;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.handler.PimErrorHandler;
 import com.bht.pim.util.ImageUtil;
@@ -21,7 +22,7 @@ import lombok.extern.log4j.Log4j;
  */
 @Log4j
 @SpringBootApplication
-public class Client extends AFXSpringJavaConfigLauncher {
+public class Client extends AFXSpringJavaConfigLauncher implements BaseBean {
 
     public static void main(String[] args) {
         Application.launch(args);

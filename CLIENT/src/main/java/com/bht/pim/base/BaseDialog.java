@@ -1,12 +1,15 @@
 package com.bht.pim.base;
 
+import com.bht.pim.annotation.InheritedComponent;
+
 import javafx.scene.layout.VBox;
 
 /**
  *
  * @author bht
  */
-public abstract class BaseDialog extends VBox {
+@InheritedComponent
+public abstract class BaseDialog extends VBox implements BaseBean {
 
     public abstract VBox getInstance();
 }

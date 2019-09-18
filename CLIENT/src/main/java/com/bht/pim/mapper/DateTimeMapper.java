@@ -1,17 +1,22 @@
 package com.bht.pim.mapper;
 
-import com.google.protobuf.Timestamp;
-import org.mapstruct.Mapper;
-
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 
+import org.mapstruct.Mapper;
+
+import com.bht.pim.annotation.InheritedComponent;
+import com.bht.pim.base.BaseBean;
+import com.google.protobuf.Timestamp;
+
 /**
+ *
  * @author bht
  */
-@Mapper
-public interface DateTimeMapper {
+@InheritedComponent
+@Mapper(componentModel = "spring")
+public interface DateTimeMapper extends BaseBean {
 
     default Timestamp toTimestamp(final LocalDate localDate) {
         if (localDate == null) {

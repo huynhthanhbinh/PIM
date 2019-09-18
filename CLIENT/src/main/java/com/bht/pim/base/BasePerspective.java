@@ -24,20 +24,13 @@ import lombok.Getter;
  *
  * @author bht
  */
-public abstract class BasePerspective implements FXPerspective {
+public abstract class BasePerspective implements BaseBean, FXPerspective {
 
     private static final Logger LOGGER = Logger.getLogger(BasePerspective.class);
     protected Context perspectiveContext;
 
     @Getter
     private List<BaseComponent> childComponents;
-
-
-    @javax.annotation.PostConstruct
-    private void onBeanCreation() {
-        LOGGER.info("[SPRING] BeanCreation: " + getClass().getSimpleName());
-    }
-
 
     @Override
     public void handlePerspective(Message<Event, Object> message,

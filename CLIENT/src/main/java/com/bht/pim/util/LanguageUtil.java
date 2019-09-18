@@ -37,7 +37,7 @@ public final class LanguageUtil {
 
     public static StringProperty getTextPropertyOfKey(String key) {
         StringProperty textProperty = new SimpleStringProperty();
-        LanguageUtil.initLabel(textProperty, key);
+        initLabel(textProperty, key);
         return textProperty;
     }
 

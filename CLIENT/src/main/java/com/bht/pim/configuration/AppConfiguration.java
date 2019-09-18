@@ -4,19 +4,15 @@ import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import com.bht.pim.annotation.InheritedComponent;
+import com.bht.pim.base.BaseBean;
 import com.bht.pim.base.BasePerspective;
-import com.bht.pim.mapper.DateTimeMapper;
-import com.bht.pim.mapper.EmployeeMapper;
-import com.bht.pim.mapper.GroupMapper;
-import com.bht.pim.mapper.ProjectMapper;
-import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.property.FormatProperty;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
@@ -35,14 +31,14 @@ import javafx.beans.property.StringProperty;
 import lombok.extern.log4j.Log4j;
 
 /**
+ *
  * @author bht
  */
 @Log4j
 @Configuration
-@SuppressWarnings("all")
-@ComponentScan("com.bht.pim")
 @PropertySource("classpath:/pim.properties")
-public class AppConfiguration {
+@ComponentScan(basePackages = "com.bht.pim", includeFilters = @ComponentScan.Filter(InheritedComponent.class))
+public class AppConfiguration implements BaseBean {
 
     // 2 locale are available at the moment: Locale.English & Locale.French
     // This property is set default locale when turn on the application
@@ -50,7 +46,7 @@ public class AppConfiguration {
     public static final LanguageProperty LANGUAGE_PROPERTY = new LanguageProperty(Locale.ENGLISH);
 
     // DateFormat at this moment, can expand more in the future
-    // Depends on current locale, format will be change correspondently
+    // Depends on current locale, format will be change correspondingly
     // Eg. for dateFormat: FR - dd/MM/yyyy , US - MM/dd/yyyy
     public static final FormatProperty FORMAT_PROPERTY = new FormatProperty();
 
@@ -108,35 +104,5 @@ public class AppConfiguration {
     public ProjectServiceGrpc.ProjectServiceBlockingStub projectServiceBlockingStub() {
         log.info("[SPRING] BeanCreation: ProjectServiceBlockingStub");
         return ProjectServiceGrpc.newBlockingStub(CHANNEL_PROPERTY.get());
-    }
-
-    @Bean
-    public StatusMapper statusMapper() {
-        log.info("[SPRING] BeanCreation: StatusMapper");
-        return Mappers.getMapper(StatusMapper.class);
-    }
-
-    @Bean
-    public DateTimeMapper dateTimeMapper() {
-        log.info("[SPRING] BeanCreation: DateTimeMapper");
-        return Mappers.getMapper(DateTimeMapper.class);
-    }
-
-    @Bean
-    public EmployeeMapper employeeMapper() {
-        log.info("[SPRING] BeanCreation: EmployeeMapper");
-        return Mappers.getMapper(EmployeeMapper.class);
-    }
-
-    @Bean
-    public GroupMapper groupMapper() {
-        log.info("[SPRING] BeanCreation: GroupMapper");
-        return Mappers.getMapper(GroupMapper.class);
-    }
-
-    @Bean
-    public ProjectMapper projectMapper() {
-        log.info("[SPRING] BeanCreation: ProjectMapper");
-        return Mappers.getMapper(ProjectMapper.class);
     }
 }

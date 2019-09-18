@@ -3,11 +3,11 @@ package com.bht.pim.mapper;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
-
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
 
+import com.bht.pim.annotation.InheritedComponent;
+import com.bht.pim.base.BaseBean;
 import com.bht.pim.util.LanguageUtil;
 
 import javafx.beans.property.StringProperty;
@@ -18,13 +18,15 @@ import lombok.Getter;
  * @author bht
  */
 @Mapper
-public abstract class StatusMapper {
+@InheritedComponent
+public abstract class StatusMapper implements BaseBean {
 
     @Getter
     private Map<String, StringProperty> availableStatus;
 
-    @PostConstruct
-    private void initialize() {
+    @Override
+    public void initialize() {
+        BaseBean.super.initialize();
         availableStatus = new HashMap<>();
         availableStatus.put("TOT", LanguageUtil.getTextPropertyOfKey("label.project.status.total"));
         availableStatus.put("NEW", LanguageUtil.getTextPropertyOfKey("label.project.status.new"));

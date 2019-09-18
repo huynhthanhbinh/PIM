@@ -1,16 +1,18 @@
 package com.bht.pim.service;
 
-import com.bht.pim.dto.ProjectDto;
-import javafx.beans.property.StringProperty;
-import javafx.collections.ObservableList;
-
 import java.util.List;
 import java.util.Map;
+
+import com.bht.pim.base.BaseBean;
+import com.bht.pim.dto.ProjectDto;
+
+import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 
 /**
  * @author bht
  */
-public interface ProjectService {
+public interface ProjectService extends BaseBean {
 
     // Add new project
     boolean addNewProject(ProjectDto project);

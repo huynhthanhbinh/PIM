@@ -3,8 +3,6 @@ package com.bht.pim.base;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.log4j.Logger;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 
@@ -15,7 +13,7 @@ import lombok.Getter;
  *
  * @author bht
  */
-public abstract class BaseFragment {
+public abstract class BaseFragment implements BaseBean {
 
     protected static final Logger LOGGER = Logger.getLogger(BaseFragment.class);
     protected BaseComponent component;
@@ -26,13 +24,6 @@ public abstract class BaseFragment {
     protected BaseFragment parentFragment;
     @Getter
     protected List<BaseFragment> childrenFragments;
-
-
-    @PostConstruct
-    private void onBeanCreation() {
-        LOGGER.info("[SPRING] BeanCreation: " + getClass().getSimpleName());
-    }
-
 
     /**
      * this is what initialize do for any fragment

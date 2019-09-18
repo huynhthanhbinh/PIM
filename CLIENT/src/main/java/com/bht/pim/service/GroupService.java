@@ -1,12 +1,14 @@
 package com.bht.pim.service;
 
+import com.bht.pim.base.BaseBean;
 import com.bht.pim.dto.GroupDto;
+
 import javafx.collections.ObservableList;
 
 /**
  * @author bht
  */
-public interface GroupService {
+public interface GroupService extends BaseBean {
 
     // Add a new group
     boolean addNewGroup(GroupDto newGroup);

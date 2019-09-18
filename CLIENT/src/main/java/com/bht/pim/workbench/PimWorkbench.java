@@ -1,13 +1,14 @@
 package com.bht.pim.workbench;
 
-import javax.annotation.PostConstruct;
-
 import org.jacpfx.api.annotations.workbench.Workbench;
 import org.jacpfx.api.componentLayout.WorkbenchLayout;
 import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.workbench.FXWorkbench;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.bht.pim.base.BaseBean;
 import com.bht.pim.configuration.AppConfiguration;
 
 import javafx.event.Event;
@@ -21,18 +22,17 @@ import lombok.extern.log4j.Log4j;
  * @author bht
  */
 @Log4j
+@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Workbench(id = "workbench", name = "workbench",
         perspectives = {
                 AppConfiguration.PERSPECTIVE_PIM,
                 AppConfiguration.PERSPECTIVE_DEFAULT})
-public final class PimWorkbench implements FXWorkbench {
+public final class PimWorkbench implements BaseBean, FXWorkbench {
 
     public static final VBox LAYOUT = new VBox();
 
-    @PostConstruct
-    private void onBeanCreation() {
-        log.info("[SPRING] BeanCreation: " + getClass().getSimpleName());
-    }
+    @Autowired
+    private AnnotationConfigApplicationContext applicationContext;
 
     @Override
     public void handleInitialLayout(
@@ -43,6 +43,8 @@ public final class PimWorkbench implements FXWorkbench {
         layout.setWorkbenchXYSize(1280, 700);
         layout.setStyle(StageStyle.DECORATED);
         layout.setMenuEnabled(false);
+
+        applicationContext.registerShutdownHook(); // for bean destruction of spring @PreDestroy
     }
 
     @Override

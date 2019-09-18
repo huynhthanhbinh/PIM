@@ -27,7 +27,7 @@ import lombok.Getter;
 /**
  * @author bht
  */
-public abstract class BaseComponent extends VBox implements FXComponent {
+public abstract class BaseComponent extends VBox implements BaseBean, FXComponent {
 
     private static final Logger LOGGER = Logger.getLogger(BaseComponent.class);
     protected Context componentContext;
@@ -35,13 +35,6 @@ public abstract class BaseComponent extends VBox implements FXComponent {
     private List<BaseComponentFragment> fragments;
     @Getter
     protected ManagedFragmentHandler<? extends BaseComponentFragment> currentFragment;
-
-
-    @javax.annotation.PostConstruct
-    private void onBeanCreation() {
-        LOGGER.info("[SPRING] BeanCreation: " + getClass().getSimpleName());
-    }
-
 
     public BaseComponent() {
         fragments = new ArrayList<>();

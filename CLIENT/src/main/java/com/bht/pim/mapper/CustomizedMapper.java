@@ -6,6 +6,7 @@ import org.mapstruct.Named;
 import org.mapstruct.NullValueMappingStrategy;
 import org.springframework.stereotype.Component;
 
+import com.bht.pim.base.BaseBean;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.dto.GroupDto;
 import com.bht.pim.dto.ProjectDto;
@@ -19,7 +20,7 @@ import com.bht.pim.proto.projects.ProjectInfo;
 @Component
 @Mapper(uses = {DateTimeMapper.class, StatusMapper.class}, componentModel = "spring",
         nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
-public interface CustomizedMapper {
+public interface CustomizedMapper extends BaseBean {
 
 
     @Named("toEmployeeDto")
