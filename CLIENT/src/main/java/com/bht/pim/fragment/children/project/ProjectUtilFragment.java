@@ -37,10 +37,10 @@ import lombok.Getter;
 public final class ProjectUtilFragment extends BaseFragment {
 
     static final String ID = "idfPUtil";
-
-    private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
     @Resource
     private Context context;
+    @Autowired
+    private LanguageProperty languageProperty;
     @Autowired
     private StatusMapper statusMapper;
 

@@ -1,7 +1,5 @@
 package com.bht.pim.util;
 
-import org.springframework.stereotype.Component;
-
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.base.BasePerspective;
 import com.bht.pim.configuration.AppConfiguration;
@@ -24,7 +22,6 @@ import lombok.extern.log4j.Log4j;
  * + G stands for graphics
  */
 @Log4j
-@Component
 public final class GraphicUtil {
 
     private GraphicUtil() {

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
 /**
+ * this class using Template Method Design-Pattern ^^
  *
  * @author bht
  */

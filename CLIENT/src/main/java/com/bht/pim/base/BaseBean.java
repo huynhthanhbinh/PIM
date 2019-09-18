@@ -14,6 +14,9 @@ public interface BaseBean {
     /**
      * such as constructor of spring bean
      * it works on both scopes SINGLETON & PROTOTYPE !
+     *
+     * if need to override it,
+     * must call BaseBean.super.initialize(); first !!!!!
      */
     @PostConstruct
     default void initialize() {
@@ -30,6 +33,9 @@ public interface BaseBean {
      * applicationContext.registerShutdownHook();
      * see this line of code implemented in PimWorkbench.class
      * AnnotationConfigApplicationContext is injected by SpringBoot !
+     *
+     * if need to override it
+     * must call BaseBean.super.destroy(); first !!!!!
      */
     @PreDestroy
     default void destroy() {

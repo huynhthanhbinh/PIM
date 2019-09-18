@@ -42,11 +42,11 @@ import javafx.scene.layout.HBox;
 public final class ProjectPanelFragment extends BaseFragment {
 
     static final String ID = "idfPPanel";
-    private static final LanguageProperty LANGUAGE_PROPERTY = AppConfiguration.LANGUAGE_PROPERTY;
     private ObservableList<Map.Entry<String, Long>> items;
-
     @Resource
     private Context context;
+    @Autowired
+    private LanguageProperty languageProperty;
     @Autowired
     private StatusMapper statusMapper;
     @Autowired
@@ -147,7 +147,7 @@ public final class ProjectPanelFragment extends BaseFragment {
         });
 
         items = FXCollections.emptyObservableList();
-        LANGUAGE_PROPERTY.getLocaleProperty().addListener((observable, oldValue, newValue) -> {
+        languageProperty.getLocaleProperty().addListener((observable, oldValue, newValue) -> {
             loadBarChart();
             loadPieChart();
         });

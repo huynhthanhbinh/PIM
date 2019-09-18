@@ -13,7 +13,6 @@ import org.springframework.context.annotation.PropertySource;
 import com.bht.pim.annotation.InheritedComponent;
 import com.bht.pim.base.BaseBean;
 import com.bht.pim.base.BasePerspective;
-import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
@@ -36,10 +35,8 @@ import lombok.extern.log4j.Log4j;
 @ComponentScan(basePackages = "com.bht.pim", includeFilters = @ComponentScan.Filter(InheritedComponent.class))
 public class AppConfiguration implements BaseBean {
 
-    // 2 locale are available at the moment: Locale.English & Locale.French
-    // This property is set default locale when turn on the application
-    // We can change this locale later on application run time
-    public static final LanguageProperty LANGUAGE_PROPERTY = new LanguageProperty(Locale.ENGLISH);
+    // default app start-up locale, can be changed later on runtime
+    public static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
     @PostConstruct
     public void init() {

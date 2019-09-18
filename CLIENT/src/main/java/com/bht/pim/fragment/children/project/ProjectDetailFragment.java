@@ -48,11 +48,9 @@ import javafx.scene.layout.VBox;
 public final class ProjectDetailFragment extends BaseFragment {
 
     static final String ID = "idfPDetail";
-
     private ProjectDto projectDto;
-
-    private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
-
+    @Autowired
+    private LanguageProperty languageProperty;
     @Autowired
     private StatusMapper statusMapper;
     @Autowired

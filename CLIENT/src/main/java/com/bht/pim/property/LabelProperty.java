@@ -1,12 +1,13 @@
 package com.bht.pim.property;
 
-import com.bht.pim.configuration.AppConfiguration;
+import java.util.ResourceBundle;
+
+import com.bht.pim.configuration.SpringApplicationContext;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.Getter;
-
-import java.util.ResourceBundle;
 
 /**
  * @author bht
@@ -18,7 +19,7 @@ public final class LabelProperty {
     private LanguageProperty languageProperty;
 
     public LabelProperty() {
-        languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
+        languageProperty = SpringApplicationContext.getBean(LanguageProperty.class);
         stringProperty = new SimpleStringProperty();
     }
 

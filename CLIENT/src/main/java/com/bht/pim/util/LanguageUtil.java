@@ -2,7 +2,7 @@ package com.bht.pim.util;
 
 import java.util.Objects;
 
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringApplicationContext;
 import com.bht.pim.property.LabelProperty;
 import com.bht.pim.property.LanguageProperty;
 
@@ -19,7 +19,7 @@ public final class LanguageUtil {
     private LanguageUtil() {
     }
 
-    private static LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
+    private static LanguageProperty languageProperty = SpringApplicationContext.getBean(LanguageProperty.class);
 
     // init a label for multilingual purpose
     public static void initLabel(StringProperty textProperty, final String key) {

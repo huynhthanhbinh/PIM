@@ -25,6 +25,8 @@ import javafx.scene.layout.VBox;
 import lombok.Getter;
 
 /**
+ * this class using Template Method Design-Pattern ^^
+ *
  * @author bht
  */
 public abstract class BaseComponent extends VBox implements BaseBean, FXComponent {

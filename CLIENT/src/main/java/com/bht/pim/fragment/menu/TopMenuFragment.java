@@ -6,6 +6,7 @@ import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.configuration.AppConfiguration;
@@ -27,14 +28,16 @@ import lombok.extern.log4j.Log4j;
  * @author bht
  */
 @Log4j
+@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = TopMenuFragment.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/menu/TopMenuFragment.fxml")
 public final class TopMenuFragment extends BaseComponentFragment {
 
     static final String ID = "idfMenuTop";
-    private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
 
+    @Autowired
+    private LanguageProperty languageProperty;
     @Resource
     private Context context;
     @FXML

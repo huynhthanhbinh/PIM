@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import lombok.Getter;
 
 /**
+ * this class using Template Method Design-Pattern ^^
  *
  * @author bht
  */

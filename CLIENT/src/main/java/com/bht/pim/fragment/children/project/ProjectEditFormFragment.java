@@ -66,10 +66,10 @@ import javafx.scene.layout.VBox;
 public final class ProjectEditFormFragment extends BaseFragment implements Confirmable {
 
     static final String ID = "idfPEditForm";
-
     private ProjectDto projectDto;
 
-    private LanguageProperty languageProperty = AppConfiguration.LANGUAGE_PROPERTY;
+    @Autowired
+    private LanguageProperty languageProperty;
     @Autowired
     private EmployeeService employeeService;
     @Autowired

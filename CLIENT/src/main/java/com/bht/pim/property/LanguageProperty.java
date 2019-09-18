@@ -3,8 +3,9 @@ package com.bht.pim.property;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import com.bht.pim.base.BaseBean;
 import com.bht.pim.configuration.AppConfiguration;
 
 import javafx.beans.property.ObjectProperty;
@@ -14,17 +15,17 @@ import lombok.Getter;
 /**
  * @author bht
  */
-@Scope("singleton")
-public final class LanguageProperty {
+@Component
+public final class LanguageProperty implements BaseBean {
     @Getter
     private ObjectProperty<Locale> localeProperty;
     @Getter
     private ObjectProperty<ResourceBundle> resourceBundleProperty;
 
-    public LanguageProperty(Locale locale) {
-        localeProperty = new SimpleObjectProperty<>(locale);
+    public LanguageProperty() {
+        localeProperty = new SimpleObjectProperty<>(AppConfiguration.DEFAULT_LOCALE);
         resourceBundleProperty = new SimpleObjectProperty<>(ResourceBundle
-                .getBundle(AppConfiguration.LANGUAGE_BUNDLES, locale));
+                .getBundle(AppConfiguration.LANGUAGE_BUNDLES, AppConfiguration.DEFAULT_LOCALE));
 
         addEventListener();
     }
