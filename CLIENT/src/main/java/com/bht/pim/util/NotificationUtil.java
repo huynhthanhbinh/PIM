@@ -1,9 +1,9 @@
 package com.bht.pim.util;
 
-import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.notification.JFXNotifications;
 import com.bht.pim.notification.NotificationStyle;
 
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
 import javafx.util.Duration;
 
@@ -11,11 +11,15 @@ import javafx.util.Duration;
  * @author bht
  */
 public final class NotificationUtil {
-
     /**
      * time showing notification in seconds
      */
     private static final int PERIOD = 8;
+
+    private static final StringProperty INFORMATION_TITLE = LanguageUtil.getTextPropertyOfKey("label.notification.information");
+    private static final StringProperty SUCCESS_TITLE = LanguageUtil.getTextPropertyOfKey("label.notification.success");
+    private static final StringProperty WARNING_TITLE = LanguageUtil.getTextPropertyOfKey("label.notification.warning");
+    private static final StringProperty ERROR_TITLE = LanguageUtil.getTextPropertyOfKey("label.notification.error");
 
     private NotificationUtil() {
     }
@@ -25,7 +29,7 @@ public final class NotificationUtil {
 
             case INFO:
                 JFXNotifications.create()
-                        .title(AppConfiguration.INFORMATION_TITLE.get())
+                        .title(INFORMATION_TITLE.get())
                         .text(message)
                         .hideAfter(Duration.seconds(PERIOD))
                         .position(position)
@@ -34,7 +38,7 @@ public final class NotificationUtil {
 
             case SUCCESS:
                 JFXNotifications.create()
-                        .title(AppConfiguration.SUCCESS_TITLE.get())
+                        .title(SUCCESS_TITLE.get())
                         .text(message)
                         .hideAfter(Duration.seconds(PERIOD))
                         .position(position)
@@ -43,7 +47,7 @@ public final class NotificationUtil {
 
             case WARNING:
                 JFXNotifications.create()
-                        .title(AppConfiguration.WARNING_TITLE.get())
+                        .title(WARNING_TITLE.get())
                         .text(message)
                         .hideAfter(Duration.seconds(PERIOD))
                         .position(position)
@@ -52,7 +56,7 @@ public final class NotificationUtil {
 
             case ERROR:
                 JFXNotifications.create()
-                        .title(AppConfiguration.ERROR_TITLE.get())
+                        .title(ERROR_TITLE.get())
                         .text(message)
                         .hideAfter(Duration.seconds(PERIOD))
                         .position(position)

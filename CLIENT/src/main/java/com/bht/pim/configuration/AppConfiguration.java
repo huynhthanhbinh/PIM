@@ -17,7 +17,6 @@ import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
-import com.bht.pim.util.LanguageUtil;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -25,8 +24,6 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import lombok.extern.log4j.Log4j;
 
 /**
@@ -53,13 +50,6 @@ public class AppConfiguration implements BaseBean {
                 .usePlaintext()
                 .maxInboundMessageSize(10 * 1024 * 1024)
                 .build());
-
-        // Init label for notification util
-        // This will use to show notification of application
-        LanguageUtil.initLabel(INFORMATION_TITLE, "label.notification.information");
-        LanguageUtil.initLabel(SUCCESS_TITLE, "label.notification.success");
-        LanguageUtil.initLabel(WARNING_TITLE, "label.notification.warning");
-        LanguageUtil.initLabel(ERROR_TITLE, "label.notification.error");
     }
 
     @Value("${pim.server.host}")
@@ -76,11 +66,6 @@ public class AppConfiguration implements BaseBean {
     public static final String LABEL_PIM_MAIN = "label.pim.main";
     public static final String PERSPECTIVE_PIM = "idPIMPerspective";
     public static final String PERSPECTIVE_DEFAULT = "idDefaultPerspective";
-
-    public static final StringProperty INFORMATION_TITLE = new SimpleStringProperty();
-    public static final StringProperty SUCCESS_TITLE = new SimpleStringProperty();
-    public static final StringProperty WARNING_TITLE = new SimpleStringProperty();
-    public static final StringProperty ERROR_TITLE = new SimpleStringProperty();
 
     @Bean
     public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub() {
