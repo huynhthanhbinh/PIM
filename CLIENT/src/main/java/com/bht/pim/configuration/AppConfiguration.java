@@ -13,7 +13,6 @@ import org.springframework.context.annotation.PropertySource;
 import com.bht.pim.annotation.InheritedComponent;
 import com.bht.pim.base.BaseBean;
 import com.bht.pim.base.BasePerspective;
-import com.bht.pim.property.FormatProperty;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
@@ -44,11 +43,6 @@ public class AppConfiguration implements BaseBean {
     // This property is set default locale when turn on the application
     // We can change this locale later on application run time
     public static final LanguageProperty LANGUAGE_PROPERTY = new LanguageProperty(Locale.ENGLISH);
-
-    // DateFormat at this moment, can expand more in the future
-    // Depends on current locale, format will be change correspondingly
-    // Eg. for dateFormat: FR - dd/MM/yyyy , US - MM/dd/yyyy
-    public static final FormatProperty FORMAT_PROPERTY = new FormatProperty();
 
     @PostConstruct
     public void init() {

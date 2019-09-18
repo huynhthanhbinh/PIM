@@ -1,5 +1,8 @@
 package com.bht.pim.property;
 
+import org.springframework.stereotype.Component;
+
+import com.bht.pim.base.BaseBean;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.util.LanguageUtil;
 
@@ -7,9 +10,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
+ *
  * @author bht
  */
-public final class FormatProperty {
+@Component
+public final class FormatProperty implements BaseBean {
 
     public static final StringProperty DATE_PATTERN_PROPERTY = new SimpleStringProperty();
 
