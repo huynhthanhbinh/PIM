@@ -20,7 +20,6 @@ import com.bht.pim.fragment.menu.TopMenuFragment;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
 
@@ -87,8 +86,8 @@ public abstract class BaseComponent extends VBox implements BaseBean, FXComponen
     }
 
 
-    final void showModalDialog(Pane dialog) {
-        componentContext.showModalDialog(dialog);
+    final void showModalDialog(BaseDialog dialog) {
+        componentContext.showModalDialog(dialog.getDialogInBound(componentContext)); // for closing dialog when clicking outside
     }
 
 

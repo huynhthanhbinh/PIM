@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.dialog.dialogs.HelpDialog;
 import com.bht.pim.perspective.DefaultPerspective;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.util.ImageUtil;
@@ -39,6 +40,8 @@ public final class TopMenuFragment extends BaseComponentFragment {
 
     @Autowired
     private LanguageProperty languageProperty;
+    @Autowired
+    private HelpDialog helpDialog;
     @Resource
     private Context context;
     @FXML
@@ -133,7 +136,7 @@ public final class TopMenuFragment extends BaseComponentFragment {
     private void addButtonHelpEventHandler() {
         bHelp.setOnMouseClicked(event -> {
             log.info("[INFO] Clicked help button");
-            showModalDialog(getHelpDialog());
+            showModalDialog(helpDialog);
         });
     }
 
@@ -146,20 +149,12 @@ public final class TopMenuFragment extends BaseComponentFragment {
     }
 
     private VBox getHelpDialog() {
-        PimWorkbench.LAYOUT.getChildren().clear();
-
-
         VBox dialog = new VBox();
         dialog.getStylesheets().add("/com/bht/pim/dialog/style/DialogStyle.css");
         dialog.setId("dialog");
         dialog.setMaxSize(500, 300);
         dialog.setPrefSize(500, 300);
         dialog.setAlignment(Pos.TOP_CENTER);
-        PimWorkbench.LAYOUT.setOnMouseClicked(event -> {
-            if (!dialog.isHover()) {
-                hideModalDialog();
-            }
-        });
 
         ImageView icon = new ImageView(ImageUtil.getImage("icon_inverse"));
         icon.setPreserveRatio(true);
@@ -193,7 +188,6 @@ public final class TopMenuFragment extends BaseComponentFragment {
 
         dialog.getChildren().add(titleBar);
         PimWorkbench.LAYOUT.getChildren().add(dialog);
-        PimWorkbench.LAYOUT.setAlignment(Pos.CENTER);
 
         return PimWorkbench.LAYOUT;
     }

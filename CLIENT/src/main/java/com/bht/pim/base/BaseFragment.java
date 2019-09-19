@@ -91,7 +91,7 @@ public abstract class BaseFragment implements BaseBean {
      * show a modal dialog
      * @param dialog dialog needs to be showed
      */
-    protected final void showModalDialog(Pane dialog) {
+    protected final void showModalDialog(BaseDialog dialog) {
         component.showModalDialog(dialog);
     }
 

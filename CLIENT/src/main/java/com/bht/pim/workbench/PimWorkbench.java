@@ -13,6 +13,7 @@ import com.bht.pim.perspective.DefaultPerspective;
 import com.bht.pim.perspective.PimPerspective;
 
 import javafx.event.Event;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -25,7 +26,7 @@ import lombok.extern.log4j.Log4j;
  */
 @Log4j
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
-@Workbench(id = "workbench", name = "workbench",
+@Workbench(id = "pimWorkbench", name = "pimWorkbench",
         perspectives = {
                 PimPerspective.ID,
                 DefaultPerspective.ID})
@@ -54,6 +55,8 @@ public final class PimWorkbench implements BaseBean, FXWorkbench {
     @Override
     public void postHandle(FXComponentLayout componentLayout) {
         log.info("[HANDLE] FXWorkbench:  " + getClass().getSimpleName());
+
+        LAYOUT.setAlignment(Pos.CENTER);
         LAYOUT.prefWidthProperty().bind(componentLayout.getGlassPane().widthProperty());
         LAYOUT.prefHeightProperty().bind(componentLayout.getGlassPane().heightProperty());
     }
