@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.perspective.DefaultPerspective;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.util.ImageUtil;
 import com.bht.pim.util.LanguageUtil;
@@ -139,7 +140,7 @@ public final class TopMenuFragment extends BaseComponentFragment {
     private void addButtonLogoutEventHandler() {
         bLogout.setOnMouseClicked(event -> {
             log.info("[INFO] Clicked Logout button");
-            context.send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");
+            context.send(DefaultPerspective.ID, "show");
             AppConfiguration.LOGGED_IN_PROPERTY.set(false);
         });
     }

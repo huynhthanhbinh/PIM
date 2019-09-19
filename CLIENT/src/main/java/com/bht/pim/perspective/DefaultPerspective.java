@@ -19,13 +19,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 /**
+ *
  * @author bht
  */
-@Perspective(id = AppConfiguration.PERSPECTIVE_DEFAULT, name = "PerspectiveDefault",
+@Perspective(id = DefaultPerspective.ID, name = "PerspectiveDefault",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/perspective/DefaultPerspective.fxml",
         components = {TopPane.ID, BottomPane.ID})
 public final class DefaultPerspective extends BasePerspective {
+
+    public static final String ID = "idDefaultPerspective";
 
     @FXML
     private SplitPane splitPane;

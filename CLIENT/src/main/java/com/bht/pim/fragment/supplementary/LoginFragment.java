@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.perspective.PimPerspective;
 import com.bht.pim.util.LanguageUtil;
 
 import javafx.event.Event;
@@ -87,7 +88,7 @@ public final class LoginFragment extends BaseComponentFragment {
         if (username.getText().equals(defaultUsername)
                 && password.getText().equals(defaultPassword)) {
 
-            context.send(AppConfiguration.PERSPECTIVE_PIM, "show");
+            context.send(PimPerspective.ID, "show");
             AppConfiguration.LOGGED_IN_PROPERTY.set(true);
 
             username.clear();

@@ -23,11 +23,13 @@ import javafx.scene.layout.AnchorPane;
 /**
  * @author bht
  */
-@Perspective(id = AppConfiguration.PERSPECTIVE_PIM, name = "PerspectivePIM",
+@Perspective(id = PimPerspective.ID, name = "PerspectivePIM",
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/perspective/PimPerspective.fxml",
         components = {TopPane.ID, LeftPane.ID, MainPane.ID})
 public final class PimPerspective extends BasePerspective {
+
+    public static final String ID = "idPIMPerspective";
 
     @FXML
     private SplitPane splitPane;

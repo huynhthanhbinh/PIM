@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.perspective.PimPerspective;
 import com.bht.pim.util.LanguageUtil;
 
 import javafx.fxml.FXML;
@@ -100,7 +101,7 @@ public final class ErrorHandlingFragment extends BaseComponentFragment {
 
     private void onReloadApp(MouseEvent mouseEvent) {
         AppConfiguration.CHANNEL_PROPERTY.get().resetConnectBackoff();
-        context.send(AppConfiguration.PERSPECTIVE_PIM, "show");
+        context.send(PimPerspective.ID, "show");
     }
 
     @Override

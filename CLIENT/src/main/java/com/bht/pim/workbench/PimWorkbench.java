@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.bht.pim.base.BaseBean;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.perspective.DefaultPerspective;
+import com.bht.pim.perspective.PimPerspective;
 
 import javafx.event.Event;
 import javafx.scene.Node;
@@ -19,20 +20,22 @@ import javafx.stage.StageStyle;
 import lombok.extern.log4j.Log4j;
 
 /**
+ *
  * @author bht
  */
 @Log4j
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Workbench(id = "workbench", name = "workbench",
         perspectives = {
-                AppConfiguration.PERSPECTIVE_PIM,
-                AppConfiguration.PERSPECTIVE_DEFAULT})
+                PimPerspective.ID,
+                DefaultPerspective.ID})
 public final class PimWorkbench implements BaseBean, FXWorkbench {
 
     public static final VBox LAYOUT = new VBox();
 
     @Autowired
     private AnnotationConfigApplicationContext applicationContext;
+
 
     @Override
     public void handleInitialLayout(
@@ -46,6 +49,7 @@ public final class PimWorkbench implements BaseBean, FXWorkbench {
 
         applicationContext.registerShutdownHook(); // for bean destruction of spring @PreDestroy
     }
+
 
     @Override
     public void postHandle(FXComponentLayout componentLayout) {

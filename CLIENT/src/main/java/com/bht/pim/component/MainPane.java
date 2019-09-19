@@ -16,6 +16,7 @@ import com.bht.pim.fragment.parent.project.ProjectInfoFragment;
 import com.bht.pim.fragment.parent.project.ProjectListFragment;
 import com.bht.pim.fragment.parent.project.ProjectUpdateFragment;
 import com.bht.pim.message.PimMessage;
+import com.bht.pim.perspective.DefaultPerspective;
 import com.bht.pim.util.LayoutUtil;
 
 import javafx.event.Event;
@@ -28,7 +29,6 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@SuppressWarnings("unchecked")
 @View(id = MainPane.ID, name = "MainPane",
         initialTargetLayoutId = MainPane.CONTAINER,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
@@ -72,6 +72,7 @@ public final class MainPane extends BaseComponent {
         return PimMessage.messageHandler(message, this);
     }
 
+    @SuppressWarnings("unchecked")
     public static void sendIdentifier(long id, MainPane mainPane, Class sender, Class receiver) {
 
         boolean success = ((IdentifierNeeding) mainPane
@@ -92,9 +93,8 @@ public final class MainPane extends BaseComponent {
 
     public static void onShowPerspective(MainPane mainPane) {
         switchComponentFragment(mainPane, ProjectDashboardFragment.class);
-
         if (!AppConfiguration.LOGGED_IN_PROPERTY.get()) { // not logged-in or recently logout
-            mainPane.getContext().send(AppConfiguration.PERSPECTIVE_DEFAULT, "show");
+            mainPane.getContext().send(DefaultPerspective.ID, "show");
         }
     }
 }
