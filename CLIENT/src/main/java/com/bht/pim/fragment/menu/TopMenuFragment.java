@@ -31,7 +31,7 @@ import lombok.extern.log4j.Log4j;
         viewLocation = "/com/bht/pim/fragment/menu/TopMenuFragment.fxml")
 public final class TopMenuFragment extends BaseComponentFragment {
 
-    static final String ID = "idfMenuTop";
+    static final String ID = "topMenuFragment";
 
     @Autowired
     private LanguageProperty languageProperty;

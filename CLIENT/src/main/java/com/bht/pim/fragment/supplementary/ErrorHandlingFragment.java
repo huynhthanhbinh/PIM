@@ -27,7 +27,7 @@ import lombok.extern.log4j.Log4j;
         viewLocation = "/com/bht/pim/fragment/supplementary/ErrorHandlingFragment.fxml")
 public final class ErrorHandlingFragment extends BaseComponentFragment {
 
-    public static final String ID = "idfSError";
+    public static final String ID = "errorHandlingFragment";
 
     @Value("${pim.server.host}")
     private String host;

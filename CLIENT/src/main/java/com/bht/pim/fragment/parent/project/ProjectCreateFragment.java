@@ -20,7 +20,7 @@ import com.bht.pim.fragment.children.project.ProjectEditFormFragment;
         viewLocation = "/com/bht/pim/fragment/parent/common/MainFragment.fxml")
 public final class ProjectCreateFragment extends BaseComponentFragment {
 
-    static final String ID = "idfPCreate";
+    static final String ID = "projectCreateFragment";
     private static final String LABEL = "label.project.create";
 
     private MainLabelFragment mainLabelFragment;

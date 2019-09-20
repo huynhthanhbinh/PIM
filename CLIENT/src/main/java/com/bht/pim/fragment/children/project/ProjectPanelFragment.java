@@ -41,7 +41,7 @@ import javafx.scene.layout.HBox;
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectPanelFragment.fxml")
 public final class ProjectPanelFragment extends BaseFragment {
 
-    static final String ID = "idfPPanel";
+    static final String ID = "projectPanelFragment";
     private ObservableList<Map.Entry<String, Long>> items;
     @Resource
     private Context context;

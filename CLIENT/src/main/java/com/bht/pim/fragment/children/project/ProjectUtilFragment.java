@@ -36,7 +36,7 @@ import lombok.Getter;
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectUtilFragment.fxml")
 public final class ProjectUtilFragment extends BaseFragment {
 
-    static final String ID = "idfPUtil";
+    static final String ID = "projectUtilFragment";
     @Resource
     private Context context;
     @Autowired

@@ -28,7 +28,7 @@ import lombok.Setter;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
 public final class BottomPane extends BaseComponent {
 
-    public static final String ID = "idcBottom";
+    public static final String ID = "bottomComponent";
     public static final String CONTAINER = "PBottom";
 
     private ManagedFragmentHandler<LoginFragment> loginFragment;

@@ -19,7 +19,7 @@ import com.bht.pim.fragment.children.project.ProjectPanelFragment;
         viewLocation = "/com/bht/pim/fragment/parent/common/MainFragment.fxml")
 public final class ProjectDashboardFragment extends BaseComponentFragment {
 
-    static final String ID = "idfPDashboard";
+    static final String ID = "projectDashboardFragment";
     private static final String LABEL = "label.project.dashboard";
 
     private MainLabelFragment mainLabelFragment;

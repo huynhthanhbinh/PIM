@@ -34,7 +34,7 @@ import lombok.Setter;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
 public final class MainPane extends BaseComponent {
 
-    public static final String ID = "idcMain";
+    public static final String ID = "mainComponent";
     public static final String CONTAINER = "PMain";
 
     @Resource

@@ -47,7 +47,7 @@ import javafx.scene.layout.VBox;
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectDetailFragment.fxml")
 public final class ProjectDetailFragment extends BaseFragment {
 
-    static final String ID = "idfPDetail";
+    static final String ID = "projectDetailFragment";
     private ProjectDto projectDto;
     @Autowired
     private LanguageProperty languageProperty;

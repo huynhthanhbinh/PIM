@@ -3,8 +3,6 @@ package com.bht.pim.base;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-import org.apache.log4j.Logger;
-
 /**
  *
  * @author bht
@@ -20,7 +18,6 @@ public interface BaseBean {
      */
     @PostConstruct
     default void initialize() {
-        Logger.getLogger(BaseBean.class).info("[SPRING] BeanCreation: " + getClass().getSimpleName());
     }
 
     /**
@@ -39,6 +36,5 @@ public interface BaseBean {
      */
     @PreDestroy
     default void destroy() {
-        Logger.getLogger(BaseBean.class).info("[SPRING] BeanDestruction: " + getClass().getSimpleName());
     }
 }

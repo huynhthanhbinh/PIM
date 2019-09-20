@@ -21,7 +21,7 @@ import com.bht.pim.fragment.parent.IdentifierNeeding;
         viewLocation = "/com/bht/pim/fragment/parent/common/MainFragment.fxml")
 public final class ProjectUpdateFragment extends BaseComponentFragment implements IdentifierNeeding {
 
-    static final String ID = "idfPUpdate";
+    static final String ID = "projectUpdateFragment";
     private static final String LABEL = "label.project.update";
 
     private MainLabelFragment mainLabelFragment;

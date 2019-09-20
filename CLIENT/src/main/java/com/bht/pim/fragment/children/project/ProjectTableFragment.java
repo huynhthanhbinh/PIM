@@ -72,7 +72,7 @@ import lombok.Setter;
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectTableFragment.fxml")
 public final class ProjectTableFragment extends BaseFragment {
 
-    static final String ID = "idfPTable";
+    static final String ID = "projectTableFragment";
     private static final int MAX_TABLE_ROW = 8;
 
     private final Image delete = ImageUtil.getImage("delete");

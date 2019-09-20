@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
         viewLocation = "/com/bht/pim/fragment/children/confirm/ConfirmFragment.fxml")
 public final class ConfirmFragment extends BaseFragment {
 
-    static final String ID = "idfConfirm"; // ok_cancel box
+    static final String ID = "confirmFragment"; // ok_cancel box
 
     public static final String LABEL_CONFIRM_CREATE = "label.confirm.form.create";
     public static final String LABEL_CONFIRM_UPDATE = "label.confirm.form.update";

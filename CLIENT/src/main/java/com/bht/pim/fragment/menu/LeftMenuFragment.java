@@ -28,7 +28,7 @@ import lombok.extern.log4j.Log4j;
         viewLocation = "/com/bht/pim/fragment/menu/LeftMenuFragment.fxml")
 public final class LeftMenuFragment extends BaseComponentFragment {
 
-    static final String ID = "idfMenuLeft";
+    static final String ID = "leftMenuFragment";
 
     private static final String LABEL_LEFT_PROJECT_DASHBOARD = "label.pim.left.project.dashboard";
     private static final String LABEL_LEFT_PROJECT_LIST = "label.pim.left.project.list";

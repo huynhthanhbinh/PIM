@@ -27,7 +27,7 @@ import javafx.util.StringConverter;
         viewLocation = "/com/bht/pim/fragment/parent/common/MainFragment.fxml")
 public final class ProjectListFragment extends BaseComponentFragment implements SuccessNeeding {
 
-    static final String ID = "idfPList";
+    static final String ID = "projectListFragment";
     private static final String LABEL = "label.project.list";
 
     private MainLabelFragment mainLabelFragment;

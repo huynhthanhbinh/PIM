@@ -21,7 +21,7 @@ import javafx.scene.Node;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
 public final class LeftPane extends BaseComponent {
 
-    public static final String ID = "idcLeft";
+    public static final String ID = "leftComponent";
     public static final String CONTAINER = "PLeft";
 
     private ManagedFragmentHandler<LeftMenuFragment> leftMenuFragment;

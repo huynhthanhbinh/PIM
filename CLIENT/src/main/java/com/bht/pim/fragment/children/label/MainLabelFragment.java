@@ -19,7 +19,7 @@ import javafx.scene.layout.VBox;
         viewLocation = "/com/bht/pim/fragment/children/label/MainLabelFragment.fxml")
 public final class MainLabelFragment extends BaseFragment {
 
-    static final String ID = "idfMLabel"; // label of main-pane
+    static final String ID = "mainLabelFragment"; // label of main-pane
 
     @FXML
     private VBox mainLabel;

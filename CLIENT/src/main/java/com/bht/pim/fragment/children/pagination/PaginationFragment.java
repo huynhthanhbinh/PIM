@@ -20,7 +20,7 @@ import lombok.Getter;
         viewLocation = "/com/bht/pim/fragment/children/pagination/PaginationFragment.fxml")
 public final class PaginationFragment extends BaseFragment {
 
-    static final String ID = "idfPagination"; // pagination-pane
+    static final String ID = "paginationFragment"; // pagination-pane
 
     @FXML
     private VBox paginationPane;

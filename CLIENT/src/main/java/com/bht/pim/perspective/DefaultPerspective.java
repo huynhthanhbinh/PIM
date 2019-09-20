@@ -28,7 +28,7 @@ import javafx.scene.layout.HBox;
         components = {TopPane.ID, BottomPane.ID})
 public final class DefaultPerspective extends BasePerspective {
 
-    public static final String ID = "idDefaultPerspective";
+    public static final String ID = "defaultPerspective";
 
     @FXML
     private SplitPane splitPane;

@@ -65,7 +65,7 @@ import javafx.scene.layout.VBox;
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditFormFragment.fxml")
 public final class ProjectEditFormFragment extends BaseFragment implements Confirmable {
 
-    static final String ID = "idfPEditForm";
+    static final String ID = "projectEditFormFragment";
     private ProjectDto projectDto;
 
     @Autowired

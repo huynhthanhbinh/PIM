@@ -29,7 +29,7 @@ import javafx.scene.layout.VBox;
         viewLocation = "/com/bht/pim/fragment/supplementary/LoginFragment.fxml")
 public final class LoginFragment extends BaseComponentFragment {
 
-    public static final String ID = "idfSLogin";
+    public static final String ID = "loginFragment";
 
     @Value("${pim.client.username}")
     private String defaultUsername;

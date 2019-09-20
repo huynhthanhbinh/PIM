@@ -21,21 +21,20 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import lombok.extern.log4j.Log4j;
 
 /**
  *
  * @author bht
  */
-@Log4j
 @Configuration
-@PropertySource("classpath:/pim.properties")
+@PropertySource("classpath:/pim.properties") // specify properties files, using together with @Value("${key}")
 @ComponentScan(basePackages = "com.bht.pim", includeFilters = @ComponentScan.Filter(InheritedComponent.class))
 public class AppConfiguration implements BaseBean {
 
     // default app start-up locale, can be changed later on runtime
     public static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
+    // other constants
     public static final String LABEL_PIM_MAIN = "label.pim.main"; // label of GUI application
     public static final String LANGUAGE_BUNDLES = "bundles.languageBundle"; // path to languageBundle from root
     public static final ObjectProperty<BasePerspective> PERSPECTIVE_PROPERTY = new SimpleObjectProperty<>(); // current perspective
@@ -66,19 +65,16 @@ public class AppConfiguration implements BaseBean {
 
     @Bean
     public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub() { // for autowiring service
-        log.info("[SPRING] BeanCreation: EmployeeServiceBlockingStub");
         return EmployeeServiceGrpc.newBlockingStub(CHANNEL_PROPERTY.get());
     }
 
     @Bean
     public GroupServiceGrpc.GroupServiceBlockingStub groupServiceBlockingStub() { // for autowiring service
-        log.info("[SPRING] BeanCreation: GroupServiceBlockingStub");
         return GroupServiceGrpc.newBlockingStub(CHANNEL_PROPERTY.get());
     }
 
     @Bean
     public ProjectServiceGrpc.ProjectServiceBlockingStub projectServiceBlockingStub() { // for autowiring service
-        log.info("[SPRING] BeanCreation: ProjectServiceBlockingStub");
         return ProjectServiceGrpc.newBlockingStub(CHANNEL_PROPERTY.get());
     }
 }

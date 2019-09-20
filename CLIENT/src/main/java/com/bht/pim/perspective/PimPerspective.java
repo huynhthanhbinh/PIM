@@ -29,7 +29,7 @@ import javafx.scene.layout.AnchorPane;
         components = {TopPane.ID, LeftPane.ID, MainPane.ID})
 public final class PimPerspective extends BasePerspective {
 
-    public static final String ID = "idPIMPerspective";
+    public static final String ID = "pimPerspective";
 
     @FXML
     private SplitPane splitPane;

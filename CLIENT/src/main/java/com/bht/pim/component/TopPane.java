@@ -21,7 +21,7 @@ import javafx.scene.Node;
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
 public final class TopPane extends BaseComponent {
 
-    public static final String ID = "idcTop";
+    public static final String ID = "topComponent";
     public static final String CONTAINER = "PTop";
 
     @Resource
