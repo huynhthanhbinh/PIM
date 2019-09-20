@@ -16,6 +16,7 @@ import org.jacpfx.rcp.context.Context;
 import org.thymeleaf.util.Validate;
 
 import com.bht.pim.fragment.menu.TopMenuFragment;
+import com.bht.pim.util.LoggingUtil;
 
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -47,7 +48,6 @@ public abstract class BaseComponent extends VBox implements BaseBean, FXComponen
         loadFragments();
     }
 
-
     protected abstract void initComponent();
 
     protected abstract void initLayout();
@@ -56,18 +56,16 @@ public abstract class BaseComponent extends VBox implements BaseBean, FXComponen
 
     protected abstract Node handleMessage(Message<Event, Object> message);
 
-
     @PostConstruct
     public final void onStartComponent(final FXComponentLayout componentLayout) {
         initComponent();
-        LOGGER.info("[INIT] FXComponent: " + getClass().getSimpleName());
         onStarted(componentLayout);
     }
 
 
     @PreDestroy
     public final void onTearDownComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[DESTROY] FXComponent " + getClass().getSimpleName());
+        LOGGER.info(LoggingUtil.format("DESTROY", "FXComponent", getClass().getSimpleName()));
     }
 
 
@@ -97,7 +95,7 @@ public abstract class BaseComponent extends VBox implements BaseBean, FXComponen
 
 
     final <F extends BaseFragment> ManagedFragmentHandler<F> registerNewFragment(Class<F> fClass) {
-        LOGGER.info("[REGISTER] FXFragment: " + fClass.getSimpleName());
+        LOGGER.info(LoggingUtil.format("REGISTER", "FXFragment", fClass.getSimpleName()));
         return componentContext.getManagedFragmentHandler(fClass);
     }
 

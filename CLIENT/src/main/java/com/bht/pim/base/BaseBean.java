@@ -17,7 +17,7 @@ public interface BaseBean {
      * must call BaseBean.super.initialize(); first !!!!!
      */
     @PostConstruct
-    default void initialize() {
+    default void initialize() { // --> run after com.bht.pim.configuration.SpringBeanPostConstruct
     }
 
     /**
@@ -25,7 +25,7 @@ public interface BaseBean {
      * it works only with SINGLETON scope !
      *
      * to make this method execute,
-     * must call ApplicationContext.close method !
+     * must call ApplicationContext.close() method !
      * one way to do that is call
      * applicationContext.registerShutdownHook();
      * see this line of code implemented in PimWorkbench.class
@@ -35,6 +35,6 @@ public interface BaseBean {
      * must call BaseBean.super.destroy(); first !!!!!
      */
     @PreDestroy
-    default void destroy() {
+    default void destroy() { // --> run after com.bht.pim.configuration.SpringBeanPreDestroy
     }
 }

@@ -2,6 +2,8 @@ package com.bht.pim.base;
 
 import java.util.ArrayList;
 
+import com.bht.pim.util.LoggingUtil;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
@@ -41,14 +43,14 @@ public abstract class BaseComponentFragment extends BaseFragment {
 
     @Override
     protected final void onSwitch() {
-        LOGGER.info("[SHOW] FXComponentFragment: " + getClass().getSimpleName());
+        LOGGER.info(LoggingUtil.format("SHOW", "FXFragment", getClass().getSimpleName()));
         super.onSwitch();
     }
 
 
     @Override
     protected final void preLeft() {
-        LOGGER.info("[HIDE] FXComponentFragment: " + getClass().getSimpleName());
+        LOGGER.info(LoggingUtil.format("HIDE", "FXFragment", getClass().getSimpleName()));
         super.preLeft();
     }
 }

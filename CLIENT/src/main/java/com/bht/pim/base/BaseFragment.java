@@ -34,7 +34,6 @@ public abstract class BaseFragment implements BaseBean {
      *      + config the layout such as size (pref/min/max),...
      */
     void onInit() {
-        LOGGER.info("[INIT] FXFragment  : " + getClass().getSimpleName());
         onCreated();
         bindChildren();
         configLayout();

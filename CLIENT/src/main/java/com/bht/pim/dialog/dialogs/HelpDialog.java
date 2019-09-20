@@ -1,6 +1,6 @@
 package com.bht.pim.dialog.dialogs;
 
-import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.DependsOn;
 
 import com.bht.pim.base.BaseDialog;
 
@@ -8,7 +8,7 @@ import com.bht.pim.base.BaseDialog;
  *
  * @author bht
  */
-@Lazy
+@DependsOn("languageProperty")
 public final class HelpDialog extends BaseDialog {
 
     @Override

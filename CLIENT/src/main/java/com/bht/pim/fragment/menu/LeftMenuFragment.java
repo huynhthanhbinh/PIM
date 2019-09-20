@@ -80,7 +80,7 @@ public final class LeftMenuFragment extends BaseComponentFragment {
     }
 
     private void onMouseClickedProjectList(MouseEvent mouseEvent) {
-        log.info("[MENU] Clicked Project List");
+        //log.info("[MENU] Clicked Project List");
 
         if (lProjectList.getStyleClass().contains("active")) {
             mouseEvent.consume();
@@ -99,7 +99,7 @@ public final class LeftMenuFragment extends BaseComponentFragment {
     }
 
     private void onMouseClickedDashboard(MouseEvent mouseEvent) {
-        log.info("[MENU] Clicked Dashboard");
+        //log.info("[MENU] Clicked Dashboard");
 
         if (lDashboard.getStyleClass().contains("active")) {
             mouseEvent.consume();

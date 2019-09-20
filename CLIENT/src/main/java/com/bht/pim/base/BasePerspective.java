@@ -16,6 +16,7 @@ import org.jacpfx.rcp.perspective.FXPerspective;
 
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.util.GraphicUtil;
+import com.bht.pim.util.LoggingUtil;
 
 import javafx.event.Event;
 import lombok.Getter;
@@ -41,26 +42,25 @@ public abstract class BasePerspective implements BaseBean, FXPerspective {
 
     @PreDestroy
     public void onTearDownComponent(final FXComponentLayout componentLayout) {
-        LOGGER.info("[DESTROY] FXPerspective: " + getClass().getSimpleName());
+        LOGGER.info(LoggingUtil.format("DESTROY", "FXPerspective", getClass().getSimpleName()));
     }
 
     @OnShow
     public void onShow(final FXComponentLayout componentLayout) {
-        LOGGER.info("[SHOW] FXPerspective: " + getClass().getSimpleName());
-        onShowed();
+        LOGGER.info(LoggingUtil.format("SHOW", "FXPerspective", getClass().getSimpleName()));
         AppConfiguration.PERSPECTIVE_PROPERTY.set(this);
+        onShowed();
     }
 
     @OnHide
     public final void onHide(final FXComponentLayout componentLayout) {
-        LOGGER.info("[HIDE] FXPerspective: " + getClass().getSimpleName());
+        LOGGER.info(LoggingUtil.format("HIDE", "FXPerspective", getClass().getSimpleName()));
     }
 
     @PostConstruct
     public final void onStart(final PerspectiveLayout perspectiveLayout,
                               final FXComponentLayout layout) {
         getContext();
-        LOGGER.info("[INIT] FXPerspective: " + getClass().getSimpleName());
         childComponents = new ArrayList<>();
         onCreated(perspectiveLayout, layout);
 

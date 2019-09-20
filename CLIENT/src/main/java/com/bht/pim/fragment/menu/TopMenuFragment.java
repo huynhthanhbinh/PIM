@@ -130,14 +130,14 @@ public final class TopMenuFragment extends BaseComponentFragment {
 
     private void addButtonHelpEventHandler() {
         bHelp.setOnMouseClicked(event -> {
-            log.info("[INFO] Clicked help button");
+            //log.info("[INFO] Clicked Help button");
             showModalDialog(helpDialog);
         });
     }
 
     private void addButtonLogoutEventHandler() {
         bLogout.setOnMouseClicked(event -> {
-            log.info("[INFO] Clicked Logout button");
+            //log.info("[INFO] Clicked Logout button");
             context.send(DefaultPerspective.ID, "show");
             AppConfiguration.LOGGED_IN_PROPERTY.set(false);
         });

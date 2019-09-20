@@ -4,13 +4,14 @@ import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.configuration.AppConfiguration;
 import com.bht.pim.perspective.PimPerspective;
 import com.bht.pim.util.LanguageUtil;
 
+import io.grpc.ManagedChannel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -22,6 +23,7 @@ import lombok.extern.log4j.Log4j;
  * @author bht
  */
 @Log4j
+@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = ErrorHandlingFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/supplementary/ErrorHandlingFragment.fxml")
@@ -29,11 +31,8 @@ public final class ErrorHandlingFragment extends BaseComponentFragment {
 
     public static final String ID = "errorHandlingFragment";
 
-    @Value("${pim.server.host}")
-    private String host;
-
-    @Value("${pim.server.port}")
-    private int port;
+    @Autowired
+    private ManagedChannel channel;
 
     @Resource
     private Context context;
@@ -100,7 +99,7 @@ public final class ErrorHandlingFragment extends BaseComponentFragment {
     }
 
     private void onReloadApp(MouseEvent mouseEvent) {
-        AppConfiguration.CHANNEL_PROPERTY.get().resetConnectBackoff();
+        channel.resetConnectBackoff();
         context.send(PimPerspective.ID, "show");
     }
 

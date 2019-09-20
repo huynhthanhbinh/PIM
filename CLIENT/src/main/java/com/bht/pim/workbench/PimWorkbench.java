@@ -43,7 +43,7 @@ public final class PimWorkbench implements BaseBean, FXWorkbench {
             Message<Event, Object> message,
             WorkbenchLayout<Node> layout, Stage stage) {
 
-        log.info("[INIT]   FXWorkbench:  " + getClass().getSimpleName());
+        //log.info(LoggingUtil.format("INIT", "FXWorkbench", getClass().getSimpleName()));
         layout.setWorkbenchXYSize(1280, 700);
         layout.setStyle(StageStyle.DECORATED);
         layout.setMenuEnabled(false);
@@ -54,7 +54,7 @@ public final class PimWorkbench implements BaseBean, FXWorkbench {
 
     @Override
     public void postHandle(FXComponentLayout componentLayout) {
-        log.info("[HANDLE] FXWorkbench:  " + getClass().getSimpleName());
+        //log.info(LoggingUtil.format("HANDLE", "FXWorkbench", getClass().getSimpleName()));
 
         LAYOUT.setAlignment(Pos.CENTER);
         LAYOUT.prefWidthProperty().bind(componentLayout.getGlassPane().widthProperty());
