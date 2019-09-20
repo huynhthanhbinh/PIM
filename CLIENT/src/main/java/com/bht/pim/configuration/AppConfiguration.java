@@ -47,12 +47,12 @@ public class AppConfiguration implements BaseBean {
     private int port; // port of gRPC --> using properties file to read it, see clearly: @PropertySource
 
     @Bean
-    public ManagedChannel managedChannel() {            // Builder-design-pattern --> using build method to get object
+    public ManagedChannel managedChannel() {
         return ManagedChannelBuilder                    // Channel is the abstraction to connect to a service endpoint
                 .forAddress(host, port)                 // Port and Host of gRPC server, not of client !
                 .usePlaintext()                         // Let's use plaintext communication because we don't have certs
                 .maxInboundMessageSize(10 * 1024 * 1024)// 10KB * 1024 = 10MB --> max message size to transfer together
-                .build();
+                .build();                               // Builder-design-pattern --> using build method to get object
     }
 
     @Bean
