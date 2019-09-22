@@ -10,6 +10,9 @@ import javax.annotation.PreDestroy;
 public interface BaseBean {
 
     /**
+     * run after SpringBeanLifeCycle.postProcessBeforeInitialization()
+     * @see com.bht.pim.configuration.SpringBeanLifeCycle
+     *
      * such as constructor of spring bean
      * it works on both scopes SINGLETON & PROTOTYPE !
      *
@@ -17,17 +20,19 @@ public interface BaseBean {
      * must call BaseBean.super.initialize(); first !!!!!
      */
     @PostConstruct
-    default void initialize() { // --> run after com.bht.pim.configuration.SpringBeanCreation
+    default void initialize() {
     }
 
     /**
+     * run after SpringBeanLifeCycle.postProcessBeforeDestruction()
+     * @see com.bht.pim.configuration.SpringBeanLifeCycle
+     *
      * such as destructor of spring bean
      * it works only with SINGLETON scope !
      *
-     * to make this method execute,
-     * must call ApplicationContext.close() method !
+     * to make this method execute, must call ApplicationContext.close() method !
      * one way to do that is call
-     * applicationContext.registerShutdownHook();
+     * <code>applicationContext.registerShutdownHook();</code>
      * see this line of code implemented in PimWorkbench.class
      * AnnotationConfigApplicationContext is injected by SpringBoot !
      *
@@ -35,6 +40,6 @@ public interface BaseBean {
      * must call BaseBean.super.destroy(); first !!!!!
      */
     @PreDestroy
-    default void destroy() { // --> run after com.bht.pim.configuration.SpringBeanDestruction
+    default void destroy() {
     }
 }
