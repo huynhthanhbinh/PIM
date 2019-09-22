@@ -31,14 +31,14 @@ import javafx.beans.property.SimpleObjectProperty;
 @ComponentScan(basePackages = "com.bht.pim", includeFilters = @ComponentScan.Filter(InheritedComponent.class))
 public class AppConfiguration implements BaseBean {
 
-    // default app start-up locale, can be changed later on runtime
+    // default app start-up locale, can be changed later on runtime: ENGLISH & FRENCH
     public static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
 
-    // other constants
+    public static final String BASE_PACKAGE = "com.bht.pim";
     public static final String LABEL_PIM_MAIN = "label.pim.main"; // label of GUI application
     public static final String LANGUAGE_BUNDLES = "bundles.languageBundle"; // path to languageBundle from root
-    public static final ObjectProperty<BasePerspective> PERSPECTIVE_PROPERTY = new SimpleObjectProperty<>(); // current perspective
     public static final BooleanProperty LOGGED_IN_PROPERTY = new SimpleBooleanProperty(false); // check if logged-in yet
+    public static final ObjectProperty<BasePerspective> PERSPECTIVE_PROPERTY = new SimpleObjectProperty<>(); // current perspective
 
     @Value("${pim.server.host}")
     private String host; // host of gRPC --> using properties file to read it, see clearly: @PropertySource

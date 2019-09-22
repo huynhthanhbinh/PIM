@@ -17,8 +17,6 @@ import lombok.extern.log4j.Log4j;
 @Component
 public final class SpringBeanLifeCycle implements BaseBean, DestructionAwareBeanPostProcessor {
 
-    private static final String BASE_PACKAGE = "com.bht.pim";
-
     @Override
     public void initialize() {
         log.info(LoggingUtil.format("SPRING", "BeanCreation", "springBeanLifeCycle"));
@@ -35,10 +33,11 @@ public final class SpringBeanLifeCycle implements BaseBean, DestructionAwareBean
      * such as @PostConstruct using on each single bean,
      * but this is common using for every beans
      * lifecycle: run before @PostConstruct
+     * @see com.bht.pim.base.BaseBean
      */
     @Override
     public Object postProcessBeforeInitialization(Object bean, @NonNull String beanName) {
-        if (bean.getClass().getPackage().getName().startsWith(BASE_PACKAGE)) {
+        if (bean.getClass().getPackage().getName().startsWith(AppConfiguration.BASE_PACKAGE)) {
             log.info(LoggingUtil.format("SPRING", "BeanCreation", beanName));
         }
         return DestructionAwareBeanPostProcessor.super.postProcessBeforeInitialization(bean, beanName);
@@ -49,11 +48,12 @@ public final class SpringBeanLifeCycle implements BaseBean, DestructionAwareBean
      * such as @PreDestroy using on each single bean,
      * but this is common using for every beans
      * lifecycle: run before @PreDestroy
+     * @see com.bht.pim.base.BaseBean
      */
     @Override
     public void postProcessBeforeDestruction(Object bean, @NonNull String beanName) {
 
-        if (bean.getClass().getPackage().getName().startsWith(BASE_PACKAGE)) {
+        if (bean.getClass().getPackage().getName().startsWith(AppConfiguration.BASE_PACKAGE)) {
             log.info(LoggingUtil.format("SPRING", "BeanDestruction", beanName));
         }
     }

@@ -3,6 +3,7 @@ package com.bht.pim;
 import org.jacpfx.api.handler.ErrorDialogHandler;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 import org.jacpfx.spring.launcher.AFXSpringJavaConfigLauncher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.bht.pim.base.BaseBean;
@@ -24,6 +25,9 @@ import lombok.extern.log4j.Log4j;
 @SpringBootApplication
 public class Client extends AFXSpringJavaConfigLauncher implements BaseBean {
 
+    @Autowired
+    private PimErrorHandler pimErrorHandler;
+
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -40,7 +44,7 @@ public class Client extends AFXSpringJavaConfigLauncher implements BaseBean {
 
     @Override
     protected String[] getBasePackages() {
-        return new String[]{"com.bht.pim"};
+        return new String[]{AppConfiguration.BASE_PACKAGE};
     }
 
     @Override
@@ -54,6 +58,6 @@ public class Client extends AFXSpringJavaConfigLauncher implements BaseBean {
 
     @Override
     protected ErrorDialogHandler<Node> getErrorHandler() {
-        return new PimErrorHandler();
+        return pimErrorHandler;
     }
 }
