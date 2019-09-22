@@ -17,7 +17,7 @@ public interface BaseBean {
      * must call BaseBean.super.initialize(); first !!!!!
      */
     @PostConstruct
-    default void initialize() { // --> run after com.bht.pim.configuration.SpringBeanPostConstruct
+    default void initialize() { // --> run after com.bht.pim.configuration.SpringBeanCreation
     }
 
     /**
@@ -35,6 +35,6 @@ public interface BaseBean {
      * must call BaseBean.super.destroy(); first !!!!!
      */
     @PreDestroy
-    default void destroy() { // --> run after com.bht.pim.configuration.SpringBeanPreDestroy
+    default void destroy() { // --> run after com.bht.pim.configuration.SpringBeanDestruction
     }
 }

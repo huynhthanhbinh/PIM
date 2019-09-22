@@ -18,16 +18,16 @@ import lombok.extern.log4j.Log4j;
  */
 @Log4j
 @Component
-public final class SpringBeanPreDestroy implements BaseBean, DestructionAwareBeanPostProcessor {
+public final class SpringBeanDestruction implements BaseBean, DestructionAwareBeanPostProcessor {
 
     @Override
     public void initialize() {
-        log.info(LoggingUtil.format("SPRING", "BeanCreation", getClass().getSimpleName()));
+        log.info(LoggingUtil.format("SPRING", "BeanCreation", "springBeanDestruction"));
     }
 
     @Override
     public void destroy() {
-        log.info(LoggingUtil.format("SPRING", "BeanDestruction", getClass().getSimpleName()));
+        log.info(LoggingUtil.format("SPRING", "BeanDestruction", "springBeanDestruction"));
     }
 
     @Override

@@ -18,16 +18,16 @@ import lombok.extern.log4j.Log4j;
  */
 @Log4j
 @Component
-public final class SpringBeanPostConstruct implements BaseBean, BeanPostProcessor {
+public final class SpringBeanCreation implements BaseBean, BeanPostProcessor {
 
     @Override
     public void initialize() {
-        log.info(LoggingUtil.format("SPRING", "BeanCreation", getClass().getSimpleName()));
+        log.info(LoggingUtil.format("SPRING", "BeanCreation", "springBeanCreation"));
     }
 
     @Override
     public void destroy() {
-        log.info(LoggingUtil.format("SPRING", "BeanDestruction", getClass().getSimpleName()));
+        log.info(LoggingUtil.format("SPRING", "BeanDestruction", "springBeanCreation"));
     }
 
     @Override
