@@ -6,8 +6,8 @@ import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
+import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseComponent;
-import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.fragment.menu.TopMenuFragment;
 
 import javafx.event.Event;
@@ -18,7 +18,7 @@ import javafx.scene.Node;
  */
 @View(id = TopPane.ID, name = TopPane.ID,
         initialTargetLayoutId = TopPane.CONTAINER,
-        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES)
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
 public final class TopPane extends BaseComponent {
 
     public static final String ID = "topComponent";

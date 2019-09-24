@@ -6,9 +6,9 @@ import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseFragment;
 import com.bht.pim.component.MainPane;
-import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.fragment.parent.project.ProjectCreateFragment;
 import com.bht.pim.fragment.parent.project.ProjectListFragment;
 import com.bht.pim.mapper.StatusMapper;
@@ -31,7 +31,7 @@ import lombok.Getter;
  */
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = ProjectUtilFragment.ID,
-        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectUtilFragment.fxml")
 public final class ProjectUtilFragment extends BaseFragment {

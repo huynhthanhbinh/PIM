@@ -1,4 +1,4 @@
-package com.bht.pim.configuration;
+package com.bht.pim.spring;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

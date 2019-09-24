@@ -6,8 +6,8 @@ import org.jacpfx.api.message.Message;
 import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
+import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseComponent;
-import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.fragment.parent.IdentifierNeeding;
 import com.bht.pim.fragment.parent.SuccessNeeding;
 import com.bht.pim.fragment.parent.project.ProjectCreateFragment;
@@ -31,7 +31,7 @@ import lombok.Setter;
 @Setter
 @View(id = MainPane.ID, name = MainPane.ID,
         initialTargetLayoutId = MainPane.CONTAINER,
-        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES)
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
 public final class MainPane extends BaseComponent {
 
     public static final String ID = "mainComponent";
@@ -93,7 +93,7 @@ public final class MainPane extends BaseComponent {
 
     public static void onShowPerspective(MainPane mainPane) {
         switchComponentFragment(mainPane, ProjectDashboardFragment.class);
-        if (!SpringConfiguration.LOGGED_IN_PROPERTY.get()) { // not logged-in or recently logout
+        if (!AppConfiguration.LOGGED_IN_PROPERTY.get()) { // not logged-in or recently logout
             mainPane.getContext().send(DefaultPerspective.ID, "show");
         }
     }

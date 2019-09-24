@@ -5,10 +5,10 @@ import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 
+import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.component.LeftPane;
 import com.bht.pim.component.MainPane;
-import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.fragment.parent.project.ProjectDashboardFragment;
 import com.bht.pim.fragment.parent.project.ProjectListFragment;
 import com.bht.pim.message.impl.FragmentSwitching;
@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j;
  */
 @Log4j
 @Fragment(id = LeftMenuFragment.ID, scope = Scope.SINGLETON,
-        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/menu/LeftMenuFragment.fxml")
 public final class LeftMenuFragment extends BaseComponentFragment {
 

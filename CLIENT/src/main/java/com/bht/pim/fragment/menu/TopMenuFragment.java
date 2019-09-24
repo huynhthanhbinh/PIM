@@ -8,8 +8,8 @@ import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseComponentFragment;
-import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.dialog.dialogs.HelpDialog;
 import com.bht.pim.perspective.DefaultPerspective;
 import com.bht.pim.property.LanguageProperty;
@@ -27,7 +27,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = TopMenuFragment.ID, scope = Scope.PROTOTYPE,
-        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/menu/TopMenuFragment.fxml")
 public final class TopMenuFragment extends BaseComponentFragment {
 
@@ -77,7 +77,7 @@ public final class TopMenuFragment extends BaseComponentFragment {
     }
 
     private void initAllLabels() {
-        LanguageUtil.initLabel(lApp.textProperty(), SpringConfiguration.LABEL_PIM_MAIN);
+        LanguageUtil.initLabel(lApp.textProperty(), AppConfiguration.LABEL_PIM_MAIN);
     }
 
     private void initAllStyles() {
@@ -139,7 +139,7 @@ public final class TopMenuFragment extends BaseComponentFragment {
         bLogout.setOnMouseClicked(event -> {
             //log.info("[INFO] Clicked Logout button");
             context.send(DefaultPerspective.ID, "show");
-            SpringConfiguration.LOGGED_IN_PROPERTY.set(false);
+            AppConfiguration.LOGGED_IN_PROPERTY.set(false);
         });
     }
 }

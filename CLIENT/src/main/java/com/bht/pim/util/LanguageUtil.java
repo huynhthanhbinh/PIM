@@ -2,9 +2,9 @@ package com.bht.pim.util;
 
 import java.util.Objects;
 
-import com.bht.pim.configuration.SpringApplicationContext;
 import com.bht.pim.property.LabelProperty;
 import com.bht.pim.property.LanguageProperty;
+import com.bht.pim.spring.SpringApplicationContext;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.Property;

@@ -7,10 +7,10 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.context.Context;
 
+import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BasePerspective;
 import com.bht.pim.component.BottomPane;
 import com.bht.pim.component.TopPane;
-import com.bht.pim.configuration.SpringConfiguration;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -23,7 +23,7 @@ import javafx.scene.layout.HBox;
  * @author bht
  */
 @Perspective(id = DefaultPerspective.ID, name = DefaultPerspective.ID,
-        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/perspective/DefaultPerspective.fxml",
         components = {TopPane.ID, BottomPane.ID})
 public final class DefaultPerspective extends BasePerspective {

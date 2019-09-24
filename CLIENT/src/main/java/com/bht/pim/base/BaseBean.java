@@ -3,7 +3,7 @@ package com.bht.pim.base;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-import com.bht.pim.configuration.SpringBeanLifeCycle;
+import com.bht.pim.spring.SpringBeanLifeCycle;
 
 /**
  *

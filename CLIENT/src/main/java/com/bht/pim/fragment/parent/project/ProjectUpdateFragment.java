@@ -5,8 +5,8 @@ import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 
+import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseComponentFragment;
-import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.fragment.children.confirm.ConfirmFragment;
 import com.bht.pim.fragment.children.label.MainLabelFragment;
 import com.bht.pim.fragment.children.project.ProjectEditFormFragment;
@@ -17,7 +17,7 @@ import com.bht.pim.fragment.parent.IdentifierNeeding;
  * @author bht
  */
 @Fragment(id = ProjectUpdateFragment.ID, scope = Scope.SINGLETON,
-        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/parent/common/MainFragment.fxml")
 public final class ProjectUpdateFragment extends BaseComponentFragment implements IdentifierNeeding {
 

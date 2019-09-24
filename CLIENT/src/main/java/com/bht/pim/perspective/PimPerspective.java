@@ -7,11 +7,11 @@ import org.jacpfx.rcp.componentLayout.FXComponentLayout;
 import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.context.Context;
 
+import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BasePerspective;
 import com.bht.pim.component.LeftPane;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.component.TopPane;
-import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.handler.PimErrorHandler;
 import com.bht.pim.message.impl.PerspectiveShowing;
 
@@ -24,7 +24,7 @@ import javafx.scene.layout.AnchorPane;
  * @author bht
  */
 @Perspective(id = PimPerspective.ID, name = PimPerspective.ID,
-        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/perspective/PimPerspective.fxml",
         components = {TopPane.ID, LeftPane.ID, MainPane.ID})
 public final class PimPerspective extends BasePerspective {

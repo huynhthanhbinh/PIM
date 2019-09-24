@@ -3,8 +3,8 @@ package com.bht.pim.fragment.children.confirm;
 import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 
+import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseFragment;
-import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.util.LanguageUtil;
 
 import javafx.event.EventHandler;
@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
  * @author bht
  */
 @Fragment(id = ConfirmFragment.ID, scope = Scope.PROTOTYPE,
-        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/children/confirm/ConfirmFragment.fxml")
 public final class ConfirmFragment extends BaseFragment {
 

@@ -2,7 +2,7 @@ package com.bht.pim.property;
 
 import java.util.ResourceBundle;
 
-import com.bht.pim.configuration.SpringApplicationContext;
+import com.bht.pim.spring.SpringApplicationContext;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;

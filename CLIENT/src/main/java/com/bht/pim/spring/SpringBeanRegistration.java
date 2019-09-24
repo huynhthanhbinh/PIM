@@ -1,8 +1,11 @@
-package com.bht.pim.configuration;
+package com.bht.pim.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
+import com.bht.pim.AppConfiguration;
+import com.bht.pim.base.BaseBean;
 import com.bht.pim.proto.employees.EmployeeServiceGrpc;
 import com.bht.pim.proto.groups.GroupServiceGrpc;
 import com.bht.pim.proto.projects.ProjectServiceGrpc;
@@ -14,10 +17,11 @@ import io.grpc.ManagedChannelBuilder;
  *
  * @author bht
  */
-public final class SpringBeanRegistration {
+@Component
+public final class SpringBeanRegistration implements BaseBean {
 
     @Autowired
-    private SpringConfiguration config;
+    private AppConfiguration config;
 
     @Bean
     public ManagedChannel managedChannel() {
