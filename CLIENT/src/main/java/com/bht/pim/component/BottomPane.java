@@ -8,7 +8,7 @@ import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
 import com.bht.pim.base.BaseComponent;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.fragment.supplementary.ErrorHandlingFragment;
 import com.bht.pim.fragment.supplementary.LoginFragment;
 
@@ -23,9 +23,9 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@View(id = BottomPane.ID, name = "BottomPane",
+@View(id = BottomPane.ID, name = BottomPane.ID,
         initialTargetLayoutId = BottomPane.CONTAINER,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
+        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES)
 public final class BottomPane extends BaseComponent {
 
     public static final String ID = "bottomComponent";

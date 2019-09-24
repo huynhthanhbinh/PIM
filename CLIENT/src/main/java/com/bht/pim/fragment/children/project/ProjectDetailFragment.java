@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bht.pim.base.BaseFragment;
 import com.bht.pim.component.MainPane;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.fragment.parent.project.ProjectInfoFragment;
@@ -42,7 +42,7 @@ import javafx.scene.layout.VBox;
  */
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = ProjectDetailFragment.ID,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectDetailFragment.fxml")
 public final class ProjectDetailFragment extends BaseFragment {

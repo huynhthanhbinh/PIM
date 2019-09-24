@@ -6,7 +6,7 @@ import org.jacpfx.api.fragment.Scope;
 import org.jacpfx.rcp.context.Context;
 
 import com.bht.pim.base.BaseComponentFragment;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.fragment.children.label.MainLabelFragment;
 import com.bht.pim.fragment.children.project.ProjectPanelFragment;
 
@@ -15,7 +15,7 @@ import com.bht.pim.fragment.children.project.ProjectPanelFragment;
  * @author bht
  */
 @Fragment(id = ProjectDashboardFragment.ID, scope = Scope.SINGLETON,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/parent/common/MainFragment.fxml")
 public final class ProjectDashboardFragment extends BaseComponentFragment {
 

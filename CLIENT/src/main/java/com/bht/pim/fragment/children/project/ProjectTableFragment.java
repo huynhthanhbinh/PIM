@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bht.pim.base.BaseFragment;
 import com.bht.pim.component.MainPane;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.fragment.parent.project.ProjectInfoFragment;
 import com.bht.pim.fragment.parent.project.ProjectListFragment;
@@ -67,7 +67,7 @@ import lombok.Setter;
  */
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = ProjectTableFragment.ID,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectTableFragment.fxml")
 public final class ProjectTableFragment extends BaseFragment {

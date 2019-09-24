@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.bht.pim.base.BaseBean;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.handler.PimErrorHandler;
 import com.bht.pim.util.ImageUtil;
 import com.bht.pim.util.LanguageUtil;
@@ -34,7 +34,7 @@ public class Client extends AFXSpringJavaConfigLauncher implements BaseBean {
 
     @Override
     protected Class<?>[] getConfigClasses() {
-        return new Class[]{AppConfiguration.class};
+        return new Class[]{SpringConfiguration.class};
     }
 
     @Override
@@ -44,12 +44,12 @@ public class Client extends AFXSpringJavaConfigLauncher implements BaseBean {
 
     @Override
     protected String[] getBasePackages() {
-        return new String[]{AppConfiguration.BASE_PACKAGE};
+        return new String[]{SpringConfiguration.BASE_PACKAGE};
     }
 
     @Override
     protected void postInit(Stage stage) {
-        LanguageUtil.initLabel(stage.titleProperty(), AppConfiguration.LABEL_PIM_MAIN);
+        LanguageUtil.initLabel(stage.titleProperty(), SpringConfiguration.LABEL_PIM_MAIN);
         stage.getIcons().add(ImageUtil.getImage("icon"));
         stage.sizeToScene();
         stage.setMinWidth(1280);

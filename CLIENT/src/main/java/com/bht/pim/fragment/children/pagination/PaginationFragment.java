@@ -4,7 +4,7 @@ import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 
 import com.bht.pim.base.BaseFragment;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Pagination;
@@ -15,7 +15,7 @@ import lombok.Getter;
  * @author bht
  */
 @Fragment(id = PaginationFragment.ID,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/pagination/PaginationFragment.fxml")
 public final class PaginationFragment extends BaseFragment {

@@ -7,7 +7,7 @@ import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bht.pim.base.BaseComponentFragment;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.perspective.PimPerspective;
 import com.bht.pim.util.LanguageUtil;
 
@@ -25,7 +25,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = ErrorHandlingFragment.ID, scope = Scope.SINGLETON,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/supplementary/ErrorHandlingFragment.fxml")
 public final class ErrorHandlingFragment extends BaseComponentFragment {
 

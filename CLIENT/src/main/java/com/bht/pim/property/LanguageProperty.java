@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Component;
 
 import com.bht.pim.base.BaseBean;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -23,9 +23,9 @@ public final class LanguageProperty implements BaseBean {
     private ObjectProperty<ResourceBundle> resourceBundleProperty;
 
     public LanguageProperty() {
-        localeProperty = new SimpleObjectProperty<>(AppConfiguration.DEFAULT_LOCALE);
+        localeProperty = new SimpleObjectProperty<>(SpringConfiguration.DEFAULT_LOCALE);
         resourceBundleProperty = new SimpleObjectProperty<>(ResourceBundle
-                .getBundle(AppConfiguration.LANGUAGE_BUNDLES, AppConfiguration.DEFAULT_LOCALE));
+                .getBundle(SpringConfiguration.LANGUAGE_BUNDLES, SpringConfiguration.DEFAULT_LOCALE));
 
         addEventListener();
     }
@@ -33,7 +33,7 @@ public final class LanguageProperty implements BaseBean {
     private void addEventListener() {
         localeProperty.addListener((observable, oldValue, newValue) ->
                 resourceBundleProperty.set(ResourceBundle.getBundle(
-                        AppConfiguration.LANGUAGE_BUNDLES,
+                        SpringConfiguration.LANGUAGE_BUNDLES,
                         newValue)));
     }
 }

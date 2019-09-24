@@ -37,7 +37,7 @@ public final class SpringBeanLifeCycle implements BaseBean, DestructionAwareBean
      */
     @Override
     public Object postProcessBeforeInitialization(Object bean, @NonNull String beanName) {
-        if (bean.getClass().getPackage().getName().startsWith(AppConfiguration.BASE_PACKAGE)) {
+        if (bean.getClass().getPackage().getName().startsWith(SpringConfiguration.BASE_PACKAGE)) {
             log.info(LoggingUtil.format("SPRING", "BeanCreation", beanName));
         }
         return DestructionAwareBeanPostProcessor.super.postProcessBeforeInitialization(bean, beanName);
@@ -53,7 +53,7 @@ public final class SpringBeanLifeCycle implements BaseBean, DestructionAwareBean
     @Override
     public void postProcessBeforeDestruction(Object bean, @NonNull String beanName) {
 
-        if (bean.getClass().getPackage().getName().startsWith(AppConfiguration.BASE_PACKAGE)) {
+        if (bean.getClass().getPackage().getName().startsWith(SpringConfiguration.BASE_PACKAGE)) {
             log.info(LoggingUtil.format("SPRING", "BeanDestruction", beanName));
         }
     }

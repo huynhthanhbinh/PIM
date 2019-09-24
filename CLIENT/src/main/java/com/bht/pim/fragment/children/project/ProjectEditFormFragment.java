@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bht.pim.base.BaseFragment;
 import com.bht.pim.component.MainPane;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.dto.GroupDto;
 import com.bht.pim.dto.ProjectDto;
@@ -60,7 +60,7 @@ import javafx.scene.layout.VBox;
  */
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = ProjectEditFormFragment.ID,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
         scope = Scope.PROTOTYPE,
         viewLocation = "/com/bht/pim/fragment/children/project/ProjectEditFormFragment.fxml")
 public final class ProjectEditFormFragment extends BaseFragment implements Confirmable {

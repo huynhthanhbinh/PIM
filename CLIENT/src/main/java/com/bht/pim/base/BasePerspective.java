@@ -14,7 +14,7 @@ import org.jacpfx.rcp.componentLayout.PerspectiveLayout;
 import org.jacpfx.rcp.context.Context;
 import org.jacpfx.rcp.perspective.FXPerspective;
 
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.util.GraphicUtil;
 import com.bht.pim.util.LoggingUtil;
 
@@ -48,7 +48,7 @@ public abstract class BasePerspective implements BaseBean, FXPerspective {
     @OnShow
     public void onShow(final FXComponentLayout componentLayout) {
         LOGGER.info(LoggingUtil.format("SHOW", "FXPerspective", getClass().getSimpleName()));
-        AppConfiguration.PERSPECTIVE_PROPERTY.set(this);
+        SpringConfiguration.PERSPECTIVE_PROPERTY.set(this);
         onShowed();
     }
 

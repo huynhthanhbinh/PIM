@@ -16,12 +16,7 @@
 
     <name>CLIENT</name>
 
-    <properties>
-        <jacp.version>2.1</jacp.version>
-    </properties>
-
     <dependencies>
-
         <!-- PIM api -->
         <dependency>
             <groupId>com.bht.pim</groupId>
@@ -75,7 +70,6 @@
             <artifactId>jfoenix</artifactId>
             <version>8.0.8</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -121,5 +115,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

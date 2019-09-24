@@ -26,12 +26,13 @@ import lombok.extern.log4j.Log4j;
  */
 @Log4j
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
-@Workbench(id = "pimWorkbench", name = "pimWorkbench",
+@Workbench(id = PimWorkbench.ID, name = PimWorkbench.ID,
         perspectives = {
                 PimPerspective.ID,
                 DefaultPerspective.ID})
 public final class PimWorkbench implements BaseBean, FXWorkbench {
 
+    public static final String ID = "pimWorkbench";
     public static final VBox LAYOUT = new VBox();
 
     @Autowired

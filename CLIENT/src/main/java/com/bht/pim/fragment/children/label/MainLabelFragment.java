@@ -4,7 +4,7 @@ import org.jacpfx.api.annotations.fragment.Fragment;
 import org.jacpfx.api.fragment.Scope;
 
 import com.bht.pim.base.BaseFragment;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.util.LanguageUtil;
 
 import javafx.fxml.FXML;
@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
  * @author bht
  */
 @Fragment(id = MainLabelFragment.ID, scope = Scope.PROTOTYPE,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/children/label/MainLabelFragment.fxml")
 public final class MainLabelFragment extends BaseFragment {
 

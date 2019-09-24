@@ -3,6 +3,8 @@ package com.bht.pim.base;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import com.bht.pim.configuration.SpringBeanLifeCycle;
+
 /**
  *
  * @author bht
@@ -11,7 +13,7 @@ public interface BaseBean {
 
     /**
      * run after SpringBeanLifeCycle.postProcessBeforeInitialization()
-     * @see com.bht.pim.configuration.SpringBeanLifeCycle
+     * @see SpringBeanLifeCycle
      *
      * such as constructor of spring bean
      * it works on both scopes SINGLETON & PROTOTYPE !
@@ -25,7 +27,7 @@ public interface BaseBean {
 
     /**
      * run after SpringBeanLifeCycle.postProcessBeforeDestruction()
-     * @see com.bht.pim.configuration.SpringBeanLifeCycle
+     * @see SpringBeanLifeCycle
      *
      * such as destructor of spring bean
      * it works only with SINGLETON scope !

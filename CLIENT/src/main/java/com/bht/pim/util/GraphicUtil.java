@@ -2,7 +2,7 @@ package com.bht.pim.util;
 
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.base.BasePerspective;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.notification.NotificationStyle;
 
 import javafx.geometry.Pos;
@@ -44,7 +44,7 @@ public final class GraphicUtil {
      */
     public static void viewGraphics() {
         StringBuilder graphic = new StringBuilder();
-        BasePerspective currentPerspective = AppConfiguration.PERSPECTIVE_PROPERTY.get();
+        BasePerspective currentPerspective = SpringConfiguration.PERSPECTIVE_PROPERTY.get();
         graphic.append("\n").append(currentPerspective.getClass().getSimpleName()).append("\n");
         currentPerspective.getChildComponents().forEach(component -> {
             graphic.append("\t").append(component.getClass().getSimpleName()).append("\n");

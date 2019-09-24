@@ -7,7 +7,7 @@ import org.jacpfx.rcp.context.Context;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.bht.pim.base.BaseComponentFragment;
-import com.bht.pim.configuration.AppConfiguration;
+import com.bht.pim.configuration.SpringConfiguration;
 import com.bht.pim.perspective.PimPerspective;
 import com.bht.pim.util.LanguageUtil;
 
@@ -25,7 +25,7 @@ import javafx.scene.layout.VBox;
  * @author bht
  */
 @Fragment(id = LoginFragment.ID, scope = Scope.SINGLETON,
-        resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
+        resourceBundleLocation = SpringConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/supplementary/LoginFragment.fxml")
 public final class LoginFragment extends BaseComponentFragment {
 
@@ -89,7 +89,7 @@ public final class LoginFragment extends BaseComponentFragment {
                 && password.getText().equals(defaultPassword)) {
 
             context.send(PimPerspective.ID, "show");
-            AppConfiguration.LOGGED_IN_PROPERTY.set(true);
+            SpringConfiguration.LOGGED_IN_PROPERTY.set(true);
 
             username.clear();
             password.clear();
