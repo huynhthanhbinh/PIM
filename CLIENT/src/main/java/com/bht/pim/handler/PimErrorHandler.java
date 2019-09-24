@@ -13,15 +13,9 @@ import javafx.scene.Node;
  *
  * @author bht
  */
-public final class PimErrorHandler implements ErrorDialogHandler<Node>, Thread.UncaughtExceptionHandler {
+public final class PimErrorHandler implements ErrorDialogHandler<Node> {
 
     public static final ObjectProperty<Context> CONTEXT_PROPERTY = new SimpleObjectProperty<>();
-
-
-    public PimErrorHandler() {
-        Thread.setDefaultUncaughtExceptionHandler(this);
-    }
-
 
     @Override
     public void handleExceptionInDialog(Throwable throwable) {
@@ -31,10 +25,5 @@ public final class PimErrorHandler implements ErrorDialogHandler<Node>, Thread.U
     @Override
     public Node createExceptionDialog(Throwable throwable) {
         return null;
-    }
-
-    @Override
-    public void uncaughtException(Thread thread, Throwable throwable) {
-        handleExceptionInDialog(throwable);
     }
 }
