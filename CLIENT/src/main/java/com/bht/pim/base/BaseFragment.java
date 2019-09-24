@@ -33,7 +33,7 @@ public abstract class BaseFragment implements BaseBean {
      *      + binding all children fragments or controls inside
      *      + config the layout such as size (pref/min/max),...
      */
-    void onInit() {
+    final void onInit() {
         onCreated();
         bindChildren();
         configLayout();
@@ -127,7 +127,7 @@ public abstract class BaseFragment implements BaseBean {
      * @return itself cast to its class
      */
     @SuppressWarnings("unchecked")
-    <F extends BaseFragment> F initialize(BaseComponent component, BaseFragment parentFragment) {
+    final <F extends BaseFragment> F initialize(BaseComponent component, BaseFragment parentFragment) {
         childrenFragments = new ArrayList<>();
         parentFragment.childrenFragments.add(this);
         this.component = component;

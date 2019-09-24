@@ -35,18 +35,18 @@ public abstract class BasePerspective implements BaseBean, FXPerspective {
     private List<BaseComponent> childComponents;
 
     @Override
-    public void handlePerspective(Message<Event, Object> message,
-                                  PerspectiveLayout perspectiveLayout) {
+    public final void handlePerspective(Message<Event, Object> message,
+                                        PerspectiveLayout perspectiveLayout) {
         handleMessage(message);
     }
 
     @PreDestroy
-    public void onTearDownComponent(final FXComponentLayout componentLayout) {
+    public final void onTearDownComponent(final FXComponentLayout componentLayout) {
         LOGGER.info(LoggingUtil.format("DESTROY", "FXPerspective", getClass().getSimpleName()));
     }
 
     @OnShow
-    public void onShow(final FXComponentLayout componentLayout) {
+    public final void onShow(final FXComponentLayout componentLayout) {
         LOGGER.info(LoggingUtil.format("SHOW", "FXPerspective", getClass().getSimpleName()));
         AppConfiguration.PERSPECTIVE_PROPERTY.set(this);
         onShowed();

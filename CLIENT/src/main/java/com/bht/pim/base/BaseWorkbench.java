@@ -27,11 +27,10 @@ public abstract class BaseWorkbench implements FXWorkbench, BaseBean {
     private AnnotationConfigApplicationContext applicationContext;
 
     @Override
-    public void handleInitialLayout(
+    public final void handleInitialLayout(
             Message<Event, Object> message,
             WorkbenchLayout<Node> layout, Stage stage) {
 
-        //log.info(LoggingUtil.format("INIT", "FXWorkbench", getClass().getSimpleName()));
         layout.setWorkbenchXYSize(1280, 700);
         layout.setStyle(StageStyle.DECORATED);
         layout.setMenuEnabled(false);
@@ -40,9 +39,8 @@ public abstract class BaseWorkbench implements FXWorkbench, BaseBean {
     }
 
     @Override
-    public void postHandle(FXComponentLayout componentLayout) {
+    public final void postHandle(FXComponentLayout componentLayout) {
 
-        //log.info(LoggingUtil.format("HANDLE", "FXWorkbench", getClass().getSimpleName()));
         LAYOUT.setAlignment(Pos.CENTER);
         LAYOUT.prefWidthProperty().bind(componentLayout.getGlassPane().widthProperty());
         LAYOUT.prefHeightProperty().bind(componentLayout.getGlassPane().heightProperty());
