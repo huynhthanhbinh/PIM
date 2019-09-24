@@ -1,4 +1,4 @@
-package com.bht.pim.workbench;
+package com.bht.pim;
 
 import org.jacpfx.api.annotations.workbench.Workbench;
 import org.jacpfx.api.componentLayout.WorkbenchLayout;
@@ -26,18 +26,17 @@ import lombok.extern.log4j.Log4j;
  */
 @Log4j
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
-@Workbench(id = PimWorkbench.ID, name = PimWorkbench.ID,
+@Workbench(id = AppWorkbench.ID, name = AppWorkbench.ID,
         perspectives = {
                 PimPerspective.ID,
                 DefaultPerspective.ID})
-public final class PimWorkbench implements BaseBean, FXWorkbench {
+public final class AppWorkbench implements BaseBean, FXWorkbench {
 
     public static final String ID = "pimWorkbench";
     public static final VBox LAYOUT = new VBox();
 
     @Autowired
     private AnnotationConfigApplicationContext applicationContext;
-
 
     @Override
     public void handleInitialLayout(

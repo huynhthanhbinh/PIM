@@ -11,13 +11,13 @@ import com.bht.pim.base.BaseBean;
 import com.bht.pim.handler.PimErrorHandler;
 import com.bht.pim.util.ImageUtil;
 import com.bht.pim.util.LanguageUtil;
-import com.bht.pim.workbench.PimWorkbench;
 
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
 /**
+ * JavaFX Application Class
  *
  * @author bht
  */
@@ -39,7 +39,7 @@ public class Client extends AFXSpringJavaConfigLauncher implements BaseBean {
 
     @Override
     protected Class<? extends FXWorkbench> getWorkbenchClass() {
-        return PimWorkbench.class;
+        return AppWorkbench.class;
     }
 
     @Override
