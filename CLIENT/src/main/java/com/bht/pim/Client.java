@@ -3,7 +3,6 @@ package com.bht.pim;
 import org.jacpfx.api.handler.ErrorDialogHandler;
 import org.jacpfx.rcp.workbench.FXWorkbench;
 import org.jacpfx.spring.launcher.AFXSpringJavaConfigLauncher;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.DependsOn;
 
@@ -17,16 +16,14 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 
 /**
- * JavaFX Application Class
+ * JavaFX Application Class - using JACP framework
+ * LanguageProperty needs to be instantiated first
  *
  * @author bht
  */
 @SpringBootApplication
 @DependsOn("languageProperty")
 public class Client extends AFXSpringJavaConfigLauncher implements BaseBean {
-
-    @Autowired
-    private PimErrorHandler pimErrorHandler;
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -58,6 +55,6 @@ public class Client extends AFXSpringJavaConfigLauncher implements BaseBean {
 
     @Override
     protected ErrorDialogHandler<Node> getErrorHandler() {
-        return pimErrorHandler;
+        return new PimErrorHandler();
     }
 }

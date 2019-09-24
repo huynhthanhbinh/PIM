@@ -1,5 +1,7 @@
 package com.bht.pim.spring;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -29,6 +31,7 @@ public final class SpringBeanRegistration implements BaseBean {
                 .forAddress(config.getHost(), config.getPort()) // Port and Host of gRPC server, not of client !
                 .usePlaintext()                                 // Let's use plaintext communication because we don't have certs
                 .maxInboundMessageSize(10 * 1024 * 1024)        // 10KB * 1024 = 10MB --> max message size to transfer together
+                .idleTimeout(3000, TimeUnit.MILLISECONDS)     // 3000 milliseconds / 1000 = 3 seconds --> request time-out
                 .build();                                       // Builder-design-pattern --> using build method to get object
     }
 

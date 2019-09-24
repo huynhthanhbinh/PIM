@@ -2,9 +2,7 @@ package com.bht.pim.handler;
 
 import org.jacpfx.api.handler.ErrorDialogHandler;
 import org.jacpfx.rcp.context.Context;
-import org.springframework.stereotype.Component;
 
-import com.bht.pim.base.BaseBean;
 import com.bht.pim.perspective.DefaultPerspective;
 
 import javafx.beans.property.ObjectProperty;
@@ -15,10 +13,15 @@ import javafx.scene.Node;
  *
  * @author bht
  */
-@Component
-public final class PimErrorHandler implements BaseBean, ErrorDialogHandler<Node> {
+public final class PimErrorHandler implements ErrorDialogHandler<Node>, Thread.UncaughtExceptionHandler {
 
     public static final ObjectProperty<Context> CONTEXT_PROPERTY = new SimpleObjectProperty<>();
+
+
+    public PimErrorHandler() {
+        Thread.setDefaultUncaughtExceptionHandler(this);
+    }
+
 
     @Override
     public void handleExceptionInDialog(Throwable throwable) {
@@ -28,5 +31,10 @@ public final class PimErrorHandler implements BaseBean, ErrorDialogHandler<Node>
     @Override
     public Node createExceptionDialog(Throwable throwable) {
         return null;
+    }
+
+    @Override
+    public void uncaughtException(Thread thread, Throwable throwable) {
+        handleExceptionInDialog(throwable);
     }
 }

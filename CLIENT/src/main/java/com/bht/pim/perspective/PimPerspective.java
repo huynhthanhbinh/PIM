@@ -12,7 +12,6 @@ import com.bht.pim.base.BasePerspective;
 import com.bht.pim.component.LeftPane;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.component.TopPane;
-import com.bht.pim.handler.PimErrorHandler;
 import com.bht.pim.message.impl.PerspectiveShowing;
 
 import javafx.event.Event;
@@ -21,6 +20,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 
 /**
+ *
  * @author bht
  */
 @Perspective(id = PimPerspective.ID, name = PimPerspective.ID,
@@ -59,10 +59,6 @@ public final class PimPerspective extends BasePerspective {
 
     @Override
     protected void onCreated(final PerspectiveLayout perspectiveLayout, final FXComponentLayout layout) {
-        // using for handling error / exception
-        // to send message to perspective default
-        PimErrorHandler.CONTEXT_PROPERTY.set(context);
-
         // Register root component
         perspectiveLayout.registerRootComponent(rootPane);
         // Register other components

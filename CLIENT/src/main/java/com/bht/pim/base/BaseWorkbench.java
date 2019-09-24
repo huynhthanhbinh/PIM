@@ -31,6 +31,7 @@ public abstract class BaseWorkbench implements FXWorkbench, BaseBean {
             Message<Event, Object> message,
             WorkbenchLayout<Node> layout, Stage stage) {
 
+        shareContext();
         layout.setWorkbenchXYSize(1280, 700);
         layout.setStyle(StageStyle.DECORATED);
         layout.setMenuEnabled(false);
@@ -40,9 +41,10 @@ public abstract class BaseWorkbench implements FXWorkbench, BaseBean {
 
     @Override
     public final void postHandle(FXComponentLayout componentLayout) {
-
         LAYOUT.setAlignment(Pos.CENTER);
         LAYOUT.prefWidthProperty().bind(componentLayout.getGlassPane().widthProperty());
         LAYOUT.prefHeightProperty().bind(componentLayout.getGlassPane().heightProperty());
     }
+
+    protected abstract void shareContext();
 }
