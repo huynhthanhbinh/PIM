@@ -15,11 +15,14 @@ import javafx.scene.Node;
  */
 public final class PimErrorHandler implements ErrorDialogHandler<Node> {
 
+    // using shared context to send error/exception to fragment via perspective
     public static final ObjectProperty<Context> CONTEXT_PROPERTY = new SimpleObjectProperty<>();
 
     @Override
+    @SuppressWarnings("squid:S1148")
     public void handleExceptionInDialog(Throwable throwable) {
         CONTEXT_PROPERTY.get().send(DefaultPerspective.ID, throwable);
+        throwable.printStackTrace();
     }
 
     @Override
