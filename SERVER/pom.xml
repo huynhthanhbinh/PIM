@@ -41,6 +41,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
+                            <finalName>server</finalName>
                             <classifier>spring-boot</classifier>
                             <mainClass>com.bht.pim.Server</mainClass>
                         </configuration>

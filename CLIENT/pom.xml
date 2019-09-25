@@ -90,13 +90,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${springboot.version}</version>
+                <version>1.3.8.RELEASE</version>
                 <executions>
                     <execution>
                         <goals>
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
+                            <finalName>client</finalName>
                             <classifier>spring-boot</classifier>
                             <mainClass>com.bht.pim.Client</mainClass>
                         </configuration>
