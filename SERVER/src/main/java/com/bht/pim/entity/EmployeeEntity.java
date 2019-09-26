@@ -27,7 +27,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "EMPLOYEE")
 @Entity(name = "EMPLOYEE")
-public class EmployeeEntity {
+public final class EmployeeEntity {
 
     @Id
     @Column(name = "ID", nullable = false)

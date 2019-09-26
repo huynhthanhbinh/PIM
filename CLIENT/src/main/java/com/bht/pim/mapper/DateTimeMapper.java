@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.time.ZoneOffset;
 
 import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 
-import com.bht.pim.annotation.InheritedComponent;
 import com.bht.pim.base.BaseBean;
 import com.google.protobuf.Timestamp;
 
@@ -14,7 +14,7 @@ import com.google.protobuf.Timestamp;
  *
  * @author bht
  */
-@InheritedComponent
+@Component
 @Mapper(componentModel = "spring")
 public interface DateTimeMapper extends BaseBean {
 

@@ -6,10 +6,12 @@ import java.time.LocalDate;
 import java.time.ZoneOffset;
 
 import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 
 import com.google.protobuf.Timestamp;
 
-@Mapper
+@Component
+@Mapper(componentModel = "spring")
 public interface DateTimeMapper {
 
     default Timestamp toTimestamp(final LocalDate localDate) {

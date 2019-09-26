@@ -5,7 +5,7 @@ import lombok.Getter;
 
 // Group by status
 @AllArgsConstructor
-public class ProjectEntityGroup {
+public final class ProjectEntityGroup {
 
     @Getter
     private String status;

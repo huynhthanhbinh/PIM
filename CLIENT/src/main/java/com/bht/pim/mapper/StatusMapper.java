@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
+import org.springframework.stereotype.Component;
 
-import com.bht.pim.annotation.InheritedComponent;
 import com.bht.pim.base.BaseBean;
 import com.bht.pim.util.LanguageUtil;
 
@@ -17,8 +17,8 @@ import lombok.Getter;
  *
  * @author bht
  */
-@Mapper
-@InheritedComponent
+@Component
+@Mapper(componentModel = "spring")
 public abstract class StatusMapper implements BaseBean {
 
     @Getter

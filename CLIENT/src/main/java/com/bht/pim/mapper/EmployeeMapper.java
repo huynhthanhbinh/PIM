@@ -7,8 +7,8 @@ import org.mapstruct.CollectionMappingStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.stereotype.Component;
 
-import com.bht.pim.annotation.InheritedComponent;
 import com.bht.pim.base.BaseBean;
 import com.bht.pim.dto.EmployeeDto;
 import com.bht.pim.proto.employees.Employee;
@@ -16,7 +16,7 @@ import com.bht.pim.proto.employees.Employee;
 /**
  * @author bht
  */
-@InheritedComponent
+@Component
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,
         collectionMappingStrategy = CollectionMappingStrategy.ADDER_PREFERRED,
         uses = {CustomizedMapper.class, DateTimeMapper.class})

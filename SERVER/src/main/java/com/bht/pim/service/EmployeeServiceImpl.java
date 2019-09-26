@@ -21,7 +21,7 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @GRpcService
-public class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImplBase {
+public final class EmployeeServiceImpl extends EmployeeServiceGrpc.EmployeeServiceImplBase {
 
 
     @Autowired

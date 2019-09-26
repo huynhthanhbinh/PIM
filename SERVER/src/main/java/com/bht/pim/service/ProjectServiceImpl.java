@@ -30,7 +30,7 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @GRpcService
-public class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBase {
+public final class ProjectServiceImpl extends ProjectServiceGrpc.ProjectServiceImplBase {
 
 
     @Autowired

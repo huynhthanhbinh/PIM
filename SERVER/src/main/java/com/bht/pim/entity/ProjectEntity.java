@@ -30,7 +30,7 @@ import lombok.Setter;
 @SelectBeforeUpdate
 @Table(name = "PROJECT")
 @Entity(name = "PROJECT")
-public class ProjectEntity {
+public final class ProjectEntity {
 
     @Id
     @Column(name = "ID", nullable = false)

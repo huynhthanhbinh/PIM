@@ -26,7 +26,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "[GROUP]")
 @Entity(name = "GROUP")
-public class GroupEntity {
+public final class GroupEntity {
 
     @Id
     @Column(name = "ID", nullable = false)
