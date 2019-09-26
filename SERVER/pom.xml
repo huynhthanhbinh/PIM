@@ -7,27 +7,33 @@
     <parent>
         <groupId>com.bht.pim</groupId>
         <artifactId>pim</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>server</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>jar</packaging>
 
     <name>SERVER</name>
+
+    <properties>
+        <mainClass>com.bht.pim.Server</mainClass>
+        <source.directory>src/main/java</source.directory>
+        <resources.directory>src/main/resources</resources.directory>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.bht.pim</groupId>
             <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
     </dependencies>
 
     <build>
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>${resources.directory}</directory>
             </resource>
         </resources>
         <plugins>
@@ -41,9 +47,9 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <finalName>server</finalName>
+                            <finalName>${project.artifactId}</finalName>
                             <classifier>spring-boot</classifier>
-                            <mainClass>com.bht.pim.Server</mainClass>
+                            <mainClass>${mainClass}</mainClass>
                         </configuration>
                     </execution>
                 </executions>
@@ -53,8 +59,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
                 <configuration>
-                    <source>1.8</source> <!-- depending on your project -->
-                    <target>1.8</target> <!-- depending on your project -->
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>
