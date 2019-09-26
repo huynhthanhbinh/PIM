@@ -8,6 +8,7 @@ import com.bht.pim.base.BaseWorkbench;
 import com.bht.pim.handler.PimErrorHandler;
 import com.bht.pim.perspective.DefaultPerspective;
 import com.bht.pim.perspective.PimPerspective;
+import com.bht.pim.preloader.PreLoader;
 
 /**
  *
@@ -23,6 +24,12 @@ public final class AppWorkbench extends BaseWorkbench {
 
     @Resource
     private Context context;
+
+    @Override
+    public void initialize() {
+        super.initialize();
+        PreLoader.closePreloader();
+    }
 
     @Override
     protected void shareContext() {

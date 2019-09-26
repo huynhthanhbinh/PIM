@@ -30,7 +30,7 @@ import lombok.extern.log4j.Log4j;
 public class ProjectDaoImpl implements ProjectDao {
 
     @Autowired
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     @Override
     public long nextIdValue() {

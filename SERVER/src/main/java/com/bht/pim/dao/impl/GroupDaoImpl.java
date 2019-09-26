@@ -26,7 +26,7 @@ import lombok.extern.log4j.Log4j;
 public class GroupDaoImpl implements GroupDao {
 
     @Autowired
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     @Override
     public long nextIdValue() {

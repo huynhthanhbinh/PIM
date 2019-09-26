@@ -1,0 +1,10 @@
+#root {
+    -fx-border-width: 1;
+    -fx-border-color: #F24517;
+    -fx-background-color: white;
+}
+
+#author {
+    -fx-font-style: italic;
+    -fx-text-fill: #00AAFF;
+}

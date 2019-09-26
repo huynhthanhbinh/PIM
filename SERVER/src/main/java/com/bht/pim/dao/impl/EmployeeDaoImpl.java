@@ -25,7 +25,7 @@ import lombok.extern.log4j.Log4j;
 public class EmployeeDaoImpl implements EmployeeDao {
 
     @Autowired
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     @Override
     public List<EmployeeEntity> getEmployeeList(int maxRow, int pageIndex) {

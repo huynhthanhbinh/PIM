@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane id="root" prefHeight="300.0" prefWidth="500.0" maxHeight="300.0" maxWidth="500.0"
+            stylesheets="/com/bht/pim/preloader/PreLoader.css"
+            xmlns="http://javafx.com/javafx/8.0.172-ea">
+
+    <ImageView fitWidth="100.0" layoutX="201.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="/pictures/logo.png"/>
+    </ImageView>
+    <Label layoutX="37.0" layoutY="44.0" text="Project Information Management">
+        <font>
+            <Font name="Segoe UI Bold" size="27.0"/>
+        </font>
+    </Label>
+    <Label layoutX="376.0" layoutY="83.0" text="version 1.0">
+        <font>
+            <Font name="Segoe UI" size="15.0"/>
+        </font>
+    </Label>
+    <Label layoutX="376.0" layoutY="102.0" text="bht@elca.vn" id="author">
+        <font>
+            <Font name="Segoe UI" size="13.0"/>
+        </font>
+    </Label>
+</AnchorPane>
