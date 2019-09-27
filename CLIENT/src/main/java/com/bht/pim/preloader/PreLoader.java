@@ -51,7 +51,7 @@ public class PreLoader extends Preloader {
                 PANE_HEIGHT);
     }
 
-    // preloader pane will be hide on workbench finished initialing
+    // preloader pane will be hide on workbench finished initializing
     public static void closePreloader() {
         log.info(LoggingUtil.format("INFO", "PreLoader", "hide preloader pane"));
 

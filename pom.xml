@@ -18,13 +18,17 @@
     </modules>
 
     <properties>
-        <revision>1.0</revision> <!-- project.build.version -->
+        <revision>1.0</revision> <!-- project.release.version -->
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.release.classifier>spring-boot</project.release.classifier>
+        <project.release.directory>BUILD</project.release.directory>
 
         <maven.test.skip>true</maven.test.skip>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.version>3.8.1</maven.compiler.version>
+        <maven.compiler.source>1.8</maven.compiler.source> <!-- jdk 1.8 (java8) -->
+        <maven.compiler.target>1.8</maven.compiler.target> <!-- jdk 1.8 (java8) -->
+        <maven.antrun-plugin.version>1.8</maven.antrun-plugin.version>
 
         <springframework.version>5.1.8.RELEASE</springframework.version>
         <springboot.version>2.1.8.RELEASE</springboot.version>

@@ -10,23 +10,39 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Node;
 
 /**
+ * Handling all errors/exceptions occurs in runtime
  *
  * @author bht
  */
-public final class PimErrorHandler implements ErrorDialogHandler<Node> {
+public final class PimErrorHandler implements ErrorDialogHandler<Node>, Thread.UncaughtExceptionHandler {
 
-    // using shared context to send error/exception to fragment via perspective
     public static final ObjectProperty<Context> CONTEXT_PROPERTY = new SimpleObjectProperty<>();
 
-    @Override
-    @SuppressWarnings("squid:S1148")
-    public void handleExceptionInDialog(Throwable throwable) {
-        CONTEXT_PROPERTY.get().send(DefaultPerspective.ID, throwable);
-        throwable.printStackTrace();
+    public PimErrorHandler() {
+        Thread.setDefaultUncaughtExceptionHandler(this);                    // control all uncaught exceptions
     }
 
     @Override
+    public void handleExceptionInDialog(Throwable throwable) {
+        CONTEXT_PROPERTY.get().send(DefaultPerspective.ID, throwable);      // show exception in ErrorHandlingFragment
+        printErrorDetailToConsole(throwable);                               // print detail to console for debug/dev
+    }
+
+    // as exception will be showed in ErrorHandlingFragment, don't need to show dialog anymore
+    @Override
     public Node createExceptionDialog(Throwable throwable) {
         return null;
+    }
+
+    @Override
+    public void uncaughtException(Thread thread, Throwable throwable) {
+        handleExceptionInDialog(throwable);
+    }
+
+    @SuppressWarnings({"squid:S1148", "squid:S106"})
+    private void printErrorDetailToConsole(Throwable throwable) {
+        System.out.println();
+        throwable.printStackTrace();
+        System.out.println();
     }
 }

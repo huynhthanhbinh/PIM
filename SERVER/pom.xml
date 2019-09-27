@@ -48,8 +48,9 @@
                         </goals>
                         <configuration>
                             <finalName>${project.artifactId}</finalName>
-                            <classifier>spring-boot</classifier>
+                            <classifier>${project.release.classifier}</classifier>
                             <mainClass>${mainClass}</mainClass>
+                            <outputDirectory>${project.parent.basedir}/${project.release.directory}</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>

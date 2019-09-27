@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 import lombok.extern.log4j.Log4j;
 
 /**
+ *
  * @author bht
  */
 @Log4j
@@ -90,8 +91,7 @@ public final class ErrorHandlingFragment extends BaseComponentFragment {
 
     public void setDetail(Throwable detail) {
         log.error("[ERROR] " + detail);
-        detailField.setText(detail.getClass().getName()
-                + "\n" + detail.getMessage());
+        detailField.setText(detail.getClass().getName() + "\n" + detail.getMessage());
     }
 
     private void onContactAdmin(MouseEvent mouseEvent) {
