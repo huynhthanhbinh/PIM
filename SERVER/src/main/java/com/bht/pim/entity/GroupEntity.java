@@ -2,16 +2,14 @@ package com.bht.pim.entity;
 
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.bht.pim.entity.base.BaseEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,13 +24,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "[GROUP]")
 @Entity(name = "GROUP")
-public final class GroupEntity {
-
-    @Id
-    @Column(name = "ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public final class GroupEntity extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "GROUP_LEADER_ID", nullable = false,
@@ -55,13 +47,12 @@ public final class GroupEntity {
 
         GroupEntity group = (GroupEntity) obj;
 
-        return groupLeader.getVisa()
-                .equals(group.groupLeader.getVisa());
+        return groupLeader.getId().equals(group.groupLeader.getId());
     }
 
 
     @Override
     public int hashCode() {
-        return groupLeader.getVisa().hashCode();
+        return id.hashCode();
     }
 }

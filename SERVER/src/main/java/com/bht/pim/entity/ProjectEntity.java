@@ -5,9 +5,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -15,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.SelectBeforeUpdate;
+
+import com.bht.pim.entity.base.BaseEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,12 +29,7 @@ import lombok.Setter;
 @SelectBeforeUpdate
 @Table(name = "PROJECT")
 @Entity(name = "PROJECT")
-public final class ProjectEntity {
-
-    @Id
-    @Column(name = "ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public final class ProjectEntity extends BaseEntity {
 
     @ManyToMany
     @JoinTable(name = "PROJECT_EMPLOYEE",
@@ -81,18 +75,12 @@ public final class ProjectEntity {
 
         ProjectEntity project = (ProjectEntity) obj;
 
-        return number.equals(project.number)
-                && name.equals(project.name)
-                && customer.equals(project.customer);
+        return id.equals(project.id);
     }
 
 
     @Override
     public int hashCode() {
-        int hashCode = 7;
-        hashCode = (17 * hashCode) + number.hashCode();
-        hashCode = (37 * hashCode) + name.hashCode();
-        hashCode = (47 * hashCode) + customer.hashCode();
-        return hashCode;
+        return id.hashCode();
     }
 }

@@ -7,12 +7,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.bht.pim.entity.base.BaseEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,12 +26,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "EMPLOYEE")
 @Entity(name = "EMPLOYEE")
-public final class EmployeeEntity {
-
-    @Id
-    @Column(name = "ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public final class EmployeeEntity extends BaseEntity {
 
     @Column(name = "VISA", nullable = false, unique = true)
     private String visa;
@@ -69,12 +63,12 @@ public final class EmployeeEntity {
 
         EmployeeEntity employee = (EmployeeEntity) obj;
 
-        return visa.equals(employee.visa);
+        return id.equals(employee.id);
     }
 
 
     @Override
     public int hashCode() {
-        return visa.hashCode();
+        return id.hashCode();
     }
 }
