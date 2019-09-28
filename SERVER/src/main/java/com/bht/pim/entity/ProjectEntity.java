@@ -35,7 +35,7 @@ public final class ProjectEntity {
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToMany
     @JoinTable(name = "PROJECT_EMPLOYEE",
@@ -44,7 +44,7 @@ public final class ProjectEntity {
     private Set<EmployeeEntity> enrolledEmployees;
 
     @Column(name = "PROJECT_NUMBER", nullable = false, unique = true)
-    private long number;
+    private Long number;
 
     @Column(name = "NAME", nullable = false)
     private String name;
@@ -81,7 +81,7 @@ public final class ProjectEntity {
 
         ProjectEntity project = (ProjectEntity) obj;
 
-        return number == project.number
+        return number.equals(project.number)
                 && name.equals(project.name)
                 && customer.equals(project.customer);
     }
@@ -89,6 +89,10 @@ public final class ProjectEntity {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int hashCode = 7;
+        hashCode = (17 * hashCode) + number.hashCode();
+        hashCode = (37 * hashCode) + name.hashCode();
+        hashCode = (47 * hashCode) + customer.hashCode();
+        return hashCode;
     }
 }

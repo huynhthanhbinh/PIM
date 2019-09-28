@@ -31,7 +31,7 @@ public final class GroupEntity {
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
 
     @OneToOne
@@ -62,6 +62,6 @@ public final class GroupEntity {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return groupLeader.getVisa().hashCode();
     }
 }

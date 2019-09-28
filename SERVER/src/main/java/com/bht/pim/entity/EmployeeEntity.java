@@ -32,7 +32,7 @@ public final class EmployeeEntity {
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "VISA", nullable = false, unique = true)
     private String visa;
@@ -75,6 +75,6 @@ public final class EmployeeEntity {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return visa.hashCode();
     }
 }
