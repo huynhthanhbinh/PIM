@@ -5,6 +5,9 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -12,8 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.SelectBeforeUpdate;
-
-import com.bht.pim.entity.base.BaseEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,7 +30,12 @@ import lombok.Setter;
 @SelectBeforeUpdate
 @Table(name = "PROJECT")
 @Entity(name = "PROJECT")
-public final class ProjectEntity extends BaseEntity {
+public final class ProjectEntity {
+
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToMany
     @JoinTable(name = "PROJECT_EMPLOYEE",
@@ -46,11 +52,6 @@ public final class ProjectEntity extends BaseEntity {
     @Column(name = "CUSTOMER", nullable = false)
     private String customer;
 
-    // CHAR(3) STATUS
-    // NEW = New
-    // PLA = Planned
-    // INP = In progress
-    // FIN = Finished
     @Column(name = "STATUS", nullable = false)
     private String status;
 
