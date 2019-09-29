@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import lombok.extern.log4j.Log4j;
 
 /**
+ *
  * @author bht
  */
 @Log4j
@@ -82,6 +83,7 @@ public final class TopMenuFragment extends BaseComponentFragment {
 
     private void initAllStyles() {
         logo.setPreserveRatio(true);
+
         if (languageProperty.getLocaleProperty().get().equals(Locale.ENGLISH)) {
             lEnglish.getStyleClass().add("active");
         } else {
@@ -90,56 +92,54 @@ public final class TopMenuFragment extends BaseComponentFragment {
     }
 
     private void addAllEventListeners() {
-        addLabelEnglishEventHandler();
-        addLabelFrenchEventHandler();
+        addLanguageChangeListener();
+        addAllLanguageLabelListeners();
         addButtonHelpEventHandler();
         addButtonLogoutEventHandler();
     }
 
-    private void addLabelEnglishEventHandler() {
-        lEnglish.getStyleClass().add("clickable");
-        lEnglish.setOnMouseClicked(event -> {
-
-            if (lEnglish.getStyleClass().contains("active")) {
-                event.consume();
-                return;
-            }
-
-            lFrench.getStyleClass().remove("active");
-            lEnglish.getStyleClass().add("active");
-
-            languageProperty.getLocaleProperty().set(Locale.ENGLISH);
-        });
-    }
-
-    private void addLabelFrenchEventHandler() {
-        lFrench.getStyleClass().add("clickable");
-        lFrench.setOnMouseClicked(event -> {
-
-            if (lFrench.getStyleClass().contains("active")) {
-                event.consume();
-                return;
-            }
-
-            lEnglish.getStyleClass().remove("active");
-            lFrench.getStyleClass().add("active");
-
-            languageProperty.getLocaleProperty().set(Locale.FRENCH);
-        });
+    private void addAllLanguageLabelListeners() {
+        initLanguageLabel(lEnglish, Locale.ENGLISH);
+        initLanguageLabel(lFrench, Locale.FRENCH);
     }
 
     private void addButtonHelpEventHandler() {
-        bHelp.setOnMouseClicked(event -> {
-            //log.info("[INFO] Clicked Help button");
-            showModalDialog(helpDialog);
-        });
+        bHelp.setOnMouseClicked(event -> showModalDialog(helpDialog));
     }
 
     private void addButtonLogoutEventHandler() {
         bLogout.setOnMouseClicked(event -> {
-            //log.info("[INFO] Clicked Logout button");
             context.send(DefaultPerspective.ID, "show");
             AppConfiguration.LOGGED_IN_PROPERTY.set(false);
+        });
+    }
+
+    private void initLanguageLabel(Label languageLabel, Locale locale) {
+        languageLabel.getStyleClass().add("clickable");
+        languageLabel.setOnMouseClicked(event -> {
+
+            if (languageLabel.getStyleClass().contains("active")) {
+                event.consume();
+                return;
+            }
+
+            languageProperty.getLocaleProperty().set(locale);
+        });
+    }
+
+    private void addLanguageChangeListener() {
+        languageProperty.getLocaleProperty().addListener((observable, oldValue, newValue) -> {
+
+            if (newValue.equals(Locale.FRENCH)) {   // --> FRENCH
+
+                lEnglish.getStyleClass().remove("active");
+                lFrench.getStyleClass().add("active");
+
+            } else {                                // --> ENGLISH
+
+                lFrench.getStyleClass().remove("active");
+                lEnglish.getStyleClass().add("active");
+            }
         });
     }
 }
