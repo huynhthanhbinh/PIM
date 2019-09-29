@@ -1,6 +1,8 @@
 package com.bht.pim.fragment.menu;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.fragment.Fragment;
@@ -33,7 +35,9 @@ import lombok.extern.log4j.Log4j;
 public final class TopMenuFragment extends BaseComponentFragment {
 
     static final String ID = "topMenuFragment";
+    private static final String ACTIVE_STYLE_CLASS = "active";
 
+    private Map<Locale, Label> availableLingualLabels;
     @Autowired
     private LanguageProperty languageProperty;
     @Autowired
@@ -64,7 +68,9 @@ public final class TopMenuFragment extends BaseComponentFragment {
     protected void onCreated() {
         initAllLabels();
         initAllStyles();
+        addAllAvailableLingualLabels();
         addAllEventListeners();
+        activateDefaultLingualLabel();
     }
 
     @Override
@@ -77,18 +83,22 @@ public final class TopMenuFragment extends BaseComponentFragment {
         //
     }
 
+    private void activateDefaultLingualLabel() {
+        availableLingualLabels.get(languageProperty.getLocaleProperty().get()).getStyleClass().add(ACTIVE_STYLE_CLASS);
+    }
+
+    private void addAllAvailableLingualLabels() {
+        availableLingualLabels = new HashMap<>();
+        availableLingualLabels.put(Locale.ENGLISH, lEnglish);
+        availableLingualLabels.put(Locale.FRENCH, lFrench);
+    }
+
     private void initAllLabels() {
         LanguageUtil.initLabel(lApp.textProperty(), AppConfiguration.LABEL_PIM_MAIN);
     }
 
     private void initAllStyles() {
         logo.setPreserveRatio(true);
-
-        if (languageProperty.getLocaleProperty().get().equals(Locale.ENGLISH)) {
-            lEnglish.getStyleClass().add("active");
-        } else {
-            lFrench.getStyleClass().add("active");
-        }
     }
 
     private void addAllEventListeners() {
@@ -99,8 +109,7 @@ public final class TopMenuFragment extends BaseComponentFragment {
     }
 
     private void addAllLanguageLabelListeners() {
-        initLanguageLabel(lEnglish, Locale.ENGLISH);
-        initLanguageLabel(lFrench, Locale.FRENCH);
+        availableLingualLabels.forEach(this::initLanguageLabel);
     }
 
     private void addButtonHelpEventHandler() {
@@ -114,11 +123,11 @@ public final class TopMenuFragment extends BaseComponentFragment {
         });
     }
 
-    private void initLanguageLabel(Label languageLabel, Locale locale) {
-        languageLabel.getStyleClass().add("clickable");
-        languageLabel.setOnMouseClicked(event -> {
+    private void initLanguageLabel(Locale locale, Label lingualLabel) {
+        lingualLabel.getStyleClass().add("clickable");
+        lingualLabel.setOnMouseClicked(event -> {
 
-            if (languageLabel.getStyleClass().contains("active")) {
+            if (lingualLabel.getStyleClass().contains(ACTIVE_STYLE_CLASS)) {
                 event.consume();
                 return;
             }
@@ -129,17 +138,8 @@ public final class TopMenuFragment extends BaseComponentFragment {
 
     private void addLanguageChangeListener() {
         languageProperty.getLocaleProperty().addListener((observable, oldValue, newValue) -> {
-
-            if (newValue.equals(Locale.FRENCH)) {   // --> FRENCH
-
-                lEnglish.getStyleClass().remove("active");
-                lFrench.getStyleClass().add("active");
-
-            } else {                                // --> ENGLISH
-
-                lFrench.getStyleClass().remove("active");
-                lEnglish.getStyleClass().add("active");
-            }
+            availableLingualLabels.get(oldValue).getStyleClass().remove(ACTIVE_STYLE_CLASS); // deactivate old lingual label
+            availableLingualLabels.get(newValue).getStyleClass().add(ACTIVE_STYLE_CLASS);    // activate new lingual label
         });
     }
 }
