@@ -2,7 +2,6 @@ package com.bht.pim.base;
 
 import org.jacpfx.rcp.context.Context;
 
-import com.bht.pim.AppWorkbench;
 import com.bht.pim.annotation.InheritedComponent;
 import com.bht.pim.util.ImageUtil;
 import com.bht.pim.util.LanguageUtil;
@@ -27,7 +26,7 @@ import javafx.scene.layout.VBox;
 @InheritedComponent
 public abstract class BaseDialog extends VBox implements BaseBean {
 
-    private static final VBox DIALOG_BOUND = AppWorkbench.LAYOUT;
+    private static final VBox DIALOG_BOUND = BaseWorkbench.LAYOUT;
 
     private ImageView icon;
     private Label title;

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.bht.pim.dialog.content.ExitDialogContent"
+            prefHeight="160.0" prefWidth="580.0">
+
+</AnchorPane>

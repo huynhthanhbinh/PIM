@@ -68,8 +68,12 @@ public abstract class BasePerspective implements BaseBean, FXPerspective {
                 .put(GraphicUtil.VIEW_GRAPHICS_KEY_COMBINATION, GraphicUtil::viewGraphics);
     }
 
-    final <T extends BaseComponent> void addChildComponent(T t) {
-        childComponents.add(t);
+    final <T extends BaseComponent> void addChildComponent(T component) {
+        childComponents.add(component);
+    }
+
+    final void showModalDialog(BaseDialog dialog) {
+        perspectiveContext.showModalDialog(dialog.getDialogInBound(perspectiveContext)); // for closing dialog when clicking outside
     }
 
     protected abstract void getContext();

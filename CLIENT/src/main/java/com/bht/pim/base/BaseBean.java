@@ -25,6 +25,7 @@ public interface BaseBean {
     default void initialize() {
     }
 
+
     /**
      * run after SpringBeanLifeCycle.postProcessBeforeDestruction()
      * @see SpringBeanLifeCycle

@@ -8,13 +8,13 @@ import com.bht.pim.base.BaseDialog;
  *
  * @author bht
  */
-@DependsOn({"languageProperty", "helpDialogContent"})
-public final class HelpDialog extends BaseDialog {
+@DependsOn({"languageProperty", "exitDialogContent"})
+public final class ExitDialog extends BaseDialog {
 
     @Override
     public void initialize() {
         super.initialize();
         setDialogTitle("label.title.dialog.help");
-        setDialogSize(500, 300);
+        setDialogSize(600, 200);
     }
 }

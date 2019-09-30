@@ -96,16 +96,6 @@ public abstract class BaseFragment implements BaseBean {
 
 
     /**
-     * hide a modal dialog
-     * 1 screen contains max 1 modal dialog
-     * so we don't need to specify which dialog to be hide
-     */
-    protected final void hideModalDialog() {
-        component.hideModalDialog();
-    }
-
-
-    /**
      * register new child fragment method
      *
      * @param fClass fragment class
@@ -126,7 +116,6 @@ public abstract class BaseFragment implements BaseBean {
      * @param <F> fragment class which extends BaseFragment
      * @return itself cast to its class
      */
-    @SuppressWarnings("unchecked")
     final <F extends BaseFragment> F initialize(BaseComponent component, BaseFragment parentFragment) {
         childrenFragments = new ArrayList<>();
         parentFragment.childrenFragments.add(this);
