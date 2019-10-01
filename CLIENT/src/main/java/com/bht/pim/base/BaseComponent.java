@@ -84,11 +84,6 @@ public abstract class BaseComponent extends VBox implements BaseBean, FXComponen
     }
 
 
-    final void showModalDialog(BaseDialog dialog) {
-        componentContext.showModalDialog(dialog.getDialogInBound(componentContext)); // for closing dialog when clicking outside
-    }
-
-
     final <F extends BaseFragment> ManagedFragmentHandler<F> registerNewFragment(Class<F> fClass) {
         LOGGER.info(LoggingUtil.format("REGISTER", "FXFragment", fClass.getSimpleName()));
         return componentContext.getManagedFragmentHandler(fClass);

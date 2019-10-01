@@ -1,17 +1,20 @@
 package com.bht.pim.base;
 
-import org.jacpfx.rcp.context.Context;
+import java.io.IOException;
 
+import com.bht.pim.AppConfiguration;
 import com.bht.pim.annotation.InheritedComponent;
-import com.bht.pim.util.ImageUtil;
 import com.bht.pim.util.LanguageUtil;
+import com.bht.pim.util.LoadingUtil;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
 
 /**
  * For using multilingual,
@@ -27,13 +30,17 @@ import javafx.scene.layout.VBox;
 public abstract class BaseDialog extends VBox implements BaseBean {
 
     private static final VBox DIALOG_BOUND = BaseWorkbench.LAYOUT;
-
     private ImageView icon;
     private Label title;
-    private Button bClose;
     private AnchorPane titleBar;
+    protected Button bClose;
 
-    public BaseDialog() {
+    @Getter
+    protected boolean isShowing;
+
+    @Override
+    public void initialize() throws IOException {
+        BaseBean.super.initialize();
         addStyleSheet();
         initIcon();
         initLabel();
@@ -42,9 +49,19 @@ public abstract class BaseDialog extends VBox implements BaseBean {
         initDialog();
     }
 
-    final VBox getDialogInBound(Context context) {
+    public final void show() {
+        AppConfiguration.PERSPECTIVE_PROPERTY.get().showModalDialog(getDialogInBound());
+        isShowing = true;
+    }
+
+    public final void hide() {
+        AppConfiguration.PERSPECTIVE_PROPERTY.get().hideModalDialog();
+        isShowing = false;
+    }
+
+    private VBox getDialogInBound() {
         clearCurrentLayout();
-        addEventListener(context);
+        addAllEventListeners();
         boundCurrentDialog();
         return DIALOG_BOUND;
     }
@@ -54,7 +71,7 @@ public abstract class BaseDialog extends VBox implements BaseBean {
     }
 
     private void initIcon() {
-        icon = new ImageView(ImageUtil.getImage("icon_inverse"));
+        icon = new ImageView(LoadingUtil.loadImage("icon_inverse"));
         icon.setPreserveRatio(true);
         icon.setFitHeight(20);
         AnchorPane.setTopAnchor(icon, 5.0);
@@ -83,10 +100,11 @@ public abstract class BaseDialog extends VBox implements BaseBean {
         titleBar.getChildren().addAll(icon, title, bClose);
     }
 
-    private void initDialog() {
+    private void initDialog() throws IOException {
         setId("dialog");
         setAlignment(Pos.TOP_CENTER);
         getChildren().add(titleBar);
+        getChildren().add(getDialogContent());
     }
 
     private void clearCurrentLayout() {
@@ -97,12 +115,19 @@ public abstract class BaseDialog extends VBox implements BaseBean {
         DIALOG_BOUND.getChildren().add(this);
     }
 
-    private void addEventListener(Context context) {
-        bClose.setOnMouseClicked(event -> context.hideModalDialog());
+    protected void addAllEventListeners() {
+        addButtonCloseEventListener();
+        addDialogBoundEventListener();
+    }
 
+    private void addButtonCloseEventListener() {
+        bClose.setOnMouseClicked(event -> hide());
+    }
+
+    private void addDialogBoundEventListener() {
         DIALOG_BOUND.setOnMouseClicked(event -> {
             if (!isHover()) {
-                context.hideModalDialog();
+                hide(); // ==> close dialog if click outside !
             }
         });
     }
@@ -116,4 +141,6 @@ public abstract class BaseDialog extends VBox implements BaseBean {
     protected final void setDialogTitle(String dialogTitleKey) {
         LanguageUtil.initLabel(title.textProperty(), dialogTitleKey);
     }
+
+    protected abstract Pane getDialogContent() throws IOException;
 }

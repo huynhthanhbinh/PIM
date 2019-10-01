@@ -1,13 +1,11 @@
 package com.bht.pim.preloader;
 
 import java.io.IOException;
-import java.util.Objects;
 
-import com.bht.pim.util.ImageUtil;
+import com.bht.pim.util.LoadingUtil;
 import com.bht.pim.util.LoggingUtil;
 
 import javafx.application.Preloader;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -20,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class PreLoader extends Preloader {
 
-    private static final String PRELOADER_PATH = "com/bht/pim/preloader/PreLoader.fxml";
+    private static final String PRELOADER_PATH = "preloader/PreLoader.fxml";
     private static final int PANE_WIDTH = 500;
     private static final int PANE_HEIGHT = 300;
     private static Stage preLoaderStage;
@@ -39,24 +37,23 @@ public class PreLoader extends Preloader {
         preLoaderStage.setResizable(false);
         preLoaderStage.initStyle(StageStyle.UNDECORATED);
         preLoaderStage.setAlwaysOnTop(true);
-        preLoaderStage.getIcons().add(ImageUtil.getImage("icon"));
+        preLoaderStage.getIcons().add(LoadingUtil.loadImage("icon"));
         preLoaderStage.show();
         preLoaderStage.centerOnScreen();
     }
 
     private Scene getPreloaderScene() throws IOException {
         return new Scene(
-                FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(PRELOADER_PATH))),
+                LoadingUtil.loadFXML(PRELOADER_PATH).getKey(),
                 PANE_WIDTH,
                 PANE_HEIGHT);
     }
 
-    // preloader pane will be hide on workbench finished initializing
     public static void closePreloader() {
         log.info(LoggingUtil.format("INFO", "PreLoader", "hide preloader pane"));
 
         if (preLoaderStage != null) {
-            preLoaderStage.close();
+            preLoaderStage.close();     // preloader pane will be hide on workbench finished initializing
             preLoaderStage = null;
         }
     }

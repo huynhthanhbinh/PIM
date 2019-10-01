@@ -7,13 +7,12 @@ import org.jacpfx.rcp.workbench.FXWorkbench;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.bht.pim.AppConfiguration;
-import com.bht.pim.dialog.content.ExitDialogContent;
-import com.bht.pim.dialog.dialogs.ExitDialog;
+import com.bht.pim.dialog.base.ExitDialog;
 
 import javafx.event.Event;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -32,8 +31,7 @@ public abstract class BaseWorkbench implements FXWorkbench, BaseBean {
     private AnnotationConfigApplicationContext applicationContext;
     @Autowired
     private ExitDialog exitDialog;
-    @Autowired
-    private ExitDialogContent exitDialogContent;
+
 
     @Override
     public final void handleInitialLayout(Message<Event, Object> message, WorkbenchLayout<Node> layout, Stage stage) {
@@ -45,9 +43,10 @@ public abstract class BaseWorkbench implements FXWorkbench, BaseBean {
 
     @Override
     public final void postHandle(FXComponentLayout componentLayout) {
+        Pane appLayout = componentLayout.getGlassPane();
         LAYOUT.setAlignment(Pos.CENTER);
-        LAYOUT.prefWidthProperty().bind(componentLayout.getGlassPane().widthProperty());
-        LAYOUT.prefHeightProperty().bind(componentLayout.getGlassPane().heightProperty());
+        LAYOUT.prefWidthProperty().bind(appLayout.widthProperty());
+        LAYOUT.prefHeightProperty().bind(appLayout.heightProperty());
     }
 
     protected abstract void shareContext();
@@ -59,19 +58,27 @@ public abstract class BaseWorkbench implements FXWorkbench, BaseBean {
     }
 
     private void addCloseRequestHandler(Stage stage) {
-        exitDialogContent.setCloseAppEventHandler(stage.getOnCloseRequest());
+        exitDialog.setCloseAppEventHandler(stage.getOnCloseRequest());
         stage.setOnCloseRequest(this::onCloseRequest);
     }
 
     /**
      * for bean destruction of spring @PreDestroy
+     * if we not do this, method with @PreDestroy will not be executed
      */
     private void registerShutdownHook() {
         applicationContext.registerShutdownHook();
     }
 
     private void onCloseRequest(WindowEvent event) {
-        exitDialogContent.setExitEvent(event);
-        AppConfiguration.PERSPECTIVE_PROPERTY.get().showModalDialog(exitDialog);
+        event.consume();
+        showExitDialog(event);
+    }
+
+    private void showExitDialog(WindowEvent event) {
+        exitDialog.setExitEvent(event);
+        if (!exitDialog.isShowing) {
+            exitDialog.show();
+        }
     }
 }

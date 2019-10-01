@@ -9,8 +9,8 @@ import org.springframework.context.annotation.DependsOn;
 import com.bht.pim.base.BaseBean;
 import com.bht.pim.handler.PimErrorHandler;
 import com.bht.pim.preloader.PreLoader;
-import com.bht.pim.util.ImageUtil;
 import com.bht.pim.util.LanguageUtil;
+import com.bht.pim.util.LoadingUtil;
 import com.sun.javafx.application.LauncherImpl;
 
 import javafx.scene.Node;
@@ -47,7 +47,7 @@ public class Client extends AFXSpringJavaConfigLauncher implements BaseBean {
     @Override
     protected void postInit(Stage stage) {
         LanguageUtil.initLabel(stage.titleProperty(), AppConfiguration.LABEL_PIM_MAIN);
-        stage.getIcons().add(ImageUtil.getImage("icon"));
+        stage.getIcons().add(LoadingUtil.loadImage("icon"));
         stage.sizeToScene();
         stage.setMinWidth(1280);
         stage.setMinHeight(720);

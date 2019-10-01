@@ -1,0 +1,21 @@
+.button {
+    -fx-padding: 2;
+    -fx-font-size: 16;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
+
+#bCancel {
+    -fx-background-color: linear-gradient(#bebebe, #606060);
+}
+
+#bSubmit {
+    -fx-background-color: linear-gradient(#ff5400, #be1d00);
+}

@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseComponentFragment;
-import com.bht.pim.dialog.dialogs.HelpDialog;
+import com.bht.pim.dialog.base.HelpDialog;
 import com.bht.pim.perspective.DefaultPerspective;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.util.LanguageUtil;
@@ -113,7 +113,7 @@ public final class TopMenuFragment extends BaseComponentFragment {
     }
 
     private void addButtonHelpEventHandler() {
-        bHelp.setOnMouseClicked(event -> showModalDialog(helpDialog));
+        bHelp.setOnMouseClicked(event -> helpDialog.show());
     }
 
     private void addButtonLogoutEventHandler() {

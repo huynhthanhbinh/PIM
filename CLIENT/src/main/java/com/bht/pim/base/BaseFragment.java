@@ -14,16 +14,13 @@ import lombok.Getter;
  *
  * @author bht
  */
+@Getter
 public abstract class BaseFragment implements BaseBean {
 
     protected static final Logger LOGGER = Logger.getLogger(BaseFragment.class);
     protected BaseComponent component;
-
-    @Getter
     protected Pane layout;
-    @Getter
     protected BaseFragment parentFragment;
-    @Getter
     protected List<BaseFragment> childrenFragments;
 
     /**
@@ -60,6 +57,8 @@ public abstract class BaseFragment implements BaseBean {
      * is final child fragment (not have children anymore)
      * and something need to be done on switch
      * otherwise, do not override it
+     *
+     * please call super method on overriding
      */
     protected void onSwitch() {
         childrenFragments.forEach(BaseFragment::onSwitch);
@@ -72,6 +71,8 @@ public abstract class BaseFragment implements BaseBean {
      * is final child fragment (not have children anymore)
      * and something need to be done before left
      * otherwise, do not override it
+     *
+     * please call super method on overriding
      */
     protected void preLeft() {
         childrenFragments.forEach(BaseFragment::preLeft);
@@ -84,15 +85,6 @@ public abstract class BaseFragment implements BaseBean {
      * left it empty if no controls needs to bind
      */
     protected abstract void bindChildren();
-
-
-    /**
-     * show a modal dialog
-     * @param dialog dialog needs to be showed
-     */
-    protected final void showModalDialog(BaseDialog dialog) {
-        component.showModalDialog(dialog);
-    }
 
 
     /**
@@ -116,6 +108,7 @@ public abstract class BaseFragment implements BaseBean {
      * @param <F> fragment class which extends BaseFragment
      * @return itself cast to its class
      */
+    @SuppressWarnings("unchecked")
     final <F extends BaseFragment> F initialize(BaseComponent component, BaseFragment parentFragment) {
         childrenFragments = new ArrayList<>();
         parentFragment.childrenFragments.add(this);

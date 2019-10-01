@@ -1,5 +1,7 @@
 package com.bht.pim;
 
+import java.io.IOException;
+
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.workbench.Workbench;
 import org.jacpfx.rcp.context.Context;
@@ -26,15 +28,13 @@ public final class AppWorkbench extends BaseWorkbench {
     private Context context;
 
     @Override
-    public void initialize() {
+    public void initialize() throws IOException {
         super.initialize();
         PreLoader.closePreloader();
     }
 
     @Override
     protected void shareContext() {
-        // using for handling error / exception
-        // to send message to perspective default
         PimErrorHandler.CONTEXT_PROPERTY.set(context);
     }
 }

@@ -1,5 +1,7 @@
 package com.bht.pim.property;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +24,7 @@ public final class FormatProperty implements BaseBean {
     private LanguageProperty languageProperty;
 
     @Override
-    public void initialize() {
+    public void initialize() throws IOException {
         BaseBean.super.initialize();
         initDatePatternProperty();
         addEventListener();

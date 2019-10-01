@@ -1,5 +1,7 @@
 package com.bht.pim.base;
 
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
@@ -22,7 +24,7 @@ public interface BaseBean {
      * must call BaseBean.super.initialize(); first !!!!!
      */
     @PostConstruct
-    default void initialize() {
+    default void initialize() throws IOException {
     }
 
 

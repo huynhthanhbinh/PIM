@@ -1,5 +1,6 @@
 package com.bht.pim.property;
 
+import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -28,7 +29,7 @@ public final class LanguageProperty implements BaseBean {
     private ObjectProperty<ResourceBundle> resourceBundleProperty;
 
     @Override
-    public void initialize() {
+    public void initialize() throws IOException {
         BaseBean.super.initialize();
 
         localeProperty = new SimpleObjectProperty<>(AppConfiguration.DEFAULT_LOCALE);

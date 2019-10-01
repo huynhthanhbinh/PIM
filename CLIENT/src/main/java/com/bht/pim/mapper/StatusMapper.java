@@ -1,5 +1,6 @@
 package com.bht.pim.mapper;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import javafx.beans.property.StringProperty;
 import lombok.Getter;
 
 /**
+ * using for mapping status bidirectional
  *
  * @author bht
  */
@@ -25,7 +27,7 @@ public abstract class StatusMapper implements BaseBean {
     private Map<String, StringProperty> availableStatus;
 
     @Override
-    public void initialize() {
+    public void initialize() throws IOException {
         BaseBean.super.initialize();
         availableStatus = new HashMap<>();
         availableStatus.put("TOT", LanguageUtil.getTextPropertyOfKey("label.project.status.total"));

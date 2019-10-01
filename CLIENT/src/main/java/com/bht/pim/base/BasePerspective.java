@@ -19,11 +19,11 @@ import com.bht.pim.util.GraphicUtil;
 import com.bht.pim.util.LoggingUtil;
 
 import javafx.event.Event;
+import javafx.scene.layout.VBox;
 import lombok.Getter;
 
 /**
  * this class using Template Method Design-Pattern ^^
- *
  * @author bht
  */
 public abstract class BasePerspective implements BaseBean, FXPerspective {
@@ -72,8 +72,12 @@ public abstract class BasePerspective implements BaseBean, FXPerspective {
         childComponents.add(component);
     }
 
-    final void showModalDialog(BaseDialog dialog) {
-        perspectiveContext.showModalDialog(dialog.getDialogInBound(perspectiveContext)); // for closing dialog when clicking outside
+    final void showModalDialog(VBox dialogInBound) {
+        perspectiveContext.showModalDialog(dialogInBound); // for closing dialog when clicking outside
+    }
+
+    final void hideModalDialog() {
+        perspectiveContext.hideModalDialog();
     }
 
     protected abstract void getContext();
