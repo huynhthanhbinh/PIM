@@ -22,7 +22,7 @@ public final class HelpDialog extends BaseDialog {
     public void initialize() throws IOException {
         super.initialize();
         setDialogTitle("label.dialog.help.title");
-        setDialogSize(500, 300);
+        setDialogSize(600, 300);
     }
 
     @Override

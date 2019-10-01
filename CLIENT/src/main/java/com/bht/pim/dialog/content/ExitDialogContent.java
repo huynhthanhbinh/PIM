@@ -4,6 +4,7 @@ import com.bht.pim.base.BaseDialogContent;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import lombok.Getter;
 
 /**
@@ -13,6 +14,8 @@ import lombok.Getter;
 @Getter
 public class ExitDialogContent extends BaseDialogContent {
 
+    @FXML
+    private Label lWarning;
     @FXML
     private Button bSubmit;
     @FXML

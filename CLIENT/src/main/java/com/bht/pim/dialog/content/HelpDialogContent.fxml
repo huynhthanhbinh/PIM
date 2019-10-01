@@ -5,6 +5,6 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.bht.pim.dialog.content.HelpDialogContent"
             stylesheets="/com/bht/pim/dialog/content/HelpDialogContent.css"
-            prefHeight="260.0" prefWidth="500.0">
+            prefHeight="260.0" prefWidth="600.0">
 
 </AnchorPane>

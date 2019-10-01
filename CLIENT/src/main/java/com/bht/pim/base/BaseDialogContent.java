@@ -4,5 +4,6 @@ package com.bht.pim.base;
  *
  * @author bht
  */
-public abstract class BaseDialogContent implements BaseBean {
+@SuppressWarnings("squid:S1610")
+public abstract class BaseDialogContent {
 }

@@ -1,7 +1,7 @@
 #dialog {
     -fx-background-color: gainsboro;
     -fx-border-color: #F24517;
-    -fx-border-width: 1
+    -fx-border-width: 2;
 }
 
 #titleBar {

@@ -41,6 +41,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${springboot.version}</version>
+                <configuration>
+                    <jvmArguments>
+                        -Xms256m -Xmx1536m -XX:ReservedCodeCacheSize=256m -XX:+UseConcMarkSweepGC
+                        -XX:SoftRefLRUPolicyMSPerMB=50 -XX:+HeapDumpOnOutOfMemoryError -XX:-OmitStackTraceInFastThrow
+                    </jvmArguments>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>

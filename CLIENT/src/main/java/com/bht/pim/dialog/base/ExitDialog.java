@@ -41,7 +41,7 @@ public final class ExitDialog extends BaseDialog implements Confirmable {
         initAllLabels();
         bClose.setVisible(false);
         setDialogTitle("label.dialog.exit.title");
-        setDialogSize(600, 200);
+        setDialogSize(500, 150);
     }
 
     @Override
@@ -52,6 +52,7 @@ public final class ExitDialog extends BaseDialog implements Confirmable {
     }
 
     private void initAllLabels() {
+        LanguageUtil.initLabel(exitDialogContent.getLWarning().textProperty(), "label.dialog.exit.warning");
         LanguageUtil.initLabel(exitDialogContent.getBSubmit().textProperty(), "label.dialog.exit.yes");
         LanguageUtil.initLabel(exitDialogContent.getBCancel().textProperty(), "label.dialog.exit.no");
     }
