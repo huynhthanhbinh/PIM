@@ -20,14 +20,13 @@ import com.bht.pim.util.LanguageUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lombok.extern.log4j.Log4j;
 
 /**
  *
  * @author bht
  */
-@Log4j
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = TopMenuFragment.ID, scope = Scope.PROTOTYPE,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
@@ -113,14 +112,12 @@ public final class TopMenuFragment extends BaseComponentFragment {
     }
 
     private void addButtonHelpEventHandler() {
-        bHelp.setOnMouseClicked(event -> helpDialog.show());
+        bHelp.setOnMouseClicked(this::onMouseClickedHelp);
     }
 
     private void addButtonLogoutEventHandler() {
-        bLogout.setOnMouseClicked(event -> {
-            context.send(DefaultPerspective.ID, "show");
-            AppConfiguration.LOGGED_IN_PROPERTY.set(false);
-        });
+        bLogout.setOnMouseClicked(this::onMouseClickedLogout);
+        bLogout.disableProperty().bind(AppConfiguration.LOGGED_IN_PROPERTY.not());  // if logged-in --> enable logout, vice versa
     }
 
     private void initLanguageLabel(Locale locale, Label lingualLabel) {
@@ -141,5 +138,16 @@ public final class TopMenuFragment extends BaseComponentFragment {
             availableLingualLabels.get(oldValue).getStyleClass().remove(ACTIVE_STYLE_CLASS); // deactivate old lingual label
             availableLingualLabels.get(newValue).getStyleClass().add(ACTIVE_STYLE_CLASS);    // activate new lingual label
         });
+    }
+
+    @SuppressWarnings("unused")
+    private void onMouseClickedHelp(MouseEvent event) {
+        helpDialog.show();
+    }
+
+    @SuppressWarnings("unused")
+    private void onMouseClickedLogout(MouseEvent event) {
+        context.send(DefaultPerspective.ID, "show");
+        AppConfiguration.LOGGED_IN_PROPERTY.set(false);
     }
 }
