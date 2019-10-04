@@ -117,7 +117,7 @@ public final class TopMenuFragment extends BaseComponentFragment {
 
     private void addButtonLogoutEventHandler() {
         bLogout.setOnMouseClicked(this::onMouseClickedLogout);
-        bLogout.disableProperty().bind(AppConfiguration.LOGGED_IN_PROPERTY.not());  // if logged-in --> enable logout, vice versa
+        bLogout.visibleProperty().bind(AppConfiguration.LOGGED_IN_PROPERTY);  // if logged-in --> show logout, vice versa
     }
 
     private void initLanguageLabel(Locale locale, Label lingualLabel) {
