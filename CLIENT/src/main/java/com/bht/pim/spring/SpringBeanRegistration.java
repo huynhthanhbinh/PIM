@@ -21,12 +21,8 @@ import io.grpc.ManagedChannelBuilder;
  */
 @Component
 public final class SpringBeanRegistration implements BaseBean {
-
-    @Autowired
-    private AppConfiguration config;
-
     @Bean
-    public ManagedChannel managedChannel() {
+    public ManagedChannel managedChannel(@Autowired AppConfiguration config) {
         return ManagedChannelBuilder                            // Channel is the abstraction to connect to a service endpoint
                 .forAddress(config.getHost(), config.getPort()) // Port and Host of gRPC server, not of client !
                 .usePlaintext()                                 // Let's use plaintext communication because we don't have certs
@@ -36,17 +32,17 @@ public final class SpringBeanRegistration implements BaseBean {
     }
 
     @Bean
-    public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub() { // for autowiring service
-        return EmployeeServiceGrpc.newBlockingStub(SpringApplicationContext.getBean(ManagedChannel.class));
+    public EmployeeServiceGrpc.EmployeeServiceBlockingStub employeeServiceBlockingStub(@Autowired ManagedChannel channel) { // for autowiring service
+        return EmployeeServiceGrpc.newBlockingStub(channel);
     }
 
     @Bean
-    public GroupServiceGrpc.GroupServiceBlockingStub groupServiceBlockingStub() { // for autowiring service
-        return GroupServiceGrpc.newBlockingStub(SpringApplicationContext.getBean(ManagedChannel.class));
+    public GroupServiceGrpc.GroupServiceBlockingStub groupServiceBlockingStub(@Autowired ManagedChannel channel) { // for autowiring service
+        return GroupServiceGrpc.newBlockingStub(channel);
     }
 
     @Bean
-    public ProjectServiceGrpc.ProjectServiceBlockingStub projectServiceBlockingStub() { // for autowiring service
-        return ProjectServiceGrpc.newBlockingStub(SpringApplicationContext.getBean(ManagedChannel.class));
+    public ProjectServiceGrpc.ProjectServiceBlockingStub projectServiceBlockingStub(@Autowired ManagedChannel channel) { // for autowiring service
+        return ProjectServiceGrpc.newBlockingStub(channel);
     }
 }
