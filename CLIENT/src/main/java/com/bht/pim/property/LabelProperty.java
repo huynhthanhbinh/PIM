@@ -18,18 +18,18 @@ public final class LabelProperty {
     private StringProperty stringProperty;
     private LanguageProperty languageProperty;
 
-    public LabelProperty() {
+    public LabelProperty(String bundleKey) {
         languageProperty = SpringApplicationContext.getBean(LanguageProperty.class);
         stringProperty = new SimpleStringProperty();
+        initLabelProperty(bundleKey);
     }
 
-    public void setBundleKey(String bundleKey) {
+    private void initLabelProperty(String bundleKey) {
         ObjectProperty<ResourceBundle> resourceBundleProperty =
                 languageProperty.getResourceBundleProperty();
 
         resourceBundleProperty.addListener((observable, oldValue, newValue) ->
-                stringProperty.set(resourceBundleProperty.get()
-                        .getString(bundleKey)));
+                stringProperty.set(resourceBundleProperty.get().getString(bundleKey)));
 
         stringProperty.set(resourceBundleProperty.get().getString(bundleKey));
     }

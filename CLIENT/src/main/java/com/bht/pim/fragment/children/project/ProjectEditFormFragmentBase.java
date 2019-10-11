@@ -204,10 +204,10 @@ abstract class ProjectEditFormFragmentBase extends BaseFragment implements Confi
         LanguageUtil.initLabel(comboBoxLeader.promptTextProperty(), "label.project.form.chooseleader");
         LanguageUtil.initLabel(lLeaderChoice.textProperty(), "label.project.form.pleasechooseleader");
         LanguageUtil.initLabel(lStartDate.textProperty(), "label.project.form.startdate");
-        LanguageUtil.initLabel(start.promptTextProperty(), "pattern.date");
+        LanguageUtil.initLabel(start.promptTextProperty(), FormatProperty.DATE_PATTERN_PROPERTY);
         LanguageUtil.initLabel(lStartEmpty.textProperty(), "label.project.form.specifystart");
         LanguageUtil.initLabel(lEndDate.textProperty(), "label.project.form.enddate");
-        LanguageUtil.initLabel(end.promptTextProperty(), "pattern.date");
+        LanguageUtil.initLabel(end.promptTextProperty(), FormatProperty.DATE_PATTERN_PROPERTY);
         LanguageUtil.initLabel(lEndInvalid.textProperty(), "label.project.form.endinvalid");
         LanguageUtil.initLabel(cName.textProperty(), "label.project.form.membername");
     }

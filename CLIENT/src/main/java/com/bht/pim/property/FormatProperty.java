@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.bht.pim.base.BaseBean;
-import com.bht.pim.util.FormatUtil;
 import com.bht.pim.util.LanguageUtil;
 
 import javafx.beans.property.ObjectProperty;
@@ -26,6 +25,7 @@ public final class FormatProperty implements BaseBean {
 
     public static final StringProperty DATE_PATTERN_PROPERTY = new SimpleStringProperty();
     public static final ObjectProperty<StringConverter<LocalDate>> DATE_STRING_CONVERTER = new SimpleObjectProperty<>();
+    public static final ObjectProperty<DateTimeFormatter> DATE_FORMATTER_PROPERTY = new SimpleObjectProperty<>();
 
     @Autowired
     private LanguageProperty languageProperty;
@@ -34,18 +34,18 @@ public final class FormatProperty implements BaseBean {
     public void initialize() throws IOException {
         BaseBean.super.initialize();
         initDatePatternProperty();
-        addEventListener();
+        addAllEventListeners();
     }
 
-    private void addEventListener() {
+    private void addAllEventListeners() {
         languageProperty.getLocaleProperty()
                 .addListener((observable, oldLocale, newLocale) -> reloadDatePattern());
 
-        FormatUtil.DATE_FORMATTER_PROPERTY.addListener(observable -> DATE_STRING_CONVERTER.set(dateStringConverter()));
-        FormatUtil.DATE_FORMATTER_PROPERTY.set(DateTimeFormatter.ofPattern(FormatProperty.DATE_PATTERN_PROPERTY.get()));
+        DATE_FORMATTER_PROPERTY.addListener(observable -> DATE_STRING_CONVERTER.set(dateStringConverter()));
+        DATE_FORMATTER_PROPERTY.set(DateTimeFormatter.ofPattern(FormatProperty.DATE_PATTERN_PROPERTY.get()));
 
         FormatProperty.DATE_PATTERN_PROPERTY.addListener((observable, oldValue, newValue) ->
-                FormatUtil.DATE_FORMATTER_PROPERTY.set(DateTimeFormatter.ofPattern(newValue)));
+                DATE_FORMATTER_PROPERTY.set(DateTimeFormatter.ofPattern(newValue)));
     }
 
     private void initDatePatternProperty() {
@@ -71,7 +71,7 @@ public final class FormatProperty implements BaseBean {
                     return null;
                 }
                 try {
-                    return LocalDate.parse(string, FormatUtil.DATE_FORMATTER_PROPERTY.get());
+                    return LocalDate.parse(string, DATE_FORMATTER_PROPERTY.get());
 
                 } catch (Exception exception) {
 
@@ -83,7 +83,7 @@ public final class FormatProperty implements BaseBean {
 
     public static String getString(LocalDate localDate) {
         return (localDate != null)
-                ? FormatUtil.DATE_FORMATTER_PROPERTY.get().format(localDate)
+                ? DATE_FORMATTER_PROPERTY.get().format(localDate)
                 : "";
     }
 }

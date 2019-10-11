@@ -12,6 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
+ *
  * @author bht
  */
 public final class LanguageUtil {
@@ -23,15 +24,18 @@ public final class LanguageUtil {
 
     // init a label for multilingual purpose
     public static void initLabel(StringProperty textProperty, final String key) {
-        LabelProperty labelProperty = new LabelProperty();
-        labelProperty.setBundleKey(key);
-        textProperty.bind(labelProperty.getStringProperty());
+        LabelProperty labelProperty = new LabelProperty(key);
+        initLabel(textProperty, labelProperty.getStringProperty());
     }
 
 
-    // init a label for multilingual purpose
     public static void initLabel(ObjectProperty<String> textProperty, final String key) {
         initLabel(toStringProperty(textProperty), key);
+    }
+
+
+    public static void initLabel(StringProperty textProperty, StringProperty targetProperty) {
+        textProperty.bind(targetProperty);
     }
 
 
