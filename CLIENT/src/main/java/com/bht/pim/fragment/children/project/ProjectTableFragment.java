@@ -1,6 +1,5 @@
 package com.bht.pim.fragment.children.project;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,7 +122,7 @@ public final class ProjectTableFragment extends BaseFragment {
     @FXML
     private TableColumn<ProjectDto, ProjectDto> cStatus;
     @FXML
-    private TableColumn<ProjectDto, LocalDate> cStart;
+    private TableColumn<ProjectDto, String> cStart;
     @FXML
     private TableColumn<ProjectDto, ProjectDto> cManagement;
 
@@ -224,8 +223,7 @@ public final class ProjectTableFragment extends BaseFragment {
         cStatus.setResizable(false);
 
         cStart.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
-        cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
-        cStart.cellFactoryProperty().bind(FormatUtil.getDateCellFormatProperty());
+        cStart.setCellValueFactory(param -> FormatUtil.toStringProperty(param.getValue().getStart()));
         cStart.setResizable(false);
 
         cManagement.prefWidthProperty().bind(table.widthProperty().subtract(20).multiply(0.1));
