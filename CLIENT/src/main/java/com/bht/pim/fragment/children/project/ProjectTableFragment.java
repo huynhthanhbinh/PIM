@@ -103,8 +103,6 @@ public final class ProjectTableFragment extends BaseFragment {
     @Autowired
     private ProjectService projectService;
     @Autowired
-    private FormatUtil<ProjectDto> formatUtil;
-    @Autowired
     private StatusMapper statusMapper;
 
     @Resource
@@ -227,7 +225,7 @@ public final class ProjectTableFragment extends BaseFragment {
 
         cStart.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
         cStart.setCellValueFactory(new PropertyValueFactory<>("start"));
-        cStart.cellFactoryProperty().bind(formatUtil.dateCellFormatProperty);
+        cStart.cellFactoryProperty().bind(FormatUtil.getDateCellFormatProperty());
         cStart.setResizable(false);
 
         cManagement.prefWidthProperty().bind(table.widthProperty().subtract(20).multiply(0.1));

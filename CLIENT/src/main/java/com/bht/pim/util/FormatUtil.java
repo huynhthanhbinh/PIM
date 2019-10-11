@@ -7,34 +7,31 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Component;
 
-import com.bht.pim.base.BaseDto;
 import com.bht.pim.property.FormatProperty;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import lombok.extern.log4j.Log4j;
 
 /**
  *
  * @author bht
  */
-@Log4j
 @Component
-public final class FormatUtil<T extends BaseDto> {
+public final class FormatUtil {
 
     public static final ObjectProperty<StringConverter<LocalDate>> DATE_STRING_CONVERTER = new SimpleObjectProperty<>();
     private static final ObjectProperty<DateTimeFormatter> DATE_FORMATTER_PROPERTY = new SimpleObjectProperty<>();
-    public final ObjectProperty<Callback<TableColumn<T, LocalDate>, TableCell<T, LocalDate>>> dateCellFormatProperty = new SimpleObjectProperty<>();
 
     @PostConstruct
     public void addAllEventListeners() {
         DATE_FORMATTER_PROPERTY.addListener(observable -> {
             DATE_STRING_CONVERTER.set(dateStringConverter());
-            dateCellFormatProperty.set(this::dateCellFormat);
         });
         DATE_FORMATTER_PROPERTY.set(DateTimeFormatter.ofPattern(FormatProperty.DATE_PATTERN_PROPERTY.get()));
 
@@ -42,22 +39,43 @@ public final class FormatUtil<T extends BaseDto> {
                 DATE_FORMATTER_PROPERTY.set(DateTimeFormatter.ofPattern(newValue)));
     }
 
+    public static <T> ObjectProperty<Callback<TableColumn<T, LocalDate>, TableCell<T, LocalDate>>> getDateCellFormatProperty() {
+        ObjectProperty<Callback<TableColumn<T, LocalDate>, TableCell<T, LocalDate>>> dateCellFormatProperty = new SimpleObjectProperty<>();
+        dateCellFormatProperty.set(FormatUtil::dateCellFormat);
+        DATE_FORMATTER_PROPERTY.addListener(observable -> {
+            dateCellFormatProperty.set(FormatUtil::dateCellFormat);
+        });
+        return dateCellFormatProperty;
+    }
+
 
     // Format Date : convert from Timestamp to LocalDate
-    private TableCell<T, LocalDate> dateCellFormat(TableColumn<T, LocalDate> column) {
+    private static <T> TableCell<T, LocalDate> dateCellFormat(TableColumn<T, LocalDate> column) {
         return new TableCell<T, LocalDate>() {
+
+            boolean isBound = false;
+
             @Override
             protected void updateItem(LocalDate localDate, boolean empty) {
-                if (localDate == null || empty) {
-                    setText(null);
-                    setStyle("");
-
-                } else {
-                    setText(DATE_FORMATTER_PROPERTY.get().format(localDate));
-                    setStyle("");
+                if (!isBound) {
+                    textProperty().bind(toStringProperty(localDate));
                 }
             }
         };
+    }
+
+
+    private static StringProperty toStringProperty(LocalDate localDate) {
+        StringProperty stringProperty = new SimpleStringProperty();
+        stringProperty.set(getString(localDate));
+        DATE_FORMATTER_PROPERTY.addListener(observable -> stringProperty.set(getString(localDate)));
+        return stringProperty;
+    }
+
+    private static String getString(LocalDate localDate) {
+        return (localDate != null)
+                ? DATE_FORMATTER_PROPERTY.get().format(localDate)
+                : "";
     }
 
 
@@ -66,9 +84,8 @@ public final class FormatUtil<T extends BaseDto> {
         return new StringConverter<LocalDate>() {
 
             @Override
-            public String toString(LocalDate object) {
-                return (object != null) ?
-                        (DATE_FORMATTER_PROPERTY.get().format(object)) : "";
+            public String toString(LocalDate localDate) {
+                return getString(localDate);
             }
 
             @Override
@@ -81,7 +98,6 @@ public final class FormatUtil<T extends BaseDto> {
 
                 } catch (Exception exception) {
 
-                    log.warn(exception);
                     return null;
                 }
             }
