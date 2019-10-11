@@ -18,10 +18,10 @@ import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.IdentifierSending;
 import com.bht.pim.notification.NotificationStyle;
+import com.bht.pim.property.FormatProperty;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.service.GroupService;
 import com.bht.pim.service.ProjectService;
-import com.bht.pim.util.FormatUtil;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
 
@@ -208,8 +208,8 @@ public final class ProjectDetailFragment extends BaseFragment {
 
     // set converter for date-format
     private void setDateStringFormat() {
-        start.converterProperty().bind(FormatUtil.DATE_STRING_CONVERTER);
-        end.converterProperty().bind(FormatUtil.DATE_STRING_CONVERTER);
+        start.converterProperty().bind(FormatProperty.DATE_STRING_CONVERTER);
+        end.converterProperty().bind(FormatProperty.DATE_STRING_CONVERTER);
     }
 
 

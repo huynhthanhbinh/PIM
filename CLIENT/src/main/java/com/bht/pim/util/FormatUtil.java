@@ -9,7 +9,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.util.StringConverter;
 
 /**
  *
@@ -20,7 +19,6 @@ public final class FormatUtil {
     private FormatUtil() {
     }
 
-    public static final ObjectProperty<StringConverter<LocalDate>> DATE_STRING_CONVERTER = new SimpleObjectProperty<>();
     public static final ObjectProperty<DateTimeFormatter> DATE_FORMATTER_PROPERTY = new SimpleObjectProperty<>();
 
     public static StringProperty toStringProperty(LocalDate localDate) {

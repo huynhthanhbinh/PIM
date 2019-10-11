@@ -11,6 +11,8 @@ import com.bht.pim.base.BaseBean;
 import com.bht.pim.util.FormatUtil;
 import com.bht.pim.util.LanguageUtil;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.util.StringConverter;
@@ -23,6 +25,7 @@ import javafx.util.StringConverter;
 public final class FormatProperty implements BaseBean {
 
     public static final StringProperty DATE_PATTERN_PROPERTY = new SimpleStringProperty();
+    public static final ObjectProperty<StringConverter<LocalDate>> DATE_STRING_CONVERTER = new SimpleObjectProperty<>();
 
     @Autowired
     private LanguageProperty languageProperty;
@@ -38,7 +41,7 @@ public final class FormatProperty implements BaseBean {
         languageProperty.getLocaleProperty()
                 .addListener((observable, oldLocale, newLocale) -> reloadDatePattern());
 
-        FormatUtil.DATE_FORMATTER_PROPERTY.addListener(observable -> FormatUtil.DATE_STRING_CONVERTER.set(dateStringConverter()));
+        FormatUtil.DATE_FORMATTER_PROPERTY.addListener(observable -> DATE_STRING_CONVERTER.set(dateStringConverter()));
         FormatUtil.DATE_FORMATTER_PROPERTY.set(DateTimeFormatter.ofPattern(FormatProperty.DATE_PATTERN_PROPERTY.get()));
 
         FormatProperty.DATE_PATTERN_PROPERTY.addListener((observable, oldValue, newValue) ->
