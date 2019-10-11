@@ -21,7 +21,7 @@
     -fx-font-size: 1.166667em; /*15px;*/
     -fx-font-family: "Roboto";
     -fx-text-fill: WHITE;
- }
+}
 
 
 /******************************************************************************
@@ -29,7 +29,7 @@
  * Close button
  *
  *****************************************************************************/
- .notification-bar > .pane .close-button {
+.notification-bar > .pane .close-button {
     -fx-background-color: transparent;
     -fx-background-insets: 0;
     -fx-background-radius: 2;

@@ -24,8 +24,8 @@ import javafx.util.StringConverter;
 public final class FormatProperty implements BaseBean {
 
     public static final StringProperty DATE_PATTERN_PROPERTY = new SimpleStringProperty();
-    public static final ObjectProperty<StringConverter<LocalDate>> DATE_STRING_CONVERTER = new SimpleObjectProperty<>();
     public static final ObjectProperty<DateTimeFormatter> DATE_FORMATTER_PROPERTY = new SimpleObjectProperty<>();
+    public static final ObjectProperty<StringConverter<LocalDate>> DATE_STRING_CONVERTER = new SimpleObjectProperty<>();
 
     @Autowired
     private LanguageProperty languageProperty;
