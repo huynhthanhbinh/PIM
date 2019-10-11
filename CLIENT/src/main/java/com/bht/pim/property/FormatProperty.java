@@ -33,31 +33,27 @@ public final class FormatProperty implements BaseBean {
     @Override
     public void initialize() throws IOException {
         BaseBean.super.initialize();
-        initDatePatternProperty();
         addAllEventListeners();
+        initDatePatternProperty();
     }
 
     private void addAllEventListeners() {
         languageProperty.getLocaleProperty()
                 .addListener((observable, oldLocale, newLocale) -> reloadDatePattern());
-
-        DATE_FORMATTER_PROPERTY.addListener(observable -> DATE_STRING_CONVERTER.set(dateStringConverter()));
-        DATE_FORMATTER_PROPERTY.set(DateTimeFormatter.ofPattern(FormatProperty.DATE_PATTERN_PROPERTY.get()));
-
-        FormatProperty.DATE_PATTERN_PROPERTY.addListener((observable, oldValue, newValue) ->
-                DATE_FORMATTER_PROPERTY.set(DateTimeFormatter.ofPattern(newValue)));
     }
 
     private void initDatePatternProperty() {
         reloadDatePattern();
     }
 
+    // localeProperty --> datePatternProperty --> dateFormatProperty --> dateStringConverter (flow of property change)
     private void reloadDatePattern() {
         DATE_PATTERN_PROPERTY.set(LanguageUtil.getCurrentLabelOfKey("pattern.date"));
+        DATE_FORMATTER_PROPERTY.set(DateTimeFormatter.ofPattern(DATE_PATTERN_PROPERTY.get()));
+        DATE_STRING_CONVERTER.set(dateStringConverter(DATE_FORMATTER_PROPERTY.get()));
     }
 
-    // Converter for pim date-picker controls
-    private static StringConverter<LocalDate> dateStringConverter() {
+    private static StringConverter<LocalDate> dateStringConverter(DateTimeFormatter formatter) {
         return new StringConverter<LocalDate>() {
 
             @Override
@@ -71,10 +67,9 @@ public final class FormatProperty implements BaseBean {
                     return null;
                 }
                 try {
-                    return LocalDate.parse(string, DATE_FORMATTER_PROPERTY.get());
+                    return LocalDate.parse(string, formatter);
 
                 } catch (Exception exception) {
-
                     return null;
                 }
             }

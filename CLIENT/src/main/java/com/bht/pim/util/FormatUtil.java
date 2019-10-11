@@ -16,6 +16,7 @@ public final class FormatUtil {
     private FormatUtil() {
     }
 
+    // make localDate a string property in order to i18n dateFormat
     public static StringProperty toStringProperty(LocalDate localDate) {
         StringProperty stringProperty = new SimpleStringProperty();
         stringProperty.set(FormatProperty.getString(localDate));
