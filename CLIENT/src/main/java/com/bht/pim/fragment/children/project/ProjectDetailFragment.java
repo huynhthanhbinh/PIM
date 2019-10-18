@@ -17,7 +17,7 @@ import com.bht.pim.fragment.parent.project.ProjectUpdateFragment;
 import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.IdentifierSending;
-import com.bht.pim.notification.NotificationStyle;
+import com.bht.pim.notification.NotificationType;
 import com.bht.pim.property.FormatProperty;
 import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.service.GroupService;
@@ -216,7 +216,7 @@ public final class ProjectDetailFragment extends BaseFragment {
     public void onModify(MouseEvent mouseEvent) {
         if (projectDto.getStatus().equals(statusMapper.toGuiStatus("FIN"))) {
             NotificationUtil.showNotification(
-                    NotificationStyle.ERROR,
+                    NotificationType.ERROR,
                     Pos.CENTER,
                     "Cannot edit project which has already been\"Finished\"!");
             return;

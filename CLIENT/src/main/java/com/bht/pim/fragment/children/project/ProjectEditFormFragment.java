@@ -12,7 +12,7 @@ import com.bht.pim.dto.GroupDto;
 import com.bht.pim.dto.ProjectDto;
 import com.bht.pim.fragment.parent.project.ProjectListFragment;
 import com.bht.pim.message.impl.FragmentSwitching;
-import com.bht.pim.notification.NotificationStyle;
+import com.bht.pim.notification.NotificationType;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.NotificationUtil;
 
@@ -75,7 +75,7 @@ public final class ProjectEditFormFragment extends ProjectEditFormFragmentBase {
                 return;
             }
 
-            NotificationUtil.showNotification(NotificationStyle.INFO, Pos.CENTER,
+            NotificationUtil.showNotification(NotificationType.INFO, Pos.CENTER,
                     "[INFO] On saving project !");
 
             saveOrUpdateProject(projectDto.toBuilder()
@@ -97,10 +97,10 @@ public final class ProjectEditFormFragment extends ProjectEditFormFragmentBase {
     private boolean saveNewGroupIfRequired(GroupDto groupDto) {
         if (getGroupOption().equals(LanguageUtil.getCurrentLabelOfKey("label.project.form.newgroup"))) {
             if (saveNewGroup(groupDto)) {
-                NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
+                NotificationUtil.showNotification(NotificationType.SUCCESS, Pos.CENTER,
                         "[INFO] Successfully create new group !");
             } else {
-                NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
+                NotificationUtil.showNotification(NotificationType.WARNING, Pos.CENTER,
                         "[INFO] Failed to create new group !");
                 return false;
             }
@@ -123,7 +123,7 @@ public final class ProjectEditFormFragment extends ProjectEditFormFragmentBase {
 
     private void saveOrUpdateProject(boolean success, String action) {
         if (success) {
-            NotificationUtil.showNotification(NotificationStyle.SUCCESS, Pos.CENTER,
+            NotificationUtil.showNotification(NotificationType.SUCCESS, Pos.CENTER,
                     "[INFO] Successfully " + action + " project !");
 
             FragmentSwitching switching = new FragmentSwitching(
@@ -133,7 +133,7 @@ public final class ProjectEditFormFragment extends ProjectEditFormFragmentBase {
 
         } else {
             loadProjectEditForm();
-            NotificationUtil.showNotification(NotificationStyle.WARNING, Pos.CENTER,
+            NotificationUtil.showNotification(NotificationType.WARNING, Pos.CENTER,
                     "[INFO] Failed to " + action + " project !");
         }
     }

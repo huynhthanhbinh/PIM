@@ -28,41 +28,29 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-
+@SuppressWarnings("all")
 public abstract class JFXNotificationBar extends Region {
 
     private static final double MIN_HEIGHT = 40;
-    private static final EventType<Event> ON_SHOWING =
-            new EventType<>(Event.ANY, "NOTIFICATION_PANE_ON_SHOWING"); //$NON-NLS-1$
-    /**
-     * Called when the NotificationPane shows.
-     */
-    private static final EventType<Event> ON_SHOWN =
-            new EventType<>(Event.ANY, "NOTIFICATION_PANE_ON_SHOWN"); //$NON-NLS-1$
-    /**
-     * Called when the NotificationPane <b>will</b> be hidden.
-     */
-    private static final EventType<Event> ON_HIDING =
-            new EventType<>(Event.ANY, "NOTIFICATION_PANE_ON_HIDING"); //$NON-NLS-1$
-    /**
-     * Called when the NotificationPane is hidden.
-     */
-    private static final EventType<Event> ON_HIDDEN =
-            new EventType<>(Event.ANY, "NOTIFICATION_PANE_ON_HIDDEN"); //$NON-NLS-1$
+    private static final Duration TRANSITION_DURATION = new Duration(350.0);
+    private static final EventType<Event> ON_SHOWING = new EventType<>(Event.ANY, "NOTIFICATION_PANE_ON_SHOWING");
+    private static final EventType<Event> ON_SHOWN = new EventType<>(Event.ANY, "NOTIFICATION_PANE_ON_SHOWN");
+    private static final EventType<Event> ON_HIDING = new EventType<>(Event.ANY, "NOTIFICATION_PANE_ON_HIDING");
+    private static final EventType<Event> ON_HIDDEN = new EventType<>(Event.ANY, "NOTIFICATION_PANE_ON_HIDDEN");
+
+    private Timeline timeline;
+    private double transitionStartValue;
     private final ScrollPane pane;
     private final HBox paneGeneral;
     private final VBox paneImage;
     private final HBox paneBody;
-    // --- animation timeline code
-    private final Duration TRANSITION_DURATION = new Duration(350.0);
+
     public DoubleProperty transition = new SimpleDoubleProperty() {
         @Override
         protected void invalidated() {
             requestContainerLayout();
         }
     };
-    private Timeline timeline;
-    private double transitionStartValue;
 
     public JFXNotificationBar() {
         getStyleClass().add("notification-bar"); //$NON-NLS-1$
@@ -142,22 +130,29 @@ public abstract class JFXNotificationBar extends Region {
 
         paneBody.setPadding(new Insets(10.0));
 
-        switch (getTypeNotification()) {
-            case "SUCCESS":
+        switch (getNotificationType()) {
+
+            case SUCCESS:
                 paneImage.setStyle("-fx-background-color: #78A840;");
                 paneBody.setStyle("-fx-background-color: #8BC34A;");
                 break;
-            case "MESSAGE":
+
+            case INFO:
                 paneImage.setStyle("-fx-background-color: #0392D3;");
                 paneBody.setStyle("-fx-background-color: #03A9F4;");
                 break;
-            case "ERROR":
+
+            case ERROR:
                 paneImage.setStyle("-fx-background-color: #D33A2F;");
                 paneBody.setStyle("-fx-background-color: #F44336;");
                 break;
-            case "WARNING":
+
+            case WARNING:
                 paneImage.setStyle("-fx-background-color: #FFC107;");
                 paneBody.setStyle("-fx-background-color: #DCA706;");
+                break;
+
+            default:
                 break;
         }
 
@@ -179,7 +174,7 @@ public abstract class JFXNotificationBar extends Region {
 
     public abstract String getText();
 
-    public abstract String getTypeNotification();
+    public abstract NotificationType getNotificationType();
 
     public abstract Node getGraphic();
 
@@ -202,19 +197,19 @@ public abstract class JFXNotificationBar extends Region {
 
     @Override
     protected void layoutChildren() {
-        final double w = getWidth();
-        final double h = computePrefHeight(-1);
+        final double width = getWidth();
+        final double height = computePrefHeight(-1);
 
-        final double notificationBarHeight = prefHeight(w);
-        final double notificationMinHeight = minHeight(w);
+        final double notificationBarHeight = prefHeight(width);
+        final double notificationMinHeight = minHeight(width);
 
         if (isShowFromTop()) {
             // place at top of area
-            pane.resize(w, h);
+            pane.resize(width, height);
             relocateInParent(0, (transition.get() - 1) * notificationMinHeight);
         } else {
             // place at bottom of area
-            pane.resize(w, notificationBarHeight);
+            pane.resize(width, notificationBarHeight);
             relocateInParent(0, getContainerHeight() - notificationBarHeight);
         }
     }
@@ -259,10 +254,10 @@ public abstract class JFXNotificationBar extends Region {
         timeline = new Timeline();
         timeline.setCycleCount(1);
 
-        KeyFrame k1, k2;
+        KeyFrame keyFrame1, keyFrame2;
 
         if (isShowing()) {
-            k1 = new KeyFrame(
+            keyFrame1 = new KeyFrame(
                     Duration.ZERO,
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -277,14 +272,13 @@ public abstract class JFXNotificationBar extends Region {
                     new KeyValue(transition, transitionStartValue)
             );
 
-            k2 = new KeyFrame(
+            keyFrame2 = new KeyFrame(
                     duration,
                     new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
                             // end expand
                             pane.setCache(false);
-
                             pane.fireEvent(new Event(ON_SHOWN));
                         }
                     },
@@ -292,38 +286,30 @@ public abstract class JFXNotificationBar extends Region {
 
             );
         } else {
-            k1 = new KeyFrame(
+            keyFrame1 = new KeyFrame(
                     Duration.ZERO,
-                    new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent event) {
-                            // Start collapse
-                            pane.setCache(true);
-
-                            pane.fireEvent(new Event(ON_HIDING));
-                        }
+                    event -> {
+                        // Start collapse
+                        pane.setCache(true);
+                        pane.fireEvent(new Event(ON_HIDING));
                     },
                     new KeyValue(transition, transitionStartValue)
             );
 
-            k2 = new KeyFrame(
+            keyFrame2 = new KeyFrame(
                     duration,
-                    new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent event) {
-                            // end collapse
-                            setCache(false);
-                            setVisible(false);
+                    event -> {
+                        // end collapse
+                        setCache(false);
+                        setVisible(false);
 
-                            pane.fireEvent(new Event(ON_HIDDEN));
-                        }
+                        pane.fireEvent(new Event(ON_HIDDEN));
                     },
                     new KeyValue(transition, 0, Interpolator.EASE_IN)
             );
         }
 
-        timeline.getKeyFrames().setAll(k1, k2);
+        timeline.getKeyFrames().setAll(keyFrame1, keyFrame2);
         timeline.play();
     }
-
 }

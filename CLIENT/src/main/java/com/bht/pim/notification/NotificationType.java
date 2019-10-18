@@ -1,6 +1,10 @@
 package com.bht.pim.notification;
 
-public enum NotificationStyle {
+/**
+ *
+ * @author bht
+ */
+public enum NotificationType {
     SUCCESS,
     INFO,
     WARNING,

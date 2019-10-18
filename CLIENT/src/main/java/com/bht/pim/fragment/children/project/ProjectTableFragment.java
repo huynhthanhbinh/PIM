@@ -19,7 +19,7 @@ import com.bht.pim.fragment.parent.project.ProjectUpdateFragment;
 import com.bht.pim.mapper.StatusMapper;
 import com.bht.pim.message.impl.FragmentSwitching;
 import com.bht.pim.message.impl.IdentifierSending;
-import com.bht.pim.notification.NotificationStyle;
+import com.bht.pim.notification.NotificationType;
 import com.bht.pim.service.ProjectService;
 import com.bht.pim.util.FormatUtil;
 import com.bht.pim.util.LanguageUtil;
@@ -279,7 +279,7 @@ public final class ProjectTableFragment extends BaseFragment {
                 bRemove.setOnAction(event -> {
                     if (!projectDto.getStatus().equals(statusMapper.toGuiStatus("NEW"))) {
                         NotificationUtil.showNotification(
-                                NotificationStyle.ERROR,
+                                NotificationType.ERROR,
                                 Pos.CENTER,
                                 "Cannot delete project which status is not \"New\"!");
                         return;
@@ -288,7 +288,7 @@ public final class ProjectTableFragment extends BaseFragment {
 
                     if (projectService.deleteProject(projectDto.getId())) {
                         NotificationUtil.showNotification(
-                                NotificationStyle.SUCCESS,
+                                NotificationType.SUCCESS,
                                 Pos.CENTER,
                                 "Successfully delete project !");
 
@@ -298,7 +298,7 @@ public final class ProjectTableFragment extends BaseFragment {
 
                     } else {
                         NotificationUtil.showNotification(
-                                NotificationStyle.WARNING,
+                                NotificationType.WARNING,
                                 Pos.CENTER,
                                 "Failed to delete project !");
                     }
@@ -307,7 +307,7 @@ public final class ProjectTableFragment extends BaseFragment {
                 bEdit.setOnAction(event -> {
                     if (projectDto.getStatus().equals(statusMapper.toGuiStatus("FIN"))) {
                         NotificationUtil.showNotification(
-                                NotificationStyle.ERROR,
+                                NotificationType.ERROR,
                                 Pos.CENTER,
                                 "Cannot edit project which has already been\"Finished\"!");
                         return;
@@ -507,13 +507,13 @@ public final class ProjectTableFragment extends BaseFragment {
 
             if (countFail > 0) {
                 NotificationUtil.showNotification(
-                        NotificationStyle.WARNING,
+                        NotificationType.WARNING,
                         Pos.CENTER,
                         "Failed to delete " + countFail + " non-new project(s) !");
             }
             if (countSuccess > 0) {
                 NotificationUtil.showNotification(
-                        NotificationStyle.SUCCESS,
+                        NotificationType.SUCCESS,
                         Pos.CENTER,
                         "Successfully delete " + countSuccess + " project(s) !");
             }

@@ -3,13 +3,12 @@ package com.bht.pim.util;
 import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.base.BasePerspective;
-import com.bht.pim.notification.NotificationStyle;
+import com.bht.pim.notification.NotificationType;
 
 import javafx.geometry.Pos;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
-import lombok.extern.log4j.Log4j;
 
 /**
  * @author bht
@@ -21,7 +20,6 @@ import lombok.extern.log4j.Log4j;
  * + shortcut key: Ctrl + Alt + Shift + G
  * + G stands for graphics
  */
-@Log4j
 public final class GraphicUtil {
 
     private GraphicUtil() {
@@ -57,6 +55,6 @@ public final class GraphicUtil {
         });
         graphic.append("\n");
         System.out.println(graphic.toString());
-        NotificationUtil.showNotification(NotificationStyle.INFO, Pos.CENTER, graphic.toString());
+        NotificationUtil.showNotification(NotificationType.INFO, Pos.CENTER, graphic.toString());
     }
 }
