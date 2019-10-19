@@ -2,8 +2,6 @@ package com.bht.pim.property;
 
 import java.util.ResourceBundle;
 
-import com.bht.pim.spring.SpringApplicationContext;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -19,14 +17,13 @@ public final class LabelProperty {
     private LanguageProperty languageProperty;
 
     public LabelProperty(String bundleKey) {
-        languageProperty = SpringApplicationContext.getBean(LanguageProperty.class);
+        languageProperty = LanguageProperty.getCurrentInstance();
         stringProperty = new SimpleStringProperty();
         initLabelProperty(bundleKey);
     }
 
     private void initLabelProperty(String bundleKey) {
-        ObjectProperty<ResourceBundle> resourceBundleProperty =
-                languageProperty.getResourceBundleProperty();
+        ObjectProperty<ResourceBundle> resourceBundleProperty = languageProperty.getResourceBundleProperty();
 
         resourceBundleProperty.addListener((observable, oldValue, newValue) ->
                 stringProperty.set(resourceBundleProperty.get().getString(bundleKey)));

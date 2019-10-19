@@ -38,7 +38,7 @@ public interface BaseBean {
      * to make this method execute, must call ApplicationContext.close() method !
      * one way to do that is call
      * <code>applicationContext.registerShutdownHook();</code>
-     * see this line of code implemented in PimWorkbench.class
+     * @see BaseWorkbench see this line of code implemented in registerShutdownHook()
      * AnnotationConfigApplicationContext is injected by SpringBoot !
      *
      * if need to override it

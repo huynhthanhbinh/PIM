@@ -14,16 +14,7 @@ import com.bht.pim.base.BaseBean;
 @Component
 public final class SpringApplicationContext implements BaseBean, ApplicationContextAware {
 
-    private static ApplicationContext context;
-
-    /**
-     * get bean created before by app static context
-     * @param <T> any object has been injected before
-     * @return Bean of a specific class
-     */
-    public static <T> T getBean(Class<T> beanClass) {
-        return context.getBean(beanClass);
-    }
+    private static ApplicationContext applicationContext;
 
     /**
      * used by Spring !!!!
@@ -31,6 +22,15 @@ public final class SpringApplicationContext implements BaseBean, ApplicationCont
      */
     @Override
     public synchronized void setApplicationContext(@NonNull ApplicationContext applicationContext) {
-        context = applicationContext;
+        SpringApplicationContext.applicationContext = applicationContext;
+    }
+
+    /**
+     * get bean created before by app static context
+     * @param <T> any object has been injected before
+     * @return Bean of a specific class
+     */
+    public static <T> T getBean(Class<T> beanClass) {
+        return applicationContext.getBean(beanClass);
     }
 }

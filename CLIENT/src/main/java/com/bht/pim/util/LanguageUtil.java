@@ -4,7 +4,6 @@ import java.util.Objects;
 
 import com.bht.pim.property.LabelProperty;
 import com.bht.pim.property.LanguageProperty;
-import com.bht.pim.spring.SpringApplicationContext;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.Property;
@@ -12,6 +11,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
+ * for making all labels multilingual available
  *
  * @author bht
  */
@@ -20,7 +20,7 @@ public final class LanguageUtil {
     private LanguageUtil() {
     }
 
-    private static LanguageProperty languageProperty = SpringApplicationContext.getBean(LanguageProperty.class);
+    private static LanguageProperty languageProperty = LanguageProperty.getCurrentInstance();
 
     // init a label for multilingual purpose
     public static void initLabel(StringProperty textProperty, final String key) {

@@ -273,7 +273,7 @@ final class NotificationPopupHandler {
 
         Timeline timeline = new Timeline(kfBegin, kfEnd);
         timeline.setDelay(startDelay);
-        timeline.setOnFinished(e -> hide(popup, position));
+        timeline.setOnFinished(event -> hide(popup, position));
 
         return timeline;
     }
@@ -392,6 +392,5 @@ final class NotificationPopupHandler {
                 popup.setAnchorY(newAnchorY);
             }
         }
-
     }
 }

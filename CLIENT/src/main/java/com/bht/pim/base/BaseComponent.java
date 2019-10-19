@@ -43,7 +43,7 @@ public abstract class BaseComponent extends VBox implements BaseBean, FXComponen
     }
 
 
-    private void onStarted(FXComponentLayout layout) {
+    private void onStarted() {
         initLayout();
         loadFragments();
     }
@@ -59,7 +59,7 @@ public abstract class BaseComponent extends VBox implements BaseBean, FXComponen
     @PostConstruct
     public final void onStartComponent(final FXComponentLayout componentLayout) {
         initComponent();
-        onStarted(componentLayout);
+        onStarted();
     }
 
 

@@ -28,7 +28,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
- *
+ * original: reference from JFXNotifications by TioCoding
  * customized for using in PIM project of ELCA by me
  * @author bht
  * @author TioCoding
@@ -67,6 +67,7 @@ public final class JFXNotifications implements BaseBean {
 
     @Override
     public void initialize() throws IOException {
+        BaseBean.super.initialize();
         initTitleMap();
         initIconMap();
     }
@@ -99,9 +100,8 @@ public final class JFXNotifications implements BaseBean {
 
     /**
      * The dialog window owner - which can be {@link Screen}, {@link Window}
-     * or {@link Node}. If specified, the notifications will be inside
-     * the owner, otherwise the notifications will be shown within the whole
-     * primary (default) screen.
+     * or {@link Node}. If specified, the notifications will be inside the owner,
+     * otherwise the notifications will be shown within the whole primary (default) screen.
      */
     public JFXNotifications setOwner(Object owner) {
         if (owner instanceof Screen) {
@@ -134,7 +134,7 @@ public final class JFXNotifications implements BaseBean {
             return ((Node) owner).getScene().getWindow();
 
         } else {
-            throw new IllegalArgumentException("Unknown owner: " + owner.getClass()); //$NON-NLS-1$
+            throw new IllegalArgumentException("Unknown owner: " + owner.getClass());
         }
     }
 }

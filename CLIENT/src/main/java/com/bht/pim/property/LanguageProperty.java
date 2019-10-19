@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseBean;
+import com.bht.pim.spring.SpringApplicationContext;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -45,5 +46,9 @@ public final class LanguageProperty implements BaseBean {
                 resourceBundleProperty.set(ResourceBundle.getBundle(
                         AppConfiguration.LANGUAGE_BUNDLES,
                         newValue)));
+    }
+
+    public static LanguageProperty getCurrentInstance() {
+        return SpringApplicationContext.getBean(LanguageProperty.class);
     }
 }
