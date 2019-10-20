@@ -43,11 +43,6 @@ public final class JFXNotifications implements BaseBean {
     private EnumMap<NotificationType, ImageView> iconMap;
     private EnumMap<NotificationType, StringProperty> titleMap;
 
-    private static final StringProperty INFORMATION_TITLE = LanguageUtil.getTextPropertyOfKey("label.notification.information");
-    private static final StringProperty SUCCESS_TITLE = LanguageUtil.getTextPropertyOfKey("label.notification.success");
-    private static final StringProperty WARNING_TITLE = LanguageUtil.getTextPropertyOfKey("label.notification.warning");
-    private static final StringProperty ERROR_TITLE = LanguageUtil.getTextPropertyOfKey("label.notification.error");
-
     private boolean hideCloseButton;
     private NotificationType type;
     private String title;
@@ -74,10 +69,10 @@ public final class JFXNotifications implements BaseBean {
 
     private void initTitleMap() {
         titleMap = new EnumMap<>(NotificationType.class);
-        titleMap.put(NotificationType.INFO, INFORMATION_TITLE);
-        titleMap.put(NotificationType.SUCCESS, SUCCESS_TITLE);
-        titleMap.put(NotificationType.WARNING, WARNING_TITLE);
-        titleMap.put(NotificationType.ERROR, ERROR_TITLE);
+        titleMap.put(NotificationType.INFO, LanguageUtil.getTextPropertyOfKey("label.notification.information"));
+        titleMap.put(NotificationType.SUCCESS, LanguageUtil.getTextPropertyOfKey("label.notification.success"));
+        titleMap.put(NotificationType.WARNING, LanguageUtil.getTextPropertyOfKey("label.notification.warning"));
+        titleMap.put(NotificationType.ERROR, LanguageUtil.getTextPropertyOfKey("label.notification.error"));
     }
 
     private void initIconMap() {
