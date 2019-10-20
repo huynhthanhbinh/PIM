@@ -7,7 +7,6 @@ import org.jacpfx.rcp.context.Context;
 
 import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseComponentFragment;
-import com.bht.pim.component.LeftPane;
 import com.bht.pim.component.MainPane;
 import com.bht.pim.fragment.parent.project.ProjectDashboardFragment;
 import com.bht.pim.fragment.parent.project.ProjectListFragment;
@@ -17,12 +16,11 @@ import com.bht.pim.util.LanguageUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import lombok.extern.log4j.Log4j;
 
 /**
+ *
  * @author bht
  */
-@Log4j
 @Fragment(id = LeftMenuFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/menu/LeftMenuFragment.fxml")
@@ -47,13 +45,6 @@ public final class LeftMenuFragment extends BaseComponentFragment {
     }
 
     @Override
-    protected void onCreated() {
-        initAllLabels();
-        initAllStyles();
-        addAllEventListeners();
-    }
-
-    @Override
     protected void configLayout() {
         //
     }
@@ -61,6 +52,14 @@ public final class LeftMenuFragment extends BaseComponentFragment {
     @Override
     protected void bindChildren() {
         //
+    }
+
+
+    @Override
+    protected void onCreated() {
+        initAllLabels();
+        initAllStyles();
+        addAllEventListeners();
     }
 
     private void initAllLabels() {
@@ -80,15 +79,13 @@ public final class LeftMenuFragment extends BaseComponentFragment {
     }
 
     private void onMouseClickedProjectList(MouseEvent mouseEvent) {
-        //log.info("[MENU] Clicked Project List");
-
         if (lProjectList.getStyleClass().contains("active")) {
             mouseEvent.consume();
             return;
         }
 
         FragmentSwitching switching = new FragmentSwitching(
-                LeftPane.class,
+                ProjectDashboardFragment.class,
                 ProjectListFragment.class);
 
         context.send(MainPane.ID, switching);
@@ -99,15 +96,13 @@ public final class LeftMenuFragment extends BaseComponentFragment {
     }
 
     private void onMouseClickedDashboard(MouseEvent mouseEvent) {
-        //log.info("[MENU] Clicked Dashboard");
-
         if (lDashboard.getStyleClass().contains("active")) {
             mouseEvent.consume();
             return;
         }
 
         FragmentSwitching switching = new FragmentSwitching(
-                LeftPane.class,
+                ProjectListFragment.class,
                 ProjectDashboardFragment.class);
 
         context.send(MainPane.ID, switching);

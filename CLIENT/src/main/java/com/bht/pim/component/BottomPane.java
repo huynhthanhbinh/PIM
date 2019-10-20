@@ -15,14 +15,11 @@ import com.bht.pim.fragment.supplementary.LoginFragment;
 import javafx.event.Event;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
+ *
  * @author bht
  */
-@Getter
-@Setter
 @View(id = BottomPane.ID, name = BottomPane.ID,
         initialTargetLayoutId = BottomPane.CONTAINER,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES)
@@ -31,7 +28,6 @@ public final class BottomPane extends BaseComponent {
     public static final String ID = "bottomComponent";
     public static final String CONTAINER = "PBottom";
 
-    private ManagedFragmentHandler<LoginFragment> loginFragment;
     private ManagedFragmentHandler<ErrorHandlingFragment> errorHandlingFragment;
 
     @Resource
@@ -51,17 +47,17 @@ public final class BottomPane extends BaseComponent {
 
     @Override
     protected void loadFragments() {
-        loginFragment = registerComponentFragment(LoginFragment.class);
+        registerComponentFragment(LoginFragment.class);
         errorHandlingFragment = registerComponentFragment(ErrorHandlingFragment.class);
     }
 
     @Override
     protected Node handleMessage(Message<Event, Object> message) {
+
         if (message.getMessageBody() instanceof Throwable) {
             switchComponentFragment(this, ErrorHandlingFragment.class);
             errorHandlingFragment.getController()
                     .setDetail((Throwable) message.getMessageBody());
-
         } else {
             switchComponentFragment(this, LoginFragment.class);
         }

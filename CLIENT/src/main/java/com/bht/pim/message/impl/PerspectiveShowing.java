@@ -4,20 +4,14 @@ import com.bht.pim.component.MainPane;
 import com.bht.pim.message.PimMessage;
 
 import javafx.scene.Node;
-import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 /**
+ *
  * @author bht
  */
-@AllArgsConstructor
-public final class PerspectiveShowing implements PimMessage {
-
-    private Class sender;
-
-    @Override
-    public Class getSender() {
-        return sender;
-    }
+@NoArgsConstructor
+public final class PerspectiveShowing extends PimMessage {
 
     @Override
     public Node postHandle(MainPane mainPane) {

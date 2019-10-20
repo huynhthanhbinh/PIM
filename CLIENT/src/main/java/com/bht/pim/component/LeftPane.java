@@ -14,6 +14,7 @@ import javafx.event.Event;
 import javafx.scene.Node;
 
 /**
+ *
  * @author bht
  */
 @View(id = LeftPane.ID, name = LeftPane.ID,

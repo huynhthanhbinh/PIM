@@ -17,13 +17,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import lombok.extern.log4j.Log4j;
 
 /**
  *
  * @author bht
  */
-@Log4j
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @Fragment(id = ErrorHandlingFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
@@ -90,7 +88,7 @@ public final class ErrorHandlingFragment extends BaseComponentFragment {
     }
 
     public void setDetail(Throwable detail) {
-        log.error("[ERROR] " + detail);
+        LOGGER.error("[ERROR] " + detail);
         detailField.setText(detail.getClass().getName() + "\n" + detail.getMessage());
     }
 
