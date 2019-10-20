@@ -1,6 +1,5 @@
 package com.bht.pim.notification;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -30,6 +29,7 @@ import lombok.experimental.Accessors;
 /**
  * original: reference from JFXNotifications by TioCoding
  * customized for using in PIM project of ELCA by me
+ *
  * @author bht
  * @author TioCoding
  */
@@ -38,13 +38,16 @@ import lombok.experimental.Accessors;
 @Component
 @Accessors(chain = true)
 @SuppressWarnings("all")
-public final class JFXNotifications implements BaseBean {
+public final class JFXNotificationCustomized implements BaseBean {
 
-    private EnumMap<NotificationType, ImageView> iconMap;
-    private EnumMap<NotificationType, StringProperty> titleMap;
+    // time showing notification in seconds
+    private static final int LASTING = 3;
+
+    private EnumMap<JFXNotificationType, ImageView> iconMap;
+    private EnumMap<JFXNotificationType, StringProperty> titleMap;
 
     private boolean hideCloseButton;
-    private NotificationType type;
+    private JFXNotificationType type;
     private String title;
     private String message;
     private String typeMessage;
@@ -56,8 +59,8 @@ public final class JFXNotifications implements BaseBean {
     private Screen screen = Screen.getPrimary();
     private List<String> styleClass = new ArrayList<>();
 
-    public static JFXNotifications getCurrentInstance() {
-        return SpringApplicationContext.getBean(JFXNotifications.class);
+    public static JFXNotificationCustomized getCurrentInstance() {
+        return SpringApplicationContext.getBean(JFXNotificationCustomized.class);
     }
 
     @Override
@@ -68,29 +71,30 @@ public final class JFXNotifications implements BaseBean {
     }
 
     private void initTitleMap() {
-        titleMap = new EnumMap<>(NotificationType.class);
-        titleMap.put(NotificationType.INFO, LanguageUtil.getTextPropertyOfKey("label.notification.information"));
-        titleMap.put(NotificationType.SUCCESS, LanguageUtil.getTextPropertyOfKey("label.notification.success"));
-        titleMap.put(NotificationType.WARNING, LanguageUtil.getTextPropertyOfKey("label.notification.warning"));
-        titleMap.put(NotificationType.ERROR, LanguageUtil.getTextPropertyOfKey("label.notification.error"));
+        titleMap = new EnumMap<>(JFXNotificationType.class);
+        titleMap.put(JFXNotificationType.INFO, LanguageUtil.getTextPropertyOfKey("label.notification.information"));
+        titleMap.put(JFXNotificationType.SUCCESS, LanguageUtil.getTextPropertyOfKey("label.notification.success"));
+        titleMap.put(JFXNotificationType.WARNING, LanguageUtil.getTextPropertyOfKey("label.notification.warning"));
+        titleMap.put(JFXNotificationType.ERROR, LanguageUtil.getTextPropertyOfKey("label.notification.error"));
     }
 
     private void initIconMap() {
-        iconMap = new EnumMap<>(NotificationType.class);
-        iconMap.put(NotificationType.INFO, new ImageView(getClass().getResource("icon/info.png").toExternalForm()));
-        iconMap.put(NotificationType.SUCCESS, new ImageView(getClass().getResource("icon/success.png").toExternalForm()));
-        iconMap.put(NotificationType.WARNING, new ImageView(getClass().getResource("icon/warning.png").toExternalForm()));
-        iconMap.put(NotificationType.ERROR, new ImageView(getClass().getResource("icon/error.png").toExternalForm()));
+        iconMap = new EnumMap<>(JFXNotificationType.class);
+        iconMap.put(JFXNotificationType.INFO, new ImageView(getClass().getResource("icon/info.png").toExternalForm()));
+        iconMap.put(JFXNotificationType.SUCCESS, new ImageView(getClass().getResource("icon/success.png").toExternalForm()));
+        iconMap.put(JFXNotificationType.WARNING, new ImageView(getClass().getResource("icon/warning.png").toExternalForm()));
+        iconMap.put(JFXNotificationType.ERROR, new ImageView(getClass().getResource("icon/error.png").toExternalForm()));
     }
 
     public void show() {
+        setDuration(Duration.seconds(LASTING));
         setTitle(titleMap.get(type).get());
         setGraphic(iconMap.get(type));
         showNotification();
     }
 
     private void showNotification() {
-        NotificationPopupHandler.getInstance().show(this);
+        JFXNotificationPopupHandler.getInstance().show(this);
     }
 
     /**
@@ -98,9 +102,10 @@ public final class JFXNotifications implements BaseBean {
      * or {@link Node}. If specified, the notifications will be inside the owner,
      * otherwise the notifications will be shown within the whole primary (default) screen.
      */
-    public JFXNotifications setOwner(Object owner) {
+    public JFXNotificationCustomized setOwner(Object owner) {
         if (owner instanceof Screen) {
             screen = (Screen) owner;
+
         } else {
             this.owner = getWindow(owner);
         }

@@ -53,7 +53,7 @@ public abstract class JFXNotificationBar extends Region {
     };
 
     public JFXNotificationBar() {
-        getStyleClass().add("notification-bar"); //$NON-NLS-1$
+        getStyleClass().add("notification-bar");
 
         setVisible(isShowing());
 
@@ -63,7 +63,7 @@ public abstract class JFXNotificationBar extends Region {
         pane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         pane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-        pane.getStyleClass().add("pane"); //$NON-NLS-1$
+        pane.getStyleClass().add("pane");
 
         getChildren().setAll(pane);
         paneGeneral = new HBox();
@@ -89,7 +89,7 @@ public abstract class JFXNotificationBar extends Region {
         String titleStr = getTitle();
         if (titleStr != null && !titleStr.isEmpty()) {
             Label title = new Label(getTitle());
-            title.getStyleClass().add("title"); //$NON-NLS-1$
+            title.getStyleClass().add("title");
             title.setWrapText(true);
             paneText.getChildren().add(title);
         }
@@ -97,7 +97,7 @@ public abstract class JFXNotificationBar extends Region {
         String mesaggeStr = getText();
         if (mesaggeStr != null && !mesaggeStr.isEmpty()) {
             Label message = new Label(getText());
-            message.getStyleClass().add("message"); //$NON-NLS-1$
+            message.getStyleClass().add("message");
             message.setWrapText(true);
             paneText.getChildren().add(message);
         }
@@ -114,9 +114,9 @@ public abstract class JFXNotificationBar extends Region {
         });
         closeBtn.requestFocus();
         closeBtn.requestLayout();
-        closeBtn.getStyleClass().setAll("close-button"); //$NON-NLS-1$
+        closeBtn.getStyleClass().setAll("close-button");
         StackPane graphic = new StackPane();
-        graphic.getStyleClass().setAll("graphic"); //$NON-NLS-1$
+        graphic.getStyleClass().setAll("graphic");
         closeBtn.setGraphic(graphic);
         closeBtn.setRipplerFill(Color.WHITE);
         closeBtn.setStyle("-fx-background-radius: 20");
@@ -165,7 +165,7 @@ public abstract class JFXNotificationBar extends Region {
     }
 
     public String getTitle() {
-        return ""; //$NON-NLS-1$
+        return "";
     }
 
     public boolean isCloseButtonVisible() {
@@ -174,7 +174,7 @@ public abstract class JFXNotificationBar extends Region {
 
     public abstract String getText();
 
-    public abstract NotificationType getNotificationType();
+    public abstract JFXNotificationType getNotificationType();
 
     public abstract Node getGraphic();
 

@@ -27,9 +27,9 @@ import javafx.util.Duration;
  * @author TioCoding
  */
 @SuppressWarnings("all")
-final class NotificationPopupHandler {
+public final class JFXNotificationPopupHandler {
 
-    private static final NotificationPopupHandler INSTANCE = new NotificationPopupHandler();
+    private static final JFXNotificationPopupHandler INSTANCE = new JFXNotificationPopupHandler();
     private static final double PADDING = 15;
 
     private final Map<Pos, List<Popup>> popupsMap = new HashMap<>();
@@ -41,11 +41,11 @@ final class NotificationPopupHandler {
     private ParallelTransition parallelTransition = new ParallelTransition();
     private boolean isShowing = false;
 
-    static NotificationPopupHandler getInstance() {
+    static JFXNotificationPopupHandler getInstance() {
         return INSTANCE;
     }
 
-    public void show(JFXNotifications notification) {
+    public void show(JFXNotificationCustomized notification) {
         Window window;
         if (notification.getOwner() == null) {
             /*
@@ -57,7 +57,7 @@ final class NotificationPopupHandler {
             screenWidth = screenBounds.getWidth();
             screenHeight = screenBounds.getHeight();
 
-            window = JFXNotifications.getWindow(null);
+            window = JFXNotificationCustomized.getWindow(null);
         } else {
             /*
              * If the owner is set, we will make the notifications popup
@@ -72,7 +72,7 @@ final class NotificationPopupHandler {
         show(window, notification);
     }
 
-    private void show(Window owner, final JFXNotifications notification) {
+    private void show(Window owner, final JFXNotificationCustomized notification) {
         // Stylesheets which are added to the scene of a popup aren't
         // considered for styling. For this reason, we need to find the next
         // window in the hierarchy which isn't a popup.
@@ -83,7 +83,7 @@ final class NotificationPopupHandler {
         // need to install our CSS
         Scene ownerScene = ownerWindow.getScene();
         if (ownerScene != null) {
-            String stylesheetUrl = getClass().getResource("css/NotificationPopup.css").toExternalForm(); //$NON-NLS-1$
+            String stylesheetUrl = getClass().getResource("css/NotificationPopup.css").toExternalForm();
             if (!ownerScene.getStylesheets().contains(stylesheetUrl)) {
                 // The stylesheet needs to be added at the beginning so that
                 // the styling can be adjusted with custom stylesheets.
@@ -108,7 +108,7 @@ final class NotificationPopupHandler {
             }
 
             @Override
-            public NotificationType getNotificationType() {
+            public JFXNotificationType getNotificationType() {
                 return notification.getType();
             }
 
@@ -144,7 +144,7 @@ final class NotificationPopupHandler {
 
             @Override
             public boolean isShowFromTop() {
-                return NotificationPopupHandler.this.isShowFromTop(notification.getPosition());
+                return JFXNotificationPopupHandler.this.isShowFromTop(notification.getPosition());
             }
 
             @Override
@@ -353,7 +353,7 @@ final class NotificationPopupHandler {
             final double oldAnchorY = popup.getAnchorY();
             final double distance = anchorYTarget - oldAnchorY;
 
-            Transition t = new NotificationPopupHandler.CustomTransition(popup, oldAnchorY, distance);
+            Transition t = new JFXNotificationPopupHandler.CustomTransition(popup, oldAnchorY, distance);
             t.setCycleCount(1);
             parallelTransition.getChildren().add(t);
         }

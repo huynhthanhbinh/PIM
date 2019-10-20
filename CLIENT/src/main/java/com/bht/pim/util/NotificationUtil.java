@@ -1,10 +1,9 @@
 package com.bht.pim.util;
 
-import com.bht.pim.notification.JFXNotifications;
-import com.bht.pim.notification.NotificationType;
+import com.bht.pim.notification.JFXNotificationCustomized;
+import com.bht.pim.notification.JFXNotificationType;
 
 import javafx.geometry.Pos;
-import javafx.util.Duration;
 
 /**
  *
@@ -12,16 +11,13 @@ import javafx.util.Duration;
  */
 public final class NotificationUtil {
 
-    private static final int LASTING = 3; // time showing notification in seconds
-
     private NotificationUtil() {
     }
 
-    public static void showNotification(NotificationType type, Pos position, String message) {
-        JFXNotifications.getCurrentInstance()
+    public static void showNotification(JFXNotificationType type, Pos position, String message) {
+        JFXNotificationCustomized.getCurrentInstance()
                 .setType(type)
                 .setMessage(message)
-                .setDuration(Duration.seconds(LASTING))
                 .setPosition(position)
                 .show();
     }

@@ -3,7 +3,7 @@ package com.bht.pim.util;
 import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseComponentFragment;
 import com.bht.pim.base.BasePerspective;
-import com.bht.pim.notification.NotificationType;
+import com.bht.pim.notification.JFXNotificationType;
 
 import javafx.geometry.Pos;
 import javafx.scene.input.KeyCode;
@@ -55,6 +55,6 @@ public final class GraphicUtil {
         });
         graphic.append("\n");
         System.out.println(graphic.toString());
-        NotificationUtil.showNotification(NotificationType.INFO, Pos.CENTER, graphic.toString());
+        NotificationUtil.showNotification(JFXNotificationType.INFO, Pos.CENTER, graphic.toString());
     }
 }
