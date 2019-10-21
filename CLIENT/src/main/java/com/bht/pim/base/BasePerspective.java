@@ -58,8 +58,8 @@ public abstract class BasePerspective implements BaseBean, FXPerspective {
     }
 
     @PostConstruct
-    public final void onStart(final PerspectiveLayout perspectiveLayout,
-                              final FXComponentLayout layout) {
+    public final void onStart(final PerspectiveLayout perspectiveLayout, final FXComponentLayout layout) {
+        LOGGER.info(LoggingUtil.format("INIT", "FXPerspective", getClass().getSimpleName()));
         getContext();
         childComponents = new ArrayList<>();
         onCreated(perspectiveLayout, layout);
