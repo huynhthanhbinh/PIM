@@ -19,7 +19,7 @@ import lombok.Getter;
 /**
  * For using multilingual,
  * all of this's subclasses have to define an annotation :
- * {@code @Lazy} or {@code @DependsOn("languageProperty")}
+ * {@code @Lazy} or {@code @DependsOn(LanguageProperty.ID)}
  * Otherwise, subclasses will be create first
  * while bean LanguageProperty has not been created yet !!
  * Therefore, we cannot use multilingual

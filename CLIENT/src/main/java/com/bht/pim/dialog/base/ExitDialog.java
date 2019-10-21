@@ -7,6 +7,7 @@ import org.springframework.context.annotation.DependsOn;
 import com.bht.pim.base.BaseDialog;
 import com.bht.pim.dialog.content.ExitDialogContent;
 import com.bht.pim.fragment.children.confirm.Confirmable;
+import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.LoadingUtil;
 
@@ -23,7 +24,7 @@ import lombok.Setter;
  *
  * @author bht
  */
-@DependsOn("languageProperty")
+@DependsOn(LanguageProperty.ID)
 public final class ExitDialog extends BaseDialog implements Confirmable {
 
     private static final String CONTENT_PATH = "dialog/content/ExitDialogContent.fxml";

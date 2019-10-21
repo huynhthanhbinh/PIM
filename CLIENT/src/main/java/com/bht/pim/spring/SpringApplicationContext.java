@@ -11,8 +11,10 @@ import com.bht.pim.base.BaseBean;
  *
  * @author bht
  */
-@Component
+@Component(SpringApplicationContext.ID)
 public final class SpringApplicationContext implements BaseBean, ApplicationContextAware {
+
+    public static final String ID = "springApplicationContext";
 
     private static ApplicationContext applicationContext;
 
@@ -27,6 +29,7 @@ public final class SpringApplicationContext implements BaseBean, ApplicationCont
 
     /**
      * get bean created before by app static context
+     *
      * @param <T> any object has been injected before
      * @return Bean of a specific class
      */

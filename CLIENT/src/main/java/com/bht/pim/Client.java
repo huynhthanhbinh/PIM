@@ -9,6 +9,7 @@ import org.springframework.context.annotation.DependsOn;
 import com.bht.pim.base.BaseBean;
 import com.bht.pim.handler.PimErrorHandler;
 import com.bht.pim.preloader.PreLoader;
+import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.LoadingUtil;
 import com.sun.javafx.application.LauncherImpl;
@@ -17,12 +18,11 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 
 /**
- * JavaFX Application Class - using JACP framework + Preloader
  *
  * @author bht
  */
 @SpringBootApplication
-@DependsOn("languageProperty")
+@DependsOn(LanguageProperty.ID)
 public class Client extends AFXSpringJavaConfigLauncher implements BaseBean {
 
     public static void main(String[] args) {

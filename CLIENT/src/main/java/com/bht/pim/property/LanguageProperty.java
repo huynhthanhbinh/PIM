@@ -19,9 +19,11 @@ import lombok.Getter;
  *
  * @author bht
  */
-@Component
-@DependsOn("springApplicationContext")
+@Component(LanguageProperty.ID)
+@DependsOn(SpringApplicationContext.ID)
 public final class LanguageProperty implements BaseBean {
+
+    public static final String ID = "languageProperty";
 
     @Getter
     private ObjectProperty<Locale> localeProperty;

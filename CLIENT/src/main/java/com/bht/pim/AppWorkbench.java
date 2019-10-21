@@ -22,7 +22,7 @@ import com.bht.pim.preloader.PreLoader;
                 DefaultPerspective.ID})
 public final class AppWorkbench extends BaseWorkbench {
 
-    public static final String ID = "pimWorkbench";
+    public static final String ID = "appWorkbench";
 
     @Resource
     private Context context;

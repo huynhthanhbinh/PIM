@@ -9,6 +9,7 @@ import org.springframework.context.annotation.DependsOn;
 
 import com.bht.pim.base.BaseDialog;
 import com.bht.pim.dialog.content.HelpDialogContent;
+import com.bht.pim.property.LanguageProperty;
 import com.bht.pim.util.LanguageUtil;
 import com.bht.pim.util.LoadingUtil;
 
@@ -23,7 +24,7 @@ import lombok.extern.log4j.Log4j;
  * @author bht
  */
 @Log4j
-@DependsOn("languageProperty")
+@DependsOn(LanguageProperty.ID)
 public final class HelpDialog extends BaseDialog {
 
     private static final String CONTENT_PATH = "dialog/content/HelpDialogContent.fxml";
