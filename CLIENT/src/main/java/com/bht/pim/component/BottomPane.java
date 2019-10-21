@@ -55,9 +55,9 @@ public final class BottomPane extends BaseComponent {
     protected Node handleMessage(Message<Event, Object> message) {
 
         if (message.getMessageBody() instanceof Throwable) {
-            switchComponentFragment(this, ErrorHandlingFragment.class);
             errorHandlingFragment.getController()
                     .setDetail((Throwable) message.getMessageBody());
+            switchComponentFragment(this, ErrorHandlingFragment.class);
         } else {
             switchComponentFragment(this, LoginFragment.class);
         }

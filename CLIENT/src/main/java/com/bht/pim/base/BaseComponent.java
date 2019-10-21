@@ -113,12 +113,17 @@ public abstract class BaseComponent extends VBox implements BaseBean, FXComponen
     public static <C extends BaseComponent, F extends BaseComponentFragment> void switchComponentFragment(
             C component, Class<F> fragmentClazz) {
 
+        if (component.currentFragment != null && component.currentFragment.getController() != null) {
+
+            BaseComponentFragment current = component.currentFragment.getController();
+            if (current.getClass().equals(fragmentClazz)) { // check if current & target is the same
+                return;
+            }
+            current.preLeft();
+        }
+
         ObservableList<Node> nodes = component.getChildren();
         nodes.clear();
-
-        if (component.currentFragment != null && component.currentFragment.getController() != null) {
-            component.currentFragment.getController().preLeft();
-        }
 
         // as BaseComponentFragment's scope is SINGLETON
         ManagedFragmentHandler<F> target = component.componentContext.getManagedFragmentHandler(fragmentClazz);
