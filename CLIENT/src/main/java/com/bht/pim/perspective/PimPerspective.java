@@ -53,8 +53,8 @@ public final class PimPerspective extends BasePerspective {
     protected void onShowed() {
         // check if connection is lost ? show error : continue
         PerspectiveShowing perspectiveShowing = new PerspectiveShowing();
+        context.send(LeftPane.ID, perspectiveShowing);
         context.send(MainPane.ID, perspectiveShowing);
-        context.send(LeftPane.ID, "selectDefault");
     }
 
     @Override

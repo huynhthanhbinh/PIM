@@ -9,6 +9,7 @@ import org.jacpfx.rcp.context.Context;
 import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseComponent;
 import com.bht.pim.fragment.menu.LeftMenuFragment;
+import com.bht.pim.message.impl.PerspectiveShowing;
 
 import javafx.event.Event;
 import javafx.scene.Node;
@@ -44,14 +45,16 @@ public final class LeftPane extends BaseComponent {
     @Override
     protected void loadFragments() {
         leftMenuFragment = registerComponentFragment(LeftMenuFragment.class);
-        switchComponentFragment(this, LeftMenuFragment.class);
     }
 
     @Override
     protected Node handleMessage(Message<Event, Object> message) {
-        if (message.messageBodyEquals("selectDefault")) {
+
+        if (message.isMessageBodyTypeOf(PerspectiveShowing.class)) {
             leftMenuFragment.getController().onShowed();
+            switchComponentFragment(this, LeftMenuFragment.class);
         }
+
         return this; // otherwise, it won't show UI
     }
 }
