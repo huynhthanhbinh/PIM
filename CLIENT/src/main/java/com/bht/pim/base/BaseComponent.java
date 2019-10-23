@@ -109,27 +109,42 @@ public abstract class BaseComponent extends VBox implements BaseBean, FXComponen
 
     // switch current-(parent)-fragment
     // this method is use only for SINGLETON fragment
-    // not for PROTOTYPE fragment !!! eg. TopMenuFragment
     public static <C extends BaseComponent, F extends BaseComponentFragment> void switchComponentFragment(
             C component, Class<F> fragmentClazz) {
 
-        if (component.currentFragment != null && component.currentFragment.getController() != null) {
+        if (isSwitchable(component, fragmentClazz)) {
+            ObservableList<Node> nodes = component.getChildren();
+            nodes.clear();
 
-            BaseComponentFragment current = component.currentFragment.getController();
-            if (current.getClass().equals(fragmentClazz)) { // check if current & target is the same
-                return;
-            }
-            current.preLeft();
+            // as BaseComponentFragment's scope is SINGLETON
+            ManagedFragmentHandler<F> target = component.componentContext
+                    .getManagedFragmentHandler(fragmentClazz);
+
+            target.getController().onSwitch();
+
+            component.currentFragment = target;
+            nodes.add(component.currentFragment.getFragmentNode());
         }
+    }
 
-        ObservableList<Node> nodes = component.getChildren();
-        nodes.clear();
 
-        // as BaseComponentFragment's scope is SINGLETON
-        ManagedFragmentHandler<F> target = component.componentContext.getManagedFragmentHandler(fragmentClazz);
-        target.getController().onSwitch();
+    private static <C extends BaseComponent, F extends BaseComponentFragment> boolean isSwitchable(
+            C component, Class<F> fragmentClazz) {
 
-        component.currentFragment = target;
-        nodes.add(component.currentFragment.getFragmentNode());
+        if (component.currentFragment != null) {
+            BaseComponentFragment current = component.currentFragment.getController();
+
+            if (fragmentClazz.isInstance(current)) { // the same component fragment , also current != null
+                return fragmentClazz.isAssignableFrom(TopMenuFragment.class); // except TopMenuFragment
+
+            } else if (current == null) { // current == null
+                return false;
+
+            } else { // 2 different component fragments
+                current.preLeft();
+                return true;
+            }
+        }
+        return true; // initial case (on application starts)
     }
 }

@@ -28,7 +28,7 @@ import javafx.scene.layout.AnchorPane;
  * @author bht
  */
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
-@Fragment(id = TopMenuFragment.ID, scope = Scope.PROTOTYPE,
+@Fragment(id = TopMenuFragment.ID, scope = Scope.SINGLETON,
         resourceBundleLocation = AppConfiguration.LANGUAGE_BUNDLES,
         viewLocation = "/com/bht/pim/fragment/menu/TopMenuFragment.fxml")
 public final class TopMenuFragment extends BaseComponentFragment {

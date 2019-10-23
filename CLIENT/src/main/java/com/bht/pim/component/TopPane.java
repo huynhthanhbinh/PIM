@@ -3,17 +3,19 @@ package com.bht.pim.component;
 import org.jacpfx.api.annotations.Resource;
 import org.jacpfx.api.annotations.component.View;
 import org.jacpfx.api.message.Message;
-import org.jacpfx.rcp.components.managedFragment.ManagedFragmentHandler;
 import org.jacpfx.rcp.context.Context;
 
 import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BaseComponent;
 import com.bht.pim.fragment.menu.TopMenuFragment;
+import com.bht.pim.message.impl.PerspectiveShowing;
 
 import javafx.event.Event;
 import javafx.scene.Node;
 
 /**
+ * different from the others, TopPane is used on 2 different perspectives
+ *
  * @author bht
  */
 @View(id = TopPane.ID, name = TopPane.ID,
@@ -43,13 +45,16 @@ public final class TopPane extends BaseComponent {
 
     @Override
     protected void loadFragments() {
-        ManagedFragmentHandler<TopMenuFragment> topMenuFragment = registerComponentFragment(TopMenuFragment.class);
-        getChildren().add(topMenuFragment.getFragmentNode());
-        currentFragment = topMenuFragment;
+        registerComponentFragment(TopMenuFragment.class);
     }
 
     @Override
     protected Node handleMessage(Message<Event, Object> message) {
+
+        if (message.isMessageBodyTypeOf(PerspectiveShowing.class)) {
+            switchComponentFragment(this, TopMenuFragment.class);
+        }
+
         return this; // otherwise, it won't show UI
     }
 }

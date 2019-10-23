@@ -11,6 +11,7 @@ import com.bht.pim.AppConfiguration;
 import com.bht.pim.base.BasePerspective;
 import com.bht.pim.component.BottomPane;
 import com.bht.pim.component.TopPane;
+import com.bht.pim.message.impl.PerspectiveShowing;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -48,7 +49,8 @@ public final class DefaultPerspective extends BasePerspective {
 
     @Override
     protected void onShowed() {
-        // ...
+        PerspectiveShowing perspectiveShowing = new PerspectiveShowing();
+        context.send(TopPane.ID, perspectiveShowing);
     }
 
     @Override
