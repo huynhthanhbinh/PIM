@@ -117,9 +117,9 @@ public abstract class BaseComponent extends VBox implements BaseBean, FXComponen
             nodes.clear();
 
             // as BaseComponentFragment's scope is SINGLETON
-            ManagedFragmentHandler<F> target = component.componentContext
-                    .getManagedFragmentHandler(fragmentClazz);
+            ManagedFragmentHandler<F> target = component.componentContext.getManagedFragmentHandler(fragmentClazz);
 
+            LOGGER.info(LoggingUtil.format("SHOW", "FXFragment", fragmentClazz.getSimpleName()));
             target.getController().onSwitch();
 
             component.currentFragment = target;
@@ -140,11 +140,11 @@ public abstract class BaseComponent extends VBox implements BaseBean, FXComponen
             } else if (current == null) { // current == null
                 return false;
 
-            } else { // 2 different component fragments
+            } else { // 2 different component fragments --> execute preLeft method + return true
+                LOGGER.info(LoggingUtil.format("HIDE", "FXFragment", current.getClass().getSimpleName()));
                 current.preLeft();
-                return true;
             }
         }
-        return true; // initial case (on application starts)
+        return true; // 2 different component fragments case + initial case (on application starts)
     }
 }
