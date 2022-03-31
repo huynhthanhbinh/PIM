@@ -31,7 +31,7 @@
         <maven.antrun-plugin.version>1.8</maven.antrun-plugin.version>
 
         <springframework.version>5.1.8.RELEASE</springframework.version>
-        <springboot.version>2.1.8.RELEASE</springboot.version>
+        <springboot.version>2.5.12</springboot.version>
         <mssql-jdbc.version>7.4.1.jre8</mssql-jdbc.version>
         <javax.version>4.0.1</javax.version>
 
