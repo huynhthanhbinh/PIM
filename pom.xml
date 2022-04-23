@@ -30,7 +30,7 @@
         <maven.compiler.target>1.8</maven.compiler.target> <!-- jdk 1.8 (java8) -->
         <maven.antrun-plugin.version>1.8</maven.antrun-plugin.version>
 
-        <springframework.version>5.1.8.RELEASE</springframework.version>
+        <springframework.version>5.3.19</springframework.version>
         <springboot.version>2.1.8.RELEASE</springboot.version>
         <mssql-jdbc.version>7.4.1.jre8</mssql-jdbc.version>
         <javax.version>4.0.1</javax.version>
